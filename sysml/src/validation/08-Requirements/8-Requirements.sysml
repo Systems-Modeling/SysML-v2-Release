@@ -1,0 +1,194 @@
+package '8-Requirements' {
+	import ScalarValues::Real;
+	import ISQ::*;
+	import SI::*;
+	import 'Vehicle Usages'::*;
+	import 'Vehicle Requirements'::*;
+	
+	package 'Vehicle Definitions' {
+		part def Vehicle {
+			attribute mass: MassValue;
+			attribute fuelLevel: Real;
+			attribute fuelTankCapacity: Real;
+		}
+		
+		part def Engine {
+			port drivePwrPort: DrivePwrPort;
+			perform action 'generate torque': 'Generate Torque';
+		}
+		
+		part def Transmission {
+			port clutchPort: ClutchPort;
+		}
+		
+		port def DrivePwrPort;
+		port def ClutchPort;
+		
+		interface def EngineToTransmissionInterface {
+			end drivePwrPort: DrivePwrPort;
+			end clutchPort: ClutchPort;
+		}
+	
+		action def 'Generate Torque';
+	}
+	
+	package 'Vehicle Usages' {
+		import 'Vehicle Definitions'::*;
+		
+		action 'provide power' {
+			action 'generate torque' { /* ... */ }
+			//...
+		}
+		
+		part vehicle1_c1: Vehicle {
+			attribute :>> mass = 2000@[kg];
+			perform 'provide power';
+				
+			part engine_v1: Engine {
+				port :>> drivePwrPort;
+				perform 'provide power'::'generate torque' :>> Engine::'generate torque';
+			}
+			
+			part transmission: Transmission {
+				port :>> clutchPort;
+			}
+			
+			interface engineToTransmission: EngineToTransmissionInterface
+				connect engine_v1::drivePwrPort to transmission::clutchPort;
+		}
+		
+		part vehicle1_c2: Vehicle {
+			attribute :>> mass = 2500@[kg];
+		}
+	}
+	
+	package 'Vehicle Requirements' {	
+		import 'Vehicle Definitions'::*;
+	
+		/**
+		 * The optional requirement ID  of this requirement ('1') is given after the keyword "id" (using name syntax).
+		 * Every requirement is parameterized by a "subject". The "subject" of this requirement is implicitly "Anything".
+		 */
+		requirement def id '1' MassLimitationRequirement {
+			// The requirement text is given by the documentation in the requirement def body.
+			doc /* The actual mass shall be less than or equal to the required mass. */
+			
+			attribute massActual: MassValue;
+			attribute massReqd: MassValue;
+			
+			/**
+			 * A constraint can be used to formalize a requirement.
+			 */
+			require constraint { massActual <= massReqd }
+		}
+		
+		requirement def id '2' ReliabilityRequirement;
+		
+		requirement id '1.1' vehicleMass1: MassLimitationRequirement {
+			doc /* The vehicle mass shall be less than or equal to 2000 kg when the fuel tank is full. */
+			
+			/**
+			 * The subject of this requirement is redefined to be a "Vehicle".
+			 */
+			subject vehicle : Vehicle;
+			
+			/**
+			 * This redefinition binds the vehicle mass to the actual mass.
+			 */
+			attribute :>> massActual: MassValue = vehicle::mass;
+			
+			/**
+			 * This redefinition sets the required mass to 2000 kg.
+			 */
+			attribute :>> massReqd = 2000@[kg];
+			
+			/**
+			 * A constraint can also be used to specify an assumption.
+			 */
+			assume constraint fuelConstraint {
+				doc /* full fuel tank */
+				vehicle::fuelLevel >= vehicle::fuelTankCapacity
+			}
+		}
+			
+		requirement id '2.1' vehicleMass2: MassLimitationRequirement {
+			doc /* The vehicle mass shall be less than or equal to 2500 kg when the fuel tank is empty. */
+			
+			subject vehicle : Vehicle;
+			
+			attribute :>> massActual: MassValue = vehicle::mass;
+			attribute :>> massReqd = 2500@[kg];
+		
+			assume constraint fuelConstraint {
+				doc /* empty fuel tank */
+				vehicle::fuelLevel == 0.0
+			}
+		}
+		
+		requirement id '2.2' vehicleReliability2: ReliabilityRequirement {
+			subject vehicle : Vehicle;
+		}
+			
+		requirement id '3.1' drivePowerInterface {
+			doc /* The engine shall transfer its generated torque to the transmission via the clutch interface. */
+			subject drivePwrPort: DrivePwrPort;
+		}
+		
+		requirement id '3.2' torqueGeneration {
+			doc /* The engine shall generate torque as a function of RPM as shown in Table 1. */
+			subject generateTorque: 'Generate Torque';
+		}
+			
+	}
+	
+	part 'vehicle1_c1 Specification Context' {
+		import 'vehicle1-c1 Specification'::*;
+		import 'engine-v1 Specification'::*;
+		
+		/**
+		 * This models a "requirement group" as a requirement that references other requirements.
+		 */
+		requirement 'vehicle1-c1 Specification' {
+			subject vehicle : Vehicle;
+			/** 
+			 * This is a reference to a requirement defined outside the group.
+			 * By default, the subject of the requirement is bound to that of the group.
+			 */
+			require vehicleMass1;
+			// ...
+		}
+		
+		requirement 'engine-v1 Specification' {
+			subject engine : Engine;
+			/** 
+			 * Here the subjects of the referenced requirements are defined to be specific properties of the
+			 * subject of the group.
+			 */
+			require torqueGeneration {
+				subject generateTorque = engine::'generate torque';
+			}
+			require drivePowerInterface {
+				subject drivePwrPort = engine::drivePwrPort;
+			}
+		}
+		
+		/**
+		 * This asserts that if the assumptions of 'vehicle1-c1 Specification' are true with 'vehicle_c1' as
+		 * the subject, then the required constraints are also true.
+		 */
+		satisfy 'vehicle1-c1 Specification' by vehicle1_c1;
+		satisfy 'engine-v1 Specification' by vehicle1_c1::engine_v1;
+	}
+	
+	part 'vehicle1_c2 Specification Context' {
+		import 'vehicle1-c2 Specification'::*;
+		
+		requirement 'vehicle1-c2 Specification' {
+			subject vehicle : Vehicle;
+			require vehicleMass2;
+			require vehicleReliability2;
+		}
+		
+		satisfy 'vehicle1-c2 Specification' by vehicle1_c2;
+	}
+}
