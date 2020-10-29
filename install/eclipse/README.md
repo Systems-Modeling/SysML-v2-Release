@@ -1,4 +1,4 @@
-# SysML v2 Release 2020-09 Eclipse Installation
+# SysML v2 Release Eclipse Installation
 
 **Requirements:** Eclipse 2020-06 (4.16) or later, with Java Development Kit
 
@@ -10,7 +10,7 @@
 
 3. Select `Add...` and then, in the add dialog, select `Archive...` .
 
-4. Navigate to the `org.omg.sysml.site-0.5.0.zip` archive and select it. (You can give it a name if you wish.) Click `Add`.
+4. Navigate to the `org.omg.sysml.site.zip` archive and select it. (You can give it a name if you wish.) Click `Add`.
 
 5. In the Install window, select the `KerML and SysML Editors` category and click `Next`.
 

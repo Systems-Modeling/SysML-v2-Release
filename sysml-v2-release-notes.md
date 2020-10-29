@@ -136,7 +136,7 @@ Commit, where the Commit::changes attribute has been renamed to Commit::change.
 
   1. Added support for element versioning
   
-## Visualization
+### Visualization
 
   1. *Tom Sawyer.* Updated.
   2. *PlantUML.* Initial release of tree and state machine views for Eclipse editors.
@@ -152,11 +152,11 @@ Commit, where the Commit::changes attribute has been renamed to Commit::change.
   5. Made minor keyword changes
   6. Added validation checks for subsetting and redefinition.
   
-## Visualization
+### Visualization
 
 1. *Tom Sawyer.* Updated.
   
-## API
+### API
 
   1. Added validation against abstract syntax
 
@@ -179,11 +179,11 @@ Initial release:
   11. Scalar values and functions
   12. Quantities and units
   
-## Visualization
+### Visualization
 
   1. *Tom Sawyer.* Initial release for structural diagrams.
 
-## API
+### API
 
 Initial release:
 

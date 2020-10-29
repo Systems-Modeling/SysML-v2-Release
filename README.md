@@ -1,10 +1,12 @@
-# OMG System Modeling Language™ (SysML®) v2 Release 2020-09
+# OMG System Modeling Language™ (SysML®) v2 Release
 
-This is an incremental release of the SysML v2 specification and pilot implementation.
+The [SysML v2 Release](https://github.com/Systems-Modeling/SysML-v2-Release) repository contains the latest incremental release of the SysML v2 specification documents, 
+example models and model library. It also provides instructions for user installation of SysML v2 Pilot Implementation editors. For developer installs, please see the
+development repositories also available from the [Systems Modeling](https://github.com/Systems-Modeling) organization on GitHub.
 
 ## Team
 
-The SysML v2 Submission Team (SST) is a joint team of over 160 individuals  from over 70 industry, academia and government organizations, 
+The SysML v2 Submission Team (SST) is a joint team of over 160 individuals from over 70 industry, academia and government organizations, 
 working together to develop the next major version of the Object Management Group (OMG) System Modeling Language (SysML). 
 The goal is to deliver a SysML v2 specification that is validated by the user community, that is demonstrable with a pilot implementation 
 and that provides a smooth migration path for SysML v1 users and models.
@@ -25,26 +27,28 @@ To ask questions about using this release or to provide feedback, join the SysML
  
 ## Release Content
 
-The release directory at [https://github.com/systems-modeling/sysml-v2-release](https://github.com/systems-modeling/sysml-v2-release) contains the following items.
+The release repository contains the items listed below. For a Zip archive of the entire repository contents, go to 
+[https://github.com/Systems-Modeling/SysML-v2-Release/releases](https://github.com/Systems-Modeling/SysML-v2-Release/releases) and download the appropriate version.
 
-  * Archive of the entire release directory
-    * `sysml-v2-release.zip`
-  * SysML v2 specification documents (PDF)
-    * Part 1 – Kernel Modeling Language (KerML), version 1.0
-    * Part 2 – OMG Systems Modeling Language (SysML), version 2.0
-    * Part 3 – Systems Modeling Application Programming Interface (API) and Services, version 1.0
-  * Introductory presentation on the SysML v2 textual notation
-    * `Intro to the SysML v2 Language.pdf`
+  * In the `doc` directory.
+    * Introductory presentation on the SysML v2 textual notation
+        * `Intro to the SysML v2 Language.pdf`
+    * SysML v2 specification documents (PDF)
+        * Part 1 – Kernel Modeling Language (KerML), version 1.0
+        * Part 2 – OMG Systems Modeling Language (SysML), version 2.0
+        * Part 3 – Systems Modeling Application Programming Interface (API) and Services, version 1.0
+  * In the `install` directory
+    * `eclipse` - Installer for Eclipse plugins for Kernel Modeling Language (KerML) and System Modeling Language (SysML) editors
+        * Follow the instructions in the `README` file.
+    * `jupyter` - Installer for a SysML language kernel for Jupyter Notebook
+        * Follow the instructions in its `README` file.
+        * For more information on Jupyter Notebook, see [https://jupyter.org/](https://jupyter.org/).
+  * SysML v2 model projects (textual notation)
+      * `kerml` - Example models in the Kernel Modeling Language (KerML)
+      * `sysml` - Example models in the Systems Modeling Language (SysML) v2
+      * `sysml.library` - Normative model libraries for both KerML and SysML
   * Release notes
-    * `sysml-v2-release-notes.pdf`
-  * Installer for Jupyter Notebook with a SysML language kernel
-    * Unzip `sysml-v2-jupyter-installation.zip` and follow the instructions in its `README` file.
-    * For more information on Jupyter Notebook, see [https://jupyter.org/](https://jupyter.org/).
-  * Installer for Eclipse plugins for Kernel Modeling Language (KerML) and System Modeling Language (SysML) editors
-    * Unzip `sysml-v2-eclipse-installation.zip` and follow the instructions in its `README` file.
-  * Generated client software for using the REST/HTTP API implementation.
-    * *Java.* Unzip `sysml-v2-api-java-client.zip` and follow the instructions in its `README` file.
-    * *Python.* Unzip `sysml-v2-api-python-client.zip` and follow the instructions in its `README` file.
+      * `sysml-v2-release-notes.pdf`
   
 Additional content can be accessed at the following URLs.
 
@@ -52,18 +56,22 @@ Additional content can be accessed at the following URLs.
     * [http://sysml2.intercax.com:9000/docs/](http://sysml2.intercax.com:9000/docs/)
     * This page acts as an API front end to a live prototype repository implementation.
   * Prototype SysML v2 visualization tool
-    * [https://www.tomsawyer.com/demonstrations/sysml.2.0.demo/](https://www.tomsawyer.com/demonstrations/sysml.2.0.demo/) <br/>
+    * [https://www.tomsawyer.com/demonstrations/sysml.2.0.demo/](https://www.tomsawyer.com/demonstrations/sysml.2.0.demo/) 
       (you will need to create an account with Tom Sawyer Software to use this demo)
     * Any model in the prototype repository can be visualized.
-    * Models in Jupyter can be saved to the repository using the `%publish` command <br/>
+    * Models in Jupyter can be saved to the repository using the `%publish` command 
       (see topic in the SysML v2 Release group for more information).
  
 ## Licensing
 
 The specification documents are copyrighted by the SST member organizations listed in those documents under the terms given there.
 
+The introductory presentation is copyrighted by Model Driven Solutions, Inc., and licensed under the Creative Commons Attribution 4.0 International License. 
+To view a copy of this license, visit [http://creativecommons.org/licenses/by/4.0/](http://creativecommons.org/licenses/by/4.0/) or send a letter to 
+Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
 The Jupyter and Eclipse software and all included SysML v2 models are licensed by the respective copyright holders listed below 
-under the GNU Lesser General Public License v3.0 (see LICENSE and LICENSE-GPL files).
+under the GNU Lesser General Public License (LGPL) v3.0 (see `LICENSE` and `LICENSE-GPL` files).
 
 Copyright © 2019-2020 California Institute of Technology (Jet Propulsion Laboratory) <br/>
 Copyright © 2019-2020 DEKonsult <br/>
@@ -72,4 +80,4 @@ Copyright © 2019-2020 Itemis <br/>
 Copyright © 2019-2020 Maplesoft (Waterloo Maple, Inc.) <br/>
 Copyright © 2019-2020 Mgnite Inc. <br/>
 Copyright © 2019-2020 Model Driven Solutions, Inc. <br/>
-Copyright © 2019-2020 SAF Consulting <br/>
+Copyright © 2019-2020 SAF Consulting
