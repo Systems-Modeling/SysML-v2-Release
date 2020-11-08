@@ -160,7 +160,7 @@ Commit, where the Commit::changes attribute has been renamed to Commit::change.
 
   1. Added validation against abstract syntax
 
-## 2020-09 Release
+## 2019-09 Release
 
 ### Language features
 
