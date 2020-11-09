@@ -34,41 +34,40 @@ The release repository contains the items listed below. For a Zip archive of the
     * Introductory presentation on the SysML v2 textual notation
         * `Intro to the SysML v2 Language.pdf`
     * SysML v2 specification documents (PDF)
-        * Part 1 – Kernel Modeling Language (KerML), version 1.0
-        * Part 2 – OMG Systems Modeling Language (SysML), version 2.0
-        * Part 3 – Systems Modeling Application Programming Interface (API) and Services, version 1.0
+        1. Kernel Modeling Language (KerML), version 1.0
+        2. OMG Systems Modeling Language (SysML), version 2.0
+        3. Systems Modeling Application Programming Interface (API) and Services, version 1.0
   * In the `install` directory
     * `eclipse` - Installer for Eclipse plugins for Kernel Modeling Language (KerML) and System Modeling Language (SysML) editors
-        * Follow the instructions in the `README` file.
-    * `jupyter` - Installer for a SysML language kernel for Jupyter Notebook
-        * Follow the instructions in its `README` file.
-        * For more information on Jupyter Notebook, see [https://jupyter.org/](https://jupyter.org/).
+    * `jupyter` - Installer for a SysML language kernel for Jupyter, with JupyterLab integration 
+      (for more information on Jupyter, see [https://jupyter.org/](https://jupyter.org/))
   * SysML v2 model projects (textual notation)
       * `kerml` - Example models in the Kernel Modeling Language (KerML)
       * `sysml` - Example models in the Systems Modeling Language (SysML) v2
       * `sysml.library` - Normative model libraries for both KerML and SysML
-  * Release notes
-      * `sysml-v2-release-notes.pdf`
   
 Additional content can be accessed at the following URLs.
 
+  * Release notes
+     * [https://github.com/Systems-Modeling/SysML-v2-Pilot-Implementation/releases](https://github.com/Systems-Modeling/SysML-v2-Pilot-Implementation/releases)
+     * [https://github.com/Systems-Modeling/SysML-v2-API-Services/releases](https://github.com/Systems-Modeling/SysML-v2-API-Services/releases)
   * OpenAPI/Swagger documentation for the current API implementation.
     * [http://sysml2.intercax.com:9000/docs/](http://sysml2.intercax.com:9000/docs/)
-    * This page acts as an API front end to a live prototype repository implementation.
+    * This page acts as an API front end to a live prototype repository implementation
   * Prototype SysML v2 visualization tool
     * [https://www.tomsawyer.com/demonstrations/sysml.2.0.demo/](https://www.tomsawyer.com/demonstrations/sysml.2.0.demo/) 
       (you will need to create an account with Tom Sawyer Software to use this demo)
-    * Any model in the prototype repository can be visualized.
+    * Any model in the prototype repository can be visualized
     * Models in Jupyter can be saved to the repository using the `%publish` command 
-      (see topic in the SysML v2 Release group for more information).
+      (see topic in the SysML v2 Release group for more information)
  
 ## Licensing
 
 The specification documents are copyrighted by the SST member organizations listed in those documents under the terms given there.
 
-The introductory presentation is copyrighted by Model Driven Solutions, Inc., and licensed under the Creative Commons Attribution 4.0 International License. 
-To view a copy of this license, visit [http://creativecommons.org/licenses/by/4.0/](http://creativecommons.org/licenses/by/4.0/) or send a letter to 
-Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+The `Intro to the SysML v2 Language` presentation is copyrighted by Model Driven Solutions, Inc., and licensed under the Creative Commons Attribution 4.0 
+International License. To view a copy of this license, visit [http://creativecommons.org/licenses/by/4.0/](http://creativecommons.org/licenses/by/4.0/) 
+or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 The Jupyter and Eclipse software and all included SysML v2 models are licensed by the respective copyright holders listed below 
 under the GNU Lesser General Public License (LGPL) v3.0 (see `LICENSE` and `LICENSE-GPL` files).
