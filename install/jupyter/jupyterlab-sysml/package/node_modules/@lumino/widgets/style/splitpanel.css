@@ -1,0 +1,73 @@
+/*-----------------------------------------------------------------------------
+| Copyright (c) Jupyter Development Team.
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+
+
+/* <DEPRECATED> */ .p-SplitPanel-child, /* </DEPRECATED> */
+.lm-SplitPanel-child {
+  z-index: 0;
+}
+
+
+/* <DEPRECATED> */ .p-SplitPanel-handle, /* </DEPRECATED> */
+.lm-SplitPanel-handle {
+  z-index: 1;
+}
+
+
+/* <DEPRECATED> */ .p-SplitPanel-handle.p-mod-hidden, /* </DEPRECATED> */
+.lm-SplitPanel-handle.lm-mod-hidden {
+  display: none !important;
+}
+
+
+/* <DEPRECATED> */ .p-SplitPanel-handle:after, /* </DEPRECATED> */
+.lm-SplitPanel-handle:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: '';
+}
+
+
+/* <DEPRECATED> */
+.p-SplitPanel[data-orientation='horizontal'] > .p-SplitPanel-handle,
+/* </DEPRECATED> */
+.lm-SplitPanel[data-orientation='horizontal'] > .lm-SplitPanel-handle {
+  cursor: ew-resize;
+}
+
+
+/* <DEPRECATED> */
+.p-SplitPanel[data-orientation='vertical'] > .p-SplitPanel-handle,
+/* </DEPRECATED> */
+.lm-SplitPanel[data-orientation='vertical'] > .lm-SplitPanel-handle {
+  cursor: ns-resize;
+}
+
+
+/* <DEPRECATED> */
+.p-SplitPanel[data-orientation='horizontal'] > .p-SplitPanel-handle:after,
+/* </DEPRECATED> */
+.lm-SplitPanel[data-orientation='horizontal'] > .lm-SplitPanel-handle:after {
+  left: 50%;
+  min-width: 8px;
+  transform: translateX(-50%);
+}
+
+
+/* <DEPRECATED> */
+.p-SplitPanel[data-orientation='vertical'] > .p-SplitPanel-handle:after,
+/* </DEPRECATED> */
+.lm-SplitPanel[data-orientation='vertical'] > .lm-SplitPanel-handle:after {
+  top: 50%;
+  min-height: 8px;
+  transform: translateY(-50%);
+}

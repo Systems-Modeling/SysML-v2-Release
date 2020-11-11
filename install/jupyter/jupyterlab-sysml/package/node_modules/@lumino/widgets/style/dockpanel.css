@@ -1,0 +1,99 @@
+/*-----------------------------------------------------------------------------
+| Copyright (c) Jupyter Development Team.
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+
+
+/* <DEPRECATED> */ .p-DockPanel, /* </DEPRECATED> */
+.lm-DockPanel {
+  z-index: 0;
+}
+
+
+/* <DEPRECATED> */ .p-DockPanel-widget, /* </DEPRECATED> */
+.lm-DockPanel-widget {
+  z-index: 0;
+}
+
+
+/* <DEPRECATED> */ .p-DockPanel-tabBar, /* </DEPRECATED> */
+.lm-DockPanel-tabBar {
+  z-index: 1;
+}
+
+
+/* <DEPRECATED> */ .p-DockPanel-handle, /* </DEPRECATED> */
+.lm-DockPanel-handle {
+  z-index: 2;
+}
+
+
+/* <DEPRECATED> */ .p-DockPanel-handle.p-mod-hidden, /* </DEPRECATED> */
+.lm-DockPanel-handle.lm-mod-hidden {
+  display: none !important;
+}
+
+
+/* <DEPRECATED> */ .p-DockPanel-handle:after, /* </DEPRECATED> */
+.lm-DockPanel-handle:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: '';
+}
+
+
+/* <DEPRECATED> */
+.p-DockPanel-handle[data-orientation='horizontal'],
+/* </DEPRECATED> */
+.lm-DockPanel-handle[data-orientation='horizontal'] {
+  cursor: ew-resize;
+}
+
+
+/* <DEPRECATED> */
+.p-DockPanel-handle[data-orientation='vertical'],
+/* </DEPRECATED> */
+.lm-DockPanel-handle[data-orientation='vertical'] {
+  cursor: ns-resize;
+}
+
+
+/* <DEPRECATED> */
+.p-DockPanel-handle[data-orientation='horizontal']:after,
+/* </DEPRECATED> */
+.lm-DockPanel-handle[data-orientation='horizontal']:after {
+  left: 50%;
+  min-width: 8px;
+  transform: translateX(-50%);
+}
+
+
+/* <DEPRECATED> */
+.p-DockPanel-handle[data-orientation='vertical']:after,
+/* </DEPRECATED> */
+.lm-DockPanel-handle[data-orientation='vertical']:after {
+  top: 50%;
+  min-height: 8px;
+  transform: translateY(-50%);
+}
+
+
+/* <DEPRECATED> */ .p-DockPanel-overlay, /* </DEPRECATED> */
+.lm-DockPanel-overlay {
+  z-index: 3;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+
+/* <DEPRECATED> */ .p-DockPanel-overlay.p-mod-hidden, /* </DEPRECATED> */
+.lm-DockPanel-overlay.lm-mod-hidden {
+  display: none !important;
+}

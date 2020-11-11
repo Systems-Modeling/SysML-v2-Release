@@ -1,0 +1,133 @@
+/*-----------------------------------------------------------------------------
+| Copyright (c) Jupyter Development Team.
+| Distributed under the terms of the Modified BSD License.
+|----------------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------------
+| Variables
+|----------------------------------------------------------------------------*/
+
+:root {
+  --jp-private-menubar-height: 28px;
+  --jp-private-menu-item-height: 24px;
+}
+
+/*-----------------------------------------------------------------------------
+| MenuBar
+|----------------------------------------------------------------------------*/
+
+.lm-MenuBar {
+  padding-left: 5px;
+  background: var(--jp-layout-color1);
+  color: var(--jp-ui-font-color1);
+  font-size: var(--jp-ui-font-size1);
+}
+
+.lm-MenuBar-menu {
+  transform: translateY(calc(-2 * var(--jp-border-width)));
+}
+
+.lm-MenuBar-item {
+  padding: 0px 8px;
+  border-left: var(--jp-border-width) solid transparent;
+  border-right: var(--jp-border-width) solid transparent;
+  line-height: var(--jp-private-menubar-height);
+}
+
+.lm-MenuBar-item.lm-mod-active {
+  background: var(--jp-layout-color2);
+}
+
+.lm-MenuBar.lm-mod-active .lm-MenuBar-item.lm-mod-active {
+  z-index: 10001;
+  background: var(--jp-layout-color0);
+  border-left: var(--jp-border-width) solid var(--jp-border-color1);
+  border-right: var(--jp-border-width) solid var(--jp-border-color1);
+  box-shadow: var(--jp-elevation-z6);
+}
+
+.lm-MenuBar-item.lm-mod-disabled {
+  color: var(--jp-ui-font-color3);
+}
+
+.lm-MenuBar-item.lm-type-separator {
+  margin: 2px;
+  padding: 0;
+  border: none;
+  border-left: var(--jp-border-width) solid var(--jp-border-color2);
+}
+
+.lm-MenuBar-itemMnemonic {
+  text-decoration: underline;
+}
+
+/*-----------------------------------------------------------------------------
+| Menu
+|----------------------------------------------------------------------------*/
+
+.lm-Menu {
+  z-index: 10000;
+  padding: 4px 0px;
+  background: var(--jp-layout-color0);
+  color: var(--jp-ui-font-color1);
+  border: var(--jp-border-width) solid var(--jp-border-color1);
+  font-size: var(--jp-ui-font-size1);
+  box-shadow: var(--jp-elevation-z6);
+}
+
+.lm-Menu-item {
+  min-height: var(--jp-private-menu-item-height);
+  max-height: var(--jp-private-menu-item-height);
+  padding: 0px;
+  line-height: var(--jp-private-menu-item-height);
+}
+
+.lm-Menu-item.lm-mod-active {
+  background: var(--jp-layout-color2);
+}
+
+.lm-Menu-item.lm-mod-disabled {
+  color: var(--jp-ui-font-color3);
+}
+
+.lm-Menu-itemIcon {
+  width: 21px;
+  padding: 0px 2px 0px 4px;
+  margin-top: -2px;
+}
+
+.lm-Menu-itemLabel {
+  padding: 0px 32px 0px 2px;
+}
+
+.lm-Menu-itemMnemonic {
+  text-decoration: underline;
+}
+
+.lm-Menu-itemShortcut {
+  padding: 0px;
+}
+
+.lm-Menu-itemSubmenuIcon {
+  width: 18px;
+  padding: 0px 4px 0px 0px;
+}
+
+.lm-Menu-item[data-type='separator'] > div {
+  padding: 0;
+  height: 9px;
+}
+
+.lm-Menu-item[data-type='separator'] > div::after {
+  content: '';
+  display: block;
+  position: relative;
+  top: 4px;
+  border-top: var(--jp-border-width) solid var(--jp-layout-color2);
+}
+
+/* gray out icon/caret for disable menu items */
+.lm-Menu-item.lm-mod-disabled > .lm-Menu-itemIcon,
+.lm-Menu-item[data-type='submenu'].lm-mod-disabled > .lm-Menu-itemSubmenuIcon {
+  opacity: 0.4;
+}

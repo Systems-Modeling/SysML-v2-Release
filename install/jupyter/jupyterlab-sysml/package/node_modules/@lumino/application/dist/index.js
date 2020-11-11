@@ -1,0 +1,506 @@
+(function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@lumino/commands'), require('@lumino/coreutils'), require('@lumino/widgets')) :
+    typeof define === 'function' && define.amd ? define(['exports', '@lumino/commands', '@lumino/coreutils', '@lumino/widgets'], factory) :
+    (global = global || self, factory(global.lumino_application = {}, global.lumino_commands, global.lumino_coreutils, global.lumino_widgets));
+}(this, (function (exports, commands, coreutils, widgets) { 'use strict';
+
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+
+    function __spreadArrays() {
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+        for (var r = Array(s), k = 0, i = 0; i < il; i++)
+            for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+                r[k] = a[j];
+        return r;
+    }
+
+    /**
+     * A class for creating pluggable applications.
+     *
+     * #### Notes
+     * The `Application` class is useful when creating large, complex
+     * UI applications with the ability to be safely extended by third
+     * party code via plugins.
+     */
+    var Application = /** @class */ (function () {
+        /**
+         * Construct a new application.
+         *
+         * @param options - The options for creating the application.
+         */
+        function Application(options) {
+            this._started = false;
+            this._pluginMap = Private.createPluginMap();
+            this._serviceMap = Private.createServiceMap();
+            this._delegate = new coreutils.PromiseDelegate();
+            // Create the application command registry.
+            var commands$1 = new commands.CommandRegistry();
+            // Create the application context menu.
+            var renderer = options.contextMenuRenderer;
+            var contextMenu = new widgets.ContextMenu({ commands: commands$1, renderer: renderer });
+            // Initialize the application state.
+            this.commands = commands$1;
+            this.contextMenu = contextMenu;
+            this.shell = options.shell;
+        }
+        Object.defineProperty(Application.prototype, "started", {
+            /**
+             * A promise which resolves after the application has started.
+             *
+             * #### Notes
+             * This promise will resolve after the `start()` method is called,
+             * when all the bootstrapping and shell mounting work is complete.
+             */
+            get: function () {
+                return this._delegate.promise;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        /**
+         * Test whether a plugin is registered with the application.
+         *
+         * @param id - The id of the plugin of interest.
+         *
+         * @returns `true` if the plugin is registered, `false` otherwise.
+         */
+        Application.prototype.hasPlugin = function (id) {
+            return id in this._pluginMap;
+        };
+        /**
+         * List the IDs of the plugins registered with the application.
+         *
+         * @returns A new array of the registered plugin IDs.
+         */
+        Application.prototype.listPlugins = function () {
+            return Object.keys(this._pluginMap);
+        };
+        /**
+         * Register a plugin with the application.
+         *
+         * @param plugin - The plugin to register.
+         *
+         * #### Notes
+         * An error will be thrown if a plugin with the same id is already
+         * registered, or if the plugin has a circular dependency.
+         *
+         * If the plugin provides a service which has already been provided
+         * by another plugin, the new service will override the old service.
+         */
+        Application.prototype.registerPlugin = function (plugin) {
+            // Throw an error if the plugin id is already registered.
+            if (plugin.id in this._pluginMap) {
+                throw new Error("Plugin '" + plugin.id + "' is already registered.");
+            }
+            // Create the normalized plugin data.
+            var data = Private.createPluginData(plugin);
+            // Ensure the plugin does not cause a cyclic dependency.
+            Private.ensureNoCycle(data, this._pluginMap, this._serviceMap);
+            // Add the service token to the service map.
+            if (data.provides) {
+                this._serviceMap.set(data.provides, data.id);
+            }
+            // Add the plugin to the plugin map.
+            this._pluginMap[data.id] = data;
+        };
+        /**
+         * Register multiple plugins with the application.
+         *
+         * @param plugins - The plugins to register.
+         *
+         * #### Notes
+         * This calls `registerPlugin()` for each of the given plugins.
+         */
+        Application.prototype.registerPlugins = function (plugins) {
+            for (var _i = 0, plugins_1 = plugins; _i < plugins_1.length; _i++) {
+                var plugin = plugins_1[_i];
+                this.registerPlugin(plugin);
+            }
+        };
+        /**
+         * Activate the plugin with the given id.
+         *
+         * @param id - The ID of the plugin of interest.
+         *
+         * @returns A promise which resolves when the plugin is activated
+         *   or rejects with an error if it cannot be activated.
+         */
+        Application.prototype.activatePlugin = function (id) {
+            var _this = this;
+            // Reject the promise if the plugin is not registered.
+            var data = this._pluginMap[id];
+            if (!data) {
+                return Promise.reject(new Error("Plugin '" + id + "' is not registered."));
+            }
+            // Resolve immediately if the plugin is already activated.
+            if (data.activated) {
+                return Promise.resolve(undefined);
+            }
+            // Return the pending resolver promise if it exists.
+            if (data.promise) {
+                return data.promise;
+            }
+            // Resolve the required services for the plugin.
+            var required = data.requires.map(function (t) { return _this.resolveRequiredService(t); });
+            // Resolve the optional services for the plugin.
+            var optional = data.optional.map(function (t) { return _this.resolveOptionalService(t); });
+            // Create the array of promises to resolve.
+            var promises = required.concat(optional);
+            // Setup the resolver promise for the plugin.
+            data.promise = Promise.all(promises).then(function (services) {
+                return data.activate.apply(undefined, __spreadArrays([_this], services));
+            }).then(function (service) {
+                data.service = service;
+                data.activated = true;
+                data.promise = null;
+            }).catch(function (error) {
+                data.promise = null;
+                throw error;
+            });
+            // Return the pending resolver promise.
+            return data.promise;
+        };
+        /**
+         * Resolve a required service of a given type.
+         *
+         * @param token - The token for the service type of interest.
+         *
+         * @returns A promise which resolves to an instance of the requested
+         *   service, or rejects with an error if it cannot be resolved.
+         *
+         * #### Notes
+         * Services are singletons. The same instance will be returned each
+         * time a given service token is resolved.
+         *
+         * If the plugin which provides the service has not been activated,
+         * resolving the service will automatically activate the plugin.
+         *
+         * User code will not typically call this method directly. Instead,
+         * the required services for the user's plugins will be resolved
+         * automatically when the plugin is activated.
+         */
+        Application.prototype.resolveRequiredService = function (token) {
+            // Reject the promise if there is no provider for the type.
+            var id = this._serviceMap.get(token);
+            if (!id) {
+                return Promise.reject(new Error("No provider for: " + token.name + "."));
+            }
+            // Resolve immediately if the plugin is already activated.
+            var data = this._pluginMap[id];
+            if (data.activated) {
+                return Promise.resolve(data.service);
+            }
+            // Otherwise, activate the plugin and wait on the results.
+            return this.activatePlugin(id).then(function () { return data.service; });
+        };
+        /**
+         * Resolve an optional service of a given type.
+         *
+         * @param token - The token for the service type of interest.
+         *
+         * @returns A promise which resolves to an instance of the requested
+         *   service, or `null` if it cannot be resolved.
+         *
+         * #### Notes
+         * Services are singletons. The same instance will be returned each
+         * time a given service token is resolved.
+         *
+         * If the plugin which provides the service has not been activated,
+         * resolving the service will automatically activate the plugin.
+         *
+         * User code will not typically call this method directly. Instead,
+         * the optional services for the user's plugins will be resolved
+         * automatically when the plugin is activated.
+         */
+        Application.prototype.resolveOptionalService = function (token) {
+            // Resolve with `null` if there is no provider for the type.
+            var id = this._serviceMap.get(token);
+            if (!id) {
+                return Promise.resolve(null);
+            }
+            // Resolve immediately if the plugin is already activated.
+            var data = this._pluginMap[id];
+            if (data.activated) {
+                return Promise.resolve(data.service);
+            }
+            // Otherwise, activate the plugin and wait on the results.
+            return this.activatePlugin(id).then(function () {
+                return data.service;
+            }).catch(function (reason) {
+                console.error(reason);
+                return null;
+            });
+        };
+        /**
+         * Start the application.
+         *
+         * @param options - The options for starting the application.
+         *
+         * @returns A promise which resolves when all bootstrapping work
+         *   is complete and the shell is mounted to the DOM.
+         *
+         * #### Notes
+         * This should be called once by the application creator after all
+         * initial plugins have been registered.
+         *
+         * If a plugin fails to the load, the error will be logged and the
+         * other valid plugins will continue to be loaded.
+         *
+         * Bootstrapping the application consists of the following steps:
+         * 1. Activate the startup plugins
+         * 2. Wait for those plugins to activate
+         * 3. Attach the shell widget to the DOM
+         * 4. Add the application event listeners
+         */
+        Application.prototype.start = function (options) {
+            var _this = this;
+            if (options === void 0) { options = {}; }
+            // Return immediately if the application is already started.
+            if (this._started) {
+                return this._delegate.promise;
+            }
+            // Mark the application as started;
+            this._started = true;
+            // Parse the host id for attaching the shell.
+            var hostID = options.hostID || '';
+            // Collect the ids of the startup plugins.
+            var startups = Private.collectStartupPlugins(this._pluginMap, options);
+            // Generate the activation promises.
+            var promises = startups.map(function (id) {
+                return _this.activatePlugin(id).catch(function (error) {
+                    console.error("Plugin '" + id + "' failed to activate.");
+                    console.error(error);
+                });
+            });
+            // Wait for the plugins to activate, then finalize startup.
+            Promise.all(promises).then(function () {
+                _this.attachShell(hostID);
+                _this.addEventListeners();
+                _this._delegate.resolve(undefined);
+            });
+            // Return the pending delegate promise.
+            return this._delegate.promise;
+        };
+        /**
+         * Handle the DOM events for the application.
+         *
+         * @param event - The DOM event sent to the application.
+         *
+         * #### Notes
+         * This method implements the DOM `EventListener` interface and is
+         * called in response to events registered for the application. It
+         * should not be called directly by user code.
+         */
+        Application.prototype.handleEvent = function (event) {
+            switch (event.type) {
+                case 'resize':
+                    this.evtResize(event);
+                    break;
+                case 'keydown':
+                    this.evtKeydown(event);
+                    break;
+                case 'contextmenu':
+                    this.evtContextMenu(event);
+                    break;
+            }
+        };
+        /**
+         * Attach the application shell to the DOM.
+         *
+         * @param id - The id of the host node for the shell, or `''`.
+         *
+         * #### Notes
+         * If the id is not provided, the document body will be the host.
+         *
+         * A subclass may reimplement this method as needed.
+         */
+        Application.prototype.attachShell = function (id) {
+            widgets.Widget.attach(this.shell, (id && document.getElementById(id)) || document.body);
+        };
+        /**
+         * Add the application event listeners.
+         *
+         * #### Notes
+         * The default implementation of this method adds listeners for
+         * `'keydown'` and `'resize'` events.
+         *
+         * A subclass may reimplement this method as needed.
+         */
+        Application.prototype.addEventListeners = function () {
+            document.addEventListener('contextmenu', this);
+            document.addEventListener('keydown', this, true);
+            window.addEventListener('resize', this);
+        };
+        /**
+         * A method invoked on a document `'keydown'` event.
+         *
+         * #### Notes
+         * The default implementation of this method invokes the key down
+         * processing method of the application command registry.
+         *
+         * A subclass may reimplement this method as needed.
+         */
+        Application.prototype.evtKeydown = function (event) {
+            this.commands.processKeydownEvent(event);
+        };
+        /**
+         * A method invoked on a document `'contextmenu'` event.
+         *
+         * #### Notes
+         * The default implementation of this method opens the application
+         * `contextMenu` at the current mouse position.
+         *
+         * If the application context menu has no matching content *or* if
+         * the shift key is pressed, the default browser context menu will
+         * be opened instead.
+         *
+         * A subclass may reimplement this method as needed.
+         */
+        Application.prototype.evtContextMenu = function (event) {
+            if (event.shiftKey) {
+                return;
+            }
+            if (this.contextMenu.open(event)) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        };
+        /**
+         * A method invoked on a window `'resize'` event.
+         *
+         * #### Notes
+         * The default implementation of this method updates the shell.
+         *
+         * A subclass may reimplement this method as needed.
+         */
+        Application.prototype.evtResize = function (event) {
+            this.shell.update();
+        };
+        return Application;
+    }());
+    /**
+     * The namespace for the module implementation details.
+     */
+    var Private;
+    (function (Private) {
+        /**
+         * Create a new plugin map.
+         */
+        function createPluginMap() {
+            return Object.create(null);
+        }
+        Private.createPluginMap = createPluginMap;
+        /**
+         * Create a new service map.
+         */
+        function createServiceMap() {
+            return new Map();
+        }
+        Private.createServiceMap = createServiceMap;
+        /**
+         * Create a normalized plugin data object for the given plugin.
+         */
+        function createPluginData(plugin) {
+            return {
+                id: plugin.id,
+                service: null,
+                promise: null,
+                activated: false,
+                activate: plugin.activate,
+                provides: plugin.provides || null,
+                autoStart: plugin.autoStart || false,
+                requires: plugin.requires ? plugin.requires.slice() : [],
+                optional: plugin.optional ? plugin.optional.slice() : []
+            };
+        }
+        Private.createPluginData = createPluginData;
+        /**
+         * Ensure no cycle is present in the plugin resolution graph.
+         *
+         * If a cycle is detected, an error will be thrown.
+         */
+        function ensureNoCycle(data, pluginMap, serviceMap) {
+            var dependencies = data.requires.concat(data.optional);
+            // Bail early if there cannot be a cycle.
+            if (!data.provides || dependencies.length === 0) {
+                return;
+            }
+            // Setup a stack to trace service resolution.
+            var trace = [data.id];
+            // Throw an exception if a cycle is present.
+            if (dependencies.some(visit)) {
+                throw new Error("Cycle detected: " + trace.join(' -> ') + ".");
+            }
+            function visit(token) {
+                if (token === data.provides) {
+                    return true;
+                }
+                var id = serviceMap.get(token);
+                if (!id) {
+                    return false;
+                }
+                var other = pluginMap[id];
+                var otherDependencies = other.requires.concat(other.optional);
+                if (otherDependencies.length === 0) {
+                    return false;
+                }
+                trace.push(id);
+                if (otherDependencies.some(visit)) {
+                    return true;
+                }
+                trace.pop();
+                return false;
+            }
+        }
+        Private.ensureNoCycle = ensureNoCycle;
+        /**
+         * Collect the IDs of the plugins to activate on startup.
+         */
+        function collectStartupPlugins(pluginMap, options) {
+            // Create a map to hold the plugin IDs.
+            var resultMap = Object.create(null);
+            // Collect the auto-start plugins.
+            for (var id in pluginMap) {
+                if (pluginMap[id].autoStart) {
+                    resultMap[id] = true;
+                }
+            }
+            // Add the startup plugins.
+            if (options.startPlugins) {
+                for (var _i = 0, _a = options.startPlugins; _i < _a.length; _i++) {
+                    var id = _a[_i];
+                    resultMap[id] = true;
+                }
+            }
+            // Remove the ignored plugins.
+            if (options.ignorePlugins) {
+                for (var _b = 0, _c = options.ignorePlugins; _b < _c.length; _b++) {
+                    var id = _c[_b];
+                    delete resultMap[id];
+                }
+            }
+            // Return the final startup plugins.
+            return Object.keys(resultMap);
+        }
+        Private.collectStartupPlugins = collectStartupPlugins;
+    })(Private || (Private = {}));
+
+    exports.Application = Application;
+
+    Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+//# sourceMappingURL=index.js.map
