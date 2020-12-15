@@ -63,8 +63,8 @@ package Objects {
 	 * to be the same.
 	 */
 	assoc SelfLink specializes BinaryLink {
-		end feature self: Anything[0..*] nonunique redefines source subsets myself redefines Anything::self;
-		end feature myself: Anything[0..*] nonunique redefines target subsets self;
+		end feature self: Anything[1..1] redefines source subsets myself redefines Anything::self;
+		end feature myself: Anything[1..1] redefines target subsets self;
 		
 //		feature sourceParticipant: Anything[1..1] redefines BinaryLink::sourceParticipant subsets targetParticipant; 
 //		feature targetParticipant: Anything[1..1] redefines BinaryLink::targetParticipant subsets sourceParticipant;
@@ -92,8 +92,8 @@ package Objects {
 	 * selfLinks is a specialization of binaryLinks restricted to type SelfLink.
 	 */
 	abstract feature selfLinks: SelfLink[0..*] nonunique subsets binaryLinks {
-		end feature source: Anything[0..*] nonunique redefines SelfLink::self, binaryLinks::source;
-		end feature target: Anything[0..*] nonunique redefines SelfLink::myself, binaryLinks::target;
+		end feature source: Anything[1..1] redefines SelfLink::self, binaryLinks::source;
+		end feature target: Anything[1..1] redefines SelfLink::myself, binaryLinks::target;
 	}
 	
 }

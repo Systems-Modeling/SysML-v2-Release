@@ -16,10 +16,10 @@ package Parts {
 	 * Part is the base type of all PartDefinitions.
 	 */
 	abstract part def Part :> Item {
-		ref :>> self: Part;
+		ref self: Part :>> Item::self;
 		
-		part :>> start: Part;
-		part :>> done: Part;
+		part start: Part :>> Item::start;
+		part done: Part :>> Item::done;
 		
 		/**
 		 * Ports that are on this Part.

@@ -24,7 +24,7 @@ import {
 } from '@lumino/messaging';
 
 import {
-  ElementDataset, VirtualDOM, VirtualElement, h
+  ElementARIAAttrs, ElementDataset, VirtualDOM, VirtualElement, h
 } from '@lumino/virtualdom';
 
 import {
@@ -770,8 +770,9 @@ namespace MenuBar {
     renderItem(data: IRenderData): VirtualElement {
       let className = this.createItemClass(data);
       let dataset = this.createItemDataset(data);
+      let aria = this.createItemARIA(data);
       return (
-        h.li({ className, dataset },
+        h.li({ className, dataset, ...aria },
           this.renderIcon(data),
           this.renderLabel(data)
         )
@@ -851,6 +852,17 @@ namespace MenuBar {
     }
 
     /**
+     * Create the aria attributes for menu bar item.
+     * 
+     * @param data - The data to use for the aria attributes.
+     * 
+     * @returns The aria attributes object for the item.
+     */
+    createItemARIA(data: IRenderData): ElementARIAAttrs {
+      return {role: 'menuitem', 'aria-haspopup': 'true'};
+    }
+
+    /**
      * Create the class name for the menu bar item icon.
      *
      * @param data - The data to use for the class name.
@@ -924,6 +936,7 @@ namespace Private {
     content.classList.add('p-MenuBar-content');
     /* </DEPRECATED> */
     node.appendChild(content);
+    content.setAttribute('role', 'menubar');
     node.tabIndex = -1;
     return node;
   }

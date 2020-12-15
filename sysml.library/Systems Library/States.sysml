@@ -20,7 +20,7 @@ package States {
 		attribute :>> isTriggerDuring = true;
 		attribute :>> isAcceptFirst = true;
 		
-		ref state :>> self: State;
+		ref state self: State :>> Action::self, StatePerformance::self;
 		
 		/**
 		 * The subperformances of this StateAction that are Actions, other than the entry and exit Actions. 

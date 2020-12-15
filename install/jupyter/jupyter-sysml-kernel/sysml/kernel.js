@@ -48,7 +48,7 @@ var enableMode = function (CodeMirror) {
                 "calc case comment connect connection constraint decide def defined dependency do doc else end entry exhibit exit expose first flow fork from " +
                 "hastype id if import in inout instanceof interface individual istype item join language link merge nonunique objective of ordered out package " +
                 "part perform port private protected public redefines ref rendering rep require requirement return satisfy send snapshot specializes state " + 
-                "stream subsets subject succession then timeslice to transition type value variant variation verification view viewpoint"
+                "stream subsets subject succession then timeslice to transition type value variant variation verification verify view viewpoint"
                 ),
             defKeywords: words("action activity analysis assoc attribute block calc case comment connection constraint doc def id link individual interface " +
                                "item package objective part port ref rendering rep requirement snapshot state timeslice transition type value verification view viewpoint"),

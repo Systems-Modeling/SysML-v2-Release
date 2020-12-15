@@ -12,7 +12,7 @@ package Items {
 	 * Item is the base type of all ItemDefinitions.
 	 */
 	abstract item def Item :> Object {
-		ref :>> self: Item;
+		ref self: Item :>> Object::self;
 		
 		item start: Item :>> startShot;
 		item done: Item :>> endShot;

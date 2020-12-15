@@ -68,7 +68,7 @@ function defineSysMLv2Mode() {
                 'first', 'flow', 'fork', 'from', 'hastype', 'id', 'if', 'import', 'in', 'inout', 'instanceof', 'interface', 'individual', 'istype', 'item', 'join', 'language', 'link', 'merge',
                 'nonunique', 'objective', 'of', 'ordered', 'out', 'package', 'part', 'perform', 'port', 'private', 'protected', 'public', 'redefines', 'ref', 'rendering', 'rep', 'require',
                 'requirement', 'return', 'satisfy', 'send', 'snapshot', 'specializes', 'state', 'stream', 'subsets', 'subject', 'succession', 'then', 'timeslice', 'to', 'transition', 'type',
-                'value', 'variant', 'variation', 'verification', 'view', 'viewpoint',
+                'value', 'variant', 'variation', 'verification', 'verify', 'view', 'viewpoint',
             ].reduce(f_wordify, {}),
             defKeywords: [
                 'action', 'activity', 'analysis', 'assoc', 'attribute', 'block', 'calc', 'case', 'comment', 'connection', 'constraint', 'doc', 'def', 'id', 'link', 'individual', 'interface',

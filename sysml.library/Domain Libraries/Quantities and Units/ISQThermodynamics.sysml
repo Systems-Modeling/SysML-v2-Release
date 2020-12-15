@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * from standard ISO-80000-05:2019 "Thermodynamics"
+ * Generated on 2020-12-07T11:21:01Z from standard ISO-80000-5:2019 "Thermodynamics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-5:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -14,38 +14,39 @@ package ISQThermodynamics {
     private import UnitsAndScales::*;    
     private import ISQ::SIDerivedUnit;
 
-    /**
-     * source: item 5-1 temperature, thermodynamic temperature
-     * symbol(s): T, Θ
+    /**    
+     * source: item 5-1 thermodynamic temperature, temperature
+     * symbol(s): `T`, `Θ`
      * application domain: General
-     * name: Temperature
+     * name: ThermodynamicTemperature
      * quantity dimension: Θ^1
      * measurement unit(s): K
-     * definition: partial derivative of internal energy with respect to entropy at constant volume and constant number of particles in the system: `T = ((partial U)/(partial S))_(V,N)` where U is internal energy (item 5-20.2), S is entropy (item 5-18), V is volume (ISO 80000-3), and N is number of particles
+     * definition: partial derivative of internal energy with respect to entropy at constant volume and constant number of particles in the system: `T = ((partial U)/(partial S))_(V,N)` where `U` is internal energy (item 5-20.2), `S` is entropy (item 5-18), `V` is volume (ISO 80000-3), and `N` is number of particles
      * remarks: It is measured with a primary thermometer, examples of which are gas thermometers of different kinds, noise thermometers, or radiation thermometers. The Boltzmann constant (ISO 80000-1) relates energy at the individual particle level with thermodynamic temperature. Differences of thermodynamic temperatures or changes may be expressed either in kelvin, symbol K, or in de grees Celsius, symbol °C (item 5-2). Thermodynamic temperature is one of the seven base quantities in the International System of Quantities, ISQ (see ISO 80000-1). The International Temperature Scale of 1990. For the purpose of practical measurements, the International Temperature Scale of 1990, ITS-90, was adopted by CIPM in 1989, which is a close approximation to the thermodynamic temperature scale. The quantities defined by this scale are denoted T_(90) and t_(90), respectively (replacing T_(68) and t_(68) defined by the International Practical Temperature Scale of 1968, IPTS-68), where `t_90/(1 °C) = T_90/(1 K) - 273,1`. The units of T_(90) and t_(90) are the kelvin, symbol K, and the degree Celsius, symbol °C (item 5-2), respectively. For further information, see References^[5^],^[6^]. For ready conversion between temperatures reported on the International Temperature Scale and thermodynamic temperatures the systematic deviations can be found in Reference^[7^].
      */
-    attribute def TemperatureUnit :> SIDerivedUnit {
-        attribute temperaturePowerFactor :>> SIDerivedUnit::temperaturePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
+    attribute def ThermodynamicTemperatureUnit :> SimpleUnit {
+        attribute unitPowerFactor :>> SimpleUnit::unitPowerFactor {
+            attribute unit: ThermodynamicTemperatureUnit :>> UnitPowerFactor::unit;
         }
     }
-    attribute def TemperatureValue :> QuantityValue {
+    attribute def ThermodynamicTemperatureValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
-        attribute mRef: TemperatureUnit :>> QuantityValue::mRef;
-    }
-    attribute temperature: TemperatureValue :> quantity;
-
-    alias TemperatureValue as ThermodynamicTemperatureValue;
+        attribute mRef: ThermodynamicTemperatureUnit :>> QuantityValue::mRef;
+    }    
     attribute thermodynamicTemperature: ThermodynamicTemperatureValue :> quantity;
+
+    alias ThermodynamicTemperatureUnit as TemperatureUnit;
+    alias ThermodynamicTemperatureValue as TemperatureValue;
+    alias thermodynamicTemperature as temperature;
 
     /**
      * source: item 5-2 Celsius temperature
-     * symbol(s): `t, thη`
+     * symbol(s): `t`, `θ`
      * application domain: General
      * name: CelsiusTemperature
      * quantity dimension: Θ^1
      * measurement unit(s): °C
-     * definition: temperature difference from the thermodynamic temperature of the ice point is called the Celsius temperature t, which is defined by the quantity equation: `t = T - T_0` where T is thermodynamic temperature (item 5-1) and `T_0 = 273,15 K`
+     * definition: temperature difference from the thermodynamic temperature of the ice point is called the Celsius temperature t, which is defined by the quantity equation: `t = T - T_0` where `T` is thermodynamic temperature (item 5-1) and `T_0 = 273,15 K`
      * remarks: The unit degree Celsius is a special name for the kelvin for use in stating values of Celsius temperature. The unit degree Celsius is by definition equal in magnitude to the kelvin. A difference or interval of temperature may be expressed in kelvin or in degrees Celsius. The thermodynamic temperature T_0 is 0,01 K below the thermodynamic temperature of the triple point of water. The symbol °C for the degree Celsius shall be preceded by a space (see ISO 80000-1). Prefixes are not allowed in combination with the unit °C.
      */
     attribute def CelsiusTemperatureUnit :> SIDerivedUnit {
@@ -66,7 +67,7 @@ package ISQThermodynamics {
      * name: LinearExpansionCoefficient
      * quantity dimension: Θ^-1
      * measurement unit(s): K^-1
-     * definition: relative change of length with temperature: `α_l = 1/l * (dl)/(dT)` where l is length (ISO 80000-3) and T is thermodynamic temperature (item 5-1)
+     * definition: relative change of length with temperature: `α_l = 1/l * (dl)/(dT)` where l is length (ISO 80000-3) and `T` is thermodynamic temperature (item 5-1)
      * remarks: The subscripts in the symbols may be omitted when there is no risk of confusion.
      */
     attribute def LinearExpansionCoefficientUnit :> SIDerivedUnit {
@@ -82,12 +83,12 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-3.2 cubic expansion coefficient
-     * symbol(s): `α_V, γ`
+     * symbol(s): `α_V`, `γ`
      * application domain: General
      * name: CubicExpansionCoefficient
      * quantity dimension: Θ^-1
      * measurement unit(s): K^-1
-     * definition: relative change of volume with temperature: `α_V = 1/V * (dV)/(dT)` where V is volume (ISO 80000-3) and T is thermodynamic temperature (item 5-1)
+     * definition: relative change of volume with temperature: `α_V = 1/V * (dV)/(dT)` where `V` is volume (ISO 80000-3) and `T` is thermodynamic temperature (item 5-1)
      * remarks: Also called volumetric expansion coefficient. The subscripts in the symbols may be omitted when there is no risk of confusion.
      */
     attribute def CubicExpansionCoefficientUnit :> SIDerivedUnit {
@@ -108,7 +109,7 @@ package ISQThermodynamics {
      * name: RelativePressureCoefficient
      * quantity dimension: Θ^-1
      * measurement unit(s): K^-1
-     * definition: relative change of pressure with temperature at constant volume: `α_p = 1/p * ((partial p)/(partial T))_V` where p is pressure (ISO 80000-4), T is thermodynamic temperature (item 5-1), and V is volume (ISO 80000-3)
+     * definition: relative change of pressure with temperature at constant volume: `α_p = 1/p * ((partial p)/(partial T))_V` where `p` is pressure (ISO 80000-4), `T` is thermodynamic temperature (item 5-1), and `V` is volume (ISO 80000-3)
      * remarks: The subscripts in the symbols may be omitted when there is no risk of confusion.
      */
     attribute def RelativePressureCoefficientUnit :> SIDerivedUnit {
@@ -124,12 +125,12 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-4 pressure coefficient
-     * symbol(s): β
+     * symbol(s): `β`
      * application domain: General
      * name: PressureCoefficient
      * quantity dimension: L^-1*M^1*T^-2*Θ^-1
      * measurement unit(s): Pa/K, kg*m^-1*s^-2*K^-1
-     * definition: change of pressure with temperature at constant volume: `β = ((partial p)/(partial T))_V` where p is pressure (ISO 80000-4), T is thermodynamic temperature (item 5-1), and V is volume (ISO 80000-3)
+     * definition: change of pressure with temperature at constant volume: `β = ((partial p)/(partial T))_V` where `p` is pressure (ISO 80000-4), `T` is thermodynamic temperature (item 5-1), and `V` is volume (ISO 80000-3)
      * remarks: 
      */
     attribute def PressureCoefficientUnit :> SIDerivedUnit {
@@ -154,12 +155,12 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-5.1 isothermal compressibility
-     * symbol(s): ϰ_T
+     * symbol(s): `ϰ_T`
      * application domain: General
      * name: IsothermalCompressibility
      * quantity dimension: L^1*M^-1*T^2
      * measurement unit(s): Pa^-1, kg^-1*m*s^2
-     * definition: negative relative change of volume with pressure at constant temperature: ϰ_T `= - 1/V * ((partial V)/(partial p))_T` where V is volume (ISO 80000-3), p is pressure (ISO 80000-4), and T is thermodynamic temperature (item 5-1)
+     * definition: negative relative change of volume with pressure at constant temperature: ϰ_T `= - 1/V * ((partial V)/(partial p))_T` where `V` is volume (ISO 80000-3), `p` is pressure (ISO 80000-4), and `T` is thermodynamic temperature (item 5-1)
      * remarks: The subscripts in the symbols may be omitted when there is no risk of confusion.
      */
     attribute def IsothermalCompressibilityUnit :> SIDerivedUnit {
@@ -181,12 +182,12 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-5.2 isentropic compressibility
-     * symbol(s): ϰ_S
+     * symbol(s): `ϰ_S`
      * application domain: General
      * name: IsentropicCompressibility
      * quantity dimension: L^1*M^-1*T^2
      * measurement unit(s): Pa^-1, kg^-1*m*s^2
-     * definition: negative relative change of volume with pressure at constant entropy: ϰ_S `= - 1/V * ((partial V)/(partial p))_S` where V is volume (ISO 80000-3), p is pressure (ISO 80000-4), and S is entropy (item 5-18)
+     * definition: negative relative change of volume with pressure at constant entropy: ϰ_S `= - 1/V * ((partial V)/(partial p))_S` where `V` is volume (ISO 80000-3), `p` is pressure (ISO 80000-4), and S is entropy (item 5-18)
      * remarks: The subscripts in the symbols may be omitted when there is no risk of confusion.
      */
     attribute def IsentropicCompressibilityUnit :> SIDerivedUnit {
@@ -208,13 +209,13 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-6.1 heat, amount of heat
-     * symbol(s): Q
+     * symbol(s): `Q`
      * application domain: General
      * name: Heat
      * quantity dimension: L^2*M^1*T^-2
      * measurement unit(s): J, kg*m^2*s^-2
      * definition: difference between the increase in the internal energy (item 5-20.2) of a system and the work (ISO 80000-4) done on the system, provided that the amounts of substances within the system are not changed
-     * remarks: The heat transferred in an isothermal phase transformation should be expressed as the change in the appropriate state functions, e.g. T ΔS, where T is thermodynamic temperature (item 5-1) and S is entropy (item 5-18), or ΔH, where H is enthalpy (item 5-20.3). NOTE A supply of heat can correspond to an increase in thermodynamic temperature or to other effects, such as phase change or chemical processes; see item 5-6.2.
+     * remarks: The heat transferred in an isothermal phase transformation should be expressed as the change in the appropriate state functions, e.g. T ΔS, where `T` is thermodynamic temperature (item 5-1) and S is entropy (item 5-18), or ΔH, where H is enthalpy (item 5-20.3). NOTE A supply of heat can correspond to an increase in thermodynamic temperature or to other effects, such as phase change or chemical processes; see item 5-6.2.
      */
     attribute def HeatUnit :> SIDerivedUnit {
         attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
@@ -233,12 +234,13 @@ package ISQThermodynamics {
     }
     attribute heat: HeatValue :> quantity;
 
+    alias HeatUnit as AmountOfHeatUnit;
     alias HeatValue as AmountOfHeatValue;
-    attribute amountOfHeat: AmountOfHeatValue :> quantity;
+    alias heat as amountOfHeat;
 
     /**
      * source: item 5-6.2 latent heat
-     * symbol(s): Q
+     * symbol(s): `Q`
      * application domain: General
      * name: LatentHeat
      * quantity dimension: L^2*M^1*T^-2
@@ -292,7 +294,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-8 density of heat flow rate
-     * symbol(s): q, φ
+     * symbol(s): `q`, `φ`
      * application domain: General
      * name: DensityOfHeatFlowRate
      * quantity dimension: M^1*T^-3
@@ -316,7 +318,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-9 thermal conductivity
-     * symbol(s): λ_l, (ϰ)
+     * symbol(s): `λ_l`, `(ϰ)`
      * application domain: General
      * name: ThermalConductivity
      * quantity dimension: L^1*M^1*T^-3*Θ^-1
@@ -346,7 +348,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-10.1 coefficient of heat transfer
-     * symbol(s): K, (k)
+     * symbol(s): `K`, `(k)`
      * application domain: General
      * name: CoefficientOfHeatTransfer
      * quantity dimension: M^1*T^-3*Θ^-1
@@ -373,7 +375,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-10.2 surface coefficient of heat transfer
-     * symbol(s): h, `(α)`
+     * symbol(s): `h`, `(α)`
      * application domain: General
      * name: SurfaceCoefficientOfHeatTransfer
      * quantity dimension: M^1*T^-3*Θ^-1
@@ -400,7 +402,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-11 thermal insulance, coefficient of thermal insulance
-     * symbol(s): M
+     * symbol(s): `M`
      * application domain: General
      * name: ThermalInsulance
      * quantity dimension: M^-1*T^3*Θ^1
@@ -425,12 +427,13 @@ package ISQThermodynamics {
     }
     attribute thermalInsulance: ThermalInsulanceValue :> quantity;
 
+    alias ThermalInsulanceUnit as CoefficientOfThermalInsulanceUnit;
     alias ThermalInsulanceValue as CoefficientOfThermalInsulanceValue;
-    attribute coefficientOfThermalInsulance: CoefficientOfThermalInsulanceValue :> quantity;
+    alias thermalInsulance as coefficientOfThermalInsulance;
 
     /**
      * source: item 5-12 thermal resistance
-     * symbol(s): R
+     * symbol(s): `R`
      * application domain: General
      * name: ThermalResistance
      * quantity dimension: L^-2*M^-1*T^3*Θ^1
@@ -460,7 +463,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-13 thermal conductance
-     * symbol(s): G, (H)
+     * symbol(s): `G`, `(H)`
      * application domain: General
      * name: ThermalConductance
      * quantity dimension: L^2*M^1*T^-3*Θ^-1
@@ -490,7 +493,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-14 thermal diffusivity
-     * symbol(s): a
+     * symbol(s): `a`
      * application domain: General
      * name: ThermalDiffusivity
      * quantity dimension: L^2*T^-1
@@ -514,12 +517,12 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-15 heat capacity
-     * symbol(s): C
+     * symbol(s): `C`
      * application domain: General
      * name: HeatCapacity
      * quantity dimension: L^2*M^1*T^-2*Θ^-1
      * measurement unit(s): J/K, kg*m^2*s^-2*K^-1
-     * definition: derivative of added heat with respect to thermodynamic temperature of a system: `C = (dQ)/(dT)` where Q is amount of heat (item 5-6.1) and T is thermodynamic temperature (item 5-1)
+     * definition: derivative of added heat with respect to thermodynamic temperature of a system: `C = (dQ)/(dT)` where Q is amount of heat (item 5-6.1) and `T` is thermodynamic temperature (item 5-1)
      * remarks: Heat capacity is not completely defined unless specified as seen in items 5-16.2, 5-16.3 and 5-16.4.
      */
     attribute def HeatCapacityUnit :> SIDerivedUnit {
@@ -544,7 +547,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-16.1 specific heat capacity
-     * symbol(s): c
+     * symbol(s): `c`
      * application domain: General
      * name: SpecificHeatCapacity
      * quantity dimension: L^2*T^-2*Θ^-1
@@ -571,7 +574,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-16.2 specific heat capacity at constant pressure
-     * symbol(s): c_p
+     * symbol(s): `c_p`
      * application domain: General
      * name: SpecificHeatCapacityAtConstantPressure
      * quantity dimension: L^2*T^-2*Θ^-1
@@ -598,7 +601,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-16.3 specific heat capacity at constant volume
-     * symbol(s): c_V
+     * symbol(s): `c_V`
      * application domain: General
      * name: SpecificHeatCapacityAtConstantVolume
      * quantity dimension: L^2*T^-2*Θ^-1
@@ -625,7 +628,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-16.4 specific heat capacity at saturated vapour pressure
-     * symbol(s): c_(sat)
+     * symbol(s): `c_(sat)`
      * application domain: General
      * name: SpecificHeatCapacityAtSaturatedVapourPressure
      * quantity dimension: L^2*T^-2*Θ^-1
@@ -652,7 +655,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-17.1 ratio of specific heat capacities
-     * symbol(s): γ
+     * symbol(s): `γ`
      * application domain: General
      * name: RatioOfSpecificHeatCapacities
      * quantity dimension: 1
@@ -670,12 +673,12 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-17.2 isentropic exponent, isentropic expansion factor
-     * symbol(s): ϰ
+     * symbol(s): `ϰ`
      * application domain: General
      * name: IsentropicExponent
      * quantity dimension: 1
      * measurement unit(s): 1
-     * definition: the negative of relative pressure change, divided by relative volume change, at constant entropy: ϰ `= - V/p * ((partial p)/(partial V))_S` where V is volume (ISO 80000-3), p is pressure (ISO 80000-4), and S is entropy (item 5-18)
+     * definition: the negative of relative pressure change, divided by relative volume change, at constant entropy: ϰ `= - V/p * ((partial p)/(partial V))_S` where `V` is volume (ISO 80000-3), `p` is pressure (ISO 80000-4), and S is entropy (item 5-18)
      * remarks: For an ideal gas, ϰ is equal to γ (item 5-17.1).
      */
     attribute def IsentropicExponentUnit :> DimensionOneUnit {
@@ -686,12 +689,13 @@ package ISQThermodynamics {
     }
     attribute isentropicExponent: IsentropicExponentValue :> quantity;
 
+    alias IsentropicExponentUnit as IsentropicExpansionFactorUnit;
     alias IsentropicExponentValue as IsentropicExpansionFactorValue;
-    attribute isentropicExpansionFactor: IsentropicExpansionFactorValue :> quantity;
+    alias isentropicExponent as isentropicExpansionFactor;
 
     /**
      * source: item 5-18 entropy
-     * symbol(s): S
+     * symbol(s): `S`
      * application domain: General
      * name: Entropy
      * quantity dimension: L^2*M^1*T^-2*Θ^-1
@@ -721,7 +725,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-19 specific entropy
-     * symbol(s): s
+     * symbol(s): `s`
      * application domain: General
      * name: SpecificEntropy
      * quantity dimension: L^2*T^-2*Θ^-1
@@ -748,7 +752,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-20.1 energy
-     * symbol(s): E
+     * symbol(s): `E`
      * application domain: thermodynamics
      * name: Energy
      * quantity dimension: L^2*M^1*T^-2
@@ -775,42 +779,26 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-20.2 internal energy, thermodynamic energy
-     * symbol(s): U
+     * symbol(s): `U`
      * application domain: General
-     * name: InternalEnergy
+     * name: InternalEnergy (specializes Energy)
      * quantity dimension: L^2*M^1*T^-2
      * measurement unit(s): J, kg*m^2*s^-2
      * definition: energy of a system whose change is given by the amount of the heat (item 5-6.1) transferred to the system and the work (ISO 80000-4) done on the system, provided that the system is closed and no chemical reactions occur
      * remarks: In thermodynamic text books, usually the formula ΔU = Q + W is used. Note that the zero of the energy is undefined.
      */
-    attribute def InternalEnergyUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-        attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -2;
-        }
-    }
-    attribute def InternalEnergyValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: InternalEnergyUnit :>> QuantityValue::mRef;
-    }
-    attribute internalEnergy: InternalEnergyValue :> quantity;
+    attribute internalEnergy :> energy;
 
-    alias InternalEnergyValue as ThermodynamicEnergyValue;
-    attribute thermodynamicEnergy: ThermodynamicEnergyValue :> quantity;
+    alias internalEnergy as thermodynamicEnergy;
 
     /**
      * source: item 5-20.3 enthalpy
-     * symbol(s): H
+     * symbol(s): `H`
      * application domain: General
      * name: Enthalpy
      * quantity dimension: L^2*M^1*T^-2
      * measurement unit(s): J, kg*m^2*s^-2
-     * definition: sum of internal energy of the system and the product of pressure and volume of the system: `H = U + p*V` where U is internal energy (item 5-20.2), p is pressure (ISO 80000-4), and V is volume (ISO 80000-3)
+     * definition: sum of internal energy of the system and the product of pressure and volume of the system: `H = U + p*V` where U is internal energy (item 5-20.2), `p` is pressure (ISO 80000-4), and `V` is volume (ISO 80000-3)
      * remarks: 
      */
     attribute def EnthalpyUnit :> SIDerivedUnit {
@@ -832,67 +820,35 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-20.4 Helmholtz energy, Helmholtz function
-     * symbol(s): A, F
+     * symbol(s): `A`, `F`
      * application domain: General
-     * name: HelmholtzEnergy
+     * name: HelmholtzEnergy (specializes Energy)
      * quantity dimension: L^2*M^1*T^-2
      * measurement unit(s): J, kg*m^2*s^-2
-     * definition: difference of internal energy of the system and the product of thermodynamic temperature and entropy of the system: A = U - TS where U is internal energy (item 5-20.2), T is thermodynamic temperature (item 5-1), and S is entropy (item 5-18)
+     * definition: difference of internal energy of the system and the product of thermodynamic temperature and entropy of the system: A = U - TS where U is internal energy (item 5-20.2), `T` is thermodynamic temperature (item 5-1), and S is entropy (item 5-18)
      * remarks: The name Helmholtz free energy is also used. However, this term is not recommended.
      */
-    attribute def HelmholtzEnergyUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-        attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -2;
-        }
-    }
-    attribute def HelmholtzEnergyValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: HelmholtzEnergyUnit :>> QuantityValue::mRef;
-    }
-    attribute helmholtzEnergy: HelmholtzEnergyValue :> quantity;
+    attribute helmholtzEnergy :> energy;
 
-    alias HelmholtzEnergyValue as HelmholtzFunctionValue;
-    attribute helmholtzFunction: HelmholtzFunctionValue :> quantity;
+    alias helmholtzEnergy as helmholtzFunction;
 
     /**
      * source: item 5-20.5 Gibbs energy, Gibbs function
-     * symbol(s): G
+     * symbol(s): `G`
      * application domain: General
-     * name: GibbsEnergy
+     * name: GibbsEnergy (specializes Energy)
      * quantity dimension: L^2*M^1*T^-2
      * measurement unit(s): J, kg*m^2*s^-2
-     * definition: difference of the enthalpy and the product of thermodynamic temperature and entropy of the system: `G = H - T*S` where H is enthalpy (item 5-20.3), T is thermodynamic temperature (item 5-1), and S is entropy (item 5-18)
+     * definition: difference of the enthalpy and the product of thermodynamic temperature and entropy of the system: `G = H - T*S` where H is enthalpy (item 5-20.3), `T` is thermodynamic temperature (item 5-1), and S is entropy (item 5-18)
      * remarks: The name Gibbs free energy is also used. However, this term is not recommended.
      */
-    attribute def GibbsEnergyUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-        attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -2;
-        }
-    }
-    attribute def GibbsEnergyValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: GibbsEnergyUnit :>> QuantityValue::mRef;
-    }
-    attribute gibbsEnergy: GibbsEnergyValue :> quantity;
+    attribute gibbsEnergy :> energy;
 
-    alias GibbsEnergyValue as GibbsFunctionValue;
-    attribute gibbsFunction: GibbsFunctionValue :> quantity;
+    alias gibbsEnergy as gibbsFunction;
 
     /**
      * source: item 5-21.1 specific energy
-     * symbol(s): e
+     * symbol(s): `e`
      * application domain: General
      * name: SpecificEnergy
      * quantity dimension: L^2*T^-2
@@ -916,34 +872,21 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-21.2 specific internal energy, specific thermodynamic energy
-     * symbol(s): u
+     * symbol(s): `u`
      * application domain: General
-     * name: SpecificInternalEnergy
+     * name: SpecificInternalEnergy (specializes SpecificEnergy)
      * quantity dimension: L^2*T^-2
      * measurement unit(s): J/kg, m^2*s^-2
      * definition: quotient of internal energy and mass: `u = U/m` where U is internal energy (item 5-20.2) and m is mass (ISO 80000-4)
      * remarks: 
      */
-    attribute def SpecificInternalEnergyUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -2;
-        }
-    }
-    attribute def SpecificInternalEnergyValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: SpecificInternalEnergyUnit :>> QuantityValue::mRef;
-    }
-    attribute specificInternalEnergy: SpecificInternalEnergyValue :> quantity;
+    attribute specificInternalEnergy :> specificEnergy;
 
-    alias SpecificInternalEnergyValue as SpecificThermodynamicEnergyValue;
-    attribute specificThermodynamicEnergy: SpecificThermodynamicEnergyValue :> quantity;
+    alias specificInternalEnergy as specificThermodynamicEnergy;
 
     /**
      * source: item 5-21.3 specific enthalpy
-     * symbol(s): h
+     * symbol(s): `h`
      * application domain: General
      * name: SpecificEnthalpy
      * quantity dimension: L^2*T^-2
@@ -967,66 +910,40 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-21.4 specific Helmholtz energy, specific Helmholtz function
-     * symbol(s): a, f
+     * symbol(s): `a`, `f`
      * application domain: General
-     * name: SpecificHelmholtzEnergy
+     * name: SpecificHelmholtzEnergy (specializes SpecificEnergy)
      * quantity dimension: L^2*T^-2
      * measurement unit(s): J/kg, m^2*s^-2
      * definition: quotient of Helmholtz energy and mass: `a = A/m` where A is Helmholtz energy (item 5-20.4) and m is mass (ISO 80000-4)
      * remarks: The name specific Helmholtz free energy is also used. However, this term is not recommended.
      */
-    attribute def SpecificHelmholtzEnergyUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -2;
-        }
-    }
-    attribute def SpecificHelmholtzEnergyValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: SpecificHelmholtzEnergyUnit :>> QuantityValue::mRef;
-    }
-    attribute specificHelmholtzEnergy: SpecificHelmholtzEnergyValue :> quantity;
+    attribute specificHelmholtzEnergy :> specificEnergy;
 
-    alias SpecificHelmholtzEnergyValue as SpecificHelmholtzFunctionValue;
-    attribute specificHelmholtzFunction: SpecificHelmholtzFunctionValue :> quantity;
+    alias specificHelmholtzEnergy as specificHelmholtzFunction;
 
     /**
      * source: item 5-21.5 specific Gibbs energy, specific Gibbs function
-     * symbol(s): g
+     * symbol(s): `g`
      * application domain: General
-     * name: SpecificGibbsEnergy
+     * name: SpecificGibbsEnergy (specializes SpecificEnergy)
      * quantity dimension: L^2*T^-2
      * measurement unit(s): J/kg, m^2*s^-2
      * definition: quotient of Gibbs energy and mass: `g = G/m` where G is Gibbs energy (item 5-20.5) and m is mass (ISO 80000-4)
      * remarks: The name specific Gibbs free energy is also used. However, this term is not recommended.
      */
-    attribute def SpecificGibbsEnergyUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -2;
-        }
-    }
-    attribute def SpecificGibbsEnergyValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: SpecificGibbsEnergyUnit :>> QuantityValue::mRef;
-    }
-    attribute specificGibbsEnergy: SpecificGibbsEnergyValue :> quantity;
+    attribute specificGibbsEnergy :> specificEnergy;
 
-    alias SpecificGibbsEnergyValue as SpecificGibbsFunctionValue;
-    attribute specificGibbsFunction: SpecificGibbsFunctionValue :> quantity;
+    alias specificGibbsEnergy as specificGibbsFunction;
 
     /**
      * source: item 5-22 Massieu function
-     * symbol(s): J
+     * symbol(s): `J`
      * application domain: General
      * name: MassieuFunction
      * quantity dimension: L^2*M^1*T^-2*Θ^-1
      * measurement unit(s): J/K, kg*m^2*s^-2*K^-1
-     * definition: quotient of the negative of Helmholtz energy and temperature: `J = - A/T` where A is Helmholtz energy (item 5-20.4) and T is thermodynamic temperature (item 5-1)
+     * definition: quotient of the negative of Helmholtz energy and temperature: `J = - A/T` where A is Helmholtz energy (item 5-20.4) and `T` is thermodynamic temperature (item 5-1)
      * remarks: 
      */
     attribute def MassieuFunctionUnit :> SIDerivedUnit {
@@ -1051,12 +968,12 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-23 Planck function
-     * symbol(s): Y
+     * symbol(s): `Y`
      * application domain: General
      * name: PlanckFunction
      * quantity dimension: L^2*M^1*T^-2*Θ^-1
      * measurement unit(s): J/K, kg*m^2*s^-2*K^-1
-     * definition: quotient of the negative of Gibbs energy and temperature: `Y = - G/T` where G is Gibbs energy (item 5-20.5) and T is thermodynamic temperature (item 5-1)
+     * definition: quotient of the negative of Gibbs energy and temperature: `Y = - G/T` where G is Gibbs energy (item 5-20.5) and `T` is thermodynamic temperature (item 5-1)
      * remarks: 
      */
     attribute def PlanckFunctionUnit :> SIDerivedUnit {
@@ -1086,7 +1003,7 @@ package ISQThermodynamics {
      * name: JouleThomsonCoefficient
      * quantity dimension: L^1*M^-1*T^2*Θ^1
      * measurement unit(s): K/Pa, kg^-1*m*s^2*K
-     * definition: change of thermodynamic temperature with respect to pressure in a Joule-Thomson process at constant enthalpy: `μ_(JT) = ((partial T)/(partial p))_H` where T is thermodynamic temperature (item 5-1), p is pressure (ISO 80000-4) and H is enthalpy (item 5-20.3)
+     * definition: change of thermodynamic temperature with respect to pressure in a Joule-Thomson process at constant enthalpy: `μ_(JT) = ((partial T)/(partial p))_H` where `T` is thermodynamic temperature (item 5-1), `p` is pressure (ISO 80000-4) and H is enthalpy (item 5-20.3)
      * remarks: 
      */
     attribute def JouleThomsonCoefficientUnit :> SIDerivedUnit {
@@ -1111,7 +1028,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-25.1 efficiency
-     * symbol(s): η
+     * symbol(s): `η`
      * application domain: thermodynamics
      * name: Efficiency
      * quantity dimension: 1
@@ -1129,7 +1046,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-25.2 maximum efficiency
-     * symbol(s): η_(max)
+     * symbol(s): `η_(max)`
      * application domain: General
      * name: MaximumEfficiency
      * quantity dimension: 1
@@ -1147,7 +1064,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-26 specific gas constant
-     * symbol(s): R_s
+     * symbol(s): `R_s`
      * application domain: General
      * name: SpecificGasConstant
      * quantity dimension: L^2*T^-2*Θ^-1
@@ -1174,12 +1091,12 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-27 mass concentration of water
-     * symbol(s): w
+     * symbol(s): `w`
      * application domain: General
      * name: MassConcentrationOfWater
      * quantity dimension: L^-3*M^1
      * measurement unit(s): kg*m^-3
-     * definition: quotient of mass of water and a specified volume: `w = m/V` where m is mass (ISO 80000-4) of water, irrespective of the form of aggregation state, and V is volume (ISO 80000-3)
+     * definition: quotient of mass of water and a specified volume: `w = m/V` where m is mass (ISO 80000-4) of water, irrespective of the form of aggregation state, and `V` is volume (ISO 80000-3)
      * remarks: Mass concentration of water at saturation is denoted w_(sat).
      */
     attribute def MassConcentrationOfWaterUnit :> SIDerivedUnit {
@@ -1198,12 +1115,12 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-28 mass concentration of water vapour absolute humidity
-     * symbol(s): v
+     * symbol(s): `v`
      * application domain: General
      * name: MassConcentrationOfWaterVapourAbsoluteHumidity
      * quantity dimension: L^-3*M^1
      * measurement unit(s): kg*m^-3
-     * definition: quotient of mass of water vapour and a specified volume: `v = m/V` where m is mass (ISO 80000-4) of water vapour and V is volume (ISO 80000-3)
+     * definition: quotient of mass of water vapour and a specified volume: `v = m/V` where m is mass (ISO 80000-4) of water vapour and `V` is volume (ISO 80000-3)
      * remarks: Mass concentration of water vapour at saturation is denoted v_(sat).
      */
     attribute def MassConcentrationOfWaterVapourAbsoluteHumidityUnit :> SIDerivedUnit {
@@ -1222,7 +1139,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-29 mass ratio of water to dry matter
-     * symbol(s): u
+     * symbol(s): `u`
      * application domain: General
      * name: MassRatioOfWaterToDryMatter
      * quantity dimension: 1
@@ -1240,7 +1157,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-30 mass ratio of water vapour to dry gas
-     * symbol(s): r, (x)
+     * symbol(s): `r`, `(x)`
      * application domain: General
      * name: MassRatioOfWaterVapourToDryGas
      * quantity dimension: 1
@@ -1276,7 +1193,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-32 mass fraction of dry matter
-     * symbol(s): w_d
+     * symbol(s): `w_d`
      * application domain: General
      * name: MassFractionOfDryMatter
      * quantity dimension: 1
@@ -1294,7 +1211,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-33 relative humidity
-     * symbol(s): φ
+     * symbol(s): `φ`
      * application domain: General
      * name: RelativeHumidity
      * quantity dimension: 1
@@ -1312,7 +1229,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-34 relative mass concentration of vapour
-     * symbol(s): φ
+     * symbol(s): `φ`
      * application domain: General
      * name: RelativeMassConcentrationOfVapour
      * quantity dimension: 1
@@ -1330,7 +1247,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-35 relative mass ratio of vapour
-     * symbol(s): ψ
+     * symbol(s): `ψ`
      * application domain: General
      * name: RelativeMassRatioOfVapour
      * quantity dimension: 1
@@ -1348,14 +1265,14 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-36 dew-point temperature
-     * symbol(s): T_d
+     * symbol(s): `T_d`
      * application domain: General
-     * name: DewPointTemperature (specializes Temperature)
+     * name: DewPointTemperature (specializes ThermodynamicTemperature)
      * quantity dimension: Θ^1
      * measurement unit(s): K
      * definition: temperature at which water vapour in the air reaches saturation under isobaric conditions
      * remarks: The corresponding Celsius temperature, denoted t_d, is still called dew-point temperature. The unit for the corresponding Celsius temperature is degree Celsius, symbol °C.
      */
-    attribute dewPointTemperature: TemperatureValue :> temperature;
+    attribute dewPointTemperature :> thermodynamicTemperature;
 
 }

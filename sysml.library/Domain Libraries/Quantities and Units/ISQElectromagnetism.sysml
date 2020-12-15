@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * from standard IEC-80000-06:2008 "Electromagnetism"
+ * Generated on 2020-12-07T11:21:01Z from standard IEC-80000-6:2008 "Electromagnetism"
  * see also https://www.iso.org/obp/ui/#iso:std:iec:80000:-6:ed-1:v1:en,fr
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -14,9 +14,12 @@ package ISQElectromagnetism {
     private import UnitsAndScales::*;    
     private import ISQ::SIDerivedUnit;
 
+    private import ISQThermodynamics::EnergyValue;
+    private import ISQThermodynamics::energy;
+
     /**    
      * source: item 6-1 electric current
-     * symbol(s): I, i
+     * symbol(s): `I`, `i`
      * application domain: General
      * name: ElectricCurrent
      * quantity dimension: I^1
@@ -37,7 +40,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-2 electric charge
-     * symbol(s): Q, q
+     * symbol(s): `Q`, `q`
      * application domain: General
      * name: ElectricCharge
      * quantity dimension: T^1*I^1
@@ -61,7 +64,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-3 electric charge density, volumic electric charge
-     * symbol(s): ρ, ρ_V
+     * symbol(s): `ρ`, `ρ_V`
      * application domain: General
      * name: ElectricChargeDensity
      * quantity dimension: L^-3*T^1*I^1
@@ -86,12 +89,13 @@ package ISQElectromagnetism {
     }
     attribute electricChargeDensity: ElectricChargeDensityValue :> quantity;
 
+    alias ElectricChargeDensityUnit as VolumicElectricChargeUnit;
     alias ElectricChargeDensityValue as VolumicElectricChargeValue;
-    attribute volumicElectricCharge: VolumicElectricChargeValue :> quantity;
+    alias electricChargeDensity as volumicElectricCharge;
 
     /**
      * source: item 6-4 surface density of electric charge, areic electric charge
-     * symbol(s): ρ_A, sigma
+     * symbol(s): `ρ_A`, `sigma`
      * application domain: General
      * name: SurfaceDensityOfElectricCharge
      * quantity dimension: L^-2*T^1*I^1
@@ -116,12 +120,13 @@ package ISQElectromagnetism {
     }
     attribute surfaceDensityOfElectricCharge: SurfaceDensityOfElectricChargeValue :> quantity;
 
+    alias SurfaceDensityOfElectricChargeUnit as AreicElectricChargeUnit;
     alias SurfaceDensityOfElectricChargeValue as AreicElectricChargeValue;
-    attribute areicElectricCharge: AreicElectricChargeValue :> quantity;
+    alias surfaceDensityOfElectricCharge as areicElectricCharge;
 
     /**
      * source: item 6-5 linear density of electric charge, lineic electric charge
-     * symbol(s): ρ_l, tau
+     * symbol(s): `ρ_l`, `tau`
      * application domain: General
      * name: LinearDensityOfElectricCharge
      * quantity dimension: L^-1*T^1*I^1
@@ -146,12 +151,13 @@ package ISQElectromagnetism {
     }
     attribute linearDensityOfElectricCharge: LinearDensityOfElectricChargeValue :> quantity;
 
+    alias LinearDensityOfElectricChargeUnit as LineicElectricChargeUnit;
     alias LinearDensityOfElectricChargeValue as LineicElectricChargeValue;
-    attribute lineicElectricCharge: LineicElectricChargeValue :> quantity;
+    alias linearDensityOfElectricCharge as lineicElectricCharge;
 
     /**
      * source: item 6-6 electric dipole moment
-     * symbol(s): p
+     * symbol(s): `p`
      * application domain: General
      * name: ElectricDipoleMoment
      * quantity dimension: L^1*T^1*I^1
@@ -178,7 +184,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-7 electric polarization
-     * symbol(s): P
+     * symbol(s): `P`
      * application domain: General
      * name: ElectricPolarization
      * quantity dimension: L^-2*T^1*I^1
@@ -205,7 +211,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-8 electric current density, areic electric current
-     * symbol(s): J
+     * symbol(s): `J`
      * application domain: General
      * name: ElectricCurrentDensity
      * quantity dimension: L^-2*I^1
@@ -227,12 +233,13 @@ package ISQElectromagnetism {
     }
     attribute electricCurrentDensity: ElectricCurrentDensityValue :> quantity;
 
+    alias ElectricCurrentDensityUnit as AreicElectricCurrentUnit;
     alias ElectricCurrentDensityValue as AreicElectricCurrentValue;
-    attribute areicElectricCurrent: AreicElectricCurrentValue :> quantity;
+    alias electricCurrentDensity as areicElectricCurrent;
 
     /**
      * source: item 6-9 linear electric current density, lineic electric current
-     * symbol(s): J_S
+     * symbol(s): `J_S`
      * application domain: General
      * name: LinearElectricCurrentDensity
      * quantity dimension: L^-1*I^1
@@ -254,12 +261,13 @@ package ISQElectromagnetism {
     }
     attribute linearElectricCurrentDensity: LinearElectricCurrentDensityValue :> quantity;
 
+    alias LinearElectricCurrentDensityUnit as LineicElectricCurrentUnit;
     alias LinearElectricCurrentDensityValue as LineicElectricCurrentValue;
-    attribute lineicElectricCurrent: LineicElectricCurrentValue :> quantity;
+    alias linearElectricCurrentDensity as lineicElectricCurrent;
 
     /**
      * source: item 6-10 electric field strength
-     * symbol(s): E
+     * symbol(s): `E`
      * application domain: General
      * name: ElectricFieldStrength
      * quantity dimension: L^1*M^1*T^-3*I^-1
@@ -289,7 +297,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-11.1 electric potential
-     * symbol(s): V, φ
+     * symbol(s): `V`, `φ`
      * application domain: General
      * name: ElectricPotential
      * quantity dimension: L^2*M^1*T^-3*I^-1
@@ -319,7 +327,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-11.2 electric potential difference
-     * symbol(s): V_(ab)
+     * symbol(s): `V_(ab)`
      * application domain: General
      * name: ElectricPotentialDifference
      * quantity dimension: L^2*M^1*T^-3*I^-1
@@ -349,7 +357,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-11.3 voltage, electric tension
-     * symbol(s): U, U_(ab)
+     * symbol(s): `U`, `U_(ab)`
      * application domain: General
      * name: Voltage
      * quantity dimension: L^2*M^1*T^-3*I^-1
@@ -377,12 +385,13 @@ package ISQElectromagnetism {
     }
     attribute voltage: VoltageValue :> quantity;
 
+    alias VoltageUnit as ElectricTensionUnit;
     alias VoltageValue as ElectricTensionValue;
-    attribute electricTension: ElectricTensionValue :> quantity;
+    alias voltage as electricTension;
 
     /**
      * source: item 6-12 electric flux density, electric displacement
-     * symbol(s): vec(D)
+     * symbol(s): `vec(D)`
      * application domain: General
      * name: ElectricFluxDensity
      * quantity dimension: L^-2*T^1*I^1
@@ -407,12 +416,13 @@ package ISQElectromagnetism {
     }
     attribute electricFluxDensity: ElectricFluxDensityValue :> quantity;
 
+    alias ElectricFluxDensityUnit as ElectricDisplacementUnit;
     alias ElectricFluxDensityValue as ElectricDisplacementValue;
-    attribute electricDisplacement: ElectricDisplacementValue :> quantity;
+    alias electricFluxDensity as electricDisplacement;
 
     /**
      * source: item 6-13 capacitance
-     * symbol(s): C
+     * symbol(s): `C`
      * application domain: General
      * name: Capacitance
      * quantity dimension: L^-2*M^-1*T^4*I^2
@@ -442,7 +452,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-14.1 electric constant, permittivity of vacuum
-     * symbol(s): ε_0
+     * symbol(s): `ε_0`
      * application domain: General
      * name: ElectricConstant
      * quantity dimension: L^-3*M^-1*T^4*I^2
@@ -470,12 +480,13 @@ package ISQElectromagnetism {
     }
     attribute electricConstant: ElectricConstantValue :> quantity;
 
+    alias ElectricConstantUnit as PermittivityOfVacuumUnit;
     alias ElectricConstantValue as PermittivityOfVacuumValue;
-    attribute permittivityOfVacuum: PermittivityOfVacuumValue :> quantity;
+    alias electricConstant as permittivityOfVacuum;
 
     /**
      * source: item 6-14.2 permittivity
-     * symbol(s): ε
+     * symbol(s): `ε`
      * application domain: General
      * name: Permittivity
      * quantity dimension: L^-3*M^-1*T^4*I^2
@@ -505,7 +516,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-15 relative permittivity
-     * symbol(s): ε_r
+     * symbol(s): `ε_r`
      * application domain: General
      * name: RelativePermittivity
      * quantity dimension: 1
@@ -523,7 +534,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-16 electric susceptibility
-     * symbol(s): χ
+     * symbol(s): `χ`
      * application domain: General
      * name: ElectricSusceptibility
      * quantity dimension: 1
@@ -541,7 +552,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-17 electric flux
-     * symbol(s): Ψ
+     * symbol(s): `Ψ`
      * application domain: General
      * name: ElectricFlux
      * quantity dimension: T^1*I^1
@@ -565,7 +576,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-18 displacement current density
-     * symbol(s): vec(J_D)
+     * symbol(s): `vec(J_D)`
      * application domain: General
      * name: DisplacementCurrentDensity
      * quantity dimension: L^-2*I^1
@@ -589,7 +600,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-19.1 displacement current
-     * symbol(s): I_D
+     * symbol(s): `I_D`
      * application domain: General
      * name: DisplacementCurrent (specializes ElectricCurrent)
      * quantity dimension: I^1
@@ -597,11 +608,11 @@ package ISQElectromagnetism {
      * definition: `I = int_S vec(J_D) * vec(e_n) dA` over a surface `S`, where `vec(J_D)` is displacement current density (item 6-18) en `vec(e_n) dA` is the vector surface element (ISO 80000-3 item 3-3)
      * remarks: See IEC 60050-121, item 121-11-43.
      */
-    attribute displacementCurrent: ElectricCurrentValue :> electricCurrent;
+    attribute displacementCurrent :> electricCurrent;
 
     /**
      * source: item 6-19.2 total current
-     * symbol(s): I_(tot), I_t
+     * symbol(s): `I_(tot)`, `I_t`
      * application domain: General
      * name: TotalCurrent (specializes ElectricCurrent)
      * quantity dimension: I^1
@@ -609,11 +620,11 @@ package ISQElectromagnetism {
      * definition: `I_(tot) = I + I_D` where `I` is electric current (item 6-1) and `I_D` is displacement current (item 6-19.1)
      * remarks: See IEC 60050-121, item 121-11-45.
      */
-    attribute totalCurrent: ElectricCurrentValue :> electricCurrent;
+    attribute totalCurrent :> electricCurrent;
 
     /**
      * source: item 6-20 total current density
-     * symbol(s): J_(tot), J_t
+     * symbol(s): `J_(tot)`, `J_t`
      * application domain: General
      * name: TotalCurrentDensity
      * quantity dimension: L^-2*I^1
@@ -637,7 +648,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-21 magnetic flux density
-     * symbol(s): vec(B)
+     * symbol(s): `vec(B)`
      * application domain: General
      * name: MagneticFluxDensity
      * quantity dimension: M^1*T^-2*I^-1
@@ -664,7 +675,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-22.1 magnetic flux
-     * symbol(s): Φ
+     * symbol(s): `Φ`
      * application domain: General
      * name: MagneticFlux
      * quantity dimension: L^2*M^1*T^-2*I^-1
@@ -694,7 +705,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-22.2 linked flux
-     * symbol(s): Ψ_m, Ψ
+     * symbol(s): `Ψ_m`, `Ψ`
      * application domain: General
      * name: LinkedFlux
      * quantity dimension: L^2*M^1*T^-2*I^-1
@@ -724,7 +735,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-23 magnetic moment, magnetic area moment
-     * symbol(s): vec(m)
+     * symbol(s): `vec(m)`
      * application domain: General
      * name: MagneticMoment
      * quantity dimension: L^2*I^1
@@ -746,12 +757,13 @@ package ISQElectromagnetism {
     }
     attribute magneticMoment: MagneticMomentValue :> quantity;
 
+    alias MagneticMomentUnit as MagneticAreaMomentUnit;
     alias MagneticMomentValue as MagneticAreaMomentValue;
-    attribute magneticAreaMoment: MagneticAreaMomentValue :> quantity;
+    alias magneticMoment as magneticAreaMoment;
 
     /**
      * source: item 6-24 magnetization
-     * symbol(s): vec(M), vec(H_i)
+     * symbol(s): `vec(M)`, `vec(H_i)`
      * application domain: General
      * name: Magnetization
      * quantity dimension: L^-1*I^1
@@ -775,7 +787,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-25 magnetic field strength, magnetizing field
-     * symbol(s): vec(H)
+     * symbol(s): `vec(H)`
      * application domain: General
      * name: MagneticFieldStrength
      * quantity dimension: L^-1*I^1
@@ -797,12 +809,13 @@ package ISQElectromagnetism {
     }
     attribute magneticFieldStrength: MagneticFieldStrengthValue :> quantity;
 
+    alias MagneticFieldStrengthUnit as MagnetizingFieldUnit;
     alias MagneticFieldStrengthValue as MagnetizingFieldValue;
-    attribute magnetizingField: MagnetizingFieldValue :> quantity;
+    alias magneticFieldStrength as magnetizingField;
 
     /**
      * source: item 6-26.1 magnetic constant, permeability of vacuum
-     * symbol(s): μ_0
+     * symbol(s): `μ_0`
      * application domain: General
      * name: MagneticConstant
      * quantity dimension: L^1*M^1*T^-2*I^-2
@@ -830,12 +843,13 @@ package ISQElectromagnetism {
     }
     attribute magneticConstant: MagneticConstantValue :> quantity;
 
+    alias MagneticConstantUnit as PermeabilityOfVacuumUnit;
     alias MagneticConstantValue as PermeabilityOfVacuumValue;
-    attribute permeabilityOfVacuum: PermeabilityOfVacuumValue :> quantity;
+    alias magneticConstant as permeabilityOfVacuum;
 
     /**
      * source: item 6-26.2 permeability
-     * symbol(s): μ
+     * symbol(s): `μ`
      * application domain: General
      * name: Permeability
      * quantity dimension: L^1*M^1*T^-2*I^-2
@@ -865,7 +879,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-27 relative permeability
-     * symbol(s): μ_r
+     * symbol(s): `μ_r`
      * application domain: General
      * name: RelativePermeability
      * quantity dimension: 1
@@ -883,7 +897,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-28 magnetic susceptibility
-     * symbol(s): κ, χ_m
+     * symbol(s): `κ`, `χ_m`
      * application domain: General
      * name: MagneticSusceptibility
      * quantity dimension: 1
@@ -901,7 +915,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-29 magnetic polarization
-     * symbol(s): vec(J_m)
+     * symbol(s): `vec(J_m)`
      * application domain: General
      * name: MagneticPolarization
      * quantity dimension: M^1*T^-2*I^-1
@@ -928,7 +942,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-30 magnetic dipole moment
-     * symbol(s): vec(j_m), vec(j)
+     * symbol(s): `vec(j_m)`, `vec(j)`
      * application domain: General
      * name: MagneticDipoleMoment
      * quantity dimension: L^3*M^1*T^-2*I^-1
@@ -958,7 +972,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-31 coercivity
-     * symbol(s): H_(c,B)
+     * symbol(s): `H_(c,B)`
      * application domain: General
      * name: Coercivity
      * quantity dimension: L^-1*I^1
@@ -982,7 +996,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-32 magnetic vector potential
-     * symbol(s): vec(A)
+     * symbol(s): `vec(A)`
      * application domain: General
      * name: MagneticVectorPotential
      * quantity dimension: L^1*M^1*T^-2*I^-1
@@ -1011,16 +1025,16 @@ package ISQElectromagnetism {
     attribute magneticVectorPotential: MagneticVectorPotentialValue :> quantity;
 
     /**
-     * source: item 6-33 electromagnetic-
-     * symbol(s): ω
+     * source: item 6-33 electromagnetic energy density, volumic electromagnetic energy
+     * symbol(s): `w`
      * application domain: General
-     * name: Electromagnetic
+     * name: ElectromagneticEnergyDensity
      * quantity dimension: L^-1*M^1*T^-2
      * measurement unit(s): J/m^3
-     * definition: `ω = (1/2) (vec(E)*vec(D) + vec(B) * vec(H)) where `vec(E)` is electric field strength (item 6-10), `vec(D)` is electric flux density (item 6-12), `vec(B)` is magnetic flux density (item 6-21), and `vec(H)` is magnetic field strength (item 6-25)
+     * definition: `ω = 1/2*(vec(E)*vec(D) + vec(B) * vec(H))` where `vec(E)` is electric field strength (item 6-10), `vec(D)` is electric flux density (item 6-12), `vec(B)` is magnetic flux density (item 6-21), and `vec(H)` is magnetic field strength (item 6-25)
      * remarks: See IEC 60050-121, item 121-11-65.
      */
-    attribute def ElectromagneticUnit :> SIDerivedUnit {
+    attribute def ElectromagneticEnergyDensityUnit :> SIDerivedUnit {
         attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
             attribute exponent :>> UnitPowerFactor::exponent = -1;
         }
@@ -1031,15 +1045,19 @@ package ISQElectromagnetism {
             attribute exponent :>> UnitPowerFactor::exponent = -2;
         }
     }
-    attribute def ElectromagneticValue :> QuantityValue {
+    attribute def ElectromagneticEnergyDensityValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
-        attribute mRef: ElectromagneticUnit :>> QuantityValue::mRef;
+        attribute mRef: ElectromagneticEnergyDensityUnit :>> QuantityValue::mRef;
     }
-    attribute electromagnetic: ElectromagneticValue :> quantity;
+    attribute electromagneticEnergyDensity: ElectromagneticEnergyDensityValue :> quantity;
+
+    alias ElectromagneticEnergyDensityUnit as VolumicElectromagneticEnergyUnit;
+    alias ElectromagneticEnergyDensityValue as VolumicElectromagneticEnergyValue;
+    alias electromagneticEnergyDensity as volumicElectromagneticEnergy;
 
     /**
      * source: item 6-34 Poynting vector
-     * symbol(s): vec(S)
+     * symbol(s): `vec(S)`
      * application domain: General
      * name: PoyntingVector
      * quantity dimension: M^1*T^-3
@@ -1063,7 +1081,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-35.1 phase speed of electromagnetic waves
-     * symbol(s): c
+     * symbol(s): `c`
      * application domain: General
      * name: PhaseSpeedOfElectromagneticWaves
      * quantity dimension: L^1*T^-1
@@ -1087,7 +1105,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-35.2 speed of light, light speed
-     * symbol(s): c_0
+     * symbol(s): `c_0`
      * application domain: General
      * name: SpeedOfLight
      * quantity dimension: L^1*T^-1
@@ -1109,12 +1127,13 @@ package ISQElectromagnetism {
     }
     attribute speedOfLight: SpeedOfLightValue :> quantity;
 
+    alias SpeedOfLightUnit as LightSpeedUnit;
     alias SpeedOfLightValue as LightSpeedValue;
-    attribute lightSpeed: LightSpeedValue :> quantity;
+    alias speedOfLight as lightSpeed;
 
     /**
      * source: item 6-36 source voltage, source tension
-     * symbol(s): U_s
+     * symbol(s): `U_s`
      * application domain: General
      * name: SourceVoltage
      * quantity dimension: L^2*M^1*T^-3*I^-1
@@ -1142,12 +1161,13 @@ package ISQElectromagnetism {
     }
     attribute sourceVoltage: SourceVoltageValue :> quantity;
 
+    alias SourceVoltageUnit as SourceTensionUnit;
     alias SourceVoltageValue as SourceTensionValue;
-    attribute sourceTension: SourceTensionValue :> quantity;
+    alias sourceVoltage as sourceTension;
 
     /**
      * source: item 6-37.1 scalar magnetic potential
-     * symbol(s): V_m, φ
+     * symbol(s): `V_m`, `φ`
      * application domain: General
      * name: ScalarMagneticPotential (specializes ElectricCurrent)
      * quantity dimension: I^1
@@ -1155,11 +1175,11 @@ package ISQElectromagnetism {
      * definition: for an irrotational magnetic field strength `vec(H) =  - nabla V_m` where `vec(H)` is magnetic field strength (item 6-25)
      * remarks: The magnetic scalar potential is not unique since any constant scalar field can be added to it without changing its gradient. See IEC 60050-121, item 121-11-58.
      */
-    attribute scalarMagneticPotential: ElectricCurrentValue :> electricCurrent;
+    attribute scalarMagneticPotential :> electricCurrent;
 
     /**
      * source: item 6-37.2 magnetic tension
-     * symbol(s): U_m
+     * symbol(s): `U_m`
      * application domain: General
      * name: MagneticTension (specializes ElectricCurrent)
      * quantity dimension: I^1
@@ -1167,11 +1187,11 @@ package ISQElectromagnetism {
      * definition: `U_m = int_(vec(r_a) (C))^(vec(r_b)) vec(H) * d(vec(r))` where `vec(H)` is magnetic field strength (item 6-25) and `vec(r)` is position vector (ISO 80000-3, item 3-1.11) along a given curve `C` from point `a` to point `b`
      * remarks: For an irrotational magnetic field strength this quantity is equal to the magnetic potential difference. See IEC 60050-121, item121-11-57.
      */
-    attribute magneticTension: ElectricCurrentValue :> electricCurrent;
+    attribute magneticTension :> electricCurrent;
 
     /**
      * source: item 6-37.3 magnetomotive force
-     * symbol(s): F_m
+     * symbol(s): `F_m`
      * application domain: General
      * name: MagnetomotiveForce
      * quantity dimension: I^1
@@ -1192,7 +1212,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-37.4 current linkage
-     * symbol(s): Θ
+     * symbol(s): `Θ`
      * application domain: General
      * name: CurrentLinkage (specializes ElectricCurrent)
      * quantity dimension: I^1
@@ -1200,11 +1220,11 @@ package ISQElectromagnetism {
      * definition: net electric current (item 6-1) through a surface delimited by a closed loop
      * remarks: When `Θ` results from `N` (item 6-38) equal electric currents `I` (item 6-1 ), then `Θ = N I`. See IEC 60050-121 , item 121 -11-46.
      */
-    attribute currentLinkage: ElectricCurrentValue :> electricCurrent;
+    attribute currentLinkage :> electricCurrent;
 
     /**
      * source: item 6-38 number of turns in a winding
-     * symbol(s): N
+     * symbol(s): `N`
      * application domain: General
      * name: NumberOfTurnsInAWinding
      * quantity dimension: 1
@@ -1222,7 +1242,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-39 reluctance
-     * symbol(s): R_m, R
+     * symbol(s): `R_m`, `R`
      * application domain: General
      * name: Reluctance
      * quantity dimension: L^-2*M^-1*T^2*I^2
@@ -1252,7 +1272,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-40 permeance
-     * symbol(s): Λ
+     * symbol(s): `Λ`
      * application domain: General
      * name: Permeance
      * quantity dimension: L^2*M^1*T^-2*I^-2
@@ -1282,7 +1302,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-41.1 inductance, self inductance
-     * symbol(s): L, L_m
+     * symbol(s): `L`, `L_m`
      * application domain: General
      * name: Inductance
      * quantity dimension: L^2*M^1*T^-2*I^-2
@@ -1310,12 +1330,13 @@ package ISQElectromagnetism {
     }
     attribute inductance: InductanceValue :> quantity;
 
+    alias InductanceUnit as SelfInductanceUnit;
     alias InductanceValue as SelfInductanceValue;
-    attribute selfInductance: SelfInductanceValue :> quantity;
+    alias inductance as selfInductance;
 
     /**
      * source: item 6-41.2 mutual inductance
-     * symbol(s): L_(mn)
+     * symbol(s): `L_(mn)`
      * application domain: General
      * name: MutualInductance
      * quantity dimension: L^2*M^1*T^-2*I^-2
@@ -1345,7 +1366,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-42.1 coupling factor
-     * symbol(s): k
+     * symbol(s): `k`
      * application domain: General
      * name: CouplingFactor
      * quantity dimension: 1
@@ -1363,7 +1384,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-42.2 leakage factor
-     * symbol(s): σ
+     * symbol(s): `σ`
      * application domain: General
      * name: LeakageFactor
      * quantity dimension: 1
@@ -1381,7 +1402,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-43 conductivity
-     * symbol(s): σ, γ
+     * symbol(s): `σ`, `γ`
      * application domain: General
      * name: Conductivity
      * quantity dimension: L^-3*M^-1*T^3*I^2
@@ -1411,7 +1432,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-44 resistivity
-     * symbol(s): ρ
+     * symbol(s): `ρ`
      * application domain: General
      * name: Resistivity
      * quantity dimension: L^3*M^1*T^-3*I^-2
@@ -1441,7 +1462,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-45 power, instantaneous power
-     * symbol(s): p
+     * symbol(s): `p`
      * application domain: General
      * name: Power
      * quantity dimension: L^2*M^1*T^-3
@@ -1466,12 +1487,13 @@ package ISQElectromagnetism {
     }
     attribute power: PowerValue :> quantity;
 
+    alias PowerUnit as InstantaneousPowerUnit;
     alias PowerValue as InstantaneousPowerValue;
-    attribute instantaneousPower: InstantaneousPowerValue :> quantity;
+    alias power as instantaneousPower;
 
     /**
      * source: item 6-46 resistance
-     * symbol(s): R
+     * symbol(s): `R`
      * application domain: General
      * name: Resistance
      * quantity dimension: L^2*M^1*T^-3*I^-2
@@ -1501,7 +1523,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-47 conductance
-     * symbol(s): G
+     * symbol(s): `G`
      * application domain: General
      * name: Conductance
      * quantity dimension: L^-2*M^-1*T^3*I^2
@@ -1531,7 +1553,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-48 phase difference
-     * symbol(s): φ
+     * symbol(s): `φ`
      * application domain: General
      * name: PhaseDifference
      * quantity dimension: 1
@@ -1549,7 +1571,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-49 electric current phasor
-     * symbol(s): underline(I)
+     * symbol(s): `underline(I)`
      * application domain: General
      * name: ElectricCurrentPhasor (specializes ElectricCurrent)
      * quantity dimension: I^1
@@ -1557,11 +1579,11 @@ package ISQElectromagnetism {
      * definition: when `i = hat(I) cos(ωt + α)`, where `i` is the electric current (item 6-1 ), `ω` is angular frequency (ISO 80000-3, item 3-16), `t` is time (ISO 80000-3, item 3-7), and `α` is initial phase (ISO 80000-3, item 3-5), then `underline(l) = I e^(jα)`
      * remarks: `underline(l)` is the complex representation of the electric current `i = hat(I) cos(ωt + α)`. `j` is the imaginary unit.
      */
-    attribute electricCurrentPhasor: ElectricCurrentValue :> electricCurrent;
+    attribute electricCurrentPhasor :> electricCurrent;
 
     /**
      * source: item 6-50 voltage phasor
-     * symbol(s): underline(U)
+     * symbol(s): `underline(U)`
      * application domain: General
      * name: VoltagePhasor
      * quantity dimension: L^2*M^1*T^-3*I^-1
@@ -1591,7 +1613,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-51.1 impedance, complex impedance
-     * symbol(s): underline(Z)
+     * symbol(s): `underline(Z)`
      * application domain: General
      * name: Impedance
      * quantity dimension: L^2*M^1*T^-3*I^-2
@@ -1619,12 +1641,13 @@ package ISQElectromagnetism {
     }
     attribute impedance: ImpedanceValue :> quantity;
 
+    alias ImpedanceUnit as ComplexImpedanceUnit;
     alias ImpedanceValue as ComplexImpedanceValue;
-    attribute complexImpedance: ComplexImpedanceValue :> quantity;
+    alias impedance as complexImpedance;
 
     /**
      * source: item 6-51.2 resistance to alterating current
-     * symbol(s): R
+     * symbol(s): `R`
      * application domain: General
      * name: ResistanceToAlteratingCurrent
      * quantity dimension: L^2*M^1*T^-3*I^-2
@@ -1654,7 +1677,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-51.3 reactance
-     * symbol(s): X
+     * symbol(s): `X`
      * application domain: General
      * name: Reactance
      * quantity dimension: L^2*M^1*T^-3*I^-2
@@ -1684,7 +1707,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-51.4 modulus of impedance
-     * symbol(s): Z
+     * symbol(s): `Z`
      * application domain: General
      * name: ModulusOfImpedance
      * quantity dimension: L^2*M^1*T^-3*I^-2
@@ -1714,7 +1737,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-52.1 admittance, complex admittance
-     * symbol(s): underline(Y)
+     * symbol(s): `underline(Y)`
      * application domain: General
      * name: Admittance
      * quantity dimension: L^-2*M^-1*T^3*I^2
@@ -1742,12 +1765,13 @@ package ISQElectromagnetism {
     }
     attribute admittance: AdmittanceValue :> quantity;
 
+    alias AdmittanceUnit as ComplexAdmittanceUnit;
     alias AdmittanceValue as ComplexAdmittanceValue;
-    attribute complexAdmittance: ComplexAdmittanceValue :> quantity;
+    alias admittance as complexAdmittance;
 
     /**
      * source: item 6-52.2 conductance for alternating current
-     * symbol(s): G
+     * symbol(s): `G`
      * application domain: General
      * name: ConductanceForAlternatingCurrent (specializes Conductance)
      * quantity dimension: L^-2*M^-1*T^3*I^2
@@ -1755,11 +1779,11 @@ package ISQElectromagnetism {
      * definition: `G = "Re" underline(Y)` where I is admittance (item 6-52.1)
      * remarks: See IEC 60050-131, item 131-12-53.
      */
-    attribute conductanceForAlternatingCurrent: ConductanceValue :> conductance;
+    attribute conductanceForAlternatingCurrent :> conductance;
 
     /**
      * source: item 6-52.3 susceptance
-     * symbol(s): B
+     * symbol(s): `B`
      * application domain: General
      * name: Susceptance
      * quantity dimension: L^-2*M^-1*T^3*I^2
@@ -1789,7 +1813,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-52.4 modulus of admittance
-     * symbol(s): Y
+     * symbol(s): `Y`
      * application domain: General
      * name: ModulusOfAdmittance
      * quantity dimension: L^-2*M^-1*T^3*I^2
@@ -1819,7 +1843,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-53 quality factor
-     * symbol(s): Q
+     * symbol(s): `Q`
      * application domain: General
      * name: QualityFactor
      * quantity dimension: 1
@@ -1837,7 +1861,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-54 loss factor
-     * symbol(s): d
+     * symbol(s): `d`
      * application domain: General
      * name: LossFactor
      * quantity dimension: 1
@@ -1855,7 +1879,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-55 loss angle
-     * symbol(s): δ
+     * symbol(s): `δ`
      * application domain: General
      * name: LossAngle
      * quantity dimension: 1
@@ -1873,7 +1897,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-56 active power
-     * symbol(s): P
+     * symbol(s): `P`
      * application domain: General
      * name: ActivePower (specializes Power)
      * quantity dimension: L^2*M^1*T^-3
@@ -1881,11 +1905,11 @@ package ISQElectromagnetism {
      * definition: `P = 1/T int_0^T p dt` where `T` is the period (ISO 80000-3, item 3-12) and `p` is instantaneous power (item 6-45)
      * remarks: In complex notation, `P = "Re" underline(S)` where `underline(S)` is complex power (item 6-59).
      */
-    attribute activePower: PowerValue :> power;
+    attribute activePower :> power;
 
     /**
      * source: item 6-57 apparent power
-     * symbol(s): , underline(S), 
+     * symbol(s): ``, `underline(S)`, ``
      * application domain: General
      * name: ApparentPower (specializes Power)
      * quantity dimension: L^2*M^1*T^-3
@@ -1893,11 +1917,11 @@ package ISQElectromagnetism {
      * definition: `|underline(S)| = U I` where `U` is rms value of voltage (item 6-11.3 and `I` is rms value of electric current (item 6-1)
      * remarks: `U = sqrt(1/T int_0^T u^2 dt)` and `I = sqrt(1/T int_0^T i^2 dt)`. When `u = sqrt 2 U cos(ωt)` and `i = sqrt 2 I cos(ωt - φ)`, then `P = U I cos(φ)`, `Q = U I sin(φ)` and `λ = cos(φ)` . See IEC 60050-131, item 131-11-41 .
      */
-    attribute apparentPower: PowerValue :> power;
+    attribute apparentPower :> power;
 
     /**
      * source: item 6-58 power factor
-     * symbol(s): λ
+     * symbol(s): `λ`
      * application domain: General
      * name: PowerFactor
      * quantity dimension: 1
@@ -1915,7 +1939,7 @@ package ISQElectromagnetism {
 
     /**
      * source: item 6-59 complex power
-     * symbol(s): underline(S)
+     * symbol(s): `underline(S)`
      * application domain: General
      * name: ComplexPower (specializes Power)
      * quantity dimension: L^2*M^1*T^-3
@@ -1923,11 +1947,11 @@ package ISQElectromagnetism {
      * definition: `underline(S) = underline(U) * underline(I)^**` where `underline(U)` is voltage phasor (item 6-50) and `underline(I)^**` is the complex conjugate of the current phasor (item 6-49)
      * remarks: `underline(S) = P + jQ` where `P` is active power (item 6-56) and `Q` is reactive power (item 6-60). See IEC 60050-131, item 131-11-39.
      */
-    attribute complexPower: PowerValue :> power;
+    attribute complexPower :> power;
 
     /**
      * source: item 6-60 reactive power
-     * symbol(s): Q
+     * symbol(s): `Q`
      * application domain: General
      * name: ReactivePower (specializes Power)
      * quantity dimension: L^2*M^1*T^-3
@@ -1935,11 +1959,11 @@ package ISQElectromagnetism {
      * definition: `Q = "Im" underline(S)` where `underline(S)` is complex power (item 6-59)
      * remarks: See IEC 60050-131, item 131-11-44.
      */
-    attribute reactivePower: PowerValue :> power;
+    attribute reactivePower :> power;
 
     /**
      * source: item 6-61 non-active power
-     * symbol(s): Q'
+     * symbol(s): `Q'`
      * application domain: General
      * name: NonActivePower (specializes Power)
      * quantity dimension: L^2*M^1*T^-3
@@ -1947,33 +1971,18 @@ package ISQElectromagnetism {
      * definition: `Q' = sqrt(|underline(S)|^2 - P^2)` where `|underline(S)|` is apparent power (item 6-57) and `P` is active power (item 6-56)
      * remarks: See IEC 60050-131, item 131-11-43.
      */
-    attribute nonActivePower: PowerValue :> power;
+    attribute nonActivePower :> power;
 
     /**
      * source: item 6-62 active energy
-     * symbol(s): W
+     * symbol(s): `W`
      * application domain: General
-     * name: ActiveEnergy
+     * name: ActiveEnergy (specializes Energy)
      * quantity dimension: L^2*M^1*T^-2
      * measurement unit(s): J, W*h
      * definition: `W = int_(t_1)^(t_2) p dt` where `p` is instantaneous power (item 6-45), and the integral interval is the time interval from `t_1` to `t_2`
      * remarks: 
      */
-    attribute def ActiveEnergyUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-        attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -2;
-        }
-    }
-    attribute def ActiveEnergyValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: ActiveEnergyUnit :>> QuantityValue::mRef;
-    }
-    attribute activeEnergy: ActiveEnergyValue :> quantity;
+    attribute activeEnergy :> energy;
 
 }

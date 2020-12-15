@@ -14,10 +14,10 @@ behavior TakePicture() {
 	behavior Focus(out xrsl: Exposure);
 	behavior Shoot(in xsf: Exposure);	
 	
-	composite step step1: Focus[1] (out xrsl);	
-	composite step step2: Shoot[1] (in xsf);
+	step step1: Focus[1] (out xrsl);	
+	step step2: Shoot[1] (in xsf);
 	
-	composite flow exposure[1] from step1::xrsl to step2::xsf;
+	flow exposure[1] from step1::xrsl to step2::xsf;
 
 //	The above flow is semantically equivalent to the following:
 //	
@@ -32,6 +32,6 @@ behavior TakePicture() {
 //		}
 //	}
 	
-	composite succession step1 then camera::focusedState;
-	composite succession step2 then camera::shotState;
+	succession step1 then camera::focusedState;
+	succession step2 then camera::shotState;
 }

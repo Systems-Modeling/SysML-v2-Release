@@ -8,6 +8,8 @@ package Occurrences {
 	private import Base::things;
 	private import Objects::*;
 	
+	private import BaseFunctions::*;
+	
 	/**
 	 * Occurrence is the most general classifier of entities that have identity and 
 	 * may occur over time.
@@ -20,16 +22,15 @@ package Occurrences {
 		
 		feature portionOfLife : Life[1] subsets portionOf;
 		
-		feature self : Occurrence[1] redefines Anything::self
-			subsets suboccurrences, portions, portionOf, timeSlices, timeSliceOf;
+		feature self : Occurrence[1] redefines Anything::self subsets timeSlices;
 		
 		/**
-		 * Occurrences that end no earlier than this occurrence starts.
+		 * Occurrences that end before this occurrence starts.
 		 */
 		feature predecessors: Occurrence[0..*];
 		
 		/**
-		 * Occurrences that start no earlier than this occcurrence ends.
+		 * Occurrences that start after this occcurrence ends.
 		 */
 		feature successors: Occurrence[0..*];
 		
@@ -67,38 +68,41 @@ package Occurrences {
 		 * Time slices of an occurrence that happen at a single instant of time
 		 * (i.e., have no duration).
 		 */
-		portion feature snapshots: Occurrence[0..*] subsets timeSlices;
+		portion feature all snapshots: Occurrence[1..*] subsets timeSlices;
+		inv { snapshots->forAll s:Occurrence (s::startShot == s::endShot) }
+		inv { snapshots == union(startShot, union(middleShots, endShot)) }
 		
 		/**
 		 * Occurrences of which this occurrence is a snapshot.
 		 */
-		feature snapshotOf : Occurrence[1..*] subsets timeSliceOf;
+		feature snapshotOf : Occurrence[0..*] subsets timeSliceOf;
 		
 		/**
 		 * The snapshot representing the start of the occurrence in time.
 		 */
 		portion feature startShot: Occurrence[1] subsets snapshots;
 		
+		/**
+		 * The snapshots in between the startShot and endShot. There are none
+		 * when the startShot and endShot are the same.
+		 */
+		portion feature all middleShots: Occurrence[0..*] subsets snapshots;
+		inv { isEmpty(middleShots) == (startShot == endShot) }
+		
 		/** 
-		 * The snapshot representing the end of the occurrence in time.
+		 * The snapshot at the end of the occurrence in time.
 		 */
 		portion feature endShot: Occurrence[1] subsets snapshots;
 		
 		/**
-		 * Snapshots have no duration.
+		 * The startShot happens before all middleShots.
 		 */
-		composite succession :Occurrences::HappensBefore, SelfLink 
-			first snapshots[1] then snapshots[1];
+		succession startShot[1] then middleShots[0..*];
 		
 		/**
-		 * The startShot happens before all snapshots.
+		 * The endShot happens after all middleShots.
 		 */
-		composite succession startShot[1] then snapshots[0..*];
-		
-		/**
-		 * The endShot happens after all snapshots.
-		 */
-		composite succession snapshots[0..*] then endShot[1];
+		succession middleShots[0..*] then endShot[1];
 		
 		/**
 		 * The incoming transfers targeting this occurrence. 
@@ -119,14 +123,14 @@ package Occurrences {
 
 	/**
 	 * HappensDuring asserts that the shorterOccurrence happens during the longerOccurrence.
-	 * That is, the start time of the shorterOccurrence is no earlier than the start time
-	 * of the longerOccurrence, and the end time of the shorterOccurrence is no later than
-	 * the end time of the longerOccurrence. Note that this implies that every occurrence
-	 * "happens during" itself.
+	 * That is, the time interval of the shorterOccurrence is completely within that of the
+	 * longerOccurrence, or every snapshot of the shorterOccurrence happens while (at the
+	 * same time as) some snapshot of the longerOccurrence. Note that this means every
+	 *  occurrence happens during itself.
 	 */
 	assoc HappensDuring {
-		end feature shorterOccurrence: Occurrence[0..*] redefines Occurrence::suboccurrences, BinaryLink::source;
-		end feature longerOccurrence: Occurrence[0..*];
+		end feature shorterOccurrence: Occurrence[1..*] redefines Occurrence::suboccurrences, BinaryLink::source;
+		end feature longerOccurrence: Occurrence[1..*];
 	}
 	
 	/**
@@ -144,36 +148,39 @@ package Occurrences {
 	
 	/**
 	 * HappensBefore asserts that the earlierOccurrence happens before the laterOccurrence.
-	 * That is, the end time of the earlierOccurrence happens no later than the start time
-	 * of the laterOccurrence.
+	 * That is, the time interval of the earlierOccurrence is completely before that of the 
+	 * laterOccurrence, or every snapshot of the earlierOccurrence happens before every 
+	 * snapshot of the laterOccurrence. Note that this means no occurrence happens before itself.
 	 */
 	assoc HappensBefore {
 		end feature earlierOccurrence: Occurrence[0..*] redefines Occurrence::predecessors, BinaryLink::source;
 		end feature laterOccurrence: Occurrence[0..*] redefines Occurrence::successors, BinaryLink::target;
+		
+		inv { earlierOccurrence != laterOccurrence }
 	}
 	
 	/**
-	 * PortionOf asserts one occurrence is a portion of another.
+	 * PortionOf asserts one occurrence is a portion of another, including at least itself. 
 	 */
-	assoc PortionOf { 
-		end feature portionOf: Occurrence[0..1] redefines Occurrence::portionOf, BinaryLink::source;
-		end portion feature 'portion': Occurrence[0..*] redefines Occurrence::portions, BinaryLink::target; 
+	assoc PortionOf specializes HappensDuring { 
+		end feature portionOf: Occurrence[0..1] redefines Occurrence::portionOf, HappensDuring::longerOccurrence;
+		end portion feature 'portion': Occurrence[1..*] redefines Occurrence::portions, HappensDuring::shorterOccurrence; 
 	}
 	
 	/**
-	 * TimeSliceOf asserts once occurrence is a time slice of another.
+	 * TimeSliceOf asserts once occurrence is a time slice of another, including at least itself.
 	 */
-	assoc TimeSliceOf {
-		end feature timeSliceOf: Occurrence[1..*] redefines Occurrence::timeSliceOf, BinaryLink::source;
-		end portion feature timeSlice: Occurrence[0..*] redefines Occurrence::timeSlices, BinaryLink::target;
+	assoc TimeSliceOf specializes PortionOf {
+		end feature timeSliceOf: Occurrence[1..*] redefines Occurrence::timeSliceOf, PortionOf::portionOf;
+		end portion feature timeSlice: Occurrence[1..*] redefines Occurrence::timeSlices, PortionOf::'portion';
 	}
 	
 	/**
 	 * SnapshotsOf asserts once occurrence is a snapshot of another.
 	 */
-	assoc SnapshotOf {
-		end feature snapshotOf: Occurrence[1..*] redefines Occurrence::snapshotOf, BinaryLink::source;
-		end portion feature snapshot: Occurrence[0..*] redefines Occurrence::snapshots, BinaryLink::target;
+	assoc SnapshotOf specializes TimeSliceOf {
+		end feature snapshotOf: Occurrence[0..*] redefines Occurrence::snapshotOf, TimeSliceOf::timeSliceOf;
+		end portion feature snapshot: Occurrence[1..*] redefines Occurrence::snapshots, TimeSliceOf::timeSlice;
 	}
 	
 	/**

@@ -36,7 +36,7 @@ import {
 } from '@lumino/signaling';
 
 import {
-  ElementDataset, VirtualDOM, VirtualElement, h
+  ARIAAttrNames, ElementARIAAttrs, ElementDataset, VirtualDOM, VirtualElement, h
 } from '@lumino/virtualdom';
 
 import {
@@ -1149,8 +1149,9 @@ namespace Menu {
     renderItem(data: IRenderData): VirtualElement {
       let className = this.createItemClass(data);
       let dataset = this.createItemDataset(data);
+      let aria = this.createItemARIA(data);
       return (
-        h.li({ className, dataset },
+        h.li({ className, dataset, ...aria },
           this.renderIcon(data),
           this.renderLabel(data),
           this.renderShortcut(data),
@@ -1318,6 +1319,28 @@ namespace Menu {
       let extra = data.item.iconClass;
       return extra ? `${name} ${extra}` : name;
     }
+    
+    /**
+     * Create the aria attributes for menu item.
+     * 
+     * @param data - The data to use for the aria attributes.
+     * 
+     * @returns The aria attributes object for the item.
+     */
+    createItemARIA(data: IRenderData): ElementARIAAttrs {
+      let aria: {[T in ARIAAttrNames]?: string} = {};
+      switch (data.item.type) {
+      case 'separator':
+        aria.role = 'presentation';
+        break;
+      case 'submenu':
+        aria['aria-haspopup'] = 'true';
+        break;
+      default:
+        aria.role = 'menuitem';
+      }
+      return aria;
+    }
 
     /**
      * Create the render content for the label node.
@@ -1401,6 +1424,7 @@ namespace Private {
     content.classList.add('p-Menu-content');
     /* </DEPRECATED> */
     node.appendChild(content);
+    content.setAttribute('role', 'menu');
     node.tabIndex = -1;
     return node;
   }

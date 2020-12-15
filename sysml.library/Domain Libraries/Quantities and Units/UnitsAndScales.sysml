@@ -4,6 +4,7 @@
 package UnitsAndScales {
 	private import ScalarValues::*;
 	private import Quantities::QuantityValue;
+	private import Quantities::quantity;
 
 	/**
 	 * Representation of a measurement reference.
@@ -188,7 +189,7 @@ package UnitsAndScales {
 	}
 
 	/**
-	 * Explicit definition of "unit of dimension one" also known as "dimensionless unit" as well as value of dimension one
+	 * Explicit definitions of "unit of dimension one" also known as "dimensionless unit" as well as the value and quantity of dimension one.
 	 */
 	attribute def DimensionOneUnit :> DerivedUnit {
 		attribute name: String redefines MeasurementScale::name = "unit of dimension one";
@@ -197,5 +198,7 @@ package UnitsAndScales {
 		attribute num: Real redefines QuantityValue::num;
 		attribute mRef: DimensionOneUnit redefines QuantityValue::mRef;
 	}
+	attribute dimensionOneQuantity : DimensionOneValue :> quantity;
+
 	attribute one = DimensionOneUnit();
 }

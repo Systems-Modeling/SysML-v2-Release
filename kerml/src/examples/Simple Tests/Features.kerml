@@ -9,6 +9,13 @@ feature x typed by A, B subsets f redefines g;
 // Equivalent declaration:
 feature x1 redefines g typed by A subsets f typed by B;
 
+classifier C;
+
+feature y;
+featuring F of y by C;
+
+feature y1 : A :> x featured by C;
+
 classifier Person;
 
 abstract feature person : Person; // Default subsets Base::things.
@@ -33,11 +40,11 @@ generalization Sub subset parent subsets person;
 generalization subset mother subsets parent;
 
 classifier LegalRecord {
-	feature guardian;
+	feature guardian[0..1] = null;
 }
 
 classifier RegisteredAsset {
-	feature identifier;
+	feature identifier[1];
 }
 
 classifier Vehicle :> RegisteredAsset {

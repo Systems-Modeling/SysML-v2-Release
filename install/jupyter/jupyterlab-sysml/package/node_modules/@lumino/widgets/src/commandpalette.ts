@@ -139,6 +139,20 @@ class CommandPalette extends Widget {
   }
 
   /**
+   * Adds command items to the command palette.
+   *
+   * @param items - An array of options for creating each command item.
+   *
+   * @returns The command items added to the palette.
+   */
+  addItems(items: CommandPalette.IItemOptions[]): CommandPalette.IItem[] {
+    const newItems = items.map(item => Private.createItem(this.commands, item));
+    newItems.forEach(item => this._items.push(item));
+    this.refresh();
+    return newItems;
+  }
+
+  /**
    * Remove an item from the command palette.
    *
    * @param item - The item to remove from the palette.

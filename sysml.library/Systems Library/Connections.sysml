@@ -17,8 +17,8 @@ package Connections {
 	 * the kernel Association SelfLink.)
 	 */
 	abstract connection def Connection :> BinaryLink, Part { // Need to handle n-ary connections.
-		end :>> source: Item[0..*];
-		end :>> target: Item[0..*];
+		end source: Item[0..*] :>> BinaryLink::source;
+		end target: Item[0..*] :>> BinaryLink::target;
 	}
 	
 	/**

@@ -66,7 +66,7 @@ package SI {
     attribute 'm³': VolumeUnit = m**3 {name redefines MeasurementReference::name = "cubic metre";}
     attribute nm: LengthUnit = LengthUnit(name => "nanometre", unitConversion => ConversionByPrefix(prefix => nano, referenceUnit => m));
 
-    attribute L: VolumeUnit = VolumeUnit(name => "litre", unitConversion => ConversionByConvention(referenceUnit => 'm³', conversionFactor => 1.0-3));
+    attribute L: VolumeUnit = VolumeUnit(name => "litre", unitConversion => ConversionByConvention(referenceUnit => 'm³', conversionFactor => 1.0e-3));
     attribute mL: VolumeUnit = VolumeUnit(name => "millilitre", unitConversion => ConversionByPrefix(prefix => milli, referenceUnit => L));
 
     attribute 'A⋅m²': MagneticMomentUnit = A*m**2 {name redefines MeasurementReference::name = "ampere metre squared";}
@@ -110,7 +110,7 @@ package SI {
     attribute 'J/kg': SpecificEnergyUnit = J/kg {name redefines MeasurementReference::name = "joule per kilogram";}
     attribute 'J/m': TotalLinearStoppingPowerUnit = J/m {name redefines MeasurementReference::name = "joule per metre";}
     attribute 'J/m²': SpectralRadiantEnergyDensityInTermsOfWavenumberUnit = J/m**2 {name redefines MeasurementReference::name = "joule per square metre";}
-    attribute 'J/m³': ElectromagneticUnit = J/m**3 {name redefines MeasurementReference::name = "joule per cubic metre";}
+    attribute 'J/m³': ElectromagneticEnergyDensityUnit = J/m**3 {name redefines MeasurementReference::name = "joule per cubic metre";}
     attribute 'J/mol': MolarInternalEnergyUnit = J/mol {name redefines MeasurementReference::name = "joule per mole";}
     attribute 'J/nm': SpectralRadiantEnergyUnit = J/nm {name redefines MeasurementReference::name = "joule per nanometre";}
     attribute 'J/s': HeatFlowRateUnit = J/s {name redefines MeasurementReference::name = "joule per second";}
@@ -216,7 +216,7 @@ package SI {
     attribute 'Sv/s': DoseEquivalentUnit = Sv/s {name redefines MeasurementReference::name = "sievert per second";}
     attribute 'V⋅A': PowerUnit = V*A {name redefines MeasurementReference::name = "volt ampere";}
     attribute 'V/m': ElectricFieldStrengthUnit = V/m {name redefines MeasurementReference::name = "volt per metre";}
-    attribute 'W⋅h': ActiveEnergyUnit = W*h {name redefines MeasurementReference::name = "watt hour";}
+    attribute 'W⋅h': EnergyUnit = W*h {name redefines MeasurementReference::name = "watt hour";}
     attribute 'W/(m⋅K)': ThermalConductivityUnit = W/(m*K) {name redefines MeasurementReference::name = "watt per metre kelvin";}
     attribute 'W/(m²⋅K)': CoefficientOfHeatTransferUnit = W/(m**2*K) {name redefines MeasurementReference::name = "watt per square metre kelvin";}
     attribute 'W/(m²⋅nm)': SpectralIrradianceUnit = W/(m**2*nm) {name redefines MeasurementReference::name = "watt per square metre nanometre";}

@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * from standard ISO-80000-09:2019 "Physical chemistry and molecular physics"
+ * Generated on 2020-12-07T11:21:01Z from standard ISO-80000-9:2019 "Physical chemistry and molecular physics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-9:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -21,7 +21,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-1 number of entities
-     * symbol(s): N(X), N_X
+     * symbol(s): `N(X)`, `N_X`
      * application domain: General
      * name: NumberOfEntities
      * quantity dimension: 1
@@ -39,7 +39,7 @@ package ISQChemistryMolecular {
 
     /**    
      * source: item 9-2 amount of substance, number of moles
-     * symbol(s): n(X)
+     * symbol(s): `n(X)`
      * application domain: General
      * name: AmountOfSubstance
      * quantity dimension: N^1
@@ -58,12 +58,13 @@ package ISQChemistryMolecular {
     }    
     attribute amountOfSubstance: AmountOfSubstanceValue :> quantity;
 
+    alias AmountOfSubstanceUnit as NumberOfMolesUnit;
     alias AmountOfSubstanceValue as NumberOfMolesValue;
-    attribute numberOfMoles: NumberOfMolesValue :> quantity;
+    alias amountOfSubstance as numberOfMoles;
 
     /**
      * source: item 9-3 relative atomic mass
-     * symbol(s): A_r(X)
+     * symbol(s): `A_r(X)`
      * application domain: General
      * name: RelativeAtomicMass
      * quantity dimension: 1
@@ -81,7 +82,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-4 molar mass
-     * symbol(s): M(X)
+     * symbol(s): `M(X)`
      * application domain: General
      * name: MolarMass
      * quantity dimension: M^1*N^-1
@@ -105,7 +106,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-5 molar volume
-     * symbol(s): V_m
+     * symbol(s): `V_m`
      * application domain: General
      * name: MolarVolume
      * quantity dimension: L^3*N^-1
@@ -129,7 +130,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-6.1 molar internal energy
-     * symbol(s): U_m
+     * symbol(s): `U_m`
      * application domain: General
      * name: MolarInternalEnergy
      * quantity dimension: L^2*M^1*T^-2*N^-1
@@ -159,7 +160,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-6.2 molar enthalpy
-     * symbol(s): H_m
+     * symbol(s): `H_m`
      * application domain: General
      * name: MolarEnthalpy
      * quantity dimension: L^2*M^1*T^-2*N^-1
@@ -189,7 +190,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-6.3 molar Helmholtz energy
-     * symbol(s): F_m
+     * symbol(s): `F_m`
      * application domain: General
      * name: MolarHelmholtzEnergy
      * quantity dimension: L^2*M^1*T^-2*N^-1
@@ -219,7 +220,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-6.4 molar Gibbs energy
-     * symbol(s): G_m
+     * symbol(s): `G_m`
      * application domain: General
      * name: MolarGibbsEnergy
      * quantity dimension: L^2*M^1*T^-2*N^-1
@@ -249,7 +250,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-7 molar heat capacity
-     * symbol(s): C_m
+     * symbol(s): `C_m`
      * application domain: General
      * name: MolarHeatCapacity
      * quantity dimension: L^2*M^1*T^-2*Θ^-1*N^-1
@@ -282,7 +283,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-8 molar entropy
-     * symbol(s): S_m
+     * symbol(s): `S_m`
      * application domain: General
      * name: MolarEntropy
      * quantity dimension: L^2*M^1*T^-2*Θ^-1*N^-1
@@ -315,7 +316,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-9.1 particle concentration
-     * symbol(s): n, (C)
+     * symbol(s): `n`, `(C)`
      * application domain: General
      * name: ParticleConcentration
      * quantity dimension: L^-3
@@ -336,7 +337,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-9.2 molecular concentration
-     * symbol(s): C(X), C_X
+     * symbol(s): `C(X)`, `C_X`
      * application domain: General
      * name: MolecularConcentration (specializes ParticleConcentration)
      * quantity dimension: L^-3
@@ -344,11 +345,11 @@ package ISQChemistryMolecular {
      * definition: for substance X in a mixture, quotient of number `N_X` of molecules of substance X and volume `V` (ISO 80000-3) of the mixture: `C_X = N_X/V`
      * remarks: 
      */
-    attribute molecularConcentration: ParticleConcentrationValue :> particleConcentration;
+    attribute molecularConcentration :> particleConcentration;
 
     /**
      * source: item 9-10 mass concentration
-     * symbol(s): γ_X, (ρ_X)
+     * symbol(s): `γ_X`, `(ρ_X)`
      * application domain: General
      * name: MassConcentration
      * quantity dimension: L^-3*M^1
@@ -372,7 +373,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-11 mass fraction
-     * symbol(s): w_X
+     * symbol(s): `w_X`
      * application domain: General
      * name: MassFraction
      * quantity dimension: 1
@@ -390,7 +391,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-12.1 amount-of-substance concentration
-     * symbol(s): c_X
+     * symbol(s): `c_X`
      * application domain: General
      * name: AmountOfSubstanceConcentration
      * quantity dimension: L^-3*N^1
@@ -414,7 +415,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-12.2 standard amount-of-substance concentration
-     * symbol(s): c^!(X)
+     * symbol(s): `c^!(X)`
      * application domain: General
      * name: StandardAmountOfSubstanceConcentration (specializes AmountOfSubstanceConcentration)
      * quantity dimension: L^-3*N^1
@@ -422,11 +423,11 @@ package ISQChemistryMolecular {
      * definition: for substance X, one mole per litre
      * remarks: Decided by the 16th CGPM (1979), both “l” and “L” are allowed for the symbols for the litre.
      */
-    attribute standardAmountOfSubstanceConcentration: AmountOfSubstanceConcentrationValue :> amountOfSubstanceConcentration;
+    attribute standardAmountOfSubstanceConcentration :> amountOfSubstanceConcentration;
 
     /**
      * source: item 9-13 amount-of-substance fraction mole fraction
-     * symbol(s): x_X, y_X
+     * symbol(s): `x_X`, `y_X`
      * application domain: General
      * name: AmountOfSubstanceFractionMoleFraction
      * quantity dimension: 1
@@ -444,7 +445,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-14 volume fraction
-     * symbol(s): φ_X
+     * symbol(s): `φ_X`
      * application domain: General
      * name: VolumeFraction
      * quantity dimension: 1
@@ -462,7 +463,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-15 molality
-     * symbol(s): b_B, m_B
+     * symbol(s): `b_B`, `m_B`
      * application domain: General
      * name: Molality
      * quantity dimension: M^-1*N^1
@@ -486,7 +487,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-16 latent heat of phase transition, enthalpy of phase transition
-     * symbol(s): C_(pt)
+     * symbol(s): `C_(pt)`
      * application domain: General
      * name: LatentHeatOfPhaseTransition
      * quantity dimension: L^2*M^1*T^-2
@@ -511,12 +512,13 @@ package ISQChemistryMolecular {
     }
     attribute latentHeatOfPhaseTransition: LatentHeatOfPhaseTransitionValue :> quantity;
 
+    alias LatentHeatOfPhaseTransitionUnit as EnthalpyOfPhaseTransitionUnit;
     alias LatentHeatOfPhaseTransitionValue as EnthalpyOfPhaseTransitionValue;
-    attribute enthalpyOfPhaseTransition: EnthalpyOfPhaseTransitionValue :> quantity;
+    alias latentHeatOfPhaseTransition as enthalpyOfPhaseTransition;
 
     /**
      * source: item 9-17 chemical potential
-     * symbol(s): μ_X
+     * symbol(s): `μ_X`
      * application domain: chemistry
      * name: ChemicalPotential
      * quantity dimension: L^2*M^1*T^-2*N^-1
@@ -546,7 +548,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-18 absolute activity
-     * symbol(s): λ_X
+     * symbol(s): `λ_X`
      * application domain: General
      * name: AbsoluteActivity
      * quantity dimension: 1
@@ -564,7 +566,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-19 partial pressure
-     * symbol(s): p_X
+     * symbol(s): `p_X`
      * application domain: General
      * name: PartialPressure
      * quantity dimension: L^-1*M^1*T^-2
@@ -591,7 +593,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-20 fugacity
-     * symbol(s): tilde(p)_X
+     * symbol(s): `tilde(p)_X`
      * application domain: General
      * name: Fugacity
      * quantity dimension: L^-1*M^1*T^-2
@@ -618,7 +620,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-21 standard chemical potential
-     * symbol(s): μ_B^!, μ^!
+     * symbol(s): `μ_B^!`, `μ^!`
      * application domain: General
      * name: StandardChemicalPotential
      * quantity dimension: L^2*M^1*T^-2*N^-1
@@ -648,7 +650,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-22 activity factor
-     * symbol(s): f_X
+     * symbol(s): `f_X`
      * application domain: General
      * name: ActivityFactor
      * quantity dimension: 1
@@ -666,7 +668,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-23 standard absolute activity in mixture
-     * symbol(s): λ_X^!
+     * symbol(s): `λ_X^!`
      * application domain: in a mixture
      * name: StandardAbsoluteActivityInMixture
      * quantity dimension: 1
@@ -684,7 +686,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-24 activity of solute, relative activity of solute
-     * symbol(s): a_X, a_(m,X)
+     * symbol(s): `a_X`, `a_(m,X)`
      * application domain: General
      * name: ActivityOfSolute
      * quantity dimension: 1
@@ -700,12 +702,13 @@ package ISQChemistryMolecular {
     }
     attribute activityOfSolute: ActivityOfSoluteValue :> quantity;
 
+    alias ActivityOfSoluteUnit as RelativeActivityOfSoluteUnit;
     alias ActivityOfSoluteValue as RelativeActivityOfSoluteValue;
-    attribute relativeActivityOfSolute: RelativeActivityOfSoluteValue :> quantity;
+    alias activityOfSolute as relativeActivityOfSolute;
 
     /**
      * source: item 9-25 activity coefficient
-     * symbol(s): γ_B
+     * symbol(s): `γ_B`
      * application domain: General
      * name: ActivityCoefficient
      * quantity dimension: 1
@@ -723,7 +726,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-26 standard absolute activity in solution
-     * symbol(s): λ_B^!
+     * symbol(s): `λ_B^!`
      * application domain: in a solution
      * name: StandardAbsoluteActivityInSolution
      * quantity dimension: 1
@@ -741,7 +744,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-27.1 activity of solvent, relative activity of solvent
-     * symbol(s): a_A
+     * symbol(s): `a_A`
      * application domain: General
      * name: ActivityOfSolvent
      * quantity dimension: 1
@@ -757,12 +760,13 @@ package ISQChemistryMolecular {
     }
     attribute activityOfSolvent: ActivityOfSolventValue :> quantity;
 
+    alias ActivityOfSolventUnit as RelativeActivityOfSolventUnit;
     alias ActivityOfSolventValue as RelativeActivityOfSolventValue;
-    attribute relativeActivityOfSolvent: RelativeActivityOfSolventValue :> quantity;
+    alias activityOfSolvent as relativeActivityOfSolvent;
 
     /**
      * source: item 9-27.2 osmotic factor of solvent, osmotic coefficient of solvent A
-     * symbol(s): φ
+     * symbol(s): `φ`
      * application domain: General
      * name: OsmoticFactorOfSolvent
      * quantity dimension: 1
@@ -778,12 +782,13 @@ package ISQChemistryMolecular {
     }
     attribute osmoticFactorOfSolvent: OsmoticFactorOfSolventValue :> quantity;
 
+    alias OsmoticFactorOfSolventUnit as OsmoticCoefficientOfSolventAUnit;
     alias OsmoticFactorOfSolventValue as OsmoticCoefficientOfSolventAValue;
-    attribute osmoticCoefficientOfSolventA: OsmoticCoefficientOfSolventAValue :> quantity;
+    alias osmoticFactorOfSolvent as osmoticCoefficientOfSolventA;
 
     /**
      * source: item 9-27.3 standard absolute activity of solvent
-     * symbol(s): λ_A^!
+     * symbol(s): `λ_A^!`
      * application domain: in a dilute solution
      * name: StandardAbsoluteActivityOfSolvent
      * quantity dimension: 1
@@ -801,7 +806,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-28 osmotic pressure
-     * symbol(s): Π
+     * symbol(s): `Π`
      * application domain: General
      * name: OsmoticPressure
      * quantity dimension: L^-1*M^1*T^-2
@@ -828,7 +833,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-29 stoichiometric number of substance
-     * symbol(s): ν_B
+     * symbol(s): `ν_B`
      * application domain: General
      * name: StoichiometricNumberOfSubstance
      * quantity dimension: 1
@@ -846,7 +851,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-30 affinity of a chemical reaction
-     * symbol(s): A
+     * symbol(s): `A`
      * application domain: General
      * name: AffinityOfAChemicalReaction
      * quantity dimension: L^2*M^1*T^-2*N^-1
@@ -876,7 +881,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-31 extent of reaction
-     * symbol(s): ξ
+     * symbol(s): `ξ`
      * application domain: General
      * name: ExtentOfReaction (specializes AmountOfSubstance)
      * quantity dimension: N^1
@@ -884,11 +889,11 @@ package ISQChemistryMolecular {
      * definition: difference of initial amount `n_(`B in) of substance B (item 9-2) and equilibrium amount` n_(`B eq) of substance B (item 9-2) divided by stoichiometric number `ν_B` of substance B (item 9-29): `ξ = (n_(Beq) - n_(Bin))/ν_B`
      * remarks: See remark to item 9-30.
      */
-    attribute extentOfReaction: AmountOfSubstanceValue :> amountOfSubstance;
+    attribute extentOfReaction :> amountOfSubstance;
 
     /**
      * source: item 9-32 standard equilibrium constant, thermodynamic equilibrium constant
-     * symbol(s): K^!
+     * symbol(s): `K^!`
      * application domain: General
      * name: StandardEquilibriumConstant
      * quantity dimension: 1
@@ -904,12 +909,13 @@ package ISQChemistryMolecular {
     }
     attribute standardEquilibriumConstant: StandardEquilibriumConstantValue :> quantity;
 
+    alias StandardEquilibriumConstantUnit as ThermodynamicEquilibriumConstantUnit;
     alias StandardEquilibriumConstantValue as ThermodynamicEquilibriumConstantValue;
-    attribute thermodynamicEquilibriumConstant: ThermodynamicEquilibriumConstantValue :> quantity;
+    alias standardEquilibriumConstant as thermodynamicEquilibriumConstant;
 
     /**
      * source: item 9-33 equilibrium constant on pressure basis
-     * symbol(s): K_p
+     * symbol(s): `K_p`
      * application domain: pressure basis
      * name: EquilibriumConstantOnPressureBasis
      * quantity dimension: L^-1*M^1*T^-2
@@ -936,7 +942,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-34 equilibrium constant on concentration basis
-     * symbol(s): K_c
+     * symbol(s): `K_c`
      * application domain: concentration basis
      * name: EquilibriumConstantOnConcentrationBasis
      * quantity dimension: L^-3*N^1
@@ -960,7 +966,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-35.1 microcanonical partition function
-     * symbol(s): Ω
+     * symbol(s): `Ω`
      * application domain: General
      * name: MicrocanonicalPartitionFunction
      * quantity dimension: 1
@@ -978,7 +984,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-35.2 canonical partition function
-     * symbol(s): Z
+     * symbol(s): `Z`
      * application domain: General
      * name: CanonicalPartitionFunction
      * quantity dimension: 1
@@ -996,7 +1002,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-35.3 grand-canonical partition function, grand partition function
-     * symbol(s): Ξ
+     * symbol(s): `Ξ`
      * application domain: General
      * name: GrandCanonicalPartitionFunction
      * quantity dimension: 1
@@ -1012,12 +1018,13 @@ package ISQChemistryMolecular {
     }
     attribute grandCanonicalPartitionFunction: GrandCanonicalPartitionFunctionValue :> quantity;
 
+    alias GrandCanonicalPartitionFunctionUnit as GrandPartitionFunctionUnit;
     alias GrandCanonicalPartitionFunctionValue as GrandPartitionFunctionValue;
-    attribute grandPartitionFunction: GrandPartitionFunctionValue :> quantity;
+    alias grandCanonicalPartitionFunction as grandPartitionFunction;
 
     /**
      * source: item 9-35.4 molecular partition function, partition function of a molecule
-     * symbol(s): q
+     * symbol(s): `q`
      * application domain: General
      * name: MolecularPartitionFunction
      * quantity dimension: 1
@@ -1033,12 +1040,13 @@ package ISQChemistryMolecular {
     }
     attribute molecularPartitionFunction: MolecularPartitionFunctionValue :> quantity;
 
+    alias MolecularPartitionFunctionUnit as PartitionFunctionOfAMoleculeUnit;
     alias MolecularPartitionFunctionValue as PartitionFunctionOfAMoleculeValue;
-    attribute partitionFunctionOfAMolecule: PartitionFunctionOfAMoleculeValue :> quantity;
+    alias molecularPartitionFunction as partitionFunctionOfAMolecule;
 
     /**
      * source: item 9-36.1 statistical weight of subsystem
-     * symbol(s): g
+     * symbol(s): `g`
      * application domain: General
      * name: StatisticalWeightOfSubsystem
      * quantity dimension: 1
@@ -1056,7 +1064,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-36.2 degeneracy, multiplicity
-     * symbol(s): g
+     * symbol(s): `g`
      * application domain: General
      * name: Degeneracy
      * quantity dimension: 1
@@ -1072,12 +1080,13 @@ package ISQChemistryMolecular {
     }
     attribute degeneracy: DegeneracyValue :> quantity;
 
+    alias DegeneracyUnit as MultiplicityUnit;
     alias DegeneracyValue as MultiplicityValue;
-    attribute multiplicity: MultiplicityValue :> quantity;
+    alias degeneracy as multiplicity;
 
     /**
      * source: item 9-37.1 molar gas constant
-     * symbol(s): R
+     * symbol(s): `R`
      * application domain: General
      * name: MolarGasConstant
      * quantity dimension: L^2*M^1*T^-2*Θ^-1*N^-1
@@ -1110,7 +1119,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-37.2 specific gas constant
-     * symbol(s): R_s
+     * symbol(s): `R_s`
      * application domain: General
      * name: SpecificGasConstant
      * quantity dimension: L^2*T^-2*Θ^-1
@@ -1137,7 +1146,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-38 mean free path
-     * symbol(s): l, λ
+     * symbol(s): `l`, `λ`
      * application domain: chemistry
      * name: MeanFreePath (specializes Length)
      * quantity dimension: L^1
@@ -1145,11 +1154,11 @@ package ISQChemistryMolecular {
      * definition: for a particle, the average distance `d` (ISO 80000-3) between two successive collisions with other particles
      * remarks: 
      */
-    attribute meanFreePath: LengthValue :> length;
+    attribute meanFreePath :> length;
 
     /**
      * source: item 9-39 diffusion coefficient
-     * symbol(s): D
+     * symbol(s): `D`
      * application domain: chemistry
      * name: DiffusionCoefficient
      * quantity dimension: L^2*T^-1
@@ -1173,7 +1182,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-40.1 thermal diffusion ratio
-     * symbol(s): k_T
+     * symbol(s): `k_T`
      * application domain: General
      * name: ThermalDiffusionRatio
      * quantity dimension: 1
@@ -1191,7 +1200,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-40.2 thermal diffusion factor
-     * symbol(s): α_T
+     * symbol(s): `α_T`
      * application domain: General
      * name: ThermalDiffusionFactor
      * quantity dimension: 1
@@ -1209,7 +1218,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-41 thermal diffusion coefficient
-     * symbol(s): D_T
+     * symbol(s): `D_T`
      * application domain: General
      * name: ThermalDiffusionCoefficient
      * quantity dimension: L^2*T^-1
@@ -1233,7 +1242,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-42 ionic strength
-     * symbol(s): I
+     * symbol(s): `I`
      * application domain: General
      * name: IonicStrength
      * quantity dimension: M^-1*N^1
@@ -1257,7 +1266,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-43 degree of dissociation, dissociation fraction
-     * symbol(s): α
+     * symbol(s): `α`
      * application domain: General
      * name: DegreeOfDissociation
      * quantity dimension: 1
@@ -1273,12 +1282,13 @@ package ISQChemistryMolecular {
     }
     attribute degreeOfDissociation: DegreeOfDissociationValue :> quantity;
 
+    alias DegreeOfDissociationUnit as DissociationFractionUnit;
     alias DegreeOfDissociationValue as DissociationFractionValue;
-    attribute dissociationFraction: DissociationFractionValue :> quantity;
+    alias degreeOfDissociation as dissociationFraction;
 
     /**
      * source: item 9-44 electrolytic conductivity
-     * symbol(s): κ
+     * symbol(s): `κ`
      * application domain: General
      * name: ElectrolyticConductivity
      * quantity dimension: L^-3*M^-1*T^3*I^2
@@ -1308,7 +1318,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-45 molar conductivity
-     * symbol(s): Λ_m
+     * symbol(s): `Λ_m`
      * application domain: General
      * name: MolarConductivity
      * quantity dimension: M^-1*T^3*I^2*N^-1
@@ -1338,7 +1348,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-46 transport number of the ion B, current fraction of the ion B
-     * symbol(s): t_B
+     * symbol(s): `t_B`
      * application domain: General
      * name: TransportNumberOfTheIonB
      * quantity dimension: 1
@@ -1354,12 +1364,13 @@ package ISQChemistryMolecular {
     }
     attribute transportNumberOfTheIonB: TransportNumberOfTheIonBValue :> quantity;
 
+    alias TransportNumberOfTheIonBUnit as CurrentFractionOfTheIonBUnit;
     alias TransportNumberOfTheIonBValue as CurrentFractionOfTheIonBValue;
-    attribute currentFractionOfTheIonB: CurrentFractionOfTheIonBValue :> quantity;
+    alias transportNumberOfTheIonB as currentFractionOfTheIonB;
 
     /**
      * source: item 9-47 angle of optical rotation
-     * symbol(s): α
+     * symbol(s): `α`
      * application domain: General
      * name: AngleOfOpticalRotation (specializes AngularMeasure)
      * quantity dimension: 1
@@ -1367,11 +1378,11 @@ package ISQChemistryMolecular {
      * definition: angle through which plane-polarized light is rotated clockwise, as seen when facing the light source, in passing through an optically active medium
      * remarks: 
      */
-    attribute angleOfOpticalRotation: AngularMeasureValue :> angularMeasure;
+    attribute angleOfOpticalRotation :> angularMeasure;
 
     /**
      * source: item 9-48 molar optical rotatory power
-     * symbol(s): α_n
+     * symbol(s): `α_n`
      * application domain: General
      * name: MolarOpticalRotatoryPower
      * quantity dimension: L^2*N^-1
@@ -1395,7 +1406,7 @@ package ISQChemistryMolecular {
 
     /**
      * source: item 9-49 specific optical rotatory power
-     * symbol(s): α_m
+     * symbol(s): `α_m`
      * application domain: General
      * name: SpecificOpticalRotatoryPower
      * quantity dimension: L^2*M^-1

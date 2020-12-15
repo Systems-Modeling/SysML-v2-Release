@@ -14,6 +14,8 @@ package BaseFunctions {
 		!isEmpty(seq)
 	}
 	
+	function union(seq1: Anything[0..*] nonunique, seq2: Anything[0..*] nonunique): Anything[0..*] nonunique;
+	
 	function head(seq: Anything[0..*] ordered): Anything[0..1] {
 		seq[1]
 	}
