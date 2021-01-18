@@ -1,6 +1,9 @@
 package ControlFunctions {
 	private import Base::Anything;
+	private import ScalarValues::ScalarValue;
 	private import ScalarValues::Boolean;
+	private import ScalarFunctions::Min;
+	private import ScalarFunctions::Max;
 	
 	abstract function '?'(test: Boolean): Anything[0..*] {
 		composite abstract expr thenValue[0..1] (): Anything[0..*];
@@ -32,6 +35,11 @@ package ControlFunctions {
 		composite abstract expr selector[0..*] (argument: Anything[1]): Boolean;
 	}
 	
+	function selectOne(collection: Anything[0..*]): Anything[0..1] {
+		composite abstract expr selector[0..*] (argument: Anything[1]): Boolean;
+		collection->select x (selector(x))[1]
+	}
+	
 	abstract function reject(collection: Anything[0..*]): Anything[0..*] {
 		composite abstract expr rejector[0..*] (argument: Anything[1]): Boolean;
 	}
@@ -54,6 +62,16 @@ package ControlFunctions {
 	
 	function anyTrue(collection: Boolean[0..*]): Boolean {
 		collection->exists x (x)
+	}
+	
+	function minimize(collection: ScalarValue[1..*]): ScalarValue {
+		composite abstract expr mapper[0..*] (argument: ScalarValue[1]): ScalarValue[1];
+		collection->collect x (mapper(x))->reduce Min
+	}
+	
+	function maximize(collection: ScalarValue[1..*]): ScalarValue {
+		composite abstract expr mapper[0..*] (argument: ScalarValue[1]): ScalarValue[1];
+		collection->collect x (mapper(x))->reduce Max
 	}
 	
 }

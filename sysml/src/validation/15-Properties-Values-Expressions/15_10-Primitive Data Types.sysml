@@ -42,5 +42,39 @@ package '15.10-Primitive Data Types' {
 	/* TODO: Specify standardized string encodings. */
 	import Time::DateTime;
 	
-	/* TODO: Define support for enumeration types. */
+	/**
+	 * Enumerations are defined as an implicit restriction of the extent of the
+	 * enumeration type to the listed enumeration values.
+	 * Note: Enumerations are currently limited to attributes.
+	 */
+	enum def ConditionColor {
+		enum red;
+		enum yellow;
+		enum green;
+	}
+	
+	attribute def ConditionLevel {
+		attribute associatedColor : ConditionColor;
+	}
+	
+	enum def SeverityEnum :> ConditionLevel {
+		danger { 
+			:>> associatedColor = ConditionColor::red;
+		}
+		warning { 
+			:>> associatedColor = ConditionColor::yellow;
+		}
+		normal { 
+			:>> associatedColor = ConditionColor::green;
+		}
+	}
+	
+	attribute def Diameter :> ISQ::LengthValue;	
+	enum def DiameterChoice :> Diameter {
+		small = 60@[SI::mm];
+		medium = 70@[SI::mm];
+		large = 80@[SI::mm];
+	}	
+	attribute aperatureDiameter: DiameterChoice = DiameterChoice::small;
+	
 }

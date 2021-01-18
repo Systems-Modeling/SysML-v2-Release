@@ -45,13 +45,13 @@ var enableMode = function (CodeMirror) {
         return CodeMirror.getMode(config, {
             name: "clike",
             keywords: words("about abstract accept action activity alias all allInstances analysis any as assert assoc assume attribute bind block by " +
-                "calc case comment connect connection constraint decide def defined dependency do doc else end entry exhibit exit expose first flow fork from " +
-                "hastype id if import in inout instanceof interface individual istype item join language link merge nonunique objective of ordered out package " +
+                "calc case comment connect connection constraint decide def defined dependency do doc else end entry enum exhibit exit expose first flow fork from " +
+                "hastype id if import in inout instanceof interface individual istype item join language link merge metadata nonunique objective of ordered out package " +
                 "part perform port private protected public redefines ref rendering rep require requirement return satisfy send snapshot specializes state " + 
                 "stream subsets subject succession then timeslice to transition type value variant variation verification verify view viewpoint"
                 ),
-            defKeywords: words("action activity analysis assoc attribute block calc case comment connection constraint doc def id link individual interface " +
-                               "item package objective part port ref rendering rep requirement snapshot state timeslice transition type value verification view viewpoint"),
+            defKeywords: words("action activity analysis assoc attribute block calc case comment connection constraint doc def enum id link individual interface item " +
+                               "metadata package objective part port ref rendering rep requirement snapshot state timeslice transition type value verification view viewpoint"),
             typeFirstDefinitions: true,
             atoms: words("true false null"),
             number: /^(?:0x[a-f\d_]+|0b[01_]+|(?:[\d_]+\.?\d*|\.\d+)(?:e[-+]?[\d_]+)?)(u|ll?|l|f)?/i,

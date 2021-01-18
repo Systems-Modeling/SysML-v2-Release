@@ -24,11 +24,6 @@ package Base {
 	}
 	
 	/**
-	 * EnumeratedValue is a specialization that is the most general class for enumerated values.
-	 */
-	abstract datatype EnumeratedValue specializes DataValue;
-	
-	/**
 	 * things is the top-level feature in the language.
 	 */
 	abstract feature things: Anything[0..*] nonunique;

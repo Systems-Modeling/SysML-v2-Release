@@ -1,5 +1,5 @@
 package '9-Verification-simplified' {
-	import Verifications::*;
+	import VerificationCases::*;
 	import Definitions::*;
 	
 	package Definitions {

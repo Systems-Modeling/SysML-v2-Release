@@ -1,12 +1,6 @@
 package Dynamics {
 	import ScalarValues::Real;
-	
-	attribute def PowerValue :> Real;
-	attribute def MassValue :> Real;
-	attribute def AccelValue :> Real;
-	attribute def VelocityValue :> Real;
-	attribute def LengthValue :> Real;
-	attribute def TimeValue :> Real;
+	import ISQ::*;
 	
 	// Function definitions
 	
@@ -17,28 +11,30 @@ package Dynamics {
 		whlpwr - Cd * v - Cf * tm * v
 	}
 	
-	calc def Acceleration (dt : TimeValue, tm : MassValue, tp: PowerValue) a : AccelValue { 
+	calc def Acceleration (dt : TimeValue, tm : MassValue, tp: PowerValue) a : AccelerationValue { 
 		tp * dt * tp
 	}
 	
-	calc def Velocity (dt : TimeValue, v0 : VelocityValue, a : AccelValue) v : VelocityValue = v0 + a * dt;
+	calc def Velocity (dt : TimeValue, v0 : VelocityValue, a : AccelerationValue) v : VelocityValue = v0 + a * dt;
  	
 	calc def Position (dt : TimeValue, x0 : LengthValue, v : VelocityValue) : LengthValue = x0 + v * dt;
 	
 
 	// Analysis action def
 	
-	action def StraightLineVehicleDynamics (
-		in dt : TimeValue,
-		in whlpwr : PowerValue,
-		in Cd : Real,
-		in Cf: Real,
-		in tm : MassValue,
-		in v_in : VelocityValue,
-		in x_in : LengthValue,
-		out a_out : AccelValue,
-		out v_out : VelocityValue,
-		out x_out : LengthValue ) {
+	action def StraightLineVehicleDynamics {
+		
+		in attribute dt : TimeValue;
+		in attribute whlpwr : PowerValue;
+		in attribute Cd : Real;
+		in attribute Cf: Real;
+		in attribute tm : MassValue;
+		in attribute v_in : VelocityValue;
+		in attribute x_in : LengthValue;
+		
+		out attribute a_out : AccelerationValue;
+		out attribute v_out : VelocityValue;
+		out attribute x_out : LengthValue;
 			
 		assert constraint {
 			attribute tp : PowerValue;
@@ -55,13 +51,10 @@ package Dynamics {
 	
 	action dyn1 : StraightLineVehicleDynamics {
 		attribute tp : PowerValue = Power(whlpwr, Cd, Cf, tm, v_in);
-		attribute a : AccelValue = Acceleration(dt, tm, tp);
-		attribute v : VelocityValue = Velocity(dt, v_in, a);
-		attribute x : LengthValue = Position(dt, x_in, v_in);
 		
-		bind a_out = a;
-		bind v_out = v;
-		bind x_out = x;
+		out attribute :>> a_out : AccelerationValue = Acceleration(dt, tm, tp);
+		out attribute :>> v_out : VelocityValue = Velocity(dt, v_in, a_out);
+		out attribute :>> x_out : LengthValue = Position(dt, x_in, v_in);
 	}	
 	
 	action dyn2 : StraightLineVehicleDynamics {
