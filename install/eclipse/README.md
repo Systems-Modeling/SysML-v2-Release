@@ -62,7 +62,7 @@ and make sure that `sysml.library` is before `kerml` and `sysml` in the build or
 3. You can view the model library files in the `sysml.library` project, but *do not change them*.
    
 4. To show SysML diagrams, in `Window > Show View > Other...` select the PlantUML view. The diagram rendered in the view is relative to the text selected 
-in the active SysML editor view. Tree (BDD-like), interconnection (IBD-like) and state machine views are currently supported.
+in the active SysML editor view. Tree (BDD-like), interconnection (IBD-like), action and state views are currently supported.
 
 **Release Note:** While performance has improved further in this release, there are still cases in which the processing of a file with 
 several name resolution errors can take a long time, particularly if the `Quantities and Units` library is being used.
