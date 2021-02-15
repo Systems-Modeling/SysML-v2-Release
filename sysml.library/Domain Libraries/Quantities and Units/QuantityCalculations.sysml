@@ -4,7 +4,7 @@ package QuantityCalculations {
     import UnitsAndScales::MeasurementReference;
     import UnitsAndScales::DimensionOneValue;
     
-    calc def '@' specializes ScalarFunctions::'@' (x: NumericalValue, y: MeasurementReference): QuantityValue;
+    calc def '@[' specializes ScalarFunctions::'@[' (x: NumericalValue, y: MeasurementReference): QuantityValue;
 	
 	calc def Abs specializes NumericalFunctions::Abs (x: QuantityValue): QuantityValue;
 

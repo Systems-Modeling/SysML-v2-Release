@@ -6,7 +6,7 @@ package Performances {
 	private import Base::things;
 	private import Occurrences::Occurrence;
 	private import Objects::Object;
-	private import Objects::BinaryLink;
+	private import Objects::BinaryLinkObject;
 	
 	/**
 	 * Performance is the most general class of behavioral occurrences that may be performed over time.
@@ -76,9 +76,9 @@ package Performances {
 	 * Involves asserts that the behavior carried out by the involvingPerformance involves the
 	 * involvedObject.
 	 */
-	assoc Involves {
-		end feature involvingPerformance: Performance[0..*] redefines Object::involvingPerformances, BinaryLink::source;
-		end feature involvedObject: Object[0..*] redefines Performance::involvedObjects, BinaryLink::target;
+	assoc Involves specializes BinaryLinkObject {
+		end feature involvingPerformance: Performance[0..*] redefines Object::involvingPerformances, BinaryLinkObject::source;
+		end feature involvedObject: Object[0..*] redefines Performance::involvedObjects, BinaryLinkObject::target;
 	}
 	
 	/**

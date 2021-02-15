@@ -15,7 +15,7 @@ package NonScalarFunctions {
 		BaseFunctions::notEmpty(col::values)
 	}
 	
-	function contains(col: Collection[1], value: Anything): Boolean {
+	function contains(col: Collection[1], value: Anything[1]): Boolean {
 		col::values->exists x (x == value)
 	}	
 	

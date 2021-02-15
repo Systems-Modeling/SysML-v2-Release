@@ -3,15 +3,18 @@ package BaseFunctions {
 	private import Objects::Object;
 	private import ScalarValues::*;
 	
-	function '=='(x: Anything, y: Anything): Boolean;
-	function '!='(x: Anything, y: Anything): Boolean;
+	function '=='(x: Anything[0..*], y: Anything[0..*]): Boolean;
+	function '!='(x: Anything[0..*], y: Anything[0..*]): Boolean;
 	
-	function ToString(x: Anything): String;
+	function ToString(x: Anything[0..1]): String;
 	
-	function size(seq: Anything[*]): Natural;
-	function isEmpty(seq: Anything[*]): Boolean;
+	function size(seq: Anything[0..*]): Natural;
+	function isEmpty(seq: Anything[0..*]): Boolean;
 	function notEmpty(seq: Anything[0..*]): Boolean {
 		!isEmpty(seq)
+	}
+	function includes(seq: Anything[0..*], value: Anything[1]): Boolean {
+		seq->exists x (x == value)
 	}
 	
 	function union(seq1: Anything[0..*] nonunique, seq2: Anything[0..*] nonunique): Anything[0..*] nonunique;
@@ -38,6 +41,10 @@ package BaseFunctions {
 	}
 	
 	abstract function 'istype'(x: Anything): Boolean {
+		abstract feature 'type': Anything;
+	}
+	
+	abstract function '@'(x: Anything): Boolean {
 		abstract feature 'type': Anything;
 	}
 	

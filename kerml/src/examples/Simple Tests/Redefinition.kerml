@@ -3,7 +3,7 @@ package Redefinition {
 	class Transfer {
 		feature transferSource;
 		feature item;
-		assoc SourceOutputLink {
+		assoc SourceOutputLink specializes Objects::BinaryLinkObject {
 			end source: Occurrence[1];
 			end target: Occurrence[1..*];
 		}

@@ -3,8 +3,8 @@
  * in the SysML language.
  */
 package Connections {
-	private import Objects::BinaryLink;
-	private import Objects::binaryLinks;
+	private import Objects::BinaryLinkObject;
+	private import Objects::binaryLinkObjects;
 	private import Items::Item;
 	private import Parts::Part;
 	private import Parts::parts;
@@ -16,13 +16,13 @@ package Connections {
 	 * (Note that this does not include BindinConnectors, which are typed by
 	 * the kernel Association SelfLink.)
 	 */
-	abstract connection def Connection :> BinaryLink, Part { // Need to handle n-ary connections.
-		end source: Item[0..*] :>> BinaryLink::source;
-		end target: Item[0..*] :>> BinaryLink::target;
+	abstract connection def Connection :> BinaryLinkObject, Part { // Need to handle n-ary connections.
+		end source: Item[0..*] :>> BinaryLinkObject::source;
+		end target: Item[0..*] :>> BinaryLinkObject::target;
 	}
 	
 	/**
 	 * connections is the base feature of all ConnectionUsages.
 	 */
-	abstract connection connections: Connection[0..*] :> binaryLinks;
+	abstract connection connections: Connection[0..*] :> binaryLinkObjects;
 }

@@ -1,6 +1,6 @@
 package '13b-Safety and Security Features Element Group' {
 	
-	part vehicle1_c1: '2a-Parts Interconnection'::VehicleA {
+	part vehicle1_c1 {
 		part interior {
 			part alarm;
 			part seatBelt[2];

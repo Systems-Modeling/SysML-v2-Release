@@ -1,99 +1,59 @@
 /**
- * This package defines classifiers and features that related to the typing of objects and links.
+ * This package defines classifiers and features that are related to the typing of objects and links.
  */
 package Objects {
 	private import Base::Anything;
 	private import Base::things;
+	private import Links::*;
 	private import Occurrences::Occurrence;
 	private import Performances::Performance;
+	private import Performances::performances;
 	
 	/**
-	 * Object is the most general classifier of non-behavioral occurrences that may change over time.
+	 * Object is the most general class of structural occurrences that may change over time.
 	 */
-	abstract class Object specializes Occurrence {
+	abstract struct Object specializes Occurrence {
 		feature self: Object redefines Occurrence::self;
 		
 		/**
 		 * Performances in which this object is involved.
 		 */
-		feature involvingPerformances: Performance[0..*];
+		step involvingPerformances: Performance[0..*] subsets performances;
 		
 		/**
 		 * Performances which are enacted by this object.
 		 */
-		abstract feature enactedPerformances: Performance[0..*] subsets involvingPerformances, suboccurrences;
+		abstract step enactedPerformances: Performance[0..*] subsets involvingPerformances, suboccurrences;
 	}
 	
 	/**
-	 * Link is the most general association between two or more things.
-	 * (It is actually class, not an association, because an association
-	 * must have a specific number of ends.)
+	 * LinkObject is the most general association structure, being both a Link and an Object.
 	 */
-	class Link specializes Object {
-		feature participant: Anything[2..*] nonunique ordered;
-	}
+	abstract assoc struct LinkObject specializes Link, Object;
 	
 	/**
-	 * BinaryLink is the most general binary association between exactly two things, 
-	 * nominally directed from source to target.
+	 * BinaryLinkObject is the most general binary association structure, being both a 
+	 * BinaryLink and a LinkObject.
 	 */
-	assoc BinaryLink specializes Link {
-	    feature participant: Anything[2] nonunique ordered redefines Link::participant;
-		
-		end feature source: Anything[0..*] nonunique subsets participant;
-	    end feature target: Anything[0..*] nonunique subsets participant;
-	    
-// Means:
-//	    feature sourceParticipant: Anything[1] subsets participant {
-//	    	feature targetEnd: Anything[0..*] = BinaryLink::targetParticipant(sourceParticipant);
-//	    }
-//	    feature targetParticipant: Anything[1] subsets participant {
-//	    	feature sourceEnd: Anything[0..*] = BinaryLink::sourceParticipant(targetParticipant);
-//	    }  
-
-// Was:
-//	    feature sourceParticipant: Anything[1..1] subsets participant = participant[1];
-//	    feature targetParticipant: Anything[1..1] subsets participant = participant[2];
-//	
-//	    private connector linkage: BinaryLink is sourceParticipant to targetParticipant;	
+	assoc struct BinaryLinkObject specializes BinaryLink, LinkObject {
+		end feature source: Anything[0..*] nonunique subsets BinaryLink::source;
+	    end feature target: Anything[0..*] nonunique subsets BinaryLink::target;
 	}
 	
-	/**
-	 * SelfLink is a binary association in which the individuals at the two ends are asserted
-	 * to be the same.
-	 */
-	assoc SelfLink specializes BinaryLink {
-		end feature self: Anything[1..1] redefines source subsets myself redefines Anything::self;
-		end feature myself: Anything[1..1] redefines target subsets self;
-		
-//		feature sourceParticipant: Anything[1..1] redefines BinaryLink::sourceParticipant subsets targetParticipant; 
-//		feature targetParticipant: Anything[1..1] redefines BinaryLink::targetParticipant subsets sourceParticipant;
-	}
-		
 	/**
 	 * objects is a specialization of things restricted to type Object.
 	 */
 	abstract feature objects: Object[0..*] nonunique subsets things;
 	
 	/**
-	 * links is the most general feature of links between individuals.
+	 * linkObjects is a specializations of links and objects restricted to type LinkObjects. 
 	 */
-	abstract feature links: Link[0..*] nonunique subsets objects;
+	abstract feature linkObjects: LinkObject[0..*] nonunique subsets links, objects;
 	
 	/**
-	 * binaryLinks is a specialization of links restricted to type BinaryLink.
+	 * binaryLinkObjects is a specialization of binaryLinks and linkObjects restricted to 
+	 * type BinaryLinkObjects.
 	 */
-	abstract feature binaryLinks: BinaryLink[0..*] nonunique subsets links {
-		end feature source: Anything[0..*] nonunique redefines BinaryLink::source;
-		end feature target: Anything[0..*] nonunique redefines BinaryLink::target;
-	}
-	
-	/**
-	 * selfLinks is a specialization of binaryLinks restricted to type SelfLink.
-	 */
-	abstract feature selfLinks: SelfLink[0..*] nonunique subsets binaryLinks {
-		end feature source: Anything[1..1] redefines SelfLink::self, binaryLinks::source;
-		end feature target: Anything[1..1] redefines SelfLink::myself, binaryLinks::target;
-	}
+	abstract feature binaryLinkObjects: BinaryLinkObject[0..*] nonunique subsets binaryLinks, linkObjects;
 	
 }

@@ -3,7 +3,10 @@ package StringFunctions {
 	
 	function '+' specializes ScalarFunctions::'+' (x: String, y:String): String;
 	
+	/** Deprecated */
 	function Size(x: String): Natural;
+	
+	function Length(x: String): Natural;
 	function Substring(x: String, lower: Integer, upper: Integer): String;
 	
 	function '<' specializes ScalarFunctions::'<' (x: String, y: String): Boolean;

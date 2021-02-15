@@ -13,7 +13,7 @@ package ProductSelection {
 	}
 	
 	// Equivalent association definition showing library model specialization.
-	assoc ProductSelection_ specializes Objects::BinaryLink {
+	assoc ProductSelection_ specializes Links::BinaryLink {
 		feature info: SelectionInfo;
 		
 		end cart: ShoppingCart[0..*] redefines source;

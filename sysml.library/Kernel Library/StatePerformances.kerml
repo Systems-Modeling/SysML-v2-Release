@@ -24,12 +24,12 @@ package StatePerformances {
 		step do[1] subsets middle;
 		step exit[1];
 		
-		succession entry[1] then middle[*];
-		succession do::startShot[1] then middle::startShot[*];
-		succession middle::endShot[*] then do::endShot[1];
-		succession middle[*] then exit[1];
+		private succession entry[1] then middle[*];
+		private succession do::startShot[1] then middle::startShot[*];
+		private succession middle::endShot[*] then do::endShot[1];
+		private succession middle[*] then exit[1];
 
-		inv { isEmpty(accepted) == isEmpty(acceptable) }
+		private inv { isEmpty(accepted) == isEmpty(acceptable) }
 
 		abstract feature acceptable: Transfer[*] {
 			feature startShot redefines Occurrence::startShot;
@@ -37,13 +37,13 @@ package StatePerformances {
 		}
 		feature accepted: Transfer[0..1] subsets acceptable;
 		
-		succession do[1] then accepted::endShot[0..1];
-		succession accepted::endShot[0..1] then acceptable::endShot[*] {
-			inv { !isAcceptFirst | size(self) == size(acceptable) }
+		private succession do[1] then accepted::endShot[0..1];
+		private succession acceptFirst first accepted::endShot[0..1] then acceptable::endShot[*] {
+			inv { !isAcceptFirst | size(acceptFirst) == size(acceptable) }
 		}
-		succession acceptable::endShot[*] then exit[1];
-		connector :HappensDuring from acceptable::endShot[*] to self[1] {
-			inv { !isTriggerDuring | !isEmpty(self) }
+		private succession acceptable::endShot[*] then exit[1];
+		private connector triggerDuring: HappensDuring from acceptable::endShot[*] to self[1] {
+			inv { !isTriggerDuring | !isEmpty(triggerDuring) }
 		}
 	}
 	
@@ -61,12 +61,12 @@ package StatePerformances {
 			feature endShot redefines Occurrence::endShot;
 		}
 		
-		binding transitionLinkSource::accepted[0..1] = trigger[1];
-		connector :HappensDuring from transitionLinkSource[0..1] to trigger::endShot[*] {
-			inv { !transitionLinkSource::isAcceptFirst | size(self) == size(trigger) }
+		private binding transitionLinkSource::accepted[0..1] = trigger[1];
+		private connector linkAcceptFirst: HappensDuring from transitionLinkSource[0..1] to trigger::endShot[*] {
+			inv { !transitionLinkSource::isAcceptFirst | size(linkAcceptFirst) == size(trigger) }
 		}
 		
-		succession all transitionLinkSource::middle[1..*] then guard[*];
-		succession guard[*] then transitionLinkSource::exit[1];		
+		private succession all transitionLinkSource::middle[1..*] then guard[*];
+		private succession guard[*] then transitionLinkSource::exit[1];		
 	}
 }
