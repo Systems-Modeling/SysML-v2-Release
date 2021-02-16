@@ -65,18 +65,18 @@ Additional content can be accessed at the following URLs.
 
 The specification documents are copyrighted by the SST member organizations listed in those documents under the terms given there.
 
-The `Intro to the SysML v2 Language` presentation is Copyright © 2019-2020 Model Driven Solutions, Inc., and licensed under the Creative Commons Attribution 4.0 
+The `Intro to the SysML v2 Language` presentation is Copyright © 2019-2021 Model Driven Solutions, Inc., and licensed under the Creative Commons Attribution 4.0 
 International License. To view a copy of this license, visit [http://creativecommons.org/licenses/by/4.0/](http://creativecommons.org/licenses/by/4.0/) 
 or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 The Jupyter and Eclipse software and all included SysML v2 models are licensed by the respective copyright holders listed below 
 under the GNU Lesser General Public License (LGPL) v3.0 (see `LICENSE` and `LICENSE-GPL` files).
 
-Copyright © 2019-2020 California Institute of Technology (Jet Propulsion Laboratory) <br/>
-Copyright © 2019-2020 DEKonsult <br/>
-Copyright © 2019-2020 IncQuery Labs Ltd. <br/>
-Copyright © 2019-2020 Itemis <br/>
-Copyright © 2019-2020 Maplesoft (Waterloo Maple, Inc.) <br/>
-Copyright © 2019-2020 Mgnite Inc. <br/>
-Copyright © 2019-2020 Model Driven Solutions, Inc. <br/>
-Copyright © 2019-2020 SAF Consulting
+Copyright © 2019-2021 California Institute of Technology (Jet Propulsion Laboratory) <br/>
+Copyright © 2019-2021 DEKonsult <br/>
+Copyright © 2019-2021 IncQuery Labs Ltd. <br/>
+Copyright © 2019-2021 Itemis <br/>
+Copyright © 2019-2021 Maplesoft (Waterloo Maple, Inc.) <br/>
+Copyright © 2019-2021 Mgnite Inc. <br/>
+Copyright © 2019-2021 Model Driven Solutions, Inc. <br/>
+Copyright © 2019-2021 SAF Consulting
