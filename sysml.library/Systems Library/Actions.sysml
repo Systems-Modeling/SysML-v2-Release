@@ -6,78 +6,109 @@ package Actions {
 	private import Occurrences::Occurrence;
 	private import Performances::Performance;
 	private import Performances::performances;
-	private import Transfers::Transfer;
-	private import Transfers::transfers;
+	private import Transfers::TransferBefore;
 	private import ControlPerformances::MergePerformance;
 	private import ControlPerformances::DecisionPerformance;
 	private import TransitionPerformances::NonStateTransitionPerformance;
 	
 	/**
-	 * Action is the most general class of performances of action definitions in a system or 
-	 * part of a system. Action is the base class of all action definitions.
+	 * Action is the most general class of Performances of ActionDefinitions in a system or 
+	 * part of a system. Action is the base class of all ActionDefinitions.
 	 */
 	abstract action def Action :> Performance {
 		ref action self: Action :>> Performance::self;
 		ref action incomingTransfers :>> Performance::incomingTransfers;
 			
 		/**
-		 * The starting snapshot of an action. 
+		 * The starting snapshot of an Action. 
 		 */
 		action start: Action :>> startShot;
 		
 		/**
-		 * The ending snapshot of an action.
+		 * The ending snapshot of an Action.
 		 */
 		action done: Action :>> endShot;
 
 		/**
-		 * The subperformances of this action that are actions. 
+		 * The subperformances of this Action that are Actions. 
 		 */
 		action subactions: Action[0..*] :> actions, subperformances;
 	
 		/**
-		 * The subactions of this actvity that are control actions.
+		 * The subactions of this Action that are SendActions. 
+		 */
+		action sendSubactions: SendAction[0..*] :> subactions;
+	
+		/**
+		 * The subactions of this Action that are AcceptActions. 
+		 */
+		action acceptSubactions: AcceptAction[0..*] :> subactions;
+	
+		/**
+		 * The subactions of this Action that are ControlActions.
 		 */
 		abstract action controls : ControlAction[0..*] :> subactions;
 		
 		/**
-		 * The control actions of this action def that are merge actions.
+		 * The controls of this Action that are MergeActions.
 		 */
 		abstract action merges : MergeAction[0..*] :> controls;
 		
 		/**
-		 * The control actions of this action def that are decision actions.
+		 * The controls of this Action that are DecisionActions.
 		 */
 		abstract action decisions : DecisionAction :> controls;
 		
 		/**
-		 * The control actions of this action def that are join actions.
+		 * The controls of this Action that are JoinActions.
 		 */
 		abstract action joins: JoinAction :> controls;
 		
 		/**
-		 * The control actions of this action def that are fork actions.
+		 * The controls of this Action that are ForkActions.
 		 */
 		abstract action forks: ForkAction :> controls;		
 	}
 	
 	/**
-	 * A TransferAction is an Action that is also a Transfer in a given context.
-	 */
-	abstract action def TransferAction :> Transfer, Action (context: Occurrence);
-	
-	/**
-	 * actions is the base feature for all Action usages.
+	 * actions is the base feature for all ActionUsages.
 	 */
 	abstract action actions: Action[0..*] nonunique :> performances;
 	
 	/**
-	 * transferActions is the base feature for all TransferAction usages.
-	 * transferActions is a subset of the incomingTransfers of its context.
+	 * A SendAction is an Action used to type a SendActionUsage. It initiates an outgoingTransferFromSelf 
+	 * to a designated receiver Occurrence with a given payload of items.
 	 */
-	abstract action transferActions: TransferAction[0..*] :> 
-		transfers, actions, transferActions::context::incomingTransfers
-		(context: Occurrence);
+	action def SendAction(in items[0..*], in receiver: Occurrence[1]) {
+	    ref outgoingTransfer: TransferBefore[1] :>> outgoingTransfersFromSelf :> receiver::incomingTransfers {
+	    	ref :>> transferSource: SendAction {
+	    		ref :>> sourceOutput = items;
+	    	}
+	    }
+	}
+	
+	/**
+	 * sendActions is the base feature for all SendActionUsages.
+	 */
+	abstract action sendActions: SendAction[0..*] nonunique :> actions;
+	
+	/**
+	 * An AcceptAction is an Action used to type an AcceptActionUsage. It completes an 
+	 * incomingTransferFromSelf that is one of the incomingTransfers of a given receiver Occurrence, 
+	 * outputting the payload of items from the Transfer.
+	 */
+	action def AcceptAction(out items[0..*], in receiver: Occurrence[1]) {
+		ref incomingTransfer: TransferBefore[1] :>> incomingTransfersToSelf :> receiver::incomingTransfers {
+			ref :>> transferTarget: AcceptAction {
+				ref :>> targetInput = items;
+			}
+		}
+	}
+	
+	/**
+	 * acceptActions is the base feature for all AcceptActionUsages.
+	 */
+	abstract action acceptActions: AcceptAction[0..*] nonunique :> actions;
 	
 	/**
 	 * A ControlAction is the Action of a control node, which has no inherent behavior.

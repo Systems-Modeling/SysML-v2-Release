@@ -2,9 +2,9 @@
  * This package provides a simple framework for defining trade-off study analysis cases.
  */
 package TradeStudies {
-	import Base::Anything;
-	import ScalarValues::*;
-	import ScalarFunctions::*;
+	private import Base::Anything;
+	private import ScalarValues::*;
+	private import ScalarFunctions::*;
 	
 	/**
 	 * An ObjectiveFunction is a calculation that evaluates a TradeStudy alternative,

@@ -4,15 +4,16 @@
  */
 package States {
 	private import Actions::Action;
-	private import Actions::TransferAction;
+	private import Actions::AcceptAction;
 	private import Actions::actions;
 	private import StatePerformances::StatePerformance;
 	private import StatePerformances::StateTransitionPerformance;
 	
 	/**
-	 * A State is an Action that is also a StatePerformance.
+	 * A StateAction is a kind of Action that is also a StatePerformance. It is the base type for all
+	 * StateDefinitions.
 	 */
-	abstract state def State :> Action, StatePerformance {
+	abstract state def StateAction :> Action, StatePerformance {
 		entry action entryAction :>> 'entry';
 		do action doAction: Action :>> 'do' :> subactions;
 		exit action exitAction: Action :>> 'exit';
@@ -20,7 +21,7 @@ package States {
 		attribute :>> isTriggerDuring = true;
 		attribute :>> isAcceptFirst = true;
 		
-		ref state self: State :>> Action::self, StatePerformance::self;
+		ref state self: StateAction :>> Action::self, StatePerformance::self;
 		
 		/**
 		 * The subperformances of this StateAction that are Actions, other than the entry and exit Actions. 
@@ -32,25 +33,29 @@ package States {
 		/**
 		 * The subactions of this state that are states.
 		 */
-		abstract state substates: State[0..*] :> states, subactions;
+		abstract state substates: StateAction[0..*] :> stateActions, subactions;
 	}
 	
 	/**
-	 * A Transition is a StateTransitionPerformance whose transitionLinkSource is an Action.
+	 * A TransitionAction is a StateTransitionPerformance whose transitionLinkSource is an Action.
+	 * It is the base type of all TransitionUsages.
 	 */
-	action def Transition :> Action, StateTransitionPerformance {
-		ref action :>> trigger: TransferAction;
-		ref action :>> effect: Action;
-		ref action :>> transitionLinkSource: Action;
+	action def TransitionAction :> Action, StateTransitionPerformance {
+		ref action transitionLinkSource: Action :>> StateTransitionPerformance::transitionLinkSource;
+		action effect: Action :>> StateTransitionPerformance::effect;		
+		action accepter: AcceptAction {
+			ref incomingTransfersToSelf :>> AcceptAction::incomingTransfer;
+		}
+		bind trigger = accepter.incomingTransfersToSelf;
 	}
 	
 	/**
-	 * states is the base feature for all StateUsages.
+	 * stateActions is the base feature for all StateUsages.
 	 */
-	abstract state states: State[0..*] nonunique :> actions;
+	abstract state stateActions: StateAction[0..*] nonunique :> actions;
 	
 	/**
-	 * transitions is the base feature for all TransitionUsages.
+	 * transitionActions is the base feature for all TransitionUsages.
 	 */
-	abstract action transitions: Transition[0..*] nonunique :> actions;
+	abstract action transitionActions: TransitionAction[0..*] nonunique :> actions;
 }

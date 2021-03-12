@@ -1,4 +1,5 @@
 package Imports {
+
 	package P {
 		class A;
 		class B;

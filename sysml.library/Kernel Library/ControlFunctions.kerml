@@ -36,8 +36,8 @@ package ControlFunctions {
 	}
 	
 	function selectOne(collection: Anything[0..*]): Anything[0..1] {
-		composite abstract expr selector[0..*] (argument: Anything[1]): Boolean;
-		collection->select x (selector(x))[1]
+		composite abstract expr selector1[0..*] (argument: Anything[1]): Boolean;
+		collection->select x (selector1(x))[1]
 	}
 	
 	abstract function reject(collection: Anything[0..*]): Anything[0..*] {
@@ -65,13 +65,13 @@ package ControlFunctions {
 	}
 	
 	function minimize(collection: ScalarValue[1..*]): ScalarValue {
-		composite abstract expr mapper[0..*] (argument: ScalarValue[1]): ScalarValue[1];
-		collection->collect x (mapper(x))->reduce Min
+		composite abstract expr fn[0..*] (argument: ScalarValue[1]): ScalarValue[1];
+		collection->collect x (fn(x))->reduce Min
 	}
 	
 	function maximize(collection: ScalarValue[1..*]): ScalarValue {
-		composite abstract expr mapper[0..*] (argument: ScalarValue[1]): ScalarValue[1];
-		collection->collect x (mapper(x))->reduce Max
+		composite abstract expr fn[0..*] (argument: ScalarValue[1]): ScalarValue[1];
+		collection->collect x (fn(x))->reduce Max
 	}
 	
 }

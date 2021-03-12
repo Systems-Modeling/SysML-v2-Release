@@ -3,22 +3,22 @@
  * in the SysML language.
  */
 package Connections {
+	private import Base::Anything;
 	private import Objects::BinaryLinkObject;
 	private import Objects::binaryLinkObjects;
-	private import Items::Item;
 	private import Parts::Part;
 	private import Parts::parts;
 
 	/**
-	 * Connection is the most general class of links between two Parts within some 
-	 * containing structure. Connction is the base type of all ConnectionDefinitions.
+	 * Connection is the most general class of links between two things within some 
+	 * containing structure. Connection is the base type of all ConnectionDefinitions.
 	 * 
-	 * (Note that this does not include BindinConnectors, which are typed by
+	 * (Note that this does not include BindingConnectors, which are typed by
 	 * the kernel Association SelfLink.)
 	 */
 	abstract connection def Connection :> BinaryLinkObject, Part { // Need to handle n-ary connections.
-		end source: Item[0..*] :>> BinaryLinkObject::source;
-		end target: Item[0..*] :>> BinaryLinkObject::target;
+		end source: Anything[0..*] :>> BinaryLinkObject::source;
+		end target: Anything[0..*] :>> BinaryLinkObject::target;
 	}
 	
 	/**

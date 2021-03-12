@@ -14,14 +14,17 @@ package StateTest {
 		exit act;
 		
 		state S1;
-			accept s : Sig
-			do action D
-			then S2;
 		
 		state S2 {
 			do send Sig(T::s::x) to p;
 		}
 		accept Exit then done;
+		
+		transition
+			first S1
+			accept s : Sig
+			do action D
+			then S2;
 		
 		transition T
 			first S2

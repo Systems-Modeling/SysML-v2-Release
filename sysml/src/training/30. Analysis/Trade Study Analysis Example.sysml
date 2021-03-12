@@ -1,4 +1,5 @@
 package 'Trade Study Analysis Example' {
+	import ScalarValues::Real;
 	import TradeStudies::*;
 	
 	part def Engine;

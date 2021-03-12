@@ -20,7 +20,7 @@
 
 Graphical visualization is available in Eclipse using the open source [PlantUML](https://plantuml.com) tooling to render diagrams.
 
-0. Make sure that your Eclipse has PlantUML with SysMLv2 extensions. You can install it from the update site of [ https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/1.1](https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/1.1) with Help > Install New Software
+0. Make sure that your Eclipse has PlantUML with SysMLv2 extensions. You can install it from the update site of [ https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates](https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates) with Help > Install New Software
 
 1. PlantUML visualization requires that [GraphViz](https://www.graphviz.org) be installed. Visit [ https://www.graphviz.org/download/](https://www.graphviz.org/download/) 
 and download the appropriate package for your environment.
@@ -62,7 +62,7 @@ and make sure that `sysml.library` is before `kerml` and `sysml` in the build or
 3. You can view the model library files in the `sysml.library` project, but *do not change them*.
    
 4. To show SysML diagrams, in `Window > Show View > Other...` select the PlantUML view. The diagram rendered in the view is relative to the text selected 
-in the active SysML editor view. Tree (BDD-like), interconnection (IBD-like), action and state views are currently supported.
+in the active SysML editor view. Tree (BDD-like), interconnection (IBD-like) and state machine views are currently supported.
 
 **Release Note:** While performance has improved further in this release, there are still cases in which the processing of a file with 
 several name resolution errors can take a long time, particularly if the `Quantities and Units` library is being used.
