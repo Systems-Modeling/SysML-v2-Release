@@ -13,8 +13,8 @@ and that provides a smooth migration path for SysML v1 users and models.
 
 The proposed SysML v2 specification will be submitted to the OMG in response to two Requests for Proposals (RFPs), which are publicly available at [http://www.omg.org](http://www.omg.org):
 
-   * Systems Modeling Language (SysML) v2 RFP (ad/2017-12-02)
-   * Systems Modeling Language (SysML) v2 API and Services RFP (ad/2018-16-03)
+   * [Systems Modeling Language (SysML) v2 RFP (ad/2017-12-02)](http://doc.omg.org/ad/2017-12-2)
+   * [Systems Modeling Language (SysML) v2 API and Services RFP (ad/2018-06-03)](http://doc.omg.org/ad/2018-6-3)
 
 ## Feedback
 
