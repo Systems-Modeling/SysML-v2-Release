@@ -14,11 +14,11 @@ package AnalysisAnnotation {
 		in Cd : Real                  { @ToolVariable { name = "C_D"; } }
 		in Cf: Real                   { @ToolVariable { name = "C_F"; } }
 		in tm : MassValue             { @ToolVariable { name = "mass"; } }
-		in v_in : VelocityValue       { @ToolVariable { name = "v0"; } }
+		in v_in : SpeedValue       { @ToolVariable { name = "v0"; } }
 		in x_in : LengthValue         { @ToolVariable { name = "x0"; } }
 		
 		out a_out : AccelerationValue { @ToolVariable { name = "a"; } }
-		out v_out : VelocityValue     { @ToolVariable { name = "v"; } }
+		out v_out : SpeedValue     { @ToolVariable { name = "v"; } }
 		out x_out : LengthValue       { @ToolVariable { name = "x"; } }
 			
 	}

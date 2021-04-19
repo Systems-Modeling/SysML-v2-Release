@@ -13,7 +13,7 @@ package Requirements {
 	
 	/**
 	 * RequirementConstraintCheck is the base ConstraintCheck for RequirementCheck, defining the
-	 * separate assumeptions and required constraints such that, if all the assumptions are true,
+	 * separate assumptions and required constraints such that, if all the assumptions are true,
 	 * then all the required constraints must be true.
 	 */
 	private abstract constraint def RequirementConstraintCheck {

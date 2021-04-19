@@ -6,12 +6,12 @@ package 'Analytical Constraints' {
 		m : MassValue,
 		dt : TimeValue,
 		x_i : LengthValue,
-		v_i : VelocityValue,
+		v_i : SpeedValue,
 		x_f : LengthValue,
-		v_f : VelocityValue,
+		v_f : SpeedValue,
 		a : AccelerationValue
 	) {
-		attribute v_avg : VelocityValue = (v_i + v_f)/2;
+		attribute v_avg : SpeedValue = (v_i + v_f)/2;
 		
 		a == Acceleration(p, m, v_avg) &
 		v_f == Velocity(dt, v_i, a) &
@@ -23,9 +23,9 @@ package 'Analytical Constraints' {
 		in mass : MassValue,
 		in delta_t : TimeValue,
 		in x_in : LengthValue,
-		in v_in : VelocityValue,
+		in v_in : SpeedValue,
 		out x_out : LengthValue,
-		out v_out : VelocityValue,
+		out v_out : SpeedValue,
 		out a_out : AccelerationValue
 	) {
 	    assert constraint dynamics : StraightLineDynamicsEquations (

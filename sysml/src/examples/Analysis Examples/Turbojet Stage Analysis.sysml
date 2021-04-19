@@ -1,13 +1,7 @@
 package 'Turbojet Stage Analysis' {
-	import Quantities::QuantityValue;
+	import Quantities::ScalarQuantityValue;
 	import UnitsAndScales::DimensionOneValue;
 	import ISQ::*;
-	
-	attribute def VolumeValue :> SIDerivedUnit {
-	   :>> lengthPowerFactor {
-			:>> exponent = 3;
-		}
-	}
 	
 	package 'Thermodynamic Functions' {
 	    calc def 'Ideal Gas Law' (in rho, in R_bar, in T) return p {

@@ -6,27 +6,12 @@ package 'Vehicle Analysis Demo' {
 	    import ISQ::*;
 	    import USCustomaryUnits::*;
 	    
-	    attribute def VolumeUnit :> SIDerivedUnit {
-	        :>> lengthPowerFactor { :>> exponent = 3; }
+	    attribute def DistancePerVolumeUnit :> DerivedUnit {
+	    	private attribute distancePF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 1; }
+	        private attribute volumePF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
+	        attribute :>> quantityDimension { :>> quantityPowerFactors = {distancePF, volumePF}; }
 	    }
-	    attribute def VolumeValue :> QuantityValue {
-	        :>> num : Real;
-	        :>> mRef : VolumeUnit;
-	    }
-	    
-	    attribute def PowerUnit :> SIDerivedUnit {
-	        :>> massPowerFactor { :>> exponent = 1; }
-	        :>> lengthPowerFactor { :>> exponent = 2; }
-	        :>> timePowerFactor { :>> exponent = -3; }
-	    }
-	    attribute def PowerValue :> QuantityValue {
-	        :>> num : Real;
-	        :>> mRef : PowerUnit;
-	    }
-	
-	    attribute def DistancePerVolumeUnit :> SIDerivedUnit {
-	        :>> lengthPowerFactor { :>> exponent = -2; }
-	    }
+
 	    attribute def DistancePerVolumeValue :> QuantityValue {
 	        :>> num : Real;
 	        :>> mRef : DistancePerVolumeUnit;
@@ -166,17 +151,21 @@ package 'Vehicle Analysis Demo' {
 	    import FuelEconomyRequirementsModel::*;
 	    import DynamicsModel::*;
 	    import BaseFunctions::size;
-	    import NonScalarValues::SampledFunctionValue;
+	    import Collections::SampledFunction;
+	    import Collections::SamplePair;
 	
 		attribute def ScenarioState {
 			position : LengthValue;
 			velocity : SpeedValue;
 		}
 		
-		attribute def NominalScenario :> SampledFunctionValue {
-			t : TimeValue[*] :>> domain;
-			s : ScenarioState[*] :>> range;
-			n : Natural = size(t);
+		attribute def NominalScenario :> SampledFunction {
+			attribute def TimeStateRecord :> SamplePair {
+				t : TimeValue :>> domainValue;
+				s : ScenarioState :>> rangeValue;
+			}
+			:>> samples : TimeStateRecord;
+			n : Natural = size(samples);
 		}
 		
 		analysis def FuelEconomyAnalysis () calculatedFuelEconomy : DistancePerVolumeValue {
@@ -201,47 +190,47 @@ package 'Vehicle Analysis Demo' {
 					:>> actualFuelEconomy = calculatedFuelEconomy;
 				}
 			}
+			
 		    
-		import scenario::*;
+			//import scenario::*;
 		
-		action dynamicsAnalysis(
-			out power : PowerValue[*],
-			out acceleration : AccelerationValue[*]
-		) {
-			/*
-			 * Solve for the required engine power as a function of time
-			 * to support the scenarios.
-			 */
-			assert constraint {
-				{1..n-1}->forAll i (
-					StraightLineDynamicsEquations (
-						p => power[i],
-						m => vehicle::mass,
-						dt => t[i+1] - t[i],
-						x_i => s.position[i],
-						v_i => s.velocity[i],
-						x_f => s.position[i+1],
-						v_f => s.velocity[i+1],
-						a => acceleration[i]                    
+			action dynamicsAnalysis(
+				in sc: NominalScenario,
+				out power : PowerValue[*],
+				out acceleration : AccelerationValue[*]	) {
+				/*
+				 * Solve for the required engine power as a function of time
+				 * to support the scenarios.
+				 */
+				assert constraint straightLineDynamics {
+					{1..sc.n-1}->forAll i (
+						StraightLineDynamicsEquations (
+							p => power[i],
+							m => vehicle::mass,
+							dt => sc.samples.t[i+1] - sc.samples.t[i],
+							x_i => sc.samples.s.position[i],
+							v_i => sc.samples.s.velocity[i],
+							x_f => sc.samples.s.position[i+1],
+							v_f => sc.samples.s.velocity[i+1],
+							a => acceleration[i]                    
+						)
 					)
-				)
+				}
 			}
-		}
 
-    action fuelConsumptionAnalysis(
-        in power : PowerValue[*] = dynamicsAnalysis::power,
-        in acceleration : AccelerationValue[*] = dynamicsAnalysis::acceleration,
-        out fuelEconomy : DistancePerVolumeValue = calculatedFuelEconomy
-    ) {
-        /*
-         * Solve the engine equations to determine how much fuel is
-         * consumed. The engine RPM is a function of the speed of the
-         * vehicle and the gear state.
-         */
-        }
-    }
-}
-	
+		    action fuelConsumptionAnalysis(
+		        in power : PowerValue[*] = dynamicsAnalysis::power,
+		        in acceleration : AccelerationValue[*] = dynamicsAnalysis::acceleration,
+		        out fuelEconomy : DistancePerVolumeValue = calculatedFuelEconomy ) {
+		        /*
+		         * Solve the engine equations to determine how much fuel is
+		         * consumed. The engine RPM is a function of the speed of the
+		         * vehicle and the gear state.
+		         */
+	        }
+	    }
+	}
+
 	
 	part vehicleFuelEconomyAnalysisContext {
 	    import FuelEconomyAnalysisModel::*;

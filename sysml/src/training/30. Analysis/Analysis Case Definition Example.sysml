@@ -3,8 +3,9 @@ package 'Analysis Case Definition Example' {
 	import 'Analytical Constraints'::*;
 	import USCustomaryUnits::*;
 	import BaseFunctions::size;
+	import Quantities::ScalarQuantityValue;
 	
-	attribute def DistancePerVolumeValue :> QuantityValue;
+	attribute def DistancePerVolumeValue :> ScalarQuantityValue;
     attribute gallon = 231.0 * 'in' ** 3;
 
 	part def Vehicle {
@@ -41,7 +42,7 @@ package 'Analysis Case Definition Example' {
 		in attribute scenario[*] {
 			time : TimeValue;
 			position : LengthValue;
-			velocity : VelocityValue;
+			velocity : SpeedValue;
 		}
 	
 		action solveForPower {

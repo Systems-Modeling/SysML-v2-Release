@@ -5,7 +5,7 @@ package Dynamics {
 	// Function definitions
 	
 	calc def Power
-		(in whlpwr : PowerValue, in Cd : Real, in Cf : Real, in tm : MassValue, in v : VelocityValue )
+		(in whlpwr : PowerValue, in Cd : Real, in Cf : Real, in tm : MassValue, in v : SpeedValue )
 		return tp : PowerValue {
 			
 		whlpwr - Cd * v - Cf * tm * v
@@ -15,9 +15,9 @@ package Dynamics {
 		tp * dt * tp
 	}
 	
-	calc def Velocity (dt : TimeValue, v0 : VelocityValue, a : AccelerationValue) v : VelocityValue = v0 + a * dt;
+	calc def Velocity (dt : TimeValue, v0 : SpeedValue, a : AccelerationValue) v : SpeedValue = v0 + a * dt;
  	
-	calc def Position (dt : TimeValue, x0 : LengthValue, v : VelocityValue) : LengthValue = x0 + v * dt;
+	calc def Position (dt : TimeValue, x0 : LengthValue, v : SpeedValue) : LengthValue = x0 + v * dt;
 	
 
 	// Analysis action def
@@ -29,11 +29,11 @@ package Dynamics {
 		in attribute Cd : Real;
 		in attribute Cf: Real;
 		in attribute tm : MassValue;
-		in attribute v_in : VelocityValue;
+		in attribute v_in : SpeedValue;
 		in attribute x_in : LengthValue;
 		
 		out attribute a_out : AccelerationValue;
-		out attribute v_out : VelocityValue;
+		out attribute v_out : SpeedValue;
 		out attribute x_out : LengthValue;
 			
 		assert constraint {
@@ -53,7 +53,7 @@ package Dynamics {
 		attribute tp : PowerValue = Power(whlpwr, Cd, Cf, tm, v_in);
 		
 		out attribute :>> a_out : AccelerationValue = Acceleration(dt, tm, tp);
-		out attribute :>> v_out : VelocityValue = Velocity(dt, v_in, a_out);
+		out attribute :>> v_out : SpeedValue = Velocity(dt, v_in, a_out);
 		out attribute :>> x_out : LengthValue = Position(dt, x_in, v_in);
 	}	
 	

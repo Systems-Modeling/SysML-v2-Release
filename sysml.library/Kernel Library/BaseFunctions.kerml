@@ -27,8 +27,8 @@ package BaseFunctions {
 		seq[size(seq)]
 	}
 	
-	function '['(seq: Anything[0..*] ordered, index: Integer): Anything[0..1];
-	function ','(x: Anything, seq: Anything[0..*] ordered): Anything[0..*] ordered;
+	function '['(seq: Anything[0..*] ordered, index: Anything): Anything[0..1];
+	function ','(seq1: Anything[0..*] ordered, seq2: Anything[0..*] ordered): Anything[0..*] ordered;
 
 
     abstract function 'all'(): Object[0..*] {

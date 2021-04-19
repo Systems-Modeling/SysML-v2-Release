@@ -6,7 +6,7 @@ package IntegerFunctions {
 	function '+' specializes NumericalFunctions::'+' (x: Integer, y: Integer[0..1]): Integer;
 	function '-' specializes NumericalFunctions::'-' (x: Integer, y: Integer[0..1]): Integer;
 	function '*' specializes NumericalFunctions::'*' (x: Integer, y: Integer): Integer;
-	function '/' specializes NumericalFunctions::'/' (x: Integer, y: Integer): Integer;
+	function '/' specializes NumericalFunctions::'/' (x: Integer, y: Integer): Rational;
 	function '**' specializes NumericalFunctions::'**' (x: Integer, y: Natural): Integer;
 	function '%' specializes NumericalFunctions::'%' (x: Integer, y: Integer): Integer;
 	

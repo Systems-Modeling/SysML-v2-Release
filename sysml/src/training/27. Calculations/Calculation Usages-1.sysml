@@ -9,9 +9,9 @@ package 'Calculation Usages-1' {
 		
 		action straightLineDynamics(
 			in delta_t : TimeValue,
-			in v_in : VelocityValue,
+			in v_in : SpeedValue,
 			in x_in : LengthValue,
-			out v_out : VelocityValue,
+			out v_out : SpeedValue,
 			out x_out : LengthValue
 		) {
 			calc acc : Acceleration (

@@ -508,13 +508,13 @@ package VehicleModel {
 							doc /* fuel economy requirements group */
 							attribute assumedCargoMass :> ISQ::mass;
 							requirement id '2_1' cityFuelEconomyRequirement: FuelEconomyRequirement {
-								redefines requiredFuelEconomy = 25; //@[mpg];
+								redefines requiredFuelEconomy = 25@[km/L];
 								assume constraint {
 									assumedCargoMass >= 500 @[kg]
 								}
 							}
 							requirement id ' 2_2' highwayFuelEconomyRequirement: FuelEconomyRequirement {
-								redefines requiredFuelEconomy = 30; //@[mpg]
+								redefines requiredFuelEconomy = 30@[km/L];
 								attribute assumedCargoMass :> ISQ::mass;
 								assume constraint {
 									assumedCargoMass >= 500 @[kg]
@@ -559,8 +559,8 @@ package VehicleModel {
 	package FuelEconomyAnalysisModel {
 		import VehicleConfigurations::VehicleConfiguration_b::PartsTree::*;
 		import VehicleConfigurations::VehicleConfiguration_b::Requirements::*;
-		import NonScalarValues::SampledFunctionValue;
-		attribute def NominalScenario :> SampledFunctionValue;
+		import Collections::SampledFunction;
+		attribute def NominalScenario :> SampledFunction;
 		analysis fuelEconomyAnalysis {
 			return attribute calculatedFuelEconomy: DistancePerVolumeValue;
 			in attribute scenario: NominalScenario;

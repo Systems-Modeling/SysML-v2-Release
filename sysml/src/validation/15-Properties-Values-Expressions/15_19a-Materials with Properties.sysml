@@ -4,39 +4,23 @@ package '15_19a-Materials with Properties' {
 	import UnitsAndScales::*;
 	import SI::*;
 	
-	// TODO: Move definition of atomic mass and Da to SI
-	part def AtomicMassUnit :> MassUnit;
-        
-    attribute def AtomicMassValue :> QuantityValue {
-		attribute num: Real :>> QuantityValue::num;
-    	ref mRef: AtomicMassUnit :>> QuantityValue::mRef;
-    }
-    
-    part Da: AtomicMassUnit = AtomicMassUnit(
-    	name => "dalton", 
-    	unitConversion => ConversionByConvention(referenceUnit => kg, conversionFactor => 1.66053906660e-27)
-    );
+    attribute def AtomicMassValue :> MassValue;
     
 	// TODO: Move definition of tensile strength and N/mm² to SI
-    part def TensileStrengthUnit :> SIDerivedUnit {
-		attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-			attribute exponent :>> UnitPowerFactor::exponent = -1;
-		}
-		attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
-			attribute exponent :>> UnitPowerFactor::exponent = 1;
-		}
-		attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-			attribute exponent :>> UnitPowerFactor::exponent = -2;
-		}
+	attribute def TensileStrengthUnit :> DerivedUnit {
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }		
+	}
+    
+    attribute def TensileStrengthValue :> ScalarQuantityValue {
+		attribute :>> num: Real;
+    	attribute :>> mRef: TensileStrengthUnit;
     }
     
-    attribute def TensileStrengthValue :> QuantityValue {
-		attribute num: Real redefines QuantityValue::num;
-    	ref mRef: TensileStrengthUnit redefines QuantityValue::mRef;
-    }
-    
-    part 'N/mm²': TensileStrengthUnit = N / mm**2 {
-    	attribute name :>> MeasurementReference::name = "newton per square millimetre";
+    attribute 'N/mm²': TensileStrengthUnit = N / mm**2 {
+    	:>> longName = "newton per square millimetre";
     }
 
     attribute def Substance;
@@ -67,21 +51,19 @@ package '15_19a-Materials with Properties' {
 	/*
 	 * Value properties bound to specifically constructed compound values.
 	 */
-    attribute Iron = Metal(atomicMass => 55.845@[Da]);
-    attribute Carbon = Metal(atomicMass => 12.011@[Da]);
-    attribute Manganese = Metal(atomicMass => 54.938@[Da]);
+    attribute Iron: Metal { :>> atomicMass = 55.845[Da]; }
+    attribute Carbon: Metal { :>> atomicMass = 12.011[Da]; }
+    attribute Manganese: Metal { :>> atomicMass = 54.938[Da]; }
     
 	/**
 	 * Value property with redefined/added sub-properties.
 	 * (Particular example of high tensile strength steel.)
 	 */
-    attribute Steel_980 : Alloy {
-    	attribute :>> fractions = {
-    		MaterialFraction(Iron, 0.9862),
-    		MaterialFraction(Carbon, 0.0018),
-    		MaterialFraction(Manganese, 0.012)
-    	};
+    attribute Steel_980: Alloy {
+        private attribute fraction1: MaterialFraction { :>> material = Iron; :>> massFraction = 0.9862[one]; }
+        private attribute fraction2: MaterialFraction { :>> material = Carbon; :>> massFraction = 0.0018[one]; }
+        private attribute fraction3: MaterialFraction { :>> material = Manganese; :>> massFraction = 0.012[one]; }
+    	attribute :>> fractions = {fraction1, fraction2, fraction3};
         attribute tensileStrength: TensileStrengthValue = 980@['N/mm²'];
-    }
-  
+    } 
 }

@@ -40,16 +40,16 @@ package '15_01-Constants' {
      * For the actual values see https://pml.nist.gov/cuu/Constants/ 
      */
     package 'Fundamental Physical Constants' {
-        attribute 'fine structure constant'      : DimensionOneValue = 7.2973525693E-3;  // 2018 CODATA attribute 7.2973525693E-3;  uncertainty = 0.0000000011E-3
-        attribute 'electron to proton mass ratio': DimensionOneValue = 5.44617021487E-4; // 2018 CODATA attribute 5.44617021487E-4; uncertainty = 0.00000000033E-4 
-        attribute 'speed of light in vacuum'     : SpeedValue = 299792458@[m/s];         // 2018 CODATA attribute 299792458 m s^-1; (exact)
+        attribute 'fine structure constant'      : DimensionOneValue = 7.2973525693E-3[one];  // 2018 CODATA attribute 7.2973525693E-3;  uncertainty = 0.0000000011E-3
+        attribute 'electron to proton mass ratio': DimensionOneValue = 5.44617021487E-4[one]; // 2018 CODATA attribute 5.44617021487E-4; uncertainty = 0.00000000033E-4 
+        attribute 'speed of light in vacuum'     : SpeedValue = 299792458[m/s];               // 2018 CODATA attribute 299792458 m s^-1; (exact)
      }
 
     package 'Global Context' {
-        attribute 'nominal earth gravitational acceleration': AccelerationValue = 9.80665@['m/s²'];
+        attribute 'nominal earth gravitational acceleration': AccelerationValue = 9.80665['m/s²'];
     }
 
     package 'Model X Context' {
-        attribute 'amplifier gain': DimensionOneValue = 3.5;
+        attribute 'amplifier gain': DimensionOneValue = 3.5[one];
     }
 }

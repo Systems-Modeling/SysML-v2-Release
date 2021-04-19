@@ -61,7 +61,7 @@ package '10c-Fuel Economy Analysis' {
 			position : LengthValue;
 			velocity : SpeedValue;
 			acceleration : AccelerationValue;
-			inclineAngle : RotationValue;
+			inclineAngle : AngularMeasureValue;
 		}
 		
 		abstract calc def NominalScenario (t : TimeValue) : ScenarioState;

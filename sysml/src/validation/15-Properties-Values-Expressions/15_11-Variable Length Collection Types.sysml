@@ -1,6 +1,6 @@
 package '15_11-Variable Length Collection Types' {
 	import ScalarValues::*;
-	import NonScalarValues::*;
+	import Collections::*;
 	
 	part def SparePart;
 	part def Person;
@@ -8,32 +8,32 @@ package '15_11-Variable Length Collection Types' {
 	/* TODO: Define syntactic sugar for instantiating collection types. */
 	
 	attribute def 'Bag<SparePart>' :> Bag {
-		ref part :>> values: SparePart;
+		ref part :>> elements: SparePart;
 	}
 	
 	attribute def 'Sequence<Integer>' :> Sequence {
-		attribute :>> values: Integer;
+		attribute :>> elements: Integer;
 	}
 	
 	attribute def 'List<Integer>' :> List {
-		value :>> values: Integer;
+		value :>> elements: Integer;
 	}
 	
 	attribute def 'Set<String>' :> Set {
-		attribute :>> values: String;
+		attribute :>> elements: String;
 	}
 	
 	attribute def 'OrderedSet<Person>' :> OrderedSet {
-		ref part :>> values: Person;
+		ref part :>> elements: Person;
 	}
 	
 	attribute def 'Sequence<Set<Person>>' :> Sequence {
-		attribute :>> values: Set {
-			ref part :>> values: Person;
+		attribute :>> elements: Set {
+			ref part :>> elements: Person;
 		}
 	}
 	
 	attribute def 'Array<Real>[4]' :> Sequence {
-		attribute :>> values: Real[4];
+		attribute :>> elements: Real[4];
 	}
 }

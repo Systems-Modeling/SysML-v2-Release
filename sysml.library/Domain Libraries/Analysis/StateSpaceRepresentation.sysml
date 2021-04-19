@@ -1,12 +1,12 @@
 package StateSpaceRepresentation {
-    import ISQ::TimeValue;
+    import ISQ::DurationValue;
 
     // TODO: StateSpace should be a vector (rank-one tensor)
     abstract attribute def StateSpace;
     abstract attribute def Input;
     abstract attribute def Output;
    
-    abstract calc def NextState(input: Input, stateSpace: StateSpace, timeStep: TimeValue): StateSpace;
+    abstract calc def NextState(input: Input, stateSpace: StateSpace, timeStep: DurationValue): StateSpace;
     abstract calc def GetOutput(input: Input, stateSpace: StateSpace): Output;
     
     /** Events to be received. */
@@ -40,13 +40,13 @@ package StateSpaceRepresentation {
         in derivative: Derivative,
         in input: Input,
         in initialState: StateSpace,
-        in timeInterval: TimeValue) return result: StateSpace;
+        in timeInterval: DurationValue) return result: StateSpace;
     
     /** ContinuousStateSpaceDynamics represents continuous behavior.
         derivative needs to return a time derivative of stateSpace, i.e. dx/dt. */
     abstract action def ContinuousStateSpaceDynamics :> StateSpaceDynamics {
         abstract calc derivative: Derivative;
-        calc :>> nextState: NextState(input: Input, stateSpace: StateSpace, timeStep: TimeValue) result: StateSpace {
+        calc :>> nextState: NextState(input: Input, stateSpace: StateSpace, timeStep: DurationValue) result: StateSpace {
             // We compute nextState by Integrate defined above by giving derivative calc.
             calc integrate: Integrate(
                 derivative = ContinuousStateSpaceDynamics::derivative,
@@ -67,7 +67,7 @@ package StateSpaceRepresentation {
       * differences needs to return difference of the stateSpace for each timestep.  */
     abstract action def DiscreteStateSpaceDynamics :> StateSpaceDynamics {
         abstract calc difference: Difference;
-        calc :>> nextState: NextState(input: Input, stateSpace: StateSpace, timeStep: TimeValue) result: StateSpace {
+        calc :>> nextState: NextState(input: Input, stateSpace: StateSpace, timeStep: DurationValue) result: StateSpace {
             attribute diff: StateSpace = difference(input, stateSpace);
             calc addDiff: AddDiff(stateSpace, diff) return result;
         }

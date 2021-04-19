@@ -24,7 +24,7 @@ package 'Requirement Definitions' {
 		
 		attribute redefines massActual = vehicle::dryMass + vehicle::fuelMass;
 		
-		assume constraint { vehicle::fuelMass > 0@[kg] }
+		assume constraint { vehicle::fuelMass > 0[kg] }
 	}
 	
 	port def ClutchPort;

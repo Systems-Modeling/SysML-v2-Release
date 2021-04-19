@@ -8,7 +8,7 @@ package 'Verification Case Definition Example' {
 		subject vehicle : Vehicle;
 		doc /* The vehicle mass shall be less than or equal to 2500 kg. */
 		
-		require constraint { vehicle::mass <= 2500@[SI::kg] }
+		require constraint { vehicle::mass <= 2500[SI::kg] }
 	}
 		
 	verification def VehicleMassTest {

@@ -18,7 +18,7 @@ package 'Derivation Constraints' {
 		force : ForceValue ) {
 
 		force * deltaT == mass * (finalSpeed - initialSpeed) &
-		mass > 0@[kg]
+		mass > 0[kg]
 	}
 	
 }

@@ -23,8 +23,8 @@ package 'Variation Definitions' {
     // Variability model
 	
 	variation attribute def DiameterChoices :> Diameter {
-		variant attribute diameterSmall = 70@[mm];
-		variant attribute diameterLarge = 100@[mm];
+		variant attribute diameterSmall = 70[mm];
+		variant attribute diameterLarge = 100[mm];
 	}
 
 	variation part def EngineChoices :> Engine {

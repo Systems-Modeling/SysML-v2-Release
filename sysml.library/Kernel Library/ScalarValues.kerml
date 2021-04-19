@@ -10,6 +10,7 @@ package ScalarValues {
 	datatype Integer specializes Number;
 	datatype UnlimitedNatural specializes Number;
 	datatype Natural specializes Integer, UnlimitedNatural;
+    datatype Positive specializes Natural;
 	datatype Rational specializes Number;
 	datatype Real specializes Number;	
 	datatype Complex specializes Number;

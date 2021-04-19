@@ -16,7 +16,7 @@ package 'Constraints Example-2' {
 	part def Vehicle {
 		constraint massConstraint : MassConstraint {
 			redefines partMasses = {chassisMass, engine::mass, transmission::mass};
-			redefines massLimit = 2500@[kg];
+			redefines massLimit = 2500[kg];
 		}
 		
 		attribute chassisMass : MassValue;

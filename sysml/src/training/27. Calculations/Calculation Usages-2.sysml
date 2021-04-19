@@ -2,7 +2,7 @@ package 'Calculation Usages-2' {
 	import 'Calculation Definitions'::*;
 	
 	attribute def DynamicState {
-		attribute v: VelocityValue;
+		attribute v: SpeedValue;
 		attribute x: LengthValue;
 	}
 	
