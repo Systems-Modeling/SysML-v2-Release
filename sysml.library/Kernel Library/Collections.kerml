@@ -1,8 +1,9 @@
 package Collections {
 	private import Base::*;
 	private import ScalarValues::*;
-	private import BaseFunctions::size;
+	private import SequenceFunctions::size;
 	private import IntegerFunctions::*;
+	private import ControlFunctions::*;
 
 	/**
 	 * Collection is the top level abstract supertype of all collection types.
@@ -46,7 +47,7 @@ package Collections {
         // Feature `dimensions` defines the N-dimensional shape of the Array
         // The alternative name `shape` (as used in many programming languages) is not used as it would interfere with a geometric shape feature.
         feature dimensions: Positive[1..*] ordered nonunique;
-        feature rank: Natural = size(dimensions);
+        feature rank: Natural[1] = size(dimensions);
         feature flattenedSize: Natural[1] = dimensions->reduce '*';
         inv { flattenedSize == size(elements) }
     }
@@ -88,8 +89,8 @@ package Collections {
 	 * TODO: Move to ScalarValues?
 	 */
     datatype KeyValuePair {
-        feature key: Anything[*] ordered nonunique;
-        feature val: Anything[*] ordered nonunique;
+        feature key: Anything[0..*] ordered nonunique;
+        feature val: Anything[0..*] ordered nonunique;
     }
 
 	/**

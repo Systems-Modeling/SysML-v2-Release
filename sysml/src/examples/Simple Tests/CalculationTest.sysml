@@ -2,16 +2,15 @@ package CalculationExample {
 	import ISQ::*;
 	import ScalarFunctions::*;
 	
-	part vehicle {
+	part def VehiclePart {
 		attribute m : MassValue;
-		
-		part eng {
-			attribute m : MassValue;
-		}
-		
-		part trans {
-			attribute m : MassValue;
-		}
+	}
+	
+	part def Vehicle :> VehiclePart;
+	
+	part vehicle : Vehicle {		
+		part eng : VehiclePart;		
+		part trans : VehiclePart;
 	}
 	
 	calc def MassSum (partMasses : MassValue[0..*]) totalMass : MassValue {
@@ -19,8 +18,8 @@ package CalculationExample {
 	}
 	
 	calc ms: MassSum (
-		partMasses = {vehicle::eng::m, vehicle::trans::m})
-		totalMass = vehicle::m;
+		partMasses = (vehicle::eng.m, vehicle::trans.m))
+		totalMass = vehicle.m;
 		
 	calc def MassSum1 {
 		in partMasses : MassValue[0..*];
@@ -28,7 +27,11 @@ package CalculationExample {
 	}
 	
 	calc ms1: MassSum {
-		in partMasses = {vehicle::eng::m, vehicle::trans::m};
-		return totalMass = vehicle::m;
+		in partMasses = (vehicle.eng.m, vehicle.trans.m);
+		return totalMass = vehicle.m;
 	}
+	
+	part vehicles[*] = (vehicle, vehicle);
+	attribute masses1[*] = (vehicles as VehiclePart).m;
+	attribute masses2[*] = (vehicles as vehicle).m;
 }

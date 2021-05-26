@@ -1,3 +1,4 @@
+import Views::*; // import library package, not internal Views package!
 package '11b-Safety and Security Feaure Views' {
 	import ScalarValues::*;
 	
@@ -34,7 +35,7 @@ package '11b-Safety and Security Feaure Views' {
 		view def SafetyFeatureView {
 			/* Parts that contribute to safety. */		
 			filter @Safety;
-			rendering : Renderings::Tree;
+			render asTreeDiagram;
 		}
 		
 		view def SafetyOrSecurityFeatureView {
@@ -57,13 +58,8 @@ package '11b-Safety and Security Feaure Views' {
 		
 		view vehicleMandatorySafetyFeatureViewStandalone {
 			expose vehicle::**[@Safety && Safety::isMandatory];
-			rendering : Renderings::Table;
+			render asElementTable;
 		}	
 	}
 	
-	/** Needs to move to the library. */
-	package Renderings {
-		rendering def Table;
-		rendering def Tree;
-	}
 }

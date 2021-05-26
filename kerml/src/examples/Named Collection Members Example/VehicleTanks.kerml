@@ -11,7 +11,7 @@ package VehicleTanks {
 	class Vehicle {
 		composite tanks: Tank[1..*] ordered;
 		
-		feature fuelCapacity: Real = tanks->collect tank:Tank (tank.capacity)->reduce '+';
+		feature fuelCapacity: Real = sum(tanks.capacity);
 	}
 	
 	class Vehicle1 specializes Vehicle {

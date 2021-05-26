@@ -47,7 +47,7 @@ package MassConstraintExample {
 	part def Vehicle3 {
 		assert constraint massConstraint : MassConstraint3 (
 			totalMass = m, 
-			partMasses = {eng::m, trans::m}
+			partMasses = (eng::m, trans::m)
 		);
 		
 		attribute m : MassValue;
@@ -75,7 +75,7 @@ package MassConstraintExample {
 	part def Vehicle4 {
 		assert mc (
 			totalMass = m, 
-			partMasses = {eng::m, trans::m}
+			partMasses = (eng::m, trans::m)
 		);
 		
 		attribute m : MassValue;
@@ -99,7 +99,7 @@ package MassConstraintExample {
 	part def Vehicle5 {
 		assert constraint ml : MassLimit (
 			mass = m, 
-			maxMass = 2500@[kg]
+			maxMass = 2500 [kg]
 		);
 		
 		attribute m : MassValue = eng::m + trans::m;

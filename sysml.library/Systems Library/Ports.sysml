@@ -15,5 +15,5 @@ package Ports {
 	/**
 	 * ports is the base feature of all PortUsages.
 	 */
-	abstract port ports : Port[0..*] :> parts;
+	abstract port ports : Port[0..*] nonunique :> parts;
 }

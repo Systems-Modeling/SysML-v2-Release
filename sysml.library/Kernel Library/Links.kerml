@@ -31,8 +31,8 @@ package Links {
 //	    }  
 
 // Was:
-//	    feature sourceParticipant: Anything[1..1] subsets participant = participant[1];
-//	    feature targetParticipant: Anything[1..1] subsets participant = participant[2];
+//	    feature sourceParticipant: Anything[1] subsets participant = participant[1];
+//	    feature targetParticipant: Anything[1] subsets participant = participant[2];
 //	
 //	    private connector linkage: BinaryLink is sourceParticipant to targetParticipant;	
 	}
@@ -42,11 +42,11 @@ package Links {
 	 * to be the same.
 	 */
 	assoc SelfLink specializes BinaryLink {
-		end feature self: Anything[1..1] redefines source subsets myself redefines Anything::self;
-		end feature myself: Anything[1..1] redefines target subsets self;
+		end feature self: Anything[1] redefines source subsets myself redefines Anything::self;
+		end feature myself: Anything[1] redefines target subsets self;
 		
-//		feature sourceParticipant: Anything[1..1] redefines BinaryLink::sourceParticipant subsets targetParticipant; 
-//		feature targetParticipant: Anything[1..1] redefines BinaryLink::targetParticipant subsets sourceParticipant;
+//		feature sourceParticipant: Anything[1] redefines BinaryLink::sourceParticipant subsets targetParticipant; 
+//		feature targetParticipant: Anything[1] redefines BinaryLink::targetParticipant subsets sourceParticipant;
 	}
 		
 	/**
@@ -66,8 +66,8 @@ package Links {
 	 * selfLinks is a specialization of binaryLinks restricted to type SelfLink.
 	 */
 	abstract feature selfLinks: SelfLink[0..*] nonunique subsets binaryLinks {
-		end feature source: Anything[1..1] redefines SelfLink::self, binaryLinks::source;
-		end feature target: Anything[1..1] redefines SelfLink::myself, binaryLinks::target;
+		end feature source: Anything[1] redefines SelfLink::self, binaryLinks::source;
+		end feature target: Anything[1] redefines SelfLink::myself, binaryLinks::target;
 	}
 		
 }

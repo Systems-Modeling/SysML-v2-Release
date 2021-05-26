@@ -5,6 +5,7 @@ package TradeStudies {
 	private import Base::Anything;
 	private import ScalarValues::*;
 	private import ScalarFunctions::*;
+	private import ControlFunctions::*;
 	
 	/**
 	 * An ObjectiveFunction is a calculation that evaluates a TradeStudy alternative,
@@ -61,7 +62,7 @@ package TradeStudies {
 	 */
 	requirement def MinimizeObjective :> TradeStudyObjective {
 		/** For a MinimizeObjective, the best value is the minimum one. */
-		out attribute :>> best = alternatives->minimize x (fn(x));
+		out attribute :>> best = alternatives->minimize {in x; fn(x)};
 	}
 	
 	/**
@@ -71,7 +72,7 @@ package TradeStudies {
 	 */
 	requirement def MaximizeObjective :> TradeStudyObjective {
 		/** For a MinimizeObjective, the best value is the maximum one. */
-		out attribute :>> best = alternatives->maximize x (fn(x));
+		out attribute :>> best = alternatives->maximize {in x; fn(x)};
 	}
 	
 	/**
@@ -115,7 +116,7 @@ package TradeStudies {
 		 * The alternative selected by this TradeStudy, which is the one that meets the
 		 * requirement of the tradeStudyObjective.
 		 */
-		return ref selectedAlternative = studyAlternatives->selectOne a (tradeStudyObjective(a));
+		return ref selectedAlternative = studyAlternatives->selectOne {in ref a; tradeStudyObjective(a)};
 	}
 	
 }

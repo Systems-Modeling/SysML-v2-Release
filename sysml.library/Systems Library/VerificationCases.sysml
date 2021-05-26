@@ -41,7 +41,7 @@ package VerificationCases {
 	/**
 	 * verificationCases is the base feature of all VerificationCaseUsages.
 	 */
-	abstract verification verificationCases : VerificationCase[0..*] :> cases;
+	abstract verification verificationCases : VerificationCase[0..*] nonunique  :> cases;
 	
 	/**
 	 * VerdictKind is an enumeration of the possible results of a VerificationCase.

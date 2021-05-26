@@ -36,7 +36,7 @@ package '1a-Parts Tree' {
 			 * This redefines the 'mass' attribute property from 'Vehicle' to 
 			 * give it a fixed attribute.
 			 */		
-			attribute mass redefines Vehicle::mass = 1750@[kg];
+			attribute mass redefines Vehicle::mass = 1750 [kg];
 			
 			/**
 			 * 'frontAxleAssembly' is a nested part of part 'vehicle1'.
@@ -75,7 +75,7 @@ package '1a-Parts Tree' {
 			/**
 			 * The mass attribute has been modified.
 			 */
-			attribute mass redefines Vehicle::mass = 2000@[kg];
+			attribute mass redefines Vehicle::mass = 2000 [kg];
 	
 			part frontAxleAssembly: AxleAssembly {
 				

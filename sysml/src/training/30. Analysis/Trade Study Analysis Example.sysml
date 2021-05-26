@@ -18,7 +18,7 @@ package 'Trade Study Analysis Example' {
 		}
 		
 	analysis engineTradeStudy : TradeStudy {
-		subject : Engine = {engine4cyl, engine6cyl};
+		subject : Engine = (engine4cyl, engine6cyl);
 		objective : MaximizeObjective;
 
 		calc :>> objectiveFunction {

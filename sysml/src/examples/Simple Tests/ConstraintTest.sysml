@@ -35,7 +35,7 @@ package ConstraintTest {
 	part vehicle1b :> vehicle {		
 		assert constraint massAnalysis : MassAnalysis {
 			attribute redefines totalMass = mass;
-			attribute redefines componentMasses = {engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass};		
+			attribute redefines componentMasses = (engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass);		
 		}	
 	}
 		
@@ -55,7 +55,7 @@ package ConstraintTest {
 	part vehicle2b :> vehicle {
 		assert constraint massAnalysis2 : MassAnalysis2 (
 			totalMass = mass,
-			componentMasses = {engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass}
+			componentMasses = (engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass)
 		);
 	}
 	
@@ -68,7 +68,7 @@ package ConstraintTest {
 	part vehicle3 :> vehicle {
 		assert massAnalysis3 (
 			totalMass = mass,
-			componentMasses = {engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass}
+			componentMasses = (engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass)
 		);
 	}
 	

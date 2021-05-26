@@ -15,7 +15,7 @@ package 'Constraint Assertions-1' {
 	
 	part def Vehicle {
 		assert constraint massConstraint : MassConstraint (
-			partMasses = {chassisMass, engine::mass, transmission::mass},
+			partMasses = (chassisMass, engine::mass, transmission::mass),
 			massLimit = 2500[kg]
 		);
 		

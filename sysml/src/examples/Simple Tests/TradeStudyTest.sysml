@@ -7,7 +7,7 @@ package TradeStudyTest {
 	part engine2: Engine;
 	
 	analysis engineTradeStudy : TradeStudy {
-		subject : Engine[1..*] = {engine1, engine2};
+		subject : Engine[1..*] = (engine1, engine2);
 		objective : MaximizeObjective;
 
 		calc :>> objectiveFunction {

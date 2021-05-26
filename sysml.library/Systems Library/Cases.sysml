@@ -42,5 +42,5 @@ package Cases {
 	/**
 	 * cases is the base Feature of all CaseUsages.
 	 */
-	abstract case cases : Case[0..*] :> calculations;
+	abstract case cases : Case[0..*] nonunique :> calculations;
 }

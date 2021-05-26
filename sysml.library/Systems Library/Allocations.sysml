@@ -19,5 +19,5 @@ package Allocations {
 	/**
 	 * allocations is the base feature of all AllocationUsages.
 	 */
-	abstract allocation allocations: Allocation[0..*] :> connections;
+	abstract allocation allocations: Allocation[0..*] nonunique :> connections;
 }

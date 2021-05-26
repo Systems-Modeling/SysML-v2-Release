@@ -1,39 +1,38 @@
 package IntegerFunctions {
 	import ScalarValues::*;
 	
-	function Abs specializes NumericalFunctions::Abs (x: Integer): Natural;
+	function Abs specializes NumericalFunctions::Abs (x: Integer[1]): Natural[1];
 	
-	function '+' specializes NumericalFunctions::'+' (x: Integer, y: Integer[0..1]): Integer;
-	function '-' specializes NumericalFunctions::'-' (x: Integer, y: Integer[0..1]): Integer;
-	function '*' specializes NumericalFunctions::'*' (x: Integer, y: Integer): Integer;
-	function '/' specializes NumericalFunctions::'/' (x: Integer, y: Integer): Rational;
-	function '**' specializes NumericalFunctions::'**' (x: Integer, y: Natural): Integer;
-	function '%' specializes NumericalFunctions::'%' (x: Integer, y: Integer): Integer;
+	function '+' specializes NumericalFunctions::'+' (x: Integer[1], y: Integer[0..1]): Integer[1];
+	function '-' specializes NumericalFunctions::'-' (x: Integer[1], y: Integer[0..1]): Integer[1];
+	function '*' specializes NumericalFunctions::'*' (x: Integer[1], y: Integer[1]): Integer[1];
+	function '/' specializes NumericalFunctions::'/' (x: Integer[1], y: Integer[1]): Rational;
+	function '**' specializes NumericalFunctions::'**' (x: Integer[1], y: Natural): Integer[1];
+	function '%' specializes NumericalFunctions::'%' (x: Integer[1], y: Integer[1]): Integer[1];
 	
-	function '<' specializes NumericalFunctions::'<' (x: Integer, y: Integer): Boolean;
-	function '>' specializes NumericalFunctions::'>' (x: Integer, y: Integer): Boolean;
-	function '<=' specializes NumericalFunctions::'<=' (x: Integer, y: Integer): Boolean;
-	function '>=' specializes NumericalFunctions::'>=' (x: Integer, y: Integer): Boolean;
+	function '<' specializes NumericalFunctions::'<' (x: Integer[1], y: Integer[1]): Boolean[1];
+	function '>' specializes NumericalFunctions::'>' (x: Integer[1], y: Integer[1]): Boolean[1];
+	function '<=' specializes NumericalFunctions::'<=' (x: Integer[1], y: Integer[1]): Boolean[1];
+	function '>=' specializes NumericalFunctions::'>=' (x: Integer[1], y: Integer[1]): Boolean[1];
 
-	function Max specializes NumericalFunctions::Max (x: Integer, y: Integer): Integer;
-	function Min specializes NumericalFunctions::Min (x: Integer, y: Integer): Integer;
+	function Max specializes NumericalFunctions::Max (x: Integer[1], y: Integer[1]): Integer[1];
+	function Min specializes NumericalFunctions::Min (x: Integer[1], y: Integer[1]): Integer[1];
 
-	function '==' specializes BaseFunctions::'==' (x: Integer, y: Integer): Boolean;
-	function '!=' specializes BaseFunctions::'!=' (x: Integer, y: Integer): Boolean;
+	function '==' specializes DataFunctions::'==' (x: Integer[0..1], y: Integer[0..1]): Boolean[1];
 	
-	function '..' specializes ScalarFunctions::'..' (lower: Integer, upper: Integer): Integer[0..*];	
+	function '..' specializes ScalarFunctions::'..' (lower: Integer[1], upper: Integer[1]): Integer[0..*];	
 	
-	function ToString specializes BaseFunctions::ToString (x: Integer): String;
-	function ToNatural(x: Integer): Natural;
-	function ToInteger(x: String): Integer;
-	function ToRational(x: Integer): Rational;
-	function ToReal(x: Integer): Real;
+	function ToString specializes BaseFunctions::ToString (x: Integer[1]): String[1];
+	function ToNatural(x: Integer[1]): Natural[1];
+	function ToInteger(x: String[1]): Integer[1];
+	function ToRational(x: Integer[1]): Rational[1];
+	function ToReal(x: Integer[1]): Real[1];
 	
-	function sum specializes ScalarFunctions::sum(collection: Integer[0..*]): Integer {
+	function sum specializes ScalarFunctions::sum(collection: Integer[0..*]): Integer[1] {
 		ScalarFunctions::sum0(collection, 0)
 	}
 	
-	function product specializes ScalarFunctions::product(collection: Integer[0..*]): Integer {
+	function product specializes ScalarFunctions::product(collection: Integer[0..*]): Integer[1] {
 		ScalarFunctions::product1(collection, 1)
 	}
 }	

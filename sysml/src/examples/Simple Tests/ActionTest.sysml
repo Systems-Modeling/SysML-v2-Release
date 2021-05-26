@@ -6,7 +6,7 @@ package ActionTest {
 		then merge m;
 		then accept S; 
 		
-		then send S to B();		
+		then send S() to B();		
 		then decide;
 			if true then m;
 			else done;

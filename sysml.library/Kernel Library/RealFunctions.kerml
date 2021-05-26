@@ -1,35 +1,34 @@
 package RealFunctions {
 	import ScalarValues::*;
 	
-	function Abs specializes NumericalFunctions::Abs (x: Real): Real;
+	function Abs specializes NumericalFunctions::Abs (x: Real[1]): Real[1];
 
-	function '+' specializes NumericalFunctions::'+' (x: Real, y: Real[0..1]): Real;
-	function '-' specializes NumericalFunctions::'-' (x: Real, y: Real[0..1]): Real;
-	function '*' specializes NumericalFunctions::'*' (x: Real, y: Real): Real;
-	function '/' specializes NumericalFunctions::'/' (x: Real, y: Real): Real;
-	function '**' specializes NumericalFunctions::'**' (x: Real, y: Real): Real;
+	function '+' specializes NumericalFunctions::'+' (x: Real[1], y: Real[0..1]): Real[1];
+	function '-' specializes NumericalFunctions::'-' (x: Real[1], y: Real[0..1]): Real[1];
+	function '*' specializes NumericalFunctions::'*' (x: Real[1], y: Real[1]): Real[1];
+	function '/' specializes NumericalFunctions::'/' (x: Real[1], y: Real[1]): Real[1];
+	function '**' specializes NumericalFunctions::'**' (x: Real[1], y: Real[1]): Real[1];
 	
-	function '<' specializes NumericalFunctions::'<' (x: Real, y: Real): Boolean;
-	function '>' specializes NumericalFunctions::'>' (x: Real, y: Real): Boolean;
-	function '<=' specializes NumericalFunctions::'<=' (x: Real, y: Real): Boolean;
-	function '>=' specializes NumericalFunctions::'>=' (x: Real, y: Real): Boolean;
+	function '<' specializes NumericalFunctions::'<' (x: Real[1], y: Real[1]): Boolean[1];
+	function '>' specializes NumericalFunctions::'>' (x: Real[1], y: Real[1]): Boolean[1];
+	function '<=' specializes NumericalFunctions::'<=' (x: Real[1], y: Real[1]): Boolean[1];
+	function '>=' specializes NumericalFunctions::'>=' (x: Real[1], y: Real[1]): Boolean[1];
 
-	function Max specializes NumericalFunctions::Max (x: Real, y: Real): Real;
-	function Min specializes NumericalFunctions::Min (x: Real, y: Real): Real;
+	function Max specializes NumericalFunctions::Max (x: Real[1], y: Real[1]): Real[1];
+	function Min specializes NumericalFunctions::Min (x: Real[1], y: Real[1]): Real[1];
 
-	function '==' specializes BaseFunctions::'==' (x: Real, y: Real): Boolean;
-	function '!=' specializes BaseFunctions::'!=' (x: Real, y: Real): Boolean;
-		
-	function Sqrt(x: Real): Real;
+	function '==' specializes DataFunctions::'==' (x: Real[0..1], y: Real[0..1]): Boolean[1];
+			
+	function Sqrt(x: Real[1]): Real[1];
 
-	function Floor(x: Real): Integer;
-	function Round(x: Real): Integer;
+	function Floor(x: Real[1]): Integer[1];
+	function Round(x: Real[1]): Integer[1];
 	
-	function ToString specializes BaseFunctions::ToString (x: Real): String;
-	function ToInteger(x: Real): Integer;
-	function ToRational(x: Real): Rational;
-	function ToReal(x: String): Real;
-	function ToComplex(x: Real): Complex;
+	function ToString specializes BaseFunctions::ToString (x: Real[1]): String[1];
+	function ToInteger(x: Real[1]): Integer[1];
+	function ToRational(x: Real[1]): Rational[1];
+	function ToReal(x: String[1]): Real[1];
+	function ToComplex(x: Real[1]): Complex[1];
 	
 	function sum specializes ScalarFunctions::sum (collection: Real[0..*]): Real {
 		ScalarFunctions::sum0(collection, 0.0)

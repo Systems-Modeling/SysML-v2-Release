@@ -14,14 +14,14 @@ package MassRollup {
 		part subcomponents: MassedThing[*];
 		
 		attribute totalMass redefines MassedThing::totalMass =
-			mass + sum(subcomponents->collect p:MassedThing (p::totalMass)); 
+			mass + sum(subcomponents.totalMass); 
 	}
 	
 	part filteredMassThing :> compositeThing {
 		abstract attribute minMass :> ISQ::mass;
 		
 		attribute totalMass redefines MassedThing::totalMass =
-			sum(./subcomponents/totalMass[p (p >= minMass)]);
+			mass + sum(subcomponents.totalMass.{in p:>ISQ::mass; p >= minMass});
 	}
 
 }

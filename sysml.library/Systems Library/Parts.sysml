@@ -40,6 +40,6 @@ package Parts {
 	/** 
 	 * parts is the base feature of all part properties.
 	 */
-	abstract part parts: Part[0..*] :> items;
+	abstract part parts: Part[0..*] nonunique :> items;
 	
 }

@@ -1,42 +1,45 @@
 package DataFunctions {
 	private import Base::DataValue;
 	private import ScalarValues::Boolean;
+	private import ControlFunctions::reduce;
 	
-	abstract function '+'(x: DataValue, y: DataValue[0..1]): DataValue;
-	abstract function '-'(x: DataValue, y: DataValue[0..1]): DataValue;
-	abstract function '*'(x: DataValue, y: DataValue): DataValue;
-	abstract function '/'(x: DataValue, y: DataValue): DataValue;
-	abstract function '**'(x: DataValue, y: DataValue): DataValue;
-	abstract function '%'(x: DataValue, y: DataValue): DataValue;
+	abstract function '+'(x: DataValue[1], y: DataValue[0..1]): DataValue[1];
+	abstract function '-'(x: DataValue[1], y: DataValue[0..1]): DataValue[1];
+	abstract function '*'(x: DataValue[1], y: DataValue[1]): DataValue[1];
+	abstract function '/'(x: DataValue[1], y: DataValue[1]): DataValue[1];
+	abstract function '**'(x: DataValue[1], y: DataValue[1]): DataValue[1];
+	abstract function '%'(x: DataValue[1], y: DataValue[1]): DataValue[1];
 	
-	abstract function '!'(x: DataValue): DataValue;
-	abstract function '~'(x: DataValue): DataValue;
+	abstract function '!'(x: DataValue[1]): DataValue[1];
+	abstract function '~'(x: DataValue[1]): DataValue[1];
 	
-	abstract function '|'(x: DataValue, y: DataValue): DataValue;
-	abstract function '^'(x: DataValue, y: DataValue): DataValue;
-	abstract function '&'(x: DataValue, y: DataValue): DataValue;
+	abstract function '|'(x: DataValue[1], y: DataValue[1]): DataValue[1];
+	abstract function '^'(x: DataValue[1], y: DataValue[1]): DataValue[1];
+	abstract function '&'(x: DataValue[1], y: DataValue[1]): DataValue[1];
 	
-	abstract function '<'(x: DataValue, y: DataValue): Boolean;
-	abstract function '>'(x: DataValue, y: DataValue): Boolean;
-	abstract function '<='(x: DataValue, y: DataValue): Boolean;
-	abstract function '>='(x: DataValue, y: DataValue): Boolean;
+	abstract function '<'(x: DataValue[1], y: DataValue[1]): Boolean[1];
+	abstract function '>'(x: DataValue[1], y: DataValue[1]): Boolean[1];
+	abstract function '<='(x: DataValue[1], y: DataValue[1]): Boolean[1];
+	abstract function '>='(x: DataValue[1], y: DataValue[1]): Boolean[1];
 	
-	abstract function Max(x: DataValue, y: DataValue): DataValue;
-	abstract function Min(x: DataValue, y: DataValue): DataValue;
+	abstract function Max(x: DataValue[1], y: DataValue[1]): DataValue[1];
+	abstract function Min(x: DataValue[1], y: DataValue[1]): DataValue[1];
+	
+	abstract function '==' specializes BaseFunctions::'=='(x: DataValue[0..1], y: DataValue[0..1]): Boolean[1];
 	
 	/** Deprecated */
-	abstract function '@['(x: DataValue, y: Base::Anything): DataValue;
+	abstract function '@['(x: DataValue[1], y: Base::Anything[1]): DataValue[1];
 	
-	abstract function '..'(lower: DataValue, upper: DataValue): DataValue[0..*];
+	abstract function '..'(lower: DataValue[1], upper: DataValue[1]): DataValue[0..*];
 	
-	abstract function sum(collection: DataValue[0..*]): DataValue;
-	abstract function product(collection: DataValue[0..*]): DataValue;
+	abstract function sum(collection: DataValue[0..*]): DataValue[1];
+	abstract function product(collection: DataValue[0..*]): DataValue[1];
 	
-	function sum0(collection: DataValue[0..*], zero: DataValue): DataValue {
+	function sum0(collection: DataValue[0..*], zero: DataValue[1]): DataValue[1] {
 		collection->reduce '+' ?? zero
 	}
 	
-	function product1(collection: DataValue[0..*], one: DataValue): DataValue {
+	function product1(collection: DataValue[0..*], one: DataValue[1]): DataValue[1] {
 		collection->reduce '*' ?? one
 	}
 }

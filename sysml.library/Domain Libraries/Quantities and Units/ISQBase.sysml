@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2021-04-06T20:54:34Z from standard ISO/IEC 80000
+ * Generated on 2021-05-07T14:31:30Z from standard ISO/IEC 80000
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
  * with Greek letters in Unicode encoding. In running text, AsciiMath is placed between backticks.
@@ -23,7 +23,7 @@ package ISQBase {
      */
     attribute def LengthUnit :> SimpleUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def LengthValue :> ScalarQuantityValue {
@@ -33,11 +33,10 @@ package ISQBase {
     attribute length: LengthValue :> scalarQuantities;
 
     /**
-     * General spatial coordinate system(s)
+     * General spatial coordinate system
      */
-
     attribute def Cartesian3dSpatialCoordinateSystem :> VectorMeasurementReference {
-        attribute :>> dimensions = {3};
+        attribute :>> dimensions = 3;
         attribute :>> isBound = true;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: LengthValue[3];
@@ -56,7 +55,7 @@ package ISQBase {
      */
     attribute def DurationUnit :> SimpleUnit {
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
     attribute def DurationValue :> ScalarQuantityValue {
@@ -78,7 +77,7 @@ package ISQBase {
      */
     attribute def MassUnit :> SimpleUnit {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = massPF; }
     }
 
     attribute def MassValue :> ScalarQuantityValue {
@@ -96,11 +95,11 @@ package ISQBase {
      * measurement unit(s): K
      * tensor order: 0
      * definition: partial derivative of internal energy with respect to entropy at constant volume and constant number of particles in the system: `T = ((partial U)/(partial S))_(V,N)` where `U` is internal energy (item 5-20.2), `S` is entropy (item 5-18), `V` is volume (ISO 80000-3), and `N` is number of particles
-     * remarks: It is measured with a primary thermometer, examples of which are gas thermometers of different kinds, noise thermometers, or radiation thermometers. The Boltzmann constant (ISO 80000-1) relates energy at the individual particle level with thermodynamic temperature. Differences of thermodynamic temperatures or changes may be expressed either in kelvin, symbol K, or in de grees Celsius, symbol °C (item 5-2). Thermodynamic temperature is one of the seven base quantities in the International System of Quantities, ISQ (see ISO 80000-1). The International Temperature Scale of 1990. For the purpose of practical measurements, the International Temperature Scale of 1990, ITS-90, was adopted by CIPM in 1989, which is a close approximation to the thermodynamic temperature scale. The quantities defined by this scale are denoted T_(90) and t_(90), respectively (replacing T_(68) and t_(68) defined by the International Practical Temperature Scale of 1968, IPTS-68), where `t_90/(1 °C) = T_90/(1 K) - 273,1`. The units of T_(90) and t_(90) are the kelvin, symbol K, and the degree Celsius, symbol °C (item 5-2), respectively. For further information, see References^[5^],^[6^]. For ready conversion between temperatures reported on the International Temperature Scale and thermodynamic temperatures the systematic deviations can be found in Reference [7].
+     * remarks: It is measured with a primary thermometer, examples of which are gas thermometers of different kinds, noise thermometers, or radiation thermometers. The Boltzmann constant (ISO 80000-1) relates energy at the individual particle level with thermodynamic temperature. Differences of thermodynamic temperatures or changes may be expressed either in kelvin, symbol K, or in degrees Celsius, symbol °C (item 5-2). Thermodynamic temperature is one of the seven base quantities in the International System of Quantities, ISQ (see ISO 80000-1). The International Temperature Scale of 1990. For the purpose of practical measurements, the International Temperature Scale of 1990, ITS-90, was adopted by CIPM in 1989, which is a close approximation to the thermodynamic temperature scale. The quantities defined by this scale are denoted `T_90` and `t_90`, respectively (replacing `T_68` and `t_68` defined by the International Practical Temperature Scale of 1968, IPTS-68), where `t_90/(1 °C) = T_90/(1 K) - 273,1`. The units of `T_90` and `t_90` are the kelvin, symbol K, and the degree Celsius, symbol °C (item 5-2), respectively. For further information, see References [5], [6]. For ready conversion between temperatures reported on the International Temperature Scale and thermodynamic temperatures the systematic deviations can be found in Reference [7].
      */
     attribute def ThermodynamicTemperatureUnit :> SimpleUnit {
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq::'Θ'; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = thermodynamicTemperaturePF; }
     }
 
     attribute def ThermodynamicTemperatureValue :> ScalarQuantityValue {
@@ -122,7 +121,7 @@ package ISQBase {
      */
     attribute def ElectricCurrentUnit :> SimpleUnit {
         private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq::I; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {electricCurrentPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = electricCurrentPF; }
     }
 
     attribute def ElectricCurrentValue :> ScalarQuantityValue {
@@ -139,12 +138,12 @@ package ISQBase {
      * quantity dimension: J^1
      * measurement unit(s): cd
      * tensor order: 0
-     * definition: density of luminous flux with respect to solid angle in a specified direction, expressed by `I_v = (dΦ_v)/(dΩ)` where Φ_v is the luminous flux (item 7-13) emitted in a specified direction, and Ω is the solid angle (ISO 80000-3) containing that direction
-     * remarks: The definition holds strictly only for a point source. The distribution of the luminous intensities as a function of the direction of emission, e.g. given by the polar angles `(θ,ϕ)` , is used to determine the luminous flux (item 7-13) within a certain solid angle (ISO 80000-3) Ω of a source: `Φ_v = int int_Ω I_v(thη, φ) sin(thη) d φ d thη` Luminous intensity can be derived from the spectral radiant intensity distribution by `I_v = K_m int_0^∞ I_(e,λ)(λ) V(λ) dλ` where K_m is maximum luminous efficacy (item 7-11.3), I_(e,)_λ(λ) is the spectral radiant intensity (item 7-5.2) at wavelength λ(ISO 80000-3), and V(λ) is spectral luminous efficiency (item 7-10.2). The corresponding radiometric quantity is “radiant intensity” (item 7-5.1). The corresponding quantity for photons is “photon intensity” (item 7-21).
+     * definition: density of luminous flux with respect to solid angle in a specified direction, expressed by `I_v = (dΦ_v)/(dΩ)` where `Φ_v` is the luminous flux (item 7-13) emitted in a specified direction, and `Ω` is the solid angle (ISO 80000-3) containing that direction
+     * remarks: The definition holds strictly only for a point source. The distribution of the luminous intensities as a function of the direction of emission, e.g. given by the polar angles `(θ,ϕ)`, is used to determine the luminous flux (item 7-13) within a certain solid angle (ISO 80000-3) `Ω` of a source: `Φ_v = int int_Ω I_v(θ,φ) sin(θ) dφ dθ`. Luminous intensity can be derived from the spectral radiant intensity distribution by `I_v = K_m int_0^∞ I_(e,λ)(λ) V(λ) dλ`, where `K_m` is maximum luminous efficacy (item 7-11.3), `I_(e,λ)(λ)` is the spectral radiant intensity (item 7-5.2) at wavelength `λ` (ISO 80000-3), and `V(λ)` is spectral luminous efficiency (item 7-10.2). The corresponding radiometric quantity is "radiant intensity" (item 7-5.1). The corresponding quantity for photons is "photon intensity" (item 7-21).
      */
     attribute def LuminousIntensityUnit :> SimpleUnit {
         private attribute luminousIntensityPF: QuantityPowerFactor[1] { :>> quantity = isq::J; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {luminousIntensityPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = luminousIntensityPF; }
     }
 
     attribute def LuminousIntensityValue :> ScalarQuantityValue {
@@ -162,11 +161,11 @@ package ISQBase {
      * measurement unit(s): mol
      * tensor order: 0
      * definition: quotient of number `N` of specified elementary entities of kind X (item 9-1) in a sample, and the Avogadro constant `N_A` (ISO 80000-1): `n(X) = N(X)/N_A`
-     * remarks: Amount of substance is one of the seven base quantities in the International System of Quantities, ISQ (see ISO 80000-1). Elementary entities, such as molecules, atoms, ions, electrons, holes and other quasi-particles, double bonds can be used. It is necessary to specify precisely the entity involved, e.g. atoms of hydrogen `H` vs. molecules of hydrogen `H_2`, preferably by giving the molecular chemical formula of the material involved. In the name “amount of substance”, the words “of substance” could be replaced by words specifying the substance concerned, e.g. “amount of hydrogen chloride, `HCl`”, or “amount of benzene, `C_6H_6`”. The name “number of moles” is often used for “amount of substance”, but this is deprecated because the name of a quantity should be distinguished from the name of the unit.
+     * remarks: Amount of substance is one of the seven base quantities in the International System of Quantities, ISQ (see ISO 80000-1). Elementary entities, such as molecules, atoms, ions, electrons, holes and other quasi-particles, double bonds can be used. It is necessary to specify precisely the entity involved, e.g. atoms of hydrogen `H` vs. molecules of hydrogen `H_2`, preferably by giving the molecular chemical formula of the material involved. In the name "amount of substance", the words "of substance" could be replaced by words specifying the substance concerned, e.g. "amount of hydrogen chloride, `HCl`", or "amount of benzene, `C_6H_6`". The name "number of moles" is often used for "amount of substance", but this is deprecated because the name of a quantity should be distinguished from the name of the unit.
      */
     attribute def AmountOfSubstanceUnit :> SimpleUnit {
         private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {amountOfSubstancePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = amountOfSubstancePF; }
     }
 
     attribute def AmountOfSubstanceValue :> ScalarQuantityValue {
@@ -179,16 +178,16 @@ package ISQBase {
      * Declaration of the International System of Quantities (ISQ), 
      * including its base quantities and symbols as specified in ISO 80000-1:2009.
      */
-    isq: SystemOfQuantities {
+    attribute isq: SystemOfQuantities {
         attribute :>> longName = "International System of Quantities";
-        attribute :>> baseQuantities = { L, M, T, I, 'Θ', N, J };
+        attribute :>> baseQuantities = ( L, M, T, I, 'Θ', N, J );
         
-	    attribute L: LengthValue[1];
-	    attribute M: MassValue[1];
-	    attribute T: DurationValue[1];
-	    attribute I: ElectricCurrentValue[1];
-	    attribute 'Θ': ThermodynamicTemperatureValue[1];
-	    attribute N: AmountOfSubstanceValue[1];
-	    attribute J: LuminousIntensityValue[1];
+        attribute L: LengthValue[1];
+        attribute M: MassValue[1];
+        attribute T: DurationValue[1];
+        attribute I: ElectricCurrentValue[1];
+        attribute 'Θ': ThermodynamicTemperatureValue[1];
+        attribute N: AmountOfSubstanceValue[1];
+        attribute J: LuminousIntensityValue[1];
     }
 }

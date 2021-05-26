@@ -7,6 +7,7 @@ package Requirements {
 	private import ControlFunctions::allTrue;
 	private import Constraints::constraintChecks;
 	private import Parts::Part;
+	private import Parts::parts;
 	private import Actions::Action;
 	private import Interfaces::Interface;
 	private import Attributes::AttributeValue as AttributeValue; // "Alias" needed because of alias reimport bug.
@@ -47,7 +48,8 @@ package Requirements {
 		 */
 		subject subj : Anything[1];
 		
-		/* Note: assumptions and constraints are redefined here solely to simplify the
+		/* 
+		 * Note: assumptions and constraints are redefined here solely to simplify the
 		 * resolution of their qualified names as library elements.
 		 */
 		ref constraint assumptions :>> RequirementConstraintCheck::assumptions;
@@ -58,13 +60,18 @@ package Requirements {
 		 */
 		abstract ref requirement subrequirements[0..*] :> requirementChecks, constraints;
 		
+		/**
+		 * The checks of any concerns being addressed (as required constraints).
+		 */
+		abstract ref concern concerns[0..*] :> concernChecks, constraints;
+		
 	}
 	
 	/**
 	 * A functional requirement specifies an action that a system, or part of a system, must perform.
 	 */
 	requirement def FunctionalRequirementCheck :> RequirementCheck {
-		subject : Action;
+		subject: Action;
 	}
 	
 	/** 
@@ -72,7 +79,7 @@ package Requirements {
 	 * optionally may include item flows across the interface and/or interface constraints.
 	 */
 	requirement def InterfaceRequirementCheck :> RequirementCheck {
-		subject : Interface;
+		subject: Interface;
 	}
 	
 	/**
@@ -100,8 +107,35 @@ package Requirements {
 	}
 	
 	/**
+	 * ConcernCheck is the most general class for concern checking. ConcernCheck is the base type of 
+	 * all ConcernDefinitions.
+	 */
+	concern def ConcernCheck :> RequirementCheck {
+		ref concern thisConcern: ConcernCheck :>> RequirementCheck::thisRequirement;
+		
+		/**
+		 * The stakeholders interested in the concern being checked.
+		 */
+		ref stakeholder concernedStakeholders : Stakeholder :> stakeholders;
+	}
+	
+	stakeholder def Stakeholder :> Part {
+		ref stakeholder self: Stakeholder :>> Part::self;
+	}
+	
+	/**
 	 * requirementChecks is the base feature of all requirement usages.
 	 */
-	abstract requirement requirementChecks: RequirementCheck[0..*] :> constraintChecks;
+	abstract requirement requirementChecks: RequirementCheck[0..*] nonunique :> constraintChecks;
+	
+	/**
+	 * concernChecks is the base feature of all ConcernUsages.
+	 */
+	abstract concern concernChecks: ConcernCheck[0..*] nonunique :> requirementChecks;
+	
+	/**
+	 * stakeholders is the base feature of all Stakeholders.
+	 */
+	abstract stakeholder stakeholders: Stakeholder[0..*] nonunique :> parts;
 	
 }

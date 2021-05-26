@@ -11,7 +11,7 @@ package '15_19a-Materials with Properties' {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }		
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }		
 	}
     
     attribute def TensileStrengthValue :> ScalarQuantityValue {
@@ -63,7 +63,7 @@ package '15_19a-Materials with Properties' {
         private attribute fraction1: MaterialFraction { :>> material = Iron; :>> massFraction = 0.9862[one]; }
         private attribute fraction2: MaterialFraction { :>> material = Carbon; :>> massFraction = 0.0018[one]; }
         private attribute fraction3: MaterialFraction { :>> material = Manganese; :>> massFraction = 0.012[one]; }
-    	attribute :>> fractions = {fraction1, fraction2, fraction3};
-        attribute tensileStrength: TensileStrengthValue = 980@['N/mm²'];
+    	attribute :>> fractions = (fraction1, fraction2, fraction3);
+        attribute tensileStrength: TensileStrengthValue = 980 ['N/mm²'];
     } 
 }

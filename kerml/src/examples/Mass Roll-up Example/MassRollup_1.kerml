@@ -6,6 +6,6 @@ package MassRollup_1 {
 		composite subcomponents: MassedThing[0..*];
 
 		feature totalMass subsets ISQ::mass = 
-			mass + (subcomponents->collect p:MassedThing (p.totalMass)->reduce '+' ?? 0.0);
+			mass + sum(subcomponents.totalMass);
 	}
 }

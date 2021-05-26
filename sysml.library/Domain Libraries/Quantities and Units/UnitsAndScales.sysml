@@ -10,17 +10,21 @@ package UnitsAndScales {
 	/**
 	 * Representation of a measurement reference.
 	 * 
-	 * The measurement reference concept is defined in VIM "quantity" NOTE 2 as "A reference can be a measurement unit, 
+	 * The measurement reference concept is defined in [VIM] "quantity" NOTE 2 as "A reference can be a measurement unit, 
 	 * a measurement procedure, a reference material, or a combination of such.", see https://jcgm.bipm.org/vim/en/1.1.html .
+	 * Although [VIM] "quantity" NOTE 5 states that "A quantity as defined here is a scalar. However, a vector or a tensor, 
+	 * the components of which are quantities, is also considered to be a quantity", the rest of [VIM] does not explicitly
+	 * define how tensor and vector quantities should be supported or integrated.
 	 * 
-	 * Similar to TensorQuantityValue, in the most general case a measurement reference is a TensorMeasurementReference, which is 
-	 * is an AttributeDefinition that represents the [VIM] concept measurement reference. However it is generalized for 
-	 * tensor, vector and scalar quantities. In this generalized definition, the  measurement references for all dimensions of a 
+	 * In this package, in line with TensorQuantityValue in package Quantities, the most general kind of measurement reference 
+	 * is TensorMeasurementReference, which is an AttributeDefinition that forms the basis for any kind of measurement reference
+	 * for multi-dimensional quantities. In this type hierarchy, ScalarMeasurementReference is defined as a specialization down 
+	 * to a single dimensional measurement reference for a scalar quantity. The measurement references for all dimensions of a 
 	 * quantity are specified through the mRefs attribute. Each element of mRefs is a ScalarMeasurementReference.
 	 * 
 	 * The longName of a TensorMeasurementReference is the spelled-out human readable name of the measurement reference. 
-	 * For example for typical measurement units for the speed quantity the longName would be "metre per second", "kilometre per hour" 
-	 * and "mile per hour".
+	 * For example, typical measurement units for the speed quantity would have the longName "metre per second", "kilometre per hour", 
+	 * "mile per hour".
 	 * 
 	 * To stress the generality of the TensorMeasurementReference the alias MeasurementReference is defined.
 	 */
@@ -33,13 +37,19 @@ package UnitsAndScales {
 	alias TensorMeasurementReference as MeasurementReference;
 	
 	/**
-	 * A VectorMeasurementReference is a specialization of MeasurementReference for vector quantities that are 
+	 * A VectorMeasurementReference is a specialization of TensorMeasurementReference for vector quantities that are 
 	 * typed by a VectorQuantityValue. Its order is one. Implicitly a it defines a vector space of dimension N = dimensions[1]. 
 	 * The N basis unit vectors that span the vector space are defined by the mRefs which each are a ScalarMeasurementReference, 
 	 * typically a MeasurementUnit or an IntervalScale.
 	 * 
 	 * Pairwise VectorQuantityValue and VectorMeasurementReference specializations can also be used to define a vector space 
 	 * for state vectors as used in state-space representation models.
+	 * 
+	 * Attribute isOrthogonal declares whether the basis vectors of the vector space are orthogonal, i.e. whether the inner products 
+	 * of any pair of basis vectors yield zero.
+	 * 
+	 * Attribute placement enables the definition of nested coordinate systems, in which the location and orientation of a nested, 
+	 * next lower level coordinate system is placed with respect to a next higher level coordinate system.
 	 */
 	attribute def VectorMeasurementReference :> TensorMeasurementReference {
 		attribute :>> dimensions: Positive[1];
@@ -53,13 +63,17 @@ package UnitsAndScales {
 	 * Its order is zero. A ScalarMeasurementReference is also a generalization of MeasurementUnit and MeasurementScale. 
 	 * It establishes how to interpret the numerical value (num) of a ScalarQuantityValue or a component of
 	 * a tensor or vector quantity value, and establishes its actual quantity dimension.
-	 * A MeasurementReference can have zero or more scaleValueDefinition that define particular essential 
-	 * values on a measurement scale.
+	 * A ScalarMeasurementReference can have zero or more scaleValueDefinition that allow to record particular values 
+	 * of interest or convention for a measurement unit or scale.
+	 * 
+	 * Attribute mRefs is bound to self for a ScalarMeasurementReference, as the dimension or component of a scalar quantity is itself,
+	 * and for consistency with tensor and vector measurement references.
 	 */
-	abstract attribute def ScalarMeasurementReference :> VectorMeasurementReference, ScalarValue {
-		attribute :>> dimensions: Positive[1] = 1;
+	abstract attribute def ScalarMeasurementReference :> VectorMeasurementReference {
+		attribute :>> dimensions = 1;
 		attribute :>> order = 0;
 		attribute :>> isOrthogonal = true;
+		attribute :>> mRefs = self;
 		attribute scaleValueDefinitions: ScaleValueDefinition[0..*];
 		attribute quantityDimension: QuantityDimension[1];
 	}
@@ -80,7 +94,7 @@ package UnitsAndScales {
 	 * Note: MeasurementUnit directly specializes ScalarMeasurementReference in order to allow for efficient and intuitive definition of a ratio scale.
 	 * 
 	 * A MeasurementUnit can be used in two ways:
-	 * 1. Directly as the mRef in a QuantityValue, which implies that the effective measurement reference is a ratio scale defined by the unit.
+	 * 1. Directly as the mRef in a ScalarQuantityValue, which implies that the effective measurement reference is a ratio scale defined by the unit.
 	 * 2. As the unit of a MeasurementScale.
 	 * 
 	 * A MeasurementUnit specifies one or more UnitPowerFactors. 
@@ -163,7 +177,7 @@ package UnitsAndScales {
 	/**
 	 * Representation of a non-ratio measurement scale as opposed to a ratio measurement scale defined by a MeasurementUnit.
 	 * 
-	 * Note: A ratio scale is implied by direct use of a MeasurementUnit as the mRef in a QuantityValue.
+	 * Note: A ratio scale is implied by direct use of a MeasurementUnit as the mRef in a ScalarQuantityValue.
 	 */
 	abstract attribute def MeasurementScale :> ScalarMeasurementReference {
 		attribute unit: MeasurementUnit;
@@ -245,13 +259,13 @@ package UnitsAndScales {
 	 */
 	attribute def DimensionOneUnit :> DerivedUnit {
 		attribute :>> longName = "unit of dimension one";
-		attribute :>> unitPowerFactors = {};
+		attribute :>> unitPowerFactors = ();
 	}
-	attribute def DimensionOneValue :> QuantityValue {
-		attribute num: Real redefines QuantityValue::num;
-		attribute mRef: DimensionOneUnit redefines QuantityValue::mRef;
+	attribute def DimensionOneValue :> ScalarQuantityValue {
+		attribute :>> num: Real;
+		attribute :>> mRef: DimensionOneUnit;
 	}
-	attribute dimensionOneQuantities : DimensionOneValue[0..*] nonunique:> scalarQuantities;
+	attribute dimensionOneQuantities : DimensionOneValue[0..*] nonunique :> scalarQuantities;
 
 	attribute one = DimensionOneUnit();
 	

@@ -221,24 +221,24 @@ package VehicleModel {
                         dryMass + cargoMass + fuelTank::fuel::fuelMass;
                     attribute dryMass redefines Vehicle::dryMass = sum(partMasses);
                     attribute redefines Vehicle::cargoMass = 0;
-                    attribute partMasses = {
+                    attribute partMasses = (
                         fuelTank::mass,
                         frontAxleAssembly::mass,
                         rearAxleAssembly::mass
-                    };
+                    );
                     part fuelTank: FuelTank {
-                        attribute redefines mass = 75 @[kg];
+                        attribute redefines mass = 75 [kg];
                         ref item redefines fuel {
-                            attribute redefines fuelMass = 50 @[kg];
+                            attribute redefines fuelMass = 50 [kg];
                         }
                     }
                     part frontAxleAssembly: AxleAssembly {
-                        attribute mass :> ISQ::mass = 800 @[kg];
+                        attribute mass :> ISQ::mass = 800 [kg];
                         part frontAxle: Axle;
                         part frontWheels: Wheel[2];
                     }
                     part rearAxleAssembly: AxleAssembly {
-                        attribute mass :> ISQ::mass = 875 @[kg];
+                        attribute mass :> ISQ::mass = 875 [kg];
                         attribute driveTrainEfficiency: Real = 0.6;
                         part rearAxle: Axle;
                         part rearWheels: Wheel[2]{
@@ -256,14 +256,14 @@ package VehicleModel {
                         dryMass + cargoMass + fuelTank::fuel::fuelMass;
                     attribute dryMass redefines Vehicle::dryMass = sum(partMasses);
                     attribute redefines Vehicle::cargoMass = 0;
-                    attribute partMasses = {
+                    attribute partMasses = (
                         fuelTank::mass,
                         frontAxleAssembly::mass,
                         rearAxleAssembly::mass,
                         engine::mass,
                         transmission::mass,
                         driveshaft::mass
-                    };
+                    );
                     port redefines fuelCmdPort {
                         in item redefines fuelCmd;
                     }
@@ -279,20 +279,20 @@ package VehicleModel {
                         ref vehicle redefines vehicle = vehicle_b;
                     }
                     part fuelTank: FuelTank {
-                        attribute redefines mass = 75 @[kg];
+                        attribute redefines mass = 75 [kg];
                         ref item redefines fuel {
-                            attribute redefines fuelMass = 60 @[kg];
+                            attribute redefines fuelMass = 60 [kg];
                         }
                         attribute redefines fuelMassMax = 60;
                     }
                     part frontAxleAssembly: AxleAssembly {
-                        attribute mass :> ISQ::mass = 800 @[kg];
+                        attribute mass :> ISQ::mass = 800 [kg];
                         port shaftPort_d: ShaftPort_d;
                         part frontAxle: FrontAxle;
                         part frontWheels: Wheel[2];
                     }
                     part rearAxleAssembly: AxleAssembly {
-                        attribute mass :> ISQ::mass = 875 @[kg];
+                        attribute mass :> ISQ::mass = 875 [kg];
                         attribute driveTrainEfficiency: Real = 0.6;
                         port shaftPort_d: ShaftPort_d;
                         perform ActionTree::providePower::distributeTorque;
@@ -328,7 +328,7 @@ package VehicleModel {
                         to rearAxle::rightHalfAxle::rightAxleToDiffPort;
                     }
                     part engine: Engine {
-                        attribute mass :> ISQ::mass = 200 @[kg];
+                        attribute mass :> ISQ::mass = 200 [kg];
                         attribute peakHorsePower: PowerValue = 200;
                         port fuelCmdPort: FuelCmdPort {
                             in item redefines fuelCmd;
@@ -340,14 +340,14 @@ package VehicleModel {
                         part cylinders: Cylinder[4..6];
                     }
                     part transmission: Transmission {
-                        attribute mass :> ISQ::mass = 100 @[kg];
+                        attribute mass :> ISQ::mass = 100 [kg];
                         //conjugate notation ~
                         port clutchPort: ~DrivePwrPort;
                         port shaftPort_a: ShaftPort_a;
                         perform ActionTree::providePower::amplifyTorque;
                     }
                     part driveshaft: Driveshaft {
-                        attribute mass :> ISQ::mass = 100 @[kg];
+                        attribute mass :> ISQ::mass = 100 [kg];
                         port shaftPort_b: ShaftPort_b;
                         port shaftPort_c: ShaftPort_c;
                         perform ActionTree::providePower::transferTorque;
@@ -508,16 +508,16 @@ package VehicleModel {
 							doc /* fuel economy requirements group */
 							attribute assumedCargoMass :> ISQ::mass;
 							requirement id '2_1' cityFuelEconomyRequirement: FuelEconomyRequirement {
-								redefines requiredFuelEconomy = 25@[km/L];
+								redefines requiredFuelEconomy = 25 [km/L];
 								assume constraint {
-									assumedCargoMass >= 500 @[kg]
+									assumedCargoMass >= 500 [kg]
 								}
 							}
 							requirement id ' 2_2' highwayFuelEconomyRequirement: FuelEconomyRequirement {
-								redefines requiredFuelEconomy = 30@[km/L];
+								redefines requiredFuelEconomy = 30 [km/L];
 								attribute assumedCargoMass :> ISQ::mass;
 								assume constraint {
-									assumedCargoMass >= 500 @[kg]
+									assumedCargoMass >= 500 [kg]
 								}
 							}
 						}

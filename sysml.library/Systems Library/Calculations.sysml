@@ -25,5 +25,5 @@ package Calculations {
 	/**
 	 * calculations is the base Feature for all CalculationUsages.
 	 */
-	abstract calc calculations: Calculation[0..*] :> actions, evaluations;
+	abstract calc calculations: Calculation[0..*] nonunique :> actions, evaluations;
 }

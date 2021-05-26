@@ -8,7 +8,7 @@ package '12b-Allocation-1' {
 		requirement torqueGeneration {
 			subject generator: TorqueGenerator;
 			require constraint { 
-				 generator::generateTorque::torque > 0.0@[N*m]
+				 generator::generateTorque::torque > 0.0 [N*m]
 			}
 		}
 	}

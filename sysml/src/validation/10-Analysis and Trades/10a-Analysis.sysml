@@ -9,12 +9,12 @@ package '10a-Analysis' {
 		}
 		
 		part vehicle {
-			:>> mass : MassValue = sum({
+			:>> mass : MassValue = sum((
 				vehicle::engine::mass, 
 				vehicle::transmission::mass, 
 				vehicle::frontAxleAssembly::mass, 
 				vehicle::rearAxleAssembly::mass
-			});
+			));
 			
 			part engine {
 				mass : MassValue;

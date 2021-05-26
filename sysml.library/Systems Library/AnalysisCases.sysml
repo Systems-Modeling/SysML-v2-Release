@@ -42,7 +42,7 @@ package AnalysisCases {
 	/**
 	 * analysisCases is the base feature of all AnalysisCaseUsages.
 	 */
-	abstract analysis analysisCases : AnalysisCase[0..*] :> cases;
+	abstract analysis analysisCases : AnalysisCase[0..*] nonunique :> cases;
 	
 	/**
 	 * An AnalysisAction is a specialized kind of Action intended to be used as a step in an AnalysisCase.

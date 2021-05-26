@@ -1,45 +1,44 @@
 package RationalFunctions {
 	import ScalarValues::*;
 	
-	function Rat(numer: Integer, denum: Integer): Rational;
-	function Numer(rat: Rational): Integer;
-	function Denom(rat: Rational): Integer;
+	function Rat(numer: Integer[1], denum: Integer[1]): Rational[1];
+	function Numer(rat: Rational[1]): Integer[1];
+	function Denom(rat: Rational[1]): Integer[1];
 	
-	function Abs specializes NumericalFunctions::Abs (x: Rational): Rational;
+	function Abs specializes NumericalFunctions::Abs (x: Rational[1]): Rational[1];
 
-	function '+' specializes NumericalFunctions::'+' (x: Rational, y: Rational[0..1]): Rational;
-	function '-' specializes NumericalFunctions::'-' (x: Rational, y: Rational[0..1]): Rational;
-	function '*' specializes NumericalFunctions::'*' (x: Rational, y: Rational): Rational;
-	function '/' specializes NumericalFunctions::'/' (x: Rational, y: Rational): Rational;
-	function '**' specializes NumericalFunctions::'**' (x: Rational, y: Rational): Rational;
+	function '+' specializes NumericalFunctions::'+' (x: Rational[1], y: Rational[0..1]): Rational[1];
+	function '-' specializes NumericalFunctions::'-' (x: Rational[1], y: Rational[0..1]): Rational[1];
+	function '*' specializes NumericalFunctions::'*' (x: Rational[1], y: Rational[1]): Rational[1];
+	function '/' specializes NumericalFunctions::'/' (x: Rational[1], y: Rational[1]): Rational[1];
+	function '**' specializes NumericalFunctions::'**' (x: Rational[1], y: Rational[1]): Rational[1];
 	
-	function '<' specializes NumericalFunctions::'<' (x: Rational, y: Rational): Boolean;
-	function '>' specializes NumericalFunctions::'>' (x: Rational, y: Rational): Boolean;
-	function '<=' specializes NumericalFunctions::'<=' (x: Rational, y: Rational): Boolean;
-	function '>=' specializes NumericalFunctions::'>=' (x: Rational, y: Rational): Boolean;
+	function '<' specializes NumericalFunctions::'<' (x: Rational[1], y: Rational[1]): Boolean[1];
+	function '>' specializes NumericalFunctions::'>' (x: Rational[1], y: Rational[1]): Boolean[1];
+	function '<=' specializes NumericalFunctions::'<=' (x: Rational[1], y: Rational[1]): Boolean[1];
+	function '>=' specializes NumericalFunctions::'>=' (x: Rational[1], y: Rational[1]): Boolean[1];
 
-	function Max specializes NumericalFunctions::Max (x: Rational, y: Rational): Rational;
-	function Min specializes NumericalFunctions::Min (x: Rational, y: Rational): Rational;
+	function Max specializes NumericalFunctions::Max (x: Rational[1], y: Rational[1]): Rational[1];
+	function Min specializes NumericalFunctions::Min (x: Rational[1], y: Rational[1]): Rational[1];
 
-	function '==' specializes BaseFunctions::'==' (x: Rational, y: Rational): Boolean;
-	function '!=' specializes BaseFunctions::'!=' (x: Rational, y: Rational): Boolean;
+	function '==' specializes DataFunctions::'==' (x: Rational[0..1], y: Rational[0..1]): Boolean[1];
 	
-	function GCD(x: Rational, y: Rational): Integer;
+	function GCD(x: Rational[1], y: Rational[1]): Integer[1];
 		
-	function Floor(x: Rational): Integer;
-	function Round(x: Rational): Integer;
+	function Floor(x: Rational[1]): Integer[1];
+	function Round(x: Rational[1]): Integer[1];
 	
-	function ToString specializes BaseFunctions::ToString (x: Rational): String;
-	function ToInteger(x: Rational): Integer;
-	function ToRational(x: String): Rational;
-	function ToReal(x: Rational): Real;
-	function ToComplex(x: Rational): Complex;
+	function ToString specializes BaseFunctions::ToString (x: Rational[1]): String[1];
+	function ToInteger(x: Rational[1]): Integer[1];
+	function ToRational(x: String[1]): Rational[1];
+	function ToReal(x: Rational[1]): Real[1];
+	function ToComplex(x: Rational[1]): Complex[1];
 	
-	function sum specializes ScalarFunctions::sum (collection: Rational[0..*]): Rational {
+	function sum specializes ScalarFunctions::sum (collection: Rational[0..*]): Rational[1] {
 		ScalarFunctions::sum0(collection, Rat(0, 1))
 	}
 	
-	function product specializes ScalarFunctions::product (collection: Rational[0..*]): Rational {
+	function product specializes ScalarFunctions::product (collection: Rational[0..*]): Rational[1] {
 		ScalarFunctions::product1(collection, Rat(1, 1))
 	}	
 }

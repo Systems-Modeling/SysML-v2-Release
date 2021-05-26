@@ -26,6 +26,6 @@ package Items {
 	/**
 	 * items is the base feature of all ItemUsages.
 	 */
-	abstract item items : Item[0..*] :> objects;
+	abstract item items : Item[0..*] nonunique :> objects;
 	
 }

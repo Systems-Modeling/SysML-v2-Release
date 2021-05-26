@@ -1,16 +1,36 @@
 package ViewTest {
 	package P;
 	
-	viewpoint def VP;
+	stakeholder def S;
+	
+	stakeholder s : S;
+	
+	concern def C {
+		affect s;
+	}
+	
+	concern c : C {
+		affect stakeholder s1;
+	}
+	
+	viewpoint def VP {
+		frame c;
+	}
+	
 	rendering def R;
 	
+	rendering r : R;
+	
 	view def V {
-		viewpoint vp: VP;
-		rendering r: R[0..1]; 
+		viewpoint vp: VP {
+			frame concern c1;
+			concern c2;
+		}
+		rendering r1: R[0..1]; 
 		
 		view v: V[0..*] {
 			expose P::*;
-			rendering r1;
+			render r;
 		}
 	}
 

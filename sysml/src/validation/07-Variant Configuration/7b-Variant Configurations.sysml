@@ -2,6 +2,7 @@ package '7b-Variant Configurations' {
 	import RequirementsModel::*;
 	import DesignModel::*;
 	import VariantDefinitions::*;
+	import ControlFunctions::forAll;
 	
 	package RequirementsModel {
 		requirement def EnginePerformanceRequirement;
@@ -123,9 +124,9 @@ package '7b-Variant Configurations' {
 			
 			assert constraint 'engine-wheel selection constraint' {
 				(engineChoice == engineChoice::'4cylEngine' & 
-					rearAxleAssembly::rearWheelChoice->forAll w (w == rearAxleAssembly::rearWheelChoice::narrowRimWheel)) ^
+					rearAxleAssembly::rearWheelChoice->forAll {in ref w; w == rearAxleAssembly::rearWheelChoice::narrowRimWheel}) ^
 				(engineChoice == engineChoice::'6cylEngine' & 
-					rearAxleAssembly::rearWheelChoice->forAll w (w == rearAxleAssembly::rearWheelChoice::wideRimWheel))
+					rearAxleAssembly::rearWheelChoice->forAll {in ref w; w == rearAxleAssembly::rearWheelChoice::wideRimWheel})
 			}
 			
 		}

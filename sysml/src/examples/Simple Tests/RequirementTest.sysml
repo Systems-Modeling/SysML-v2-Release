@@ -1,6 +1,7 @@
 package RequirementTest {
 	constraint def C;
 	constraint c : C;
+	import q::**;
 	requirement def R {
 		assume constraint c1 : C;
 		require c;
@@ -17,6 +18,7 @@ package RequirementTest {
 	part p;
 	part q {
 		requirement r : R;
-		satisfy r by p;
+		satisfy r by p; 
 	}
+	
 }

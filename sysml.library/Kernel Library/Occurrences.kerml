@@ -8,8 +8,6 @@ package Occurrences {
 	private import Base::things;
 	private import Links::*;
 	
-	private import BaseFunctions::*;
-	
 	/**
 	 * Occurrence is the most general classifier of entities that have identity and 
 	 * may occur over time.
@@ -18,7 +16,8 @@ package Occurrences {
 	 * snapshots of an occurrence over time.
 	 */
 	abstract class Occurrence specializes Anything {
-		private import BaseFunctions::size;
+		private import SequenceFunctions::*;
+		private import ControlFunctions::forAll;
 		
 		feature portionOfLife : Life[1] subsets portionOf;
 		
@@ -69,7 +68,7 @@ package Occurrences {
 		 * (i.e., have no duration).
 		 */
 		portion feature all snapshots: Occurrence[1..*] subsets timeSlices;
-		inv { snapshots->forAll s:Occurrence (s::startShot == s::endShot) }
+		inv { snapshots->forAll {in s:Occurrence; s::startShot == s::endShot} }
 		inv { snapshots == union(startShot, union(middleShots, endShot)) }
 		
 		/**
@@ -119,7 +118,7 @@ package Occurrences {
 			end feature redefines transferSource;
 			end feature redefines transferTarget;
 		}
-		binding incomingTransfersToSelf.transferTarget = self;
+		binding incomingTransfersToSelf::transferTarget = self;
 
 		/**
 		 * The outgoing transfers sent from this occurrence. 
@@ -136,7 +135,7 @@ package Occurrences {
 			end feature redefines transferSource;
 			end feature redefines transferTarget;
 		}
-		binding outgoingTransfersFromSelf.transferSource = self;
+		binding outgoingTransfersFromSelf::transferSource = self;
 	}
 	
 	abstract class all Life specializes Occurrence {

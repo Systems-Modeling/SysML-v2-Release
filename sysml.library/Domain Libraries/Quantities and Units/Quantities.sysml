@@ -6,12 +6,12 @@ package Quantities {
 	private import ScalarValues::ScalarValue;
 	
 	/**
-	 * The value of a quantity is a tuple of one or more numbers (i.e. mathematical number value) and a reference to a measurement reference.
+	 * The value of a quantity is a tuple of one or more numbers (i.e. mathematical number values) and a reference to a measurement reference.
 	 * The most general case is a multi-dimensional, tensor quantity of any order. In engineering, the majority of quantities used are 
 	 * scalar and vector quantities, that are tensor quantities of order 0 and 1 respectively.
-	 * The measurement reference used to express a quantity value must have the same matching dimensions and order as the quantity, i.e.,
+	 * The measurement reference used to express a quantity value must have a type, dimensions and order that match the quantity, i.e.,
 	 * a TensorQuantityValue must use a TensorMeasurementReference, a VectorQuantityValue a VectorMeasurementReference, 
-	 * and a ScalarQuantityValue a ScalarMeasurementReference. See the UnitsAndScales package for details.
+	 * and a ScalarQuantityValue a ScalarMeasurementReference. See package UnitsAndScales for details.
 	 */
 	abstract attribute def TensorQuantityValue :> Array {
 		attribute isBound: ScalarValues::Boolean;
@@ -41,8 +41,8 @@ package Quantities {
 	 * In other words, the codomain of a quantity feature is a suitable specialization of TensorQuantityValue.
 	 */
 	abstract attribute tensorQuantities: TensorQuantityValue[*] nonunique;
-	abstract attribute vectorQuantities: VectorQuantityValue[*] nonunique :>  tensorQuantities;
-	abstract attribute scalarQuantities: ScalarQuantityValue[*] nonunique :>  vectorQuantities;
+	abstract attribute vectorQuantities: VectorQuantityValue[*] nonunique :> tensorQuantities;
+	abstract attribute scalarQuantities: ScalarQuantityValue[*] nonunique :> vectorQuantities;
 
     /*
      * Define generic aliases QuantityValue and quantities for the top level quantity attribute def and attribute.
@@ -64,7 +64,7 @@ package Quantities {
 	/**
 	 * Representation of a quantity power factor, being the combination of a quantity and an exponent.
 	 * 
-	 * A sequency of QuantityPowerFactors for the baseQuantities of a SystemOfQuantities define the QuantityDimension of a scalar quantity.
+	 * A sequence of QuantityPowerFactors for the baseQuantities of a SystemOfQuantities define the QuantityDimension of a scalar quantity.
 	 */
 	attribute def QuantityPowerFactor {
 		attribute quantity: ScalarQuantityValue[1];
@@ -72,7 +72,7 @@ package Quantities {
 	}
 	
 	/**
-	 * Representation of a quantity dimension, which is a product of powers of the set of base quantities defined for a particular system of quantities, scales and units.
+	 * Representation of quantity dimension, which is the product of powers of the set of base quantities defined for a particular system of quantities, units and scales.
 	 */
 	attribute def QuantityDimension {
 		 attribute quantityPowerFactors: QuantityPowerFactor[*] ordered;

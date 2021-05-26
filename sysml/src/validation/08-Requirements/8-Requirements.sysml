@@ -41,7 +41,7 @@ package '8-Requirements' {
 		}
 		
 		part vehicle1_c1: Vehicle {
-			attribute :>> mass = 2000@[kg];
+			attribute :>> mass = 2000 [kg];
 			perform 'provide power';
 				
 			part engine_v1: Engine {
@@ -58,7 +58,7 @@ package '8-Requirements' {
 		}
 		
 		part vehicle1_c2: Vehicle {
-			attribute :>> mass = 2500@[kg];
+			attribute :>> mass = 2500 [kg];
 		}
 	}
 	
@@ -100,7 +100,7 @@ package '8-Requirements' {
 			/**
 			 * This redefinition sets the required mass to 2000 kg.
 			 */
-			attribute :>> massReqd = 2000@[kg];
+			attribute :>> massReqd = 2000 [kg];
 			
 			/**
 			 * A constraint can also be used to specify an assumption.
@@ -117,7 +117,7 @@ package '8-Requirements' {
 			subject vehicle : Vehicle;
 			
 			attribute :>> massActual: MassValue = vehicle::mass;
-			attribute :>> massReqd = 2500@[kg];
+			attribute :>> massReqd = 2500 [kg];
 		
 			assume constraint fuelConstraint {
 				doc /* empty fuel tank */

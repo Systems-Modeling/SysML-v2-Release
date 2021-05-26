@@ -16,6 +16,6 @@ package Interfaces {
 	/**
 	 * interfaces is the base feature of all InterfaceUsages.
 	 */
-	abstract interface interfaces: Interface[0..*] :> connections;
+	abstract interface interfaces: Interface[0..*] nonunique :> connections;
 	
 }

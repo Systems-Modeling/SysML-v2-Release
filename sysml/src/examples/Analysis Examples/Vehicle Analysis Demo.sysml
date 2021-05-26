@@ -9,7 +9,7 @@ package 'Vehicle Analysis Demo' {
 	    attribute def DistancePerVolumeUnit :> DerivedUnit {
 	    	private attribute distancePF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 1; }
 	        private attribute volumePF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
-	        attribute :>> quantityDimension { :>> quantityPowerFactors = {distancePF, volumePF}; }
+	        attribute :>> quantityDimension { :>> quantityPowerFactors = (distancePF, volumePF); }
 	    }
 
 	    attribute def DistancePerVolumeValue :> QuantityValue {
@@ -86,11 +86,11 @@ package 'Vehicle Analysis Demo' {
 	    }
 	
 	    requirement cityFuelEconomyRequirement : FuelEconomyRequirement {
-	        :>> requiredFuelEconomy = 25@[mpg];
+	        :>> requiredFuelEconomy = 25 [mpg];
 	    }
 	
 	    requirement highwayFuelEconomyRequirement : FuelEconomyRequirement {
-	        :>> requiredFuelEconomy = 30@[mpg];
+	        :>> requiredFuelEconomy = 30 [mpg];
 	    }
 	}
 	
@@ -150,9 +150,10 @@ package 'Vehicle Analysis Demo' {
 	    import VehicleModel::*;
 	    import FuelEconomyRequirementsModel::*;
 	    import DynamicsModel::*;
-	    import BaseFunctions::size;
+	    import SequenceFunctions::size;
 	    import Collections::SampledFunction;
 	    import Collections::SamplePair;
+	    import ControlFunctions::forAll;
 	
 		attribute def ScenarioState {
 			position : LengthValue;
@@ -182,7 +183,7 @@ package 'Vehicle Analysis Demo' {
 				 */
 				
 				assume constraint {
-					vehicle::wheelDiameter == 33@['in'] &
+					vehicle::wheelDiameter == 33 ['in'] &
 					vehicle::driveTrainEfficiency == 0.4
 				}
 				
@@ -203,18 +204,22 @@ package 'Vehicle Analysis Demo' {
 				 * to support the scenarios.
 				 */
 				assert constraint straightLineDynamics {
-					{1..sc.n-1}->forAll i (
+					(1..sc.n-1)->forAll {in i: Integer;
+						private thisSample : NominalScenario::TimeStateRecord = 
+							(sc[i] as NominalScenario).samples;
+						private nextSample : NominalScenario::TimeStateRecord = 
+							(sc[i+1] as NominalScenario).samples;
 						StraightLineDynamicsEquations (
 							p => power[i],
-							m => vehicle::mass,
-							dt => sc.samples.t[i+1] - sc.samples.t[i],
-							x_i => sc.samples.s.position[i],
-							v_i => sc.samples.s.velocity[i],
-							x_f => sc.samples.s.position[i+1],
-							v_f => sc.samples.s.velocity[i+1],
+							m => vehicle.mass,
+							dt => nextSample.t - thisSample.t,
+							x_i => thisSample.s.position,
+							v_i => thisSample.s.velocity,
+							x_f => nextSample.s.position,
+							v_f => nextSample.s.velocity,
 							a => acceleration[i]                    
 						)
-					)
+					}
 				}
 			}
 
@@ -247,7 +252,7 @@ package 'Vehicle Analysis Demo' {
 	
 	            :>> actualFuelEconomy = vehicle::fuelEconomy_city;
 	
-	            assume constraint { vehicle::cargoMass == 1000@[lb] }
+	            assume constraint { vehicle::cargoMass == 1000 [lb] }
 	        }
 	
 	        requirement vehicleFuelEconomyRequirement_highway :> highwayFuelEconomyRequirement {
@@ -257,7 +262,7 @@ package 'Vehicle Analysis Demo' {
 	
 	            :>> actualFuelEconomy = vehicle::fuelEconomy_highway;
 	
-	            assume constraint { vehicle::cargoMass == 1000@[lb] }
+	            assume constraint { vehicle::cargoMass == 1000 [lb] }
 	        }
 	
 	    }

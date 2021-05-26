@@ -2,8 +2,9 @@ package 'Analysis Case Definition Example' {
 	import 'Calculation Definitions'::*;
 	import 'Analytical Constraints'::*;
 	import USCustomaryUnits::*;
-	import BaseFunctions::size;
+	import SequenceFunctions::size;
 	import Quantities::ScalarQuantityValue;
+	import ControlFunctions::*;
 	
 	attribute def DistancePerVolumeValue :> ScalarQuantityValue;
     attribute gallon = 231.0 * 'in' ** 3;
@@ -30,12 +31,12 @@ package 'Analysis Case Definition Example' {
 			 */
 			
 			assume constraint {
-				vehicle::wheelDiameter == 33@['in'] &
+				vehicle::wheelDiameter == 33 ['in'] &
 				vehicle::driveTrainEfficiency == 0.4
 			}
 			
 			require constraint {
-				fuelEconomyResult > 30@[mi / gallon]
+				fuelEconomyResult > 30 [mi / gallon]
 			}
 		}
 	    
@@ -54,7 +55,7 @@ package 'Analysis Case Definition Example' {
 			 * to support the scenario.
 			 */
 			assert constraint {
-				{1..size(scenario)-1}->forAll i (
+				(1..size(scenario)-1)->forAll {in i: ScalarValues::Natural;
 					StraightLineDynamicsEquations (
 						power[i],
 						vehicle::mass,
@@ -65,7 +66,7 @@ package 'Analysis Case Definition Example' {
 						scenario::velocity[i+1],
 						acceleration[i+1]                    
 					)
-				)
+				}
 			}
 		}
 		

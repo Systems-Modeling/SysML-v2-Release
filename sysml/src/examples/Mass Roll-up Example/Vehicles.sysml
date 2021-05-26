@@ -23,15 +23,15 @@ package VehicleMasses {
 	// Example usage
 	import SI::*;	
 	part c :> car {
-		redefines mass = 1000@[kg];
+		redefines mass = 1000 [kg];
 		part redefines engine {
-			redefines car::engine::mass = 100@[kg];
+			redefines car::engine::mass = 100 [kg];
 		}
 		
 		part redefines transmission {
-			redefines car::engine::mass = 50@[kg];
+			redefines car::engine::mass = 50 [kg];
 		}	
 	}
 	
-	// c::totalMass --> 1150.0@[kg]
+	// c::totalMass --> 1150.0 [kg]
 }

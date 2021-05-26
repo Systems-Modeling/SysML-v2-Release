@@ -46,7 +46,7 @@ package States {
 		action accepter: AcceptAction {
 			ref incomingTransfersToSelf :>> AcceptAction::incomingTransfer;
 		}
-		bind trigger = accepter.incomingTransfersToSelf;
+		bind trigger = accepter::incomingTransfersToSelf;
 	}
 	
 	/**

@@ -38,34 +38,43 @@ package SI {
      */
 	attribute systemOfUnits: SystemOfUnits {
 		:>> longName = "ISO/IEC 80000 International System of Units";
-		:>> baseUnits = {m, kg, s, A, K, mol, cd};
+		:>> baseUnits = (m, kg, s, A, K, mol, cd);
 	}
 
     /*
      * Units with special names
      */
+    attribute B: StorageCapacityUnit = one { :>> longName = "byte"; }
+    attribute Bd: ModulationRateUnit = one { :>> longName = "baud"; }
+    attribute bit: StorageCapacityUnit = one { :>> longName = "bit"; }
     attribute Bq: NuclearActivityUnit = s**-1 { :>> longName = "becquerel"; }
     attribute C: ElectricChargeUnit = A*s { :>> longName = "coulomb"; }
     attribute dB: SoundPressureLevelUnit = one { :>> longName = "decibel"; }
     attribute dec: LogarithmicFrequencyRangeUnit = one { :>> longName = "decade"; }
+    attribute E: TrafficIntensityUnit = one { :>> longName = "erlang"; }
     attribute F: CapacitanceUnit = C/V { :>> longName = "farad"; }
     attribute Gy: AbsorbedDoseUnit = J/kg { :>> longName = "gray"; }
     attribute H: PermeanceUnit = Wb/A { :>> longName = "henry"; }
+    attribute Hart: InformationContentUnit = one { :>> longName = "hartley"; }
     attribute Hz: FrequencyUnit = s**-1 { :>> longName = "hertz"; }
     attribute J: EnergyUnit = N*m { :>> longName = "joule"; }
     attribute lm: LuminousFluxUnit = cd*sr { :>> longName = "lumen"; }
     attribute lx: IlluminanceUnit = lm/m**2 { :>> longName = "lux"; }
     attribute N: ForceUnit = kg*m/s**2 { :>> longName = "newton"; }
+    attribute nat: InformationContentUnit = one { :>> longName = "natural unit of information"; }
+    attribute o: StorageCapacityUnit = one { :>> longName = "octet"; }
     attribute oct: LogarithmicFrequencyRangeUnit = one { :>> longName = "octave"; }
     attribute Pa: PressureUnit = N/m**2 { :>> longName = "pascal"; }
     attribute rad: AngularMeasureUnit = m/m { :>> longName = "radian"; }
     attribute S: ConductanceUnit = 'Ω'**-1 { :>> longName = "siemens"; }
+    attribute Sh: InformationContentUnit = one { :>> longName = "shannon"; }    
     attribute sr: SolidAngularMeasureUnit = m**2/m**2 { :>> longName = "steradian"; }
     attribute Sv: DoseEquivalentUnit = J/kg { :>> longName = "sievert"; }
     attribute T: MagneticFluxDensityUnit = Wb/m**2 { :>> longName = "tesla"; }
     attribute V: ElectricPotentialUnit = W/A { :>> longName = "volt"; }
     attribute W: PowerUnit = J/s { :>> longName = "watt"; }
     attribute Wb: MagneticFluxUnit = V*s { :>> longName = "weber"; }
+    attribute '°': AngularMeasureUnit = '°' { :>> longName = "degree"; }
     attribute 'Ω': ResistanceUnit = V/A { :>> longName = "ohm"; }
 
     /*
@@ -83,13 +92,16 @@ package SI {
     attribute mL: VolumeUnit = VolumeUnit(longName => "millilitre", unitConversion => ConversionByPrefix(prefix => milli, referenceUnit => L));
 
     /*
-     * Derived units used in part ISO/IEC 80000-3 to 10
+     * Derived units used in parts 3 to 12 of ISO/IEC 80000
      */
+    attribute 'A⋅m⁻²⋅K⁻²': RichardsonConstantUnit = A*m**-2*K**-2 { :>> longName = "ampere metre to the power minus 2 kelvin to the power minus 2"; }
     attribute 'A⋅m²': MagneticMomentUnit = A*m**2 { :>> longName = "ampere metre squared"; }
     attribute 'A⋅m²⋅J⁻¹⋅s⁻¹': GyromagneticRatioUnit = A*m**2*J**-1*s**-1 { :>> longName = "ampere metre squared joule to the power minus 1 second to the power minus 1"; }
     attribute 'A⋅s/kg': GyromagneticRatioUnit = A*s/kg { :>> longName = "ampere second per kilogram"; }
     attribute 'A/m': LinearElectricCurrentDensityUnit = A/m { :>> longName = "ampere per metre"; }
     attribute 'A/m²': ElectricCurrentDensityUnit = A/m**2 { :>> longName = "ampere per square metre"; }
+    attribute 'B/s': TransferRateUnit = B/s { :>> longName = "byte per second"; }
+    attribute 'bit/s': BinaryDigitRateUnit = bit/s { :>> longName = "bit per second"; }
     attribute 'Bq/kg': SpecificActivityUnit = Bq/kg { :>> longName = "becquerel per kilogram"; }
     attribute 'Bq/m²': SurfaceActivityDensityUnit = Bq/m**2 { :>> longName = "becquerel per square metre"; }
     attribute 'Bq/m³': ActivityDensityUnit = Bq/m**3 { :>> longName = "becquerel per cubic metre"; }
@@ -115,6 +127,7 @@ package SI {
     attribute 'Gy/s': AbsorbedDoseRateUnit = Gy/s { :>> longName = "gray per second"; }
     attribute 'H/m': MagneticConstantUnit = H/m { :>> longName = "henry per metre"; }
     attribute 'H⁻¹': ReluctanceUnit = H**-1 { :>> longName = "henry to the power minus 1"; }
+    attribute 'Hart/s': AverageInformationRateUnit = Hart/s { :>> longName = "hartley per second"; }
     attribute 'J⋅m²/kg': TotalMassStoppingPowerUnit = J*m**2/kg { :>> longName = "joule metre squared per kilogram"; }
     attribute 'J⋅s': ActionQuantityUnit = J*s { :>> longName = "joule second"; }
     attribute 'J⋅s⋅eV⋅s': TotalAngularMomentumUnit = J*s*eV*s { :>> longName = "joule second electronvolt second"; }
@@ -131,6 +144,7 @@ package SI {
     attribute 'J/mol': MolarInternalEnergyUnit = J/mol { :>> longName = "joule per mole"; }
     attribute 'J/nm': SpectralRadiantEnergyUnit = J/nm { :>> longName = "joule per nanometre"; }
     attribute 'J/s': HeatFlowRateUnit = J/s { :>> longName = "joule per second"; }
+    attribute 'J⁻¹⋅m⁻³⋅eV⁻¹⋅m⁻³': EnergyDensityOfStatesUnit = J**-1*m**-3*eV**-1*m**-3 { :>> longName = "joule to the power minus 1 metre to the power minus 3 electronvolt to the power minus 1 metre to the power minus 3"; }
     attribute 'K/Pa': JouleThomsonCoefficientUnit = K/Pa { :>> longName = "kelvin per pascal"; }
     attribute 'K/W': ThermalResistanceUnit = K/W { :>> longName = "kelvin per watt"; }
     attribute 'K⁻¹': LinearExpansionCoefficientUnit = K**-1 { :>> longName = "kelvin to the power minus 1"; }
@@ -157,11 +171,15 @@ package SI {
     attribute 'kg⋅m²⋅s⁻²⋅K⁻¹⋅mol⁻¹': MolarHeatCapacityUnit = kg*m**2*s**-2*K**-1*mol**-1 { :>> longName = "kilogram metre squared second to the power minus 2 kelvin to the power minus 1 mole to the power minus 1"; }
     attribute 'kg⋅m²⋅s⁻²⋅mol⁻¹': MolarInternalEnergyUnit = kg*m**2*s**-2*mol**-1 { :>> longName = "kilogram metre squared second to the power minus 2 mole to the power minus 1"; }
     attribute 'kg⋅m²⋅s⁻³': PowerUnit = kg*m**2*s**-3 { :>> longName = "kilogram metre squared second to the power minus 3"; }
+    attribute 'kg⋅m²⋅s⁻³⋅A⁻¹': ElectricPotentialDifferenceUnit = kg*m**2*s**-3*A**-1 { :>> longName = "kilogram metre squared second to the power minus 3 ampere to the power minus 1"; }
+    attribute 'kg⋅m²⋅s⁻³⋅A⁻¹⋅K⁻¹': SeebeckCoefficientForSubstancesAAndBUnit = kg*m**2*s**-3*A**-1*K**-1 { :>> longName = "kilogram metre squared second to the power minus 3 ampere to the power minus 1 kelvin to the power minus 1"; }
     attribute 'kg⋅m²⋅s⁻³⋅K⁻¹': ThermalConductanceUnit = kg*m**2*s**-3*K**-1 { :>> longName = "kilogram metre squared second to the power minus 3 kelvin to the power minus 1"; }
     attribute 'kg⋅m²⋅s⁻³⋅sr⁻¹': RadiantIntensityUnit = kg*m**2*s**-3*sr**-1 { :>> longName = "kilogram metre squared second to the power minus 3 steradian to the power minus 1"; }
+    attribute 'kg⋅m³⋅s⁻³⋅A⁻²': ResistivityUnit = kg*m**3*s**-3*A**-2 { :>> longName = "kilogram metre cubed second to the power minus 3 ampere to the power minus 2"; }
     attribute 'kg⋅mol⁻¹': MolarMassUnit = kg*mol**-1 { :>> longName = "kilogram mole to the power minus 1"; }
     attribute 'kg⋅s⁻¹': MassFlowRateUnit = kg*s**-1 { :>> longName = "kilogram second to the power minus 1"; }
     attribute 'kg⋅s⁻²': SurfaceTensionUnit = kg*s**-2 { :>> longName = "kilogram second to the power minus 2"; }
+    attribute 'kg⋅s⁻²⋅A⁻¹': MagneticFluxDensityUnit = kg*s**-2*A**-1 { :>> longName = "kilogram second to the power minus 2 ampere to the power minus 1"; }
     attribute 'kg⋅s⁻³': DensityOfHeatFlowRateUnit = kg*s**-3 { :>> longName = "kilogram second to the power minus 3"; }
     attribute 'kg⋅s⁻³⋅K⁻¹': CoefficientOfHeatTransferUnit = kg*s**-3*K**-1 { :>> longName = "kilogram second to the power minus 3 kelvin to the power minus 1"; }
     attribute 'kg⋅s⁻³⋅sr⁻¹': RadianceUnit = kg*s**-3*sr**-1 { :>> longName = "kilogram second to the power minus 3 steradian to the power minus 1"; }
@@ -170,6 +188,7 @@ package SI {
     attribute 'kg⁻¹⋅m⋅s²⋅K': JouleThomsonCoefficientUnit = kg**-1*m*s**2*K { :>> longName = "kilogram to the power minus 1 metre second to the power 2 kelvin"; }
     attribute 'kg⁻¹⋅m⁻²⋅s³⋅K': ThermalResistanceUnit = kg**-1*m**-2*s**3*K { :>> longName = "kilogram to the power minus 1 metre to the power minus 2 second to the power 3 kelvin"; }
     attribute 'kg⁻¹⋅m⁻³⋅s³⋅A²': ElectrolyticConductivityUnit = kg**-1*m**-3*s**3*A**2 { :>> longName = "kilogram to the power minus 1 metre to the power minus 3 second to the power 3 ampere to the power 2"; }
+    attribute 'kg⁻¹⋅m⁻⁵⋅s²': EnergyDensityOfStatesUnit = kg**-1*m**-5*s**2 { :>> longName = "kilogram to the power minus 1 metre to the power minus 5 second to the power 2"; }
     attribute 'kg⁻¹⋅m²': MassAttenuationCoefficientUnit = kg**-1*m**2 { :>> longName = "kilogram to the power minus 1 metre squared"; }
     attribute 'kg⁻¹⋅m³': SpecificVolumeUnit = kg**-1*m**3 { :>> longName = "kilogram to the power minus 1 metre cubed"; }
     attribute 'kg⁻¹⋅s⋅A': GyromagneticRatioUnit = kg**-1*s*A { :>> longName = "kilogram to the power minus 1 second ampere"; }
@@ -179,6 +198,7 @@ package SI {
     attribute 'kg⁻¹⋅s³⋅A²⋅mol⁻¹': MolarConductivityUnit = kg**-1*s**3*A**2*mol**-1 { :>> longName = "kilogram to the power minus 1 second to the power 3 ampere to the power 2 mole to the power minus 1"; }
     attribute 'kg⁻¹⋅s³⋅K': ThermalInsulanceUnit = kg**-1*s**3*K { :>> longName = "kilogram to the power minus 1 second to the power 3 kelvin"; }
     attribute 'kg²⋅m⁻²⋅s⁻³': SoundExposureUnit = kg**2*m**-2*s**-3 { :>> longName = "kilogram to the power 2 metre to the power minus 2 second to the power minus 3"; }
+    attribute 'kg²⋅m⁴⋅s⁻⁶⋅A⁻²⋅K⁻²': LorenzCoefficientUnit = kg**2*m**4*s**-6*A**-2*K**-2 { :>> longName = "kilogram to the power 2 metre to the power 4 second to the power minus 6 ampere to the power minus 2 kelvin to the power minus 2"; }
     attribute 'lm⋅s': LuminousEnergyUnit = lm*s { :>> longName = "lumen second"; }
     attribute 'lm/m²': LuminousExitanceUnit = lm/m**2 { :>> longName = "lumen per square metre"; }
     attribute 'lm/W': LuminousEfficacyOfRadiationUnit = lm/W { :>> longName = "lumen per watt"; }
@@ -191,6 +211,7 @@ package SI {
     attribute 'm⁻²⋅s⁻¹': PhotonIrradianceUnit = m**-2*s**-1 { :>> longName = "metre to the power minus 2 second to the power minus 1"; }
     attribute 'm⁻²⋅s⁻¹⋅sr⁻¹': PhotonRadianceUnit = m**-2*s**-1*sr**-1 { :>> longName = "metre to the power minus 2 second to the power minus 1 steradian to the power minus 1"; }
     attribute 'm⁻³': ParticleConcentrationUnit = m**-3 { :>> longName = "metre to the power minus 3"; }
+    attribute 'm⁻³⋅s': DensityOfVibrationalStatesUnit = m**-3*s { :>> longName = "metre to the power minus 3 second"; }
     attribute 'm⁻³⋅s⁻¹': ActivityDensityUnit = m**-3*s**-1 { :>> longName = "metre to the power minus 3 second to the power minus 1"; }
     attribute 'm²': AreaUnit = m**2 { :>> longName = "square metre"; }
     attribute 'm²⋅A': MagneticDipoleMomentUnit = m**2*A { :>> longName = "metre squared ampere"; }
@@ -207,6 +228,7 @@ package SI {
     attribute 'm³': VolumeUnit = m**3 { :>> longName = "cubic metre"; }
     attribute 'm³⋅mol⁻¹': MolarVolumeUnit = m**3*mol**-1 { :>> longName = "metre cubed mole to the power minus 1"; }
     attribute 'm³⋅s⁻¹': VolumeFlowRateUnit = m**3*s**-1 { :>> longName = "metre cubed second to the power minus 1"; }
+    attribute 'm³/C⋅m³⋅s⁻¹⋅A⁻¹': HallCoefficientUnit = m**3/C*m**3*s**-1*A**-1 { :>> longName = "metre cubed per coulomb cubic metre second to the power minus 1 ampere to the power minus 1"; }
     attribute 'm⁴': SecondAxialMomentOfAreaUnit = m**4 { :>> longName = "metre to the power 4"; }
     attribute 'm⁴⋅s⁻²': TotalMassStoppingPowerUnit = m**4*s**-2 { :>> longName = "metre to the power 4 second to the power minus 2"; }
     attribute 'mL/L': VolumeFractionUnit = mL/L { :>> longName = "millilitre per litre"; }
@@ -221,6 +243,8 @@ package SI {
     attribute 'N⋅m⁻¹': SurfaceTensionUnit = N*m**-1 { :>> longName = "newton metre to the power minus 1"; }
     attribute 'N⋅m⁻²': PressureUnit = N*m**-2 { :>> longName = "newton metre to the power minus 2"; }
     attribute 'N⋅s': ImpulseUnit = N*s { :>> longName = "newton second"; }
+    attribute 'nat/s': AverageInformationRateUnit = nat/s { :>> longName = "natural unit of information per second"; }
+    attribute 'o/s': TransferRateUnit = o/s { :>> longName = "octet per second"; }
     attribute 'Pa⋅s': DynamicViscosityUnit = Pa*s { :>> longName = "pascal second"; }
     attribute 'Pa⋅s/m': CharacteristicImpedanceOfAMediumForLongitudinalWavesUnit = Pa*s/m { :>> longName = "pascal second per metre"; }
     attribute 'Pa⋅s/m³': AcousticImpedanceUnit = Pa*s/m**3 { :>> longName = "pascal second per cubic metre"; }
@@ -231,15 +255,19 @@ package SI {
     attribute 'rad⋅m²/mol': MolarOpticalRotatoryPowerUnit = rad*m**2/mol { :>> longName = "radian metre squared per mole"; }
     attribute 'rad⋅s⁻¹': AngularVelocityUnit = rad*s**-1 { :>> longName = "radian second to the power minus 1"; }
     attribute 'rad⋅s⁻²': AngularAccelerationUnit = rad*s**-2 { :>> longName = "radian second to the power minus 2"; }
+    attribute 'rad/m': PhaseCoefficientUnit = rad/m { :>> longName = "radian per metre"; }
     attribute 's⋅A': ElectricChargeUnit = s*A { :>> longName = "second ampere"; }
     attribute 'S⋅m²/mol': MolarConductivityUnit = S*m**2/mol { :>> longName = "siemens metre squared per mole"; }
     attribute 'S/m': ConductivityUnit = S/m { :>> longName = "siemens per metre"; }
     attribute 's⁻¹': AngularVelocityUnit = s**-1 { :>> longName = "second to the power minus 1"; }
     attribute 's⁻¹⋅sr⁻¹': PhotonIntensityUnit = s**-1*sr**-1 { :>> longName = "second to the power minus 1 steradian to the power minus 1"; }
     attribute 's⁻²': AngularAccelerationUnit = s**-2 { :>> longName = "second to the power minus 2"; }
+    attribute 'Sh/s': AverageInformationRateUnit = Sh/s { :>> longName = "shannon per second"; }
     attribute 'Sv/s': DoseEquivalentUnit = Sv/s { :>> longName = "sievert per second"; }
     attribute 'V⋅A': PowerUnit = V*A { :>> longName = "volt ampere"; }
+    attribute 'V/K': SeebeckCoefficientForSubstancesAAndBUnit = V/K { :>> longName = "volt per kelvin"; }
     attribute 'V/m': ElectricFieldStrengthUnit = V/m { :>> longName = "volt per metre"; }
+    attribute 'V²/K²': LorenzCoefficientUnit = V**2/K**2 { :>> longName = "volt to the power 2 per kelvin to the power 2"; }
     attribute 'W⋅h': EnergyUnit = W*h { :>> longName = "watt hour"; }
     attribute 'W/(m⋅K)': ThermalConductivityUnit = W/(m*K) { :>> longName = "watt per metre kelvin"; }
     attribute 'W/(m²⋅K)': CoefficientOfHeatTransferUnit = W/(m**2*K) { :>> longName = "watt per square metre kelvin"; }
@@ -302,11 +330,11 @@ package SI {
         private attribute celsiusToKelvinScaleMapping: ScaleValueMapping = ScaleValueMapping(
             mappedScaleValue => temperatureWaterAtTriplePointInC, referenceScaleValue => K::temperatureOfWaterAtTriplePointInK
         );
-        attribute :>> scaleValueDefinitions = {temperatureWaterAtTriplePointInC, temperatureWaterAtFreezingPointInC};
+        attribute :>> scaleValueDefinitions = (temperatureWaterAtTriplePointInC, temperatureWaterAtFreezingPointInC);
         attribute :>> scaleValueMapping = celsiusToKelvinScaleMapping;
         // Experimental zero shift w.r.t. to K (kelvin) thermodynamic temperature ratio scale
         // Such CoordinateTransformation can be used instead of the celsiusToKelvinScaleMapping
-        attribute zeroShift : CoordinateTransformation { :>> source = K; :>> target = self; :>> origin = 27316/100@[K]; }
+        attribute zeroShift : CoordinateTransformation { :>> source = K; :>> target = self; :>> origin = 27316/100 [K]; }
     }
     alias '°C_scale' as '°C';
 }

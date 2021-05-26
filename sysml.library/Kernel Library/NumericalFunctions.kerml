@@ -1,20 +1,20 @@
 package NumericalFunctions {
 	import ScalarValues::*;
 	
-	abstract function Abs(x: NumericalValue): NumericalValue;
+	abstract function Abs(x: NumericalValue[1]): NumericalValue[1];
 		
-	abstract function '+' specializes ScalarFunctions::'+' (x: NumericalValue, y: NumericalValue[0..1]): NumericalValue;
-	abstract function '-' specializes ScalarFunctions::'-' (x: NumericalValue, y: NumericalValue[0..1]): NumericalValue;
-	abstract function '*' specializes ScalarFunctions::'*' (x: NumericalValue, y: NumericalValue): NumericalValue;
-	abstract function '/' specializes ScalarFunctions::'/' (x: NumericalValue, y: NumericalValue): NumericalValue;
-	abstract function '**' specializes ScalarFunctions::'**' (x: NumericalValue, y: NumericalValue): NumericalValue;
-	abstract function '%' specializes ScalarFunctions::'%' (x: NumericalValue, y: NumericalValue): NumericalValue;
+	abstract function '+' specializes ScalarFunctions::'+' (x: NumericalValue[1], y: NumericalValue[0..1]): NumericalValue[1];
+	abstract function '-' specializes ScalarFunctions::'-' (x: NumericalValue[1], y: NumericalValue[0..1]): NumericalValue[1];
+	abstract function '*' specializes ScalarFunctions::'*' (x: NumericalValue[1], y: NumericalValue[1]): NumericalValue[1];
+	abstract function '/' specializes ScalarFunctions::'/' (x: NumericalValue[1], y: NumericalValue[1]): NumericalValue[1];
+	abstract function '**' specializes ScalarFunctions::'**' (x: NumericalValue[1], y: NumericalValue[1]): NumericalValue[1];
+	abstract function '%' specializes ScalarFunctions::'%' (x: NumericalValue[1], y: NumericalValue[1]): NumericalValue[1];
 	
-	abstract function '<' specializes ScalarFunctions::'<' (x: NumericalValue, y: NumericalValue): Boolean;
-	abstract function '>' specializes ScalarFunctions::'>' (x: NumericalValue, y: NumericalValue): Boolean;
-	abstract function '<=' specializes ScalarFunctions::'<=' (x: NumericalValue, y: NumericalValue): Boolean;
-	abstract function '>=' specializes ScalarFunctions::'>=' (x: NumericalValue, y: NumericalValue): Boolean;
+	abstract function '<' specializes ScalarFunctions::'<' (x: NumericalValue[1], y: NumericalValue[1]): Boolean[1];
+	abstract function '>' specializes ScalarFunctions::'>' (x: NumericalValue[1], y: NumericalValue[1]): Boolean[1];
+	abstract function '<=' specializes ScalarFunctions::'<=' (x: NumericalValue[1], y: NumericalValue[1]): Boolean[1];
+	abstract function '>=' specializes ScalarFunctions::'>=' (x: NumericalValue[1], y: NumericalValue[1]): Boolean[1];
 	
-	abstract function Max specializes ScalarFunctions::Max (x: NumericalValue, y: NumericalValue): NumericalValue;
-	abstract function Min specializes ScalarFunctions::Min (x: NumericalValue, y: NumericalValue): NumericalValue;
+	abstract function Max specializes ScalarFunctions::Max (x: NumericalValue[1], y: NumericalValue[1]): NumericalValue[1];
+	abstract function Min specializes ScalarFunctions::Min (x: NumericalValue[1], y: NumericalValue[1]): NumericalValue[1];
 }

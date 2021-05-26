@@ -1,7 +1,7 @@
 package StatePerformances {
 	private import ScalarValues::Boolean;
 	private import TransitionPerformances::*;
-	private import BaseFunctions::*;
+	private import SequenceFunctions::*;
 	private import Occurrences::*;
 	private import Transfers::*;
 	

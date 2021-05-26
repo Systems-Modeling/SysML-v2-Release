@@ -1,6 +1,7 @@
 package HSUVDynamics {
-	import ScalarValues::Real;
-	import BaseFunctions::size;
+	import ScalarValues::*;
+	import SequenceFunctions::size;
+	import ControlFunctions::*;
 	
 	attribute def Horsepwr :> Real;
 	attribute def Weight :> Real;
@@ -25,7 +26,7 @@ package HSUVDynamics {
 		attribute v : Vel[0..*] ordered;
 		attribute x : Dist[0..*] ordered;
 		
-		{1..size(x)-1}->forAll n (x[n + 1] == x[n] + v[n] * (5280/3600) * dt)
+		(1..size(x)-1)->forAll {in n : Natural; x[n + 1] == x[n] + v[n] * (5280/3600) * dt}
 	}
 	
 	constraint def VelocityEquation {
@@ -33,7 +34,7 @@ package HSUVDynamics {
 		attribute v : Vel[0..*] ordered;
 		attribute a : Accel;
 		
-		{1..size(v)-1}->forAll n (v[n + 1] == v[n] + a * 32 * (3600/5280) * dt)
+		(1..size(v)-1)->forAll {in n: Natural; v[n + 1] == v[n] + a * 32 * (3600/5280) * dt}
 	}
 	
 	constraint def AccelerationEquation {

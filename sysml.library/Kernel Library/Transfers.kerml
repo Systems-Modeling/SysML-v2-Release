@@ -8,7 +8,7 @@ package Transfers {
 	private import Performances::Performance;
 	private import Performances::performances;
 	private import ScalarValues::Boolean;
-	private import BaseFunctions::*;
+	private import SequenceFunctions::*;
 	
 	/**
 	 * Transfer is the most general interaction used for typing item flows. It represents the

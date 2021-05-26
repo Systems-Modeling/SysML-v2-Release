@@ -8,8 +8,8 @@ package VehicleUsages {
 	import ScalarFunctions::*;
 
 	/* VALUES */	 
-	T1 = 10.0@[N * m];
-	T2 = 20.0@[N * m];
+	T1 = 10.0 [N * m];
+	T2 = 20.0 [N * m];
 	
 	/* PARTS */	
 	/** Narrow-rim wheel configuration with 4 to 5 lugbolts. **/
