@@ -23,13 +23,13 @@ package 'Calculation Usages-1' {
 			calc vel : Velocity (
 				dt = delta_t, 
 				v0 = v_in, 
-				a = acc::a
+				a = acc.a
 			) return v = v_out;
 			
 			calc pos : Position (
 				dt = delta_t, 
 				x0 = x_in, 
-				v0 = vel::v
+				v0 = vel.v
 			) return x = x_out;		
 		}
 	} 

@@ -12,8 +12,8 @@ package 'Binding Connectors Example-1' {
 				in item redefines fuelReturn;
 			}
 			
-			bind fuelTankPort::fuelSupply = pump::pumpOut;
-			bind fuelTankPort::fuelReturn = tank::fuelIn;
+			bind fuelTankPort.fuelSupply = pump.pumpOut;
+			bind fuelTankPort.fuelReturn = tank.fuelIn;
 			
 			part pump : FuelPump {
 				out item pumpOut : Fuel;

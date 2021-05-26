@@ -23,7 +23,7 @@ package 'Messaging Example' {
 			action trigger accept scene : Scene for viewPort;
 			
 			then action focus : Focus {
-				in item scene = trigger::scene;
+				in item scene = trigger.scene;
 				out item image;
 			}
 			
@@ -32,7 +32,7 @@ package 'Messaging Example' {
 				out item picture;
 			}
 			
-			then send Show(shoot::picture) to displayPort;
+			then send Show(shoot.picture) to displayPort;
 		}
 	}
 }

@@ -79,7 +79,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                 attribute mass :> ISQ::mass;
                 // should use fuel volume instead of fuel mass and fuelCopacity instead of fuelMassMax
                 ref item fuel:Fuel{
-                    attribute redefines fuelMass;
+                    attribute :>> fuelMass;
                 }
                 attribute fuelMassMax:>ISQ::mass;
                 assert constraint {fuel::fuelMass<=fuelMassMax}
@@ -97,7 +97,8 @@ package sfriedenthal_VehicleModel_1_simplified{
                 attribute time:TimeValue;
             }
             // Used for Specifying Context for Individuals
-            part def SpatialTemporalReference;
+            // replace SpatialTemporalReference by GenericContext::Context
+            //part def SpatialTemporalReference;
             
             // Used for Defining Variants for Superset Model
             part def Engine4Cyl;
@@ -258,6 +259,7 @@ package sfriedenthal_VehicleModel_1_simplified{
             import ScalarFunctions::*;
             import ISQ::*;
             import SI::*;
+            import USCustomaryUnits::*;
             alias ISQ::TorqueValue as Torque;
             
             //examples of enumberations
@@ -287,7 +289,8 @@ package sfriedenthal_VehicleModel_1_simplified{
             //
         }
         package IndividualDefinitions{
-            individual def SpatialTemporalReference_1:>SpatialTemporalReference;
+            //individual def SpatialTemporalReference_1:>SpatialTemporalReference;
+            individual def Context_1:>GenericContext::Context;
             individual def VehicleRoadContext_1:>VehicleRoadContext;
             individual def Vehicle_1:>Vehicle;
             individual def FrontAxleAssembly_1:>AxleAssembly;
@@ -312,6 +315,17 @@ package sfriedenthal_VehicleModel_1_simplified{
                 attribute isMandatory : Boolean;
             }
             attribute def Security;
+        }
+        package GenericContext {
+            //import ISQ::*;
+            //import SI::*;
+            //import USCustomaryUnits::*;
+
+            part def Context {
+                attribute spatialCS: Cartesian3dSpatialCoordinateSystem[1] { :>> mRefs = (m, m, m); }
+                attribute velocityCS: Cartesian3dVelocityCoordinateSystem[1] = spatialCS/s { :>> isBound = false; }
+                attribute accelarationCS: Cartesian3dAccelerationCoordinateSystem[1] = velocityCS/s { :>> isBound = false; }
+            }
         }
     }
     package VehicleLogicalConfiguration{
@@ -349,20 +363,20 @@ package sfriedenthal_VehicleModel_1_simplified{
                     attribute dryMass redefines Vehicle::dryMass=sum(partMasses);
                     attribute redefines Vehicle::cargoMass=0;
                     attribute partMasses [*] nonunique :>ISQ::mass;
-                    //attribute partMasses=(fuelTank::mass,frontAxleAssembly::mass,rearAxleAssembly::mass);
+                    //attribute partMasses={fuelTank::mass,frontAxleAssembly::mass,rearAxleAssembly::mass};
                     part fuelTank:FuelTank{
-                        attribute redefines mass=75 [kg];
+                        attribute redefines mass=75[kg];
                         ref item redefines fuel{
-                            attribute redefines fuelMass=50 [kg];
+                            attribute redefines fuelMass=50[kg];
                         }   
                     }
                     part frontAxleAssembly:AxleAssembly{
-                        attribute mass :> ISQ::mass=800 [kg];
+                        attribute mass :> ISQ::mass=800[kg];
                         part frontAxle:Axle;
                         part frontWheels:Wheel[2];
                     }
                     part rearAxleAssembly:AxleAssembly{
-                        attribute mass :> ISQ::mass=875 [kg];
+                        attribute mass :> ISQ::mass=875[kg];
                         attribute driveTrainEfficiency:Real = 0.6;
                         part rearAxle:Axle;
                         part rearWheels:Wheel[2]{
@@ -398,9 +412,9 @@ package sfriedenthal_VehicleModel_1_simplified{
                         ref vehicle redefines vehicle = vehicle_b;
                     }
                     part fuelTank:FuelTank{
-                        attribute redefines mass=75 [kg];
+                        attribute redefines mass=75[kg];
                         ref item redefines fuel{
-                            attribute redefines fuelMass=60 [kg];
+                            attribute redefines fuelMass=60[kg];
                         }
                         attribute redefines fuelMassMax=60;
                         port fuelOutPort redefines fuelOutPort{
@@ -408,13 +422,13 @@ package sfriedenthal_VehicleModel_1_simplified{
                         }
                     }
                     part frontAxleAssembly:AxleAssembly{
-                        attribute mass :> ISQ::mass=800 [kg];
+                        attribute mass :> ISQ::mass=800[kg];
                         port shaftPort_d:ShaftPort_d;
                         part frontAxle:FrontAxle;
                         part frontWheels:Wheel[2];
                     }
                     part rearAxleAssembly:AxleAssembly{
-                        attribute mass :> ISQ::mass=875 [kg];
+                        attribute mass :> ISQ::mass=875[kg];
                         attribute driveTrainEfficiency:Real = 0.6;
                         port shaftPort_d:ShaftPort_d;
                         perform ActionTree::providePower::distributeTorque;
@@ -455,7 +469,8 @@ package sfriedenthal_VehicleModel_1_simplified{
                         attribute :>> peakHorsePower;
                         attribute :>> fuelEfficiency;
                         attribute :>> cost;
-                        port engineControlPort:>> engineControlPort;
+                        //do not need to redefine if dot notation is used for connect statement instead of ::
+                        //port engineControlPort:>> engineControlPort;
                         port fuelInPort:>> fuelInPort{
                             in item fuel redefines fuel;
                         }
@@ -470,7 +485,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                         part alternator{
                             action generateElectricity;
                         }
-                        satisfy Requirements::engineSpecification by vehicle_b::engine{ 
+                        satisfy Requirements::engineSpecification by vehicle_b::engine{
                             //subject engine1 = vehicle_b::engine;
                             requirement torqueGenerationRequirement :>> torqueGenerationRequirement{
                                 subject generateTorque redefines generateTorque = vehicle_b::engine::generateTorque;
@@ -481,21 +496,21 @@ package sfriedenthal_VehicleModel_1_simplified{
                         } 
                     }
                     part transmission:Transmission{
-                        attribute mass :> ISQ::mass=100 [kg];
+                        attribute mass :> ISQ::mass=100[kg];
                         //conjugate notation ~
                         port clutchPort:~DrivePwrPort;
                         port shaftPort_a:ShaftPort_a;
                         perform ActionTree::providePower::amplifyTorque;
                     }
                     part driveshaft:Driveshaft{
-                        attribute mass :> ISQ::mass=100 [kg];
+                        attribute mass :> ISQ::mass=100[kg];
                         port shaftPort_b:ShaftPort_b;
                         port shaftPort_c:ShaftPort_c;
                         perform ActionTree::providePower::transferTorque;
                     }
                     part vehicleSoftware:VehicleSoftware{
                         part vehicleController: VehicleController {
-                            port controlPort redefines controlPort;
+                            //port controlPort redefines controlPort;
                             exhibit States::controllerStates redefines controllerStates{
                                 ref controller = vehicleController;
                             }
@@ -528,7 +543,9 @@ package sfriedenthal_VehicleModel_1_simplified{
                     interface fuelInterface:FuelInterface
                         connect fuelTank::fuelOutPort to engine::fuelInPort;
                     
-                    connect vehicleSoftware::vehicleController::controlPort to engine::engineControlPort;
+                    //Do not need to redefine ports if :: is replaced with dot notation 
+                    //connect vehicleSoftware::vehicleController::controlPort to engine::engineControlPort;
+                    connect vehicleSoftware.vehicleController.controlPort to engine.engineControlPort;
                     connect transmission::shaftPort_a to driveshaft::shaftPort_b; 
                     connect driveshaft::shaftPort_c to rearAxleAssembly::shaftPort_d;
                     bind rearAxleAssembly::rearWheel1::wheelToRoadPort=vehicleToRoadPort::wheelToRoadPort1;
@@ -592,7 +609,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                             // was vehicle::providePower;
                             do vehicle::providePower;
                             exit vehicle::applyParkingBrake;
-                            constraint {vehicle::electricalPower<=500 [W]}
+                            constraint {vehicle::electricalPower<=500[W]}
                         }
 
                         transition initial then off;
@@ -684,11 +701,11 @@ package sfriedenthal_VehicleModel_1_simplified{
                         doc /* fuel economy requirements group */
                         attribute assumedCargoMass:>ISQ::mass;
                         requirement id '2_1' cityFuelEconomyRequirement:FuelEconomyRequirement{
-                            redefines requiredFuelEconomy= 10 [km/L];
+                            redefines requiredFuelEconomy= 10 [km / L];
                             assume constraint {assumedCargoMass>=500 [kg]}
                         }
                         requirement id ' 2_2' highwayFuelEconomyRequirement:FuelEconomyRequirement{
-                            redefines requiredFuelEconomy= 12.75 [km/L];
+                            redefines requiredFuelEconomy= 12.75 [km / L];
                             attribute assumedCargoMass:>ISQ::mass;
                             assume constraint {assumedCargoMass>=500 [kg]}
                         }
@@ -873,7 +890,7 @@ package sfriedenthal_VehicleModel_1_simplified{
             }
 
             calc def ComputeBSFC(engine: Engine): Real;
-            
+
             analysis fuelEconomyAnalysis  {
                 
                 // metadata defined in Annotation Definitions
@@ -1008,7 +1025,8 @@ package sfriedenthal_VehicleModel_1_simplified{
         }
     }
     package VehicleIndividuals{
-        individual a:SpatialTemporalReference_1{
+        //individual a:SpatialTemporalReference_1{
+        individual a:Context_1{
             timeslice t0_t2:VehicleRoadContext_1{
                 snapshot start redefines start{:>>time=0;}
                 snapshot done redefines done {:>>time=2;}
@@ -1077,7 +1095,7 @@ package sfriedenthal_VehicleModel_1_simplified{
         //import VehicleConfigurations::VehicleConfiguration_b::ActionTree::*;
         import TransportPassengerScenario::*;
         package ContextDefinitions{
-            part def MissionContext;
+            part def MissionContext:>GenericContext::Context;
             part def Driver;
             part def Passenger;
             // replace action def with use case def where vehicle_b is subject and objective is defined
@@ -1182,19 +1200,22 @@ package sfriedenthal_VehicleModel_1_simplified{
         }
     }
     package Views_Viewpoints{
-        package ViewpointDefinitions{
-            viewpoint def StructureViewpoint;
+       package ViewpointDefinitions{
             viewpoint def BehaviorViewpoint;
-        }
-        package RenderingDefinitions{
-            rendering def Table;
+            viewpoint def StructureViewpoint{
+                frame concern sb:SystemBreakdown;
+            }
+            stakeholder def SystemsEngineer;
+            concern def SystemBreakdown {
+                affect stakeholder se:SystemsEngineer;
+            }
         }
         package ViewDefinitions{
             view def TreeView;
             view def NestedView; 
             view def RelationshipView;
             view def TableView;
-            view def PartsTree:>TreeView {
+            view def PartsTreeView:>TreeView {
                 // include query expression
                 filter @Safety;
                 view attributes[*]{
@@ -1202,18 +1223,55 @@ package sfriedenthal_VehicleModel_1_simplified{
             view def PartsInterconnection:>NestedView;
             }
         }
-        package Views{
+        package VehicleViews{
+            //Import Views to access rendering method library 
+            import Views::*;
             import ViewpointDefinitions::*;
-            import RenderingDefinitions::*;
             import ViewDefinitions::*;
             import VehicleConfigurations::VehicleConfiguration_b::*;
-            view vehiclePartsTree_Safety:PartsTree{
-                viewpoint treeDiagram:StructureViewpoint;
-                expose PartsTree::*;
-                rendering partsTreeTable:Table;
+            view vehiclePartsTree_Safety:PartsTreeView{
+                satisfy requirement sv:StructureViewpoint;
+                expose PartsTree::**;
+                render asTreeDiagram;
             }
         }
     }
 }
+
+%publish sfriedenthal_VehicleModel_1_simplified
+
+%view sfriedenthal_VehicleModel_1_simplified::Views_Viewpoints::VehicleViews::vehiclePartsTree_Safety
+
+%viz --view tree sfriedenthal_VehicleModel_1_simplified::Definitions::PartDefinitions::Vehicle
+
+%viz --view tree sfriedenthal_VehicleModel_1_simplified::Definitions::PartDefinitions::FuelTank
+
+%viz --view tree sfriedenthal_VehicleModel_1_simplified::Definitions::PartDefinitions::FrontAxle
+
+%viz --view tree sfriedenthal_VehicleModel_1_simplified::VehicleConfigurations::VehicleConfiguration_b::PartsTree::vehicle_b
+
+%viz --view tree sfriedenthal_VehicleModel_1_simplified::VehicleConfigurations::VehicleConfiguration_B::VehicleDecomposition::Vehicle_B
+
+%viz --view interconnection --style ortholine sfriedenthal_VehicleModel_1_simplified::VehicleConfigurations::VehicleConfiguration_b::PartsTree::vehicle_b
+
+%viz --view interconnection --style ortholine sfriedenthal_VehicleModel_1_simplified::VehicleConfigurations::VehicleConfiguration_B::VehicleDecomposition::Vehicle_B
+
+%viz sfriedenthal_VehicleModel_1_simplified::VehicleConfigurations::VehicleConfiguration_b::PartsTree::vehicle_b::rearAxleAssembly
+
+%viz --view Action --style ortholine sfriedenthal_VehicleModel_1_simplified::MissionContext::TransportPassengerScenario::transportPassenger
+
+%viz --view Action --style ortholine sfriedenthal_VehicleModel_1_simplified::VehicleConfigurations::VehicleConfiguration_b::ActionTree::providePower
+
+%viz --view tree --style ortholine sfriedenthal_VehicleModel_1_simplified::VehicleConfigurations::VehicleConfiguration_b::ActionTree::providePower
+
+%viz --view State --style ortholine sfriedenthal_VehicleModel_1_simplified::VehicleConfigurations::VehicleConfiguration_b::States::vehicleStates
+
+%viz --view tree sfriedenthal_VehicleModel_1_simplified::Definitions::RequirementDefinitions::MassRequirement
+
+%viz --view tree sfriedenthal_VehicleModel_1_simplified::VehicleConfigurations::VehicleConfiguration_b::Requirements::vehicleSpecification
+
+%viz --view tree sfriedenthal_VehicleModel_1_simplified::VehicleAnalysis::FuelEconomyAnalysisModel::fuelEconomyAnalysis
+
+%viz --view tree sfriedenthal_VehicleModel_1_simplified::SafetyandSecurity
 
 

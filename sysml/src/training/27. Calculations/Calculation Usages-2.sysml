@@ -13,11 +13,11 @@ package 'Calculation Usages-2' {
 		attribute mass : MassValue;
 		
 		calc updateState(delta_t : TimeValue, currState : DynamicState) {
-			attribute totalPower : PowerValue = Power(wheelPower, C_d, C_f, mass, currState::v);
+			attribute totalPower : PowerValue = Power(wheelPower, C_d, C_f, mass, currState.v);
 			
 			return attribute newState : DynamicState {
-				:>> v = Velocity(delta_t, currState::v, Acceleration(totalPower, mass, currState::v));
-				:>> x = Position(delta_t, currState::x, currState::v);
+				:>> v = Velocity(delta_t, currState.v, Acceleration(totalPower, mass, currState.v));
+				:>> x = Position(delta_t, currState.x, currState.v);
 			}
 		}
 	} 

@@ -18,16 +18,11 @@ package 'Streaming Interface Example' {
 	}
 	
 	part vehicle : Vehicle {	
-		part tankAssy : FuelTankAssembly {
-			port redefines fuelTankPort;
-		}
-		
-		part eng : Engine {
-			port redefines engineFuelPort;
-		}
+		part tankAssy : FuelTankAssembly;		
+		part eng : Engine;
 		
 		interface : FuelInterface connect 
-			supplierPort => tankAssy::fuelTankPort to 
-			consumerPort => eng::engineFuelPort;
+			supplierPort => tankAssy.fuelTankPort to 
+			consumerPort => eng.engineFuelPort;
 	} 
 }

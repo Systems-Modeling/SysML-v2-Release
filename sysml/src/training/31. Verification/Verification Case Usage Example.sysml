@@ -20,7 +20,7 @@ package 'Verification Case Usage Example' {
 				in part :>> testVehicle;
 				
 				// In reality, this would be some more involved process.
-				measurement = testVehicle::mass;
+				measurement = testVehicle.mass;
 				
 				out :>> massMeasured = measurement;
 			}

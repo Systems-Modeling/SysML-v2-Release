@@ -16,8 +16,8 @@ package 'Interface Decomposition Example' {
 			port cold : FaucetInlet;
 		}
 		
-		connect suppliedBy::hot to deliveredTo::hot;
-		connect suppliedBy::cold to deliveredTo::cold;
+		connect suppliedBy.hot to deliveredTo.hot;
+		connect suppliedBy.cold to deliveredTo.cold;
 	}
 	
 }

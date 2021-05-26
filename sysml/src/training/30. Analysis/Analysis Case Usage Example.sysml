@@ -23,8 +23,8 @@ package 'Analysis Case Usage Example' {
 		part vehicle_c1 : Vehicle {
 			// ...
 			
-			attribute :>> fuelEconomy_city = cityAnalysis::fuelEconomyResult;
-			attribute :>> fuelEconomy_highway = highwayAnalysis::fuelEconomyResult;
+			attribute :>> fuelEconomy_city = cityAnalysis.fuelEconomyResult;
+			attribute :>> fuelEconomy_highway = highwayAnalysis.fuelEconomyResult;
 		}
 		
 		satisfy vehicleFuelEconomyRequirements by vehicle_c1;

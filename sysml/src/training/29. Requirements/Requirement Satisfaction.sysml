@@ -19,7 +19,7 @@ package 'Requirement Satisfaction' {
 		ref vehicle_design :> vehicle_c1;
 	
 		satisfy vehicleSpecification by vehicle_design;
-		satisfy engineSpecification by vehicle_design::engine_v1;
+		satisfy engineSpecification by vehicle_design.engine_v1;
 	
 	}
 	

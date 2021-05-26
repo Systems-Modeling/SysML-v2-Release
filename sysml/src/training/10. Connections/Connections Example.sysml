@@ -26,7 +26,7 @@ package 'Connections Example' {
 				part rim : TireMountingRim[2];
 				part mountingHoles : LugBoltMountingHole[5];
 			}						
-			connection : PressureSeat connect t::bead to w::rim;		
+			connection : PressureSeat connect t.bead to w.rim;		
 		}
 		
 		part lugBoltJoints : LugBoltJoint[0..5];
@@ -34,9 +34,9 @@ package 'Connections Example' {
 			part h : LugBoltThreadableHole[5];
 		}
 		connect lugBoltJoints[0..1] 
-			 to mountingHole => wheel::w::mountingHoles[1];
+			 to mountingHole => wheel.w.mountingHoles[1];
 		connect lugBoltJoints[0..1] 
-			 to threadedHole => hub::h[1];
+			 to threadedHole => hub.h[1];
 	}
 	
 }

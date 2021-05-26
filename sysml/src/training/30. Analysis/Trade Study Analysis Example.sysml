@@ -30,7 +30,7 @@ package 'Trade Study Analysis Example' {
 			calc costRollup: CostRollup (engine) return cost : Real;
 			
 			return :>> result : Real = EngineEvaluation(
-				powerRollup::power, massRollup::mass, efficiencyRollup::efficiency, costRollup::cost
+				powerRollup.power, massRollup.mass, efficiencyRollup.efficiency, costRollup.cost
 			);
 		}
 		

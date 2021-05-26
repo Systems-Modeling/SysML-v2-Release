@@ -20,8 +20,8 @@ package 'Decision Example' {
 		}
 		
 		then decide;
-			if monitor::batteryCharge < 100 then addCharge;
-			if monitor::batteryCharge >= 100 then endCharging;
+			if monitor.batteryCharge < 100 then addCharge;
+			if monitor.batteryCharge >= 100 then endCharging;
 			
 		action addCharge : AddCharge (batteryCharge);
 		then continueCharging;

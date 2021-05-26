@@ -7,7 +7,7 @@ package 'Action Definition Example-1' {
 	action def Shoot(in image: Image, out picture : Picture);	
 		
 	action def TakePicture(in scene : Scene, out picture : Picture) {
-		bind focus::scene = scene;
+		bind focus.scene = scene;
 		
 		action focus: Focus (in scene, out image);
 		
@@ -15,7 +15,7 @@ package 'Action Definition Example-1' {
 		
 		action shoot: Shoot (in image, out picture);
 		
-		bind shoot::picture = picture;
+		bind shoot.picture = picture;
 	}
 	
 }

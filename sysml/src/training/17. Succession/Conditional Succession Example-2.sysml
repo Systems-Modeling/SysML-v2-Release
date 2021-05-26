@@ -18,7 +18,7 @@ package 'Conditional Succession Example-2' {
 			out item image;
 		}
 		
-		if focus::image::isWellFocused then shoot;
+		if focus.image.isWellFocused then shoot;
 		
 		action shoot : Shoot {
 			in item image flow from focus::image; 

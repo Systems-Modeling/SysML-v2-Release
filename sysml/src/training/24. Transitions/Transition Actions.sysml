@@ -27,7 +27,7 @@ package 'Transition Actions' {
 			
 		state starting;
 		accept VehicleOnSignal
-			if operatingVehicle::brakePedalDepressed
+			if operatingVehicle.brakePedalDepressed
 			do send ControllerStartSignal() to controller
 			then on;
 			

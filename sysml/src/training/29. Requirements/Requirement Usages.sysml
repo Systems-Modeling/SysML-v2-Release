@@ -8,7 +8,7 @@ package 'Requirement Usages' {
 		
 		assume constraint {
 			doc /* Full tank is full. */
-			vehicle::fuelMass == vehicle::fuelFullMass
+			vehicle.fuelMass == vehicle.fuelFullMass
 		}
 	}
 	
@@ -18,7 +18,7 @@ package 'Requirement Usages' {
 		
 		assume constraint {
 			doc /* Full tank is empty. */
-			vehicle::fuelMass == 0[kg]
+			vehicle.fuelMass == 0[kg]
 		}
 	}
 	

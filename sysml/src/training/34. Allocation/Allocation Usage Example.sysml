@@ -27,7 +27,7 @@ package 'Allocation Usage Example' {
 		}
 		
 		allocate torqueGenerator to powerTrain {
-			allocate torqueGenerator::generateTorque to powerTrain::engine::generateTorque;
+			allocate torqueGenerator.generateTorque to powerTrain.engine.generateTorque;
 		}
 	}
 	
