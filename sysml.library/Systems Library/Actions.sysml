@@ -81,7 +81,7 @@ package Actions {
 	 */
 	action def SendAction(in items[0..*], in receiver: Occurrence[1]) {
 	    ref outgoingTransfer: TransferBefore[1] :>> outgoingTransfersFromSelf :> receiver::incomingTransfers {
-	    	ref :>> transferSource: SendAction {
+	    	ref :>> source: SendAction {
 	    		ref :>> sourceOutput = items;
 	    	}
 	    }
@@ -99,7 +99,7 @@ package Actions {
 	 */
 	action def AcceptAction(out items[0..*], in receiver: Occurrence[1]) {
 		ref incomingTransfer: TransferBefore[1] :>> incomingTransfersToSelf :> receiver::incomingTransfers {
-			ref :>> transferTarget: AcceptAction {
+			ref :>> target: AcceptAction {
 				ref :>> targetInput = items;
 			}
 		}
@@ -159,9 +159,9 @@ package Actions {
 	 * single guard, but no trigger or effects.
 	 */
 	action def DecisionTransition :> NonStateTransitionPerformance {
-		ref action trigger[0..0] redefines NonStateTransitionPerformance::trigger;
-		ref action guard[1] redefines NonStateTransitionPerformance::guard;
-		ref action effect[0..0] redefines NonStateTransitionPerformance::effect;
+		ref action :>> trigger[0..0];
+		ref action :>> guard[1];
+		ref action :>> effect[0..0];
 	}
 
 }

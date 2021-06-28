@@ -45,16 +45,16 @@ package Performances {
 		step subtransfers: Transfers::Transfer[0..*] nonunique subsets Transfers::transfers, subperformances;
 		
 		/**
-		 * Subtransfers of this performance that are transfers-before (succession flows).
+		 * Subtransfers of this performance that are transfers-before.
 		 */
-		step subflows: Transfers::TransferBefore[0..*] nonunique subsets Transfers::flows, subtransfers;
+		step subtransfersBefore: Transfers::TransferBefore[0..*] nonunique subsets Transfers::transfersBefore, subtransfers;
 	}
 	
 	/**
 	 * Evaluation is the most general class of functions that may be evaluated to compute
 	 * a result.
 	 */
-	abstract function Evaluation specializes Performance (): Anything[0..*];
+	abstract function Evaluation specializes Performance () result: Anything[0..*];
 	
 	/**
 	 * BooleanEvaluation is a specialization of Evaluation that is the most general class of

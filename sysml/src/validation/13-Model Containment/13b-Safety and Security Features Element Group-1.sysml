@@ -45,12 +45,12 @@ package '13b-Safety and Security Features Element Group-1' {
 	package 'Safety & Security Features' {
 		/* Parts that contribute to safety OR security. */		 
 		import vehicle::**;
-		filter @Safety || @Security;
+		filter @Safety or @Security;
 	}
 	
 	package 'Mandatory Safety Features' {
 		/* Parts that contribute to safety AND are mandatory. */
 		import vehicle::**;
-		filter @Safety && Safety::isMandatory;
+		filter @Safety and Safety::isMandatory;
 	}
 }

@@ -3,8 +3,8 @@ package BaseFunctions {
 	private import Objects::Object;
 	private import ScalarValues::*;
 	
-	abstract function '=='(x: Anything[0..1] ordered nonunique, y: Anything[0..1] ordered nonunique): Boolean[1];
-	function '!='(x: Anything[0..1] ordered nonunique, y: Anything[0..1] ordered nonunique): Boolean[1] {
+	abstract function '=='(x: Anything[0..1], y: Anything[0..1]): Boolean[1];
+	function '!='(x: Anything[0..1], y: Anything[0..1]): Boolean[1] {
 		!(x == y)
 	}
 	

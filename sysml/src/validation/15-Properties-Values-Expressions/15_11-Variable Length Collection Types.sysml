@@ -11,10 +11,6 @@ package '15_11-Variable Length Collection Types' {
 		ref part :>> elements: SparePart;
 	}
 	
-	attribute def 'Sequence<Integer>' :> Sequence {
-		attribute :>> elements: Integer;
-	}
-	
 	attribute def 'List<Integer>' :> List {
 		value :>> elements: Integer;
 	}
@@ -27,13 +23,14 @@ package '15_11-Variable Length Collection Types' {
 		ref part :>> elements: Person;
 	}
 	
-	attribute def 'Sequence<Set<Person>>' :> Sequence {
+	attribute def 'List<Set<Person>>' :> List {
 		attribute :>> elements: Set {
 			ref part :>> elements: Person;
 		}
 	}
 	
-	attribute def 'Array<Real>[4]' :> Sequence {
-		attribute :>> elements: Real[4];
+	attribute def 'Array<Real>[4]' :> Array {
+		attribute :>> elements: Real;
+		attribute :>> dimensions = 4;
 	}
 }

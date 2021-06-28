@@ -30,7 +30,7 @@ package '7b-Variant Configurations' {
 		part vehicle : Vehicle {
 			port fuelCmdPort;
 			
-			bind fuelCmdPort = engine::fuelCmdPort;
+			bind fuelCmdPort = engine.fuelCmdPort;
 			
 			part engine : Engine[1] {
 				port fuelCmdPort : FuelCmdPort;
@@ -92,8 +92,9 @@ package '7b-Variant Configurations' {
 			satisfy engineRqtChoice by engineChoice;
 			
 			assert constraint 'engine choice constraint' {
-				engineRqtChoice == engineRqtChoice::highPerformanceRequirement? 
-					engineChoice == engineChoice::'6cylEngine':
+				if engineRqtChoice == engineRqtChoice::highPerformanceRequirement? 
+					engineChoice == engineChoice::'6cylEngine' 
+				else
 					engineChoice == engineChoice::'4cylEngine'
 			}
 			
@@ -111,8 +112,8 @@ package '7b-Variant Configurations' {
 			}
 			
 			assert constraint 'engine-transmission selection constraint' {
-				(engineChoice == engineChoice::'4cylEngine' & transmissionChoice == transmissionChoice::manualTransmission) ^
-				(engineChoice == engineChoice::'6cylEngine' & transmissionChoice == transmissionChoice::automaticTransmission)
+				(engineChoice == engineChoice::'4cylEngine' and transmissionChoice == transmissionChoice::manualTransmission) xor
+				(engineChoice == engineChoice::'6cylEngine' and transmissionChoice == transmissionChoice::automaticTransmission)
 			}
 			
 			part :>> rearAxleAssembly {
@@ -123,10 +124,10 @@ package '7b-Variant Configurations' {
 			}
 			
 			assert constraint 'engine-wheel selection constraint' {
-				(engineChoice == engineChoice::'4cylEngine' & 
-					rearAxleAssembly::rearWheelChoice->forAll {in ref w; w == rearAxleAssembly::rearWheelChoice::narrowRimWheel}) ^
-				(engineChoice == engineChoice::'6cylEngine' & 
-					rearAxleAssembly::rearWheelChoice->forAll {in ref w; w == rearAxleAssembly::rearWheelChoice::wideRimWheel})
+				(engineChoice == engineChoice::'4cylEngine' and 
+					rearAxleAssembly.rearWheelChoice->forAll {in ref w; w == rearAxleAssembly::rearWheelChoice::narrowRimWheel}) xor
+				(engineChoice == engineChoice::'6cylEngine' and 
+					rearAxleAssembly.rearWheelChoice->forAll {in ref w; w == rearAxleAssembly::rearWheelChoice::wideRimWheel})
 			}
 			
 		}

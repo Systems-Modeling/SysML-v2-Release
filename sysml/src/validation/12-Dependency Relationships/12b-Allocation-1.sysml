@@ -8,7 +8,7 @@ package '12b-Allocation-1' {
 		requirement torqueGeneration {
 			subject generator: TorqueGenerator;
 			require constraint { 
-				 generator::generateTorque::torque > 0.0 [N*m]
+				 generator.generateTorque.torque > 0.0 [N*m]
 			}
 		}
 	}
@@ -51,6 +51,6 @@ package '12b-Allocation-1' {
 	allocation torqueGenAlloc : LogicalToPhysical 
 		allocate logical => torqueGenerator to physical => powerTrain {
 			
-		allocate torqueGenerator::generateTorque to powerTrain::engine::generateTorque;		
+		allocate torqueGenerator.generateTorque to powerTrain.engine.generateTorque;		
 	}
 }

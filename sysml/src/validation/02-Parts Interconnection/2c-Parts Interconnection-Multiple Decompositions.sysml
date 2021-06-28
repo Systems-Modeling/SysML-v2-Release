@@ -32,16 +32,10 @@ package '2c-Parts Interconnection-Multiple Decompositions' {
 	 */
 	part a11: A1 {
 		part b11: B11 {
-			part c1: C1 {
-				port pa :>> C1::pa;
-				port pb :>> C1::pb;
-			}
+			part c1: C1;			
+			part c2: C2;
 			
-			part c2: C2 {
-				port pc :>> C2::pc;
-			}
-			
-			connect c1::pa to c2::pc;
+			connect c1.pa to c2.pc;
 			
 			/**
 			 * This combines the definition of a port with a binding
@@ -49,20 +43,17 @@ package '2c-Parts Interconnection-Multiple Decompositions' {
 			 * attribute to a attribute property or a reference to a reference
 			 * property.)
 			 */
-			port :>> pe = c1::pb;
+			port :>> pe = c1.pb;
 		}
 		
 		part b12: B12 {
-			part c3: C3 {
-				port pd :>> C3::pd;
-			}
-			
+			part c3: C3;			
 			part c4: C4;
 			
-			port :>> pf = c3::pd;
+			port :>> pf = c3.pd;
 		}
 		
-		connect b11::pe to b12::pf;
+		connect b11.pe to b12.pf;
 	}
 	
 	/**
@@ -75,28 +66,19 @@ package '2c-Parts Interconnection-Multiple Decompositions' {
 			 * a11, so they cannot also be composite parts within a12.
 			 */
 			 
-			ref c1: C1 = a11::b11::c1 {
-				port pa :>> C1::pa;
-				port pb :>> C1::pb;
-			}
+			ref c1: C1 = a11.b11.c1;			
+			ref c3: C3 = a11.b12.c3;
 			
-			ref c3: C3 = a11::b12::c3 {
-				port pd :>> C3::pd;
-			}
+			connect c1.pb to c3.pd;
 			
-			connect c1::pb to c3::pd;
-			
-			port :>> pg = c1::pa;
+			port :>> pg = c1.pa;
 		}
 		
 		part b22: B22 {
-			ref c2: C2 = a11::b11::c2 {
-				port pc :>> C2::pc;
-			}
+			ref c2: C2 = a11.b11.c2;			
+			ref c4: C4 = a11.b12.c4;
 			
-			ref c4: C4 = a11::b12::c4;
-			
-			port :>> ph = c2::pc;
+			port :>> ph = c2.pc;
 		}
 	}
 }

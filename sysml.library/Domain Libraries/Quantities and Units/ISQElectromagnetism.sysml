@@ -5,8 +5,8 @@
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
  * with Greek letters in Unicode encoding. In running text, AsciiMath is placed between backticks.
- * Note 2: For vector and tensor quantities currently the unit and quantity value type for their (scalar) magnitude is 
- * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate system) 
+ * Note 2: For vector and tensor quantities currently the unit and quantity value type for their (scalar) magnitude is
+ * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate system)
  * or TensorMeasurementReference.
  */
 package ISQElectromagnetism {
@@ -655,7 +655,7 @@ package ISQElectromagnetism {
      * quantity dimension: L^-2*I^1
      * measurement unit(s): A/m^2
      * tensor order: 0
-     * definition: `vec(J_D) = (del vec(D))/(del t)` where `vec(D)` is electric flux density (item 6-12) and `t` is time (ISO 80000-3, item 3-7) 
+     * definition: `vec(J_D) = (del vec(D))/(del t)` where `vec(D)` is electric flux density (item 6-12) and `t` is time (ISO 80000-3, item 3-7)
      * remarks: See IEC 60050-121, item 121-11-42.
      */
     attribute def DisplacementCurrentDensityUnit :> DerivedUnit {
@@ -678,7 +678,7 @@ package ISQElectromagnetism {
      * quantity dimension: L^-2*I^1
      * measurement unit(s): A/m^2
      * tensor order: 1
-     * definition: `vec(J_D) = (del vec(D))/(del t)` where `vec(D)` is electric flux density (item 6-12) and `t` is time (ISO 80000-3, item 3-7) 
+     * definition: `vec(J_D) = (del vec(D))/(del t)` where `vec(D)` is electric flux density (item 6-12) and `t` is time (ISO 80000-3, item 3-7)
      * remarks: See IEC 60050-121, item 121-11-42.
      */
     attribute def Cartesian3dDisplacementCurrentDensityCoordinateSystem :> VectorMeasurementReference {
@@ -1594,24 +1594,16 @@ package ISQElectromagnetism {
      * source: item 6-41.2 mutual inductance
      * symbol(s): `L_(mn)`
      * application domain: generic
-     * name: MutualInductance
+     * name: MutualInductance (specializes Inductance)
      * quantity dimension: L^2*M^1*T^-2*I^-2
      * measurement unit(s): H
      * tensor order: 0
      * definition: `L_(mn) = Ψ_m / I_n` where `I_n` is an electric current (item 6-1) in a thin conducting loop `n` and `Ψ_m` is the linked flux (item 6-22.2) caused by that electric current in another loop `m`
      * remarks: `L_(mn) = L_(nm)`. For two loops , the symbol `M` is used for `L_(12)`. See IEC 60050-131, items 131-12-36.
      */
-    attribute def MutualInductanceUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
-        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq::I; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, electricCurrentPF); }
-    }
-
-    attribute def MutualInductanceValue :> ScalarQuantityValue {
+    attribute def MutualInductanceValue :> InductanceValue {
         attribute :>> num: Real;
-        attribute :>> mRef: MutualInductanceUnit[1];
+        attribute :>> mRef: InductanceUnit[1];
     }
     attribute mutualInductance: MutualInductanceValue :> scalarQuantities;
 

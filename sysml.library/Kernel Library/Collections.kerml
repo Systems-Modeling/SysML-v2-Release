@@ -73,15 +73,9 @@ package Collections {
 	}
 		
 	/**
-	 * Sequence is a variable-size, ordered collection of nonunique elements.
+	 * List is a variable-size, ordered collection of nonunique elements.
 	 */
-	datatype Sequence :> OrderedCollection;
-
-	/**
-	 * List is an alias for Sequence.
-	 * TODO: Decide whether to keep alias List
-	 */
-	alias Sequence as List;
+	datatype List :> OrderedCollection;
 
 	/**
 	 * KeyValuePair is a tuple of a key and a value for use in Map collections.

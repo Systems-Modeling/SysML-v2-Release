@@ -48,8 +48,8 @@ package '5-State-based Behavior-1a' {
 		 * respectively.
 		 */
 		 
-		attribute def 'at(vehicle::maintenanceTime)';
-		attribute def 'when(temp>vehicle::Tmax)';
+		attribute def 'at(vehicle.maintenanceTime)';
+		attribute def 'when(temp>vehicle.Tmax)';
 	}
 	
 	package Usages {
@@ -96,8 +96,8 @@ package '5-State-based Behavior-1a' {
 				transition 'off-starting'
 					first off
 					accept 'Vehicle Start Signal' 
-					if vehicle1_c1::'brake pedal depressed'
-					do send 'Start Signal'() to vehicle1_c1::vehicleController
+					if vehicle1_c1.'brake pedal depressed'
+					do send 'Start Signal'() to vehicle1_c1.vehicleController
 					then starting;
 					
 				state starting;
@@ -140,12 +140,12 @@ package '5-State-based Behavior-1a' {
 				
 				transition 'normal-maintenance'
 					first normal
-					accept 'at(vehicle::maintenanceTime)' // Should be a time event trigger.
+					accept 'at(vehicle.maintenanceTime)' // Should be a time event trigger.
 					then maintenance;
 				
 				transition 'normal-degraded'
 					first normal
-					accept 'when(temp>vehicle::Tmax)' // Should be a change event trigger.
+					accept 'when(temp>vehicle.Tmax)' // Should be a change event trigger.
 					do send 'Over Temp'() to vehicle1_c1::vehicleController 
 					then degraded;
 				
@@ -204,7 +204,7 @@ package '5-State-based Behavior-1a' {
 			 * In the context of the 'vehicle1_c1' part, the 'provide power' action
 			 * that is enabled in 'vehicle states' gets its input from the 'fuelCmdPort'.
 			 */
-			perform 'provide power' :>> VehicleA::'provide power' (in fuelCmd = fuelCmdPort::fuelCmd);
+			perform 'provide power' :>> VehicleA::'provide power' (in fuelCmd = fuelCmdPort.fuelCmd);
 				
 			/**
 			 * This allocates the state usage 'vehicle states' as the detailed
@@ -216,12 +216,12 @@ package '5-State-based Behavior-1a' {
 			//*
 			// The above is semantically equivalent to:
 			
-			ref state 'vehicle states' :> Usages::'vehicle states', enactedPerformances
+			ref state 'vehicle states' :> Usages::'vehicle states', exhibitedStates
 				:>> VehicleA::'vehicle states';		
 				
 			// For a composite state performance within the vehicle, replace the above with:
 			
-			action 'vehicle states' :>> Usages::'vehicle states', VehicleA::'vehicle states';
+			state 'vehicle states' :>> Usages::'vehicle states', VehicleA::'vehicle states';
 			*/
 
 			part vehicleController: VehicleController {

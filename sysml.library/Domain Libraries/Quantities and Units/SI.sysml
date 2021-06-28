@@ -54,7 +54,7 @@ package SI {
     attribute E: TrafficIntensityUnit = one { :>> longName = "erlang"; }
     attribute F: CapacitanceUnit = C/V { :>> longName = "farad"; }
     attribute Gy: AbsorbedDoseUnit = J/kg { :>> longName = "gray"; }
-    attribute H: PermeanceUnit = Wb/A { :>> longName = "henry"; }
+    attribute H: PermeanceUnit, InductanceUnit = Wb/A { :>> longName = "henry"; }
     attribute Hart: InformationContentUnit = one { :>> longName = "hartley"; }
     attribute Hz: FrequencyUnit = s**-1 { :>> longName = "hertz"; }
     attribute J: EnergyUnit = N*m { :>> longName = "joule"; }
@@ -67,7 +67,7 @@ package SI {
     attribute Pa: PressureUnit = N/m**2 { :>> longName = "pascal"; }
     attribute rad: AngularMeasureUnit = m/m { :>> longName = "radian"; }
     attribute S: ConductanceUnit = 'Ω'**-1 { :>> longName = "siemens"; }
-    attribute Sh: InformationContentUnit = one { :>> longName = "shannon"; }    
+    attribute Sh: InformationContentUnit = one { :>> longName = "shannon"; }
     attribute sr: SolidAngularMeasureUnit = m**2/m**2 { :>> longName = "steradian"; }
     attribute Sv: DoseEquivalentUnit = J/kg { :>> longName = "sievert"; }
     attribute T: MagneticFluxDensityUnit = Wb/m**2 { :>> longName = "tesla"; }
@@ -237,7 +237,7 @@ package SI {
     attribute 'mol/kg': MolalityUnit = mol/kg { :>> longName = "mole per kilogram"; }
     attribute 'mol/L': AmountOfSubstanceConcentrationUnit = mol/L { :>> longName = "mole per litre"; }
     attribute 'mol/m³': EquilibriumConstantOnConcentrationBasisUnit = mol/m**3 { :>> longName = "mole per cubic metre"; }
-    attribute 'N⋅m': MomentOfForceUnit = N*m { :>> longName = "newton metre"; }
+    attribute 'N⋅m': MomentOfForceUnit, TorqueUnit = N*m { :>> longName = "newton metre"; }
     attribute 'N⋅m⋅s': AngularImpulseUnit = N*m*s { :>> longName = "newton metre second"; }
     attribute 'N⋅m⋅s⁻¹': PowerUnit = N*m*s**-1 { :>> longName = "newton metre second to the power minus 1"; }
     attribute 'N⋅m⁻¹': SurfaceTensionUnit = N*m**-1 { :>> longName = "newton metre to the power minus 1"; }

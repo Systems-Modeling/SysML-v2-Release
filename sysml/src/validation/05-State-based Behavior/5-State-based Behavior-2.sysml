@@ -29,8 +29,8 @@ package '5-State-based Behavior-2' {
 		attribute def 'Over Temp';
 		attribute def 'Return to Normal';
 		
-		attribute def 'at(vehicle::maintenanceTime)';
-		attribute def 'when(temp>vehicle::Tmax)';
+		attribute def 'at(vehicle.maintenanceTime)';
+		attribute def 'when(temp>vehicle.Tmax)';
 	}
 	
 	package Usages {
@@ -51,8 +51,8 @@ package '5-State-based Behavior-2' {
 				 */
 				state off;
 				accept 'Vehicle Start Signal' 
-					if vehicle1_c1::'brake pedal depressed'
-					do send 'Start Signal'() to vehicle1_c1::vehicleController
+					if vehicle1_c1.'brake pedal depressed'
+					do send 'Start Signal'() to vehicle1_c1.vehicleController
 					then starting;
 					
 				state starting;
@@ -77,10 +77,10 @@ package '5-State-based Behavior-2' {
 				 * a single state.
 				 */
 				state normal;
-				accept 'at(vehicle::maintenanceTime)'
+				accept 'at(vehicle.maintenanceTime)'
 					then maintenance;
-				accept 'when(temp>vehicle::Tmax)' 
-					do send 'Over Temp'() to vehicle1_c1::vehicleController 
+				accept 'when(temp>vehicle.Tmax)' 
+					do send 'Over Temp'() to vehicle1_c1.vehicleController 
 					then degraded;
 				
 				state maintenance;
@@ -116,7 +116,7 @@ package '5-State-based Behavior-2' {
 			attribute maintenanceTime: Time::DateTime;
 			attribute Tmax: TemperatureValue;
 			
-			perform 'provide power' :>> VehicleA::'provide power' (in fuelCmd = fuelCmdPort::fuelCmd);
+			perform 'provide power' :>> VehicleA::'provide power' (in fuelCmd = fuelCmdPort.fuelCmd);
 				
 			exhibit 'vehicle states' :>> VehicleA::'vehicle states';
 				

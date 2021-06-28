@@ -53,7 +53,7 @@ package '10b-Trade-off Among Alternative Configurations' {
 			part engine[1] :> engineChoice = '6cylEngine' {
 				assert constraint engineSelectionRational { 
 					doc /* Selected the best engine based on the 'engineTradeStudy'. */
-					engine == Analysis::engineTradeStudy::selectedAlternative
+					engine == Analysis::engineTradeStudy.selectedAlternative
 				}
 			}
 			
@@ -82,7 +82,7 @@ package '10b-Trade-off Among Alternative Configurations' {
 				calc costRollup (engine) return cost: Real;
 				
 				return :>> result : Real = EngineEvaluation(
-					powerRollup::power, massRollup::mass, efficiencyRollup::efficiency, costRollup::cost
+					powerRollup.power, massRollup.mass, efficiencyRollup.efficiency, costRollup.cost
 				);
 			}
 			

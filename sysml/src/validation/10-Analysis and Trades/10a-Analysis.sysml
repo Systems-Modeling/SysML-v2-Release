@@ -10,10 +10,10 @@ package '10a-Analysis' {
 		
 		part vehicle {
 			:>> mass : MassValue = sum((
-				vehicle::engine::mass, 
-				vehicle::transmission::mass, 
-				vehicle::frontAxleAssembly::mass, 
-				vehicle::rearAxleAssembly::mass
+				vehicle.engine.mass, 
+				vehicle.transmission.mass, 
+				vehicle.frontAxleAssembly.mass, 
+				vehicle.rearAxleAssembly.mass
 			));
 			
 			part engine {
@@ -47,7 +47,7 @@ package '10a-Analysis' {
 			objective : MassAnalysisObjective;
 			
 			// Result
-			vehicle::mass
+			vehicle.mass
 		}
 		
 		analysis def AnalysisPlan {

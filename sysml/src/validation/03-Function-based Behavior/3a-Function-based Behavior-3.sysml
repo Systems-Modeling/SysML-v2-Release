@@ -46,7 +46,7 @@ package '3a-Function-based Behavior-1' {
 			 * This is a binding connector, just as was used to
 			 * model delegation between ports.
 			 */
-			bind 'generate torque'::fuelCmd = fuelCmd;
+			bind 'generate torque'.fuelCmd = fuelCmd;
 			
 			/**
 			 * The parameters on an action act as its "pins". They automatically 
@@ -64,24 +64,24 @@ package '3a-Function-based Behavior-1' {
 			 * Note that streaming is a property of the connection, not the
 			 * actions or their parameters.
 			 */
-			stream 'generate torque'::engineTorque 
-			    to 'amplify torque'::engineTorque;
+			stream 'generate torque'.engineTorque 
+			    to 'amplify torque'.engineTorque;
 			
 			action 'amplify torque': 'Amplify Torque' {
 				in engineTorque: Torque;
 				out transmissionTorque: Torque;
 			}
 			
-			stream 'amplify torque'::transmissionTorque 
-			    to 'transfer torque'::transmissionTorque;
+			stream 'amplify torque'.transmissionTorque 
+			    to 'transfer torque'.transmissionTorque;
 			
 			action 'transfer torque': 'Transfer Torque' {
 				in transmissionTorque: Torque; 
 				out driveshaftTorque: Torque;
 			}
 			
-			stream 'transfer torque'::driveshaftTorque 
-			    to 'distribute torque'::driveshaftTorque;
+			stream 'transfer torque'.driveshaftTorque 
+			    to 'distribute torque'.driveshaftTorque;
 			
 			action 'distribute torque': 'Distribute Torque' {
 				in driveshaftTorque: Torque;
@@ -89,8 +89,8 @@ package '3a-Function-based Behavior-1' {
 				out wheelTorque2: Torque;
 			}
 			
-			bind wheelTorque1 = 'distribute torque'::wheelTorque1;
-			bind wheelTorque2 = 'distribute torque'::wheelTorque2;
+			bind wheelTorque1 = 'distribute torque'.wheelTorque1;
+			bind wheelTorque2 = 'distribute torque'.wheelTorque2;
 			
 			// CONTROL FLOW PART
 

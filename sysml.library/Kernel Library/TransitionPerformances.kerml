@@ -11,14 +11,11 @@ package TransitionPerformances {
 		expr guard[*];
 		step effect[*];
 
-		feature transitionLink: HappensBefore[0..1] {
-			end feature earlier redefines earlierOccurrence;
-			end feature later redefines laterOccurrence;
-		}
+		feature transitionLink: HappensBefore[0..1];
 		
-		private binding transitionLink::earlier[0..1] = transitionLinkSource[1];
+		private binding transitionLink.earlierOccurrence[0..1] = transitionLinkSource[1];
 		private succession transitionLinkSource[1] then effect[*]; 
-		private succession effect[*] then transitionLink::later[1];
+		private succession effect[*] then transitionLink.laterOccurrence[1];
 		
 		private connector transitionLink[0..1] to trigger[1..*];
 		private connector all guardConstraint: TPCGuardConstraint[*] 
@@ -29,15 +26,10 @@ package TransitionPerformances {
 	}
 	
 	behavior NonStateTransitionPerformance specializes TransitionPerformance {
-		feature transitionLink redefines TransitionPerformance::transitionLink {
-			end feature earlier;
-			end feature later;
-		}
-
 		private succession transitionLinkSource[1] then trigger[*];
 		private succession transitionLinkSource[1] then guard[*];
 		
-		private succession all guard[*] then transitionLink::later[0..1];
+		private succession all guard[*] then transitionLink.laterOccurrence[0..1];
 	}
 	
 	assoc struct TPCGuardConstraint {

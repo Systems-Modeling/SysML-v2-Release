@@ -36,7 +36,7 @@ package '3a-Function-based Behavior-2' {
 			 * The binding connector shorthand can be used on action parameters.
 			 */
 			action 'generate torque': 'Generate Torque'(
-				in fuelCmd = 'provide power'::fuelCmd,
+				in fuelCmd = 'provide power'.fuelCmd,
 				out engineTorque: Torque
 			);
 			
@@ -44,19 +44,19 @@ package '3a-Function-based Behavior-2' {
 			 * There is also a shorthand for streaming into an input parameter.
 			 */
 			action 'amplify torque': 'Amplify Torque'(
-				in engineTorque stream from 'generate torque'::engineTorque, 
+				in engineTorque stream from 'generate torque'.engineTorque, 
 				out transmissionTorque
 			);
 			
 			action 'transfer torque': 'Transfer Torque'(
-				in transmissionTorque stream from 'amplify torque'::transmissionTorque, 
+				in transmissionTorque stream from 'amplify torque'.transmissionTorque, 
 				out driveshaftTorque
 			);
 						
 			action 'distribute torque': 'Distribute Torque'(
-				in driveshaftTorque stream from 'transfer torque'::driveshaftTorque, 
-				out wheelTorque1 = 'distribute torque'::wheelTorque1, 
-				out wheelTorque2 = 'distribute torque'::wheelTorque2
+				in driveshaftTorque stream from 'transfer torque'.driveshaftTorque, 
+				out wheelTorque1 = 'distribute torque'.wheelTorque1, 
+				out wheelTorque2 = 'distribute torque'.wheelTorque2
 			);
 			
 			// CONTROL FLOW PART

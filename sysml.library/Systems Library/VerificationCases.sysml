@@ -29,7 +29,7 @@ package VerificationCases {
 		/**
 		 * Checks on whether the verifiedRequirements of the VerificationCase have been satisfied.
 		 */
-		ref requirement requirementVerifications[0..*] = obj::requirementVerifications;
+		ref requirement requirementVerifications[0..*] = obj.requirementVerifications;
 		
 		/**
 		 * The subcases of this VerificationCase that are VerificationCaseUsages.

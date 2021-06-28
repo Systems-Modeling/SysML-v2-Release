@@ -118,9 +118,9 @@ package '10c-Fuel Economy Analysis' {
 				     * 25 miles per gallon for the nominal city driving scenarios.
 				     */
 				 
-				:>> actualFuelEconomy = vehicle::fuelEconomy_city;
+				:>> actualFuelEconomy = vehicle.fuelEconomy_city;
 				
-				assume constraint { vehicle::cargoWeight == 1000 [lb] }
+				assume constraint { vehicle.cargoWeight == 1000 [lb] }
 			}
 
 			requirement vehicleFuelEconomyRequirement_highway :> highwayFuelEconomyRequirement {
@@ -128,9 +128,9 @@ package '10c-Fuel Economy Analysis' {
 				     * 30 miles per gallon for the nominal highway driving scenarios.
 				     */
 				
-				:>> actualFuelEconomy = vehicle::fuelEconomy_highway;
+				:>> actualFuelEconomy = vehicle.fuelEconomy_highway;
 				
-				assume constraint { vehicle::cargoWeight == 1000 [lb] }
+				assume constraint { vehicle.cargoWeight == 1000 [lb] }
 			}
 
 		}
@@ -150,8 +150,8 @@ package '10c-Fuel Economy Analysis' {
 			}
 			
 			part vehicle1_c1_analysized :> vehicle1_c1 {
-				:>> fuelEconomy_city = cityFuelEconomyAnalysis::calculatedFuelEconomy;
-				:>> fuelEconomy_highway = highwayFuelEconomyAnalysis::calculatedFuelEconomy;
+				:>> fuelEconomy_city = cityFuelEconomyAnalysis.calculatedFuelEconomy;
+				:>> fuelEconomy_highway = highwayFuelEconomyAnalysis.calculatedFuelEconomy;
 			}		
 			
 			satisfy vehicleFuelEconomyRequirementsGroup by vehicle1_c1_analysized;

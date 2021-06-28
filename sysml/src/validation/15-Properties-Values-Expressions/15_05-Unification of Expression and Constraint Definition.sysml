@@ -4,7 +4,7 @@ package '15_05-Unification of Expression and Constraint Definition' {
 	
 	constraint def DiscBrakeConstraint(wheelAssy : WheelAssy[4]) {
 		wheelAssy->forAll {in ref w: WheelAssy; 
-			2 * w::discBrakeAssy::radius < w::wheel::outerDiameter
+			2 * w.discBrakeAssy.radius < w.wheel.outerDiameter
 		}
 	}
 	
@@ -12,7 +12,7 @@ package '15_05-Unification of Expression and Constraint Definition' {
 		discBrakeAssy : DiscBrakeAssy[1],
 		wheel : Wheel[1]		
 	) {		
-		2 * discBrakeAssy::radius < wheel::outerDiameter
+		2 * discBrakeAssy.radius < wheel.outerDiameter
 	}
 	
 	part def Vehicle_2 {

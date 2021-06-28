@@ -40,7 +40,7 @@ package '9-Verification-simplified' {
 			subject vehicle : Vehicle;
 			doc /* The vehicle mass shall be less than or equal to 2500 kg. */
 			
-			:>> massActual = vehicle::mass;		
+			:>> massActual = vehicle.mass;		
 			:>> massReqd = 2500 [SI::kg];
 		}
 		
@@ -56,23 +56,23 @@ package '9-Verification-simplified' {
 			}
 			
 			action collectData {
-				in part testVehicle : Vehicle = vehicleMassTest::testVehicle;
+				in part testVehicle : Vehicle = vehicleMassTest.testVehicle;
 				out massMeasured :> ISQ::mass;
 			}
 			
 			action processData {
-				in massMeasured :> ISQ::mass = collectData::massMeasured;
+				in massMeasured :> ISQ::mass = collectData.massMeasured;
 				out massProcessed :> ISQ::mass;
 			}
 			
 			action evaluateData {
-				in massProcessed :> ISQ::mass = processData::massProcessed;
+				in massProcessed :> ISQ::mass = processData.massProcessed;
 				out verdict : VerdictKind = 
 					// Check that 'testVehicle' statisfies 'vehicleMassRequirement' if its mass equals 'massProcessed'.
 					PassIf(vehicleMassRequirement(vehicle => testVehicle, massActual => massProcessed));
 			}
 			
-			return verdict : VerdictKind = evaluateData::verdict;
+			return verdict : VerdictKind = evaluateData.verdict;
 		}
 		
 		part massVerificationSystem : MassVerificationSystem {
@@ -89,7 +89,7 @@ package '9-Verification-simplified' {
 					in part :>> testVehicle;
 					
 					// In reality, this would be some more involved process.
-					measurement = testVehicle::mass;
+					measurement = testVehicle.mass;
 					
 					out :>> massMeasured = measurement;
 				}

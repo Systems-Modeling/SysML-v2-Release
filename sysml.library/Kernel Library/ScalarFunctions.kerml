@@ -7,13 +7,16 @@ package ScalarFunctions {
 	abstract function '*' specializes DataFunctions::'*' (x: ScalarValue[1], y: ScalarValue[1]): ScalarValue[1];
 	abstract function '/' specializes DataFunctions::'/' (x: ScalarValue[1], y: ScalarValue[1]): ScalarValue[1];
 	abstract function '**' specializes DataFunctions::'**' (x: ScalarValue[1], y: ScalarValue[1]): ScalarValue[1];
+	abstract function '^' specializes DataFunctions::'^' (x: ScalarValue[1], y: ScalarValue[1]): ScalarValue[1];
 	abstract function '%' specializes DataFunctions::'%' (x: ScalarValue[1], y: ScalarValue[1]): ScalarValue[1];
 	
 	abstract function '!' specializes DataFunctions::'!' (x: ScalarValue[1]): ScalarValue[1];
+	abstract function 'not' specializes DataFunctions::'not' (x: ScalarValue[1]): ScalarValue[1];
 	abstract function '~' specializes DataFunctions::'~' (x: ScalarValue[1]): ScalarValue[1];
 	
 	abstract function '|' specializes DataFunctions::'|' (x: ScalarValue[1], y: ScalarValue[1]): ScalarValue[1];
-	abstract function '^' specializes DataFunctions::'^' (x: ScalarValue[1], y: ScalarValue[1]): ScalarValue[1];
+	abstract function '^^' specializes DataFunctions::'^^' (x: ScalarValue[1], y: ScalarValue[1]): ScalarValue[1];
+	abstract function 'xor' specializes DataFunctions::'xor' (x: ScalarValue[1], y: ScalarValue[1]): ScalarValue[1];
 	abstract function '&' specializes DataFunctions::'&' (x: ScalarValue[1], y: ScalarValue[1]): ScalarValue[1];
 	
 	abstract function '<' specializes DataFunctions::'<' (x: ScalarValue[1], y: ScalarValue[1]): Boolean[1];

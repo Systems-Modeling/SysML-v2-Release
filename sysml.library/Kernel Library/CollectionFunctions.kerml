@@ -6,7 +6,7 @@ package CollectionFunctions {
 	import Collections::*;
 	
 	function '==' specializes BaseFunctions::'=='(col1: Collection[0..1], col2: Collection[0..1]): Boolean[1] {
-		col1::elements->equals(col2::elements)
+		col1::elements->equals(col2.elements)
 	}
 	
 	function size (col: Collection[1]): Natural[1] {
@@ -39,7 +39,7 @@ package CollectionFunctions {
 	
 	function '[' specializes BaseFunctions::'[' (col: OrderedCollection[1], index: Positive[1]): Anything[0..1] {
 		// Cast ensures this function is not called recursively if the elements of col are OrderedCollections.
-		(col::elements as Anything)[index]
+		(col.elements as Anything)[index]
 	}
 	
 	function 'array[' specializes '[' (arr: Array[1], indexes: Positive[n] ordered nonunique): Anything[0..1] {
@@ -47,10 +47,10 @@ package CollectionFunctions {
 		
 		// Assumes row-major ordering for elements.
 		private function index(arr: Array[1], i : Natural, indexes : Positive[1..n]) {
-			i <= 1? indexes[1]: arr::dimensions[i] * (index(arr, i-1, indexes) - 1) + indexes[i]
+			i <= 1? indexes[1]: arr.dimensions[i] * (index(arr, i-1, indexes) - 1) + indexes[i]
 		}
 		
 		n == 0 || (1..n)->exists {in i; indexes[i] > arr::dimensions[i]}? null: 
-			arr::elements[index(arr, n, indexes)]
+			arr.elements[index(arr, n, indexes)]
 	}	
 }

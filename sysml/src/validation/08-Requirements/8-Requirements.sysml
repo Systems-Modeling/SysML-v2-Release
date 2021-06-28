@@ -54,7 +54,7 @@ package '8-Requirements' {
 			}
 			
 			interface engineToTransmission: EngineToTransmissionInterface
-				connect engine_v1::drivePwrPort to transmission::clutchPort;
+				connect engine_v1.drivePwrPort to transmission.clutchPort;
 		}
 		
 		part vehicle1_c2: Vehicle {
@@ -95,7 +95,7 @@ package '8-Requirements' {
 			/**
 			 * This redefinition binds the vehicle mass to the actual mass.
 			 */
-			attribute :>> massActual: MassValue = vehicle::mass;
+			attribute :>> massActual: MassValue = vehicle.mass;
 			
 			/**
 			 * This redefinition sets the required mass to 2000 kg.
@@ -107,7 +107,7 @@ package '8-Requirements' {
 			 */
 			assume constraint fuelConstraint {
 				doc /* full fuel tank */
-				vehicle::fuelLevel >= vehicle::fuelTankCapacity
+				vehicle.fuelLevel >= vehicle.fuelTankCapacity
 			}
 		}
 			
@@ -116,12 +116,12 @@ package '8-Requirements' {
 			
 			subject vehicle : Vehicle;
 			
-			attribute :>> massActual: MassValue = vehicle::mass;
+			attribute :>> massActual: MassValue = vehicle.mass;
 			attribute :>> massReqd = 2500 [kg];
 		
 			assume constraint fuelConstraint {
 				doc /* empty fuel tank */
-				vehicle::fuelLevel == 0.0
+				vehicle.fuelLevel == 0.0
 			}
 		}
 		
@@ -165,10 +165,10 @@ package '8-Requirements' {
 			 * subject of the group.
 			 */
 			require torqueGeneration {
-				subject generateTorque = engine::'generate torque';
+				subject generateTorque = engine.'generate torque';
 			}
 			require drivePowerInterface {
-				subject drivePwrPort = engine::drivePwrPort;
+				subject drivePwrPort = engine.drivePwrPort;
 			}
 		}
 		
@@ -177,7 +177,7 @@ package '8-Requirements' {
 		 * the subject, then the required constraints are also true.
 		 */
 		satisfy 'vehicle1-c1 Specification' by vehicle1_c1;
-		satisfy 'engine-v1 Specification' by vehicle1_c1::engine_v1;
+		satisfy 'engine-v1 Specification' by vehicle1_c1.engine_v1;
 	}
 	
 	part 'vehicle1_c2 Specification Context' {

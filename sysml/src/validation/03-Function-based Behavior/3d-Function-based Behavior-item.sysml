@@ -40,54 +40,34 @@ package '3d-Function-based Behavior-item' {
 		part context {
 			
 			/* Storage Element */
-			part storageTank : StorageTank {
-				/**
-				 * Note: Refinition of port and flow are currently necessary
-				 * for the stream to work;
-				 */
-				port :>> fuelOutPort {
-					out item :>> fuel;
-				}
-			}
+			part storageTank : StorageTank;
 			
 			/**
 			 * Note: Explicitly notating that the stream is "of fuel : Fuel" is optional.
 			 */
-			stream of fuel : Fuel 
-				from storageTank::fuelOutPort::fuel to pump::fuelInPort::fuel;
+			stream of  fuel : Fuel
+				from storageTank.fuelOutPort.fuel to pump.fuelInPort.fuel;
 			
 			part pump : Pump {
-				port :>> fuelInPort {
-					in item :>> fuel;
-				}
-				
-				port :>> fuelOutPort {
-					out item :>> fuel;
-				}
-				
 				perform action pumpFuel : PumpFuel (
-					in fuelIn = fuelInPort::fuel,
-					out fuelOut = fuelOutPort::fuel
+					in fuelIn = fuelInPort.fuel,
+					out fuelOut = fuelOutPort.fuel
 				);
 			}
 			
 			stream of fuel : Fuel
-				from pump::fuelOutPort::fuel to vehicle::fuelInPort::fuel;
+				from pump.fuelOutPort.fuel to vehicle.fuelInPort.fuel;
 			
 			part vehicle : Vehicle {
-				port :>> fuelInPort {
-					in item :>> fuel;
-				}
-				
 				/** 
 				 * Note: The semantics of flowing to a "stored item" is tentative.
 				 */
-				stream fuelInPort::fuel to fuelTank::fuel;
+				stream fuelInPort.fuel to fuelTank.fuel;
 				
 				/* Storage Element */
 				part fuelTank : FuelTank {
 					attribute volumeMax : Real;
-					attribute fuelLevel : Real = fuel::volume / volumeMax;
+					attribute fuelLevel : Real = fuel.volume / volumeMax;
 					
 					 /* Stored Item */
 					item fuel : Fuel {

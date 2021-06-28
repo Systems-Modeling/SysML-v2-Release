@@ -27,7 +27,7 @@ package '1d-Parts Tree with Reference' {
 			 * This is a binding connector between the 'hitchBall' in 'vehicle1_c1'
 			 * and the 'hitchBall' in 'trailerHitch'.
 			 */			
-			bind vehicle1_c1::hitchBall = trailerHitch::hitchBall;
+			bind vehicle1_c1.hitchBall = trailerHitch.hitchBall;
 			
 			part trailerHitch: TrailerHitch {				
 				part hitchBall: HitchBall;
@@ -41,7 +41,7 @@ package '1d-Parts Tree with Reference' {
 				 * The binding connector is now contained within the 'trailer1'
 				 * part, though, rather than being at the system level. 
 				 */
-				ref trailerCoupler : TrailerCoupler = trailerHitch::trailerCoupler;
+				ref trailerCoupler : TrailerCoupler = trailerHitch.trailerCoupler;
 			}
 		}
 	}

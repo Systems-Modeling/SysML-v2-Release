@@ -29,7 +29,7 @@ package '14b-Language-Extensions' {
 					port busIF: ~BusIF;
 				}
 				
-				connect vehicleControlUnit::busIF to canBus::vehicleControlIF;
+				connect vehicleControlUnit.busIF to canBus.vehicleControlIF;
 				
 				part canBus: CanBus {
 					port vehicleControlIF: BusIF;
@@ -37,7 +37,7 @@ package '14b-Language-Extensions' {
 					port sensorIF: BusIF;					
 				}
 				
-				connect engine::engineControlUnit::busIF to canBus::engineControlIF;
+				connect engine.engineControlUnit.busIF to canBus.engineControlIF;
 				
 				part engine: Engine {
 					part engineControlUnit: EngineControlUnit {

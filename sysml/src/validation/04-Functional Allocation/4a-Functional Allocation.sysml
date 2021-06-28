@@ -6,7 +6,7 @@ package '4a-Functional Allocation' {
 	part vehicle1_c1_functional_allocation :> vehicle1_c1 {
 		// Note: The definitions of the port types in '2a-Parts Interconnection' do not include 
 		// flow properties.
-		port fuelCmdPort :>> vehicle1_c1::fuelCmdPort {
+		port :>> fuelCmdPort {
 			in fuelCmd: FuelCmd;
 		}
 
@@ -16,23 +16,23 @@ package '4a-Functional Allocation' {
 		 */
 		perform 'provide power' {
 			// This assigns the fuelCmdPort to provide the input to 'provide power'.
-			in fuelCmd = fuelCmdPort::fuelCmd;
+			in fuelCmd = fuelCmdPort.fuelCmd;
 		}
 		
 		//*
 		// The above is semantically equivalent to:
 		
 		ref action 'provide power' (in fuelCmd = fuelCmdPort::fuelCmd) 
-		   :> '3a-Function-based Behavior'::'provide power', enactedPerformances;		
+		   :> '3a-Function-based Behavior'::'provide power', performedActions;		
 			
 		// For a composite enacted performance within the vehicle, replace the above with:
 		
 		action 'provide power' (in fuelCmd = fuelCmdPort::fuelCmd) 
-		   :>> '3a-Function-based Behavior'::'provide power';
+		   :> '3a-Function-based Behavior'::'provide power';
 		*/
 		
-		part engine :>> vehicle1_c1::engine {
-			port fuelCmdPort :>> vehicle1_c1::engine::fuelCmdPort {
+		part :>> engine {
+			port :>> fuelCmdPort {
 				in fuelCmd: FuelCmd;
 			}
 			
@@ -40,64 +40,64 @@ package '4a-Functional Allocation' {
 			 *  This allocates one of the sub-steps of 'provide power' to a sub-part of vehicle_c1. 
 			 */ 
 			perform 'generate torque' {
-				in fuelCmd = fuelCmdPort::fuelCmd;
-				out engineTorque = drivePwrPort::engineTorque;
+				in fuelCmd = fuelCmdPort.fuelCmd;
+				out engineTorque = drivePwrPort.engineTorque;
 			}
 			
-			port drivePwrPort :>> vehicle1_c1::engine::drivePwrPort {
+			port :>> drivePwrPort {
 				out engineTorque: Torque;
 			}
 		}
 		
-		part transmission :>> vehicle1_c1::transmission {
-			port clutchPort :>> vehicle1_c1::transmission::clutchPort {
+		part :>> transmission {
+			port :>> clutchPort {
 				in attribute engineTorque: Torque;
 			}
 			
 			perform 'amplify torque' {
-				in engineTorque = clutchPort::engineTorque; 
-				out transmissionTorque = shaftPort_a::transmissionTorque;
+				in engineTorque = clutchPort.engineTorque; 
+				out transmissionTorque = shaftPort_a.transmissionTorque;
 			}
 
-			port shaftPort_a :>> vehicle1_c1::transmission::shaftPort_a {
+			port :>> shaftPort_a {
 				out transmissionTorque: Torque;
 			}
 		}
 		
-		part driveshaft :>> vehicle1_c1::driveshaft {
-			port shaftPort_b :>> Driveshaft::shaftPort_b {
+		part :>> driveshaft {
+			port :>> shaftPort_b {
 				in transmissionTorque: Torque;
 			}
 
 			perform 'transfer torque' {
-				in transmissionTorque = shaftPort_b::transmissionTorque; 
-				out driveshaftTorque = shaftPort_c::driveshaftTorque;
+				in transmissionTorque = shaftPort_b.transmissionTorque; 
+				out driveshaftTorque = shaftPort_c.driveshaftTorque;
 			}
 
-			port shaftPort_c :>> Driveshaft::shaftPort_c {
+			port :>> shaftPort_c {
 				out driveshaftTorque: Torque;
 			}			
 		}
 		
-		part rearAxleAssembly :>> vehicle1_c1::rearAxleAssembly {
-			port shaftPort_d :>> vehicle1_c1::rearAxleAssembly::shaftPort_d {
+		part :>> rearAxleAssembly {
+			port :>> shaftPort_d {
 				in driveshaftTorque: Torque;
 			}
 				
 			perform 'distribute torque' {
-				in driveshaftTorque = shaftPort_d::driveshaftTorque; 
-				out wheelTorque1 = rearAxle::leftHalfAxle::axleToWheelPort::wheelTorque; 
-				out wheelTorque2 = rearAxle::rightHalfAxle::axleToWheelPort::wheelTorque;
+				in driveshaftTorque = shaftPort_d.driveshaftTorque; 
+				out wheelTorque1 = rearAxle.leftHalfAxle.axleToWheelPort.wheelTorque; 
+				out wheelTorque2 = rearAxle.rightHalfAxle.axleToWheelPort.wheelTorque;
 			}
 			
-			part rearAxle :>> vehicle1_c1::rearAxleAssembly::rearAxle {
-				part leftHalfAxle :>> vehicle1_c1::rearAxleAssembly::rearAxle::leftHalfAxle {
-					port axleToWheelPort :>> vehicle1_c1::rearAxleAssembly::rearAxle::leftHalfAxle::leftAxleToWheelPort {
+			part :>> rearAxle {
+				part :>> leftHalfAxle {
+					port :>> axleToWheelPort {
 						out wheelTorque: Torque;
 					}
 				}
-				part rightHalfAxle :>> vehicle1_c1::rearAxleAssembly::rearAxle::rightHalfAxle {
-					port axleToWheelPort :>> vehicle1_c1::rearAxleAssembly::rearAxle::rightHalfAxle::rightAxleToWheelPort {
+				part :>> rightHalfAxle {
+					port :>> axleToWheelPort {
 						out wheelTorque: Torque;
 					}
 				}

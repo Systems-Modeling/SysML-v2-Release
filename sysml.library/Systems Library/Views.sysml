@@ -116,6 +116,6 @@ package Views {
 		view columnView[0..*] ordered {
 			abstract ref rendering :>> viewRendering[0..1];
 		}
-		rendering :>> subrenderings[0..*] = columnView::viewRendering;
+		rendering :>> subrenderings[0..*] = columnView.viewRendering;
 	}
 }
