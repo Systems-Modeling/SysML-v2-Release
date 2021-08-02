@@ -3,7 +3,7 @@ package 'Package Example' {
 	 
 	part def Automobile;
 	
-	alias Automobile as Car;	                         
+	alias Car for Automobile;	                         
 	
-	private import ISQ::TorqueValue as Torque;
+	private import ISQ::TorqueValue;
 }

@@ -30,9 +30,6 @@ package DataFunctions {
 	
 	abstract function '==' specializes BaseFunctions::'=='(x: DataValue[0..1], y: DataValue[0..1]): Boolean[1];
 	
-	/** Deprecated */
-	abstract function '@['(x: DataValue[1], y: Base::Anything[1]): DataValue[1];
-	
 	abstract function '..'(lower: DataValue[1], upper: DataValue[1]): DataValue[0..*] ordered;
 	
 	abstract function sum(collection: DataValue[0..*] ordered): DataValue[1];

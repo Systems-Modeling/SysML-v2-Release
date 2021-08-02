@@ -24,7 +24,9 @@ package '6-Individual and Snapshots' {
 			attribute velocity : Real;
 			attribute acceleration : Real;
 			exhibit state vehicleStates {
+				entry; then on;
 				state on;
+				then off;
 				state off;
 			}
 		}

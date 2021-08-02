@@ -5,6 +5,7 @@ package Transfers {
 	private import Base::Anything;
 	private import Occurrences::*;
 	private import Links::*;
+	private import Objects::BinaryLinkObject;
 	private import Performances::Performance;
 	private import Performances::performances;
 	private import ScalarValues::Boolean;
@@ -34,18 +35,18 @@ package Transfers {
 		 * If isMove is true, then all items leave the source at the start
 		 * of the transfer.
 		 */
-		feature isMove: Boolean = notEmpty(moving);
+		feature isMove: Boolean[1] = notEmpty(moving);
 		
 		/**
 		 * If isPush is true, then the transfer begins when the items are available
 		 * at the source.
 		 */
-		feature isPush: Boolean = notEmpty(pushing);
+		feature isPush: Boolean[1] = notEmpty(pushing);
 		
 		/**
 		 * If isInstance is true, then the transfer is instantaneous.
 		 */
-		feature isInstant: Boolean = notEmpty(instant);
+		feature isInstant: Boolean[1] = notEmpty(instant);
 		
 		/**
 		 * The items that are transferred.
@@ -53,30 +54,20 @@ package Transfers {
 		feature item: Anything[1..*];
 		
 		/**
-		 * The link from the transfer source to the items it is outputing.
-		 */
-		assoc struct SourceOutputLink {
-			end feature source: Occurrence[1];
-			end feature target: Occurrence[1..*] redefines target, Transfer::source::sourceOutput;
-		}
-		
-		/**
 		 * The output of the items from the sourceOutput.
 		 */
-		connector sourceOutputLink: SourceOutputLink[1..*] from source to item;
-		
-		/**
-		 * The link from the transfer source to the items it is inputing.
-		 */
-		assoc struct TargetInputLink {
-			end feature source: Occurrence[1..*] redefines source, Transfer::target::targetInput;
-			end feature target: Occurrence[1];
+		connector sourceOutputLink: BinaryLinkObject[1..*] {
+			end transferSource subsets source[1];
+			end transferPayload subsets item[1..*] subsets transferSource.sourceOutput;
 		}
 		
 		/**
 		 * The input of the items to the targetInput.
 		 */
-		connector targetInputLink: TargetInputLink[1..*] from item to target;
+		connector targetInputLink: BinaryLinkObject[1..*] {
+			end transferTarget subsets target[1];
+			end transferPayload subsets item[1..*] subsets transferTarget.targetInput;
+		}
 		
 		/**
 		 * The start of the transfer happens during the output of each of the items from the
@@ -106,7 +97,7 @@ package Transfers {
 		/**
 		 * If isInstant is true, then the start and end of the transfer happen at the same time.
 		 */
-		private binding instant[0..1] of startShot[1] = endShot[1];
+		private binding instant[0..1] of startShot[0..1] = endShot[0..1];
 	}
 	 
 	/**

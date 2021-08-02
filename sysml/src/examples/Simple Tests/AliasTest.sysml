@@ -1,7 +1,10 @@
 package AliasTest {
+	import Quantities::quantities; // import of an alias	
+	attribute q :> quantities;
+	
     part def P1 {
         port porig1;
-        alias porig1 as po1;
+        alias po1 for porig1;
     }
 
     part p1 : P1 {
@@ -10,10 +13,10 @@ package AliasTest {
 
     part p2 : P1 {
         port pdest;
-        alias pdest as pd1;
+        alias pd1 for pdest;
     }
 
 
-    connect p1::po1 to p2::pdest;
-	connect p1::po1 to p2::pd1;
+    connect p1.po1 to p2.pdest;
+	connect p1.po1 to p2.pd1;
 }

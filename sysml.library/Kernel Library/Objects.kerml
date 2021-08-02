@@ -6,6 +6,9 @@ package Objects {
 	private import Base::things;
 	private import Links::*;
 	private import Occurrences::Occurrence;
+	private import Occurrences::occurrences;
+	private import Occurrences::HappensLink;
+	private import Occurrences::SelfSameLifeLink;
 	private import Performances::Performance;
 	private import Performances::performances;
 	
@@ -29,21 +32,18 @@ package Objects {
 	/**
 	 * LinkObject is the most general association structure, being both a Link and an Object.
 	 */
-	abstract assoc struct LinkObject specializes Link, Object;
+	abstract assoc struct LinkObject specializes Link, Object disjoint from SelfLink, SelfSameLifeLink, HappensLink; 
 	
 	/**
 	 * BinaryLinkObject is the most general binary association structure, being both a 
 	 * BinaryLink and a LinkObject.
 	 */
-	assoc struct BinaryLinkObject specializes BinaryLink, LinkObject {
-		end feature source: Anything[0..*] nonunique subsets BinaryLink::source;
-	    end feature target: Anything[0..*] nonunique subsets BinaryLink::target;
-	}
+	assoc struct BinaryLinkObject specializes BinaryLink, LinkObject;
 	
 	/**
-	 * objects is a specialization of things restricted to type Object.
+	 * objects is a specialization of occurrences restricted to type Object.
 	 */
-	abstract feature objects: Object[0..*] nonunique subsets things;
+	abstract feature objects: Object[0..*] nonunique subsets occurrences;
 	
 	/**
 	 * linkObjects is a specializations of links and objects restricted to type LinkObjects. 

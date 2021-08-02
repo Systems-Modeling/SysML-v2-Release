@@ -9,14 +9,13 @@ package StateTest {
 	action act;
 	
 	state def S {
-		entry action A; then S1;
 		do action B;
-		exit act;
+		entry action A; then S1;
 		
 		state S1;
 		
 		state S2 {
-			do send Sig(T::s::x) to p;
+			do send Sig(T.s.x) to p;
 		}
 		accept Exit then done;
 		
@@ -31,6 +30,13 @@ package StateTest {
 			accept s : Sig
 			if true
 			do send s to p
-			then S1;		
+			then S1;
+			
+		exit act;
+	}
+	
+	state s parallel {
+		state s1;
+		state s2;
 	}
 }

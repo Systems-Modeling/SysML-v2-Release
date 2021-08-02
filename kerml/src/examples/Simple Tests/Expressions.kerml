@@ -7,7 +7,7 @@ package Expressions {
 	aa : Boolean;
 	x = ToString(a * a + 3 == 4);
 	y = NumericalFunctions::'+'(1,2);
-	z : Boolean = aa & true ^^ zz | false;
+	z : Boolean = aa & true ^^ zz | false => z;
 	zz : Boolean = aa and true xor aa or false implies z;
 	
 	b = x > y? x-y: y-x;
@@ -23,8 +23,10 @@ package Expressions {
 			succession decrement then update;
 			step update : FeatureAccessPerformances::FeatureWritePerformance {
 				inout replacementValues = decrement.v_decr;
-				feature redefines onOccurrence = w::self {
-					feature redefines accessedFeature redefines v;
+				in redefines onOccurrence = w::self {
+					feature redefines startingAt : w {
+						feature redefines accessedFeature redefines v;
+					}
 				}
 			}
 		}

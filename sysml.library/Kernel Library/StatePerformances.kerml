@@ -45,7 +45,7 @@ package StatePerformances {
 	behavior StateTransitionPerformance specializes TransitionPerformance {
 		feature isTriggerDuring: Boolean;
 		
-		feature transitionLinkSource: StatePerformance redefines TransitionPerformance::transitionLinkSource {
+		in feature transitionLinkSource: StatePerformance redefines TransitionPerformance::transitionLinkSource {
 			feature redefines accepted[1];
 		}
 		

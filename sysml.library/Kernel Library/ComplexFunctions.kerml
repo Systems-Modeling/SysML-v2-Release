@@ -17,6 +17,7 @@ package ComplexFunctions {
 	function '*' specializes NumericalFunctions::'*' (x: Complex[1], y: Complex[1]): Complex[1];
 	function '/' specializes NumericalFunctions::'/' (x: Complex[1], y: Complex[1]): Complex[1];
 	function '**' specializes NumericalFunctions::'**' (x: Complex[1], y: Complex[1]): Complex[1];
+	function '^' specializes NumericalFunctions::'^' (x: Complex[1], y: Complex[1]): Complex[1];
 	
 	function '==' specializes DataFunctions::'==' (x: Complex[0..1], y: Complex[0..1]): Boolean[1];
 	

@@ -109,31 +109,4 @@ package Collections {
 		feature elements: KeyValuePair[0..*] ordered :>> Map::elements;
     }
     
-	/**
-	 * SamplePair is a key-value pair of a domain-value and a range-value, used as a sample element in SampledFunction.
-	 */
-    datatype SamplePair :> KeyValuePair {
-        feature domainValue :>> key;
-        feature rangeValue :>> val;
-    }
-
-	/**
-     * SampledFunction is a variable-size, ordered collection of `SamplePair` elements that represents a generic, discretely sampled, 
-     * uni-variate or multi-variate mathematical function.
-     * 
-     * It maps discrete domain values to discrete range values.
-     * The domain of the function is represented by the sequence of `domainValue` of each `SamplePair` in `samples`, and 
-     * the range of the function is represented by the sequence of `rangeValue` of each `SamplePair` in `samples`.
-     * 
-     * TODO: Decide whether to keep SampledFunction in KerML or move to SysML
-     */
-	datatype SampledFunction :> OrderedMap {
-		feature samples: SamplePair[0..*] ordered :>> elements;
-        // TODO: Add invariant that constrains the domain ordering to be strictly monotonic, i.e. either strictly increasing or strictly descreasing.
-        //inv { 
-        //	// This assumes that the functions '<' and '>' are defined for the domain type.
-        //	({1..size(samples)-1}->forAll i (samples[i].domainValue < samples[i+1].domainValue)) |  // Strictly increasing
-        //	({1..size(samples)-1}->forAll i (samples[i].domainValue > samples[i+1].domainValue))    // Strictly decreasing
-        //}
-	}
 }

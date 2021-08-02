@@ -6,7 +6,7 @@ package '3a-Function-based Behavior-1' {
 		/**
 		 * The 'TorqueValue' type is imported with the alias 'Torque'.
 		 */
-		import ISQ::TorqueValue as Torque;
+		alias Torque for ISQ::TorqueValue;
 		
 		attribute def FuelCmd;
 		

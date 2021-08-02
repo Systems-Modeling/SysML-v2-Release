@@ -18,13 +18,13 @@ package Quantities {
 		attribute num: ScalarValues::Number[1..*] ordered nonunique :>> elements;
 		attribute mRef: UnitsAndScales::TensorMeasurementReference;
 		attribute measure: UnitsAndScales::TensorMeasurementReference;
-        attribute :>> dimensions = mRef::dimensions;
-		attribute order :>> rank = mRef::order;
+        attribute :>> dimensions = mRef.dimensions;
+		attribute order :>> rank = mRef.order;
         attribute contravariantOrder: ScalarValues::Natural;
         attribute covariantOrder: ScalarValues::Natural;
 
         assert constraint orderSum { contravariantOrder + covariantOrder == order }
-        assert constraint boundMatch { (isBound == mRef::isBound) || (!isBound && mRef::isBound) }
+        assert constraint boundMatch { (isBound == mRef.isBound) || (!isBound && mRef.isBound) }
 	}
 	
 	abstract attribute def VectorQuantityValue :> TensorQuantityValue {
@@ -47,8 +47,8 @@ package Quantities {
     /*
      * Define generic aliases QuantityValue and quantities for the top level quantity attribute def and attribute.
      */
-	alias TensorQuantityValue as QuantityValue;
-	alias tensorQuantities as quantities;
+	alias QuantityValue for TensorQuantityValue;
+	alias quantities for tensorQuantities;
 	
 	/**
 	 * A SystemOfQuantities represents the essentials of [VIM] concept "system of quantities" (https://jcgm.bipm.org/vim/en/1.3.html), defined as a

@@ -6,6 +6,6 @@ package PictureTaking {
 		
 	action takePicture() {		
 		action focus: Focus[1] (out xrsl);	
-		action shoot: Shoot[1] (in xsf flow from focus::xrsl);
+		action shoot: Shoot[1] (in xsf flow from focus.xrsl);
 	}
 }

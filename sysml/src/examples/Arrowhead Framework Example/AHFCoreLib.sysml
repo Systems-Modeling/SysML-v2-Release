@@ -7,34 +7,47 @@ package AHFCoreLib {
 		// The functionalities as Requests (Operations) cannot be defined yet
 		// We could consider using flows to designate the functionalities
 	}
+	
+	port def ServiceDiscoveryDD :> ServiceDiscovery, SDDD{
+		port ServiceDiscovery_HTTP :> idd{// nested port for HTTP protocol
+			/* here we refer the functionalities like operation Register etc. */
+		} 
+	}
 		
 	port def Authorisation :> SD{
 		attribute publickey:String; // just as examples
 	}
+
+	port def AuthorisationDD :> Authorisation, SDDD{
+		port Authorisation_HTTP :> idd; // nested port for HTTP protocol
+	}
 	
-	part def ArrowheadCore :> LocalCloud{
+	part def ArrowheadCore :> LocalCloudDD{
+		/** Design Level */
 		/* First the system definitions (SysD) of core systems */
-		part def ServiceRegistry :> SysD {
-			port serviceDiscovery:ServiceDiscovery subsets services;
+		part def ServiceRegistryDesign :> SysD {
+			port serviceDiscovery:ServiceDiscovery :> services;
 		}
 		
-		part def Authorization :> SysD {
-			port authorisation:Authorisation subsets services;
+		part def AuthorizationDesign :> SysD {
+			port authorisation:Authorisation :> services;
+			attribute protocol:String = "HTTP";
 		}
 		
-		part def Orchestration :> SysD; // just indicated for now
+		part def OrchestrationDesign :> SysD; // just indicated for now
+
+		part service_registry:ServiceRegistryDesign :> systems;
+		part authorization:AuthorizationDesign :> systems;
+		part orchestration:OrchestrationDesign :> systems;
 		
-		part service_registry:ServiceRegistry subsets systems;
-		part authorization:Authorization subsets systems;
-		part orchestration:Orchestration subsets systems;
-		
-		/* Then we include an example of SysDD specializations wrt protocol */
-		part def Authorization_HTTP :> Authorization, SysDD{
-			action Echo_behavior subsets ServiceMethod;
+		/** Design Description level */		
+		part def ServiceRegistryDD :> ServiceRegistryDesign{
+			port :>> serviceDiscovery:ServiceDiscoveryDD;
 		}
-		
-		port def Authorisation_HTTP :> Authorisation, IDD{
-			protocol:String = "HTTP";
+
+		part def Authorization_DD :> AuthorizationDesign, SysDD{
+			port :>> authorisation:AuthorisationDD;
+			action Echo_behavior :> ServiceMethod;
 		}
 	}
 }

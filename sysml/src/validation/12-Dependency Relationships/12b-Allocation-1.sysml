@@ -49,7 +49,7 @@ package '12b-Allocation-1' {
 	}
 	
 	allocation torqueGenAlloc : LogicalToPhysical 
-		allocate logical => torqueGenerator to physical => powerTrain {
+		allocate logical :> torqueGenerator to physical :> powerTrain {
 			
 		allocate torqueGenerator.generateTorque to powerTrain.engine.generateTorque;		
 	}

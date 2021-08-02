@@ -3,7 +3,7 @@ package '3a-Function-based Behavior-2' {
 	import Usages::*;
 
 	package Definitions {
-		import ISQ::TorqueValue as Torque;
+		alias Torque for ISQ::TorqueValue;
 		
 		// VALUE TYPES
 		
@@ -38,7 +38,7 @@ package '3a-Function-based Behavior-2' {
 			 * The binding connector shorthand can be used on action parameters.
 			 */
 			action 'generate torque': 'Generate Torque' {
-				in fuelCmd = 'provide power'.fuelCmd;
+				in fuelCmd = 'provide power'::fuelCmd;
 				out engineTorque: Torque;
 			}
 			
@@ -57,8 +57,8 @@ package '3a-Function-based Behavior-2' {
 						
 			action 'distribute torque': 'Distribute Torque' {
 				in driveshaftTorque stream from 'transfer torque'.driveshaftTorque; 
-				out wheelTorque1 = 'distribute torque'.wheelTorque1;
-				out wheelTorque2 = 'distribute torque'.wheelTorque2;
+				out wheelTorque1 = 'distribute torque'::wheelTorque1;
+				out wheelTorque2 = 'distribute torque'::wheelTorque2;
 			}
 			
 			// CONTROL FLOW PART

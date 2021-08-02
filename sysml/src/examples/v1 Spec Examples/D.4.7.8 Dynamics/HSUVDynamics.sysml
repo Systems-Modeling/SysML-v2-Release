@@ -61,25 +61,25 @@ package HSUVDynamics {
 			attribute redefines Cd = StraightLineVehicleDynamics::Cd;
 			attribute redefines Cf = StraightLineVehicleDynamics::Cf;
 			attribute redefines tw = StraightLineVehicleDynamics::tw;
-			attribute redefines v = vel::v;
+			attribute redefines v = vel.v;
 			attribute redefines tp;
 		}
 		
 		constraint acc : AccelerationEquation {
-			attribute redefines tp = pwr::tp;
+			attribute redefines tp = pwr.tp;
 			attribute redefines tw = StraightLineVehicleDynamics::tw;
 			attribute redefines dt = StraightLineVehicleDynamics::dt;
 			attribute redefines a = StraightLineVehicleDynamics::a;
 		}
 		
 		constraint vel : VelocityEquation {
-			attribute redefines a = acc::a;
+			attribute redefines a = acc.a;
 			attribute redefines v = StraightLineVehicleDynamics::v;
 			attribute redefines dt = StraightLineVehicleDynamics::dt;
 		}
 		
 		constraint pos : PositionEquation {
-			attribute redefines v = vel::v;
+			attribute redefines v = vel.v;
 			attribute redefines x = StraightLineVehicleDynamics::x;
 			attribute redefines dt = StraightLineVehicleDynamics::dt;
 		}

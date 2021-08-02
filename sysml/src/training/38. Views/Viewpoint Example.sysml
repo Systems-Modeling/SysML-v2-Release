@@ -1,6 +1,6 @@
 package 'Viewpoint Example' {	
-	stakeholder 'systems engineer';
-	stakeholder 'IV&V';
+	part def 'Systems Engineer';
+	part def 'IV&V';
 	
 	concern 'system breakdown' {
 		doc /* 
@@ -9,8 +9,8 @@ package 'Viewpoint Example' {
 		 * subsystems and components that provide those capabilities.
 		 */
 		 
-		affect 'systems engineer';
-		affect 'IV&V';
+		stakeholder se : 'Systems Engineer';
+		stakeholder ivv : 'IV&V';
 	}
 	
 	concern 'modularity' {
@@ -20,7 +20,7 @@ package 'Viewpoint Example' {
 		 * as well as being part of the whole system.
 		 */
 		 
-		 affect 'systems engineer';
+		 stakeholder se : 'Systems Engineer';
 	}
 	
 	viewpoint 'system structure perspective' {		

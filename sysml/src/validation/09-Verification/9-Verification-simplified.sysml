@@ -69,7 +69,7 @@ package '9-Verification-simplified' {
 				in massProcessed :> ISQ::mass = processData.massProcessed;
 				out verdict : VerdictKind = 
 					// Check that 'testVehicle' statisfies 'vehicleMassRequirement' if its mass equals 'massProcessed'.
-					PassIf(vehicleMassRequirement(vehicle => testVehicle, massActual => massProcessed));
+					PassIf(vehicleMassRequirement(vehicle = testVehicle, massActual = massProcessed));
 			}
 			
 			return verdict : VerdictKind = evaluateData.verdict;

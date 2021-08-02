@@ -86,8 +86,8 @@ package VehicleVariabilityModel {
 		        	}
 		        	
 		          	assert constraint {
-		            	(autoPort == autoPort::autoPort1 & cylinder::diameter == cylinder::diameter::diameterSmall) ^
-		             	(autoPort == autoPort::autoPort2 & cylinder::diameter == cylinder::diameter::diameterLarge)
+		            	(autoPort == autoPort::autoPort1 & cylinder.diameter == cylinder::diameter::diameterSmall) ^
+		             	(autoPort == autoPort::autoPort2 & cylinder.diameter == cylinder::diameter::diameterLarge)
 		        	}
 		        }
 		    }

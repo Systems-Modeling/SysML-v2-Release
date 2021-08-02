@@ -60,7 +60,7 @@ package VehicleModel {
                 }
                 attribute fuelMassMax :> ISQ::mass;
                 assert constraint {
-                    fuel::fuelMass <= fuelMassMax
+                    fuel.fuelMass <= fuelMassMax
                 }
             }
             part def Road {
@@ -115,8 +115,8 @@ package VehicleModel {
             attribute def ReturnToNormal;
             // The following are work arounds until time events and
             // change events are available
-            attribute def 'at(vehicle::maintenanceTime)';
-            attribute def 'when(temp>vehicle::Tmax)';
+            attribute def 'at(vehicle.maintenanceTime)';
+            attribute def 'when(temp>vehicle.Tmax)';
         }
         package InterfaceDefinitions {
             interface def EngineToTransmissionInterface {
@@ -197,9 +197,10 @@ package VehicleModel {
             import ScalarFunctions::*;
             import ISQ::*;
             import SI::*;
-            alias ISQ::TorqueValue as Torque;
+            alias Torque for ISQ::TorqueValue;
             //quantity used in analysis
             attribute def DistancePerVolumeValue :> Quantities::QuantityValue;
+            attribute hp = 745.7 * W;
         }
         package IndividualDefinitions {
             individual def SpatialTemporalReference_1 :> SpatialTemporalReference;
@@ -218,13 +219,13 @@ package VehicleModel {
             package PartsTree {
                 part vehicle_a: Vehicle {
                     attribute mass redefines Vehicle::mass =
-                        dryMass + cargoMass + fuelTank::fuel::fuelMass;
+                        dryMass + cargoMass + fuelTank.fuel.fuelMass;
                     attribute dryMass redefines Vehicle::dryMass = sum(partMasses);
-                    attribute redefines Vehicle::cargoMass = 0;
+                    attribute redefines Vehicle::cargoMass = 0 [kg];
                     attribute partMasses = (
-                        fuelTank::mass,
-                        frontAxleAssembly::mass,
-                        rearAxleAssembly::mass
+                        fuelTank.mass,
+                        frontAxleAssembly.mass,
+                        rearAxleAssembly.mass
                     );
                     part fuelTank: FuelTank {
                         attribute redefines mass = 75 [kg];
@@ -253,16 +254,16 @@ package VehicleModel {
             package PartsTree {
                 part vehicle_b: Vehicle {
                     attribute mass redefines Vehicle::mass =
-                        dryMass + cargoMass + fuelTank::fuel::fuelMass;
+                        dryMass + cargoMass + fuelTank.fuel.fuelMass;
                     attribute dryMass redefines Vehicle::dryMass = sum(partMasses);
-                    attribute redefines Vehicle::cargoMass = 0;
+                    attribute redefines Vehicle::cargoMass = 0 [kg];
                     attribute partMasses = (
-                        fuelTank::mass,
-                        frontAxleAssembly::mass,
-                        rearAxleAssembly::mass,
-                        engine::mass,
-                        transmission::mass,
-                        driveshaft::mass
+                        fuelTank.mass,
+                        frontAxleAssembly.mass,
+                        rearAxleAssembly.mass,
+                        engine.mass,
+                        transmission.mass,
+                        driveshaft.mass
                     );
                     port redefines fuelCmdPort {
                         in item redefines fuelCmd;
@@ -283,7 +284,7 @@ package VehicleModel {
                         ref item redefines fuel {
                             attribute redefines fuelMass = 60 [kg];
                         }
-                        attribute redefines fuelMassMax = 60;
+                        attribute redefines fuelMassMax = 60 [kg];
                     }
                     part frontAxleAssembly: AxleAssembly {
                         attribute mass :> ISQ::mass = 800 [kg];
@@ -321,15 +322,15 @@ package VehicleModel {
                                 port rightAxleToWheelPort: AxlePort;
                             }
                         }
-                        bind shaftPort_d = differential::shaftPort_d;
-                        connect differential::leftDiffPort
-                        to rearAxle::leftHalfAxle::leftAxleToDiffPort;
-                        connect differential::rightDiffPort
-                        to rearAxle::rightHalfAxle::rightAxleToDiffPort;
+                        bind shaftPort_d = differential.shaftPort_d;
+                        connect differential.leftDiffPort
+                        to rearAxle.leftHalfAxle.leftAxleToDiffPort;
+                        connect differential.rightDiffPort
+                        to rearAxle.rightHalfAxle.rightAxleToDiffPort;
                     }
                     part engine: Engine {
                         attribute mass :> ISQ::mass = 200 [kg];
-                        attribute peakHorsePower: PowerValue = 200;
+                        attribute peakHorsePower: PowerValue = 200 [hp];
                         port fuelCmdPort: FuelCmdPort {
                             in item redefines fuelCmd;
                         }
@@ -359,22 +360,22 @@ package VehicleModel {
                             }
                         }
                     }
-                    bind engine::fuelCmdPort = fuelCmdPort;
+                    bind engine.fuelCmdPort = fuelCmdPort;
                     interface engineToTransmissionInterface: EngineToTransmissionInterface
-                    connect engine::drivePwrPort to transmission::clutchPort {
+                    connect engine.drivePwrPort to transmission.clutchPort {
                         ref action generateToAmplify :> ActionTree::providePower::generateToAmplify;
                     }
-                    connect transmission::shaftPort_a to driveshaft::shaftPort_b;
-                    connect driveshaft::shaftPort_c to rearAxleAssembly::shaftPort_d;
-                    bind rearAxleAssembly::rearWheel1::wheelToRoadPort = vehicleToRoadPort::wheelToRoadPort1;
-                    bind rearAxleAssembly::rearWheel2::wheelToRoadPort = vehicleToRoadPort::wheelToRoadPort2;
+                    connect transmission.shaftPort_a to driveshaft.shaftPort_b;
+                    connect driveshaft.shaftPort_c to rearAxleAssembly.shaftPort_d;
+                    bind rearAxleAssembly.rearWheel1.wheelToRoadPort = vehicleToRoadPort.wheelToRoadPort1;
+                    bind rearAxleAssembly.rearWheel2.wheelToRoadPort = vehicleToRoadPort.wheelToRoadPort2;
                 }
             }
             package ActionTree {
                 action providePower: ProvidePower {
                     in item redefines fuelCmd;
                     out wheelToRoadTorque redefines wheelToRoadTorque[2] =
-                        distributeTorque::wheelToRoadTorque;
+                        distributeTorque.wheelToRoadTorque;
                     // No successions (control flows) between these actions, because the
                     // flows between them are continuous streams.
                     action generateTorque: GenerateTorque {
@@ -394,19 +395,19 @@ package VehicleModel {
                         in driveshaftTorque redefines driveshaftTorque;
                         out wheelToRoadTorque redefines wheelToRoadTorque[2];
                     }
-                    stream generateToAmplify from generateTorque::engineTorque
-                    to amplifyTorque::engineTorque;
-                    stream amplifyTorque::transmissionTorque
-                    to transferTorque::transmissionTorque;
-                    stream transferTorque::driveshaftTorque
-                    to distributeTorque::driveshaftTorque;
+                    stream generateToAmplify from generateTorque.engineTorque
+                    to amplifyTorque.engineTorque;
+                    stream amplifyTorque.transmissionTorque
+                    to transferTorque.transmissionTorque;
+                    stream transferTorque.driveshaftTorque
+                    to distributeTorque.driveshaftTorque;
                 }
                 action performSelfTest: PerformSelfTest;
                 action applyParkingBrake: ApplyParkingBrake;
                 action senseTemperature: SenseTemperature;
             }
             package States {
-                state vehicleStates: VehicleStates {
+                state vehicleStates: VehicleStates parallel {
                     ref vehicle: Vehicle;
                     ref controller: VehicleController;
                     state operatingStates {
@@ -414,17 +415,17 @@ package VehicleModel {
                         state off;
                         state starting;
                         state on {
-                            entry vehicle::performSelfTest;
-                            // was vehicle::providePower;
+                            entry vehicle.performSelfTest;
+                            // was vehicle.providePower;
                             do ActionTree::providePower;
-							exit vehicle::applyParkingBrake;
-							constraint {vehicle::electricalPower <= 500}
+							exit vehicle.applyParkingBrake;
+							constraint {vehicle.electricalPower <= 500}
 						}
 						transition initial then off;
 						transition 'off-starting'
 							first off
 							accept VehicleStartSignal
-							if vehicle::brakePedalDepressed
+							if vehicle.brakePedalDepressed
 							do send StartSignal()to controller
 							then starting;
 
@@ -439,18 +440,18 @@ package VehicleModel {
 					}
 					state healthStates {
 						entry action initial;
-						do vehicle::senseTemperature(out temp);
+						do vehicle.senseTemperature(out temp);
 						state normal;
 						state maintenance;
 						state degraded;
 						transition initial then normal;
 						transition 'normal-maintenance'
 							first normal
-							accept 'at(vehicle::maintenanceTime)'
+							accept 'at(vehicle.maintenanceTime)'
 							then maintenance;
 						transition 'normal-degraded'
 							first normal
-							accept 'when(temp>vehicle::Tmax)'
+							accept 'when(temp>vehicle.Tmax)'
 							do send OverTemp()to controller
 							then degraded;
 						transition 'maintenance-normal'
@@ -463,7 +464,7 @@ package VehicleModel {
 							then normal;
 					}
 				}
-				state controllerStates: ControllerStates {
+				state controllerStates: ControllerStates parallel {
 					state operatingStates {
 						entry action initial;
 						state off;
@@ -501,8 +502,8 @@ package VehicleModel {
 							doc /* The total mass of a vehicle shall be less than or equal
 							 * to the required mass.*/
 							/* Assume total mass includes a full tank of gas*/
-							attribute redefines massRequired = 2000;
-							attribute redefines massActual = vehicle::mass;
+							attribute redefines massRequired = 2000 [kg];
+							attribute redefines massActual = vehicle.mass;
 						}
 						requirement id '2' vehicleFuelEconomyRequirements {
 							doc /* fuel economy requirements group */
@@ -532,7 +533,7 @@ package VehicleModel {
 						requirement torqueGeneration: TorqueGenerationRequirement;
 						requirement drivePowerInterface: DrivePowerInterfaceRequirement;
 					}
-					satisfy engineSpecification::torqueGeneration by vehicle_b::engine;
+					satisfy engineSpecification::torqueGeneration by vehicle_b.engine;
 				}
 			}
 		}
@@ -559,7 +560,7 @@ package VehicleModel {
 	package FuelEconomyAnalysisModel {
 		import VehicleConfigurations::VehicleConfiguration_b::PartsTree::*;
 		import VehicleConfigurations::VehicleConfiguration_b::Requirements::*;
-		import Collections::SampledFunction;
+		import SampledFunctions::SampledFunction;
 		attribute def NominalScenario :> SampledFunction;
 		analysis fuelEconomyAnalysis {
 			return attribute calculatedFuelEconomy: DistancePerVolumeValue;
@@ -572,8 +573,8 @@ package VehicleModel {
 				require vehicleSpecification::vehicleFuelEconomyRequirements;
 			}
 			action straightLineDynamics {
-				in power: PowerValue = vehicle_b::engine::peakHorsePower;
-				in mass: MassValue = vehicle_b::mass;
+				in power: PowerValue = vehicle_b.engine.peakHorsePower;
+				in mass: MassValue = vehicle_b.mass;
 				in delta_t: TimeValue;
 				in x_in: LengthValue;
 				in v_in: SpeedValue;

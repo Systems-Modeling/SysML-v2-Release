@@ -27,9 +27,6 @@ package ScalarFunctions {
 	abstract function Max specializes DataFunctions::Max (x: ScalarValue[1], y: ScalarValue[1]): ScalarValue[1];
 	abstract function Min specializes DataFunctions::Min (x: ScalarValue[1], y: ScalarValue[1]): ScalarValue[1];
 	
-	/** Deprecated */
-	abstract function '@[' specializes DataFunctions::'@[' (x: ScalarValue[1], y: Base::Anything): ScalarValue[1];
-	
 	abstract function '..' specializes DataFunctions::'..' (lower: ScalarValue[1], upper: ScalarValue[1]): ScalarValue[0..*];
 	
 	abstract function sum specializes DataFunctions::sum (collection: ScalarValue[0..*]): ScalarValue[1];

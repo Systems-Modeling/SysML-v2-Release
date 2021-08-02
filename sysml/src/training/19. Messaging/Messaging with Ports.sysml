@@ -20,7 +20,7 @@ package 'Messaging Example' {
 		port displayPort;
 		
 		action takePicture : TakePicture {
-			action trigger accept scene : Scene for viewPort;
+			action trigger accept scene : Scene via viewPort;
 			
 			then action focus : Focus {
 				in item scene = trigger.scene;

@@ -72,7 +72,7 @@ package 'Analysis Case Definition Example' {
 		}
 		
 		then action solveForFuelConsumption {
-			in power : PowerValue[*] = solveForPower::power;
+			in power : PowerValue[*] = solveForPower.power;
 			out fuelEconomy : DistancePerVolumeValue = fuelEconomyResult;
 		
 			/*

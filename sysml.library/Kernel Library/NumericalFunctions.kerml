@@ -8,6 +8,7 @@ package NumericalFunctions {
 	abstract function '*' specializes ScalarFunctions::'*' (x: NumericalValue[1], y: NumericalValue[1]): NumericalValue[1];
 	abstract function '/' specializes ScalarFunctions::'/' (x: NumericalValue[1], y: NumericalValue[1]): NumericalValue[1];
 	abstract function '**' specializes ScalarFunctions::'**' (x: NumericalValue[1], y: NumericalValue[1]): NumericalValue[1];
+	abstract function '^' specializes ScalarFunctions::'^' (x: NumericalValue[1], y: NumericalValue[1]): NumericalValue[1];
 	abstract function '%' specializes ScalarFunctions::'%' (x: NumericalValue[1], y: NumericalValue[1]): NumericalValue[1];
 	
 	abstract function '<' specializes ScalarFunctions::'<' (x: NumericalValue[1], y: NumericalValue[1]): Boolean[1];

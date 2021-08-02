@@ -5,7 +5,10 @@
 package Items {
 	private import Objects::Object;
 	private import Objects::objects;
+	private import Parts::Part;
+	private import Parts::parts;
 	private import Constraints::ConstraintCheck;
+	private import Constraints::constraintChecks;
 	
 	/**
 	 * Item is the most general class of objects that are part of, exist in or flow through a system. 
@@ -18,9 +21,20 @@ package Items {
 		item done: Item :>> endShot;
 		
 		/**
-		 * Constraints that are asserted by this item.
+		 * The Items that are composite subitems of this Item.
 		 */
-		abstract ref constraint assertedConstraints: ConstraintCheck[0..*] :> enactedPerformances;
+		abstract item subitems: Item[0..*];
+		
+		/**
+		 * The subitems of this Item that are Parts.
+		 */
+		abstract part subparts: Part[0..*] :> subitems, parts;
+		
+		/**
+		 * Constraints that have been checked by this item.
+		 */
+		abstract ref constraint checkedConstraints: ConstraintCheck[0..*] :> constraintChecks, enactedPerformances;
+
 	}
 	
 	/**

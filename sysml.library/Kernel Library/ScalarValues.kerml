@@ -7,12 +7,10 @@ package ScalarValues {
 	abstract datatype NumericalValue specializes ScalarValue;
 	
     abstract datatype Number specializes NumericalValue;
-	datatype Integer specializes Number;
-	datatype UnlimitedNatural specializes Number;
-	datatype Natural specializes Integer, UnlimitedNatural;
-    datatype Positive specializes Natural;
-	datatype Rational specializes Number;
-	datatype Real specializes Number;	
 	datatype Complex specializes Number;
-	
+	datatype Real specializes Complex;	
+	datatype Rational specializes Real;
+	datatype Integer specializes Rational;
+	datatype Natural specializes Integer;
+    datatype Positive specializes Natural;	
 }		

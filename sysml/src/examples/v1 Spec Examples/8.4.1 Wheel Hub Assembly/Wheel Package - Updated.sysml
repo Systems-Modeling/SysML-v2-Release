@@ -76,11 +76,11 @@ package 'Wheel Package - Updated' {
 				part weight : BalanceWeight[0..6];
 				part mountingHoles : LugBoltMountingHole[5];
 			}						
-			connection : PressureSeat connect t::bead to w::rim;		
+			connection : PressureSeat connect t.bead to w.rim;		
 		}
 		part lugBoltJoints: LugBoltJoint[5] {					
-			ref mountingHole: LugBoltMountingHole[1] subsets hub::h;
-			ref threadedHole: LugBoltThreadableHole[1] subsets wheel::w::mountingHoles;
+			ref mountingHole: LugBoltMountingHole[1] subsets wheel.w.mountingHoles;
+			ref threadedHole: LugBoltThreadableHole[1] subsets hub.h;
 		}
 		part hub: Hub[1] {
 			part h: LugBoltThreadableHole[5];

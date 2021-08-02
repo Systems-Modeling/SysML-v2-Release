@@ -25,9 +25,9 @@ package AllocationTest {
 	
 	allocation allocation1 : Logical_to_Physical allocate l to p;	
 	allocation allocation2 : Logical_to_Physical allocate (
-		logical => l,
-		physical => p
+		logical :> l,
+		physical :> p
 	);
 
-	allocate l::component to p::assembly::element;
+	allocate l.component to p.assembly.element;
 }

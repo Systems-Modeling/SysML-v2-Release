@@ -4,7 +4,7 @@ package Classes {
 
 	public class id '1' A { 
 		feature b: B;
-		protected in port c: C;
+		protected in c: C;
 	}
 	
 	abstract class id '2' B {

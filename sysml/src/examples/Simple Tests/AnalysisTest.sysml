@@ -17,7 +17,7 @@ package AnalysisTest {
 			subject = result;
 		}
 		
-		v::m
+		v.m
 	}
 	
 	analysis def AnalysisPlan {

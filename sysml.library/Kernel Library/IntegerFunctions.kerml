@@ -8,6 +8,7 @@ package IntegerFunctions {
 	function '*' specializes NumericalFunctions::'*' (x: Integer[1], y: Integer[1]): Integer[1];
 	function '/' specializes NumericalFunctions::'/' (x: Integer[1], y: Integer[1]): Rational;
 	function '**' specializes NumericalFunctions::'**' (x: Integer[1], y: Natural): Integer[1];
+	function '^' specializes NumericalFunctions::'^' (x: Integer[1], y: Natural): Integer[1];
 	function '%' specializes NumericalFunctions::'%' (x: Integer[1], y: Integer[1]): Integer[1];
 	
 	function '<' specializes NumericalFunctions::'<' (x: Integer[1], y: Integer[1]): Boolean[1];
@@ -25,8 +26,6 @@ package IntegerFunctions {
 	function ToString specializes BaseFunctions::ToString (x: Integer[1]): String[1];
 	function ToNatural(x: Integer[1]): Natural[1];
 	function ToInteger(x: String[1]): Integer[1];
-	function ToRational(x: Integer[1]): Rational[1];
-	function ToReal(x: Integer[1]): Real[1];
 	
 	function sum specializes ScalarFunctions::sum(collection: Integer[0..*]): Integer[1] {
 		ScalarFunctions::sum0(collection, 0)

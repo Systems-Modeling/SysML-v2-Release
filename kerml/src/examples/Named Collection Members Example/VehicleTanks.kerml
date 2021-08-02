@@ -24,10 +24,10 @@ package VehicleTanks {
 		
 		composite eng: V6Engine;
 		
-		connector eng to tanks::main1;
-		connector tanks::main1 to tanks::aux1;
+		connector eng to tanks.main1;
+		connector tanks.main1 to tanks.aux1;
 		
-		connector eng to tanks::main2;
-		connector tanks::main2 to tanks::aux2;
+		connector eng to tanks.main2;
+		connector tanks.main2 to tanks.aux2;
 	}
 }

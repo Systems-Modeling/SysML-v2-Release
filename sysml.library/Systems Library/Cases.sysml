@@ -7,6 +7,8 @@ package Cases {
 	private import Requirements::RequirementCheck;
 	private import Calculations::Calculation;
 	private import Calculations::calculations;
+	private import Parts::Part;
+	private import Parts::parts;
 	
 	/**
 	 * Case is the most general class of performances of CaseDefinitions. 
@@ -19,6 +21,13 @@ package Cases {
 		 * The subject that was investigated by this Case.
 		 */
 		subject subj : Anything[1];
+		
+		/**
+		 * The Parts that fill the role of actors for this Case.
+		 * (Note: This is not itself an actor parameter, because specific actor
+		 * parameters will be added for specific Cases.)
+		 */
+		ref part actors : Part[0..*] :> parts;
 		
 		/**
 		 * A check of whether the objective RequirementUsage was satisfied for this Case.

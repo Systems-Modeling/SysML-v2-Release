@@ -47,8 +47,8 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def MassDensityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
     }
 
@@ -56,11 +56,11 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: MassDensityUnit[1];
     }
-    attribute massDensity: MassDensityValue :> scalarQuantities;
+    attribute massDensity: MassDensityValue [*] nonunique :> scalarQuantities;
 
-    alias MassDensityUnit as DensityUnit;
-    alias MassDensityValue as DensityValue;
-    alias massDensity as density;
+    alias DensityUnit for MassDensityUnit;
+    alias DensityValue for MassDensityValue;
+    alias density for massDensity;
 
     /**
      * source: item 4-3 specific volume
@@ -74,8 +74,8 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def SpecificVolumeUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 3; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 3; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
     }
 
@@ -83,7 +83,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: SpecificVolumeUnit[1];
     }
-    attribute specificVolume: SpecificVolumeValue :> scalarQuantities;
+    attribute specificVolume: SpecificVolumeValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-4 relative mass density, relative density
@@ -97,9 +97,9 @@ package ISQMechanics {
      * remarks: Conditions and material should be specified for the reference substance.
      */
     attribute def RelativeMassDensityValue :> DimensionOneValue;
-    attribute relativeMassDensity: RelativeMassDensityValue :> scalarQuantities;
+    attribute relativeMassDensity: RelativeMassDensityValue [*] nonunique :> scalarQuantities;
 
-    alias relativeMassDensity as relativeDensity;
+    alias relativeDensity for relativeMassDensity;
 
     /**
      * source: item 4-5 surface mass density, surface density
@@ -113,8 +113,8 @@ package ISQMechanics {
      * remarks: The name "grammage" should not be used for this quantity.
      */
     attribute def SurfaceMassDensityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
     }
 
@@ -122,11 +122,11 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: SurfaceMassDensityUnit[1];
     }
-    attribute surfaceMassDensity: SurfaceMassDensityValue :> scalarQuantities;
+    attribute surfaceMassDensity: SurfaceMassDensityValue [*] nonunique :> scalarQuantities;
 
-    alias SurfaceMassDensityUnit as SurfaceDensityUnit;
-    alias SurfaceMassDensityValue as SurfaceDensityValue;
-    alias surfaceMassDensity as surfaceDensity;
+    alias SurfaceDensityUnit for SurfaceMassDensityUnit;
+    alias SurfaceDensityValue for SurfaceMassDensityValue;
+    alias surfaceDensity for surfaceMassDensity;
 
     /**
      * source: item 4-6 linear mass density, linear density
@@ -140,8 +140,8 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def LinearMassDensityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
     }
 
@@ -149,11 +149,11 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: LinearMassDensityUnit[1];
     }
-    attribute linearMassDensity: LinearMassDensityValue :> scalarQuantities;
+    attribute linearMassDensity: LinearMassDensityValue [*] nonunique :> scalarQuantities;
 
-    alias LinearMassDensityUnit as LinearDensityUnit;
-    alias LinearMassDensityValue as LinearDensityValue;
-    alias linearMassDensity as linearDensity;
+    alias LinearDensityUnit for LinearMassDensityUnit;
+    alias LinearDensityValue for LinearMassDensityValue;
+    alias linearDensity for linearMassDensity;
 
     /**
      * source: item 4-7 moment of inertia (magnitude)
@@ -167,8 +167,8 @@ package ISQMechanics {
      * remarks: The calculation of the value requires an integration.
      */
     attribute def MomentOfInertiaUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
     }
 
@@ -176,7 +176,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: MomentOfInertiaUnit[1];
     }
-    attribute momentOfInertia: MomentOfInertiaValue :> scalarQuantities;
+    attribute momentOfInertia: MomentOfInertiaValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-7 moment of inertia (tensor)
@@ -214,9 +214,9 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def MomentumUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -224,7 +224,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: MomentumUnit[1];
     }
-    attribute momentum: MomentumValue :> scalarQuantities;
+    attribute momentum: MomentumValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-8 momentum (vector)
@@ -264,9 +264,9 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def ForceUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -274,7 +274,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: ForceUnit[1];
     }
-    attribute force: ForceValue :> scalarQuantities;
+    attribute force: ForceValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-9.1 force (vector)
@@ -340,7 +340,7 @@ package ISQMechanics {
     }
     attribute staticFrictionForceVector: Cartesian3dStaticFrictionForceVector :> vectorQuantities;
 
-    alias staticFrictionForceVector as staticFrictionVector;
+    alias staticFrictionVector for staticFrictionForceVector;
 
     /**
      * source: item 4-9.4 kinetic friction force, dynamic friction force
@@ -361,7 +361,7 @@ package ISQMechanics {
     }
     attribute kineticFrictionForceVector: Cartesian3dKineticFrictionForceVector :> vectorQuantities;
 
-    alias kineticFrictionForceVector as dynamicFrictionForceVector;
+    alias dynamicFrictionForceVector for kineticFrictionForceVector;
 
     /**
      * source: item 4-9.5 rolling resistance, rolling drag, rolling friction force
@@ -382,9 +382,9 @@ package ISQMechanics {
     }
     attribute rollingResistanceVector: Cartesian3dRollingResistanceVector :> vectorQuantities;
 
-    alias rollingResistanceVector as rollingDragVector;
+    alias rollingDragVector for rollingResistanceVector;
 
-    alias rollingResistanceVector as rollingFrictionForceVector;
+    alias rollingFrictionForceVector for rollingResistanceVector;
 
     /**
      * source: item 4-9.6 drag force
@@ -417,9 +417,9 @@ package ISQMechanics {
      * remarks: For a time interval `[t_1, t_2]`, `vec(I)(t_1, t_2) = vec(p)(t_1) - vec(p)(t_2) = vec(Δp)` where `vec(p)` is momentum (item 4-8).
      */
     attribute def ImpulseUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -427,7 +427,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: ImpulseUnit[1];
     }
-    attribute impulse: ImpulseValue :> scalarQuantities;
+    attribute impulse: ImpulseValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-10 impulse (vector)
@@ -467,9 +467,9 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def AngularMomentumUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -477,7 +477,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: AngularMomentumUnit[1];
     }
-    attribute angularMomentum: AngularMomentumValue :> scalarQuantities;
+    attribute angularMomentum: AngularMomentumValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-11 angular momentum (vector)
@@ -517,9 +517,9 @@ package ISQMechanics {
      * remarks: The bending moment of force is denoted by `vec(M)_b`.
      */
     attribute def MomentOfForceUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -527,7 +527,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: MomentOfForceUnit[1];
     }
-    attribute momentOfForce: MomentOfForceValue :> scalarQuantities;
+    attribute momentOfForce: MomentOfForceValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-12.1 moment of force (vector)
@@ -567,9 +567,9 @@ package ISQMechanics {
      * remarks: For example, torque is the twisting moment of force with respect to the longitudinal axis of a beam or shaft.
      */
     attribute def TorqueUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -577,7 +577,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: TorqueUnit[1];
     }
-    attribute torque: TorqueValue :> scalarQuantities;
+    attribute torque: TorqueValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-13 angular impulse (magnitude)
@@ -591,9 +591,9 @@ package ISQMechanics {
      * remarks: For a time interval `[t_1, t_2]`, `vec(H)(t_1, t_2) = vec(L)(t_1) - vec(L)(t_2) = vec(ΔL)` where `vec(L)` is angular momentum.
      */
     attribute def AngularImpulseUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -601,7 +601,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: AngularImpulseUnit[1];
     }
-    attribute angularImpulse: AngularImpulseValue :> scalarQuantities;
+    attribute angularImpulse: AngularImpulseValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-13 angular impulse (vector)
@@ -641,9 +641,9 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def PressureUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -651,7 +651,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: PressureUnit[1];
     }
-    attribute pressure: PressureValue :> scalarQuantities;
+    attribute pressure: PressureValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-14.2 gauge pressure
@@ -664,7 +664,7 @@ package ISQMechanics {
      * definition: pressure `p` (item 4-14.1) decremented by ambient pressure `p_amb` : `p_e = p - p_amb`
      * remarks: Often, `p_amb` is chosen as a standard pressure. Gauge pressure is positive or negative.
      */
-    attribute gaugePressure: PressureValue :> scalarQuantities;
+    attribute gaugePressure: PressureValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-15 stress (magnitude)
@@ -678,9 +678,9 @@ package ISQMechanics {
      * remarks: Stress tensor is symmetric and has three normal-stress and three shear-stress (Cartesian) components.
      */
     attribute def StressUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -688,7 +688,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: StressUnit[1];
     }
-    attribute stress: StressValue :> scalarQuantities;
+    attribute stress: StressValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-15 stress (tensor)
@@ -726,9 +726,9 @@ package ISQMechanics {
      * remarks: A couple of mutually opposite forces of magnitude `F` acting on the opposite surfaces of a slice (layer) of homogenous solid matter normal to it, and evenly distributed, cause a constant normal stress `σ_n = F A` in the slice (layer).
      */
     attribute def NormalStressUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -736,7 +736,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: NormalStressUnit[1];
     }
-    attribute normalStress: NormalStressValue :> scalarQuantities;
+    attribute normalStress: NormalStressValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-16.2 shear stress
@@ -750,9 +750,9 @@ package ISQMechanics {
      * remarks: A couple of mutually opposite forces of magnitude `F` acting on the opposite surfaces of a slice (layer) of homogenous solid matter parallel to it, and evenly distributed, cause a constant shear stress `τ = F/A` in the slice (layer).
      */
     attribute def ShearStressUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -760,7 +760,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: ShearStressUnit[1];
     }
-    attribute shearStress: ShearStressValue :> scalarQuantities;
+    attribute shearStress: ShearStressValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-17.1 strain (magnitude)
@@ -779,7 +779,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: StrainUnit[1];
     }
-    attribute strain: StrainValue :> scalarQuantities;
+    attribute strain: StrainValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-17.1 strain (tensor)
@@ -817,7 +817,7 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def RelativeLinearStrainValue :> DimensionOneValue;
-    attribute relativeLinearStrain: RelativeLinearStrainValue :> scalarQuantities;
+    attribute relativeLinearStrain: RelativeLinearStrainValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-17.3 shear strain
@@ -831,7 +831,7 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def ShearStrainValue :> DimensionOneValue;
-    attribute shearStrain: ShearStrainValue :> scalarQuantities;
+    attribute shearStrain: ShearStrainValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-17.4 relative volume strain
@@ -845,7 +845,7 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def RelativeVolumeStrainValue :> DimensionOneValue;
-    attribute relativeVolumeStrain: RelativeVolumeStrainValue :> scalarQuantities;
+    attribute relativeVolumeStrain: RelativeVolumeStrainValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-18 Poisson number
@@ -859,7 +859,7 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def PoissonNumberValue :> DimensionOneValue;
-    attribute poissonNumber: PoissonNumberValue :> scalarQuantities;
+    attribute poissonNumber: PoissonNumberValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-19.1 modulus of elasticity, Young modulus
@@ -873,9 +873,9 @@ package ISQMechanics {
      * remarks: Conditions should be specified (e.g. adiabatic or isothermal process).
      */
     attribute def ModulusOfElasticityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -883,11 +883,11 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: ModulusOfElasticityUnit[1];
     }
-    attribute modulusOfElasticity: ModulusOfElasticityValue :> scalarQuantities;
+    attribute modulusOfElasticity: ModulusOfElasticityValue [*] nonunique :> scalarQuantities;
 
-    alias ModulusOfElasticityUnit as YoungModulusUnit;
-    alias ModulusOfElasticityValue as YoungModulusValue;
-    alias modulusOfElasticity as youngModulus;
+    alias YoungModulusUnit for ModulusOfElasticityUnit;
+    alias YoungModulusValue for ModulusOfElasticityValue;
+    alias youngModulus for modulusOfElasticity;
 
     /**
      * source: item 4-19.2 modulus of rigidity, shear modulus
@@ -901,9 +901,9 @@ package ISQMechanics {
      * remarks: Conditions should be specified (e.g. isentropic or isothermal process).
      */
     attribute def ModulusOfRigidityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -911,11 +911,11 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: ModulusOfRigidityUnit[1];
     }
-    attribute modulusOfRigidity: ModulusOfRigidityValue :> scalarQuantities;
+    attribute modulusOfRigidity: ModulusOfRigidityValue [*] nonunique :> scalarQuantities;
 
-    alias ModulusOfRigidityUnit as ShearModulusUnit;
-    alias ModulusOfRigidityValue as ShearModulusValue;
-    alias modulusOfRigidity as shearModulus;
+    alias ShearModulusUnit for ModulusOfRigidityUnit;
+    alias ShearModulusValue for ModulusOfRigidityValue;
+    alias shearModulus for modulusOfRigidity;
 
     /**
      * source: item 4-19.3 modulus of compression, bulk modulus
@@ -929,9 +929,9 @@ package ISQMechanics {
      * remarks: Conditions should be specified (e.g. isentropic or isothermal process).
      */
     attribute def ModulusOfCompressionUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -939,11 +939,11 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: ModulusOfCompressionUnit[1];
     }
-    attribute modulusOfCompression: ModulusOfCompressionValue :> scalarQuantities;
+    attribute modulusOfCompression: ModulusOfCompressionValue [*] nonunique :> scalarQuantities;
 
-    alias ModulusOfCompressionUnit as BulkModulusUnit;
-    alias ModulusOfCompressionValue as BulkModulusValue;
-    alias modulusOfCompression as bulkModulus;
+    alias BulkModulusUnit for ModulusOfCompressionUnit;
+    alias BulkModulusValue for ModulusOfCompressionValue;
+    alias bulkModulus for modulusOfCompression;
 
     /**
      * source: item 4-20 compressibility
@@ -957,9 +957,9 @@ package ISQMechanics {
      * remarks: Conditions should be specified (e.g. isentropic or isothermal process). See also ISO 80000-5.
      */
     attribute def CompressibilityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = -1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = 2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = 2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -967,7 +967,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: CompressibilityUnit[1];
     }
-    attribute compressibility: CompressibilityValue :> scalarQuantities;
+    attribute compressibility: CompressibilityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-21.1 second axial moment of area
@@ -981,7 +981,7 @@ package ISQMechanics {
      * remarks: This quantity is often referred to wrongly as "moment of inertia" (item 4-7). The subscript, `a`, may be omitted when there is no risk of confusion.
      */
     attribute def SecondAxialMomentOfAreaUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 4; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 4; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -989,7 +989,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: SecondAxialMomentOfAreaUnit[1];
     }
-    attribute secondAxialMomentOfArea: SecondAxialMomentOfAreaValue :> scalarQuantities;
+    attribute secondAxialMomentOfArea: SecondAxialMomentOfAreaValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-21.2 second polar moment of area
@@ -1003,7 +1003,7 @@ package ISQMechanics {
      * remarks: This quantity is often referred to wrongly as "moment of inertia" (item 4-7). The subscript, `p`, may be omitted when there is no risk of confusion.
      */
     attribute def SecondPolarMomentOfAreaUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 4; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 4; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -1011,7 +1011,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: SecondPolarMomentOfAreaUnit[1];
     }
-    attribute secondPolarMomentOfArea: SecondPolarMomentOfAreaValue :> scalarQuantities;
+    attribute secondPolarMomentOfArea: SecondPolarMomentOfAreaValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-22 section modulus
@@ -1025,7 +1025,7 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def SectionModulusUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 3; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 3; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -1033,7 +1033,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: SectionModulusUnit[1];
     }
-    attribute sectionModulus: SectionModulusValue :> scalarQuantities;
+    attribute sectionModulus: SectionModulusValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-23.1 static friction coefficient, static friction factor, coefficient of static friction
@@ -1047,11 +1047,11 @@ package ISQMechanics {
      * remarks: When it is not necessary to distinguish between dynamic friction factor and static friction factor, the name friction factor may be used for both.
      */
     attribute def StaticFrictionCoefficientValue :> DimensionOneValue;
-    attribute staticFrictionCoefficient: StaticFrictionCoefficientValue :> scalarQuantities;
+    attribute staticFrictionCoefficient: StaticFrictionCoefficientValue [*] nonunique :> scalarQuantities;
 
-    alias staticFrictionCoefficient as staticFrictionFactor;
+    alias staticFrictionFactor for staticFrictionCoefficient;
 
-    alias staticFrictionCoefficient as coefficientOfStaticFriction;
+    alias coefficientOfStaticFriction for staticFrictionCoefficient;
 
     /**
      * source: item 4-23.2 kinetic friction factor, dynamic friction factor
@@ -1065,9 +1065,9 @@ package ISQMechanics {
      * remarks: When it is not necessary to distinguish between dynamic friction factor and static friction factor, the name friction factor may be used for both. The dynamic friction factor `µ` is independent in first approximation of the contact surface.
      */
     attribute def KineticFrictionFactorValue :> DimensionOneValue;
-    attribute kineticFrictionFactor: KineticFrictionFactorValue :> scalarQuantities;
+    attribute kineticFrictionFactor: KineticFrictionFactorValue [*] nonunique :> scalarQuantities;
 
-    alias kineticFrictionFactor as dynamicFrictionFactor;
+    alias dynamicFrictionFactor for kineticFrictionFactor;
 
     /**
      * source: item 4-23.3 rolling resistance factor
@@ -1081,7 +1081,7 @@ package ISQMechanics {
      * remarks: Also known as rolling resistance coefficient, RRC.
      */
     attribute def RollingResistanceFactorValue :> DimensionOneValue;
-    attribute rollingResistanceFactor: RollingResistanceFactorValue :> scalarQuantities;
+    attribute rollingResistanceFactor: RollingResistanceFactorValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-23.4 drag coefficient, drag factor
@@ -1095,9 +1095,9 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def DragCoefficientValue :> DimensionOneValue;
-    attribute dragCoefficient: DragCoefficientValue :> scalarQuantities;
+    attribute dragCoefficient: DragCoefficientValue [*] nonunique :> scalarQuantities;
 
-    alias dragCoefficient as dragFactor;
+    alias dragFactor for dragCoefficient;
 
     /**
      * source: item 4-24 dynamic viscosity, viscosity
@@ -1111,9 +1111,9 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def DynamicViscosityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -1121,11 +1121,11 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: DynamicViscosityUnit[1];
     }
-    attribute dynamicViscosity: DynamicViscosityValue :> scalarQuantities;
+    attribute dynamicViscosity: DynamicViscosityValue [*] nonunique :> scalarQuantities;
 
-    alias DynamicViscosityUnit as ViscosityUnit;
-    alias DynamicViscosityValue as ViscosityValue;
-    alias dynamicViscosity as viscosity;
+    alias ViscosityUnit for DynamicViscosityUnit;
+    alias ViscosityValue for DynamicViscosityValue;
+    alias viscosity for dynamicViscosity;
 
     /**
      * source: item 4-25 kinematic viscosity
@@ -1139,8 +1139,8 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def KinematicViscosityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -1148,7 +1148,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: KinematicViscosityUnit[1];
     }
-    attribute kinematicViscosity: KinematicViscosityValue :> scalarQuantities;
+    attribute kinematicViscosity: KinematicViscosityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-26 surface tension
@@ -1162,8 +1162,8 @@ package ISQMechanics {
      * remarks: The concept of surface energy is closely related to surface tension and has the same dimension.
      */
     attribute def SurfaceTensionUnit :> DerivedUnit {
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
@@ -1171,7 +1171,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: SurfaceTensionUnit[1];
     }
-    attribute surfaceTension: SurfaceTensionValue :> scalarQuantities;
+    attribute surfaceTension: SurfaceTensionValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-27.1 power
@@ -1185,9 +1185,9 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def PowerUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -3; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -3; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -1195,7 +1195,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: PowerUnit[1];
     }
-    attribute power: PowerValue :> scalarQuantities;
+    attribute power: PowerValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-27 mechanical power
@@ -1208,7 +1208,7 @@ package ISQMechanics {
      * definition: scalar product of force `vec(F)` (item 4-9.1) acting to a body and its velocity `vec(v)` (ISO 80000-3): `P = vec(F) * vec(v)`
      * remarks: None.
      */
-    attribute mechanicalPower: PowerValue :> scalarQuantities;
+    attribute mechanicalPower: PowerValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-28.1 potential energy
@@ -1221,7 +1221,7 @@ package ISQMechanics {
      * definition: for conservative force `vec(F)`, scalar additive quantity obeying condition `vec(F) = - nabla F`, if it exists
      * remarks: For the definition of energy, see ISO 80000-5. A force is conservative when the force field is irrotational, i.e. `rot(F) = 0` , or `vec(F)` is perpendicular to the speed of the body to ensure `vec(F) * d vec(r) = 0` .
      */
-    attribute potentialEnergy: EnergyValue :> scalarQuantities;
+    attribute potentialEnergy: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-28.2 kinetic energy
@@ -1234,7 +1234,7 @@ package ISQMechanics {
      * definition: scalar (ISO 80000-2) quantity characterizing a moving body expressed by: `T = 1/2 m v^2` where `m` is mass (item 4-1) of the body and `v` is its speed (ISO 80000-3)
      * remarks: For the definition of energy, see ISO 80000-5.
      */
-    attribute kineticEnergy: EnergyValue :> scalarQuantities;
+    attribute kineticEnergy: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-28.3 mechanical energy
@@ -1247,7 +1247,7 @@ package ISQMechanics {
      * definition: sum of kinetic energy `T` (item 4-28.2) and potential energy `V` (item 4-28.1): `E = T+V`
      * remarks: The symbols `E` and `W` are also used for other kinds of energy. This definition is understood in a classical way and it does not include thermal motion.
      */
-    attribute mechanicalEnergy: EnergyValue :> scalarQuantities;
+    attribute mechanicalEnergy: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-28.4 mechanical work, work
@@ -1260,9 +1260,9 @@ package ISQMechanics {
      * definition: process quantity describing the total action of a force `vec(F)` (item 4-9.1) along a continuous curve `Γ` in three-dimensional space with infinitesimal displacement (ISO 80000-3) `dvec(r)`, as a line integral of their scalar product: `A = int_Γ vec(F) * d vec(r)`
      * remarks: The definition covers the case `A = - int_Γ p*dV` where `Γ` is a curve in the phase space and implies that work generally depends upon `Γ`, and that type of process must be defined (e.g. isentropic or isothermic).
      */
-    attribute mechanicalWork: EnergyValue :> scalarQuantities;
+    attribute mechanicalWork: EnergyValue [*] nonunique :> scalarQuantities;
 
-    alias mechanicalWork as work;
+    alias work for mechanicalWork;
 
     /**
      * source: item 4-29 mechanical efficiency
@@ -1276,7 +1276,7 @@ package ISQMechanics {
      * remarks: The system must be specified. This quantity is often expressed by the unit percent, symbol %.
      */
     attribute def MechanicalEfficiencyValue :> DimensionOneValue;
-    attribute mechanicalEfficiency: MechanicalEfficiencyValue :> scalarQuantities;
+    attribute mechanicalEfficiency: MechanicalEfficiencyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-30.1 mass flow (magnitude)
@@ -1290,9 +1290,9 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def MassFlowUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -1300,7 +1300,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: MassFlowUnit[1];
     }
-    attribute massFlow: MassFlowValue :> scalarQuantities;
+    attribute massFlow: MassFlowValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-30.1 mass flow (vector)
@@ -1340,8 +1340,8 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def MassFlowRateUnit :> DerivedUnit {
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
@@ -1349,7 +1349,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: MassFlowRateUnit[1];
     }
-    attribute massFlowRate: MassFlowRateValue :> scalarQuantities;
+    attribute massFlowRate: MassFlowRateValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-30.3 mass change rate
@@ -1363,8 +1363,8 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def MassChangeRateUnit :> DerivedUnit {
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
@@ -1372,7 +1372,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: MassChangeRateUnit[1];
     }
-    attribute massChangeRate: MassChangeRateValue :> scalarQuantities;
+    attribute massChangeRate: MassChangeRateValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-31 volume flow rate
@@ -1386,8 +1386,8 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def VolumeFlowRateUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 3; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 3; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -1395,7 +1395,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: VolumeFlowRateUnit[1];
     }
-    attribute volumeFlowRate: VolumeFlowRateValue :> scalarQuantities;
+    attribute volumeFlowRate: VolumeFlowRateValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-32 action quantity
@@ -1409,9 +1409,9 @@ package ISQMechanics {
      * remarks: The energy may be expressed by a Lagrangian or Hamiltonian function.
      */
     attribute def ActionQuantityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -1419,6 +1419,6 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: ActionQuantityUnit[1];
     }
-    attribute actionQuantity: ActionQuantityValue :> scalarQuantities;
+    attribute actionQuantity: ActionQuantityValue [*] nonunique :> scalarQuantities;
 
 }

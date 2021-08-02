@@ -18,7 +18,7 @@ package VerificationTest {
 			verify requirement : R;
 		}
 		
-		VerificationCases::PassIf(v::m == 0)
+		VerificationCases::PassIf(v.m == 0)
 	}
 	
 	verification def VerificationPlan {

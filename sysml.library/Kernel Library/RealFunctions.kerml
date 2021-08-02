@@ -8,6 +8,7 @@ package RealFunctions {
 	function '*' specializes NumericalFunctions::'*' (x: Real[1], y: Real[1]): Real[1];
 	function '/' specializes NumericalFunctions::'/' (x: Real[1], y: Real[1]): Real[1];
 	function '**' specializes NumericalFunctions::'**' (x: Real[1], y: Real[1]): Real[1];
+	function '^' specializes NumericalFunctions::'^' (x: Real[1], y: Real[1]): Real[1];
 	
 	function '<' specializes NumericalFunctions::'<' (x: Real[1], y: Real[1]): Boolean[1];
 	function '>' specializes NumericalFunctions::'>' (x: Real[1], y: Real[1]): Boolean[1];
@@ -28,7 +29,6 @@ package RealFunctions {
 	function ToInteger(x: Real[1]): Integer[1];
 	function ToRational(x: Real[1]): Rational[1];
 	function ToReal(x: String[1]): Real[1];
-	function ToComplex(x: Real[1]): Complex[1];
 	
 	function sum specializes ScalarFunctions::sum (collection: Real[0..*]): Real {
 		ScalarFunctions::sum0(collection, 0.0)

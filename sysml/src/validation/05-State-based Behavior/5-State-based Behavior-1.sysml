@@ -66,7 +66,7 @@ package '5-State-based Behavior-1' {
 		 * This is a usage of the state definition 'Vehicle States'.
 		 * Note that it depends specifically on on the part 'vehicle1_c1'.
 		 */
-		state 'vehicle states': 'Vehicle States' {
+		state 'vehicle states': 'Vehicle States' parallel {
 
 			/**
 			 * The state definition for this usage is implicit.
@@ -122,7 +122,8 @@ package '5-State-based Behavior-1' {
 			}
 			
 			/**
-			 * 'health states' is by default concurrent with 'operational states'.
+			 * 'health states' is concurrent with 'operational states', because the
+			 * containing state usage is "parallel".
 			 */
 			state 'health states' {
 				entry action initial;
@@ -162,7 +163,7 @@ package '5-State-based Behavior-1' {
 			}
 		}
 		
-		state 'controller states': 'Controller States' {
+		state 'controller states': 'Controller States' parallel {
 			state 'operational controller states' {
 				entry action initial; 
 				

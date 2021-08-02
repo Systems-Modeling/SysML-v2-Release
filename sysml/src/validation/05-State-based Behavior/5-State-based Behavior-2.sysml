@@ -40,7 +40,7 @@ package '5-State-based Behavior-2' {
 		action 'apply parking brake': 'Apply Parking Brake';
 		action 'sense temperature': 'Sense Temperature';
 		
-		state 'vehicle states': 'Vehicle States' {
+		state 'vehicle states': 'Vehicle States' parallel {
 
 			state 'operational states' {
 				entry; then off;
@@ -93,7 +93,7 @@ package '5-State-based Behavior-2' {
 			}
 		}
 		
-		state 'controller states': 'Controller States' {
+		state 'controller states': 'Controller States' parallel {
 			state 'operational controller states' {
 				entry; then off;
 				

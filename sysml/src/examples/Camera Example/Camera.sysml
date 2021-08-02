@@ -4,11 +4,11 @@ part def Camera {
 	perform action takePicture[*] :> PictureTaking::takePicture;
 	
 	part focusingSubsystem {
-		perform takePicture::focus;
+		perform takePicture.focus;
 	}
 	
 	part imagingSubsystem {
-		perform takePicture::shoot;
+		perform takePicture.shoot;
 	}
 	
 }

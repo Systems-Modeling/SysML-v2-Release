@@ -91,7 +91,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                     attribute :>> fuelMass;
                 }
                 attribute fuelMassMax:>ISQ::mass;
-                assert constraint {fuel::fuelMass<=fuelMassMax}
+                assert constraint {fuel.fuelMass<=fuelMassMax}
                 port fuelOutPort:FuelPort;
             }
             part def BodyAssy;
@@ -182,8 +182,8 @@ package sfriedenthal_VehicleModel_1_simplified{
             attribute def OverTemp;
             attribute def ReturnToNormal;
             // the following are work arounds until time events and change events are available
-            attribute def 'at(vehicle::maintenanceTime)';
-            attribute def 'when(temp>vehicle::Tmax)';
+            attribute def 'at(vehicle.maintenanceTime)';
+            attribute def 'when(temp>vehicle.Tmax)';
             attribute def SensedSpeed:>Real;
             attribute def SetSpeed:>Real;
         }
@@ -199,7 +199,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                 end fuelInPort : ~FuelPort {
                     in item :>> fuel;
                 }
-                stream fuelOutPort::fuel to fuelInPort::fuel;
+                stream fuelOutPort.fuel to fuelInPort.fuel;
             }
         }
         package AllocationDefinitions{
@@ -278,7 +278,7 @@ package sfriedenthal_VehicleModel_1_simplified{
             import ISQ::*;
             import SI::*;
             import USCustomaryUnits::*;
-            alias ISQ::TorqueValue as Torque;
+            alias Torque for ISQ::TorqueValue;
             
             //examples of enumerations
             enum def Colors {black;grey;red;}
@@ -304,6 +304,7 @@ package sfriedenthal_VehicleModel_1_simplified{
             kpl : DerivedUnit = km / L;
             rpm : DerivedUnit = 1 / min;
             kW : DerivedUnit = kilo * W;
+            hp : DerivedUnit = 745.7 * W;
             //
         }
         package IndividualDefinitions{
@@ -365,11 +366,11 @@ package sfriedenthal_VehicleModel_1_simplified{
         import VehicleConfigurations::VehicleConfiguration_b::PartsTree::**;
         allocation vehicleLogicalToPhysicalAllocation:AllocationDefinitions::LogicalToPhysical
             allocate vehicleLogical to vehicle_b{
-                allocate vehicleLogical::torqueGenerator to vehicle_b::engine{
-                    allocate vehicleLogical::torqueGenerator::generateTorque to vehicle_b::engine::generateTorque;
+                allocate vehicleLogical.torqueGenerator to vehicle_b.engine{
+                    allocate vehicleLogical.torqueGenerator.generateTorque to vehicle_b.engine.generateTorque;
                 }
-                allocate vehicleLogical::electricalGenerator to vehicle_b::engine{
-                    allocate vehicleLogical::electricalGenerator::generateElectricity to vehicle_b::engine::alternator::generateElectricity;
+                allocate vehicleLogical.electricalGenerator to vehicle_b.engine{
+                    allocate vehicleLogical.electricalGenerator.generateElectricity to vehicle_b.engine.alternator.generateElectricity;
                 }
             }
     }
@@ -377,11 +378,11 @@ package sfriedenthal_VehicleModel_1_simplified{
         package VehicleConfiguration_a{
             package PartsTree{
                 part vehicle_a:Vehicle{
-                    attribute mass redefines Vehicle::mass=dryMass+cargoMass+fuelTank::fuel::fuelMass;
+                    attribute mass redefines Vehicle::mass=dryMass+cargoMass+fuelTank.fuel.fuelMass;
                     attribute dryMass redefines Vehicle::dryMass=sum(partMasses);
-                    attribute redefines Vehicle::cargoMass=0;
+                    attribute redefines Vehicle::cargoMass=0 [kg];
                     attribute partMasses [*] nonunique :>ISQ::mass;
-                    //attribute partMasses={fuelTank::mass,frontAxleAssembly::mass,rearAxleAssembly::mass};
+                    //attribute partMasses={fuelTank.mass,frontAxleAssembly.mass,rearAxleAssembly.mass};
                     part fuelTank:FuelTank{
                         attribute redefines mass=75[kg];
                         ref item redefines fuel{
@@ -410,10 +411,10 @@ package sfriedenthal_VehicleModel_1_simplified{
         package VehicleConfiguration_b{
             package PartsTree{
                 part vehicle_b : Vehicle{
-                    attribute mass redefines mass=dryMass+cargoMass+fuelTank::fuel::fuelMass;
+                    attribute mass redefines mass=dryMass+cargoMass+fuelTank.fuel.fuelMass;
                     attribute dryMass redefines dryMass=sum(partMasses);
-                    attribute redefines cargoMass=0;
-                    attribute partMasses=(fuelTank::mass,frontAxleAssembly::mass,rearAxleAssembly::mass,engine::mass,transmission::mass,driveshaft::mass);
+                    attribute redefines cargoMass=0 [kg];
+                    attribute partMasses=(fuelTank.mass,frontAxleAssembly.mass,rearAxleAssembly.mass,engine.mass,transmission.mass,driveshaft.mass);
                     attribute avgFuelEconomy :> distancePerVolume;
                     port fuelCmdPort: FuelCmdPort redefines pwrCmdPort {
                         in item redefines fuelCmd;
@@ -435,7 +436,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                         ref item redefines fuel{
                             attribute redefines fuelMass=60[kg];
                         }
-                        attribute redefines fuelMassMax=60;
+                        attribute redefines fuelMassMax=60 [kg];
                         port fuelOutPort redefines fuelOutPort{
                             out item redefines fuel;
                         }
@@ -477,11 +478,11 @@ package sfriedenthal_VehicleModel_1_simplified{
                             }
                         }
                         
-                        bind shaftPort_d=differential::shaftPort_d;
-                        connect differential::leftDiffPort to rearAxle::leftHalfAxle::leftAxleToDiffPort;
-                        connect differential::rightDiffPort to rearAxle::rightHalfAxle::rightAxleToDiffPort;
-                        connect rearAxle::leftHalfAxle::leftAxleToWheelPort to rearWheel1::wheelToAxlePort;
-                        connect rearAxle::rightHalfAxle::rightAxleToWheelPort to rearWheel2::wheelToAxlePort;
+                        bind shaftPort_d=differential.shaftPort_d;
+                        connect differential.leftDiffPort to rearAxle.leftHalfAxle.leftAxleToDiffPort;
+                        connect differential.rightDiffPort to rearAxle.rightHalfAxle.rightAxleToDiffPort;
+                        connect rearAxle.leftHalfAxle.leftAxleToWheelPort to rearWheel1.wheelToAxlePort;
+                        connect rearAxle.rightHalfAxle.rightAxleToWheelPort to rearWheel2.wheelToAxlePort;
                     }
                     part engine:Engine{
                         attribute :>> mass;
@@ -504,13 +505,13 @@ package sfriedenthal_VehicleModel_1_simplified{
                         part alternator{
                             action generateElectricity;
                         }
-                        satisfy Requirements::engineSpecification by vehicle_b::engine{
+                        satisfy Requirements::engineSpecification by vehicle_b.engine{
                             //subject engine1 = vehicle_b::engine;
                             requirement torqueGenerationRequirement :>> torqueGenerationRequirement{
-                                subject generateTorque redefines generateTorque = vehicle_b::engine::generateTorque;
+                                subject generateTorque redefines generateTorque = vehicle_b.engine.generateTorque;
                             }
                             requirement drivePowerOuputRequirement :>> drivePowerOutputRequirement{
-                                port torqueOutPort redefines torqueOutPort=vehicle_b::engine::drivePwrPort;
+                                port torqueOutPort redefines torqueOutPort=vehicle_b.engine.drivePwrPort;
                             }
                         } 
                     }
@@ -551,18 +552,18 @@ package sfriedenthal_VehicleModel_1_simplified{
                         part frontSeat[2];
                         part driverAirBag {@Safety{isMandatory = false;}}
                     }
-                    bind engine::fuelCmdPort=fuelCmdPort;
+                    bind engine.fuelCmdPort=fuelCmdPort;
                     
                     //connect engine::drivePwrPort to transmission::clutchPort; 
                     /** the following interface replaces the above connection. Would like to reference the stream (obj flow)*/
                     interface engineToTransmissionInterface:EngineToTransmissionInterface
-                        connect engine::drivePwrPort to transmission::clutchPort{
+                        connect engine.drivePwrPort to transmission.clutchPort{
                             ref generateToAmplify :> ActionTree::providePower::generateToAmplify;
                         }
                     
                     //connect fuelTank::fuelOutPort to engine::fuelInPort;
                     interface fuelInterface:FuelInterface
-                        connect fuelTank::fuelOutPort to engine::fuelInPort;
+                        connect fuelTank.fuelOutPort to engine.fuelInPort;
                     
                     //Do not need to redefine ports if :: is replaced with dot notation 
                     //connect vehicleSoftware::vehicleController::controlPort to engine::engineControlPort;
@@ -570,15 +571,15 @@ package sfriedenthal_VehicleModel_1_simplified{
                     bind vehicle_b.setSpeedPort = vehicleSoftware.vehicleController.cruiseController.setSpeedPort;
                     connect speedSensor.speedSensorPort to vehicleSoftware.vehicleController.cruiseController.speedSensorPort;
                     connect vehicleSoftware.vehicleController.cruiseController.cruiseControlPort to engine.engineControlPort;
-                    connect transmission::shaftPort_a to driveshaft::shaftPort_b; 
-                    connect driveshaft::shaftPort_c to rearAxleAssembly::shaftPort_d;
-                    bind rearAxleAssembly::rearWheel1::wheelToRoadPort=vehicleToRoadPort::wheelToRoadPort1;
-                    bind rearAxleAssembly::rearWheel2::wheelToRoadPort=vehicleToRoadPort::wheelToRoadPort2;
+                    connect transmission.shaftPort_a to driveshaft.shaftPort_b; 
+                    connect driveshaft.shaftPort_c to rearAxleAssembly.shaftPort_d;
+                    bind rearAxleAssembly.rearWheel1.wheelToRoadPort=vehicleToRoadPort.wheelToRoadPort1;
+                    bind rearAxleAssembly.rearWheel2.wheelToRoadPort=vehicleToRoadPort.wheelToRoadPort2;
                     
                     // assert the vehicle features (e.g, mass, reliability) satisfy the requirements
                     satisfy Requirements::vehicleSpecification by vehicle_b{
                         requirement vehicleMassRequirement:>>vehicleMassRequirement{
-                            attribute redefines massActual=vehicle_b::mass;
+                            attribute redefines massActual=vehicle_b.mass;
                         }
                     }
                 }
@@ -586,7 +587,7 @@ package sfriedenthal_VehicleModel_1_simplified{
             package ActionTree{
                 action providePower:ProvidePower{
                     in item fuelCmd:FuelCmd redefines pwrCmd;
-                    out wheelToRoadTorque redefines wheelToRoadTorque [2] = distributeTorque::wheelToRoadTorque;
+                    out wheelToRoadTorque redefines wheelToRoadTorque [2] = distributeTorque.wheelToRoadTorque;
                     // No successions (control flows) between these actions, because the
                     // flows between them are continuous streams.
                     action generateTorque:GenerateTorque {
@@ -607,10 +608,10 @@ package sfriedenthal_VehicleModel_1_simplified{
                         out wheelToRoadTorque redefines wheelToRoadTorque [2];
                     }
 
-                    stream generateToAmplify from generateTorque::engineTorque to amplifyTorque::engineTorque;
-                    //stream from generateTorque::engineTorque to amplifyTorque::engineTorque;
-                    stream amplifyTorque::transmissionTorque to transferTorque::transmissionTorque;
-                    stream transferTorque::driveshaftTorque to distributeTorque::driveshaftTorque;
+                    stream generateToAmplify from generateTorque.engineTorque to amplifyTorque.engineTorque;
+                    //stream from generateTorque.engineTorque to amplifyTorque.engineTorque;
+                    stream amplifyTorque.transmissionTorque to transferTorque.transmissionTorque;
+                    stream transferTorque.driveshaftTorque to distributeTorque.driveshaftTorque;
                 }
                 action performSelfTest: PerformSelfTest;
                 action applyParkingBrake: ApplyParkingBrake;
@@ -619,7 +620,7 @@ package sfriedenthal_VehicleModel_1_simplified{
             package States{
                 //the following uses a single concept of event for signal, change, and time event
                 //the time event will be replaced by when eventname
-                state vehicleStates: VehicleStates {
+                state vehicleStates: VehicleStates parallel {
                     ref vehicle : Vehicle;
                     ref controller : VehicleController;
 
@@ -633,7 +634,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                             // was vehicle::providePower;
                             do vehicle::providePower;
                             exit vehicle::applyParkingBrake;
-                            constraint {vehicle::electricalPower<=500[W]}
+                            constraint {vehicle.electricalPower<=500[W]}
                         }
 
                         transition initial then off;
@@ -641,7 +642,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                         transition 'off-starting'
                             first off
                             accept VehicleStartSignal
-                            if vehicle::brakePedalDepressed
+                            if vehicle.brakePedalDepressed
                             do send StartSignal() to controller
                             then starting;
 
@@ -669,12 +670,12 @@ package sfriedenthal_VehicleModel_1_simplified{
 
                         transition 'normal-maintenance'
                             first normal
-                            accept 'at(vehicle::maintenanceTime)'
+                            accept 'at(vehicle.maintenanceTime)'
                             then maintenance;
 
                         transition 'normal-degraded'
                             first normal
-                            accept 'when(temp>vehicle::Tmax)' 
+                            accept 'when(temp>vehicle.Tmax)' 
                             do send OverTemp() to controller
                             then degraded;
 
@@ -689,7 +690,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                             then normal;
                     }
             }
-                state controllerStates: ControllerStates {
+                state controllerStates: ControllerStates parallel {
                     //ref controller : VehicleController;
                     state operatingStates {
                         entry action initial; 
@@ -762,7 +763,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                         doc /* The total mass of a vehicle shall be less than or equal to the required mass. */
                         /* Assume total mass includes a full tank of gas*/
                         attribute redefines massRequired=2000 [kg];
-                        attribute redefines massActual = vehicle::mass;
+                        attribute redefines massActual = vehicle.mass;
                     }
                     requirement id '2' vehicleFuelEconomyRequirements{
                         doc /* fuel economy requirements group */
@@ -781,7 +782,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                 requirement engineSpecification {
                     subject engine1:Engine;
                     requirement torqueGenerationRequirement : TorqueGenerationRequirement{
-                        subject generateTorque = engine1::generateTorque;
+                        subject generateTorque = engine1.generateTorque;
                     }
 
                     requirement drivePowerOutputRequirement : DrivePowerOutputRequirement{
@@ -838,10 +839,10 @@ package sfriedenthal_VehicleModel_1_simplified{
                         part frontSeat[2];
                         part driverAirBag {@Safety{isMandatory = false;}}
                     }
-                    bind engine::fuelCmdPort=fuelCmdPort;
-                    connect fuelTank::fuelOutPort to engine::fuelInPort;
-                    connect engine::drivePwrPort to transmission::clutchPort;
-                    connect transmission::shaftPort_a to driveshaft::shaftPort_b; 
+                    bind engine.fuelCmdPort=fuelCmdPort;
+                    connect fuelTank.fuelOutPort to engine.fuelInPort;
+                    connect engine.drivePwrPort to transmission.clutchPort;
+                    connect transmission.shaftPort_a to driveshaft.shaftPort_b; 
                 }
                 part def FuelTank_B:>FuelTank;
                 part def FrontAxleAssy_B:>AxleAssembly{
@@ -942,7 +943,7 @@ package sfriedenthal_VehicleModel_1_simplified{
         }
         package FuelEconomyAnalysisModel{
             //import NonScalarValues::SampledFunctionValue;
-            import Collections::SampledFunction;
+            import SampledFunctions::SampledFunction;
               
             /*
             This analysis model was provided by Hisashi Miyashita on January 27, 2021
@@ -984,7 +985,7 @@ package sfriedenthal_VehicleModel_1_simplified{
             calc def TraveledDistance(scenario: Scenario) distance:> length;
             calc def IdlingFuelConsumptionPerTime(engine: Engine) f_a : Real {
                 attribute idlingFuelConsumptionPerDisplacement: Real = 0.5;
-                engine::displacement * idlingFuelConsumptionPerDisplacement
+                engine.displacement * idlingFuelConsumptionPerDisplacement
             }
 
             attribute specificGravityOfGasoline: Real = 0.76;
@@ -1023,9 +1024,9 @@ package sfriedenthal_VehicleModel_1_simplified{
                 
                 attribute distance = TraveledDistance(scenario);
                 attribute tpd_avg = AverageTravelTimePerDistance(scenario);
-                attribute bsfc = ComputeBSFC(vehicle_b::engine);
-                attribute f_a = BestFuelConsumptionPerDistance(vehicle_b::mass, bsfc, tpd_avg, distance);
-                attribute f_b = IdlingFuelConsumptionPerTime(vehicle_b::engine);
+                attribute bsfc = ComputeBSFC(vehicle_b.engine);
+                attribute f_a = BestFuelConsumptionPerDistance(vehicle_b.mass, bsfc, tpd_avg, distance);
+                attribute f_b = IdlingFuelConsumptionPerTime(vehicle_b.engine);
 
                 //return attribute calculatedFuelEconomy:KilometersPerLitre=FuelConsumption(f_a, f_b, tpd_avg) ;
                 return attribute calculatedFuelEconomy:>distancePerVolume=FuelConsumption(f_a, f_b, tpd_avg);
@@ -1058,7 +1059,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                     part engine redefines engine{
                         part cylinders :>> cylinders [4];
                         attribute mass redefines mass=180 [kg];
-                        attribute peakHorsePower redefines peakHorsePower = 180;
+                        attribute peakHorsePower redefines peakHorsePower = 180[hp];
                         attribute fuelEfficiency redefines fuelEfficiency=.6;
                         attribute cost redefines cost = 1000;                     
                     }
@@ -1066,8 +1067,8 @@ package sfriedenthal_VehicleModel_1_simplified{
                 part vehicle_b_engine6cyl:>vehicleAlternatives{   
                     part engine redefines engine{  
                         part cylinders redefines cylinders [6];
-                        attribute mass redefines mass=220;
-                        attribute peakHorsePower redefines peakHorsePower = 220;
+                        attribute mass redefines mass=220[kg];
+                        attribute peakHorsePower redefines peakHorsePower = 220[hp];
                         attribute fuelEfficiency redefines fuelEfficiency=.5;
                         attribute cost redefines cost = 1500;
                     }
@@ -1088,11 +1089,11 @@ package sfriedenthal_VehicleModel_1_simplified{
                 // Use the following if the evaluation function is different for each alternative
                 calc :> objectiveFunction{
                     in part vehicle:>vehicle_b_engine4cyl;
-                    return attribute eval:Real=EngineEvaluation_4cyl (vehicle::engine::mass, vehicle::engine::peakHorsePower, vehicle::engine::fuelEfficiency, vehicle::engine::cost); 
+                    return attribute eval:Real=EngineEvaluation_4cyl (vehicle.engine.mass, vehicle.engine.peakHorsePower, vehicle.engine.fuelEfficiency, vehicle.engine.cost); 
                 }
                 calc :> objectiveFunction{
                     in part vehicle:>vehicle_b_engine6cyl;
-                    return attribute eval:Real=EngineEvaluation_6cyl (vehicle::engine::mass, vehicle::engine::peakHorsePower, vehicle::engine::fuelEfficiency, vehicle::engine::cost); 
+                    return attribute eval:Real=EngineEvaluation_6cyl (vehicle.engine.mass, vehicle.engine.peakHorsePower, vehicle.engine.fuelEfficiency, vehicle.engine.cost); 
                 }                                                  
                 return part selectedVehicle:>vehicle_b;
             }
@@ -1114,7 +1115,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                 subject = vehicle_b;
                 objective {
                     verify vehicleSpecification::vehicleMassRequirement{
-                        redefines massActual=weighVehicle::massMeasured;
+                        redefines massActual=weighVehicle.massMeasured;
                     }
                 }
                 action weighVehicle (
@@ -1140,23 +1141,23 @@ package sfriedenthal_VehicleModel_1_simplified{
             //timeslice t0_t2:VehicleRoadContext_1{
             timeslice t0_t2_a{
                 snapshot start redefines start{
-                    attribute t0:TimeValue=0;
+                    attribute t0:TimeValue=0[s];
                 }
                 snapshot done redefines done{
-                    attribute t2:TimeValue=2;
+                    attribute t2:TimeValue=2[s];
                 }
             }
             //snapshot t0:VehicleRoadContext_1{
             snapshot t0_a {             
-                attribute t0 redefines time=0;
+                attribute t0 redefines time=0[s];
                 snapshot t0_r:Road_1{
                     :>>Road::incline =0;
                     :>>Road::friction=.1;
                 }
                 snapshot t0_v:Vehicle_1{
-                    :>>Vehicle::position=0;
-                    :>>Vehicle::velocity=0;
-                    :>>Vehicle::acceleration=1.96;
+                    :>>Vehicle::position=0[m];
+                    :>>Vehicle::velocity=0[m/s];
+                    :>>Vehicle::acceleration=1.96[m/s^2];
                     // .2 g where 1 g = 9.8 meters/sec^2
                     // how do you represent state=on;
                     snapshot t0_fa:FrontAxleAssembly_1{
@@ -1166,15 +1167,15 @@ package sfriedenthal_VehicleModel_1_simplified{
                 }
             }
             snapshot t1_a{
-                attribute t1 redefines time=1;
+                attribute t1 redefines time=1[s];
                 snapshot t1_r:Road_1{
                     :>>Road::incline =0;
                     :>>Road::friction=.1;
                 }
                 snapshot t1_v:Vehicle_1{
-                    :>>Vehicle::position=.98;
-                    :>>Vehicle::velocity=1.96;
-                    :>>Vehicle::acceleration=1.96;
+                    :>>Vehicle::position=.98[m];
+                    :>>Vehicle::velocity=1.96[m/s];
+                    :>>Vehicle::acceleration=1.96[m/s^2];
                     // .2 g where 1 g = 9.8 meters/sec^2
                     // how do you represent state=on;
                     snapshot t1_fa:FrontAxleAssembly_1{
@@ -1184,15 +1185,15 @@ package sfriedenthal_VehicleModel_1_simplified{
                 }
             }
             snapshot t2_a{
-                attribute t2 redefines time=2;
+                attribute t2 redefines time=2[s];
                 snapshot t2_r:Road_1{
                     :>>Road::incline =0;
                     :>>Road::friction=.1;
                 }
                 snapshot t2_v:Vehicle_1{
-                    :>>Vehicle::position=3.92;
-                    :>>Vehicle::velocity=3.92;
-                    :>>Vehicle::acceleration=1.96;
+                    :>>Vehicle::position=3.92[m];
+                    :>>Vehicle::velocity=3.92[m/s];
+                    :>>Vehicle::acceleration=1.96[m/s^2];
                     // .2 g where 1 g = 9.8 meters/sec^2
                     // how do you represent state=on;
                     snapshot t2_fa:FrontAxleAssembly_1{
@@ -1322,9 +1323,9 @@ package sfriedenthal_VehicleModel_1_simplified{
             viewpoint def StructureViewpoint{
                 frame concern sb:SystemBreakdown;
             }
-            stakeholder def SystemsEngineer;
+            part def SystemsEngineer;
             concern def SystemBreakdown {
-                affect stakeholder se:SystemsEngineer;
+                stakeholder se:SystemsEngineer;
             }
         }
         package ViewDefinitions{

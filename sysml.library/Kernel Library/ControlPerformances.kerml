@@ -1,6 +1,7 @@
 package ControlPerformances {
 	private import ScalarValues::Boolean;
 	private import SequenceFunctions::size;
+	private import SequenceFunctions::notEmpty;
 	private import Occurrences::Occurrence;
 	private import Occurrences::HappensBefore;
 	private import Occurrences::SelfSameLifeLink;
@@ -43,8 +44,6 @@ package ControlPerformances {
 	 */	
 	abstract behavior IfPerformance specializes Performance {
 		in ifTest : BooleanEvaluation[1];
-		feature trueLiteral : Boolean[1] = true;
-		binding all ifTrue of ifTest.result[0..1] = trueLiteral[0..1];
 	}
 	
 	/**
@@ -55,18 +54,18 @@ package ControlPerformances {
 		in redefines ifTest;
 		in thenClause : Occurrence[0..1];
 		succession ifTest[1] then thenClause[0..1];
-		inv { ifTrue->size() == thenClause->size() }
+		inv { ifTest() == thenClause->notEmpty() }
 	}
 	
 	/**
-	 * An IfElsePerformance is an IfPerformance where the elseCaluse occurs  occurs after and only 
+	 * An IfElsePerformance is an IfPerformance where the elseCaluse occurs after and only 
 	 * after the ifTest evaluation result is not true.
 	 */
 	behavior IfElsePerformance specializes IfPerformance {
 		in redefines ifTest;
 		in elseClause : Occurrence[0..1];
 		succession ifTest[1] then elseClause[0..1];
-		inv { !ifTrue->size() == elseClause->size() }
+		inv { !ifTest() == elseClause->notEmpty() }
 	}
 	
 	/**
@@ -86,7 +85,7 @@ package ControlPerformances {
 		in body : Occurrence[0..*];
 		
 		step whileDecision : IfThenPerformance[1..*];
-		step untilDecision : IfElsePerformance[1..*];
+		step untilDecision : IfElsePerformance[0..*];
 		
 		binding whileDecision.ifTest[1] = whileTest[1];
 		binding whileDecision.thenClause[1] = body[1];

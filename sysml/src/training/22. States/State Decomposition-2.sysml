@@ -6,7 +6,7 @@ package 'State Decomposition-1' {
 	
 	state def VehicleStates;
 		
-	state vehicleStates : VehicleStates {
+	state vehicleStates : VehicleStates parallel {
 		
 		state operationalStates {
 			entry; then off;

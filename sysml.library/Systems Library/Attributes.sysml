@@ -10,10 +10,10 @@ package Attributes {
 	 * AttributeValue is the most general type of data values that represent qualities or characteristics 
 	 * of a system or part of a system. AttributeValue is the base type of all AttributeDefinitions.
 	 */
-	alias DataValue as AttributeValue;
+	alias AttributeValue for DataValue;
 			
 	/**
 	 * attributeValues is the base feature for all AttributeUsages.
 	 */
-	alias dataValues as attributeValues;		
+	alias attributeValues for dataValues;		
 }

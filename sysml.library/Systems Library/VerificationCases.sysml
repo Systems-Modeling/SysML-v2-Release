@@ -57,4 +57,22 @@ package VerificationCases {
 		return verdict : VerdictKind = isPassing? VerdictKind::pass : VerdictKind::fail;
 	}
 	
+	/**
+	 * VerificationMethod can be used as metadata annotating a verification case or action.
+	 */
+	attribute def VerificationMethod {
+		attribute kind : VerificationMethodKind[1..*];
+	}
+	
+	/**
+	 * VerificationMethodKind is an enumeration of the standard methods by which verification
+	 * can be carried out.
+	 */
+	enum def VerificationMethodKind {
+		inspect;
+		analyze;
+		demo;
+		test;
+	}
+	
 }

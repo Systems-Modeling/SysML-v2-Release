@@ -1,10 +1,12 @@
-classifier A;
-classifier B;
-
-generalization Super subclass A specializes B;
-generalization subclass B :> A;
-
-subclass C specializes A;
-subclass C specializes B;
-
-classifier C specializes A, B;
+package Classifiers {
+	classifier A;
+	classifier B;
+	
+	specialization Super subclassifier A specializes B;
+	specialization subclassifier B :> A;
+	
+	subclassifier C specializes A;
+	subclassifier C specializes B;
+	
+	classifier C specializes A, B;
+}

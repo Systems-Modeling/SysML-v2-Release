@@ -74,7 +74,7 @@ package ISQCondensedMatter {
      * remarks: In crystallography, however, the quantity `G/(2π)` is sometimes used.
      */
     attribute def AngularReciprocalLatticeVectorMagnitudeUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -82,7 +82,7 @@ package ISQCondensedMatter {
         attribute :>> num: Real;
         attribute :>> mRef: AngularReciprocalLatticeVectorMagnitudeUnit[1];
     }
-    attribute angularReciprocalLatticeVectorMagnitude: AngularReciprocalLatticeVectorMagnitudeValue :> scalarQuantities;
+    attribute angularReciprocalLatticeVectorMagnitude: AngularReciprocalLatticeVectorMagnitudeValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-2.1 angular reciprocal lattice vector
@@ -122,7 +122,7 @@ package ISQCondensedMatter {
      * remarks: `vec(a_i) * vec(b_i) = 2π δ_(ij)`. In crystallography, however, the quantities `vec(b_j)/(2π)` are also often used.
      */
     attribute def FundamentalReciprocalLatticeVectorMagnitudeUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -130,7 +130,7 @@ package ISQCondensedMatter {
         attribute :>> num: Real;
         attribute :>> mRef: FundamentalReciprocalLatticeVectorMagnitudeUnit[1];
     }
-    attribute fundamentalReciprocalLatticeVectorMagnitude: FundamentalReciprocalLatticeVectorMagnitudeValue :> scalarQuantities;
+    attribute fundamentalReciprocalLatticeVectorMagnitude: FundamentalReciprocalLatticeVectorMagnitudeValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-2.2 fundamental reciprocal lattice vector
@@ -169,7 +169,7 @@ package ISQCondensedMatter {
      * definition: distance (ISO 80000-3) between successive lattice planes
      * remarks: The non-SI unit ångström (Å) is widely used by x-ray crystallographers and structural chemists.
      */
-    attribute latticePlaneSpacing: LengthValue :> scalarQuantities;
+    attribute latticePlaneSpacing: LengthValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-4 Bragg angle
@@ -182,7 +182,7 @@ package ISQCondensedMatter {
      * definition: angle between the scattered ray and the lattice plane
      * remarks: Bragg angle `ϑ` is given by `2d sin ϑ = nλ`, where `d` is the lattice plane spacing (item 12-3), `λ` is the wavelength (ISO 80000-7) of the radiation, and `n` is the order of reflexion which is an integer.
      */
-    attribute braggAngle: AngularMeasureValue :> scalarQuantities;
+    attribute braggAngle: AngularMeasureValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-5.1 short-range order parameter
@@ -196,7 +196,7 @@ package ISQCondensedMatter {
      * remarks: Similar definitions apply to other order-disorder phenomena. Other symbols are frequently used.
      */
     attribute def ShortRangeOrderParameterValue :> DimensionOneValue;
-    attribute shortRangeOrderParameter: ShortRangeOrderParameterValue :> scalarQuantities;
+    attribute shortRangeOrderParameter: ShortRangeOrderParameterValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-5.2 long-range order parameter
@@ -210,7 +210,7 @@ package ISQCondensedMatter {
      * remarks: Similar definitions apply to other order-disorder phenomena. Other symbols are frequently used.
      */
     attribute def LongRangeOrderParameterValue :> DimensionOneValue;
-    attribute longRangeOrderParameter: LongRangeOrderParameterValue :> scalarQuantities;
+    attribute longRangeOrderParameter: LongRangeOrderParameterValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-5.3 atomic scattering factor
@@ -224,7 +224,7 @@ package ISQCondensedMatter {
      * remarks: The atomic scattering factor can be expressed by: `f = E_a/(E_e`, where `E_a` is the radiation amplitude scattered by the atom and `E_e` is the radiation amplitude scattered by a single electron.
      */
     attribute def AtomicScatteringFactorValue :> DimensionOneValue;
-    attribute atomicScatteringFactor: AtomicScatteringFactorValue :> scalarQuantities;
+    attribute atomicScatteringFactor: AtomicScatteringFactorValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-5.4 structure factor
@@ -238,7 +238,7 @@ package ISQCondensedMatter {
      * remarks: For the Miller indices `h`, `k`, `l`, see Annex A.
      */
     attribute def StructureFactorValue :> DimensionOneValue;
-    attribute structureFactor: StructureFactorValue :> scalarQuantities;
+    attribute structureFactor: StructureFactorValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-6 Burgers vector
@@ -328,7 +328,7 @@ package ISQCondensedMatter {
      * remarks: `D` is sometimes expressed as `D = exp(−2W)`; in Mössbauer spectroscopy, it is also called the `f` factor and denoted by `f`.
      */
     attribute def DebyeWallerFactorValue :> DimensionOneValue;
-    attribute debyeWallerFactor: DebyeWallerFactorValue :> scalarQuantities;
+    attribute debyeWallerFactor: DebyeWallerFactorValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-9.1 angular wavenumber, angular repetency
@@ -341,9 +341,9 @@ package ISQCondensedMatter {
      * definition: quotient of momentum (ISO 80000-4) and the reduced Planck constant (ISO 80000-1)
      * remarks: The corresponding vector (ISO 80000-2) quantity is called wave vector (ISO 80000-3), expressed by: `vec(k) = vec(p)/ħ`, where `vec(p)` is the momentum (ISO 80000-4) of quasi free electrons in an electron gas, and `ħ` is the reduced Planck constant (ISO 80000-1); for phonons, its magnitude is `k = 2π/λ`, where `λ` is the wavelength (ISO 80000-3) of the lattice vibrations. When a distinction is needed between `k` and the symbol for the Boltzmann constant (ISO 80000-1), `k_B` can be used for the latter. When a distinction is needed, `q` should be used for phonons, and `k` for particles such as electrons and neutrons. The method of cut-off must be specified. In condensed matter physics, angular wavenumber is often called wavenumber.
      */
-    attribute angularWavenumber: RepetencyValue :> scalarQuantities;
+    attribute angularWavenumber: RepetencyValue [*] nonunique :> scalarQuantities;
 
-    alias angularWavenumber as angularRepetency;
+    alias angularRepetency for angularWavenumber;
 
     /**
      * source: item 12-9.2 Fermi angular wavenumber, Fermi angular repetency
@@ -356,9 +356,9 @@ package ISQCondensedMatter {
      * definition: angular wavenumber (item 12-9.1) of electrons in states on the Fermi sphere
      * remarks: In condensed matter physics, angular wavenumber is often called wavenumber.
      */
-    attribute fermiAngularWavenumber: RepetencyValue :> scalarQuantities;
+    attribute fermiAngularWavenumber: RepetencyValue [*] nonunique :> scalarQuantities;
 
-    alias fermiAngularWavenumber as fermiAngularRepetency;
+    alias fermiAngularRepetency for fermiAngularWavenumber;
 
     /**
      * source: item 12-9.3 Debye angular wavenumber, Debye angular repetency
@@ -371,9 +371,9 @@ package ISQCondensedMatter {
      * definition: cut-off angular wavenumber (item 12-9.1) in the Debye model of the vibrational spectrum of a solid
      * remarks: The method of cut-off must be specified. In condensed matter physics, angular wavenumber is often called wavenumber.
      */
-    attribute debyeAngularWavenumber: RepetencyValue :> scalarQuantities;
+    attribute debyeAngularWavenumber: RepetencyValue [*] nonunique :> scalarQuantities;
 
-    alias debyeAngularWavenumber as debyeAngularRepetency;
+    alias debyeAngularRepetency for debyeAngularWavenumber;
 
     /**
      * source: item 12-10 Debye angular frequency
@@ -386,7 +386,7 @@ package ISQCondensedMatter {
      * definition: cut-off angular frequency (ISO 80000-3) in the Debye model of the vibrational spectrum of a solid
      * remarks: The method of cut-off must be specified.
      */
-    attribute debyeAngularFrequency: AngularFrequencyValue :> scalarQuantities;
+    attribute debyeAngularFrequency: AngularFrequencyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-11 Debye temperature
@@ -399,7 +399,7 @@ package ISQCondensedMatter {
      * definition: in the Debye model, quantity given by: `Θ_D = ħ*ω_D/k`, where `k` is the Boltzmann constant, (ISO 80000-1), `ħ` is the reduced Planck constant (ISO 80000-1), and `ω_D` is Debye angular frequency (item 12-10)
      * remarks: A Debye temperature can also be defined by fitting a Debye model result to a certain quantity, for instance, the heat capacity at a certain temperature.
      */
-    attribute debyeTemperature: ThermodynamicTemperatureValue :> scalarQuantities;
+    attribute debyeTemperature: ThermodynamicTemperatureValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-12 density of vibrational states
@@ -413,8 +413,8 @@ package ISQCondensedMatter {
      * remarks: `g(ω) = n_ω = (dn(ω))/(dω)`, where `n(ω)` is the total number of vibrational modes per volume with angular frequency less than `ω`. The density of states may also be normalized in other ways instead of with respect to volume. See also item 12-16.
      */
     attribute def DensityOfVibrationalStatesUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = 1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -422,7 +422,7 @@ package ISQCondensedMatter {
         attribute :>> num: Real;
         attribute :>> mRef: DensityOfVibrationalStatesUnit[1];
     }
-    attribute densityOfVibrationalStates: DensityOfVibrationalStatesValue :> scalarQuantities;
+    attribute densityOfVibrationalStates: DensityOfVibrationalStatesValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-13 thermodynamic Grüneisen parameter
@@ -436,7 +436,7 @@ package ISQCondensedMatter {
      * remarks: None.
      */
     attribute def 'ThermodynamicGrüneisenParameterValue' :> DimensionOneValue;
-    attribute 'thermodynamicGrüneisenParameter': 'ThermodynamicGrüneisenParameterValue' :> scalarQuantities;
+    attribute 'thermodynamicGrüneisenParameter': 'ThermodynamicGrüneisenParameterValue' [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-14 Grüneisen parameter
@@ -450,7 +450,7 @@ package ISQCondensedMatter {
      * remarks: `ω` can also refer to an average of the vibrational spectrum, for instance as represented by a Debye angular frequency (item 12-10).
      */
     attribute def 'GrüneisenParameterValue' :> DimensionOneValue;
-    attribute 'grüneisenParameter': 'GrüneisenParameterValue' :> scalarQuantities;
+    attribute 'grüneisenParameter': 'GrüneisenParameterValue' [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-15.1 mean free path of phonons
@@ -463,7 +463,7 @@ package ISQCondensedMatter {
      * definition: average distance (ISO 80000-3) that phonons travel between two successive interactions
      * remarks: None.
      */
-    attribute meanFreePathOfPhonons: LengthValue :> scalarQuantities;
+    attribute meanFreePathOfPhonons: LengthValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-15.2 mean free path of electrons
@@ -476,7 +476,7 @@ package ISQCondensedMatter {
      * definition: average distance (ISO 80000-3) that electrons travel between two successive interactions
      * remarks: None.
      */
-    attribute meanFreePathOfElectrons: LengthValue :> scalarQuantities;
+    attribute meanFreePathOfElectrons: LengthValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-16 energy density of states
@@ -490,9 +490,9 @@ package ISQCondensedMatter {
      * remarks: Density of states refers to electrons or other entities, e.g. phonons. It may be normalized in other ways instead of with respect to volume, e.g. with respect to amount of substance. See also item 12-12.
      */
     attribute def EnergyDensityOfStatesUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -5; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = -1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = 2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -5; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = 2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -500,7 +500,7 @@ package ISQCondensedMatter {
         attribute :>> num: Real;
         attribute :>> mRef: EnergyDensityOfStatesUnit[1];
     }
-    attribute energyDensityOfStates: EnergyDensityOfStatesValue :> scalarQuantities;
+    attribute energyDensityOfStates: EnergyDensityOfStatesValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-17 residual resistivity
@@ -513,7 +513,7 @@ package ISQCondensedMatter {
      * definition: for metals, the resistivity (IEC 80000-6) extrapolated to zero thermodynamic temperature (ISO 80000-5)
      * remarks: None.
      */
-    attribute residualResistivity: ResistivityValue :> scalarQuantities;
+    attribute residualResistivity: ResistivityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-18 Lorenz coefficient
@@ -527,11 +527,11 @@ package ISQCondensedMatter {
      * remarks: The Lorenz coefficient can be expressed by `L = λ/(σT)`, where `λ` is thermal conductivity (ISO 80000-5), `σ` is electric conductivity (IEC 80000-6), and `T` is thermodynamic temperature (ISO 80000-5).
      */
     attribute def LorenzCoefficientUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 4; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 2; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -6; }
-        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq::I; :>> exponent = -2; }
-        private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq::'Θ'; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 4; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 2; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -6; }
+        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq.I; :>> exponent = -2; }
+        private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq.'Θ'; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, electricCurrentPF, thermodynamicTemperaturePF); }
     }
 
@@ -539,7 +539,7 @@ package ISQCondensedMatter {
         attribute :>> num: Real;
         attribute :>> mRef: LorenzCoefficientUnit[1];
     }
-    attribute lorenzCoefficient: LorenzCoefficientValue :> scalarQuantities;
+    attribute lorenzCoefficient: LorenzCoefficientValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-19 Hall coefficient
@@ -558,7 +558,7 @@ package ISQCondensedMatter {
         attribute :>> num: Real;
         attribute :>> mRef: HallCoefficientUnit[1];
     }
-    attribute hallCoefficient: HallCoefficientValue :> scalarQuantities;
+    attribute hallCoefficient: HallCoefficientValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-20 thermoelectric voltage (between substances a and b)
@@ -571,7 +571,7 @@ package ISQCondensedMatter {
      * definition: voltage (IEC 80000-6) between substances `a` and `b` caused by the thermoelectric effect
      * remarks: None.
      */
-    attribute thermoelectricVoltageBetweenSubstancesAAndB: ElectricPotentialDifferenceValue :> scalarQuantities;
+    attribute thermoelectricVoltageBetweenSubstancesAAndB: ElectricPotentialDifferenceValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-21 Seebeck coefficient (for substances a and b)
@@ -585,11 +585,11 @@ package ISQCondensedMatter {
      * remarks: This term is also called "thermoelectric power".
      */
     attribute def SeebeckCoefficientForSubstancesAAndBUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -3; }
-        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq::I; :>> exponent = -1; }
-        private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq::'Θ'; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -3; }
+        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq.I; :>> exponent = -1; }
+        private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq.'Θ'; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, electricCurrentPF, thermodynamicTemperaturePF); }
     }
 
@@ -597,7 +597,7 @@ package ISQCondensedMatter {
         attribute :>> num: Real;
         attribute :>> mRef: SeebeckCoefficientForSubstancesAAndBUnit[1];
     }
-    attribute seebeckCoefficientForSubstancesAAndB: SeebeckCoefficientForSubstancesAAndBValue :> scalarQuantities;
+    attribute seebeckCoefficientForSubstancesAAndB: SeebeckCoefficientForSubstancesAAndBValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-22 Peltier coefficient (for substances a and b)
@@ -610,7 +610,7 @@ package ISQCondensedMatter {
      * definition: quotient of Peltier heat power (ISO 80000-5) developed at a junction, and the electric current (IEC 80000-6) flowing from substance `a` to substance `b`
      * remarks: `Π_(ab) = Π_a - Π_b`, where `Π_a` and `Π_b` are the Peltier coefficients of substances `a` and `b`, respectively.
      */
-    attribute peltierCoefficientForSubstancesAAndB: ElectricPotentialDifferenceValue :> scalarQuantities;
+    attribute peltierCoefficientForSubstancesAAndB: ElectricPotentialDifferenceValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-23 Thomson coefficient
@@ -624,11 +624,11 @@ package ISQCondensedMatter {
      * remarks: `μ` is positive if heat is developed when the temperature decreases in the direction of the electric current.
      */
     attribute def ThomsonCoefficientUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -3; }
-        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq::I; :>> exponent = -1; }
-        private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq::'Θ'; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -3; }
+        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq.I; :>> exponent = -1; }
+        private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq.'Θ'; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, electricCurrentPF, thermodynamicTemperaturePF); }
     }
 
@@ -636,7 +636,7 @@ package ISQCondensedMatter {
         attribute :>> num: Real;
         attribute :>> mRef: ThomsonCoefficientUnit[1];
     }
-    attribute thomsonCoefficient: ThomsonCoefficientValue :> scalarQuantities;
+    attribute thomsonCoefficient: ThomsonCoefficientValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-24.1 work function
@@ -649,7 +649,7 @@ package ISQCondensedMatter {
      * definition: difference between energy (ISO 80000-5) of an electron at rest at infinity and the Fermi energy (item 12-27.1)
      * remarks: The term "energy level" is often used for the state of the electron, not only for its energy. The contact potential difference between substances `a` and `b` is given by `V_a - V_b = (ϕ_a - ϕ_b)/e`, where `e` is the elementary charge (ISO 80000-1). A set of energy levels, the energies of which occupy an interval practically continuously, is called an energy band. In semi-conductors `E_d` and `E_a` are used for donors and acceptors, respectively.
      */
-    attribute workFunction: EnergyValue :> scalarQuantities;
+    attribute workFunction: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-24.2 ionization energy
@@ -662,7 +662,7 @@ package ISQCondensedMatter {
      * definition: difference between energy (ISO 80000-5) of an electron at rest at infinity and a certain energy level which is the energy of an electron in the interior of a substance
      * remarks: None.
      */
-    attribute ionizationEnergy: EnergyValue :> scalarQuantities;
+    attribute ionizationEnergy: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-25 electron affinity
@@ -675,7 +675,7 @@ package ISQCondensedMatter {
      * definition: energy (ISO 80000-5) difference between an electron at rest at infinity and an electron at the lowest level of the conduction band in an insulator or semiconductor
      * remarks: None.
      */
-    attribute electronAffinity: EnergyValue :> scalarQuantities;
+    attribute electronAffinity: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-26 Richardson constant
@@ -689,9 +689,9 @@ package ISQCondensedMatter {
      * remarks: None.
      */
     attribute def RichardsonConstantUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -2; }
-        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq::I; :>> exponent = 1; }
-        private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq::'Θ'; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -2; }
+        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq.I; :>> exponent = 1; }
+        private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq.'Θ'; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, electricCurrentPF, thermodynamicTemperaturePF); }
     }
 
@@ -699,7 +699,7 @@ package ISQCondensedMatter {
         attribute :>> num: Real;
         attribute :>> mRef: RichardsonConstantUnit[1];
     }
-    attribute richardsonConstant: RichardsonConstantValue :> scalarQuantities;
+    attribute richardsonConstant: RichardsonConstantValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-27.1 Fermi energy
@@ -712,7 +712,7 @@ package ISQCondensedMatter {
      * definition: in a metal, highest occupied energy level at zero thermodynamic temperature (ISO 80000-5), where energy level means the energy (ISO 80000-5) of an electron in the interior of a substance
      * remarks: The term "energy level" is often used for the state of the electron, not only for its energy. At `T = 0 [K]`, `E_F` is equal to the chemical potential per electron. In condensed matter physics, the reference level for the energy is sometimes chosen so that, for instance, `E_F = 0`.
      */
-    attribute fermiEnergy: EnergyValue :> scalarQuantities;
+    attribute fermiEnergy: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-27.2 gap energy
@@ -725,7 +725,7 @@ package ISQCondensedMatter {
      * definition: difference in energy (ISO 80000-5) between the lowest level of conduction band and the highest level of valence band at zero thermodynamic temperature (ISO 80000-5)
      * remarks: None.
      */
-    attribute gapEnergy: EnergyValue :> scalarQuantities;
+    attribute gapEnergy: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-28 Fermi temperature
@@ -738,7 +738,7 @@ package ISQCondensedMatter {
      * definition: in the free electron model, the Fermi energy (item 12-27.1) divided by the Boltzmann constant (ISO 80000-1)
      * remarks: The Fermi temperature is expressed by: `T_F = E_F/k`, where `E_F` is Fermi energy (item 12-27.1) and `k` is the Boltzmann constant (ISO 80000-1). `E_F` is relative to the lowest occupied state.
      */
-    attribute fermiTemperature: ThermodynamicTemperatureValue :> scalarQuantities;
+    attribute fermiTemperature: ThermodynamicTemperatureValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-29.1 electron density
@@ -752,7 +752,7 @@ package ISQCondensedMatter {
      * remarks: Subscripts `n` and `p` or `-` and `+` are often used to denote electrons and holes, respectively. `n_n` and `n_p` are also used for electron densities, and `p_n` and `p_p` for hole densities, in `n`-type and `p`-type regions, respectively, of a `n`-`p` junction.
      */
     attribute def ElectronDensityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -760,7 +760,7 @@ package ISQCondensedMatter {
         attribute :>> num: Real;
         attribute :>> mRef: ElectronDensityUnit[1];
     }
-    attribute electronDensity: ElectronDensityValue :> scalarQuantities;
+    attribute electronDensity: ElectronDensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-29.2 hole density
@@ -774,7 +774,7 @@ package ISQCondensedMatter {
      * remarks: Subscripts `n` and `p` or `-` and `+` are often used to denote electrons and holes, respectively. `n_n` and `n_p` are also used for electron densities, and `p_n` and `p_p` for hole densities, in `n`-type and `p`-type regions, respectively, of a `n`-`p` junction.
      */
     attribute def HoleDensityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -782,7 +782,7 @@ package ISQCondensedMatter {
         attribute :>> num: Real;
         attribute :>> mRef: HoleDensityUnit[1];
     }
-    attribute holeDensity: HoleDensityValue :> scalarQuantities;
+    attribute holeDensity: HoleDensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-29.3 intrinsic carrier density
@@ -796,7 +796,7 @@ package ISQCondensedMatter {
      * remarks: Subscripts `n` and `p` or `-` and `+` are often used to denote electrons and holes, respectively. `n_n` and `n_p` are also used for electron densities, and `p_n` and `p_p` for hole densities, in `n`-type and `p`-type regions, respectively, of a `n`-`p` junction.
      */
     attribute def IntrinsicCarrierDensityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -804,7 +804,7 @@ package ISQCondensedMatter {
         attribute :>> num: Real;
         attribute :>> mRef: IntrinsicCarrierDensityUnit[1];
     }
-    attribute intrinsicCarrierDensity: IntrinsicCarrierDensityValue :> scalarQuantities;
+    attribute intrinsicCarrierDensity: IntrinsicCarrierDensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-29.4 donor density
@@ -818,7 +818,7 @@ package ISQCondensedMatter {
      * remarks: None.
      */
     attribute def DonorDensityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -826,7 +826,7 @@ package ISQCondensedMatter {
         attribute :>> num: Real;
         attribute :>> mRef: DonorDensityUnit[1];
     }
-    attribute donorDensity: DonorDensityValue :> scalarQuantities;
+    attribute donorDensity: DonorDensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-29.5 acceptor density
@@ -840,7 +840,7 @@ package ISQCondensedMatter {
      * remarks: None.
      */
     attribute def AcceptorDensityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -848,7 +848,7 @@ package ISQCondensedMatter {
         attribute :>> num: Real;
         attribute :>> mRef: AcceptorDensityUnit[1];
     }
-    attribute acceptorDensity: AcceptorDensityValue :> scalarQuantities;
+    attribute acceptorDensity: AcceptorDensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-30 effective mass
@@ -861,7 +861,7 @@ package ISQCondensedMatter {
      * definition: quantity given by: `m^"*" = (ħ^2 k) / ((dε)/(dk))`, where `k` is wavenumber (ISO 80000-3), `ε` is the energy (ISO 80000-5) of an electron in the interior of a substance, and `ħ` is the reduced Planck constant (ISO 80000-1)
      * remarks: When `k` refers to a state where `ε` has an extremum, `m"*" = (ħ^2 k) / ((d^2ε)/(dk^2))`. The effective mass can be generalized to refer to an anisotropic system with `ε = ε(k)`.
      */
-    attribute effectiveMass: MassValue :> scalarQuantities;
+    attribute effectiveMass: MassValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-31 mobility ratio
@@ -875,7 +875,7 @@ package ISQCondensedMatter {
      * remarks: The mobility ratio can be expressed by: `b = μ_n/μ_p`, where `μ_n` and `μ_p` are mobilities (ISO 80000-10) for electrons and holes, respectively.
      */
     attribute def MobilityRatioValue :> DimensionOneValue;
-    attribute mobilityRatio: MobilityRatioValue :> scalarQuantities;
+    attribute mobilityRatio: MobilityRatioValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-32.1 relaxation time
@@ -888,7 +888,7 @@ package ISQCondensedMatter {
      * definition: time constant (ISO 80000-3) for scattering, trapping or annihilation of charge carriers, phonons or other quasiparticles
      * remarks: For electrons in metals, `τ = l/v_F`, where `l` is mean free path (item 12-15.2) and `v_F` is speed (ISO 80000-3) of electrons on the Fermi surface.
      */
-    attribute relaxationTime: DurationValue :> scalarQuantities;
+    attribute relaxationTime: DurationValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-32.2 carrier lifetime
@@ -901,7 +901,7 @@ package ISQCondensedMatter {
      * definition: time constant (ISO 80000-3) for recombination or trapping of minority charge carriers in semiconductors
      * remarks: Indices "n" and "p" denote negative and positive charge carriers, respectively. Positive charge carriers can also be holes.
      */
-    attribute carrierLifetime: DurationValue :> scalarQuantities;
+    attribute carrierLifetime: DurationValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-33 diffusion length
@@ -914,7 +914,7 @@ package ISQCondensedMatter {
      * definition: square root of the product of diffusion coefficient (ISO 80000-10) and lifetime (ISO 80000-10)
      * remarks: The diffusion length can be expressed by: `L = sqrt(Dτ)`, where `D` is the diffusion coefficient (ISO 80000-9) and `τ` is lifetime (ISO 80000-3).
      */
-    attribute diffusionLengthForCondensedMatterPhysics: LengthValue :> scalarQuantities;
+    attribute diffusionLengthForCondensedMatterPhysics: LengthValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-34 exchange integral
@@ -927,7 +927,7 @@ package ISQCondensedMatter {
      * definition: constituent of the interaction energy (ISO 80000-5) between the spins of adjacent electrons in matter arising from the overlap of electron state functions
      * remarks: None.
      */
-    attribute exchangeIntegral: EnergyValue :> scalarQuantities;
+    attribute exchangeIntegral: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-35.1 Curie temperature
@@ -940,7 +940,7 @@ package ISQCondensedMatter {
      * definition: critical thermodynamic temperature (ISO 80000-5) of a ferromagnet
      * remarks: `T_(cr)` is used for critical thermodynamic temperature in general.
      */
-    attribute curieTemperature: ThermodynamicTemperatureValue :> scalarQuantities;
+    attribute curieTemperature: ThermodynamicTemperatureValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-35.2 Néel temperature
@@ -953,7 +953,7 @@ package ISQCondensedMatter {
      * definition: critical thermodynamic temperature (ISO 80000-5) of an antiferromagnet
      * remarks: None.
      */
-    attribute 'néelTemperature': ThermodynamicTemperatureValue :> scalarQuantities;
+    attribute 'néelTemperature': ThermodynamicTemperatureValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-35.3 superconduction transition temperature
@@ -966,7 +966,7 @@ package ISQCondensedMatter {
      * definition: critical thermodynamic temperature (ISO 80000-5) of a superconductor
      * remarks: None.
      */
-    attribute superconductionTransitionTemperature: ThermodynamicTemperatureValue :> scalarQuantities;
+    attribute superconductionTransitionTemperature: ThermodynamicTemperatureValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-36.1 thermodynamic critical magnetic flux density
@@ -979,7 +979,7 @@ package ISQCondensedMatter {
      * definition: quantity given by: `B_c = sqrt((2μ_0 (G_n - G_s))/V)`, where `G_n` and `G_s` are the Gibbs energies (ISO 80000-5) at zero magnetic flux density (IEC 80000-6) in a normal conductor and superconductor, respectively, `μ_0` is the magnetic constant (IEC 80000-6), and `V` is volume (ISO 80000-3)
      * remarks: In type I superconductors, `B_c` is the critical magnetic flux density for disappearance of superconductivity. The symbol `B_(c3)` is used for the critical magnetic flux density for disappearance of surface superconductivity.
      */
-    attribute thermodynamicCriticalMagneticFluxDensity: MagneticFluxDensityValue :> scalarQuantities;
+    attribute thermodynamicCriticalMagneticFluxDensity: MagneticFluxDensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-36.2 lower critical magnetic flux density
@@ -992,7 +992,7 @@ package ISQCondensedMatter {
      * definition: for type II superconductors, the threshold magnetic flux density (IEC 80000-6) for magnetic flux (IEC 80000-6) entering the superconductor
      * remarks: None.
      */
-    attribute lowerCriticalMagneticFluxDensity: MagneticFluxDensityValue :> scalarQuantities;
+    attribute lowerCriticalMagneticFluxDensity: MagneticFluxDensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-36.3 upper critical magnetic flux density
@@ -1005,7 +1005,7 @@ package ISQCondensedMatter {
      * definition: for type II superconductors, the threshold magnetic flux density (IEC 80000-6) for disappearance of bulk superconductivity
      * remarks: None.
      */
-    attribute upperCriticalMagneticFluxDensity: MagneticFluxDensityValue :> scalarQuantities;
+    attribute upperCriticalMagneticFluxDensity: MagneticFluxDensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-37 superconductor energy gap
@@ -1018,7 +1018,7 @@ package ISQCondensedMatter {
      * definition: width of the forbidden energy band (item 12-24.2) in a superconductor
      * remarks: None.
      */
-    attribute superconductorEnergyGap: EnergyValue :> scalarQuantities;
+    attribute superconductorEnergyGap: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-38.1 London penetration depth
@@ -1031,7 +1031,7 @@ package ISQCondensedMatter {
      * definition: distance (ISO 80000-3) a magnetic field penetrates the plane surface of a semi-finite superconductor according to the expression: `B(x) = B(0) exp(-x/λ_L)`, where `B` is magnetic flux density (IEC 80000-6) and `x` is distance (ISO 80000-3) from the surface
      * remarks: None.
      */
-    attribute londonPenetrationDepth: LengthValue :> scalarQuantities;
+    attribute londonPenetrationDepth: LengthValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 12-38.2 coherence length
@@ -1044,6 +1044,6 @@ package ISQCondensedMatter {
      * definition: distance (ISO 80000-3) in a superconductor over which the effect of a perturbation is appreciable at zero thermodynamic temperature (ISO 80000-5)
      * remarks: None.
      */
-    attribute coherenceLength: LengthValue :> scalarQuantities;
+    attribute coherenceLength: LengthValue [*] nonunique :> scalarQuantities;
 
 }

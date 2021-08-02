@@ -1,7 +1,7 @@
 package Circular {
 	class A { }
 	feature a: A;
-	import Circular as Circ;
+	alias Circ for Circular;
 	package P {
 		import Circular::*;
 	}

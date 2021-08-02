@@ -36,8 +36,10 @@ package ServerSequenceRealization_3 {
 				action publish {
 					out ref request : Publish[1] = Publish(someTopic, somePublication);
 				}
-				stream publish_request from publish.request to publicationPort.publish;
-			}			
+			}
+			
+			stream publish_request from producerBehavior.publish.request to publicationPort.publish;
+					
 		}
 		
 		interface publication_interface : PublicationInterface connect producer_3.publicationPort to server_3.publicationPort {
@@ -53,9 +55,11 @@ package ServerSequenceRealization_3 {
 				out ref :>> deliver;
 			}
 						
+			stream subscribe_request from subscriptionPort.subscribe to serverBehavior.subscribing.request;
+			stream publish_request from publicationPort.publish to serverBehavior.publishing.request;
+			stream deliver_response from serverBehavior.delivering.response to subscriptionPort.deliver;
+			
 			perform action serverBehavior {
-				stream subscribe_request from subscriptionPort.subscribe to subscribing.request;
-				stream publish_request from publicationPort.publish to publishing.request;
 				
 				action subscribing {
 					in ref request : Subscribe[1];
@@ -70,7 +74,7 @@ package ServerSequenceRealization_3 {
 				}
 				
 				then decide;
-					if publishing::topic == subscribing.topic then delivering;
+					if publishing.topic == subscribing.topic then delivering;
 					else continuePublishing;
 					
 				then action delivering {
@@ -80,7 +84,6 @@ package ServerSequenceRealization_3 {
 				}
 				then continuePublishing;
 				
-				stream deliver_response from delivering.response to subscriptionPort.deliver;
 			}
 		}
 		
@@ -97,9 +100,10 @@ package ServerSequenceRealization_3 {
 				in ref :>> deliver;
 			}
 			
+			stream subscribe_request from consumerBehavior.subscribe.request to subscriptionPort.subscribe;
+			stream deliver_response from subscriptionPort.deliver to consumerBehavior.delivery.response;
+
 			perform action consumerBehavior {
-				stream subscribe_request from subscribe.request to subscriptionPort.subscribe;
-				stream deliver_response from subscriptionPort.deliver to delivery.response;
 				action subscribe {
 					out ref request : Subscribe = Subscribe(myTopic);
 				}
@@ -127,22 +131,22 @@ package ServerSequenceRealization_3 {
 			event occurrence :>> deliver_target_event = consumerBehavior.delivery;
 		}
 		
-		stream :>> publish_message from producer::producerBehavior::publish::request to server::serverBehavior::publishing::request {
-//			perform producer::producerBehavior::publish_request;
-//			perform publication_interface::publish_request;
-//			perform server::serverBehavior::publish_request;
+		stream :>> publish_message from producer.producerBehavior.publish.request to server.serverBehavior.publishing.request {
+			perform producer.producerBehavior.publish;
+			perform publication_interface.publish_request;
+			perform server.serverBehavior.publishing;
 		}
 		
-		stream :>> subscribe_message from consumer::consumerBehavior::subscribe::request to server::serverBehavior::subscribing::request {
-//			perform consumer::consumerBehavior::subscribe_request;
-//			perform subscription_interface::subscribe_request;
-//			perform server::serverBehavior::subscribe_request;
+		stream :>> subscribe_message from consumer.consumerBehavior.subscribe.request to server.serverBehavior.subscribing.request {
+			perform consumer.consumerBehavior.subscribe;
+			perform subscription_interface.subscribe_request;
+			perform server.serverBehavior.subscribing;
 		}
 		
-		stream :>> deliver_message from server::serverBehavior::delivering::response to consumer::consumerBehavior::delivery::response {
-//			perform server::serverBehavior::deliver_response;
-//			perform subscription_interface::deliver_response;
-//			perform consumer::consumerBehavior::deliver_response;
+		stream :>> deliver_message from server.serverBehavior.delivering.response to consumer.consumerBehavior.delivery.response {
+			perform server.serverBehavior.delivering;
+			perform subscription_interface.deliver_response;
+			perform consumer.consumerBehavior.delivery;
 		}
 	}
 }

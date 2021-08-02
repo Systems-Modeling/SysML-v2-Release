@@ -49,7 +49,7 @@ package 'Vehicle Decomposition - Updated' {
 		}
 		
 		// Constrains total number of lugbolts.
-		ref lugBolts[24] = chs::w::lb;
+		ref lugBolts[24] = chs.w.lb;
 	}
 	
 	part 'vehicle model 2' :> vehicle {

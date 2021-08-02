@@ -22,15 +22,15 @@ package VehicleDefinitions {
 	/* INTERFACE BLOCKS */
 	
 	class DriveIF { 
-		in driveTorque is ISQ::torque;
+		in driveTorque :> ISQ::torque;
 	}
 	
 	class AxleMountIF { 
-		out transferredTorque is ISQ::torque;
+		out transferredTorque :> ISQ::torque;
 	}
 	
 	class WheelHubIF { 
-		in appliedTorque is ISQ::torque;
+		in appliedTorque :> ISQ::torque;
 	}
 	
 	/* ASSOCIATION BLOCKS */

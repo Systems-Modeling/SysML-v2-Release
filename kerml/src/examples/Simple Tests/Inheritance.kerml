@@ -12,11 +12,11 @@ package Inheritance {
 		feature g redefines f;
 	}
 	
-	alias y::g as z;
+	alias z for y::g;
 	
 	feature w subsets y;
 	
-	alias w::g as u;
+	alias us for w::g;
 	
 	feature yy: y;
 }

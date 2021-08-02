@@ -8,6 +8,7 @@ package Parts {
 	private import Items::Item;
 	private import Items::items;
 	private import Ports::Port;
+	private import Ports::ports;
 	private import Actions::Action;
 	private import States::StateAction;
 	
@@ -24,7 +25,7 @@ package Parts {
 		/**
 		 * Ports that are on this Part.
 		 */
-		abstract port ports: Port[0..*] :> parts;
+		abstract port portsOnPart: Port[0..*] :> ports;
 		
 		/**
 		 * Actions that are performed by this Part.

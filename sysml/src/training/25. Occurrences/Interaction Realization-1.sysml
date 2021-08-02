@@ -10,8 +10,8 @@ package 'Interaction Realization-1' {
 	part vehicle_a : Vehicle {
 		part cruiseController_a : CruiseController {
 			perform action controllerBehavior {
-				action receiveSetSpeed accept SetSpeed for vehicle_a;
-				then action receiveSensedSpeed accept SensedSpeed for cruiseController_a;
+				action receiveSetSpeed accept SetSpeed via vehicle_a;
+				then action receiveSensedSpeed accept SensedSpeed via cruiseController_a;
 				then action sendFuelCommand send FuelCommand() to engine_a;
 			}
 		}
@@ -24,7 +24,7 @@ package 'Interaction Realization-1' {
 		
 		part engine_a : Engine {
 			perform action engineBehavior {
-				action receiveFuelCommand accept FuelCommand for engine_a;
+				action receiveFuelCommand accept FuelCommand via engine_a;
 			}
 		}
 	}

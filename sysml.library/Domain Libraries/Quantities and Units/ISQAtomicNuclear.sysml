@@ -35,9 +35,9 @@ package ISQAtomicNuclear {
      * definition: number of protons in an atomic nucleus
      * remarks: A nuclide is a species of atom with specified numbers of protons and neutrons. Nuclides with the same value of `Z` but different values of `N` are called isotopes of an element. The ordinal number of an element in the periodic table is equal to the atomic number. The atomic number equals the quotient of the charge (IEC 80000-6) of the nucleus and the elementary charge (ISO 80000-1).
      */
-    attribute atomicNumber: CountValue :> scalarQuantities;
+    attribute atomicNumber: CountValue [*] nonunique :> scalarQuantities;
 
-    alias atomicNumber as protonNumber;
+    alias protonNumber for atomicNumber;
 
     /**
      * source: item 10-1.2 neutron number
@@ -50,7 +50,7 @@ package ISQAtomicNuclear {
      * definition: number of neutrons in an atomic nucleus
      * remarks: Nuclides with the same value of `N` but different values of `Z` are called isotones. `N` - `Z` is called the neutron excess number.
      */
-    attribute neutronNumber: CountValue :> scalarQuantities;
+    attribute neutronNumber: CountValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-1.3 nucleon number, mass number
@@ -63,9 +63,9 @@ package ISQAtomicNuclear {
      * definition: number of nucleons in an atomic nucleus
      * remarks: `A` = `Z` + `N` Nuclides with the same value of `A` are called isobars.
      */
-    attribute nucleonNumber: CountValue :> scalarQuantities;
+    attribute nucleonNumber: CountValue [*] nonunique :> scalarQuantities;
 
-    alias nucleonNumber as massNumber;
+    alias massNumber for nucleonNumber;
 
     /**
      * source: item 10-2 rest mass, proper mass
@@ -78,9 +78,9 @@ package ISQAtomicNuclear {
      * definition: for particle X, mass (ISO 80000-4) of that particle at rest in an inertial frame
      * remarks: EXAMPLE `m`(H_2O) for a water molecule, `m_e` for an electron. Rest mass is often denoted `m_0`. 1 u is equal to 1/12 times the mass of a free carbon 12 atom, at rest and in its ground state. 1 Da = 1 u
      */
-    attribute restMass: MassValue :> scalarQuantities;
+    attribute restMass: MassValue [*] nonunique :> scalarQuantities;
 
-    alias restMass as properMass;
+    alias properMass for restMass;
 
     /**
      * source: item 10-3 rest energy
@@ -93,7 +93,7 @@ package ISQAtomicNuclear {
      * definition: energy `E_0` (ISO 80000-5) of a particle at rest: `E_0 = m_0 c_0^2` where `m_0` is the rest mass (item 10-2) of that particle, and `c_0` is speed of light in vacuum (ISO 80000-1)
      * remarks: None.
      */
-    attribute restEnergy: EnergyValue :> scalarQuantities;
+    attribute restEnergy: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-4.1 atomic mass
@@ -106,7 +106,7 @@ package ISQAtomicNuclear {
      * definition: rest mass (item 10-2) of an atom X in the ground state
      * remarks: `m(X)/m_u` is called the relative atomic mass. 1 u is equal to 1/12 times the mass of a free carbon 12 atom, at rest and in its ground state. 1 Da = 1 u
      */
-    attribute atomicMass: MassValue :> scalarQuantities;
+    attribute atomicMass: MassValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-4.2 nuclidic mass
@@ -119,7 +119,7 @@ package ISQAtomicNuclear {
      * definition: rest mass (item 10-2) of a nuclide X in the ground state
      * remarks: 1 u is equal to 1/12 times the mass of a free carbon 12 atom, at rest and in its ground state. 1 Da = 1 u
      */
-    attribute nuclidicMass: MassValue :> scalarQuantities;
+    attribute nuclidicMass: MassValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-4.3 unified atomic mass constant
@@ -132,7 +132,7 @@ package ISQAtomicNuclear {
      * definition: 1/12 of the mass (ISO 80000-4) of an atom of the nuclide ^(12)C in the ground state at rest
      * remarks: 1 u is equal to 1/12 times the mass of a free carbon 12 atom, at rest and in its ground state. 1 Da = 1 u
      */
-    attribute unifiedAtomicMassConstant: MassValue :> scalarQuantities;
+    attribute unifiedAtomicMassConstant: MassValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-5.1 elementary charge
@@ -145,7 +145,7 @@ package ISQAtomicNuclear {
      * definition: one of the fundamental constants in the SI system (ISO 80000-1), equal to the charge of the proton and opposite to the charge of the electron
      * remarks: None.
      */
-    attribute elementaryCharge: ElectricChargeValue :> scalarQuantities;
+    attribute elementaryCharge: ElectricChargeValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-5.2 charge number, ionization number
@@ -159,9 +159,9 @@ package ISQAtomicNuclear {
      * remarks: A particle is said to be electrically neutral if its charge number is equal to zero. The charge number of a particle can be positive, negative, or zero. The state of charge of a particle may be presented as a superscript to the symbol of that particle, e.g. `H^+, He^(++), Al^(3+), Cl^-, S^(--), N^(3-)`.
      */
     attribute def ChargeNumberValue :> DimensionOneValue;
-    attribute chargeNumber: ChargeNumberValue :> scalarQuantities;
+    attribute chargeNumber: ChargeNumberValue [*] nonunique :> scalarQuantities;
 
-    alias chargeNumber as ionizationNumber;
+    alias ionizationNumber for chargeNumber;
 
     /**
      * source: item 10-6 Bohr radius
@@ -174,7 +174,7 @@ package ISQAtomicNuclear {
      * definition: radius (ISO 80000-3) of the electron orbital in the hydrogen atom in its ground state in the Bohr model of the atom: `a_0 = (4 π ε_0 ℏ^2)/(m_e e^2)` where `ε_0` is the electric constant (IEC 80000-6), `ℏ` is the reduced Planck constant (ISO 80000-1), `m_e` is the rest mass (item 10-2) of electron, and `e` is the elementary charge (ISO 80000-1)
      * remarks: The radius of the electron orbital in the H atom in its ground state is `a_0` in the Bohr model of the atom. ångström (Å), `1 Å := 10^-10 m`.
      */
-    attribute bohrRadius: LengthValue :> scalarQuantities;
+    attribute bohrRadius: LengthValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-7 Rydberg constant
@@ -188,7 +188,7 @@ package ISQAtomicNuclear {
      * remarks: The quantity `R_y = R_∞ h c_0` is called the Rydberg energy.
      */
     attribute def RydbergConstantUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -196,7 +196,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: RydbergConstantUnit[1];
     }
-    attribute rydbergConstant: RydbergConstantValue :> scalarQuantities;
+    attribute rydbergConstant: RydbergConstantValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-8 Hartree energy
@@ -210,9 +210,9 @@ package ISQAtomicNuclear {
      * remarks: The energy of the electron in an H atom in its ground state is `E_H`.
      */
     attribute def HartreeEnergyUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 6; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 3; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -6; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 6; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 3; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -6; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -220,7 +220,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: HartreeEnergyUnit[1];
     }
-    attribute hartreeEnergy: HartreeEnergyValue :> scalarQuantities;
+    attribute hartreeEnergy: HartreeEnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-9.1 magnetic dipole moment (magnitude)
@@ -234,8 +234,8 @@ package ISQAtomicNuclear {
      * remarks: For an atom or nucleus, this energy is quantized and can be written as: `W` = `g μ_x M B` where `g` is the appropriate `g` factor (item 10-14.1 or item 10-14.2), `μ_x` is mostly the Bohr magneton or nuclear magneton (item 10-9.2 or item 10-9.3), `M` is magnetic quantum number (item 10-13.4), and `B` is magnitude of the magnetic flux density. See also IEC 80000-6.
      */
     attribute def MagneticDipoleMomentUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq::I; :>> exponent = 1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq.I; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, electricCurrentPF); }
     }
 
@@ -243,7 +243,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: MagneticDipoleMomentUnit[1];
     }
-    attribute magneticDipoleMoment: MagneticDipoleMomentValue :> scalarQuantities;
+    attribute magneticDipoleMoment: MagneticDipoleMomentValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-9.1 magnetic dipole moment (vector)
@@ -282,7 +282,7 @@ package ISQAtomicNuclear {
      * definition: magnitude of the magnetic moment of an electron in a state with orbital angular momentum quantum number `l`=1 (item 10-13.3) due to its orbital motion: `μ_B = (e ℏ)/(2 m_e)` where `e` is the elementary charge (ISO 80000-1), `ℏ` is the reduced Planck constant (ISO 80000-1), and `m_e` is the rest mass (item 10-2) of electron
      * remarks: None.
      */
-    attribute bohrMagneton: MagneticDipoleMomentValue :> scalarQuantities;
+    attribute bohrMagneton: MagneticDipoleMomentValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-9.3 nuclear magneton
@@ -295,7 +295,7 @@ package ISQAtomicNuclear {
      * definition: absolute value of the magnetic moment of a nucleus: `μ_N = (e ℏ)/(2 m_p)` where `e` is the elementary charge (ISO 80000-1), `ℏ` is the reduced Planck constant (ISO 80000-1), and `m_p` is the rest mass (item 10-2) of proton
      * remarks: Subscript N stands for nucleus. For the neutron magnetic moment, subscript n is used. The magnetic moments of protons and neutrons differ from this quantity by their specific `g` factors (item 10-14.2).
      */
-    attribute nuclearMagneton: MagneticDipoleMomentValue :> scalarQuantities;
+    attribute nuclearMagneton: MagneticDipoleMomentValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-10 spin (magnitude)
@@ -309,9 +309,9 @@ package ISQAtomicNuclear {
      * remarks: Spin is an additive vector quantity.
      */
     attribute def SpinUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -319,7 +319,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: SpinUnit[1];
     }
-    attribute spin: SpinValue :> scalarQuantities;
+    attribute spin: SpinValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-10 spin (vector)
@@ -359,9 +359,9 @@ package ISQAtomicNuclear {
      * remarks: In atomic and nuclear physics, orbital angular momentum is usually denoted by `vec(l)` or `vec(L)`. The magnitude of `vec(J)` is quantized so that: `J^2 = ℏ^2 j (j+1)` where `j` is the total angular momentum quantum number (item 10-13.6). Total angular momentum and magnetic dipole moment have the same direction. `j` is not the magnitude of the total angular momentum `vec(J)` but its projection onto the quantization axis, divided by `ℏ`.
      */
     attribute def TotalAngularMomentumUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -369,7 +369,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: TotalAngularMomentumUnit[1];
     }
-    attribute totalAngularMomentum: TotalAngularMomentumValue :> scalarQuantities;
+    attribute totalAngularMomentum: TotalAngularMomentumValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-11 total angular momentum (vector)
@@ -409,9 +409,9 @@ package ISQAtomicNuclear {
      * remarks: 1 A·m^2/(J·s) = 1 A·s/kg = 1 T^-1·s^-1 The systematic name is "gyromagnetic coefficient", but "gyromagnetic ratio" is more usual. The gyromagnetic ratio of the proton is denoted by `γ_p`. The gyromagnetic ratio of the neutron is denoted by `γ_n`.
      */
     attribute def GyromagneticRatioUnit :> DerivedUnit {
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = -1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = 1; }
-        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq::I; :>> exponent = 1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = 1; }
+        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq.I; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF, electricCurrentPF); }
     }
 
@@ -419,15 +419,15 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: GyromagneticRatioUnit[1];
     }
-    attribute gyromagneticRatio: GyromagneticRatioValue :> scalarQuantities;
+    attribute gyromagneticRatio: GyromagneticRatioValue [*] nonunique :> scalarQuantities;
 
-    alias GyromagneticRatioUnit as MagnetogyricRatioUnit;
-    alias GyromagneticRatioValue as MagnetogyricRatioValue;
-    alias gyromagneticRatio as magnetogyricRatio;
+    alias MagnetogyricRatioUnit for GyromagneticRatioUnit;
+    alias MagnetogyricRatioValue for GyromagneticRatioValue;
+    alias magnetogyricRatio for gyromagneticRatio;
 
-    alias GyromagneticRatioUnit as GyromagneticCoefficientUnit;
-    alias GyromagneticRatioValue as GyromagneticCoefficientValue;
-    alias gyromagneticRatio as gyromagneticCoefficient;
+    alias GyromagneticCoefficientUnit for GyromagneticRatioUnit;
+    alias GyromagneticCoefficientValue for GyromagneticRatioValue;
+    alias gyromagneticCoefficient for gyromagneticRatio;
 
     /**
      * source: item 10-12.2 gyromagnetic ratio of the electron, magnetogyric ratio of the electron, gyromagnetic coefficient of the electron
@@ -441,9 +441,9 @@ package ISQAtomicNuclear {
      * remarks: 1 A·m^2/(J·s) = 1 A·s/kg = 1 T^-1·s^-1
      */
     attribute def GyromagneticRatioOfTheElectronUnit :> DerivedUnit {
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = -1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = 1; }
-        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq::I; :>> exponent = 1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = 1; }
+        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq.I; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF, electricCurrentPF); }
     }
 
@@ -451,15 +451,15 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: GyromagneticRatioOfTheElectronUnit[1];
     }
-    attribute gyromagneticRatioOfTheElectron: GyromagneticRatioOfTheElectronValue :> scalarQuantities;
+    attribute gyromagneticRatioOfTheElectron: GyromagneticRatioOfTheElectronValue [*] nonunique :> scalarQuantities;
 
-    alias GyromagneticRatioOfTheElectronUnit as MagnetogyricRatioOfTheElectronUnit;
-    alias GyromagneticRatioOfTheElectronValue as MagnetogyricRatioOfTheElectronValue;
-    alias gyromagneticRatioOfTheElectron as magnetogyricRatioOfTheElectron;
+    alias MagnetogyricRatioOfTheElectronUnit for GyromagneticRatioOfTheElectronUnit;
+    alias MagnetogyricRatioOfTheElectronValue for GyromagneticRatioOfTheElectronValue;
+    alias magnetogyricRatioOfTheElectron for gyromagneticRatioOfTheElectron;
 
-    alias GyromagneticRatioOfTheElectronUnit as GyromagneticCoefficientOfTheElectronUnit;
-    alias GyromagneticRatioOfTheElectronValue as GyromagneticCoefficientOfTheElectronValue;
-    alias gyromagneticRatioOfTheElectron as gyromagneticCoefficientOfTheElectron;
+    alias GyromagneticCoefficientOfTheElectronUnit for GyromagneticRatioOfTheElectronUnit;
+    alias GyromagneticCoefficientOfTheElectronValue for GyromagneticRatioOfTheElectronValue;
+    alias gyromagneticCoefficientOfTheElectron for gyromagneticRatioOfTheElectron;
 
     /**
      * source: item 10-13.1 quantum number
@@ -473,7 +473,7 @@ package ISQAtomicNuclear {
      * remarks: Electron states determine the binding energy `E = E(n,l,m,j,s,f)` in an atom. Upper case letters `N, L, M, J, S, F` are usually used for the whole system. The spatial probability distribution of an electron is given by `|Ψ|^2`, where `Ψ` is its wave function. For an electron in an H atom in a non-relativistic approximation, the wave function can be presented as: `Ψ(r,θ,φ) = R_(nl)(r)*Y_l^m(θ,φ)`, where `r,θ,φ` are spherical coordinates (ISO 80000-2) with respect to the nucleus and to a given (quantization) axis, `R_(nl)(r)` is the radial distribution function, and `Y_l^m(θ,φ)` are spherical harmonics. In the Bohr model of one-electron atoms, `n`, `l`, and `m` define the possible orbits of an electron about the nucleus.
      */
     attribute def QuantumNumberValue :> DimensionOneValue;
-    attribute quantumNumber: QuantumNumberValue :> scalarQuantities;
+    attribute quantumNumber: QuantumNumberValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-13.2 principal quantum number
@@ -486,7 +486,7 @@ package ISQAtomicNuclear {
      * definition: atomic quantum number related to the number `n`-1 of radial nodes of one-electron wave functions
      * remarks: In the Bohr model, `n = 1,2,…,∞` is related to the binding energy of an electron and the radius of spherical orbits (principal axis of the elliptic orbits). For an electron in an H atom, the semi-classical radius of its orbit is `r_n = a_0 n^2` and its binding energy is `E_n = E_H/n^2`.
      */
-    attribute principalQuantumNumber: CountValue :> scalarQuantities;
+    attribute principalQuantumNumber: CountValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-13.3 orbital angular momentum quantum number
@@ -499,7 +499,7 @@ package ISQAtomicNuclear {
      * definition: atomic quantum number related to the orbital angular momentum `l` of a one-electron state
      * remarks: `abs(l)^2 = ℏ^2 l (l-1)` , `l = 0, 1, …, n-1` where `vec(l)` is the orbital angular momentum and `ℏ` is the reduced Planck constant (ISO 80000-1). If reference is made to a specific particle `i`, the symbol `l_i` is used instead of `l`; if reference is made to the whole system, the symbol `L` is used instead of `l`. An electron in an H atom for `l = 0` appears as a spherical cloud. In the Bohr model, it is related to the form of the orbit.
      */
-    attribute orbitalAngularMomentumQuantumNumber: CountValue :> scalarQuantities;
+    attribute orbitalAngularMomentumQuantumNumber: CountValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-13.4 magnetic quantum number
@@ -512,7 +512,7 @@ package ISQAtomicNuclear {
      * definition: atomic quantum number related to the `z` component `l_z`, `j_z` or `s_z`, of the orbital, total, or spin angular momentum
      * remarks: `l_z = m_l ℏ` , `j_z = m_j ℏ` , and `s_z = m_s ℏ` , with the ranges from `-l` to `l`, from `-j` to `j`, and `±1/2`, respectively. `m_i` refers to a specific particle `i`. `M` is used for the whole system. Subscripts `l`, `s`, `j`, etc., as appropriate, indicate the angular momentum involved. `ℏ` is the reduced Planck constant (ISO 80000-1).
      */
-    attribute magneticQuantumNumber: CountValue :> scalarQuantities;
+    attribute magneticQuantumNumber: CountValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-13.5 spin quantum number
@@ -525,7 +525,7 @@ package ISQAtomicNuclear {
      * definition: characteristic quantum number `s` of a particle, related to its spin (item 10-10), `vec(s)`: `s^2 = ℏ^2 s (s+1)` where `ℏ` is the reduced Planck constant (ISO 80000-1)
      * remarks: Spin quantum numbers of fermions are odd multiples of 1/2, and those of bosons are integers.
      */
-    attribute spinQuantumNumber: CountValue :> scalarQuantities;
+    attribute spinQuantumNumber: CountValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-13.6 total angular momentum quantum number
@@ -538,7 +538,7 @@ package ISQAtomicNuclear {
      * definition: quantum number in an atom describing the magnitude of total angular momentum `vec(J)` (item 10-11)
      * remarks: `j_i` refers to a specific particle `i`; `J` is used for the whole system. The quantum number `J` and the magnitude of total angular momentum `vec(J)` (item 10-11) are different quantities. The two values of `j` are `l`±1/2. (See item 10-13.3.)
      */
-    attribute totalAngularMomentumQuantumNumber: CountValue :> scalarQuantities;
+    attribute totalAngularMomentumQuantumNumber: CountValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-13.7 nuclear spin quantum number
@@ -551,7 +551,7 @@ package ISQAtomicNuclear {
      * definition: quantum number related to the total angular momentum (item 10-11), `vec(J)`, of a nucleus in any specified state, normally called nuclear spin: `vec(J)^2 = ℏ^2 I (I+1)` where `ℏ` is the reduced Planck constant (ISO 80000-1)
      * remarks: Nuclear spin is composed of spins of the nucleons (protons and neutrons) and their (orbital) motions. In principle there is no upper limit for the nuclear spin quantum number. It has possible values `I` = 0,1,2,… for even `A` and `I = 1/2, 3/2, …` for odd `A`. In nuclear and particle physics, `vec(J)` is often used.
      */
-    attribute nuclearSpinQuantumNumber: CountValue :> scalarQuantities;
+    attribute nuclearSpinQuantumNumber: CountValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-13.8 hyperfine structure quantum number
@@ -564,7 +564,7 @@ package ISQAtomicNuclear {
      * definition: quantum number of an atom describing the inclination of the nuclear spin with respect to a quantization axis given by the magnetic field produced by the orbital electrons
      * remarks: The interval of `F` is │`I`-`J`│, │`I`-`J`│+1, ..., `I`-`J`. This is related to the hyperfine splitting of the atomic energy levels due to the interaction between the electron and nuclear magnetic moments.
      */
-    attribute hyperfineStructureQuantumNumber: CountValue :> scalarQuantities;
+    attribute hyperfineStructureQuantumNumber: CountValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-14.1 Lande factor, g factor of atom
@@ -578,9 +578,9 @@ package ISQAtomicNuclear {
      * remarks: These quantities are also called `g` values. The Landé factor can be calculated from the expression: `g(L, S, J) = 1 + (g_e -1) xx (J(J+1) + S(S+1) - L(L+1))/(2J(J+1))` where `g_e` is the` g` factor of the electron.
      */
     attribute def LandeFactorValue :> DimensionOneValue;
-    attribute landeFactor: LandeFactorValue :> scalarQuantities;
+    attribute landeFactor: LandeFactorValue [*] nonunique :> scalarQuantities;
 
-    alias landeFactor as gFactorOfAtom;
+    alias gFactorOfAtom for landeFactor;
 
     /**
      * source: item 10-14.2 g factor of nucleus or nuclear particle
@@ -594,7 +594,7 @@ package ISQAtomicNuclear {
      * remarks: The `g` factors for nuclei or nucleons are known from measurements.
      */
     attribute def GFactorOfNucleusOrNuclearParticleValue :> DimensionOneValue;
-    attribute gFactorOfNucleusOrNuclearParticle: GFactorOfNucleusOrNuclearParticleValue :> scalarQuantities;
+    attribute gFactorOfNucleusOrNuclearParticle: GFactorOfNucleusOrNuclearParticleValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-15.1 Larmor angular frequency
@@ -607,7 +607,7 @@ package ISQAtomicNuclear {
      * definition: angular frequency (ISO 80000-3) of the electron angular momentum (ISO 80000-4) vector precession about the axis of an external magnetic field: `ω_L = e/(2 m_e) B` where `e` is the elementary charge (ISO 80000-1), `m_e` is the rest mass (item 10-2) of electron, and `B` is magnetic flux density (IEC 80000-6)
      * remarks: None.
      */
-    attribute larmorAngularFrequency: AngularFrequencyValue :> scalarQuantities;
+    attribute larmorAngularFrequency: AngularFrequencyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-15.2 Larmor frequency
@@ -621,7 +621,7 @@ package ISQAtomicNuclear {
      * remarks: None.
      */
     attribute def LarmorFrequencyUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -629,7 +629,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: LarmorFrequencyUnit[1];
     }
-    attribute larmorFrequency: LarmorFrequencyValue :> scalarQuantities;
+    attribute larmorFrequency: LarmorFrequencyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-15.3 nuclear precession angular frequency
@@ -642,7 +642,7 @@ package ISQAtomicNuclear {
      * definition: frequency (ISO 80000-3) by which the nucleus angular momentum vector (ISO 80000-4) precesses about the axis of an external magnetic field: `ω_N` = `γ` `B` where `γ` is the gyromagnetic ratio (item 10-12.1), and `B` is magnetic flux density (IEC 80000-6)
      * remarks: None.
      */
-    attribute nuclearPrecessionAngularFrequency: AngularFrequencyValue :> scalarQuantities;
+    attribute nuclearPrecessionAngularFrequency: AngularFrequencyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-16 cyclotron angular frequency
@@ -655,7 +655,7 @@ package ISQAtomicNuclear {
      * definition: quotient of the product of the electric charge of a particle and the magnitude of the magnetic flux density of the magnetic field, and the particle mass: `ω_c = abs(q)/m B` where `q` is the electric charge (IEC 80000-6) of the particle, `m` is the mass (ISO 80000-4) of the particle, and `B` is the absolute value of the magnetic flux density (IEC 80000-6)
      * remarks: The quantity `v_c` = `ω_c`/2π is called the cyclotron frequency.
      */
-    attribute cyclotronAngularFrequency: AngularFrequencyValue :> scalarQuantities;
+    attribute cyclotronAngularFrequency: AngularFrequencyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-17 gyroradius, Larmor radius
@@ -668,9 +668,9 @@ package ISQAtomicNuclear {
      * definition: radius (ISO 80000-3) of circular movement of a particle with mass (ISO 80000-4), velocity `vec(v)` (ISO 80000-3), and electric charge `q` (IEC 80000-6), moving in a magnetic field with magnetic flux density `vec(B)` (IEC 80000-6): `r_g = (m abs(vec(v) xx vec(B)))/(q B^2)`
      * remarks: None.
      */
-    attribute gyroradius: LengthValue :> scalarQuantities;
+    attribute gyroradius: LengthValue [*] nonunique :> scalarQuantities;
 
-    alias gyroradius as larmorRadius;
+    alias larmorRadius for gyroradius;
 
     /**
      * source: item 10-18 nuclear quadrupole moment
@@ -684,7 +684,7 @@ package ISQAtomicNuclear {
      * remarks: The electric nuclear quadrupole moment is `eQ`. This value is equal to the `z` component of the diagonalized tensor of quadrupole moment.
      */
     attribute def NuclearQuadrupoleMomentUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -692,7 +692,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: NuclearQuadrupoleMomentUnit[1];
     }
-    attribute nuclearQuadrupoleMoment: NuclearQuadrupoleMomentValue :> scalarQuantities;
+    attribute nuclearQuadrupoleMoment: NuclearQuadrupoleMomentValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-19.1 nuclear radius
@@ -705,7 +705,7 @@ package ISQAtomicNuclear {
      * definition: conventional radius (ISO 80000-3) of sphere in which the nuclear matter is included
      * remarks: This quantity is not exactly defined. It is given approximately for nuclei in their ground state by: `R = r_0 A^(1//3)` where `r_0 ~~ 1.2 * 10^-15` m, and `A` is the nucleon number (item 10-1.3). Nuclear radius is usually expressed in femtometres, 1 fm = 10^(-15) m.
      */
-    attribute nuclearRadius: LengthValue :> scalarQuantities;
+    attribute nuclearRadius: LengthValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-19.2 electron radius
@@ -718,7 +718,7 @@ package ISQAtomicNuclear {
      * definition: radius of a sphere such that the relativistic electron energy is distributed uniformly: `r_e = e^2/(4 π ε_0 m_e c_0^2)` where `e` is the elementary charge (ISO 80000-1), `ε_0` is the electric constant (IEC 80000-6), `m_e` is the rest mass (item 10-2) of electron, and `c_0` is the speed of light in vacuum (ISO 80000-1)
      * remarks: This quantity corresponds to the electrostatic energy `E` of a charge distributed inside a sphere of radius `r_e` as if all the rest energy (item 10-3) of the electron were attributed to the energy of electromagnetic origin, using the relation `E = m_e c_0^2`.
      */
-    attribute electronRadius: LengthValue :> scalarQuantities;
+    attribute electronRadius: LengthValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-20 Compton wavelength
@@ -731,7 +731,7 @@ package ISQAtomicNuclear {
      * definition: quotient of the Planck constant and the product of the mass of the particle and the speed of light in vacuum: `λ_C = h / (m c_0)` where `h` is the Planck constant (ISO 80000-1), `m` is the rest mass (item 10-2) of a particle, and `c_0` is the speed of light in vacuum (ISO 80000-1)
      * remarks: The wavelength of electromagnetic radiation scattered from free electrons (Compton scattering) is larger than that of the incident radiation by a maximum of 2`λ_C`.
      */
-    attribute comptonWavelength: LengthValue :> scalarQuantities;
+    attribute comptonWavelength: LengthValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-21.1 mass excess
@@ -744,7 +744,7 @@ package ISQAtomicNuclear {
      * definition: difference between the mass of an atom, and the product of its mass number and the unified mass constant: `Δ` = `m_a` - `A` · `m_u` where `m_a` is the rest mass (item 10-2) of the atom, `A` is its nucleon number (item 10-1.3), and `m_u` is the unified atomic mass constant (item 10-4.3)
      * remarks: The mass excess is usually expressed in daltons, 1 Da = 1 u. See item 10-2.
      */
-    attribute massExcess: MassValue :> scalarQuantities;
+    attribute massExcess: MassValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-21.2 mass defect
@@ -757,7 +757,7 @@ package ISQAtomicNuclear {
      * definition: sum of the product of the proton number and the hydrogen atomic mass, and the neutron rest mass, minus the rest mass of the atom: `B` = `Z` `m`(^1H) + `N` `m_n` -` m_a` where `Z` is the proton number (item 10-1.1) of the atom, `m`(^1H) is atomic mass (item 10-4.1) of ^1H, `N` is neutron number (item 10-1.2), `m_n` is the rest mass (item 10-2) of the neutron, and `m_a` is the rest mass (item 10-2) of the atom
      * remarks: The mass excess is usually expressed in daltons, 1 Da = 1 u. If the binding energy of the orbital electrons is neglected, `B c_0^2` is equal to the binding energy of the nucleus.
      */
-    attribute massDefect: MassValue :> scalarQuantities;
+    attribute massDefect: MassValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-22.1 relative mass excess
@@ -771,7 +771,7 @@ package ISQAtomicNuclear {
      * remarks: None.
      */
     attribute def RelativeMassExcessValue :> DimensionOneValue;
-    attribute relativeMassExcess: RelativeMassExcessValue :> scalarQuantities;
+    attribute relativeMassExcess: RelativeMassExcessValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-22.2 relative mass defect
@@ -785,7 +785,7 @@ package ISQAtomicNuclear {
      * remarks: None.
      */
     attribute def RelativeMassDefectValue :> DimensionOneValue;
-    attribute relativeMassDefect: RelativeMassDefectValue :> scalarQuantities;
+    attribute relativeMassDefect: RelativeMassDefectValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-23.1 packing fraction
@@ -799,7 +799,7 @@ package ISQAtomicNuclear {
      * remarks: None.
      */
     attribute def PackingFractionValue :> DimensionOneValue;
-    attribute packingFraction: PackingFractionValue :> scalarQuantities;
+    attribute packingFraction: PackingFractionValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-23.2 binding fraction
@@ -813,7 +813,7 @@ package ISQAtomicNuclear {
      * remarks: None.
      */
     attribute def BindingFractionValue :> DimensionOneValue;
-    attribute bindingFraction: BindingFractionValue :> scalarQuantities;
+    attribute bindingFraction: BindingFractionValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-24 decay constant, disintegration constant
@@ -827,7 +827,7 @@ package ISQAtomicNuclear {
      * remarks: For exponential decay, this quantity is constant. For more than one decay channel, `λ = sum λ_a` where `λ_a` denotes the decay constant for a specified final state and the sum is taken over all final states.
      */
     attribute def DecayConstantUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -835,11 +835,11 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: DecayConstantUnit[1];
     }
-    attribute decayConstant: DecayConstantValue :> scalarQuantities;
+    attribute decayConstant: DecayConstantValue [*] nonunique :> scalarQuantities;
 
-    alias DecayConstantUnit as DisintegrationConstantUnit;
-    alias DecayConstantValue as DisintegrationConstantValue;
-    alias decayConstant as disintegrationConstant;
+    alias DisintegrationConstantUnit for DecayConstantUnit;
+    alias DisintegrationConstantValue for DecayConstantValue;
+    alias disintegrationConstant for decayConstant;
 
     /**
      * source: item 10-25 mean duration of life, mean life time
@@ -852,9 +852,9 @@ package ISQAtomicNuclear {
      * definition: reciprocal of the decay constant `λ `(item 10-24): `τ = 1/λ`
      * remarks: Mean duration of life is the expected value of the duration of life of an unstable particle or an excited state of a particle when the number of decay events in a short time interval follows a Poisson distribution.
      */
-    attribute meanDurationOfLife: DurationValue :> scalarQuantities;
+    attribute meanDurationOfLife: DurationValue [*] nonunique :> scalarQuantities;
 
-    alias meanDurationOfLife as meanLifeTime;
+    alias meanLifeTime for meanDurationOfLife;
 
     /**
      * source: item 10-26 level width
@@ -867,7 +867,7 @@ package ISQAtomicNuclear {
      * definition: quotient of the reduced Planck constant and the mean life: `Γ = ℏ/τ` where `ℏ` is the reduced Planck constant (ISO 80000-1), and `τ` is mean duration of life (item 10-25)
      * remarks: Level width is the uncertainty of the energy of an unstable particle or an excited state of a system due to the Heisenberg principle. The term energy level refers to the configuration of the distribution function of the density of states. Energy levels may be considered as discrete, like those in an atom, or may have a finite width, like e.g. this item or like e.g. the valence or conduction band in solid state physics. Energy levels are applicable to both real and virtual particles, e.g. electrons and phonons, respectively.
      */
-    attribute levelWidth: EnergyValue :> scalarQuantities;
+    attribute levelWidth: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-27 nuclear activity
@@ -881,7 +881,7 @@ package ISQAtomicNuclear {
      * remarks: For exponential decay, `A` = `λN`, where `λ` is the decay constant (item 10-24). The becquerel (Bq) is a special name for second to the power minus one, to be used as the coherent SI unit of activity. In report 85a of the ICRU a definition with an equivalent meaning is given as: The activity, `A`, of an amount of a radionuclide in a particular energy state at a given time is the quotient of -d`N` by `dt`, where `dN` is the mean change in the number of nuclei in that energy state due to spontaneous nuclear transformations in the time interval `dt`: `A = - (dN)/(dt)`. See also section 0.3.
      */
     attribute def NuclearActivityUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -889,7 +889,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: NuclearActivityUnit[1];
     }
-    attribute nuclearActivity: NuclearActivityValue :> scalarQuantities;
+    attribute nuclearActivity: NuclearActivityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-28 specific activity, massic activity
@@ -903,8 +903,8 @@ package ISQAtomicNuclear {
      * remarks: None.
      */
     attribute def SpecificActivityUnit :> DerivedUnit {
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = -1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
@@ -912,11 +912,11 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: SpecificActivityUnit[1];
     }
-    attribute specificActivity: SpecificActivityValue :> scalarQuantities;
+    attribute specificActivity: SpecificActivityValue [*] nonunique :> scalarQuantities;
 
-    alias SpecificActivityUnit as MassicActivityUnit;
-    alias SpecificActivityValue as MassicActivityValue;
-    alias specificActivity as massicActivity;
+    alias MassicActivityUnit for SpecificActivityUnit;
+    alias MassicActivityValue for SpecificActivityValue;
+    alias massicActivity for specificActivity;
 
     /**
      * source: item 10-29 activity density, volumic activity, activity concentration
@@ -930,8 +930,8 @@ package ISQAtomicNuclear {
      * remarks: None.
      */
     attribute def ActivityDensityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -939,15 +939,15 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: ActivityDensityUnit[1];
     }
-    attribute activityDensity: ActivityDensityValue :> scalarQuantities;
+    attribute activityDensity: ActivityDensityValue [*] nonunique :> scalarQuantities;
 
-    alias ActivityDensityUnit as VolumicActivityUnit;
-    alias ActivityDensityValue as VolumicActivityValue;
-    alias activityDensity as volumicActivity;
+    alias VolumicActivityUnit for ActivityDensityUnit;
+    alias VolumicActivityValue for ActivityDensityValue;
+    alias volumicActivity for activityDensity;
 
-    alias ActivityDensityUnit as ActivityConcentrationUnit;
-    alias ActivityDensityValue as ActivityConcentrationValue;
-    alias activityDensity as activityConcentration;
+    alias ActivityConcentrationUnit for ActivityDensityUnit;
+    alias ActivityConcentrationValue for ActivityDensityValue;
+    alias activityConcentration for activityDensity;
 
     /**
      * source: item 10-30 surface-activity density
@@ -961,8 +961,8 @@ package ISQAtomicNuclear {
      * remarks: This value is usually defined for flat sources, where `S` corresponds to the total area of surface of one side of the source.
      */
     attribute def SurfaceActivityDensityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -2; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -2; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -970,7 +970,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: SurfaceActivityDensityUnit[1];
     }
-    attribute surfaceActivityDensity: SurfaceActivityDensityValue :> scalarQuantities;
+    attribute surfaceActivityDensity: SurfaceActivityDensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-31 half life
@@ -983,7 +983,7 @@ package ISQAtomicNuclear {
      * definition: mean duration (ISO 80000-3) required for the decay of one half of the atoms or nuclei
      * remarks: For exponential decay, `T_(`1/2) = (ln2)/`λ`, where `λ` is the decay constant (item 10-24).
      */
-    attribute halfLife: DurationValue :> scalarQuantities;
+    attribute halfLife: DurationValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-32 alpha disintegration energy
@@ -996,7 +996,7 @@ package ISQAtomicNuclear {
      * definition: sum of the kinetic energy (ISO 80000-4) of the α-particle produced in the disintegration process and the recoil energy (ISO 80000-5) of the product atom in a reference frame in which the emitting nucleus is at rest before its disintegration
      * remarks: The ground-state alpha disintegration energy, `Q_(`α,0), also includes the energy of any nuclear transitions that take place in the daughter produced.
      */
-    attribute alphaDisintegrationEnergy: EnergyValue :> scalarQuantities;
+    attribute alphaDisintegrationEnergy: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-33 maximum beta- particle energy
@@ -1009,7 +1009,7 @@ package ISQAtomicNuclear {
      * definition: maximum kinetic energy (ISO 80000-4) of the emitted beta particle produced in the nuclear disintegration process
      * remarks: The maximum kinetic energy corresponds to the highest energy of the beta spectrum.
      */
-    attribute maximumBetaParticleEnergy: EnergyValue :> scalarQuantities;
+    attribute maximumBetaParticleEnergy: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-34 beta disintegration energy
@@ -1022,7 +1022,7 @@ package ISQAtomicNuclear {
      * definition: sum of the maximum beta-particle kinetic energy (item 10-33) and the recoil energy (ISO 80000-5) of the atom produced in a reference frame in which the emitting nucleus is at rest before its disintegration
      * remarks: For positron emitters, the energy for the production of the annihilation radiation created in the combination of an electron with the positron is part of the beta disintegration energy. The ground-state beta disintegration energy, `Q_(`β,0), also includes the energy of any nuclear transitions that take place in the daughter product.
      */
-    attribute betaDisintegrationEnergy: EnergyValue :> scalarQuantities;
+    attribute betaDisintegrationEnergy: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-35 internal conversion factor
@@ -1036,7 +1036,7 @@ package ISQAtomicNuclear {
      * remarks: The quantity `α/(α+1)` is also used and called the internal-conversion fraction. Partial conversion fractions referring to the various electron shells `K, L, ...` are indicated by `α_K`, `α_L`, …. `α_K`/`α_L` is called the K-to-L internal conversion ratio.
      */
     attribute def InternalConversionFactorValue :> DimensionOneValue;
-    attribute internalConversionFactor: InternalConversionFactorValue :> scalarQuantities;
+    attribute internalConversionFactor: InternalConversionFactorValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-36 particle emission rate
@@ -1050,7 +1050,7 @@ package ISQAtomicNuclear {
      * remarks: Usually the kind of particles is specified, e.g. neutron emission rate or alpha particle emission rate.
      */
     attribute def ParticleEmissionRateUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -1058,7 +1058,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: ParticleEmissionRateUnit[1];
     }
-    attribute particleEmissionRate: ParticleEmissionRateValue :> scalarQuantities;
+    attribute particleEmissionRate: ParticleEmissionRateValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-37.1 reaction energy
@@ -1071,7 +1071,7 @@ package ISQAtomicNuclear {
      * definition: in a nuclear reaction, sum of the kinetic energies (ISO 80000-4) and photon energies (ISO 80000-5) of the reaction products minus the sum of the kinetic and photon energies of the reactants
      * remarks: For exothermic nuclear reactions, `Q`>0. For endothermic nuclear reactions, `Q`<0.
      */
-    attribute reactionEnergy: EnergyValue :> scalarQuantities;
+    attribute reactionEnergy: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-37.2 resonance energy
@@ -1084,7 +1084,7 @@ package ISQAtomicNuclear {
      * definition: kinetic energy (ISO 80000-4) of an incident particle, in the reference frame of the target, corresponding to a resonance in a nuclear reaction
      * remarks: The energy of the resonance corresponds to the difference of the energy levels involved of the nucleus.
      */
-    attribute resonanceEnergy: EnergyValue :> scalarQuantities;
+    attribute resonanceEnergy: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-38.1 cross section
@@ -1097,7 +1097,7 @@ package ISQAtomicNuclear {
      * definition: for a specified target entity and for a specified reaction or process produced by incident charged or uncharged particles of a given type and energy, the quotient of the mean number of such reactions or processes and the incident-particle fluence (item 10-43)
      * remarks: The type of process is indicated by subscripts, e.g. absorption cross section `σ_a`, scattering cross section `σ_s`, fission cross section `σ_f`. 1 barn (b) = 10^(-28) m^2
      */
-    attribute crossSection: AreaValue :> scalarQuantities;
+    attribute crossSection: AreaValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-38.2 total cross section
@@ -1110,7 +1110,7 @@ package ISQAtomicNuclear {
      * definition: sum of all cross sections (item 10-38.1) corresponding to the various reactions or processes between an incident particle of specified type and energy (ISO 80000-5) and a target entity
      * remarks: In the case of a narrow unidirectional beam of incident particles, this is the effective cross section for the removal of an incident particle from the beam. See the Remarks for item 10-52. 1 barn (b) = 10^(-28) m^2
      */
-    attribute totalCrossSection: AreaValue :> scalarQuantities;
+    attribute totalCrossSection: AreaValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-39 direction distribution of cross section
@@ -1124,7 +1124,7 @@ package ISQAtomicNuclear {
      * remarks: Quantities listed under items 10-39, 10-40 and 10-41 are sometimes called differential cross sections. The type of interaction needs to be specified.
      */
     attribute def DirectionDistributionOfCrossSectionUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -1132,7 +1132,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: DirectionDistributionOfCrossSectionUnit[1];
     }
-    attribute directionDistributionOfCrossSection: DirectionDistributionOfCrossSectionValue :> scalarQuantities;
+    attribute directionDistributionOfCrossSection: DirectionDistributionOfCrossSectionValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-40 energy distribution of cross section
@@ -1146,8 +1146,8 @@ package ISQAtomicNuclear {
      * remarks: None.
      */
     attribute def EnergyDistributionOfCrossSectionUnit :> DerivedUnit {
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = -1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = 2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
@@ -1155,7 +1155,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: EnergyDistributionOfCrossSectionUnit[1];
     }
-    attribute energyDistributionOfCrossSection: EnergyDistributionOfCrossSectionValue :> scalarQuantities;
+    attribute energyDistributionOfCrossSection: EnergyDistributionOfCrossSectionValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-41 direction and energy distribution of cross section
@@ -1169,8 +1169,8 @@ package ISQAtomicNuclear {
      * remarks: None.
      */
     attribute def DirectionAndEnergyDistributionOfCrossSectionUnit :> DerivedUnit {
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = -1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = 2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
@@ -1178,7 +1178,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: DirectionAndEnergyDistributionOfCrossSectionUnit[1];
     }
-    attribute directionAndEnergyDistributionOfCrossSection: DirectionAndEnergyDistributionOfCrossSectionValue :> scalarQuantities;
+    attribute directionAndEnergyDistributionOfCrossSection: DirectionAndEnergyDistributionOfCrossSectionValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-42.1 volumic cross section, macroscopic cross section
@@ -1192,7 +1192,7 @@ package ISQAtomicNuclear {
      * remarks: When the target particles of the medium are at rest, `Σ` = 1/`l`, where `l` is the mean free path (item 10-71).
      */
     attribute def VolumicCrossSectionUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -1200,11 +1200,11 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: VolumicCrossSectionUnit[1];
     }
-    attribute volumicCrossSection: VolumicCrossSectionValue :> scalarQuantities;
+    attribute volumicCrossSection: VolumicCrossSectionValue [*] nonunique :> scalarQuantities;
 
-    alias VolumicCrossSectionUnit as MacroscopicCrossSectionUnit;
-    alias VolumicCrossSectionValue as MacroscopicCrossSectionValue;
-    alias volumicCrossSection as macroscopicCrossSection;
+    alias MacroscopicCrossSectionUnit for VolumicCrossSectionUnit;
+    alias MacroscopicCrossSectionValue for VolumicCrossSectionValue;
+    alias macroscopicCrossSection for volumicCrossSection;
 
     /**
      * source: item 10-42.2 volumic total cross section, macroscopic total cross section
@@ -1218,7 +1218,7 @@ package ISQAtomicNuclear {
      * remarks: See the Remarks for item 10-49.
      */
     attribute def VolumicTotalCrossSectionUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -1226,11 +1226,11 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: VolumicTotalCrossSectionUnit[1];
     }
-    attribute volumicTotalCrossSection: VolumicTotalCrossSectionValue :> scalarQuantities;
+    attribute volumicTotalCrossSection: VolumicTotalCrossSectionValue [*] nonunique :> scalarQuantities;
 
-    alias VolumicTotalCrossSectionUnit as MacroscopicTotalCrossSectionUnit;
-    alias VolumicTotalCrossSectionValue as MacroscopicTotalCrossSectionValue;
-    alias volumicTotalCrossSection as macroscopicTotalCrossSection;
+    alias MacroscopicTotalCrossSectionUnit for VolumicTotalCrossSectionUnit;
+    alias MacroscopicTotalCrossSectionValue for VolumicTotalCrossSectionValue;
+    alias macroscopicTotalCrossSection for volumicTotalCrossSection;
 
     /**
      * source: item 10-43 particle fluence
@@ -1244,7 +1244,7 @@ package ISQAtomicNuclear {
      * remarks: The word "particle" is usually replaced by the name of a specific particle, for example `proton` fluence. If a flat area of size `dA` is passed perpendicularly by a number of `dN` particles, the corresponding particle fluence is: `Φ = (dN)/(dA)`. A plane area of size `dA` crossed at an angle `α` with respect to the surface normal by a number of `dN` particles results in the particle fluence: `Φ = (dN)/(cos(α) dA)` In report 85a of the ICRU a definition with an equivalent meaning is given as: The fluence, `Φ` , is the quotient of `dN` and `da`, where `dN` is the number of particles incident on a sphere of cross-sectional area `da`: `Φ = (dN)/(dA)`. See also section 0.3.
      */
     attribute def ParticleFluenceUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -1252,7 +1252,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: ParticleFluenceUnit[1];
     }
-    attribute particleFluence: ParticleFluenceValue :> scalarQuantities;
+    attribute particleFluence: ParticleFluenceValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-44 particle fluence rate
@@ -1266,8 +1266,8 @@ package ISQAtomicNuclear {
      * remarks: The word "particle" is usually replaced by the name of a specific particle, for example proton fluence rate. The distribution function expressed in terms of speed and energy, `dot(Φ)_v` and `dot(Φ)_E` , are related to by: `dot(Φ) = int dot(Φ)_v dv = int dot(Φ)_E dE`. This quantity has also been termed particle flux density. Because the word "density" has several connotations, the term "fluence rate" is preferred. For a radiation field composed of particles of velocity `v`, the fluence rate is equal to `n`·`v` where `n` is the particle number density. See Remarks for item 10-43. In report 85a of the ICRU a definition with an equivalent meaning is given as: The fluence rate, `dot(Φ)` , is the quotient of `d Φ` and `dt`, where `d Φ` is the increment of the fluence in the time interval `dt`: `dot(Φ) = (dΦ)/(dt)`. See also section 0.3.
      */
     attribute def ParticleFluenceRateUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -2; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -2; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -1275,7 +1275,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: ParticleFluenceRateUnit[1];
     }
-    attribute particleFluenceRate: ParticleFluenceRateValue :> scalarQuantities;
+    attribute particleFluenceRate: ParticleFluenceRateValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-45 radiant energy
@@ -1288,7 +1288,7 @@ package ISQAtomicNuclear {
      * definition: mean energy (ISO 80000-5), excluding rest energy (item 10-3), of the particles that are emitted, transferred, or received
      * remarks: For particles of energy `E` (excluding rest energy), the radiant energy, `R`, is equal to the product `N·E` where `N` is the number of the particles that are emitted, transferred, or received The distributions, `N_E` and `R_E`, of the particle number and the radiant energy with respect to energy are given by `N_E` = `dN`/d`E` and `R_E` = `dR`/d`E`, respectively, where `dN` is the number of particles with energy between `E` and `E`+d`E`, and `dR` is their radiant energy. The two distributions are related by `R_E` = `E`·`N_E`.
      */
-    attribute radiantEnergyForIonizingRadiation: EnergyValue :> scalarQuantities;
+    attribute radiantEnergyForIonizingRadiation: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-46 energy fluence
@@ -1302,8 +1302,8 @@ package ISQAtomicNuclear {
      * remarks: In report 85a of the ICRU a definition with an equivalent meaning is given as: The energy fluence, `Ψ` is the quotient of `dR` and `da`, where `dR` is the radiant energy incident on a sphere of cross-sectional area `da`: `Ψ = (dR)/(da)`. See also section 0.3.
      */
     attribute def EnergyFluenceUnit :> DerivedUnit {
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
@@ -1311,7 +1311,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: EnergyFluenceUnit[1];
     }
-    attribute energyFluence: EnergyFluenceValue :> scalarQuantities;
+    attribute energyFluence: EnergyFluenceValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-47 energy fluence rate
@@ -1325,8 +1325,8 @@ package ISQAtomicNuclear {
      * remarks: In report 85a of the ICRU a definition with an equivalent meaning is given as: The energy-fluence rate, `dot(Ψ)` , is the quotient of `d Ψ` by `dt`, where `d Ψ` is the increment of the energy fluence in the time interval `dt`: `dot(Ψ) = (d Ψ)/(dt)`. See also section 0.3.
      */
     attribute def EnergyFluenceRateUnit :> DerivedUnit {
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -3; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -3; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
@@ -1334,7 +1334,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: EnergyFluenceRateUnit[1];
     }
-    attribute energyFluenceRate: EnergyFluenceRateValue :> scalarQuantities;
+    attribute energyFluenceRate: EnergyFluenceRateValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-48 particle current density (magnitude)
@@ -1348,8 +1348,8 @@ package ISQAtomicNuclear {
      * remarks: Usually the word "particle" is replaced by the name of a specific particle, for example proton current. Symbol `vec(S)` is recommended when there is a possibility of confusion with the symbol `vec(J)` for electric current density. For neutron current, the symbol `vec(J)` is generally used. The distribution functions expressed in terms of speed and energy, `vec(J_v)` and `vec(J_E)`, are related to `vec(J)` by: `vec(J) = int vec(J_v) dv = int vec(J_E) dE`. The directional distribution of the particle fluence rate is also denoted as particle radiance.
      */
     attribute def ParticleCurrentDensityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -2; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -2; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -1357,7 +1357,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: ParticleCurrentDensityUnit[1];
     }
-    attribute particleCurrentDensity: ParticleCurrentDensityValue :> scalarQuantities;
+    attribute particleCurrentDensity: ParticleCurrentDensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-48 particle current density (vector)
@@ -1397,7 +1397,7 @@ package ISQAtomicNuclear {
      * remarks: `μ` is equal to the macroscopic total cross section `Σ_(`tot) for the removal of particles from the beam. Using the relation `μ_m` = `μ`/`ρ` between the linear attenuation coefficient `μ`, the mass attenuation coefficient `μ_m` (item 10-50) and the density `ρ`, the definition given for the mass attenuation coefficient in report 85a of the ICRU can be applied to the linear attenuation coefficient resulting in: The linear attenuation coefficient, `μ`, of a material, for uncharged particles of a given type and energy, is the quotient of `dN`/`N` by `dl`, where `dN`/`N` is the mean fraction of the particles that experience interactions in traversing a distance `dl` in the material: `μ = 1/(dl) (dN)/(N)`. This definition has an equivalent meaning as the one given in column 4 of this item. See also section 0.3.
      */
     attribute def LinearAttenuationCoefficientForIonizingRadiationUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -1405,7 +1405,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: LinearAttenuationCoefficientForIonizingRadiationUnit[1];
     }
-    attribute linearAttenuationCoefficientForIonizingRadiation: LinearAttenuationCoefficientForIonizingRadiationValue :> scalarQuantities;
+    attribute linearAttenuationCoefficientForIonizingRadiation: LinearAttenuationCoefficientForIonizingRadiationValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-50 mass attenuation coefficient
@@ -1419,8 +1419,8 @@ package ISQAtomicNuclear {
      * remarks: None.
      */
     attribute def MassAttenuationCoefficientForIonizingRadiationUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
     }
 
@@ -1428,7 +1428,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: MassAttenuationCoefficientForIonizingRadiationUnit[1];
     }
-    attribute massAttenuationCoefficientForIonizingRadiation: MassAttenuationCoefficientForIonizingRadiationValue :> scalarQuantities;
+    attribute massAttenuationCoefficientForIonizingRadiation: MassAttenuationCoefficientForIonizingRadiationValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-51 molar attenuation coefficient
@@ -1442,8 +1442,8 @@ package ISQAtomicNuclear {
      * remarks: None.
      */
     attribute def MolarAttenuationCoefficientUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, amountOfSubstancePF); }
     }
 
@@ -1451,7 +1451,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: MolarAttenuationCoefficientUnit[1];
     }
-    attribute molarAttenuationCoefficient: MolarAttenuationCoefficientValue :> scalarQuantities;
+    attribute molarAttenuationCoefficient: MolarAttenuationCoefficientValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-52 atomic attenuation coefficient
@@ -1465,7 +1465,7 @@ package ISQAtomicNuclear {
      * remarks: `μ` is equal to the total cross section `σ_(`tot) for the removal of particles from the beam. See also item 10-38.2.
      */
     attribute def AtomicAttenuationCoefficientUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -1473,7 +1473,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: AtomicAttenuationCoefficientUnit[1];
     }
-    attribute atomicAttenuationCoefficient: AtomicAttenuationCoefficientValue :> scalarQuantities;
+    attribute atomicAttenuationCoefficient: AtomicAttenuationCoefficientValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-53 half-value thickness
@@ -1486,7 +1486,7 @@ package ISQAtomicNuclear {
      * definition: thickness (ISO 80000-3) of the attenuating layer that reduces the quantity of interest of a unidirectional beam of infinitesimal width to half of its initial value
      * remarks: For exponential attenuation, `d_(`1/2) = ln(2)/`μ`. The quantity of interest is often the air kerma or exposure.
      */
-    attribute halfValueThickness: LengthValue :> scalarQuantities;
+    attribute halfValueThickness: LengthValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-54 total linear stopping power, linear stopping power
@@ -1500,9 +1500,9 @@ package ISQAtomicNuclear {
      * remarks: The total linear stopping power is sometimes also called stopping power. Both electronic losses and radiative losses are included. The quotient of the total linear stopping power of a substance and that of a reference substance is called the relative linear stopping power. See also item 10-85. Using the relation `S_m` = `S`/`ρ` between the total mass stopping power `S_m` (item 10-55), the total linear stopping power `S`, and the density `ρ`, the definition given for the mass stopping in report 85a of the ICRU can be applied to that of the total linear stopping power resulting in: The linear stopping power, `S`, of a material, for charged particles of a given type and energy, is the quotient of `dE` by `dl`, where `dE` is the mean energy lost by the charged particles in traversing a distance `dl` in the material: `S = - (dE)/(dx)`. This definition has an equivalent meaning as the one given in column 4 of this item. See also section 0.3.
      */
     attribute def TotalLinearStoppingPowerUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -1510,11 +1510,11 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: TotalLinearStoppingPowerUnit[1];
     }
-    attribute totalLinearStoppingPower: TotalLinearStoppingPowerValue :> scalarQuantities;
+    attribute totalLinearStoppingPower: TotalLinearStoppingPowerValue [*] nonunique :> scalarQuantities;
 
-    alias TotalLinearStoppingPowerUnit as LinearStoppingPowerUnit;
-    alias TotalLinearStoppingPowerValue as LinearStoppingPowerValue;
-    alias totalLinearStoppingPower as linearStoppingPower;
+    alias LinearStoppingPowerUnit for TotalLinearStoppingPowerUnit;
+    alias LinearStoppingPowerValue for TotalLinearStoppingPowerValue;
+    alias linearStoppingPower for totalLinearStoppingPower;
 
     /**
      * source: item 10-55 total mass stopping power, mass stopping power
@@ -1528,8 +1528,8 @@ package ISQAtomicNuclear {
      * remarks: The quotient of total mass stopping power of a material and that of a reference material is called relative mass stopping power.
      */
     attribute def TotalMassStoppingPowerUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 4; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 4; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -1537,11 +1537,11 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: TotalMassStoppingPowerUnit[1];
     }
-    attribute totalMassStoppingPower: TotalMassStoppingPowerValue :> scalarQuantities;
+    attribute totalMassStoppingPower: TotalMassStoppingPowerValue [*] nonunique :> scalarQuantities;
 
-    alias TotalMassStoppingPowerUnit as MassStoppingPowerUnit;
-    alias TotalMassStoppingPowerValue as MassStoppingPowerValue;
-    alias totalMassStoppingPower as massStoppingPower;
+    alias MassStoppingPowerUnit for TotalMassStoppingPowerUnit;
+    alias MassStoppingPowerValue for TotalMassStoppingPowerValue;
+    alias massStoppingPower for totalMassStoppingPower;
 
     /**
      * source: item 10-56 mean linear range
@@ -1554,7 +1554,7 @@ package ISQAtomicNuclear {
      * definition: mean total rectified path length (ISO 80000-3) travelled by a particle in the course of slowing down to rest in a given material averaged over a group of particles having the same initial energy (ISO 80000-5)
      * remarks: None.
      */
-    attribute meanLinearRange: LengthValue :> scalarQuantities;
+    attribute meanLinearRange: LengthValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-57 mean mass range
@@ -1568,8 +1568,8 @@ package ISQAtomicNuclear {
      * remarks: None.
      */
     attribute def MeanMassRangeUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
     }
 
@@ -1577,7 +1577,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: MeanMassRangeUnit[1];
     }
-    attribute meanMassRange: MeanMassRangeValue :> scalarQuantities;
+    attribute meanMassRange: MeanMassRangeValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-58 linear ionization
@@ -1591,7 +1591,7 @@ package ISQAtomicNuclear {
      * remarks: Ionization due to secondary ionizing particles is included.
      */
     attribute def LinearIonizationUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -1599,7 +1599,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: LinearIonizationUnit[1];
     }
-    attribute linearIonization: LinearIonizationValue :> scalarQuantities;
+    attribute linearIonization: LinearIonizationValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-59 total ionization
@@ -1613,7 +1613,7 @@ package ISQAtomicNuclear {
      * remarks: `N_i = int N_(il) dl` See item 10-58.
      */
     attribute def TotalIonizationValue :> DimensionOneValue;
-    attribute totalIonization: TotalIonizationValue :> scalarQuantities;
+    attribute totalIonization: TotalIonizationValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-60 average energy loss per elementary charge produced
@@ -1627,9 +1627,9 @@ package ISQAtomicNuclear {
      * remarks: The name "average energy loss per ion pair formed" is usually used, although it is ambiguous. In the practical dosimetry of ionizing radiation the term `W`/`e`, the quotient of `W`, the average energy deposited in dry air per ion pair formed, and `e`, the elementary charge, is used as the factor which, when multiplied with the electric charge of one sign carried by all ion pairs formed in dry air of given mass, gives the energy deposited in this amount of dry air in the form of excitations and ionizations. In ICRU Report 85a, the mean energy expended in a gas per ion pair formed, `W`, is the quotient of `E` by `N,` where `N` is the mean total liberated charge of either sign, divided by the elementary charge when the initial kinetic energy `E` of a charged particle introduced into the gas is completely dissipated in the gas. Thus, `W` = `E`/`N`. It follows from the definition of `W` that the ions produced by bremsstrahlung or other secondary radiation emitted by the initial and secondary charged particles are included in `N`.
      */
     attribute def AverageEnergyLossPerElementaryChargeProducedUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -1637,7 +1637,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: AverageEnergyLossPerElementaryChargeProducedUnit[1];
     }
-    attribute averageEnergyLossPerElementaryChargeProduced: AverageEnergyLossPerElementaryChargeProducedValue :> scalarQuantities;
+    attribute averageEnergyLossPerElementaryChargeProduced: AverageEnergyLossPerElementaryChargeProducedValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-61 mobility
@@ -1651,9 +1651,9 @@ package ISQAtomicNuclear {
      * remarks: None.
      */
     attribute def MobilityUnit :> DerivedUnit {
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = -1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = 2; }
-        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq::I; :>> exponent = 1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = 2; }
+        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq.I; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF, electricCurrentPF); }
     }
 
@@ -1661,7 +1661,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: MobilityUnit[1];
     }
-    attribute mobility: MobilityValue :> scalarQuantities;
+    attribute mobility: MobilityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-62.1 particle number density
@@ -1675,7 +1675,7 @@ package ISQAtomicNuclear {
      * remarks: `n` is the general symbol for the number density of particles. The distribution functions expressed in terms of speed and energy, `n_v` and `n_E`, are related to `n` by: `n = int n_v dv = int n_E dE`. The word "particle" is usually replaced by the name of a specific particle, for example `neutron` number density.
      */
     attribute def ParticleNumberDensityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -1683,7 +1683,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: ParticleNumberDensityUnit[1];
     }
-    attribute particleNumberDensity: ParticleNumberDensityValue :> scalarQuantities;
+    attribute particleNumberDensity: ParticleNumberDensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-62.2 ion number density, ion density
@@ -1697,7 +1697,7 @@ package ISQAtomicNuclear {
      * remarks: None.
      */
     attribute def IonNumberDensityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -1705,11 +1705,11 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: IonNumberDensityUnit[1];
     }
-    attribute ionNumberDensity: IonNumberDensityValue :> scalarQuantities;
+    attribute ionNumberDensity: IonNumberDensityValue [*] nonunique :> scalarQuantities;
 
-    alias IonNumberDensityUnit as IonDensityUnit;
-    alias IonNumberDensityValue as IonDensityValue;
-    alias ionNumberDensity as ionDensity;
+    alias IonDensityUnit for IonNumberDensityUnit;
+    alias IonDensityValue for IonNumberDensityValue;
+    alias ionDensity for ionNumberDensity;
 
     /**
      * source: item 10-63 Recombination coefficient
@@ -1723,8 +1723,8 @@ package ISQAtomicNuclear {
      * remarks: The widely used term "recombination factor" is not correct because "factor" should only be used for quantities with dimension 1. The terms `(dn^"+")/(dt)` , `(dn^"-")/(dt)` are differential quotients.
      */
     attribute def RecombinationCoefficientUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 3; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 3; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -1732,7 +1732,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: RecombinationCoefficientUnit[1];
     }
-    attribute recombinationCoefficient: RecombinationCoefficientValue :> scalarQuantities;
+    attribute recombinationCoefficient: RecombinationCoefficientValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-64 diffusion coefficient, diffusion coefficient for particle number density
@@ -1750,9 +1750,9 @@ package ISQAtomicNuclear {
      * Refer to declaration for DiffusionCoefficient in ISQChemistryMolecular item 9-39 DiffusionCoefficient.
      */
 
-    alias DiffusionCoefficientUnit as DiffusionCoefficientForParticleNumberDensityUnit;
-    alias DiffusionCoefficientValue as DiffusionCoefficientForParticleNumberDensityValue;
-    alias diffusionCoefficient as diffusionCoefficientForParticleNumberDensity;
+    alias DiffusionCoefficientForParticleNumberDensityUnit for DiffusionCoefficientUnit;
+    alias DiffusionCoefficientForParticleNumberDensityValue for DiffusionCoefficientValue;
+    alias diffusionCoefficientForParticleNumberDensity for diffusionCoefficient;
 
     /**
      * source: item 10-65 diffusion coefficient for fluence rate
@@ -1765,7 +1765,7 @@ package ISQAtomicNuclear {
      * definition: proportionality constant between the particle current density `vec(J )`(item 10-48) and the gradient of the particle fluence rate `dot(Φ)` (item 10-44): `vec(J) = - vec(D) * nabla Φ`
      * remarks: For a particle of a given speed `v`: `D_Ψ(v) = - J_{v,x}/(partial Ψ // partial x)` and `vec(v) * vec(D_Ψ)(v) = - vec(D_n)(v)`
      */
-    attribute diffusionCoefficientForFluenceRate: LengthValue :> scalarQuantities;
+    attribute diffusionCoefficientForFluenceRate: LengthValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-66 particle source density
@@ -1779,8 +1779,8 @@ package ISQAtomicNuclear {
      * remarks: The word "particle" is usually replaced by the name of a specific particle, for example `proton` source density. The distribution functions expressed in terms of speed and energy, `S_v` and `S_E`, are related to `S` by: `S = int S_v dv = int S_E dE`.
      */
     attribute def ParticleSourceDensityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -1788,7 +1788,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: ParticleSourceDensityUnit[1];
     }
-    attribute particleSourceDensity: ParticleSourceDensityValue :> scalarQuantities;
+    attribute particleSourceDensity: ParticleSourceDensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-67 slowing-down density
@@ -1802,8 +1802,8 @@ package ISQAtomicNuclear {
      * remarks: None.
      */
     attribute def SlowingDownDensityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -1811,7 +1811,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: SlowingDownDensityUnit[1];
     }
-    attribute slowingDownDensity: SlowingDownDensityValue :> scalarQuantities;
+    attribute slowingDownDensity: SlowingDownDensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-68 resonance escape probability
@@ -1825,7 +1825,7 @@ package ISQAtomicNuclear {
      * remarks: None.
      */
     attribute def ResonanceEscapeProbabilityValue :> DimensionOneValue;
-    attribute resonanceEscapeProbability: ResonanceEscapeProbabilityValue :> scalarQuantities;
+    attribute resonanceEscapeProbability: ResonanceEscapeProbabilityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-69 lethargy
@@ -1839,7 +1839,7 @@ package ISQAtomicNuclear {
      * remarks: Lethargy is also referred to as logarithmic energy decrement.
      */
     attribute def LethargyValue :> DimensionOneValue;
-    attribute lethargy: LethargyValue :> scalarQuantities;
+    attribute lethargy: LethargyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-70 average logarithmic energy decrement
@@ -1853,7 +1853,7 @@ package ISQAtomicNuclear {
      * remarks: None.
      */
     attribute def AverageLogarithmicEnergyDecrementValue :> DimensionOneValue;
-    attribute averageLogarithmicEnergyDecrement: AverageLogarithmicEnergyDecrementValue :> scalarQuantities;
+    attribute averageLogarithmicEnergyDecrement: AverageLogarithmicEnergyDecrementValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-71 mean free path
@@ -1866,7 +1866,7 @@ package ISQAtomicNuclear {
      * definition: average distance (ISO 80000-3) that particles travel between two successive specified reactions or processes
      * remarks: See the Remarks for item 10-42.1.
      */
-    attribute meanFreePathForAtomicPhysics: LengthValue :> scalarQuantities;
+    attribute meanFreePathForAtomicPhysics: LengthValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-72.1 slowing-down area
@@ -1879,7 +1879,7 @@ package ISQAtomicNuclear {
      * definition: in an infinite homogenous medium, one-sixth of the mean square of the distance (ISO 80000-3) between the neutron source and the point where a neutron reaches a given energy (ISO 80000-5)
      * remarks: None.
      */
-    attribute slowingDownArea: AreaValue :> scalarQuantities;
+    attribute slowingDownArea: AreaValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-72.2 diffusion area
@@ -1892,7 +1892,7 @@ package ISQAtomicNuclear {
      * definition: in an infinite homogenous medium, one-sixth of the mean square distance (ISO 80000-3) between the point where a neutron enters a specified class and the point where it leaves this class
      * remarks: The class of neutrons must be specified, e.g. thermal.
      */
-    attribute diffusionArea: AreaValue :> scalarQuantities;
+    attribute diffusionArea: AreaValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-72.3 migration area
@@ -1905,7 +1905,7 @@ package ISQAtomicNuclear {
      * definition: sum of the slowing-down area (item 10-72.1) from fission energy to thermal energy (ISO 80000-5) and the diffusion area (item 10-72.2) for thermal neutrons
      * remarks: None.
      */
-    attribute migrationArea: AreaValue :> scalarQuantities;
+    attribute migrationArea: AreaValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-73.1 slowing-down length
@@ -1918,7 +1918,7 @@ package ISQAtomicNuclear {
      * definition: square root of the slowing down area `L_s^2` (item 10-72.1): `L_s = sqrt(L_s^2)`
      * remarks: None.
      */
-    attribute slowingDownLength: LengthValue :> scalarQuantities;
+    attribute slowingDownLength: LengthValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-73.2 diffusion length
@@ -1931,7 +1931,7 @@ package ISQAtomicNuclear {
      * definition: square root of the diffusion area `L^2` (item 10-72.2): `L = sqrt(L^2)`
      * remarks: None.
      */
-    attribute diffusionLength: LengthValue :> scalarQuantities;
+    attribute diffusionLength: LengthValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-73.3 migration length
@@ -1944,7 +1944,7 @@ package ISQAtomicNuclear {
      * definition: square root of the migration area `M^2` (item 10-72.3): `M = sqrt(M^2)`
      * remarks: None.
      */
-    attribute migrationLength: LengthValue :> scalarQuantities;
+    attribute migrationLength: LengthValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-74.1 neutron yield per fission
@@ -1957,7 +1957,7 @@ package ISQAtomicNuclear {
      * definition: average number of fission neutrons, both prompt and delayed, emitted per fission event
      * remarks: None.
      */
-    attribute neutronYieldPerFission: CountValue :> scalarQuantities;
+    attribute neutronYieldPerFission: CountValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-74.2 neutron yield per absorption
@@ -1970,7 +1970,7 @@ package ISQAtomicNuclear {
      * definition: average number of fission neutrons, both prompt and delayed, emitted per neutron absorbed in a fissionable nuclide or in a nuclear fuel, as specified
      * remarks: `ν/η` is equal to the quotient of the macroscopic cross section for fission and that for absorption, both for neutrons in the fuel material.
      */
-    attribute neutronYieldPerAbsorption: CountValue :> scalarQuantities;
+    attribute neutronYieldPerAbsorption: CountValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-75 fast fission factor
@@ -1989,7 +1989,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: FastFissionFactorUnit[1];
     }
-    attribute fastFissionFactor: FastFissionFactorValue :> scalarQuantities;
+    attribute fastFissionFactor: FastFissionFactorValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-76 thermal utilization factor
@@ -2008,7 +2008,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: ThermalUtilizationFactorUnit[1];
     }
-    attribute thermalUtilizationFactor: ThermalUtilizationFactorValue :> scalarQuantities;
+    attribute thermalUtilizationFactor: ThermalUtilizationFactorValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-77 non-leakage probability
@@ -2027,7 +2027,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: NonLeakageProbabilityUnit[1];
     }
-    attribute nonLeakageProbability: NonLeakageProbabilityValue :> scalarQuantities;
+    attribute nonLeakageProbability: NonLeakageProbabilityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-78.1 multiplication factor
@@ -2046,7 +2046,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: MultiplicationFactorUnit[1];
     }
-    attribute multiplicationFactor: MultiplicationFactorValue :> scalarQuantities;
+    attribute multiplicationFactor: MultiplicationFactorValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-78.2 infinite multiplication factor
@@ -2065,7 +2065,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: InfiniteMultiplicationFactorUnit[1];
     }
-    attribute infiniteMultiplicationFactor: InfiniteMultiplicationFactorValue :> scalarQuantities;
+    attribute infiniteMultiplicationFactor: InfiniteMultiplicationFactorValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-79 reactor time constant
@@ -2078,7 +2078,7 @@ package ISQAtomicNuclear {
      * definition: duration (ISO 80000-3) required for the neutron fluence rate (item 10-44) in a reactor to change by the factor e when the fluence rate is rising or falling exponentially
      * remarks: Also called reactor period.
      */
-    attribute reactorTimeConstant: DurationValue :> scalarQuantities;
+    attribute reactorTimeConstant: DurationValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-80.1 energy imparted
@@ -2092,9 +2092,9 @@ package ISQAtomicNuclear {
      * remarks: Energy imparted is a stochastic quantity. `ε_i` is given by: `ε_i = ε_(i n) - ε_"out" + Q` where `ε_(i n)` is the energy (ISO 80000-5) of the incident ionizing particle, excluding rest energy (item 10-3), `ε_"out"` is the sum of the energies (ISO 80000-5) of all ionizing particles leaving the interaction, excluding rest energy (item 10-3), and `Q` is the change in the rest energies (item 10-3) of the nucleus and of all particles involved in the interaction. `Q > 0` means decrease of rest energy; `Q < 0` means increase of rest energy. Stochastic quantities such as the energy imparted and the specific energy imparted (item 10-81.2) and their probability distributions have been introduced as they describe the discontinuous nature of the ionizing radiations as a determinant of radiochemical and radiobiological effects. In radiation applications involving large numbers of ionizing particles, e.g. in medicine, radiation protection and materials testing and processing, these fluctuations are adequately represented by the expectation values of the probability distributions. Non-stochastic quantities such as particle fluence (item 10-43), absorbed dose (item 10-81.1) and kerma (item 10-86.1) are based on these expectation values.
      */
     attribute def EnergyImpartedUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -2102,7 +2102,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: EnergyImpartedUnit[1];
     }
-    attribute energyImparted: EnergyImpartedValue :> scalarQuantities;
+    attribute energyImparted: EnergyImpartedValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-80.2 mean energy imparted
@@ -2115,7 +2115,7 @@ package ISQAtomicNuclear {
      * definition: expectation value of the energy imparted (item 10-80.1): `bar(ε) = R_"in" - R_"out" + sum Q` where `R_"in"` is the radiant energy (item 10-45) of all those charged and uncharged ionizing particles that enter the volume, `R_"out"` is the radiant energy of all those charged and uncharged ionizing particles that leave the volume, and `sum Q` is the sum of all changes of the rest energy (item 10-3) of nuclei and elementary particles that occur in that volume
      * remarks: Sometimes, it has been called the integral absorbed dose. `Q` > 0 means decrease of rest energy; `Q` < 0 means increase of rest energy.
      */
-    attribute meanEnergyImparted: EnergyValue :> scalarQuantities;
+    attribute meanEnergyImparted: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-81.1 absorbed dose
@@ -2129,8 +2129,8 @@ package ISQAtomicNuclear {
      * remarks: The gray is a special name for joule per kilogram, to be used as the coherent SI unit for absorbed dose. 1 Gy = 1 J/kg `bar(ε) = int D dm` where `dm` is the element of mass of the irradiated matter. In the limit of a small domain, the mean specific energy `bar(z) = (Δ bar(ε))/(Δ m)` is equal to the absorbed dose `D`. The absorbed dose can also be expressed in terms of the volume of the mass element by: `D = (d bar(ε))/(dm) = (d bar(ε))/(ρ dV)` where `ρ` is the mass density of the mass element. In report 85a of the ICRU a definition with an equivalent meaning is given as: The absorbed dose, `D`, is the quotient of `d bar(ε)` by dm, where `d bar(ε)` is the mean energy imparted by ionizing radiation to matter of mass `dm`: `D = (d bar(ε))/(dm)`.
      */
     attribute def AbsorbedDoseUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -2138,7 +2138,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: AbsorbedDoseUnit[1];
     }
-    attribute absorbedDose: AbsorbedDoseValue :> scalarQuantities;
+    attribute absorbedDose: AbsorbedDoseValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-81.2 specific energy imparted
@@ -2151,7 +2151,7 @@ package ISQAtomicNuclear {
      * definition: quotient of the energy imparted `ε` (item 10-80.1) and the mass `m` (ISO 80000-4) of the matter in a given volume element: `z = ε / m`
      * remarks: `z` is a stochastic quantity. In the limit of a small domain, the mean specific energy `bar(z)` is equal to the absorbed dose `D`. The specific energy imparted can be due to one or more (energy-deposition) events.
      */
-    attribute specificEnergyImparted: AbsorbedDoseValue :> scalarQuantities;
+    attribute specificEnergyImparted: AbsorbedDoseValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-82 quality factor
@@ -2170,7 +2170,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: QualityFactorForIonizingRadiationUnit[1];
     }
-    attribute qualityFactorForIonizingRadiation: QualityFactorForIonizingRadiationValue :> scalarQuantities;
+    attribute qualityFactorForIonizingRadiation: QualityFactorForIonizingRadiationValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-83.1 dose equivalent
@@ -2184,8 +2184,8 @@ package ISQAtomicNuclear {
      * remarks: The sievert (Sv) is a special name for joule per kilogram, and is the coherent SI unit for dose equivalent. `1 "Sv" = 1 "J/kg"` The dose equivalent at a point in tissue is given by: `H = int_0^∞ Q(L) D_L dL` where `D_L = (dD)/(dL)` is the distribution of `D` in `L` at the point of interest. See ICRP Publication 103 (ICRP, 2007). The quantities measured with radiation protection dosimeters are based on the definition `H = Q*D`. If various radiation qualities `i` have to be simultaneously accounted for, the definition is: `H = sum_i Q_i*D_i`. In ICRU 51 this quantity is denoted as "dose equivalent". In order to quantify the radiation exposition of the human body and to specify dose limits, use is made of a quantity defined in ICRP 103, the "equivalent dose to a tissue or organ": `H_T = w_T*sum_R w_R*D_{T,R}`. The weighting factors `w_T` for various tissues and organs `T` and `w_R` for various radiation qualities `R` have been numerically laid down in ICRP 103. `D_{T,R}` is the mean absorbed dose to tissue within a tissue or organ `T`, imparted by radiation with radiation quality `R`.
      */
     attribute def DoseEquivalentUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -2193,7 +2193,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: DoseEquivalentUnit[1];
     }
-    attribute doseEquivalent: DoseEquivalentValue :> scalarQuantities;
+    attribute doseEquivalent: DoseEquivalentValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-83.2 dose equivalent rate
@@ -2206,7 +2206,7 @@ package ISQAtomicNuclear {
      * definition: differential quotient of dose equivalent `H` (item 10-83.1) with respect to time (ISO 80000-3): `dot(H) = (dH)/(dt)`
      * remarks: `1 "[Sv/s]" = 1 @[W/kg]`. See the remarks for item 10-83.1.
      */
-    attribute doseEquivalentRate: DoseEquivalentValue :> scalarQuantities;
+    attribute doseEquivalentRate: DoseEquivalentValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-84 absorbed-dose rate
@@ -2220,8 +2220,8 @@ package ISQAtomicNuclear {
      * remarks: 1 Gy/s = 1 W/kg See the remarks for item 10-81.1. In report 85a of the ICRU a definition with an equivalent meaning is given as: The absorbed-does rate, `dot(D)` , is the quotient of `dD` by `dt`, where `dD` is the increment of absorbed does in the time interval `dt`: `dot(D) = (dD)/(dt)`.
      */
     attribute def AbsorbedDoseRateUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -3; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -3; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -2229,7 +2229,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: AbsorbedDoseRateUnit[1];
     }
-    attribute absorbedDoseRate: AbsorbedDoseRateValue :> scalarQuantities;
+    attribute absorbedDoseRate: AbsorbedDoseRateValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-85 linear energy transfer
@@ -2243,9 +2243,9 @@ package ISQAtomicNuclear {
      * remarks: This quantity is not completely defined unless `Δ` is specified, i.e. the maximum kinetic energy of secondary electrons whose energy is considered to be "locally deposited". `Δ` may be expressed in `"eV"`. Note that the abbreviation LET specifically refers to the quantity `L_∞` mentioned in the remark to 10-82.
      */
     attribute def LinearEnergyTransferUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -2253,7 +2253,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: LinearEnergyTransferUnit[1];
     }
-    attribute linearEnergyTransfer: LinearEnergyTransferValue :> scalarQuantities;
+    attribute linearEnergyTransfer: LinearEnergyTransferValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-86.1 kerma
@@ -2267,8 +2267,8 @@ package ISQAtomicNuclear {
      * remarks: 1 Gy = 1 J/kg See the remarks for item 10-81.1. The name "kerma" is derived from Kinetic Energy Released in MAtter (or MAss or MAterial). The quantity `dE_(`tr) includes also the kinetic energy of the charged particles emitted in the decay of excited atoms, molecules, or nuclei. When the mass element `dm` consists of air the term air kerma is used. It can be convenient to refer to a value of air kerma in free space or at a point inside a material different from air, e.g. to the air kerma at a point inside a water phantom. In report 85a of the ICRU a definition with an equivalent meaning is given as: The kerma, `K`, for ionizing uncharged particles, is the quotient of `dE_(`tr) by `dm`, where `dE_(`tr) is the mean sum of the initial kinetic energies of all the charged particles liberated in a mass `dm` of a material by the uncharged particles incident on `dm`: `K = (dE_tr)/(dm)`.
      */
     attribute def KermaUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -2276,7 +2276,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: KermaUnit[1];
     }
-    attribute kerma: KermaValue :> scalarQuantities;
+    attribute kerma: KermaValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-86.2 kerma rate
@@ -2290,8 +2290,8 @@ package ISQAtomicNuclear {
      * remarks: 1 Gy/s = 1 W/kg See the Remarks for item 10-81.1. In report 85a of the ICRU a definition with an equivalent meaning is given as: The kerma rate, `dot(K)` , is the quotient of `dK` by `dt`, where `dK` is the increment of kerma in the time interval `dt`: `dot(K) = (dK)/(dt)`.
      */
     attribute def KermaRateUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -3; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -3; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -2299,7 +2299,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: KermaRateUnit[1];
     }
-    attribute kermaRate: KermaRateValue :> scalarQuantities;
+    attribute kermaRate: KermaRateValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-87 mass energy-transfer coefficient
@@ -2313,8 +2313,8 @@ package ISQAtomicNuclear {
      * remarks: `m_"tr"/ρ = (dot(K))/ψ` , where `dot(K)` is kerma rate (item 10-86.2) and `ψ` is energy fluence rate (item 10-47). The quantity: `μ_(en)//ρ = (μ_"tr"//ρ)(1-g)` where `g` is mean fraction of the kinetic energy of the liberated charged particles that is lost in radiative processes in the material, is called mass energy-absorption coefficient. The mass energy-absorption coefficient of a compound material depends on the stopping power of the material. Thus, its evaluation cannot, in principle, be reduced to a simple summation of the mass energy-absorption coefficient of the atomic constituents. Such a summation can provide an adequate approximation when the value of `g` is sufficiently small. In report 85a of the ICRU a definition with an equivalent meaning is given as: The mass energy-transfer coefficient, `μ_"tr"//ρ` , of a material, for uncharged particles of a given type and energy, is the quotient of `(dR_"tr")/R` by `ρ dl`, where `dR_"tr"` is the mean energy that is transferred to kinetic energy of charged particles by interactions of the uncharged particles of incident radiant energy `R` in traversing a distance `dl` in the material of density `ρ` : `μ_"tr"/ρ = 1/(ρ dl) (d R_"tr")/R`.
      */
     attribute def MassEnergyTransferCoefficientUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
     }
 
@@ -2322,7 +2322,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: MassEnergyTransferCoefficientUnit[1];
     }
-    attribute massEnergyTransferCoefficient: MassEnergyTransferCoefficientValue :> scalarQuantities;
+    attribute massEnergyTransferCoefficient: MassEnergyTransferCoefficientValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-88 exposure
@@ -2336,9 +2336,9 @@ package ISQAtomicNuclear {
      * remarks: The ionization produced by electrons emitted in atomic or molecular relaxation is included in `dq`. The ionization due to photons emitted by radiative processes (i.e. bremsstrahlung and fluorescence photons) is not included in `dq`. This quantity should not be confused with the quantity photon exposure (ISO 80000-7), radiation exposure (ISO 80000-7), or the quantity luminous exposure (ISO 80000-7). It can be convenient to refer to a value of exposure in free space or at a point inside a material different from air, e.g. to the exposure at a point inside a water phantom. The exposure is related to the air kerma, `K_a`, (see item 10-86.1) by: `X = (e (1-g))/W K_a` , where `e` is the elementary charge (ISO 80000-1), `W` the average energy loss per elementary charge produced (item 10-60), and `g` is the fraction of the kinetic energy of liberated charged particles that is lost in radiative processes. In report 85a of the ICRU a definition with an equivalent meaning is given as: The exposure, `X`, is the quotient of `dq` by `dm`, where `dq` is the absolute value of the mean total charge of the ions of one sign produced when all the electrons and positrons liberated or created by photons incident on a mass `dm` of dry air are completely stopped in dry air: `X = (dq)/(dm)`.
      */
     attribute def ExposureUnit :> DerivedUnit {
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = -1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = 1; }
-        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq::I; :>> exponent = 1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = 1; }
+        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq.I; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF, electricCurrentPF); }
     }
 
@@ -2346,7 +2346,7 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: ExposureUnit[1];
     }
-    attribute exposure: ExposureValue :> scalarQuantities;
+    attribute exposure: ExposureValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 10-89 exposure rate
@@ -2360,8 +2360,8 @@ package ISQAtomicNuclear {
      * remarks: 1 C/(kg s) = 1 A/kg In report 85a of the ICRU a definition with an equivalent meaning is given as: The exposure rate, `dot(X)` , is the quotient of `dX` by `dt`, where `dX` is the increment of exposure in the time interval `dt`: `dot(X) = (dX)/(dt)`.
      */
     attribute def ExposureRateUnit :> DerivedUnit {
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = -1; }
-        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq::I; :>> exponent = 1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
+        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq.I; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, electricCurrentPF); }
     }
 
@@ -2369,6 +2369,6 @@ package ISQAtomicNuclear {
         attribute :>> num: Real;
         attribute :>> mRef: ExposureRateUnit[1];
     }
-    attribute exposureRate: ExposureRateValue :> scalarQuantities;
+    attribute exposureRate: ExposureRateValue [*] nonunique :> scalarQuantities;
 
 }

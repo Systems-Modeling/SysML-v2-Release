@@ -22,7 +22,7 @@ package ISQBase {
      * remarks: Length does not need to be measured along a straight line. Length is one of the seven base quantities in the International System of Units (ISO 80000-1).
      */
     attribute def LengthUnit :> SimpleUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -30,7 +30,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: LengthUnit[1];
     }
-    attribute length: LengthValue :> scalarQuantities;
+    attribute length: LengthValue [*] nonunique :> scalarQuantities;
 
     /**
      * General spatial coordinate system
@@ -54,7 +54,7 @@ package ISQBase {
      * remarks: Duration is often just called time. Time is one of the seven base quantities in the International System of Quantities, ISQ (see ISO 80000-1). Duration is a measure of a time interval.
      */
     attribute def DurationUnit :> SimpleUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -62,7 +62,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: DurationUnit[1];
     }
-    attribute duration: DurationValue :> scalarQuantities;
+    attribute duration: DurationValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-1 mass
@@ -76,7 +76,7 @@ package ISQBase {
      * remarks: The kilogram (kg) is one of the seven base units (see ISO 80000-1) of the International System of Units, the SI. See also IEC 60050-113.
      */
     attribute def MassUnit :> SimpleUnit {
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = massPF; }
     }
 
@@ -84,7 +84,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: MassUnit[1];
     }
-    attribute mass: MassValue :> scalarQuantities;
+    attribute mass: MassValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 5-1 thermodynamic temperature, temperature
@@ -98,7 +98,7 @@ package ISQBase {
      * remarks: It is measured with a primary thermometer, examples of which are gas thermometers of different kinds, noise thermometers, or radiation thermometers. The Boltzmann constant (ISO 80000-1) relates energy at the individual particle level with thermodynamic temperature. Differences of thermodynamic temperatures or changes may be expressed either in kelvin, symbol K, or in degrees Celsius, symbol °C (item 5-2). Thermodynamic temperature is one of the seven base quantities in the International System of Quantities, ISQ (see ISO 80000-1). The International Temperature Scale of 1990. For the purpose of practical measurements, the International Temperature Scale of 1990, ITS-90, was adopted by CIPM in 1989, which is a close approximation to the thermodynamic temperature scale. The quantities defined by this scale are denoted `T_90` and `t_90`, respectively (replacing `T_68` and `t_68` defined by the International Practical Temperature Scale of 1968, IPTS-68), where `t_90/(1 °C) = T_90/(1 K) - 273,1`. The units of `T_90` and `t_90` are the kelvin, symbol K, and the degree Celsius, symbol °C (item 5-2), respectively. For further information, see References [5], [6]. For ready conversion between temperatures reported on the International Temperature Scale and thermodynamic temperatures the systematic deviations can be found in Reference [7].
      */
     attribute def ThermodynamicTemperatureUnit :> SimpleUnit {
-        private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq::'Θ'; :>> exponent = 1; }
+        private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq.'Θ'; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = thermodynamicTemperaturePF; }
     }
 
@@ -106,7 +106,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: ThermodynamicTemperatureUnit[1];
     }
-    attribute thermodynamicTemperature: ThermodynamicTemperatureValue :> scalarQuantities;
+    attribute thermodynamicTemperature: ThermodynamicTemperatureValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 6-1 electric current
@@ -120,7 +120,7 @@ package ISQBase {
      * remarks: Electric current is the quantity that can often be measured with an ammeter. The electric current through a surface is the quotient of the electric charge (item 6-2) transferred through the surface during a time interval by the duration of that interval. For a more complete definition, see item 6-8 and IEC 60050-121, item 121-11-13.
      */
     attribute def ElectricCurrentUnit :> SimpleUnit {
-        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq::I; :>> exponent = 1; }
+        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq.I; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = electricCurrentPF; }
     }
 
@@ -128,7 +128,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: ElectricCurrentUnit[1];
     }
-    attribute electricCurrent: ElectricCurrentValue :> scalarQuantities;
+    attribute electricCurrent: ElectricCurrentValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 7-14 luminous intensity
@@ -142,7 +142,7 @@ package ISQBase {
      * remarks: The definition holds strictly only for a point source. The distribution of the luminous intensities as a function of the direction of emission, e.g. given by the polar angles `(θ,ϕ)`, is used to determine the luminous flux (item 7-13) within a certain solid angle (ISO 80000-3) `Ω` of a source: `Φ_v = int int_Ω I_v(θ,φ) sin(θ) dφ dθ`. Luminous intensity can be derived from the spectral radiant intensity distribution by `I_v = K_m int_0^∞ I_(e,λ)(λ) V(λ) dλ`, where `K_m` is maximum luminous efficacy (item 7-11.3), `I_(e,λ)(λ)` is the spectral radiant intensity (item 7-5.2) at wavelength `λ` (ISO 80000-3), and `V(λ)` is spectral luminous efficiency (item 7-10.2). The corresponding radiometric quantity is "radiant intensity" (item 7-5.1). The corresponding quantity for photons is "photon intensity" (item 7-21).
      */
     attribute def LuminousIntensityUnit :> SimpleUnit {
-        private attribute luminousIntensityPF: QuantityPowerFactor[1] { :>> quantity = isq::J; :>> exponent = 1; }
+        private attribute luminousIntensityPF: QuantityPowerFactor[1] { :>> quantity = isq.J; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = luminousIntensityPF; }
     }
 
@@ -150,7 +150,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: LuminousIntensityUnit[1];
     }
-    attribute luminousIntensity: LuminousIntensityValue :> scalarQuantities;
+    attribute luminousIntensity: LuminousIntensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 9-2 amount of substance, number of moles
@@ -164,7 +164,7 @@ package ISQBase {
      * remarks: Amount of substance is one of the seven base quantities in the International System of Quantities, ISQ (see ISO 80000-1). Elementary entities, such as molecules, atoms, ions, electrons, holes and other quasi-particles, double bonds can be used. It is necessary to specify precisely the entity involved, e.g. atoms of hydrogen `H` vs. molecules of hydrogen `H_2`, preferably by giving the molecular chemical formula of the material involved. In the name "amount of substance", the words "of substance" could be replaced by words specifying the substance concerned, e.g. "amount of hydrogen chloride, `HCl`", or "amount of benzene, `C_6H_6`". The name "number of moles" is often used for "amount of substance", but this is deprecated because the name of a quantity should be distinguished from the name of the unit.
      */
     attribute def AmountOfSubstanceUnit :> SimpleUnit {
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = 1; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = amountOfSubstancePF; }
     }
 
@@ -172,7 +172,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: AmountOfSubstanceUnit[1];
     }
-    attribute amountOfSubstance: AmountOfSubstanceValue :> scalarQuantities;
+    attribute amountOfSubstance: AmountOfSubstanceValue [*] nonunique :> scalarQuantities;
 
     /**
      * Declaration of the International System of Quantities (ISQ), 

@@ -1,5 +1,6 @@
 package '15_12-Compound Value Type' {
 	import ScalarValues::*;
+	import USCustomaryUnits::'in';
 	
 	/*
 	 * Real world user models would use quantity and vector types
@@ -24,7 +25,7 @@ package '15_12-Compound Value Type' {
     
     attribute frenchTireInfo: TireInfo {
     	attribute :>> manufacturer = "Michelin";
-    	attribute :>> hubDiameter = 18.0;
+    	attribute :>> hubDiameter = 18.0['in'];
     	attribute :>> width = 245;
     }
 }

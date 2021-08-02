@@ -6,11 +6,13 @@ package Requirements {
 	private import ScalarValues::String;
 	private import ControlFunctions::allTrue;
 	private import Constraints::constraintChecks;
+	private import Constraints::assertedConstraintChecks;
+	private import Constraints::negatedConstraintChecks;
 	private import Parts::Part;
 	private import Parts::parts;
 	private import Actions::Action;
 	private import Interfaces::Interface;
-	private import Attributes::AttributeValue as AttributeValue; // "Alias" needed because of alias reimport bug.
+	private import Attributes::AttributeValue;
 	
 	/**
 	 * RequirementConstraintCheck is the base ConstraintCheck for RequirementCheck, defining the
@@ -31,7 +33,7 @@ package Requirements {
 		/**
 		 * If all the assumptions are true, then all the required constraints must hold.
 		 */
-		!allTrue(assumptions()) | allTrue(constraints())
+		allTrue(assumptions()) implies allTrue(constraints())
 	}
 	
 	/**
@@ -48,6 +50,20 @@ package Requirements {
 		 */
 		subject subj : Anything[1];
 		
+		/**
+		 * The Parts that fill the role of actors for this RequirementCheck.
+		 * (Note: This is not itself an actor parameter, because specific actor
+		 * parameters will be added for specific RequirementChecks.)
+		 */
+		ref part actors : Part[0..*];
+		
+		/**
+		 * The Parts that represent stakeholders interested in the concern being checked.
+		 * (Note: This is not itself a stakeholder parameter, because specific stakeholder
+		 * parameters will be added for specific RequirementChecks.)
+		 */
+		ref part stakeholders : Part[0..*];
+
 		/* 
 		 * Note: assumptions and constraints are redefined here solely to simplify the
 		 * resolution of their qualified names as library elements.
@@ -113,14 +129,6 @@ package Requirements {
 	concern def ConcernCheck :> RequirementCheck {
 		ref concern thisConcern: ConcernCheck :>> RequirementCheck::thisRequirement;
 		
-		/**
-		 * The stakeholders interested in the concern being checked.
-		 */
-		ref stakeholder concernedStakeholders : Stakeholder :> stakeholders;
-	}
-	
-	stakeholder def Stakeholder :> Part {
-		ref stakeholder self: Stakeholder :>> Part::self;
 	}
 	
 	/**
@@ -129,13 +137,18 @@ package Requirements {
 	abstract requirement requirementChecks: RequirementCheck[0..*] nonunique :> constraintChecks;
 	
 	/**
+	 * satisfiedRequirementChecks is the subset of requirementChecks for Requirements asserted to be satisfied.
+	 */
+	abstract requirement satisfiedRequirementChecks :> requirementChecks, assertedConstraintChecks;
+
+	/**
+	 * notSatisfiedRequirementChecks is the subset of requirementChecks for Requirements asserted to be not satisfied.
+	 */
+	abstract requirement notSatisfiedRequirementChecks: RequirementCheck[0..*] :> requirementChecks, negatedConstraintChecks;
+	
+	/**
 	 * concernChecks is the base feature of all ConcernUsages.
 	 */
 	abstract concern concernChecks: ConcernCheck[0..*] nonunique :> requirementChecks;
-	
-	/**
-	 * stakeholders is the base feature of all Stakeholders.
-	 */
-	abstract stakeholder stakeholders: Stakeholder[0..*] nonunique :> parts;
 	
 }

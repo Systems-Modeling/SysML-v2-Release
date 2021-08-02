@@ -32,10 +32,10 @@ package '11a-View-Viewpoint' {
 	package ViewModel {
 		import Views::*;
 	
-		stakeholder 'systems engineer';
+		part 'systems engineer';
 		
 		concern 'system breakdown' {
-			affect 'systems engineer';
+			stakeholder :>> 'systems engineer';
 		}
 		
 		viewpoint 'system structure perspective' {		

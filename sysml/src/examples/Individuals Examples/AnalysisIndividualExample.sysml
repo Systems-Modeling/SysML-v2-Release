@@ -7,8 +7,8 @@ package AnalysisIndividualExample {
 	    import USCustomaryUnits::*;
 	    
 	    attribute def DistancePerVolumeUnit :> DerivedUnit {
-	    	private attribute distancePF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 1; }
-	        private attribute volumePF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
+	    	private attribute distancePF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 1; }
+	        private attribute volumePF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
 	        attribute :>> quantityDimension { :>> quantityPowerFactors = (distancePF, volumePF); }
 	    }
 
@@ -43,8 +43,8 @@ package AnalysisIndividualExample {
 	package FuelEconomyAnalysisModel {
 	    import VehicleModel::*;
 	    import SequenceFunctions::size;
-	    import Collections::SampledFunction;
-	    import Collections::SamplePair;
+	    import SampledFunctions::SampledFunction;
+	    import SampledFunctions::SamplePair;
 	    import ControlFunctions::forAll;
 	    
 	    action def FuelConsumption(

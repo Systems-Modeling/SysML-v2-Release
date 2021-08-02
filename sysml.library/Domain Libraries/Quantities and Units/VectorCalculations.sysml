@@ -10,5 +10,5 @@ package VectorCalculations {
 	calc def scalarVectorMult specializes NumericalFunctions::'*' (x: Real, y: VectorQuantityValue): VectorQuantityValue;
 	calc def vectorScalarMult specializes NumericalFunctions::'*' (x: VectorQuantityValue, y: Real): VectorQuantityValue;
 
-    alias scalarVectorMult as '*';
+    alias '*' for scalarVectorMult;
 }

@@ -16,7 +16,7 @@ package '13a-Model Containment' {
 	package 'Vehicle Model' {
 		
 		package 'Vehicle1-Configuration' {			
-			import vehicle1_c1 as 'Sports Sedan';
+			alias 'Sport Sedan' for vehicle1_c1;
 			
 			import 'vehicle1_c1 Specification Context'::'vehicle1-c1 Specification';		
 		}

@@ -23,7 +23,7 @@ package JohnIndividualExample {
 	  at most one president (at any point in time).
 	*/
 	item def Country {
-		ref presidentOfCountry[0..1] :> Person::asPresident;
+		ref presidentOfCountry[0..1] : Person :> presidentOfCountry.asPresident;
 	}
 	
 	/**

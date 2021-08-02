@@ -12,6 +12,7 @@ package RationalFunctions {
 	function '*' specializes NumericalFunctions::'*' (x: Rational[1], y: Rational[1]): Rational[1];
 	function '/' specializes NumericalFunctions::'/' (x: Rational[1], y: Rational[1]): Rational[1];
 	function '**' specializes NumericalFunctions::'**' (x: Rational[1], y: Rational[1]): Rational[1];
+	function '^' specializes NumericalFunctions::'^' (x: Rational[1], y: Rational[1]): Rational[1];
 	
 	function '<' specializes NumericalFunctions::'<' (x: Rational[1], y: Rational[1]): Boolean[1];
 	function '>' specializes NumericalFunctions::'>' (x: Rational[1], y: Rational[1]): Boolean[1];
@@ -31,8 +32,6 @@ package RationalFunctions {
 	function ToString specializes BaseFunctions::ToString (x: Rational[1]): String[1];
 	function ToInteger(x: Rational[1]): Integer[1];
 	function ToRational(x: String[1]): Rational[1];
-	function ToReal(x: Rational[1]): Real[1];
-	function ToComplex(x: Rational[1]): Complex[1];
 	
 	function sum specializes ScalarFunctions::sum (collection: Rational[0..*]): Rational[1] {
 		ScalarFunctions::sum0(collection, Rat(0, 1))

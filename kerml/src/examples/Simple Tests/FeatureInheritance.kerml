@@ -3,5 +3,5 @@ package FeatureInheritance {
 		feature t : ISQ::TorqueValue;
 	}
 	
-	feature u redefines s;
+	feature u subsets s;
 }

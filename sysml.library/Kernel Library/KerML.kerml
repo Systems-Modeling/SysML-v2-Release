@@ -6,7 +6,7 @@ package KerML {
 	struct AnnotatingElement :> Element;
 	struct Annotation :> Relationship;
 	struct Comment :> AnnotatingElement;
-	struct Dcoumentation :> Annotation;
+	struct Documentation :> Annotation;
 	struct TextualRepresentation :> AnnotatingElement;
 	
 	struct Import :> Relationship;
@@ -16,18 +16,20 @@ package KerML {
 	struct Type :> Namespace;
 	struct Multiplicity :> Feature;
 	struct FeatureMembership :> Membership, TypeFeaturing;
-	struct EndFeatureMembersip :> FeatureMembership;
-	struct Generalization :> Relationship;
+	struct Specialization :> Relationship;
 	struct Conjugation :> Relationship;
+	struct Disjoining :> Relationship;
 	
 	struct Classifier :> Type;
-	struct Superclassing :> Generalization;
+	struct Subclassification :> Specialization;
 	
 	struct Feature :> Type;
-	struct Subsetting :> Generalization;
+	struct Subsetting :> Specialization;
 	struct Redefinition :> Subsetting;
-	struct FeatureTyping :> Generalization;
+	struct FeatureTyping :> Specialization;
 	struct TypeFeaturing :> Relationship;
+	struct FeatureChaining :> Relationship;
+	struct EndFeatureMembersip :> FeatureMembership;
 	
 	struct Class :> Classifier;
 	struct DataType :> Classifier;
@@ -43,22 +45,28 @@ package KerML {
 	
 	struct Behavior :> Class;
 	struct Step :> Feature;
+	struct ParameterMembership :> FeatureMembership;
 	
 	struct Function :> Behavior;
 	struct Predicate :> Function;
 	struct Expression :> Step;
 	struct BooleanExpression :> Expression;
 	struct Invariant :> BooleanExpression;
+	struct ReturnParameterMembership :> ParameterMembership;
+	struct ResultExpressionMembership :> FeatureMembership;
 	
 	struct FeatureReferenceExpression :> Expression;
 	struct InvocationExpression :> Expression;
 	struct LiteralExpression :> Expression;
 	struct LiteralInteger :> LiteralExpression;
-	struct LiteralReal :> LiteralExpression;
+	struct LiteralRational :> LiteralExpression;
 	struct LiteralBoolean :> LiteralExpression;
 	struct LiteralString :> LiteralExpression;
-	struct LiteralUnbounded :> LiteralExpression;
-	struct NullExpression :> LiteralExpression;
+	struct LiteralInfinity :> LiteralExpression;
+	struct NullExpression :> Expression;
+	struct OperatorExpression :> InvocationExpression;
+	struct PathStepExpression :> OperatorExpression;
+	struct PathSelectExpression :> OperatorExpression;
 	
 	struct Interaction :> Behavior, Association;
 	struct ItemFlow :> Step, Connector;
@@ -68,7 +76,7 @@ package KerML {
 	
 	struct MultiplicityRange :> Multiplicity;
 	
-	struct AnnotatingFeature :> Feature;
+	struct AnnotatingFeature :> AnnotatingElement, Feature;
 	struct MetadataFeature :> Feature;
 	struct MetadataFeatureValue :> FeatureValue;
 	

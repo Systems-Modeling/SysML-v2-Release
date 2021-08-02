@@ -67,13 +67,13 @@ package Dynamics {
 		calc vel : Velocity (
 			dt = dyn2::dt, 
 			v0 = dyn2::v_in, 
-			a = acc::a
+			a = acc.a
 		) return v = v_out;
 		
 		calc pos : Position (
 			dt = dyn2::dt, 
 			x0 = dyn2::x_in, 
-			v0 = vel::v
+			v0 = vel.v
 		) return x = x_out;		
 	}
 }

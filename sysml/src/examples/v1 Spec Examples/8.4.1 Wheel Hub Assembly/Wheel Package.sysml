@@ -9,8 +9,8 @@ package 'Wheel Package' {
 	part def WheelHubAssembly {
 		part wheel: WheelAssembly[1];
 		part lugBoltJoints: LugBoltJoint[5] {
-			ref redefines threadedHole subsets hub::h;
-			ref redefines mountingHole subsets wheel::w::mountingHoles;
+			ref redefines threadedHole subsets hub.h;
+			ref redefines mountingHole subsets wheel.w.mountingHoles;
 		}
 		part hub: Hub[1];
 	}
@@ -25,7 +25,7 @@ package 'Wheel Package' {
 			part rim redefines Wheel::rim;
 		}		
 				
-		connection : PressureSeat connect t::bead to w::rim;		
+		connection : PressureSeat connect t.bead to w.rim;		
 	}
 	
 	part def Tire {

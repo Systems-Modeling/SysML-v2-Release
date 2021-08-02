@@ -5,6 +5,8 @@ package PartTest {
 	public part def A {
 		part id '1' b: B;
 		protected port c: C;
+		attribute x[0..2];
+		attribute y :> x;
 	}
 	
 	abstract part def id xx B {
@@ -15,8 +17,8 @@ package PartTest {
 	
 	private port def C {
 		private in ref y: A, B;
-		import y as z1;
-		alias y as z2;
+		alias z1 for y;
+		alias z2 for y;
 	}
 	
 }

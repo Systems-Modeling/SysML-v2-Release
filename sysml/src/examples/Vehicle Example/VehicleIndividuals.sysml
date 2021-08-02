@@ -78,7 +78,7 @@ package VehicleIndividuals {
 		/**
 		 * This is a snapshot of Vehicle1 in configuration vehicle_C2 at time t1.
 		 */
-		snapshot part vehicle1_C2_t1 :> vehicle1_C2, vehicle1_t0_t1::done {
+		snapshot part vehicle1_C2_t1 :> vehicle1_C2, vehicle1_t0_t1.done {
 			snapshot axleAssembly1_t1: AxleAssembly1 :>> frontAxleAssembly {
 				/**
 				 * This asserts that Wheel1 is the rightFrontWheel of vehicle_C2_t1.

@@ -9,8 +9,8 @@ package ParameterTest {
 	calc def F (p : A, q : ScalarValues::Integer): ScalarValues::Integer;
 	
 	attribute f = F(a, 2);
-	attribute g = F(q => 1, p => a);
+	attribute g = F(q = 1, p = a);
 	
-	attribute b = A(y=>a, x=>""); 
+	attribute b = A(y=a, x=""); 
 	attribute c = A("test2");
 }

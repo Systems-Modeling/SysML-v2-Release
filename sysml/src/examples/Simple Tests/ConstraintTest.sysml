@@ -26,16 +26,16 @@ package ConstraintTest {
 			attribute redefines componentMasses;
 		}
 		
-		bind massAnalysis::totalMass = mass;
-		bind massAnalysis::componentMasses[1] = engine::mass;
-		bind massAnalysis::componentMasses[1] = frontAxleAssembly::mass;
-		bind massAnalysis::componentMasses[1] = rearAxleAssembly::mass;
+		bind massAnalysis.totalMass = mass;
+		bind massAnalysis.componentMasses[1] = engine.mass;
+		bind massAnalysis.componentMasses[1] = frontAxleAssembly.mass;
+		bind massAnalysis.componentMasses[1] = rearAxleAssembly.mass;
 	}
 	
 	part vehicle1b :> vehicle {		
 		assert constraint massAnalysis : MassAnalysis {
 			attribute redefines totalMass = mass;
-			attribute redefines componentMasses = (engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass);		
+			attribute redefines componentMasses = (engine.mass, frontAxleAssembly.mass, rearAxleAssembly.mass);		
 		}	
 	}
 		
@@ -46,16 +46,16 @@ package ConstraintTest {
 	part vehicle2a :> vehicle {
 		assert constraint massConstraint : MassAnalysis2 (totalMass, componentMasses);
 		
-		bind massConstraint::totalMass = mass;
-		bind massConstraint::componentMasses[1] = engine::mass;
-		bind massConstraint::componentMasses[1] = frontAxleAssembly::mass;
-		bind massConstraint::componentMasses[1] = rearAxleAssembly::mass;
+		bind massConstraint.totalMass = mass;
+		bind massConstraint.componentMasses[1] = engine.mass;
+		bind massConstraint.componentMasses[1] = frontAxleAssembly.mass;
+		bind massConstraint.componentMasses[1] = rearAxleAssembly.mass;
 	}
 		
 	part vehicle2b :> vehicle {
 		assert constraint massAnalysis2 : MassAnalysis2 (
 			totalMass = mass,
-			componentMasses = (engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass)
+			componentMasses = (engine.mass, frontAxleAssembly.mass, rearAxleAssembly.mass)
 		);
 	}
 	
@@ -68,12 +68,14 @@ package ConstraintTest {
 	part vehicle3 :> vehicle {
 		assert massAnalysis3 (
 			totalMass = mass,
-			componentMasses = (engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass)
+			componentMasses = (engine.mass, frontAxleAssembly.mass, rearAxleAssembly.mass)
 		);
 	}
 	
 	part vehicle4 :> vehicle {
-		assert constraint { mass == engine::mass + frontAxleAssembly::mass + rearAxleAssembly::mass }
+		assert constraint { mass == engine.mass + frontAxleAssembly.mass + rearAxleAssembly.mass }
 	}
 	
+	constraint massLimitation (mass : MassValue, massLimit : MassValue) { mass < massLimit }
+	assert not massLimitation (mass = vehicle3.mass, massLimit = vehicle4.mass);
 }

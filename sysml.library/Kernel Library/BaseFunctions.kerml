@@ -17,22 +17,12 @@ package BaseFunctions {
     	abstract feature all 'type': Object;
     }
     
-    /** Deprecated */
-	abstract function 'allInstances'(): Object[0..*] {
-		abstract feature all 'type': Object;
-	}
-	
 	abstract function 'istype'(x: Anything[1]): Boolean[1] {
 		abstract feature 'type': Anything;
 	}
 	
 	abstract function '@'(x: Anything[1]): Boolean[1] {
 		abstract feature 'type': Anything;
-	}
-	
-	/** Deprecated */
-	abstract function 'instanceof'(x: Anything[1]): Boolean {
-		abstract feature 'type': Anything[1];
 	}
 	
 	abstract function 'hastype'(x: Anything[1]): Boolean {

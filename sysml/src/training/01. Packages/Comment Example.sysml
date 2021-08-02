@@ -15,9 +15,9 @@ package 'Comment Example' {
 	 * This is a comment annotating the following 
 	 * element.
 	 */
-	alias Automobile as Car;	                         
+	alias Car for Automobile;	                         
 	
 	// This note. It is in the text, but not part 
 	// of the model.
-	private import ISQ::TorqueValue as Torque;
+	private import ISQ::TorqueValue;
 }

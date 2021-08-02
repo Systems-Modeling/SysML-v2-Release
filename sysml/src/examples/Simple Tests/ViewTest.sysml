@@ -1,16 +1,17 @@
 package ViewTest {
-	package P;
+	package P {
+		public part p1;
+		private part p2;
+	}
 	
-	stakeholder def S;
-	
-	stakeholder s : S;
+	part def S;
 	
 	concern def C {
-		affect s;
+		stakeholder s : S;
 	}
 	
 	concern c : C {
-		affect stakeholder s1;
+		stakeholder s1;
 	}
 	
 	viewpoint def VP {
@@ -31,6 +32,10 @@ package ViewTest {
 		view v: V[0..*] {
 			expose P::*;
 			render r;
+			
+			alias vp1 for p1;
+			// Note: "expose" imports all.
+			alias vp2 for p2;
 		}
 	}
 

@@ -5,12 +5,14 @@ package PrivateImportTest {
 	package P2 {
 		private import P1::*;
 	}
+
 	part x: P1::A;
 	
 	import P2::*;
 	// This should fail.
 	// A is not visible, because the import in P2 is private.
-	// y: A;
+	// part y: A;
+	// part y1: P2::A;
 	
 	package P3 {
 		part def B;
@@ -22,4 +24,10 @@ package PrivateImportTest {
 	// Private import only restricts visibility outside the package.
 	part z: B;
 	
+	package P4 {
+		import all P2::*;
+		
+		// This should not fail because "import all" overrides private import.
+		part z1: A;
+	}	
 }

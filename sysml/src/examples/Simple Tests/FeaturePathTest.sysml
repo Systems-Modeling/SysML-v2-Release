@@ -1,6 +1,6 @@
 package Q {
   part def F {
-  	part a;
+  	part a : A;
   }
   
   part f : F;
@@ -14,8 +14,17 @@ package Q {
   	part a : A;
   }
   
-  part b : B {
-  	connect f.a to a.g;
-  	bind f.a = a.g;
+  part def C {
+	part b : B {
+	  connect f.a to a.g;
+	  bind f.a = a.g;
+	}
+  
+	part c subsets b.f {
+	  	part aa subsets a;
+	}
+	
+	flow b.f.a to c.aa;
   }
+	
 }

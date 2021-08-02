@@ -13,11 +13,11 @@ package 'Transition Actions' {
 	
 	action performSelfTest(in vehicle : Vehicle);
 	
-	state def VehicleStates (operatingVehicle : Vehicle);
+	state def VehicleStates;
 		
-	state vehicleStates : VehicleStates (
-		operatingVehicle : Vehicle,
-		controller : VehicleController) {
+	state vehicleStates : VehicleStates {
+		in operatingVehicle : Vehicle;
+		in controller : VehicleController;
 
 		entry; then off;
 		

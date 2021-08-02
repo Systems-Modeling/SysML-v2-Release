@@ -14,9 +14,9 @@ package 'Vehicle Decomposition' {
 			part cyl redefines Engine::cyl;
 		}
 		
-		ref cylinderBR[*] = eng::cyl;
-		ref rollBarBR[*] = chs::rb;
-		ref lugBoltBR[24..32] = chs::w::lb;
+		ref cylinderBR[*] = eng.cyl;
+		ref rollBarBR[*] = chs.rb;
+		ref lugBoltBR[24..32] = chs.w.lb;
 	}
 	
 	part def 'Chassis Assembly' {

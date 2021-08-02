@@ -37,7 +37,7 @@ package ISQInformation {
         attribute :>> num: Real;
         attribute :>> mRef: TrafficIntensityUnit[1];
     }
-    attribute trafficIntensity: TrafficIntensityValue :> scalarQuantities;
+    attribute trafficIntensity: TrafficIntensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-2 traffic offered intensity
@@ -56,7 +56,7 @@ package ISQInformation {
         attribute :>> num: Real;
         attribute :>> mRef: TrafficOfferedIntensityUnit[1];
     }
-    attribute trafficOfferedIntensity: TrafficOfferedIntensityValue :> scalarQuantities;
+    attribute trafficOfferedIntensity: TrafficOfferedIntensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-3 traffic carried intensity, traffic load
@@ -75,11 +75,11 @@ package ISQInformation {
         attribute :>> num: Real;
         attribute :>> mRef: TrafficCarriedIntensityUnit[1];
     }
-    attribute trafficCarriedIntensity: TrafficCarriedIntensityValue :> scalarQuantities;
+    attribute trafficCarriedIntensity: TrafficCarriedIntensityValue [*] nonunique :> scalarQuantities;
 
-    alias TrafficCarriedIntensityUnit as TrafficLoadUnit;
-    alias TrafficCarriedIntensityValue as TrafficLoadValue;
-    alias trafficCarriedIntensity as trafficLoad;
+    alias TrafficLoadUnit for TrafficCarriedIntensityUnit;
+    alias TrafficLoadValue for TrafficCarriedIntensityValue;
+    alias trafficLoad for trafficCarriedIntensity;
 
     /**
      * source: item 13-4 mean queue length
@@ -93,7 +93,7 @@ package ISQInformation {
      * remarks: None.
      */
     attribute def MeanQueueLengthValue :> DimensionOneValue;
-    attribute meanQueueLength: MeanQueueLengthValue :> scalarQuantities;
+    attribute meanQueueLength: MeanQueueLengthValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-5 loss probability
@@ -107,7 +107,7 @@ package ISQInformation {
      * remarks: None.
      */
     attribute def LossProbabilityValue :> DimensionOneValue;
-    attribute lossProbability: LossProbabilityValue :> scalarQuantities;
+    attribute lossProbability: LossProbabilityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-6 waiting probability
@@ -121,7 +121,7 @@ package ISQInformation {
      * remarks: None.
      */
     attribute def WaitingProbabilityValue :> DimensionOneValue;
-    attribute waitingProbability: WaitingProbabilityValue :> scalarQuantities;
+    attribute waitingProbability: WaitingProbabilityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-7 call intensity, calling rate
@@ -135,7 +135,7 @@ package ISQInformation {
      * remarks: See IEC 60050-715, item 715-03-13.
      */
     attribute def CallIntensityUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -143,11 +143,11 @@ package ISQInformation {
         attribute :>> num: Real;
         attribute :>> mRef: CallIntensityUnit[1];
     }
-    attribute callIntensity: CallIntensityValue :> scalarQuantities;
+    attribute callIntensity: CallIntensityValue [*] nonunique :> scalarQuantities;
 
-    alias CallIntensityUnit as CallingRateUnit;
-    alias CallIntensityValue as CallingRateValue;
-    alias callIntensity as callingRate;
+    alias CallingRateUnit for CallIntensityUnit;
+    alias CallingRateValue for CallIntensityValue;
+    alias callingRate for callIntensity;
 
     /**
      * source: item 13-8 completed call intensity
@@ -161,7 +161,7 @@ package ISQInformation {
      * remarks: For a definition of the complete call attempt, see IEC 60050-715, item 715-03-11.
      */
     attribute def CompletedCallIntensityUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -169,7 +169,7 @@ package ISQInformation {
         attribute :>> num: Real;
         attribute :>> mRef: CompletedCallIntensityUnit[1];
     }
-    attribute completedCallIntensity: CompletedCallIntensityValue :> scalarQuantities;
+    attribute completedCallIntensity: CompletedCallIntensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-9 storage capacity, storage size
@@ -188,11 +188,11 @@ package ISQInformation {
         attribute :>> num: Real;
         attribute :>> mRef: StorageCapacityUnit[1];
     }
-    attribute storageCapacity: StorageCapacityValue :> scalarQuantities;
+    attribute storageCapacity: StorageCapacityValue [*] nonunique :> scalarQuantities;
 
-    alias StorageCapacityUnit as StorageSizeUnit;
-    alias StorageCapacityValue as StorageSizeValue;
-    alias storageCapacity as storageSize;
+    alias StorageSizeUnit for StorageCapacityUnit;
+    alias StorageSizeValue for StorageCapacityValue;
+    alias storageSize for storageCapacity;
 
     /**
      * source: item 13-10 equivalent binary storage capacity
@@ -211,7 +211,7 @@ package ISQInformation {
         attribute :>> num: Real;
         attribute :>> mRef: EquivalentBinaryStorageCapacityUnit[1];
     }
-    attribute equivalentBinaryStorageCapacity: EquivalentBinaryStorageCapacityValue :> scalarQuantities;
+    attribute equivalentBinaryStorageCapacity: EquivalentBinaryStorageCapacityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-11 transfer rate
@@ -225,7 +225,7 @@ package ISQInformation {
      * remarks: The symbol `ν` is the Greek letter nu. A subscript referring to a specified data element can be added to the symbol. EXAMPLES: digit rate, `r_d` or `ν_d` (see IEC 60050-702 and 60050-704, items 702-05-23 and 704-16-06); transfer rate for octets (or bytes), `r_o`, `r_B`, `ν_o`, or `ν_B`; binary digit rate or bit rate (item 13-13).
      */
     attribute def TransferRateUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -233,7 +233,7 @@ package ISQInformation {
         attribute :>> num: Real;
         attribute :>> mRef: TransferRateUnit[1];
     }
-    attribute transferRate: TransferRateValue :> scalarQuantities;
+    attribute transferRate: TransferRateValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-12 period of data elements
@@ -246,7 +246,7 @@ package ISQInformation {
      * definition: `T = 1/ r`, where `r` is transfer rate (item 13-11) when the data elements are transmitted in series
      * remarks: A subscript referring to a specified data element can be added to the symbol. EXAMPLES: period of digits, `T_d`; period of octets (or bytes), `T_o` or `T_B`.
      */
-    attribute periodOfDataElements: DurationValue :> scalarQuantities;
+    attribute periodOfDataElements: DurationValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-13 binary digit rate, bit rate
@@ -260,7 +260,7 @@ package ISQInformation {
      * remarks: In English, the systematic name would be "transfer rate for binary digits". See IEC 60050-704, item 704-16-07. The bit per second may be combined with prefixes, for example megabit per second, symbol Mbit/s.
      */
     attribute def BinaryDigitRateUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -268,11 +268,11 @@ package ISQInformation {
         attribute :>> num: Real;
         attribute :>> mRef: BinaryDigitRateUnit[1];
     }
-    attribute binaryDigitRate: BinaryDigitRateValue :> scalarQuantities;
+    attribute binaryDigitRate: BinaryDigitRateValue [*] nonunique :> scalarQuantities;
 
-    alias BinaryDigitRateUnit as BitRateUnit;
-    alias BinaryDigitRateValue as BitRateValue;
-    alias binaryDigitRate as bitRate;
+    alias BitRateUnit for BinaryDigitRateUnit;
+    alias BitRateValue for BinaryDigitRateValue;
+    alias bitRate for binaryDigitRate;
 
     /**
      * source: item 13-14 period of binary digits, bit period
@@ -285,9 +285,9 @@ package ISQInformation {
      * definition: `T_b = 1/ r_b`, where `r_b` is the binary digit rate (item 13-13) when the binary digits are transmitted in series
      * remarks: None.
      */
-    attribute periodOfBinaryDigits: DurationValue :> scalarQuantities;
+    attribute periodOfBinaryDigits: DurationValue [*] nonunique :> scalarQuantities;
 
-    alias periodOfBinaryDigits as bitPeriod;
+    alias bitPeriod for periodOfBinaryDigits;
 
     /**
      * source: item 13-15 equivalent binary digit rate, equivalent bit rate
@@ -302,7 +302,7 @@ package ISQInformation {
 binary transfer rate". See IEC 60050-704, item 704-17-05.
      */
     attribute def EquivalentBinaryDigitRateUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -310,11 +310,11 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
         attribute :>> num: Real;
         attribute :>> mRef: EquivalentBinaryDigitRateUnit[1];
     }
-    attribute equivalentBinaryDigitRate: EquivalentBinaryDigitRateValue :> scalarQuantities;
+    attribute equivalentBinaryDigitRate: EquivalentBinaryDigitRateValue [*] nonunique :> scalarQuantities;
 
-    alias EquivalentBinaryDigitRateUnit as EquivalentBitRateUnit;
-    alias EquivalentBinaryDigitRateValue as EquivalentBitRateValue;
-    alias equivalentBinaryDigitRate as equivalentBitRate;
+    alias EquivalentBitRateUnit for EquivalentBinaryDigitRateUnit;
+    alias EquivalentBitRateValue for EquivalentBinaryDigitRateValue;
+    alias equivalentBitRate for equivalentBinaryDigitRate;
 
     /**
      * source: item 13-16 modulation rate, line digit rate
@@ -328,7 +328,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
      * remarks: The term “modulation rate” is used in conventional telegraphy and data transmission. In isochronous digital transmission, the term "line digit rate" is generally used. See IEC 60050-704, item 704-17-03. Baud is a special name for the second to the power minus one for this quantity. The baud may be combined with prefixes, for example kilobaud, symbol kBd, megabaud, symbol MBd.
      */
     attribute def ModulationRateUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -336,11 +336,11 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
         attribute :>> num: Real;
         attribute :>> mRef: ModulationRateUnit[1];
     }
-    attribute modulationRate: ModulationRateValue :> scalarQuantities;
+    attribute modulationRate: ModulationRateValue [*] nonunique :> scalarQuantities;
 
-    alias ModulationRateUnit as LineDigitRateUnit;
-    alias ModulationRateValue as LineDigitRateValue;
-    alias modulationRate as lineDigitRate;
+    alias LineDigitRateUnit for ModulationRateUnit;
+    alias LineDigitRateValue for ModulationRateValue;
+    alias lineDigitRate for modulationRate;
 
     /**
      * source: item 13-17 quantizing distortion rate
@@ -353,7 +353,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
      * definition: distortion of a signal resulting from the process of quantizing an original signal when the values to be quantized are within the working range of the quantizer
      * remarks: See IEC 60050-704, item 704-24-13.
      */
-    attribute quantizingDistortionRate: PowerValue :> scalarQuantities;
+    attribute quantizingDistortionRate: PowerValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-18 carrier power
@@ -366,7 +366,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
      * definition: power supplied to the antenna feed line by a radio transmitter taken under the condition of no modulation
      * remarks: See IEC 60050-713, item 713-09-20.
      */
-    attribute carrierPower: PowerValue :> scalarQuantities;
+    attribute carrierPower: PowerValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-19 signal energy per binary digit
@@ -379,7 +379,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
      * definition: `E_b = P_c*T_b`, where `P_c` is carrier power (item 13-18) and `T_b` is period of binary digits (item 13-14)
      * remarks: None.
      */
-    attribute signalEnergyPerBinaryDigit: EnergyValue :> scalarQuantities;
+    attribute signalEnergyPerBinaryDigit: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-20 error probability
@@ -393,7 +393,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
      * remarks: A subscript referring to a specified data element can be added to the symbol. EXAMPLES: error probability for binary digits or bit error probability, `P_b` or `P_bit`; block error probability, `P_bl`. The measured value is designated as "error ratio", whereas "error rate" is deprecated, for example, bit error ratio (BER), block error ratio. See IEC 60050-704 and IEC 60050-721.
      */
     attribute def ErrorProbabilityValue :> DimensionOneValue;
-    attribute errorProbability: ErrorProbabilityValue :> scalarQuantities;
+    attribute errorProbability: ErrorProbabilityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-21 Hamming distance
@@ -406,7 +406,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
      * definition: number of digit positions in which the corresponding digits of two words of the same length are different
      * remarks: See IEC 60050-721, item 721-08-25.
      */
-    attribute hammingDistance: CountValue :> scalarQuantities;
+    attribute hammingDistance: CountValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-22 clock frequency, clock rate
@@ -419,9 +419,9 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
      * definition: frequency at which a clock oscillates
      * remarks: None.
      */
-    attribute clockFrequency: FrequencyValue :> scalarQuantities;
+    attribute clockFrequency: FrequencyValue [*] nonunique :> scalarQuantities;
 
-    alias clockFrequency as clockRate;
+    alias clockRate for clockFrequency;
 
     /**
      * source: item 13-23 decision content
@@ -435,7 +435,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
      * remarks: See ISO/IEC 2382-16, item 16.03.01. See also IEC 60027-3. When the same base is used for the same number of events then `D_a = H_0` , where `H_0` is maximum entropy (item 13-28).
      */
     attribute def DecisionContentValue :> DimensionOneValue;
-    attribute decisionContent: DecisionContentValue :> scalarQuantities;
+    attribute decisionContent: DecisionContentValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-24 information content
@@ -454,7 +454,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
         attribute :>> num: Real;
         attribute :>> mRef: InformationContentUnit[1];
     }
-    attribute informationContent: InformationContentValue :> scalarQuantities;
+    attribute informationContent: InformationContentValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-25 entropy
@@ -473,7 +473,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
         attribute :>> num: Real;
         attribute :>> mRef: EntropyForInformationScienceUnit[1];
     }
-    attribute entropyForInformationScience: EntropyForInformationScienceValue :> scalarQuantities;
+    attribute entropyForInformationScience: EntropyForInformationScienceValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-26 maximum entropy
@@ -492,7 +492,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
         attribute :>> num: Real;
         attribute :>> mRef: MaximumEntropyUnit[1];
     }
-    attribute maximumEntropy: MaximumEntropyValue :> scalarQuantities;
+    attribute maximumEntropy: MaximumEntropyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-27 relative entropy
@@ -506,7 +506,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
      * remarks: See ISO/IEC 2382-16, item 16.03.04.
      */
     attribute def RelativeEntropyValue :> DimensionOneValue;
-    attribute relativeEntropy: RelativeEntropyValue :> scalarQuantities;
+    attribute relativeEntropy: RelativeEntropyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-28 redundancy
@@ -525,7 +525,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
         attribute :>> num: Real;
         attribute :>> mRef: RedundancyUnit[1];
     }
-    attribute redundancy: RedundancyValue :> scalarQuantities;
+    attribute redundancy: RedundancyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-29 relative redundancy
@@ -539,7 +539,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
      * remarks: See ISO/IEC 2382-16, item 16.04.01.
      */
     attribute def RelativeRedundancyValue :> DimensionOneValue;
-    attribute relativeRedundancy: RelativeRedundancyValue :> scalarQuantities;
+    attribute relativeRedundancy: RelativeRedundancyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-30 joint information content
@@ -558,7 +558,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
         attribute :>> num: Real;
         attribute :>> mRef: JointInformationContentUnit[1];
     }
-    attribute jointInformationContent: JointInformationContentValue :> scalarQuantities;
+    attribute jointInformationContent: JointInformationContentValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-31 conditional information content
@@ -577,7 +577,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
         attribute :>> num: Real;
         attribute :>> mRef: ConditionalInformationContentUnit[1];
     }
-    attribute conditionalInformationContent: ConditionalInformationContentValue :> scalarQuantities;
+    attribute conditionalInformationContent: ConditionalInformationContentValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-32 conditional entropy, mean conditional information content, average conditional information content
@@ -596,15 +596,15 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
         attribute :>> num: Real;
         attribute :>> mRef: ConditionalEntropyUnit[1];
     }
-    attribute conditionalEntropy: ConditionalEntropyValue :> scalarQuantities;
+    attribute conditionalEntropy: ConditionalEntropyValue [*] nonunique :> scalarQuantities;
 
-    alias ConditionalEntropyUnit as MeanConditionalInformationContentUnit;
-    alias ConditionalEntropyValue as MeanConditionalInformationContentValue;
-    alias conditionalEntropy as meanConditionalInformationContent;
+    alias MeanConditionalInformationContentUnit for ConditionalEntropyUnit;
+    alias MeanConditionalInformationContentValue for ConditionalEntropyValue;
+    alias meanConditionalInformationContent for conditionalEntropy;
 
-    alias ConditionalEntropyUnit as AverageConditionalInformationContentUnit;
-    alias ConditionalEntropyValue as AverageConditionalInformationContentValue;
-    alias conditionalEntropy as averageConditionalInformationContent;
+    alias AverageConditionalInformationContentUnit for ConditionalEntropyUnit;
+    alias AverageConditionalInformationContentValue for ConditionalEntropyValue;
+    alias averageConditionalInformationContent for conditionalEntropy;
 
     /**
      * source: item 13-33 equivocation
@@ -623,7 +623,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
         attribute :>> num: Real;
         attribute :>> mRef: EquivocationUnit[1];
     }
-    attribute equivocation: EquivocationValue :> scalarQuantities;
+    attribute equivocation: EquivocationValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-34 irrelevance
@@ -642,7 +642,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
         attribute :>> num: Real;
         attribute :>> mRef: IrrelevanceUnit[1];
     }
-    attribute irrelevance: IrrelevanceValue :> scalarQuantities;
+    attribute irrelevance: IrrelevanceValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-35 transinformation content
@@ -661,7 +661,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
         attribute :>> num: Real;
         attribute :>> mRef: TransinformationContentUnit[1];
     }
-    attribute transinformationContent: TransinformationContentValue :> scalarQuantities;
+    attribute transinformationContent: TransinformationContentValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-36 mean transinformation content
@@ -680,7 +680,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
         attribute :>> num: Real;
         attribute :>> mRef: MeanTransinformationContentUnit[1];
     }
-    attribute meanTransinformationContent: MeanTransinformationContentValue :> scalarQuantities;
+    attribute meanTransinformationContent: MeanTransinformationContentValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-37 character mean entropy
@@ -699,7 +699,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
         attribute :>> num: Real;
         attribute :>> mRef: CharacterMeanEntropyUnit[1];
     }
-    attribute characterMeanEntropy: CharacterMeanEntropyValue :> scalarQuantities;
+    attribute characterMeanEntropy: CharacterMeanEntropyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-38 average information rate
@@ -713,7 +713,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
      * remarks: See ISO/IEC 2382-16, item 16.04.10.
      */
     attribute def AverageInformationRateUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -721,7 +721,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
         attribute :>> num: Real;
         attribute :>> mRef: AverageInformationRateUnit[1];
     }
-    attribute averageInformationRate: AverageInformationRateValue :> scalarQuantities;
+    attribute averageInformationRate: AverageInformationRateValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-39 character mean transinformation content
@@ -740,7 +740,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
         attribute :>> num: Real;
         attribute :>> mRef: CharacterMeanTransinformationContentUnit[1];
     }
-    attribute characterMeanTransinformationContent: CharacterMeanTransinformationContentValue :> scalarQuantities;
+    attribute characterMeanTransinformationContent: CharacterMeanTransinformationContentValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-40 average transinformation rate
@@ -754,7 +754,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
      * remarks: See ISO/IEC 2382-16, item 16.04.12.
      */
     attribute def AverageTransinformationRateUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -762,7 +762,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
         attribute :>> num: Real;
         attribute :>> mRef: AverageTransinformationRateUnit[1];
     }
-    attribute averageTransinformationRate: AverageTransinformationRateValue :> scalarQuantities;
+    attribute averageTransinformationRate: AverageTransinformationRateValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 13-41 channel capacity per character, channel capacity
@@ -781,11 +781,11 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
         attribute :>> num: Real;
         attribute :>> mRef: ChannelCapacityPerCharacterUnit[1];
     }
-    attribute channelCapacityPerCharacter: ChannelCapacityPerCharacterValue :> scalarQuantities;
+    attribute channelCapacityPerCharacter: ChannelCapacityPerCharacterValue [*] nonunique :> scalarQuantities;
 
-    alias ChannelCapacityPerCharacterUnit as ChannelCapacityUnit;
-    alias ChannelCapacityPerCharacterValue as ChannelCapacityValue;
-    alias channelCapacityPerCharacter as channelCapacity;
+    alias ChannelCapacityUnit for ChannelCapacityPerCharacterUnit;
+    alias ChannelCapacityValue for ChannelCapacityPerCharacterValue;
+    alias channelCapacity for channelCapacityPerCharacter;
 
     /**
      * source: item 13-42 channel time capacity
@@ -799,7 +799,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
      * remarks: See ISO/IEC 2382-16, item 16.04.13. Note for SysML ISQ: Alias "channel capacity", that was present in IEC 80000-12:2008, has been removed as it duplicates the alias of channel capacity per character (item 13-41).
      */
     attribute def ChannelTimeCapacityUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -807,6 +807,6 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
         attribute :>> num: Real;
         attribute :>> mRef: ChannelTimeCapacityUnit[1];
     }
-    attribute channelTimeCapacity: ChannelTimeCapacityValue :> scalarQuantities;
+    attribute channelTimeCapacity: ChannelTimeCapacityValue [*] nonunique :> scalarQuantities;
 
 }

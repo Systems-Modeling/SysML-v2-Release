@@ -8,9 +8,9 @@ package '15_19a-Materials with Properties' {
     
 	// TODO: Move definition of tensile strength and N/mm² to SI
 	attribute def TensileStrengthUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }		
 	}
     
@@ -19,7 +19,7 @@ package '15_19a-Materials with Properties' {
     	attribute :>> mRef: TensileStrengthUnit;
     }
     
-    attribute 'N/mm²': TensileStrengthUnit = N / mm**2 {
+    attribute 'N/mm²': TensileStrengthUnit = N / mm^2 {
     	:>> longName = "newton per square millimetre";
     }
 

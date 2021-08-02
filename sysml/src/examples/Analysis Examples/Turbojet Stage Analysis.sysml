@@ -10,21 +10,21 @@ package 'Turbojet Stage Analysis' {
 	    
 	    // The "in" and "return" direction markers are optional.
 	    calc def 'Reversible Adiabatic Compression Density' (rho_1, p_1, p_2, gamma) rho_2 {
-	        rho_1 * (p_2 / p_1)**(1/gamma)
+	        rho_1 * (p_2 / p_1)^(1/gamma)
 	    }
 	    
 	    // Shorthand for "mathematical" function definition (with no steps but the returned expression)
 	    calc def 'Reversible Adiabatic Compression Temperature' (T_1, p_1, p_2, gamma) 
 	    	T_2 = T_1 * (p_2 / p_1)**((gamma - 1) / gamma);
 	    
-	    calc def 'Total Pressure' (P_static, rho, V) = 1/2 * rho * V ** 2 + P_static;
+	    calc def 'Total Pressure' (P_static, rho, V) = 1/2 * rho * V^2 + P_static;
 	    
 	    // Showing explicit parameter typing
 	    calc def 'Total Temperature' (T_static : TemperatureValue, Cp : DimensionOneValue, V : VolumeValue) : TemperatureValue 
-	    	= 1/(2 * Cp) * V ** 2 + T_static;
+	    	= 1/(2 * Cp) * V^2 + T_static;
 	    
 	    calc def 'Total Enthalpy' (h_total, h_static, V) H_total {
-	    	1/2 * V ** 2 + h_static
+	    	1/2 * V^2 + h_static
 	    }
 	}
 	
@@ -84,10 +84,10 @@ package 'Turbojet Stage Analysis' {
 	        part 'Inlet Gas' : 'Thermodynamics Structure'::'Moving Ideal Gas Parcel' {
 	        	// Explicit binding notation
 	        	calc 'Solve for Pressure1' : 'Ideal Gas Law' (rho, R_bar, T) p;
-	        	bind 'Density' = 'Solve for Pressure1'::rho;
-	        	bind 'Specific Gas Constant' = 'Solve for Pressure1'::R_bar;
-	        	bind 'Static Temperature' = 'Solve for Pressure1'::T;
-	        	bind 'Static Pressure' = 'Solve for Pressure1'::p;	        	
+	        	bind 'Density' = 'Solve for Pressure1'.rho;
+	        	bind 'Specific Gas Constant' = 'Solve for Pressure1'.R_bar;
+	        	bind 'Static Temperature' = 'Solve for Pressure1'.T;
+	        	bind 'Static Pressure' = 'Solve for Pressure1'.p;	        	
 	        	
 	        	// Shorthand parameter binding notation (also using optional "in" and "return")
 	            calc 'Solve for Pressure2' : 'Ideal Gas Law'(

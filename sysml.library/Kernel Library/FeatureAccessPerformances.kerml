@@ -2,6 +2,7 @@ package FeatureAccessPerformances {
 	private import Base::Anything;
 	private import Base::things;
 	private import Occurrences::Occurrence;
+	private import Occurrences::HappensWhile;
 	private import Occurrences::SelfSameLifeLink;
 	private import Performances::Performance;
 	private import Performances::Evaluation;
@@ -16,7 +17,7 @@ package FeatureAccessPerformances {
 		/**
 		 * Occurrence with values for the referenced feature in specializations of this behavior.
 		 */
-		in abstract feature onOccurrence: Occurrence [1];
+		in abstract feature onOccurrence : Occurrence [1];
 		 
 		/**
 		 * Values of the referenced feature, as specified in specializations of this behavior.
@@ -27,22 +28,23 @@ package FeatureAccessPerformances {
 	/**
 	 * A FeatureAccessPerformance is a FeatureReferencingPerformance where the result values
 	 * are all the values of a feature of onOccurrence at the time the Performance ends. The
-	 * feature is specified by restricting things in specializations or usages.
+	 * feature is specified by restricting accessedFeature in specializations or usages.
 	 */
     abstract behavior FeatureAccessPerformance specializes FeatureReferencingPerformance {
      	
 		in abstract feature onOccurrence : Occurrence {
-			abstract feature accessedFeature;
-			feature startingAt : Occurrence [1] subsets timeSlices, onOccurrence;
+			abstract feature startingAt : Occurrence [1] subsets timeSlices {
+				abstract feature accessedFeature : Anything [*] nonunique;
+			}
 		}
 
 		/**
 		 * Requires some time slice of onOccurrence to start when this performance
-		 * ends (first binding), with particular feature values (second binding).
+		 * ends (this connector), with particular feature values (following connector).
 		 * The feature is specified by restricting the onOccurrence::accessedFeature 
 		 * on usages of this behavior.
 		 */
-	  	 binding onOccurrence.startingAt.startShot = endShot;
+	  	 connector :HappensWhile from onOccurrence.startingAt.startShot to endShot;
 	  	 connector :SelfSameLifeLink from onOccurrence.startingAt.accessedFeature to values;
 	}
 
@@ -51,14 +53,14 @@ package FeatureAccessPerformances {
 	 * its result the values of a feature on an occurrence at the time its evaluation ends.
 	 */
 	abstract function FeatureReadEvaluation specializes FeatureAccessPerformance, Evaluation 
-		(OnOccurrence: Occurrence[1]) 
-		resultValues : Anything[*] nonunique redefines result redefines values;
+		(onOccurrence: Occurrence [1]) 
+		resultValues : Anything [*] nonunique redefines result redefines values;
 
 	/**
 	 * A FeatureWritePerformance is a FeatureAccessPerformance that assigns the values of a 
 	 * feature on an occurrence to the given replacementValues at time its performance ends.
 	 */
-	abstract function FeatureWritePerformance specializes FeatureAccessPerformance {
+	abstract behavior FeatureWritePerformance specializes FeatureAccessPerformance {
 		 inout feature replacementValues : Anything redefines values [*] nonunique;
 	}
 }

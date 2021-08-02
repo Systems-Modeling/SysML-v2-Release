@@ -5,6 +5,8 @@
 package Constraints {
 	private import Performances::BooleanEvaluation;
 	private import Performances::booleanEvaluations;
+	private import Performances::trueEvaluations;
+	private import Performances::falseEvaluations;
 	
 	/**
 	 * ConstraintCheck is the most general class for constraint checking. ConstraintCheck is the base
@@ -18,5 +20,15 @@ package Constraints {
 	 * constraintChecks is the base feature of all ConstraintUsages.
 	 */
 	abstract constraint constraintChecks: ConstraintCheck[0..*] nonunique :> booleanEvaluations;
+	
+	/**
+	 * assertedConstraintChecks is the subset of constraintChecks for Constraints asserted to be true.
+	 */
+	abstract constraint assertedConstraintChecks :> constraintChecks, trueEvaluations;
+		
+	/**
+	 * negatedConstraintChecks is the subset of constraintChecks for Constraints asserted to be false.
+	 */
+	abstract constraint negatedConstraintChecks :> constraintChecks, falseEvaluations;
 		
 }
