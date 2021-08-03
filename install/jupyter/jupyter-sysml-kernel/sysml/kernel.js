@@ -50,25 +50,24 @@ var enableMode = function (CodeMirror) {
         return CodeMirror.getMode(config, {
             name: "clike",
             keywords: words([
-                "about", "abstract", "accept", "action", "activity", "affect", "alias", "all", "allocate", "allocation",
-                "analysis", "and", "as", "assert", "assoc", "assume", "attribute", "bind", "block", "by", "calc",
-                "case", "comment", "concern", "connect", "connection", "constraint", "decide", "def", "defined",
-                "dependency", "do", "doc", "else", "end", "entry", "enum", "event", "exhibit", "exit", "expose",
-                "feature", "filter", "first", "flow", "for", "fork", "frame", "from", "hastype", "id", "if", "implies",
-                "import", "in", "individual", "inout", "instanceof", "interface", "istype", "item", "join", "language",
-                "link", "merge", "message", "metadata", "nonunique", "not", "objective", "occurrence", "of", "or",
-                "ordered", "out", "package", "part", "perform", "port", "private", "protected", "public", "redefines",
-                "ref", "render", "rendering", "rep", "require", "requirement", "return", "satisfy", "send", "snapshot",
-                "specializes", "stakeholder", "state", "stream", "subject", "subsets", "succession", "then",
-                "timeslice", "to", "transition", "type", "value", "variant", "variation", "verification", "verify",
-                "view", "viewpoint", "xor"
+                "about", "abstract", "accept", "action", "actor", "alias", "all", "allocate", "allocation", "analysis",
+                "and", "as", "assert", "assoc", "assume", "attribute", "bind", "block", "by", "calc", "case", "comment",
+                "concern", "connect", "connection", "constraint", "decide", "def", "default", "defined", "dependency",
+                "do", "doc", "else", "end", "entry", "enum", "event", "exhibit", "exit", "expose", "feature", "filter",
+                "first", "flow", "for", "fork", "frame", "from", "hastype", "id", "if", "implies", "import", "in",
+                "include", "individual", "inout", "interface", "istype", "item", "join", "language", "merge", "message",
+                "metadata", "nonunique", "not", "objective", "occurrence", "of", "or", "ordered", "out", "package",
+                "parallel", "part", "perform", "port", "private", "protected", "public", "redefines", "ref", "render",
+                "rendering", "rep", "require", "requirement", "return", "satisfy", "send", "snapshot", "specializes",
+                "stakeholder", "state", "stream", "subject", "subsets", "succession", "then", "timeslice", "to",
+                "transition", "use", "variant", "variation", "verification", "verify", "via", "view", "viewpoint", "xor"
             ]),
             defKeywords: words([
                 "action", "activity", "allocation", "analysis", "attribute", "block", "calc", "case", "comment",
                 "concern", "connection", "constraint", "def", "doc", "enum", "id", "interface", "item", "link",
                 "metadata", "objective", "occurrence", "package", "part", "port", "ref", "rendering", "rep",
-                "requirement", "snapshot", "stakeholder", "state", "subject", "timeslice", "transition", "type",
-                "value", "verification", "view", "viewpoint"
+                "requirement", "snapshot", "state", "subject", "timeslice", "transition", "type", "value",
+                "verification", "view", "viewpoint"
             ]),
             typeFirstDefinitions: true,
             atoms: words("true false null"),
