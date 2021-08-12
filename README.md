@@ -31,8 +31,9 @@ The release repository contains the items listed below. For a Zip archive of the
 [https://github.com/Systems-Modeling/SysML-v2-Release/releases](https://github.com/Systems-Modeling/SysML-v2-Release/releases) and download the appropriate version.
 
   * In the `doc` directory.
-    * Introductory presentation on the SysML v2 textual notation
-        * `Intro to the SysML v2 Language.pdf`
+    * Introductory presentations on the SysML v2 notation
+        * `Intro to the SysML v2 Language-Textual Notation.pdf`
+        * `Intro to the SysML v2 Language-Graphical Notation.pdf`
     * SysML v2 specification documents (PDF)
         1. Kernel Modeling Language (KerML), version 1.0
         2. OMG Systems Modeling Language (SysML), version 2.0
