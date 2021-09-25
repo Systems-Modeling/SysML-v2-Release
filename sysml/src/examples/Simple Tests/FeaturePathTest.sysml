@@ -26,5 +26,16 @@ package Q {
 	
 	flow b.f.a to c.aa;
   }
+  
+  part e1 {
+  	attribute x : E;
+  	// Ensure that "e1" resolves correctly.
+  	bind e1.x = E::e2;
+  }
+  
+  enum def E {
+  	enum e1;
+  	enum e2;
+  }
 	
 }

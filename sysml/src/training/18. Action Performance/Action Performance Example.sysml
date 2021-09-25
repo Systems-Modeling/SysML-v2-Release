@@ -11,11 +11,11 @@ package 'Action Performance Example' {
 			:> takePicture;
 		
 		part f : AutoFocus {
-			perform takePhoto::focus;			
+			perform takePhoto.focus;			
 		}
 		
 		part i : Imager {
-			perform takePhoto::shoot;
+			perform takePhoto.shoot;
 		}		
 	}
 }

@@ -34,8 +34,8 @@ package Features {
 	feature parent[1..2] : Person;
 	feature mother : Person[1] :> parent;
 	
-	generalization t1 typing f typed by B;
-	generalization t2 typing g : A;
+	specialization t1 typing f typed by B;
+	specialization t2 typing g : A;
 	
 	specialization Sub subset parent subsets person;
 	specialization subset mother subsets parent;

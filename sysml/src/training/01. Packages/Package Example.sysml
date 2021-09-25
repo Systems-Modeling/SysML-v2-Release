@@ -1,9 +1,9 @@
 package 'Package Example' {
+	public import ISQ::TorqueValue;
 	private import ScalarValues::*;
 	 
-	part def Automobile;
+	private part def Automobile;
 	
-	alias Car for Automobile;	                         
-	
-	private import ISQ::TorqueValue;
+	public alias Car for Automobile;	                         
+	alias Torque for ISQ::TorqueValue;
 }

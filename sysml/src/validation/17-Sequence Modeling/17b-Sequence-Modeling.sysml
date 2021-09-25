@@ -36,7 +36,7 @@ package '17b-Sequence-Modeling' {
 		
 		part consumer[1] {
 			event subscribe_message.source;
-			then event subscribe_message.target;
+			then event deliver_message.target;
 		}
 	}
 }

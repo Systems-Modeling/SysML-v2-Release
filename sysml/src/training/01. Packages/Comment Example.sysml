@@ -19,5 +19,5 @@ package 'Comment Example' {
 	
 	// This note. It is in the text, but not part 
 	// of the model.
-	private import ISQ::TorqueValue;
+	alias Torque for ISQ::TorqueValue;
 }

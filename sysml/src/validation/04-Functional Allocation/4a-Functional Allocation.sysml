@@ -39,7 +39,7 @@ package '4a-Functional Allocation' {
 			/**
 			 *  This allocates one of the sub-steps of 'provide power' to a sub-part of vehicle_c1. 
 			 */ 
-			perform 'generate torque' {
+			perform 'provide power'.'generate torque' {
 				in fuelCmd = fuelCmdPort.fuelCmd;
 				out engineTorque = drivePwrPort.engineTorque;
 			}
@@ -54,7 +54,7 @@ package '4a-Functional Allocation' {
 				in attribute engineTorque: Torque;
 			}
 			
-			perform 'amplify torque' {
+			perform 'provide power'.'amplify torque' {
 				in engineTorque = clutchPort.engineTorque; 
 				out transmissionTorque = shaftPort_a.transmissionTorque;
 			}
@@ -69,7 +69,7 @@ package '4a-Functional Allocation' {
 				in transmissionTorque: Torque;
 			}
 
-			perform 'transfer torque' {
+			perform 'provide power'.'transfer torque' {
 				in transmissionTorque = shaftPort_b.transmissionTorque; 
 				out driveshaftTorque = shaftPort_c.driveshaftTorque;
 			}
@@ -84,7 +84,7 @@ package '4a-Functional Allocation' {
 				in driveshaftTorque: Torque;
 			}
 				
-			perform 'distribute torque' {
+			perform 'provide power'.'distribute torque' {
 				in driveshaftTorque = shaftPort_d.driveshaftTorque; 
 				out wheelTorque1 = rearAxle.leftHalfAxle.axleToWheelPort.wheelTorque; 
 				out wheelTorque2 = rearAxle.rightHalfAxle.axleToWheelPort.wheelTorque;

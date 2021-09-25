@@ -11,13 +11,13 @@ package Allocations {
 	 * between the source of the allocation and the target. Allocation is the base type 
 	 * of all AllocationDefinitions.
 	 */	
-	allocation def Allocation :> Connection {
-		end source: Anything[0..*] :>> Connection::source;
-		end target: Anything[0..*] :>> Connection::target;
+	allocation def Allocation :> BinaryConnection {
+		end source: Anything[0..*] :>> BinaryConnection::source;
+		end target: Anything[0..*] :>> BinaryConnection::target;
 	}
 	
 	/**
 	 * allocations is the base feature of all AllocationUsages.
 	 */
-	abstract allocation allocations: Allocation[0..*] nonunique :> connections;
+	abstract allocation allocations: Allocation[0..*] nonunique :> binaryConnections;
 }

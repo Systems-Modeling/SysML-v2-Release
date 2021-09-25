@@ -18,8 +18,8 @@ package Interfaces {
 	 * type of all binary InterfaceDefinitions with exactly two ends.
 	 */
 	abstract interface def BinaryInterface :> Interface, BinaryConnection { 
-		end source: Port[0..*] :>> Connection::source;
-		end target: Port[0..*] :>> Connection::target;
+		end source: Port[0..*] :>> BinaryConnection::source; 
+		end target: Port[0..*] :>> BinaryConnection::target;
 	}
 	
 	/**
@@ -30,6 +30,6 @@ package Interfaces {
 	/**
 	 * interfaces is the base feature of all binary InterfaceUsages.
 	 */
-	abstract interface binaryInterfaces: Interface[0..*] nonunique :> binaryConnections;
+	abstract interface binaryInterfaces: BinaryInterface[0..*] nonunique :> interfaces, binaryConnections;
 	
 }

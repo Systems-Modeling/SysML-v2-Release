@@ -7,7 +7,6 @@ package 'Documentation Example' {
 		doc /* This documentation of Automobile. */
 	}
 	
-	alias Car for Automobile;	                         
-	
-	private import ISQ::TorqueValue;
+	alias Car for Automobile;
+	alias Torque for ISQ::TorqueValue;
 }

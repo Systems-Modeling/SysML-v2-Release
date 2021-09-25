@@ -1,3 +1,7 @@
+/**
+ * This package provides a model of the foundational state-space system representation, 
+ * commonly used in control systems.
+ */
 package StateSpaceRepresentation {
     import ISQ::DurationValue;
     import Quantities::VectorQuantityValue;

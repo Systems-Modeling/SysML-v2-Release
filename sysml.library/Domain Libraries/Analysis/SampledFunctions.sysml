@@ -1,3 +1,6 @@
+/**
+ * This package provides a libary model of discretely sampled mathematical functions.
+ */
 package SampledFunctions {
 	private import Base::Anything;
 	private import ScalarValues::Positive;
@@ -18,7 +21,7 @@ package SampledFunctions {
 
 	/**
      * SampledFunction is a variable-size, ordered collection of 'SamplePair' elements that represents a generic, discretely sampled, 
-     * uni-variate or multi-variate mathematical function. The function must be montonic, either striclty increasing or stricly
+     * uni-variate or multi-variate mathematical function. The function must be montonic, either strictly increasing or strictly
      * decreasing.
      * 
      * It maps discrete domain values to discrete range values.
@@ -38,7 +41,7 @@ package SampledFunctions {
 	/* Domain returns the sequence of the domainValues of all samples in a SampledFunction. */
 	calc def Domain(fn : SampledFunction) : Anything[0..*] = fn.samples.domainValue;
 	
-	/* Domain returns the sequence of the rangeValues of all samples in a SampledFunction. */	
+	/* Range returns the sequence of the rangeValues of all samples in a SampledFunction. */	
 	calc def Range(fn : SampledFunction) : Anything[0..*] = fn.samples.rangeValue;
 	
 	/* Sample returns a SampledFunction that samples a given calculation over a seqence of domainValues. */

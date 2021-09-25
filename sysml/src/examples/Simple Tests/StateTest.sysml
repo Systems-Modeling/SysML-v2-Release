@@ -13,9 +13,13 @@ package StateTest {
 		entry action A; then S1;
 		
 		state S1;
-		
+			accept s : Sig
+			do action D
+			then S2;
+				
 		state S2 {
 			do send Sig(T.s.x) to p;
+			state S3;
 		}
 		accept Exit then done;
 		
@@ -23,11 +27,11 @@ package StateTest {
 			first S1
 			accept s : Sig
 			do action D
-			then S2;
+			then S2.S3;
 		
 		transition T
-			first S2
-			accept s : Sig
+			first S2.S3
+			accept s : Sig via p
 			if true
 			do send s to p
 			then S1;
