@@ -20,7 +20,7 @@
 
 @echo off
 
-set /A SYSML_VERSION="0.15.1"
+set /A SYSML_VERSION="0.15.2"
 
 echo --- Step 1: Testing Conda installation ---
 where conda
