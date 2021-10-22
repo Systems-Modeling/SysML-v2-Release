@@ -16,4 +16,24 @@ package ConnectionTest {
 		connect p1.x to y;
 		connect p1.x.x1 to y;
 	}
+
+	abstract connection def C {
+		part p;
+		end end1;
+		end end2;
+		end end3;
+	}
+	
+	part d1;
+	part d2;
+	part d3;
+	part d4;
+	
+	connection bus : C connect (d1, d2, d3, d4);
+	
+	connection {
+		part q;
+		end end1 :> d1 :> q;
+		end end2 :> d2;
+	}
 }

@@ -1,3 +1,7 @@
+/**
+ * This package contains a library model of the semantics of state-based behavior,
+ * including the performance of (behavioral) states and the transitions between them.
+ */
 package StatePerformances {
 	private import ScalarValues::Boolean;
 	private import TransitionPerformances::TransitionPerformance;

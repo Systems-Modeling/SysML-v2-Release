@@ -1,3 +1,7 @@
+/**
+ * This package defines functions on Natural values, including concrete specialization of the 
+ * general arithmetic and comparison operations.
+ */
 package NaturalFunctions {
 	import ScalarValues::*;
 	

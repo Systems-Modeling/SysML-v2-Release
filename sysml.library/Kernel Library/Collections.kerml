@@ -1,3 +1,8 @@
+/**
+ * This package defines a standard set of Collection data types. Unlike sequences of values 
+ * defined directly using multiplicity, these data types allow for the possibility of collections 
+ * as elements of collections.
+ */
 package Collections {
 	private import Base::*;
 	private import ScalarValues::*;

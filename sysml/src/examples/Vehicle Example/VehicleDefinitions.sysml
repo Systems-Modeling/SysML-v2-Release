@@ -8,18 +8,23 @@ package VehicleDefinitions {
 	import ISQ::*;
 	import SI::*;
 	
-	/* BLOCKS */
+	/* PART DEFINITIONS */
 	
 	part def Vehicle;	
 	part def Transmission;	
 	part def AxleAssembly;
-	part def Axle;	
-	part def Wheel;
+	part def Axle {
+		port leftMountingPoint: AxleMountIF;
+		port rightMountingPoint: AxleMountIF;
+	}
+	part def Wheel {
+		port hub: WheelHubIF;
+	}
 	part def Lugbolt {
 		attribute tighteningTorque :> ISQ::torque;
 	}
 	
-	/* INTERFACE BLOCKS */
+	/* PORT DEFINITIONS */
 	
 	port def DriveIF { 
 		in driveTorque :> ISQ::torque;
@@ -33,13 +38,14 @@ package VehicleDefinitions {
 		in appliedTorque :> ISQ::torque;
 	}
 	
-	/* ASSOCIATION BLOCKS */
+	/* INTERFACE DEFINITIONS */
 	
-	/** An association intended to be used as the type of a connector
-	 *  mounting a Wheel to an Axle.
-	 **/
+	/** The definition of the interface for mounting a Wheel to an Axle.
+	 */
 	interface def Mounting {
 		end axleMount: AxleMountIF;
 		end hub: WheelHubIF;
+		
+		stream axleMount.transferredTorque to hub.appliedTorque;
 	}
 }

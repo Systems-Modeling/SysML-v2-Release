@@ -1,3 +1,7 @@
+/**
+ * This package defines functions that correspond to operators in the KerML expression notation 
+ * for which one or more operands are expressions whose evaluation is determined by another operand.
+ */
 package ControlFunctions {
 	private import Base::Anything;
 	private import ScalarValues::ScalarValue;

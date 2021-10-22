@@ -1,3 +1,7 @@
+/**
+ * This package defines Behaviors used to read and write values of a referenced Feature of an Occurrence 
+ * as of the time the Performance of the Behavior ends.
+ */
 package FeatureAccessPerformances {
 	private import Base::Anything;
 	private import Base::things;

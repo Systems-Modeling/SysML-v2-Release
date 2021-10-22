@@ -363,7 +363,8 @@ package VehicleModel {
                     bind engine.fuelCmdPort = fuelCmdPort;
                     interface engineToTransmissionInterface: EngineToTransmissionInterface
                     connect engine.drivePwrPort to transmission.clutchPort {
-                        ref action generateToAmplify :> ActionTree::providePower::generateToAmplify;
+                        ref stream generateToAmplify :> ActionTree::providePower.generateToAmplify
+                        	from p1.engineTorque to p2.engineTorque;
                     }
                     connect transmission.shaftPort_a to driveshaft.shaftPort_b;
                     connect driveshaft.shaftPort_c to rearAxleAssembly.shaftPort_d;

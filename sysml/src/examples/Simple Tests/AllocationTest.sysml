@@ -18,7 +18,9 @@ package AllocationTest {
 		}
 	}
 	
-	allocation def Logical_to_Physical {
+	allocation def A;
+	
+	allocation def Logical_to_Physical :> A {
 		end logical : Logical;
 		end physical : Physical;
 	}

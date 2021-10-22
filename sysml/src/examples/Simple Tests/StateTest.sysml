@@ -43,4 +43,14 @@ package StateTest {
 		state s1;
 		state s2;
 	}
+	
+	state s4 {
+		do action a;
+  		action c;
+	}
+	
+	state s5 :> s4 {
+  		do action b :>> c;
+	}
+	
 }

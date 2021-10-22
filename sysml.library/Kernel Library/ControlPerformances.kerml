@@ -1,3 +1,7 @@
+/**
+ * This package defines Behaviors to be used to type Steps that control the sequencing of performance
+ * of other Steps. 
+ */
 package ControlPerformances {
 	private import ScalarValues::Boolean;
 	private import SequenceFunctions::size;
@@ -28,7 +32,7 @@ package ControlPerformances {
 	 * target the MergePerforance behavior. All such Successions must subset the incomingHBLink
 	 * feature of the target MergePerformance. For each instance of MergePerformance, the
 	 * incomingHBLink is an instance of exactly one of the Successions, ordering the
-	 * MergePerformance as happening after an instance of the source of that Succcession.
+	 * MergePerformance as happening after an instance of the source of that Succession.
 	 */
 	behavior MergePerformance specializes Performance {
 		/**
@@ -58,7 +62,7 @@ package ControlPerformances {
 	}
 	
 	/**
-	 * An IfElsePerformance is an IfPerformance where the elseCaluse occurs after and only 
+	 * An IfElsePerformance is an IfPerformance where the elseClause occurs after and only 
 	 * after the ifTest evaluation result is not true.
 	 */
 	behavior IfElsePerformance specializes IfPerformance {

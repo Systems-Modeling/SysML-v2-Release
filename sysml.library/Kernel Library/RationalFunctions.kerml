@@ -1,3 +1,7 @@
+/**
+ * This package defines Functions on Rational values, including concrete specializations of the 
+ * general arithmetic and comparison operations.
+ */
 package RationalFunctions {
 	import ScalarValues::*;
 	

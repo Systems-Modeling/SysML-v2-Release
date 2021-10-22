@@ -1,3 +1,7 @@
+/**
+ * This package defines the abstract base functions corresponding to all the unary and binary operators 
+ * in the KerML expression notation that might be defined on various kinds of DataValues.
+ */
 package DataFunctions {
 	private import Base::DataValue;
 	private import ScalarValues::Boolean;

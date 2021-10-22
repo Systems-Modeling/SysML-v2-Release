@@ -1,3 +1,7 @@
+/**
+ * This package defines functions on String values, including those corresponding to string concatenation 
+ * and comparison operators in the KerML expression notation.
+ */
 package StringFunctions {
 	import ScalarValues::*;
 	
@@ -13,5 +17,7 @@ package StringFunctions {
 
 	function '==' specializes DataFunctions::'==' (x: String[0..1], y: String[0..1]): Boolean[1];
 	
-	function ToString specializes BaseFunctions::ToString (x: String[1]): String[1];	
+	function ToString specializes BaseFunctions::ToString (x: String[1]): String[1] {
+		x
+	}
 }

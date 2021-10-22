@@ -67,22 +67,22 @@ package ServerSequenceRealization_2 {
 	
 	part realization_2 : PubSubSequence {
 		part :>> producer :> producer_2 {
-			event occurrence :>> publish_source_event = producerBehavior.publish;
+			event producerBehavior.publish[1] :>> publish_source_event;
 		}
 
 		part :>> server :> server_2 {
-			event occurrence :>> subscribe_target_event = serverBehavior.subscribing.accepter;
-			event occurrence :>> publish_target_event = serverBehavior.delivering.accepter;
-			event occurrence :>> deliver_source_event = serverBehavior.delivering.effect;
+			event serverBehavior.subscribing.accepter[1] :>> subscribe_target_event;
+			event serverBehavior.delivering.accepter[1] :>> publish_target_event;
+			event serverBehavior.delivering.effect[1] :>> deliver_source_event;
 		}
 		
 		part :>> consumer :> consumer_2 {
-			event occurrence :>> subscribe_source_event = consumerBehavior.subscribe;
-			event occurrence :>> deliver_target_event = consumerBehavior.delivery;
+			event consumerBehavior.subscribe[1] :>> subscribe_source_event;
+			event consumerBehavior.delivery[1] :>> deliver_target_event;
 		}
 		
-		message :>> publish_message = producer_2.producerBehavior.publish.outgoingTransfer;
-		message :>> subscribe_message = consumer_2.consumerBehavior.subscribe.outgoingTransfer;
-		message :>> deliver_message = server_2.serverBehavior.delivering.effect.outgoingTransfer;
+		message :> producer_2.producerBehavior.publish.outgoingTransfer :>> publish_message;
+		message :> consumer_2.consumerBehavior.subscribe.outgoingTransfer :>> subscribe_message;
+		message :> server_2.serverBehavior.delivering.effect.outgoingTransfer :>> deliver_message;
 	}
 }

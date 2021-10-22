@@ -1,3 +1,6 @@
+/**
+ * This package defines abstract functions on Numerical values for general arithmetic and comparison operations.
+ */
 package NumericalFunctions {
 	import ScalarValues::*;
 	

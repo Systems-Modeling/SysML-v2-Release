@@ -1,5 +1,5 @@
 /**
- * This package defines classifiers and features that are related to the typing of objects and links.
+ * This package defines classifiers and features that are related to the typing of objects, including link objects.
  */
 package Objects {
 	private import Base::Anything;

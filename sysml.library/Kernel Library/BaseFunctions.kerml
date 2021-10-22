@@ -1,3 +1,7 @@
+/**
+ * This package defines a basic set of functions defined on all kinds of values. 
+ * Most correspond to similarly named operators in the KerML expression syntax.
+ */
 package BaseFunctions {
 	private import Base::Anything;
 	private import Objects::Object;

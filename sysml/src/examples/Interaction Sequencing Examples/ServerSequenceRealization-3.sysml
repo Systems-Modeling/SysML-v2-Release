@@ -117,36 +117,36 @@ package ServerSequenceRealization_3 {
 	
 	part realization_2 : PubSubSequence {
 		part :>> producer :> producer_3 {
-			event occurrence :>> publish_source_event = producerBehavior.publish;
+			event producerBehavior.publish[1] :>> publish_source_event;
 		}
 
 		part :>> server :> server_3 {
-			event occurrence :>> subscribe_target_event = serverBehavior.subscribing;
-			event occurrence :>> publish_target_event = serverBehavior.publishing;
-			event occurrence :>> deliver_source_event = serverBehavior.delivering;
+			event serverBehavior.subscribing[1] :>> subscribe_target_event;
+			event serverBehavior.publishing[1] :>> publish_target_event;
+			event serverBehavior.delivering[1] :>> deliver_source_event;
 		}
 		
 		part :>> consumer :> consumer_3 {
-			event occurrence :>> subscribe_source_event = consumerBehavior.subscribe;
-			event occurrence :>> deliver_target_event = consumerBehavior.delivery;
+			event consumerBehavior.subscribe[1] :>> subscribe_source_event;
+			event consumerBehavior.delivery[1] :>> deliver_target_event;
 		}
 		
 		stream :>> publish_message from producer.producerBehavior.publish.request to server.serverBehavior.publishing.request {
-			perform producer.producerBehavior.publish;
-			perform publication_interface.publish_request;
-			perform server.serverBehavior.publishing;
+			event producer.publish_request[1];
+			then event publication_interface.publish_request[1];
+			then event server.publish_request[1];
 		}
 		
 		stream :>> subscribe_message from consumer.consumerBehavior.subscribe.request to server.serverBehavior.subscribing.request {
-			perform consumer.consumerBehavior.subscribe;
-			perform subscription_interface.subscribe_request;
-			perform server.serverBehavior.subscribing;
+			event consumer.subscribe_request[1];
+			then event subscription_interface.subscribe_request[1];
+			then event server.subscribe_request[1];
 		}
 		
 		stream :>> deliver_message from server.serverBehavior.delivering.response to consumer.consumerBehavior.delivery.response {
-			perform server.serverBehavior.delivering;
-			perform subscription_interface.deliver_response;
-			perform consumer.consumerBehavior.delivery;
+			event server.deliver_response[1];
+			then event subscription_interface.deliver_response[1];
+			then event consumer.deliver_response[1];
 		}
 	}
 }

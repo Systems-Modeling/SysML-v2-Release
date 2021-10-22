@@ -1,3 +1,6 @@
+/**
+ * This package defines abstract functions that specialize the DataFunctions for use with ScalarValues. 
+ */
 package ScalarFunctions {
 	import ScalarValues::*;
 	private import ControlFunctions::reduce;

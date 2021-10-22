@@ -22,7 +22,8 @@ package 'Flashlight Example' {
 		}
 		
 		interface userToFlashlight connect user.onOffCmdPort to flashlight.onOffCmdPort {
-			perform illuminateRegion.onOffCmdFlow;
+			ref stream :> illuminateRegion.onOffCmdFlow
+				from source.onOffCmd to target.onOffCmd;
 		}
 		
 		part flashlight {

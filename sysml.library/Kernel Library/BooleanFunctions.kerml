@@ -1,3 +1,7 @@
+/**
+ * This package defines functions on Boolean values, including those corresponding to 
+ * (non-conditional) logical operators in the KerML expression notation.
+ */
 package BooleanFunctions {
 	import ScalarValues::*;
 	

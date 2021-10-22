@@ -1,3 +1,7 @@
+/**
+ * This package defines Functions on Real values, including concrete specializations of the 
+ * general arithmetic and comparison operations.
+ */
 package RealFunctions {
 	import ScalarValues::*;
 	
