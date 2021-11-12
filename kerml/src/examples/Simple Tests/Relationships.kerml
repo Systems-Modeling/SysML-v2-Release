@@ -1,7 +1,7 @@
-element id '1' A;
-element id '2' B;
-element id '3' C;
-relationship id '4' R from A to B, C;
+element <'1'> A;
+element <'2'> B;
+element <'3'> C;
+relationship <'4'> R from A to B, C;
 
 package P1 {
     element S;

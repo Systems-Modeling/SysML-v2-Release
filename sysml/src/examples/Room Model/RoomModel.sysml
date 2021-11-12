@@ -32,7 +32,7 @@ package RoomModel {
             }
         }
         package Flow_Definitions {
-                //  Conveyed items between Hallway, Classroom, and Storageroom
+                // Conveyed items between Hallway, Classroom, and Storageroom
                 part def Air;
                 part def Furniture;
                 part def Student;
@@ -51,22 +51,22 @@ package RoomModel {
             part h:Hallway;
             
     		//  Connectors and item flows between hallway and classroom
-            stream HallToClassroom_Air
+            flow HallToClassroom_Air
                 from h.hallExit_to_Classroom.air
                 to c.classEntry.air;
-            stream HallToClassroom_Furniture
+            flow HallToClassroom_Furniture
                 from h.hallExit_to_Classroom.furniture
                 to c.classEntry.furniture;
-            stream HallToClassroom_Student
+            flow HallToClassroom_Student
                 from h.hallExit_to_Classroom.student
                 to c.classEntry.student;
-            stream HallToClassroom_Teacher
+            flow HallToClassroom_Teacher
                 from h.hallExit_to_Classroom.teacher
                 to c.classEntry.teacher;
-            stream HallToStorageroom_Air
+            flow HallToStorageroom_Air
                 from h.hallExit_to_Storageroom.air
                 to s.storageEntry.air;
-            stream HallToStorageroom_Furniture
+            flow HallToStorageroom_Furniture
                 from h.hallExit_to_Storageroom.furniture
                 to s.storageEntry.furniture;
         }

@@ -18,6 +18,6 @@ package 'Interaction Example-1' {
 		message fuelCommandMessage of FuelCommand 
 			from vehicle.cruiseController.fuelCommandSent to vehicle.engine.fuelCommandReceived;
 		
-		succession setSpeedMessage then sensedSpeedMessage;
+		first setSpeedMessage then sensedSpeedMessage;
 	}
 }

@@ -22,7 +22,7 @@ package 'Flashlight Example' {
 		}
 		
 		interface userToFlashlight connect user.onOffCmdPort to flashlight.onOffCmdPort {
-			ref stream :> illuminateRegion.onOffCmdFlow
+			ref flow :> illuminateRegion.onOffCmdFlow
 				from source.onOffCmd to target.onOffCmd;
 		}
 		
@@ -51,11 +51,11 @@ package 'Flashlight Example' {
 	action illuminateRegion {
 		action sendOnOffCmd(out onOffCmd: OnOffCmd);
 		
-		flow onOffCmdFlow from sendOnOffCmd.onOffCmd to produceDirectedLight.onOffCmd;
+		succession flow onOffCmdFlow from sendOnOffCmd.onOffCmd to produceDirectedLight.onOffCmd;
 		
 		action produceDirectedLight(in onOffCmd, out light: Light);
 		
-		flow lightFlow from produceDirectedLight.light to reflectLight.light;
+		succession flow lightFlow from produceDirectedLight.light to reflectLight.light;
 		
 		action reflectLight(in light: Light);
 	}

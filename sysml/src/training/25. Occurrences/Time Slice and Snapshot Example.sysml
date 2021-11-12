@@ -6,7 +6,7 @@ package 'Time Slice and Snapshot Example' {
 	part def Vehicle {
 		timeslice assembly;
 		
-		succession assembly then delivery;
+		first assembly then delivery;
 		
 		snapshot delivery {
 			attribute deliveryDate : Date;

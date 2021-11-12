@@ -17,7 +17,7 @@ package 'Requirement Definitions' {
 		attribute fuelFullMass: MassValue;
 	}
 	
-	requirement def id '1' VehicleMassLimitationRequirement :> MassLimitationRequirement {
+	requirement def <'1'> VehicleMassLimitationRequirement :> MassLimitationRequirement {
 		doc /* The total mass of a vehicle shall be less than or equal to the required mass. */
 		
 		subject vehicle : Vehicle;
@@ -30,12 +30,12 @@ package 'Requirement Definitions' {
 	port def ClutchPort;
 	action def GenerateTorque;
 	
-	requirement def id '2' DrivePowerInterface {
+	requirement def <'2'> DrivePowerInterface {
 		doc /* The engine shall transfer its generated torque to the transmission via the clutch interface. */
 		subject clutchPort: ClutchPort;
 	}
 		
-	requirement def id '3' TorqueGeneration {
+	requirement def <'3'> TorqueGeneration {
 		doc /* The engine shall generate torque as a function of RPM as shown in Table 1. */
 		subject generateTorque: GenerateTorque;
 	}

@@ -46,6 +46,6 @@ package VehicleDefinitions {
 		end axleMount: AxleMountIF;
 		end hub: WheelHubIF;
 		
-		stream axleMount.transferredTorque to hub.appliedTorque;
+		flow axleMount.transferredTorque to hub.appliedTorque;
 	}
 }

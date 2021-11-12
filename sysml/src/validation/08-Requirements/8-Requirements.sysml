@@ -69,7 +69,7 @@ package '8-Requirements' {
 		 * The optional requirement ID  of this requirement ('1') is given after the keyword "id" (using name syntax).
 		 * Every requirement is parameterized by a "subject". The "subject" of this requirement is implicitly "Anything".
 		 */
-		requirement def id '1' MassLimitationRequirement {
+		requirement def <'1'> MassLimitationRequirement {
 			// The requirement text is given by the documentation in the requirement def body.
 			doc /* The actual mass shall be less than or equal to the required mass. */
 			
@@ -82,9 +82,9 @@ package '8-Requirements' {
 			require constraint { massActual <= massReqd }
 		}
 		
-		requirement def id '2' ReliabilityRequirement;
+		requirement def <'2'> ReliabilityRequirement;
 		
-		requirement id '1.1' vehicleMass1: MassLimitationRequirement {
+		requirement <'1.1'> vehicleMass1: MassLimitationRequirement {
 			doc /* The vehicle mass shall be less than or equal to 2000 kg when the fuel tank is full. */
 			
 			/**
@@ -111,7 +111,7 @@ package '8-Requirements' {
 			}
 		}
 			
-		requirement id '2.1' vehicleMass2: MassLimitationRequirement {
+		requirement <'2.1'> vehicleMass2: MassLimitationRequirement {
 			doc /* The vehicle mass shall be less than or equal to 2500 kg when the fuel tank is empty. */
 			
 			subject vehicle : Vehicle;
@@ -125,16 +125,16 @@ package '8-Requirements' {
 			}
 		}
 		
-		requirement id '2.2' vehicleReliability2: ReliabilityRequirement {
+		requirement <'2.2'> vehicleReliability2: ReliabilityRequirement {
 			subject vehicle : Vehicle;
 		}
 			
-		requirement id '3.1' drivePowerInterface {
+		requirement <'3.1'> drivePowerInterface {
 			doc /* The engine shall transfer its generated torque to the transmission via the clutch interface. */
 			subject drivePwrPort: DrivePwrPort;
 		}
 		
-		requirement id '3.2' torqueGeneration {
+		requirement <'3.2'> torqueGeneration {
 			doc /* The engine shall generate torque as a function of RPM as shown in Table 1. */
 			subject generateTorque: 'Generate Torque';
 		}

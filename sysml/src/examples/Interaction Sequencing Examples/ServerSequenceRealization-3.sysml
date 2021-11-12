@@ -38,12 +38,12 @@ package ServerSequenceRealization_3 {
 				}
 			}
 			
-			stream publish_request from producerBehavior.publish.request to publicationPort.publish;
+			flow publish_request from producerBehavior.publish.request to publicationPort.publish;
 					
 		}
 		
 		interface publication_interface : PublicationInterface connect producer_3.publicationPort to server_3.publicationPort {
-			stream publish_request from publication_interface.source.publish to publication_interface.target.publish;
+			flow publish_request from publication_interface.source.publish to publication_interface.target.publish;
 		}
 		
 		part server_3[1] {
@@ -55,9 +55,9 @@ package ServerSequenceRealization_3 {
 				out ref :>> deliver;
 			}
 						
-			stream subscribe_request from subscriptionPort.subscribe to serverBehavior.subscribing.request;
-			stream publish_request from publicationPort.publish to serverBehavior.publishing.request;
-			stream deliver_response from serverBehavior.delivering.response to subscriptionPort.deliver;
+			flow subscribe_request from subscriptionPort.subscribe to serverBehavior.subscribing.request;
+			flow publish_request from publicationPort.publish to serverBehavior.publishing.request;
+			flow deliver_response from serverBehavior.delivering.response to subscriptionPort.deliver;
 			
 			perform action serverBehavior {
 				
@@ -88,8 +88,8 @@ package ServerSequenceRealization_3 {
 		}
 		
 		interface subscription_interface : SubscriptionInterface connect consumer_3.subscriptionPort to server_3.subscriptionPort {
-			stream subscribe_request from subscription_interface.source.subscribe to subscription_interface.target.subscribe;
-			stream deliver_response from subscription_interface.target.deliver to subscription_interface.source.deliver;
+			flow subscribe_request from subscription_interface.source.subscribe to subscription_interface.target.subscribe;
+			flow deliver_response from subscription_interface.target.deliver to subscription_interface.source.deliver;
 		}
 		
 		part consumer_3[1] {
@@ -100,8 +100,8 @@ package ServerSequenceRealization_3 {
 				in ref :>> deliver;
 			}
 			
-			stream subscribe_request from consumerBehavior.subscribe.request to subscriptionPort.subscribe;
-			stream deliver_response from subscriptionPort.deliver to consumerBehavior.delivery.response;
+			flow subscribe_request from consumerBehavior.subscribe.request to subscriptionPort.subscribe;
+			flow deliver_response from subscriptionPort.deliver to consumerBehavior.delivery.response;
 
 			perform action consumerBehavior {
 				action subscribe {
@@ -131,19 +131,19 @@ package ServerSequenceRealization_3 {
 			event consumerBehavior.delivery[1] :>> deliver_target_event;
 		}
 		
-		stream :>> publish_message from producer.producerBehavior.publish.request to server.serverBehavior.publishing.request {
+		flow :>> publish_message from producer.producerBehavior.publish.request to server.serverBehavior.publishing.request {
 			event producer.publish_request[1];
 			then event publication_interface.publish_request[1];
 			then event server.publish_request[1];
 		}
 		
-		stream :>> subscribe_message from consumer.consumerBehavior.subscribe.request to server.serverBehavior.subscribing.request {
+		flow :>> subscribe_message from consumer.consumerBehavior.subscribe.request to server.serverBehavior.subscribing.request {
 			event consumer.subscribe_request[1];
 			then event subscription_interface.subscribe_request[1];
 			then event server.subscribe_request[1];
 		}
 		
-		stream :>> deliver_message from server.serverBehavior.delivering.response to consumer.consumerBehavior.delivery.response {
+		flow :>> deliver_message from server.serverBehavior.delivering.response to consumer.consumerBehavior.delivery.response {
 			event server.deliver_response[1];
 			then event subscription_interface.deliver_response[1];
 			then event consumer.deliver_response[1];

@@ -35,6 +35,18 @@ package Occurrences {
 		 */
 		feature successors: Occurrence[0..*] subsets occurrences;
 		
+	  	/**
+	   	 * Occurrences that end just before this occurrence starts, with no
+	     * possibility of other occurrences happening in the time between them.
+	     */
+		feature immediatePredecessors: Occurrence[0..*] subsets predecessors;
+
+  		/**
+   		 * Occurrences that start just after this occurrence ends, with no
+   		 * possibility of other occurrences happening in the time between them.
+   		 */
+		feature immediateSuccessors: Occurrence[0..*] subsets successors;
+
 		/**
 		 * Occurrences that start no earlier than and end no later than
 		 * this occurrence, including at least this occurrence.
@@ -222,6 +234,20 @@ package Occurrences {
 	}
 	
 	/**
+	 * HappensJustBefore is HappensBefore asserting that the earlierOccurrence happens just 
+	 * before the laterOccurrence, with with no possibility of other occurrences happening in the 
+	 * time between them.
+	 */
+	assoc HappensJustBefore specializes HappensBefore {
+  		end feature redefines earlierOccurrence: Occurrence[0..*] subsets laterOccurrence.immediatePredecessors;
+		end feature redefines laterOccurrence: Occurrence[0..*] subsets earlierOccurrence.immediateSuccessors;
+
+  		private feature all betweenOccurrence: Occurrence[0];
+  		private succession earlierOccurrence[1] then betweenOccurrence[0..*];
+		private succession betweenOccurrence[0..*] then laterOccurrence[1];
+	}
+
+	/**
 	 * PortionOf asserts one occurrence is a portion of another, including at least itself. 
 	 */
 	assoc PortionOf specializes HappensDuring { 
@@ -253,4 +279,5 @@ package Occurrences {
 	 	end feature earlierOccurrence: Occurrence[0..*] redefines HappensBefore::earlierOccurrence, binaryLinks::source;
 	 	end feature laterOccurrence: Occurrence[0..*] redefines HappensBefore::laterOccurrence, binaryLinks::target;
 	 }
+	 
 }

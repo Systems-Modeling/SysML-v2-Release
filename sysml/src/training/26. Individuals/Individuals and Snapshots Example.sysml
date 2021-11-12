@@ -22,6 +22,6 @@ package 'Individuals and Snapshots Example' {
 			}
 		}
 		
-		succession vehicle_1_t0 then vehicle_1_t1;	
+		first vehicle_1_t0 then vehicle_1_t1;	
 	}
 }

@@ -8,7 +8,7 @@ package 'Interaction Realization-2' {
 	}
 	
 	interface driverToVehicleInterface connect driver_b.setSpeedPort to vehicle_b.setSpeedPort {
-		stream setSpeedFlow of SetSpeed 
+		flow setSpeedFlow of SetSpeed 
 			from driver_b.setSpeedPort.setSpeed to vehicle_b.setSpeedPort.setSpeed;
 	}
 	
@@ -31,7 +31,7 @@ package 'Interaction Realization-2' {
 			}
 		}
 		
-		stream sensedSpeedFlow of SensedSpeed 
+		flow sensedSpeedFlow of SensedSpeed 
 			from speedometer_b.sensedSpeedPort.sensedSpeed to cruiseController_b.sensedSpeedPort.sensedSpeed;
 		
 		part speedometer_b : Speedometer {
@@ -40,7 +40,7 @@ package 'Interaction Realization-2' {
 			}
 		}
 		
-		stream fuelCommandFlow of FuelCommand 
+		flow fuelCommandFlow of FuelCommand 
 			from cruiseController_b.fuelCommandPort.fuelCommand to engine_b.fuelCommandPort.fuelCommand;
 
 		part engine_b : Engine {

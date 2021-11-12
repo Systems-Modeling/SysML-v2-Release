@@ -43,9 +43,9 @@ package '3d-Function-based Behavior-item' {
 			part storageTank : StorageTank;
 			
 			/**
-			 * Note: Explicitly notating that the stream is "of fuel : Fuel" is optional.
+			 * Note: Explicitly notating that the flow is "of fuel : Fuel" is optional.
 			 */
-			stream of  fuel : Fuel
+			flow of  fuel : Fuel
 				from storageTank.fuelOutPort.fuel to pump.fuelInPort.fuel;
 			
 			part pump : Pump {
@@ -55,14 +55,14 @@ package '3d-Function-based Behavior-item' {
 				);
 			}
 			
-			stream of fuel : Fuel
+			flow of fuel : Fuel
 				from pump.fuelOutPort.fuel to vehicle.fuelInPort.fuel;
 			
 			part vehicle : Vehicle {
 				/** 
 				 * Note: The semantics of flowing to a "stored item" is tentative.
 				 */
-				stream fuelInPort.fuel to fuelTank.fuel;
+				flow fuelInPort.fuel to fuelTank.fuel;
 				
 				/* Storage Element */
 				part fuelTank : FuelTank {

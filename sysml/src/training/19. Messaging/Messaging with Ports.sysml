@@ -28,7 +28,7 @@ package 'Messaging Example' {
 			}
 			
 			then action shoot : Shoot {
-				in item image stream from focus.image; 
+				in item image flow from focus.image; 
 				out item picture;
 			}
 			

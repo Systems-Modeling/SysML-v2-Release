@@ -29,7 +29,7 @@ package UseCaseTest {
 	use case u : UseSystem;
 	
 	part system : System {
-		include u;
+		include uc2;
 		perform u;
 	}
 	

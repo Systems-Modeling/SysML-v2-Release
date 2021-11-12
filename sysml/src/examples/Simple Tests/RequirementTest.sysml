@@ -7,7 +7,7 @@ package RequirementTest {
 		require c;
 		doc /* */
     	requirement;
-    	requirement def id '1' A {
+    	requirement def <'1'> A {
     		doc /* Text */
     		subject s;
     	}

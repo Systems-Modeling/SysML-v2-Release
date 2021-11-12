@@ -199,7 +199,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                 end fuelInPort : ~FuelPort {
                     in item :>> fuel;
                 }
-                stream fuelOutPort.fuel to fuelInPort.fuel;
+                flow fuelOutPort.fuel to fuelInPort.fuel;
             }
         }
         package AllocationDefinitions{
@@ -555,7 +555,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                     bind engine.fuelCmdPort=fuelCmdPort;
                     
                     //connect engine::drivePwrPort to transmission::clutchPort; 
-                    /** the following interface replaces the above connection. Would like to reference the stream (obj flow)*/
+                    /** the following interface replaces the above connection. Would like to reference the flow (obj flow)*/
                     interface engineToTransmissionInterface:EngineToTransmissionInterface
                         connect engine.drivePwrPort to transmission.clutchPort{
                             ref generateToAmplify :> ActionTree::providePower::generateToAmplify;
@@ -599,7 +599,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                         out transmissionTorque redefines transmissionTorque;
                     }
                     action transferTorque:TransferTorque {
-                        // This is a shorthand for the stream commented out below.
+                        // This is a shorthand for the flow commented out below.
                         in transmissionTorque redefines transmissionTorque;
                         out driveshaftTorque redefines driveshaftTorque;
                     }
@@ -608,10 +608,10 @@ package sfriedenthal_VehicleModel_1_simplified{
                         out wheelToRoadTorque redefines wheelToRoadTorque [2];
                     }
 
-                    stream generateToAmplify from generateTorque.engineTorque to amplifyTorque.engineTorque;
-                    //stream from generateTorque.engineTorque to amplifyTorque.engineTorque;
-                    stream amplifyTorque.transmissionTorque to transferTorque.transmissionTorque;
-                    stream transferTorque.driveshaftTorque to distributeTorque.driveshaftTorque;
+                    flow generateToAmplify from generateTorque.engineTorque to amplifyTorque.engineTorque;
+                    //flow from generateTorque.engineTorque to amplifyTorque.engineTorque;
+                    flow amplifyTorque.transmissionTorque to transferTorque.transmissionTorque;
+                    flow transferTorque.driveshaftTorque to distributeTorque.driveshaftTorque;
                 }
                 action performSelfTest: PerformSelfTest;
                 action applyParkingBrake: ApplyParkingBrake;
@@ -759,20 +759,20 @@ package sfriedenthal_VehicleModel_1_simplified{
                 
                 requirement vehicleSpecification{
                     subject vehicle:Vehicle;
-                    requirement id '1' vehicleMassRequirement: MassRequirement {
+                    requirement <'1'> vehicleMassRequirement: MassRequirement {
                         doc /* The total mass of a vehicle shall be less than or equal to the required mass. */
                         /* Assume total mass includes a full tank of gas*/
                         attribute redefines massRequired=2000 [kg];
                         attribute redefines massActual = vehicle.mass;
                     }
-                    requirement id '2' vehicleFuelEconomyRequirements{
+                    requirement <'2'> vehicleFuelEconomyRequirements{
                         doc /* fuel economy requirements group */
                         attribute assumedCargoMass:>ISQ::mass;
-                        requirement id '2_1' cityFuelEconomyRequirement:FuelEconomyRequirement{
+                        requirement <'2_1'> cityFuelEconomyRequirement:FuelEconomyRequirement{
                             redefines requiredFuelEconomy= 10 [km / L];
                             assume constraint {assumedCargoMass>=500 [kg]}
                         }
-                        requirement id ' 2_2' highwayFuelEconomyRequirement:FuelEconomyRequirement{
+                        requirement <'2_2'> highwayFuelEconomyRequirement:FuelEconomyRequirement{
                             redefines requiredFuelEconomy= 12.75 [km / L];
                             attribute assumedCargoMass:>ISQ::mass;
                             assume constraint {assumedCargoMass>=500 [kg]}

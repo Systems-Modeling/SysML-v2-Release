@@ -363,7 +363,7 @@ package VehicleModel {
                     bind engine.fuelCmdPort = fuelCmdPort;
                     interface engineToTransmissionInterface: EngineToTransmissionInterface
                     connect engine.drivePwrPort to transmission.clutchPort {
-                        ref stream generateToAmplify :> ActionTree::providePower.generateToAmplify
+                        ref flow generateToAmplify :> ActionTree::providePower.generateToAmplify
                         	from p1.engineTorque to p2.engineTorque;
                     }
                     connect transmission.shaftPort_a to driveshaft.shaftPort_b;
@@ -388,7 +388,7 @@ package VehicleModel {
                         out transmissionTorque redefines transmissionTorque;
                     }
                     action transferTorque: TransferTorque {
-                        // This is a shorthand for the stream commented out below.
+                        // This is a shorthand for the flow commented out below.
                         in transmissionTorque redefines transmissionTorque;
                         out driveshaftTorque redefines driveshaftTorque;
                     }
@@ -396,11 +396,11 @@ package VehicleModel {
                         in driveshaftTorque redefines driveshaftTorque;
                         out wheelToRoadTorque redefines wheelToRoadTorque[2];
                     }
-                    stream generateToAmplify from generateTorque.engineTorque
+                    flow generateToAmplify from generateTorque.engineTorque
                     to amplifyTorque.engineTorque;
-                    stream amplifyTorque.transmissionTorque
+                    flow amplifyTorque.transmissionTorque
                     to transferTorque.transmissionTorque;
-                    stream transferTorque.driveshaftTorque
+                    flow transferTorque.driveshaftTorque
                     to distributeTorque.driveshaftTorque;
                 }
                 action performSelfTest: PerformSelfTest;
@@ -499,23 +499,23 @@ package VehicleModel {
 					part redefines vehicle_b;
 					requirement vehicleSpecification {
 						subject vehicle: Vehicle;
-						requirement id '1' vehicleMassRequirement: MassRequirement {
+						requirement <'1'> vehicleMassRequirement: MassRequirement {
 							doc /* The total mass of a vehicle shall be less than or equal
 							 * to the required mass.*/
 							/* Assume total mass includes a full tank of gas*/
 							attribute redefines massRequired = 2000 [kg];
 							attribute redefines massActual = vehicle.mass;
 						}
-						requirement id '2' vehicleFuelEconomyRequirements {
+						requirement <'2'> vehicleFuelEconomyRequirements {
 							doc /* fuel economy requirements group */
 							attribute assumedCargoMass :> ISQ::mass;
-							requirement id '2_1' cityFuelEconomyRequirement: FuelEconomyRequirement {
+							requirement <'2_1'> cityFuelEconomyRequirement: FuelEconomyRequirement {
 								redefines requiredFuelEconomy = 25 [km/L];
 								assume constraint {
 									assumedCargoMass >= 500 [kg]
 								}
 							}
-							requirement id ' 2_2' highwayFuelEconomyRequirement: FuelEconomyRequirement {
+							requirement <'2_2'> highwayFuelEconomyRequirement: FuelEconomyRequirement {
 								redefines requiredFuelEconomy = 30 [km/L];
 								attribute assumedCargoMass :> ISQ::mass;
 								assume constraint {

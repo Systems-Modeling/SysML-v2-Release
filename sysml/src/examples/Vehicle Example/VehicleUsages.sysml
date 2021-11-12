@@ -82,7 +82,7 @@ package VehicleUsages {
 		
 		interface driveShaft connect 
 			transDrive :> transmission.drive to axleDrive :> rearAxleAssembly.rearAxle.drive {
-			stream transDrive.driveTorque to axleDrive.driveTorque;
+			flow transDrive.driveTorque to axleDrive.driveTorque;
 		}		
 	}
 }

@@ -3,13 +3,13 @@ package PartTest {
 	part f: A;
 
 	public part def A {
-		part id '1' b: B;
+		part <'1'> b: B;
 		protected port c: C;
-		attribute x[0..2];
-		attribute y :> x;
+		readonly attribute x[0..2];
+		derived ref attribute y :> x;
 	}
 	
-	abstract part def id xx B {
+	abstract part def <xx> B {
 		public abstract part a: A;
 		port x: ~C;
 		package P { }

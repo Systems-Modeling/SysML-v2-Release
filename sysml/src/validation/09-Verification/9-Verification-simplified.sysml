@@ -4,7 +4,7 @@ package '9-Verification-simplified' {
 	
 	package Definitions {
 	
-		requirement def id '2' MassRequirement {
+		requirement def <'2'> MassRequirement {
 			attribute massActual :> ISQ::mass;
 			attribute massReqd :> ISQ::mass;
 			
@@ -36,7 +36,7 @@ package '9-Verification-simplified' {
 	
 	package Usages {
 	
-		requirement id '2.1' vehicleMassRequirement : MassRequirement {
+		requirement <'2.1'> vehicleMassRequirement : MassRequirement {
 			subject vehicle : Vehicle;
 			doc /* The vehicle mass shall be less than or equal to 2500 kg. */
 			

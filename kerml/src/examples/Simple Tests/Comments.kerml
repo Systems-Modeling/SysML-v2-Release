@@ -45,7 +45,7 @@ package Comments {
 	}
 	/* abc */
 	class A {
-		doc id a /* Documentation comment on A*/
+		doc <a> /* Documentation comment on A*/
 		comment about a /* Comment about documenation with ID 'a' */		
 	}
 }

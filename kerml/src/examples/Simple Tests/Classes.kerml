@@ -2,12 +2,12 @@ package Classes {
 	
 	feature f: A;
 
-	public class id '1' A { 
+	public class <'1'> A { 
 		feature b: B;
 		protected in c: C;
 	}
 	
-	abstract class id '2' B {
+	abstract class <'2'> B {
 		public abstract feature a: A;
 		package P { }
 	}

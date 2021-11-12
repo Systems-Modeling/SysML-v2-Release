@@ -59,12 +59,12 @@ package '3a-Function-based Behavior-1' {
 			}
 			
 			/**
-			 * A stream is a connection between two actions that moves items from
+			 * A flow is a connection between two actions that moves items from
 			 * an output parameter of one action to an input parameter of the other.
 			 * Note that streaming is a property of the connection, not the
 			 * actions or their parameters.
 			 */
-			stream 'generate torque'.engineTorque 
+			flow 'generate torque'.engineTorque 
 			    to 'amplify torque'.engineTorque;
 			
 			action 'amplify torque': 'Amplify Torque' {
@@ -72,7 +72,7 @@ package '3a-Function-based Behavior-1' {
 				out transmissionTorque: Torque;
 			}
 			
-			stream 'amplify torque'.transmissionTorque 
+			flow 'amplify torque'.transmissionTorque 
 			    to 'transfer torque'.transmissionTorque;
 			
 			action 'transfer torque': 'Transfer Torque' {
@@ -80,7 +80,7 @@ package '3a-Function-based Behavior-1' {
 				out driveshaftTorque: Torque;
 			}
 			
-			stream 'transfer torque'.driveshaftTorque 
+			flow 'transfer torque'.driveshaftTorque 
 			    to 'distribute torque'.driveshaftTorque;
 			
 			action 'distribute torque': 'Distribute Torque' {
@@ -95,19 +95,19 @@ package '3a-Function-based Behavior-1' {
 			// CONTROL FLOW PART
 
 			/**
-			 * A succession is an assertion that one thing must occur
+			 * A first is an assertion that one thing must occur
 			 * before another, acting like a "control flow". 'start' is
 			 * the start snapshot of the action, which acts like an
 			 * "initial node".
 			 */
-			succession start then continue;
+			first start then continue;
 			
 			/**
 			 * A merge node is necessary to prevent a loop of successions
 			 * from being unsatisfiable.
 			 */
 			merge continue;	
-			succession continue then engineStarted;
+			first continue then engineStarted;
 			
 			/**
 			 * An accept action accepts an incoming transfer of some item
@@ -116,30 +116,30 @@ package '3a-Function-based Behavior-1' {
 			 * 'engineStart' is the name of the received signal attribute.
 			 */
 			action engineStarted accept engineStart: EngineStart;			
-			succession engineStarted then engineStopped;
+			first engineStarted then engineStopped;
 					
 			action engineStopped accept engineOff: EngineOff;	
-			succession engineStopped then continue;
+			first engineStopped then continue;
 			
 			/**
 			 * These successions act to "enable" the torque-related actions.
 			 * Each action on the right can only be performed following the
 			 * completion of a performance of 'engineStarted'.
 			 */
-			succession engineStarted then 'generate torque';
-			succession engineStarted then 'amplify torque';
-			succession engineStarted then 'transfer torque';
-			succession engineStarted then 'distribute torque';
+			first engineStarted then 'generate torque';
+			first engineStarted then 'amplify torque';
+			first engineStarted then 'transfer torque';
+			first engineStarted then 'distribute torque';
 			
 			/**
 			 * These successions act to "disable" the torque-related actions.
 			 * The performance of the actions on the left cannot continue
 			 * once there is a performance of 'engineStopped'.
 			 */
-			succession 'generate torque' then engineStopped;		
-			succession 'amplify torque' then engineStopped;		
-			succession 'transfer torque' then engineStopped;		
-			succession 'distribute torque' then engineStopped;		
+			first 'generate torque' then engineStopped;		
+			first 'amplify torque' then engineStopped;		
+			first 'transfer torque' then engineStopped;		
+			first 'distribute torque' then engineStopped;		
 		}
 	
 	}
