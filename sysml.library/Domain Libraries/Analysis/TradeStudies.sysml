@@ -8,11 +8,11 @@ package TradeStudies {
 	private import ControlFunctions::*;
 	
 	/**
-	 * An ObjectiveFunction is a calculation that evaluates a TradeStudy alternative,
+	 * An EvaluationFunction is a calculation that evaluates a TradeStudy alternative,
 	 * producing a ScalarValue that can be comparted with the evaluation of other
 	 * alternatives.
 	 */
-	abstract calc def ObjectiveFunction {
+	abstract calc def EvaluationFunction {
 		/** The alternative to be evaluated. */
 		in ref alternative : Anything; 
 		
@@ -23,7 +23,7 @@ package TradeStudies {
 	/**
 	 * A TradeStudyObjective is the base definition for the objective of a TradeStudy.
 	 * The requirement is to choose from a given set of alternatives the selectedAlternative
-	 * for that has the best evaluation according to a given ObjectiveFunction. What
+	 * for that has the best evaluation according to a given EvaluationFunction. What
 	 * value is considered "best" is not defined in the abstract base definition but must be
 	 * computed in any concrete specialization.
 	 */
@@ -41,9 +41,9 @@ package TradeStudies {
 		in ref alternatives : Anything[1..*];
 		
 		/**
-		 * The ObjectiveFunction to be used in evaluating the given alternatives.
+		 * The EvaluationFunction to be used in evaluating the given alternatives.
 		 */
-		in calc fn : ObjectiveFunction;
+		in calc fn : EvaluationFunction;
 		
 		/**
 		 * Out of the evaluation results of all the given alternatives, the one that is considered 
@@ -92,12 +92,12 @@ package TradeStudies {
 		subject studyAlternatives : Anything[1..*];
 		
 		/**
-		 * The ObjectiveFunction to be used to evaluate the alternatives.
+		 * The EvaluationFunction to be used to evaluate the alternatives.
 		 * 
 		 * In a TradeStudy usage, redefine this feature to provide the desired
 		 * calculation (or bind it to a calculation usage that does so).
 		 */
-		abstract calc objectiveFunction : ObjectiveFunction;
+		abstract calc evaluationFunction : EvaluationFunction;
 		
 		/**
 		 * The objective of this TradeStudy.
@@ -109,7 +109,7 @@ package TradeStudies {
 		 */
 		objective tradeStudyObjective : TradeStudyObjective {
 			in ref :>> alternatives = studyAlternatives;
-			in calc :>> fn = objectiveFunction;
+			in calc :>> fn = evaluationFunction;
 		}
 		
 		/**

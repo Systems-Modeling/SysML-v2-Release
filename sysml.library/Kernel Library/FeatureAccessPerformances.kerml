@@ -65,6 +65,7 @@ package FeatureAccessPerformances {
 	 * feature on an occurrence to the given replacementValues at time its performance ends.
 	 */
 	abstract behavior FeatureWritePerformance specializes FeatureAccessPerformance {
-		 inout feature replacementValues : Anything redefines values [*] nonunique;
+		in feature onOccurrence : Occurrence[1] redefines onOccurrence;
+		inout feature replacementValues : Anything redefines values [*] nonunique;
 	}
 }

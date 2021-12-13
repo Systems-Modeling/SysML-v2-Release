@@ -18,14 +18,14 @@ package '14a-Language Extensions' {
 	
 	part part_X {
 		metadata Classified {
-			classificationLevel = conf;
+			classificationLevel = ClassificationLevel::conf;
 		}
 	}
 	
 	// Alternative shorthand notation
 	part part_Y {
 		@Classified {
-			classificationLevel = conf;
+			classificationLevel = ClassificationLevel::conf;
 		}
 	}
 		

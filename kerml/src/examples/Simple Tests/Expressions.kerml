@@ -22,12 +22,12 @@ package Expressions {
 			}
 			succession decrement then update;
 			step update : FeatureAccessPerformances::FeatureWritePerformance {
-				inout replacementValues = decrement.v_decr;
 				in redefines onOccurrence = w::self {
 					feature redefines startingAt : w {
 						feature redefines accessedFeature redefines v;
 					}
 				}
+				inout replacementValues = decrement.v_decr;
 			}
 		}
 	}
@@ -47,4 +47,14 @@ package Expressions {
 	}
 	
 	expr totalMass: TotalMass (mass, sub);
+	
+	feature f {
+		expr s(x) : Boolean;
+	}
+	
+	bb : Boolean = f.s(1);
+	
+	class C {
+		count := 0;
+	}
 }

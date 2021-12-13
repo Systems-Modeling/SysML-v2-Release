@@ -15,9 +15,9 @@ package RequirementMetadataExample {
     }
     
     metadata requirement_1_risk : Risk {
-    	totalRisk = H;
-    	technicalRisk = M;
-    	scheduleRisk = M;
-    	costRisk = M;
+    	totalRisk = high;
+    	technicalRisk = medium;
+    	scheduleRisk = low;
+    	costRisk = medium;
     }
 }

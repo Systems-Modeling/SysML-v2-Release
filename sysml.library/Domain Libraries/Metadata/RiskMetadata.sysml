@@ -16,9 +16,9 @@ package RiskMetadata {
 	 * LevelEnum provides standard probability Levels for low, medium and high risks.
 	 */
 	enum def LevelEnum :> Level {
-		L = 0.25;
-		M = 0.50;
-		H = 0.75;
+		low = 0.25;
+		medium = 0.50;
+		high = 0.75;
 	}
 
 	/**
@@ -43,9 +43,9 @@ package RiskMetadata {
 	 * (without including impact).
 	 */
 	enum def RiskLevelEnum :> RiskLevel {
-		L = RiskLevel(probability = LevelEnum::L);
-		M = RiskLevel(probability = LevelEnum::M);
-		H = RiskLevel(probability = LevelEnum::H);
+		low = RiskLevel(probability = LevelEnum::low);
+		medium = RiskLevel(probability = LevelEnum::medium);
+		high = RiskLevel(probability = LevelEnum::high);
 	}
 	
 	/**

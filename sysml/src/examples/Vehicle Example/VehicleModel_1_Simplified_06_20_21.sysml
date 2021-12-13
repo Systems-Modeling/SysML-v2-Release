@@ -541,7 +541,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                     // parts in bodyAssy and interioer are marked as safety or security features
                     part bodyAssy:BodyAssy{
                         part body:Body{
-                            attribute :>> color = red;  
+                            attribute :>> color = Colors::red;
                         }
                         part bumper {@Safety{isMandatory = true;}}
                         part keylessEntry {@Security;}
@@ -1080,18 +1080,18 @@ package sfriedenthal_VehicleModel_1_simplified{
                 
                 // Use the following if the evaluation function is the same for each alternative
                 /*
-                calc :>> objectiveFunction {
+                calc :>> evaluationFunction {
                     in part vehicle:>vehicle_b;
                     return attribute eval:Real=EngineEvaluation (vehicle::engine::mass, vehicle::engine::peakHorsePower, vehicle::engine::fuelEfficiency, vehicle::engine::cost);               
                 }
                 */
                 
                 // Use the following if the evaluation function is different for each alternative
-                calc :> objectiveFunction{
+                calc :> evaluationFunction{
                     in part vehicle:>vehicle_b_engine4cyl;
                     return attribute eval:Real=EngineEvaluation_4cyl (vehicle.engine.mass, vehicle.engine.peakHorsePower, vehicle.engine.fuelEfficiency, vehicle.engine.cost); 
                 }
-                calc :> objectiveFunction{
+                calc :> evaluationFunction{
                     in part vehicle:>vehicle_b_engine6cyl;
                     return attribute eval:Real=EngineEvaluation_6cyl (vehicle.engine.mass, vehicle.engine.peakHorsePower, vehicle.engine.fuelEfficiency, vehicle.engine.cost); 
                 }                                                  
@@ -1122,7 +1122,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                     out massMeasured:>ISQ::mass);
                 //return :>> verdict = PassIf(vehicleSpecification::vehicleMassRequirement(vehicle_b));
                 // the following statement is not intended to be part of the model, but just confirm VerdictKind
-                return :>> verdict:VerdictKind = pass;
+                return :>> verdict:VerdictKind = VerdictKind::pass;
             }
         }
         package VerificationSystem{

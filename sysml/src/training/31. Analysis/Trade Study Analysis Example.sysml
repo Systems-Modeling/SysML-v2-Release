@@ -21,7 +21,7 @@ package 'Trade Study Analysis Example' {
 		subject : Engine = (engine4cyl, engine6cyl);
 		objective : MaximizeObjective;
 
-		calc :>> objectiveFunction {
+		calc :>> evaluationFunction {
 			in part engine :>> alternative : Engine;
 			
 			calc powerRollup: PowerRollup (engine) return power : ISQ::PowerValue;

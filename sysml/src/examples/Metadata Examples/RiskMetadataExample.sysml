@@ -4,9 +4,9 @@ package RiskMetadataExample {
 	
     part engine4cyl{
         @Risk {
-            totalRisk = H;
-            technicalRisk = M;
-            scheduleRisk = M;
+            totalRisk = high;
+            technicalRisk = medium;
+            scheduleRisk = medium;
         }
         @Risk {
         	totalRisk.probability = 0.3;

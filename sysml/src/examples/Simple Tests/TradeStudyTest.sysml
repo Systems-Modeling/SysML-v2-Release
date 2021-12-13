@@ -10,7 +10,7 @@ package TradeStudyTest {
 		subject : Engine[1..*] = (engine1, engine2);
 		objective : MaximizeObjective;
 
-		calc :>> objectiveFunction {
+		calc :>> evaluationFunction {
 			in part : Engine;
 			return : Real;
 		}

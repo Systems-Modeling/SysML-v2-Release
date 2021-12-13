@@ -83,11 +83,11 @@ package '14c-Language-Extensions' {
 		}
 		
 		requirement req3: RequirementWithSIL {
-			@StatusHolder { status = Approved; }
+			@StatusHolder { status = Status::Approved; }
 			
 			doc /* Alarm when battery has sank */
 			
-			:>> sil = A;
+			:>> sil = SIL::A;
 		}
 		
 		connection :Violates connect 'Glucose FMEA Item' to req2;

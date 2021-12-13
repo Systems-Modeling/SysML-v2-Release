@@ -22,15 +22,8 @@ package EnumerationTest {
 	}
 	
 	enum color : ColorKind;
-	attribute color1 : ColorKind = ColorKind::blue;
-	
-	/** 
-	 * Note that "blue" can be used without qualification here because,
-	 * currently, names in the expression on the right-hand side are
-	 * resolved in the scope of the feature being declared, which inherits
-	 * the members of its type.
-	 */
-	attribute color2 : ColorKind = blue;
+	enum color1 = ColorKind::blue;	// Implicitly typed by ColorKind.
+	attribute color2 : ColorKind = color1;
 	
 	/**
 	 * The "enum" keyword is optional for EnumerationUsages used to define the

@@ -50,7 +50,7 @@ package '10b-Trade-off Among Alternative Configurations' {
 		}
 		
 		part vehicle : Vehicle {
-			part engine[1] :> engineChoice = '6cylEngine' {
+			part engine[1] :> engineChoice = engineChoice::'6cylEngine' {
 				assert constraint engineSelectionRational { 
 					doc /* Selected the best engine based on the 'engineTradeStudy'. */
 					engine == Analysis::engineTradeStudy.selectedAlternative
@@ -73,7 +73,7 @@ package '10b-Trade-off Among Alternative Configurations' {
 			subject : Engine[1..*] = all engineChoice;
 			objective : MaximizeObjective;
 
-			calc :>> objectiveFunction {
+			calc :>> evaluationFunction {
 				in part engine :>> alternative : Engine;
 				
 				calc powerRollup (engine) return power:>ISQ::power;

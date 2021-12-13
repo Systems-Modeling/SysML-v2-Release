@@ -3,9 +3,11 @@
  * SysML language.
  */
 package Actions {
+	private import Base::Anything;
 	private import Occurrences::Occurrence;
 	private import Performances::Performance;
 	private import Performances::performances;
+	private import FeatureAccessPerformances::FeatureWritePerformance;
 	private import Transfers::TransferBefore;
 	private import ControlPerformances::MergePerformance;
 	private import ControlPerformances::DecisionPerformance;
@@ -63,17 +65,22 @@ package Actions {
 		/**
 		 * The controls of this Action that are JoinActions.
 		 */
-		abstract action joins: JoinAction :> controls;
+		abstract action joins : JoinAction :> controls;
 		
 		/**
 		 * The controls of this Action that are ForkActions.
 		 */
-		abstract action forks: ForkAction :> controls;
+		abstract action forks : ForkAction :> controls;
 		
 		/**
 		 * The subactions of this Action that are TransitionActions. 
 		 */
-		abstract action transitions: TransitionAction[0..*] :> subactions, transitionActions;
+		abstract action transitions : TransitionAction[0..*] :> subactions, transitionActions;
+		
+		/**
+		 * The subactions of this Action that are AssignmentActions.
+		 */
+		abstract action assignments : AssignmentAction[0..*] :> subactions, assignmentActions;
 	}
 	
 	/**
@@ -86,7 +93,7 @@ package Actions {
 	 * to a designated receiver Occurrence with a given payload.
 	 */
 	action def SendAction(in payload[0..*], in receiver: Occurrence[1]) {
-	    ref outgoingTransfer: TransferBefore[1] :>> outgoingTransfersFromSelf :> receiver::incomingTransfers {
+	    ref outgoingTransfer: TransferBefore[1] :>> outgoingTransfersFromSelf :> receiver.incomingTransfers {
 	    	ref :>> source: SendAction {
 	    		ref :>> sourceOutput = payload;
 	    	}
@@ -104,7 +111,7 @@ package Actions {
 	 * outputting the payload from the Transfer.
 	 */
 	action def AcceptAction(out payload[0..*], in receiver: Occurrence[1]) {
-		ref incomingTransfer: TransferBefore[1] :>> incomingTransfersToSelf :> receiver::incomingTransfers {
+		ref incomingTransfer: TransferBefore[1] :>> incomingTransfersToSelf :> receiver.incomingTransfers {
 			ref :>> target: AcceptAction {
 				ref :>> targetInput = payload;
 			}
@@ -188,4 +195,19 @@ package Actions {
 	 * transitionActions is the base feature for all TransitionUsages.
 	 */
 	abstract action transitionActions: TransitionAction[0..*] nonunique :> actions;
+	
+	/**
+	 * An AssignmentAction is an Action, used to type an AssignmentActionUsage. It is also a
+	 * FeatureWritePerformance that updates the accessedFeature of its target Occurrence with
+	 * the given replacementValues.
+	 */
+	action def AssignmentAction :> FeatureWritePerformance, Action {
+		in target : Occurrence[1];
+		inout replacementValues : Anything[0..*] nonunique;
+	}
+	
+	/**
+	 * assignmentActions is the base feature for all AssignmentActionsUsages.
+	 */
+	action assignmentActions : AssignmentAction[0..*] nonunique :> actions;
 }
