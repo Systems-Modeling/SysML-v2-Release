@@ -6,7 +6,7 @@ development repositories also available from the [Systems Modeling](https://gith
 
 ## Team
 
-The SysML v2 Submission Team (SST) is a joint team of over 160 individuals from over 70 industry, academia and government organizations, 
+The SysML v2 Submission Team (SST) is a joint team of over 200 individuals from over 80 industry, academia and government organizations, 
 working together to develop the next major version of the Object Management Group (OMG) System Modeling Language (SysML). 
 The goal is to deliver a SysML v2 specification that is validated by the user community, that is demonstrable with a pilot implementation 
 and that provides a smooth migration path for SysML v1 users and models.
@@ -20,8 +20,9 @@ The proposed SysML v2 specification will be submitted to the OMG in response to 
 
 To ask questions about using this release or to provide feedback, join the SysML v2 Release Google Group.
 
-   * Go to [https://groups.google.com/forum/#!forum/sysml-v2-release](https://groups.google.com/forum/#!forum/sysml-v2-release) while logged into a Google account. Select “Apply for Membership”. <br/>
-     Please provide your full name, organizational affiliation and interest in SysML.
+   * Go to [https://groups.google.com/g/sysml-v2-release](https://groups.google.com/g/sysml-v2-release) while logged into a Google account. 
+   * Select “Apply for Membership”. <br/>
+     * Please provide your full name, organizational affiliation and interest in SysML.
    * Once your application has been accepted, you can post to the group using the email 
      [sysml-v2-release@googlegroups.com](mailto:sysml-v2-release@googlegroups.com). 
  
@@ -66,8 +67,8 @@ Additional content can be accessed at the following URLs.
 
 The specification documents are copyrighted by the SST member organizations listed in those documents under the terms given there.
 
-The `Intro to the SysML v2 Language-Textual Notation` presentation is Copyright © 2019-2021 Model Driven Solutions, Inc. </br>
-The `Intro to the SysML v2 Language-Graphical Notation` presentation is Copyright © 2021 Sandy Friedenthal. </br>
+The `Intro to the SysML v2 Language-Textual Notation` presentation is Copyright © 2019-2022 Model Driven Solutions, Inc. </br>
+The `Intro to the SysML v2 Language-Graphical Notation` presentation is Copyright © 2021-2022 Sandy Friedenthal. </br>
 Both presentations are licensed under the Creative Commons Attribution 4.0  International License. </br>
 To view a copy of this license, visit [http://creativecommons.org/licenses/by/4.0/](http://creativecommons.org/licenses/by/4.0/) 
 or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
@@ -76,11 +77,11 @@ The Jupyter and Eclipse software and all included SysML v2 models are licensed b
 under the GNU Lesser General Public License (LGPL) v3.0 (see `LICENSE` and `LICENSE-GPL` files).
 
 Copyright © 2019-2021 California Institute of Technology (Jet Propulsion Laboratory) <br/>
-Copyright © 2019-2021 DEKonsult <br/>
+Copyright © 2019-2022 DEKonsult <br/>
 Copyright © 2019-2021 IncQuery Labs Ltd. <br/>
 Copyright © 2019-2021 Itemis <br/>
 Copyright © 2019-2021 Maplesoft (Waterloo Maple, Inc.) <br/>
-Copyright © 2019-2021 Mgnite Inc. <br/>
-Copyright © 2019-2021 Model Driven Solutions, Inc. <br/>
-Copyright © 2019-2021 SAF Consulting <br/>
-Copyright © 2021 Twingineering LLC
+Copyright © 2019-2022 Mgnite Inc. <br/>
+Copyright © 2019-2022 Model Driven Solutions, Inc. <br/>
+Copyright © 2019-2022 SAF Consulting <br/>
+Copyright © 2021-2022 Twingineering LLC
