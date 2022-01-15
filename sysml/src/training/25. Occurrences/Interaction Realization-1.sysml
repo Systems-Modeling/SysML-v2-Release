@@ -31,25 +31,25 @@ package 'Interaction Realization-1' {
 	
 	occurrence cruiseControlInteraction_a : CruiseControlInteraction {
 		part :>> driver :>> driver_a {
-			event occurrence :>> setSpeedSent = driverBehavior.sendSetSpeed;
+			event driverBehavior.sendSetSpeed[1] :>> setSpeedSent;
 		}
 		
 		part :>> vehicle :>> vehicle_a {
 			part :>> cruiseController :>> cruiseController_a {
-				event occurrence :>> setSpeedReceived = controllerBehavior.receiveSetSpeed;
-				event occurrence :>> sensedSpeedReceived = controllerBehavior.receiveSensedSpeed;
-				event occurrence :>> fuelCommandSent = controllerBehavior.sendFuelCommand;
+				event controllerBehavior.receiveSetSpeed[1] :>> setSpeedReceived;
+				event controllerBehavior.receiveSensedSpeed[1] :>> sensedSpeedReceived;
+				event controllerBehavior.sendFuelCommand[1] :>> fuelCommandSent;
 			}
 			part :>> speedometer :>> speedometer_a {
-				event occurrence :>> sensedSpeedSent = speedometerBehavior.sendSensedSpeed;
+				event speedometerBehavior.sendSensedSpeed[1] :>> sensedSpeedSent;
 			}
 			part :>> engine :>> engine_a {
-				event occurrence :>> fuelCommandReceived = engineBehavior.receiveFuelCommand;
+				event engineBehavior.receiveFuelCommand[1] :>> fuelCommandReceived;
 			}
 		}
 		
-		message :>> setSpeedMessage = driver_a.driverBehavior.sendSetSpeed.outgoingTransfer;
-		message :>> sensedSpeedMessage = vehicle_a.speedometer_a.speedometerBehavior.sendSensedSpeed.outgoingTransfer;
-		message :>> fuelCommandMessage = vehicle_a.cruiseController_a.controllerBehavior.sendFuelCommand.outgoingTransfer;
+		message :> driver_a.driverBehavior.sendSetSpeed.outgoingTransfer :>> setSpeedMessage;
+		message :> vehicle_a.speedometer_a.speedometerBehavior.sendSensedSpeed.outgoingTransfer :>> sensedSpeedMessage;
+		message :> vehicle_a.cruiseController_a.controllerBehavior.sendFuelCommand.outgoingTransfer :>> fuelCommandMessage;
 	}
 }

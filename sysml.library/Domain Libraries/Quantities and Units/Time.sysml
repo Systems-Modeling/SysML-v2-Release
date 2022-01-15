@@ -72,8 +72,7 @@ package Time {
 	 * For UTC see https://en.wikipedia.org/wiki/Coordinated_Universal_Time
 	 * For TAI see https://en.wikipedia.org/wiki/International_Atomic_Time
 	 */
-	attribute UTC: TimeScale {
-		attribute :>> longName = "Coordinated Universal Time";
+	attribute <UTC> 'Coordinated Universal Time' : TimeScale {
 		attribute :>> unit = SI::s;
 		attribute :>> definitionalEpoch: DefinitionalQuantityValue { :>> num = 0; :>> definition = "UTC epoch at 1 January 1958 at 0 hour 0 minute 0 second"; }
 	}

@@ -1,0 +1,82 @@
+package '10d-Dynamics Analysis' {
+	import ISQ::*;
+	
+	package VehicleModel {
+	
+		part def Vehicle {
+			attribute mass :> ISQ::mass;
+		}
+	
+	}
+	
+	package DynamicsModel {
+	    
+	    calc def Acceleration(p : PowerValue, m : MassValue, v : SpeedValue) : AccelerationValue =
+	        p / (m * v);
+	    
+	    calc def Velocity(v0 : SpeedValue, a : AccelerationValue, dt : TimeValue) : SpeedValue =
+	        v0 + a * dt;
+	    
+	    calc def Position(x0 : LengthValue, v : SpeedValue, dt : TimeValue) : LengthValue =
+	        x0 + v * dt;
+	    
+	    action def StraightLineDynamics {
+	        in power : PowerValue;
+	        in mass : MassValue;
+	        in delta_t : TimeValue;
+	        in x_in : LengthValue;
+	        in v_in : SpeedValue;
+	        out x_out : LengthValue = Position(x_in, v_in, delta_t);
+	        out v_out : SpeedValue = Velocity(v_in, a_out, delta_t);
+	        out a_out : AccelerationValue = Acceleration(power, mass, v_in);
+	    }
+	}
+	
+	package AnalysisModel {
+		import VehicleModel::*;
+		import DynamicsModel::*;
+		import SampledFunctions::*;
+		import ScalarValues::Natural;
+		import SequenceFunctions::*;
+		
+		attribute def ScenarioState {
+			position : LengthValue;
+			velocity : SpeedValue;
+		}
+		
+		attribute def NominalScenario :> SampledFunction {
+			attribute def TimeStateRecord :> SamplePair {
+				t : TimeValue :>> domainValue;
+				s : ScenarioState :>> rangeValue;
+			}
+			:>> samples : TimeStateRecord;
+			n : Natural = size(samples);
+		}
+		
+		analysis def DynamicsAnalysis {
+			subject vehicle : Vehicle;
+			in attribute powerProfile :> ISQ::power[*];
+			in attribute initialPosition :> ISQ::length;
+			in attribute initialSpeed :> ISQ::speed;
+			in attribute deltaT :> ISQ::time;
+			return attribute accelerationProfile :> ISQ::acceleration[*] := ();
+			
+			private attribute position := initialPosition;
+			private attribute speed := initialSpeed;
+			
+			for i in 1..powerProfile->size()-1 {
+				perform action dynamics : StraightLineDynamics {
+					in power = powerProfile[i];
+					in mass = vehicle.mass;
+					in delta_t = deltaT;
+					in x_in = position;
+					in v_in = speed;
+				}
+				then assign position := dynamics.x_out;
+				then assign speed := dynamics.v_out;
+				then assign accelerationProfile := accelerationProfile->including(dynamics.a_out);
+			}
+		}
+	}
+	
+}

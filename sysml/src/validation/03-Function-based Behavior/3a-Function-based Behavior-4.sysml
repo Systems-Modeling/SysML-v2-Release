@@ -5,14 +5,14 @@ package '3a-Function-based Behavior-2' {
 	package Definitions {
 		alias Torque for ISQ::TorqueValue;
 		
-		// VALUE TYPES
+		// ATTRIBUTE DEFINITIONS
 		
 		attribute def FuelCmd;
 		
 		attribute def EngineStart;
 		attribute def EngineOff;
 		
-		// ACTIVITIES
+		// ACTION DEFINITIONS
 		
 		action def 'Generate Torque'(in fuelCmd: FuelCmd, out engineTorque: Torque);
 		action def 'Amplify Torque'(in engineTorque: Torque, out transmissionTorque: Torque);

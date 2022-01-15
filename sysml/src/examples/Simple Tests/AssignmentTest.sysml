@@ -35,4 +35,15 @@ package AssignmentTest {
 		}
 		then wait;
 	}
+	
+	calc def Increment(c : Counter) : Counter {
+		perform c.incr();
+		c
+	}
+	
+	action a {
+		state counting : Counting;
+		assign counting.counter.count := counting.counter.count + 1;
+		assign counting.counter.count := Increment(counting.counter).count;
+	}
 }

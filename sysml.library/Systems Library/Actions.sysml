@@ -4,6 +4,8 @@
  */
 package Actions {
 	private import Base::Anything;
+	private import ScalarValues::Positive;
+	private import SequenceFunctions::size;
 	private import Occurrences::Occurrence;
 	private import Performances::Performance;
 	private import Performances::performances;
@@ -11,6 +13,9 @@ package Actions {
 	private import Transfers::TransferBefore;
 	private import ControlPerformances::MergePerformance;
 	private import ControlPerformances::DecisionPerformance;
+	private import ControlPerformances::IfThenPerformance;
+	private import ControlPerformances::IfThenElsePerformance;
+	private import ControlPerformances::LoopPerformance;
 	private import TransitionPerformances::TransitionPerformance;
 	private import TransitionPerformances::NonStateTransitionPerformance;
 	
@@ -81,6 +86,26 @@ package Actions {
 		 * The subactions of this Action that are AssignmentActions.
 		 */
 		abstract action assignments : AssignmentAction[0..*] :> subactions, assignmentActions;
+		
+		/**
+		 * The subactions of this Action that are IfThenActions (including IfThenElseActions).
+		 */
+		abstract action ifSubactions : IfThenAction[0..*] :> subactions, ifThenActions;
+		
+		/**
+		 * The subactions of this Action that are LoopActions.
+		 */
+		abstract action loops : LoopAction[0..*] :> subactions, loopActions;
+		
+		/**
+		 * The subactions of this Action that are LoopActions.
+		 */
+		abstract action whileLoops : WhileLoopAction[0..*] :> loops, whileLoopActions;
+		
+		/**
+		 * The subactions of this Action that are LoopActions.
+		 */
+		abstract action forLoops : ForLoopAction[0..*] :> loops, forLoopActions;
 	}
 	
 	/**
@@ -136,7 +161,7 @@ package Actions {
 	/**
 	 * A MergeAction is the ControlAction for a merge node.
 	 * 
-	 * Note: Incoming sucession connectors to a MergeAction must have source multiplicity 
+	 * Note: Incoming succession connectors to a MergeAction must have source multiplicity 
 	 * 0..1 and subset the incomingHBLink feature inherited from MergePerformance.
 	 */
 	action def MergeAction :> ControlAction, MergePerformance;
@@ -144,7 +169,7 @@ package Actions {
 	/** 
 	 * A DecisionAction is the ControlAction for a decision node.
 	 * 
-	 * Note: Outgoing succession connectors to a MergeAction must have target multiplicity
+	 * Note: Outgoing succession connectors from a DecisionAction must have target multiplicity
 	 * 0..1 and subset the outgoingHBLink feature inherited from DecisionPerformance.
 	 * If an outgoing succession has a guard, it should have a transitionStep typed by 
 	 * DecisionTransition.
@@ -182,12 +207,11 @@ package Actions {
 	
 	/**
 	 * A DecisionTransitionAction is a TransitionAction and NonStateTransitionPerformance that has a 
-	 * single guard, but no trigger or effects. It is the base type of TransitionUsages used as 
+	 * guard, but no trigger or effects. It is the base type of TransitionUsages used as 
 	 * conditional successions in action models.
 	 */
 	action def DecisionTransitionAction :> TransitionAction, NonStateTransitionPerformance {
 		ref action :>> accepter[0..0];
-		ref action :>> guard[1];
 		ref action :>> effect[0..0];
 	}
 
@@ -209,5 +233,122 @@ package Actions {
 	/**
 	 * assignmentActions is the base feature for all AssignmentActionsUsages.
 	 */
-	action assignmentActions : AssignmentAction[0..*] nonunique :> actions;
+	abstract action assignmentActions : AssignmentAction[0..*] nonunique :> actions;
+	
+	/**
+	 * An IfThenAction is a Kernel IfThenPerformance that is also an Action. 
+	 * It is the base type for all IfActionUsages.
+	 */
+	action def IfThenAction :> Action, IfThenPerformance {
+		in :>> ifTest[1];
+		in action :>> thenClause[0..1];
+	}
+	
+	/**
+	 * An IfThenElseAction is a Kernel IfThenElsePeformance that is also an IfThenAction. 
+	 * It is the base type for all IfActionUsages that have an elseAction.
+	 */
+	action def IfThenElseAction :> IfThenAction, IfThenElsePerformance {
+		in :>> ifTest[1];
+		in action :>> thenClause[0..1];
+		in action :>> elseClause[0..1];
+	}
+	
+	/**
+	 * ifThenActions is the base feature for all IfActionUsages.
+	 */
+	abstract action ifThenActions : IfThenAction[0..*] nonunique :> actions;
+	
+	/**
+	 * ifThenElseActions is the base feature for all IfActionUsages that have an elseAction.
+	 */
+	abstract action ifThenElseActions : IfThenElseAction[0..*] nonunique :> actions;
+	
+	/**
+	 * A LoopAction is the base type for all LoopActionUsages.
+	 */
+	abstract action def LoopAction :> Action {
+		
+		/**
+		 * The action that is performed repeatedly in the loop.
+		 */
+		in action body[0..*];		
+	}
+	
+	/**
+	 * A WhileLoopAction is a Kernel LoopPerformance that is also a LoopAction.
+	 * It is the base type for all WhileLoopActionUsages.
+	 */
+	action def WhileLoopAction :> LoopAction, LoopPerformance {
+		/**
+		 * A Boolean expression that must be true for the loop to continue.
+		 * It is evaluated before the body is performed and is always evaluated at 
+		 * least once.
+		 */
+		in :>> whileTest default {true};
+		
+		/**
+		 * The action that is performed while the whileTest is true and the
+		 * untilTest is false.
+		 */
+		in action body :>> LoopAction::body, LoopPerformance::body;
+		
+		/**
+		 * A Boolean expression that must be false for the loop to continue.
+		 * It is evaluated after the body is performed.
+		 */
+		in :>> untilTest default {false};
+	}
+	
+	/**
+	 * A ForLoopAction is a LoopAction that iterates over an ordered sequence of values.
+	 * It is the base type for all ForLoopActionUsages.
+	 */
+	action def ForLoopAction :> LoopAction {
+		/**
+		 * The loop variable that is assigned successive elements of seq on each
+		 * iteration of the loop.
+		 */
+		protected ref var[0..1] :> seq;
+		
+		/**
+		 * The sequence of values over which the loop iterates.
+		 */
+		in ref seq[0..*] ordered nonunique;
+		
+		/**
+		 * The action that is performed on each iteration of the loop.
+		 */
+		in action :>> body;
+		
+		/**
+		 * The index of the element of seq assigned to var on the current iteration
+		 * of the loop.
+		 */
+		private attribute index : Positive;
+		
+		private action initialization
+			assign index := 1;
+		then private action whileLoop
+			while index <= size(seq) {
+				assign var := seq[index];
+				then perform body;
+				then assign index := index + 1;
+			}
+	}
+	
+	/**
+	 * loopActions is the base feature for all LoopActionUsages.
+	 */
+	abstract action loopActions : LoopAction[0..*] nonunique :> actions;
+	
+	/**
+	 * whileLoopActions is the base feature for all WhileLoopActionUsages.
+	 */
+	abstract action whileLoopActions : WhileLoopAction[0..*] nonunique :> loopActions;
+	
+	/**
+	 * forLoopActions is the base feature for all ForLoopActionUsages.
+	 */
+	abstract action forLoopActions : ForLoopAction[0..*] nonunique :> loopActions;
 }

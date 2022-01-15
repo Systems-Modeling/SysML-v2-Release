@@ -21,19 +21,13 @@ package SequenceFunctions {
 	function notEmpty(seq: Anything[0..*] nonunique): Boolean[1] {
 		!isEmpty(seq)
 	}
-	function includes(seq: Anything[0..*] nonunique, value: Anything[1]): Boolean[1] {
-		seq->exists {in x; x == value}
-	}
-	function includesAll(seq1: Anything[0..*] nonunique, seq2: Anything[0..*] nonunique): Boolean[1] {
+	function includes(seq1: Anything[0..*] nonunique, seq2: Anything[0..*] nonunique): Boolean[1] {
 		seq2->forAll {in x; seq1->includes(x)}
 	}
 	function includesOnly(seq1: Anything[0..*] nonunique, seq2: Anything[0..*] nonunique): Boolean[1] {
-		seq1->includesAll(seq2) && seq2->includesAll(seq1)
+		seq1->includes(seq2) && seq2->includes(seq1)
 	}
-	function excludes(seq: Anything[0..*] nonunique, value: Anything[1]): Boolean[1] {
-		!seq->includes(value)
-	}
-	function excludesAll(seq1: Anything[0..*] nonunique, seq2: Anything[0..*] nonunique): Boolean[1] {
+	function excludes(seq1: Anything[0..*] nonunique, seq2: Anything[0..*] nonunique): Boolean[1] {
 		seq2->forAll {in x; seq1->excludes(x)}
 	}
 	
@@ -43,11 +37,11 @@ package SequenceFunctions {
 	function intersection(seq1: Anything[0..*] ordered nonunique, seq2: Anything[0..*] ordered nonunique): Anything[0..*] ordered nonunique {
 		seq1->select {in x; seq2->includes(x)}
 	}
-	function including(seq: Anything[0..*] ordered nonunique, value : Anything[1]): Anything[0..*] ordered nonunique {
-		(seq, value)
+	function including(seq1: Anything[0..*] ordered nonunique, seq2: Anything[0..*] ordered nonunique): Anything[0..*] ordered nonunique {
+		union(seq1, seq2)
 	}
-	function excluding(seq: Anything[0..*] ordered nonunique, value : Anything[1]): Anything[0..*] ordered nonunique {
-		seq->reject {in x; x == value}
+	function excluding(seq1: Anything[0..*] ordered nonunique, seq2: Anything[0..*] ordered nonunique): Anything[0..*] ordered nonunique {
+		seq1->reject {in x; seq2->includes(x)}
 	}
 	
 	function subsequence(seq: Anything[0..*] ordered nonunique, startIndex: Positive[1], endIndex: Positive[1]): Anything[0..*] {

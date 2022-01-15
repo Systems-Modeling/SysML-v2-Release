@@ -37,5 +37,7 @@ package Q {
   	enum e1;
   	enum e2;
   }
+  
+  part g = A().g.g.g;
 	
 }

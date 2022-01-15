@@ -1,6 +1,6 @@
 package Q {
 	classifier F {
-		feature a;
+		feature a : A;
 	}
 	  
 	feature f : F;
@@ -20,7 +20,11 @@ package Q {
 	}
 	  
 	feature g subsets f.a;
-	subset g subsets b.f.a;
+	subset g.g subsets b.f.a;
+	redefinition b.f redefines b.a;
 	  
-	subtype g specializes f.a;
+	subtype g.g specializes b.f.a;
+	
+	disjoint b.f.a from b.a;
+	
 }		

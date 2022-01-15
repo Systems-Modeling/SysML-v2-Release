@@ -32,7 +32,6 @@ package UnitsAndScales {
 	 * To stress the generality of the TensorMeasurementReference the alias MeasurementReference is defined.
 	 */
 	attribute def TensorMeasurementReference :> Array {
-		attribute longName: String[1];
 		attribute isBound: Boolean[1] default false;
 		attribute order :>> rank;
 		attribute mRefs: ScalarMeasurementReference[1..*] :>> elements;
@@ -271,7 +270,6 @@ package UnitsAndScales {
 	 * Explicit definitions of "unit of dimension one" also known as "dimensionless unit" as well as the value and quantity of dimension one.
 	 */
 	attribute def DimensionOneUnit :> DerivedUnit {
-		attribute :>> longName = "unit of dimension one";
 		attribute :>> unitPowerFactors = ();
 	}
 	attribute def DimensionOneValue :> ScalarQuantityValue {

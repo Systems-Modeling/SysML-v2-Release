@@ -199,12 +199,24 @@ package Occurrences {
 	 * HappensDuring asserts that the shorterOccurrence happens during the longerOccurrence.
 	 * That is, the time interval of the shorterOccurrence is completely within that of the
 	 * longerOccurrence, or every snapshot of the shorterOccurrence happens while (at the
-	 * same time as) some snapshot of the longerOccurrence. Note that this means every
-	 *  occurrence happens during itself.
+	 * same time as) some snapshot of the longerOccurrence. Note that this means every 
+	 * occurrence happens during itself.
 	 */
 	assoc HappensDuring specializes HappensLink {
 		end feature shorterOccurrence: Occurrence[1..*] redefines sourceOccurrence subsets longerOccurrence.suboccurrences;
 		end feature longerOccurrence: Occurrence[1..*] redefines targetOccurrence;
+		
+		/*
+		 * HappensDuring and HappensBefore constrain each other. All predecessors of 
+		 * (occurrences happening before) a HappenDuring's longerOccurrence are also 
+		 * predecessors of its shorterOccurrence. Inversely, all successors (occurrences 
+		 * happening after) its longerOccurrence are also successors of its shorterOccurrence.
+		 */
+		
+		subset longerOccurrence.predecessors subsets shorterOccurrence.predecessors;
+		subset longerOccurrence.successors subsets shorterOccurrence.successors;
+		
+		subset shorterOccurrence.suboccurrences subsets longerOccurrence.suboccurrences;
 	}
 	
 	/**
@@ -230,6 +242,8 @@ package Occurrences {
 		end feature earlierOccurrence: Occurrence[0..*] redefines BinaryLink::source subsets laterOccurrence.predecessors;
 		end feature laterOccurrence: Occurrence[0..*] redefines BinaryLink::target subsets earlierOccurrence.successors;
 		
+		subset laterOccurrence.successors subsets earlierOccurrence.successors;
+		
 		inv { earlierOccurrence != laterOccurrence }
 	}
 	
@@ -242,9 +256,7 @@ package Occurrences {
   		end feature redefines earlierOccurrence: Occurrence[0..*] subsets laterOccurrence.immediatePredecessors;
 		end feature redefines laterOccurrence: Occurrence[0..*] subsets earlierOccurrence.immediateSuccessors;
 
-  		private feature all betweenOccurrence: Occurrence[0];
-  		private succession earlierOccurrence[1] then betweenOccurrence[0..*];
-		private succession betweenOccurrence[0..*] then laterOccurrence[1];
+  		disjoint earlierOccurrence.successors from laterOccurrence.predecessors;
 	}
 
 	/**

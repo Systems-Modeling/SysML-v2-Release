@@ -4,7 +4,7 @@ package '3a-Function-based Behavior-1' {
 
 	package Definitions {
 		/**
-		 * The 'TorqueValue' type is imported with the alias 'Torque'.
+		 * The 'TorqueValue' type is aliased as 'Torque'.
 		 */
 		alias Torque for ISQ::TorqueValue;
 		

@@ -4,7 +4,7 @@ package '3a-Function-based Behavior-1' {
 
 	package Definitions {
 		/**
-		 * The 'TorqueValue' type is imported with the alias 'Torque'.
+		 * The 'TorqueValue' type is aliased as 'Torque'.
 		 */
 		alias Torque for ISQ::TorqueValue;
 		
@@ -19,7 +19,7 @@ package '3a-Function-based Behavior-1' {
 		attribute def EngineOff;
 		
 		/*
-		 * Black box specifications for activities include their inputs and outputs.
+		 * Black box definitions for actions include their inputs and outputs.
 		 */
 		
 		action def 'Generate Torque'(in fuelCmd: FuelCmd, out engineTorque: Torque);
