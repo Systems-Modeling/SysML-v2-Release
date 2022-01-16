@@ -14,7 +14,7 @@ package 'Merge Example' {
 		then merge continue;
 			
 		then action trigger {
-			in item scene : Scene;
+			out item scene : Scene;
 		}
 		
 		then action focus : Focus {

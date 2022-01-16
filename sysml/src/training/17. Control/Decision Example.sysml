@@ -28,7 +28,7 @@ package 'Decision Example' {
 		}
 		then continueCharging;
 		
-		action endCharging;
+		action endCharging : EndCharging;
 		then done;
 	}
 }

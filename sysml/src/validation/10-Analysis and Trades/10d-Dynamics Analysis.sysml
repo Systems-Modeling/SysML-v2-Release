@@ -39,20 +39,6 @@ package '10d-Dynamics Analysis' {
 		import ScalarValues::Natural;
 		import SequenceFunctions::*;
 		
-		attribute def ScenarioState {
-			position : LengthValue;
-			velocity : SpeedValue;
-		}
-		
-		attribute def NominalScenario :> SampledFunction {
-			attribute def TimeStateRecord :> SamplePair {
-				t : TimeValue :>> domainValue;
-				s : ScenarioState :>> rangeValue;
-			}
-			:>> samples : TimeStateRecord;
-			n : Natural = size(samples);
-		}
-		
 		analysis def DynamicsAnalysis {
 			subject vehicle : Vehicle;
 			in attribute powerProfile :> ISQ::power[*];
