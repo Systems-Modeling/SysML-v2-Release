@@ -12,7 +12,7 @@ package AnalysisIndividualExample {
 	        attribute :>> quantityDimension { :>> quantityPowerFactors = (distancePF, volumePF); }
 	    }
 
-	    attribute def DistancePerVolumeValue :> QuantityValue {
+	    attribute def DistancePerVolumeValue :> ScalarQuantityValue {
 	        :>> num : Real;
 	        :>> mRef : DistancePerVolumeUnit;
 	    }

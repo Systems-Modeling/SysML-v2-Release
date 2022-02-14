@@ -1,6 +1,6 @@
 package VectorCalculations {
 	import ScalarValues::*;
-    import Quantities::*;
+    import Quantities::VectorQuantityValue;
 
     /* Vector addition and subtraction */
 	calc def '+' specializes NumericalFunctions::'+' (x: VectorQuantityValue, y: VectorQuantityValue): VectorQuantityValue;

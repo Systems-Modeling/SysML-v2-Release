@@ -41,15 +41,6 @@ package '5-State-based Behavior-1a' {
 		attribute def 'Off Signal';
 		attribute def 'Over Temp';
 		attribute def 'Return to Normal';
-		
-		/*
-		 * The following attribute defs are used to fill in for the
-		 * current lack of support for time events and change events,
-		 * respectively.
-		 */
-		 
-		attribute def 'at(vehicle.maintenanceTime)';
-		attribute def 'when(temp>vehicle.Tmax)';
 	}
 	
 	package Usages {
@@ -141,12 +132,12 @@ package '5-State-based Behavior-1a' {
 				
 				transition 'normal-maintenance'
 					first normal
-					accept 'at(vehicle.maintenanceTime)' // Should be a time event trigger.
+					accept at vehicle1_c1.maintenanceTime
 					then maintenance;
 				
 				transition 'normal-degraded'
 					first normal
-					accept 'when(temp>vehicle.Tmax)' // Should be a change event trigger.
+					accept when 'sense temperature'.temp > vehicle1_c1.Tmax
 					do send 'Over Temp'() to vehicle1_c1.vehicleController 
 					then degraded;
 				

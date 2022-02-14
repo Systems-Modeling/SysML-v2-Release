@@ -3,7 +3,12 @@
  */
 package Quantities {
 	private import Collections::*;
-	private import ScalarValues::ScalarValue;
+	private import ScalarValues::NumericalValue;
+	private import ScalarValues::Number;
+	private import ScalarValues::Real;
+	private import ScalarValues::Natural;
+	private import ScalarValues::Boolean;
+	private import ScalarValues::String;
 	
 	/**
 	 * The value of a quantity is a tuple of one or more numbers (i.e. mathematical number values) and a reference to a measurement reference.
@@ -14,14 +19,13 @@ package Quantities {
 	 * and a ScalarQuantityValue a ScalarMeasurementReference. See package UnitsAndScales for details.
 	 */
 	abstract attribute def TensorQuantityValue :> Array {
-		attribute isBound: ScalarValues::Boolean;
-		attribute num: ScalarValues::Number[1..*] ordered nonunique :>> elements;
+		attribute isBound: Boolean;
+		attribute num: Number[1..*] ordered nonunique :>> elements;
 		attribute mRef: UnitsAndScales::TensorMeasurementReference;
-		attribute measure: UnitsAndScales::TensorMeasurementReference;
         attribute :>> dimensions = mRef.dimensions;
 		attribute order :>> rank = mRef.order;
-        attribute contravariantOrder: ScalarValues::Natural;
-        attribute covariantOrder: ScalarValues::Natural;
+        attribute contravariantOrder: Natural;
+        attribute covariantOrder: Natural;
 
         assert constraint orderSum { contravariantOrder + covariantOrder == order }
         assert constraint boundMatch { (isBound == mRef.isBound) || (!isBound && mRef.isBound) }
@@ -31,7 +35,7 @@ package Quantities {
 		attribute :>> mRef: UnitsAndScales::VectorMeasurementReference;
 	}
 	
-	abstract attribute def ScalarQuantityValue :> VectorQuantityValue, ScalarValue {
+	abstract attribute def ScalarQuantityValue :> VectorQuantityValue, NumericalValue {
 		attribute :>> mRef: UnitsAndScales::ScalarMeasurementReference;
 	}
 	
@@ -57,7 +61,6 @@ package Quantities {
 	 * completed by adding derived quantities which are products of powers of the base quantities.
 	 */
 	attribute def SystemOfQuantities {
-		attribute longName: ScalarValues::String;
 		attribute baseQuantities: ScalarQuantityValue[*] ordered :> scalarQuantities;
 	}
 
@@ -68,7 +71,7 @@ package Quantities {
 	 */
 	attribute def QuantityPowerFactor {
 		attribute quantity: ScalarQuantityValue[1];
-		attribute exponent: ScalarValues::Real[1];
+		attribute exponent: Real[1];
 	}
 	
 	/**

@@ -61,6 +61,7 @@ package SysML {
 	abstract item def LoopActionUsage :> ActionUsage;
 	item def WhileLoopActionUsage :> LoopActionUsage;
 	item def ForLoopActionUsage :> LoopActionUsage;
+	item def TriggerInvocationExpression :> InvocationExpression;
 	
 	item def StateDefinition :> ActionDefinition;
 	item def StateUsage :> ActionUsage;

@@ -178,8 +178,7 @@ package ISQBase {
      * Declaration of the International System of Quantities (ISQ), 
      * including its base quantities and symbols as specified in ISO 80000-1:2009.
      */
-    attribute isq: SystemOfQuantities {
-        attribute :>> longName = "International System of Quantities";
+    attribute <isq> 'International System of Quantities': SystemOfQuantities {
         attribute :>> baseQuantities = ( L, M, T, I, 'Θ', N, J );
         
         attribute L: LengthValue[1];

@@ -28,9 +28,6 @@ package '5-State-based Behavior-2' {
 		attribute def 'Off Signal';
 		attribute def 'Over Temp';
 		attribute def 'Return to Normal';
-		
-		attribute def 'at(vehicle.maintenanceTime)';
-		attribute def 'when(temp>vehicle.Tmax)';
 	}
 	
 	package Usages {
@@ -77,9 +74,9 @@ package '5-State-based Behavior-2' {
 				 * a single state.
 				 */
 				state normal;
-				accept 'at(vehicle.maintenanceTime)'
+				accept at vehicle1_c1.maintenanceTime
 					then maintenance;
-				accept 'when(temp>vehicle.Tmax)' 
+				accept when 'sense temperature'.temp > vehicle1_c1.Tmax
 					do send 'Over Temp'() to vehicle1_c1.vehicleController 
 					then degraded;
 				

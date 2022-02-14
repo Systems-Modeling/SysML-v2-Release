@@ -1,11 +1,10 @@
 package QuantityCalculations {
 	import ScalarValues::*;
-    import Quantities::*;
+    import Quantities::ScalarQuantityValue;
     import UnitsAndScales::ScalarMeasurementReference;
-    import UnitsAndScales::MeasurementReference;
     import UnitsAndScales::DimensionOneValue;
     
-    calc def '[' specializes BaseFunctions::'[' (x: NumericalValue, y: ScalarMeasurementReference): QuantityValue;
+    calc def '[' specializes BaseFunctions::'[' (x: NumericalValue, y: ScalarMeasurementReference): ScalarQuantityValue;
 
 	calc def Abs specializes NumericalFunctions::Abs (x: ScalarQuantityValue): ScalarQuantityValue;
 

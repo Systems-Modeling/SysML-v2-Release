@@ -1,23 +1,57 @@
 /**
- * Specifications for time instant and various time scales
+ * This package specifies concepts to support time-related quantities and metrology, beyond 
+ * the quantities duration and time as defined in [ISO 80000-3]. Representations of the 
+ * Gregorian calendar date and time of day as specified by the [ISO 8601-1] standard are used.
  */
-
 package Time {
-	import ScalarValues::Real;
-	import ScalarValues::Integer;
-	import ScalarValues::Natural;
-	import ScalarValues::String;
-	import Quantities::ScalarQuantityValue;
-	import Quantities::scalarQuantities;
-    import UnitsAndScales::*;
+	private import Occurrences::Occurrence;
+	private import ScalarValues::Real;
+	private import ScalarValues::Integer;
+	private import ScalarValues::Natural;
+	private import ScalarValues::String;
+	private import Quantities::ScalarQuantityValue;
+	private import Quantities::scalarQuantities;
+    private import UnitsAndScales::*;
     import ISQBase::DurationValue;
     import ISQBase::DurationUnit;
     import ISQBase::duration;
     import ISQSpaceTime::TimeValue;
     import ISQSpaceTime::TimeUnit;
     import ISQSpaceTime::time;
+    
+    /**
+     * defaultClock is a single Clock that can be used as a default.
+     */
+    readonly part defaultClock : Clock[1] = Clocks::defaultClock;
 
+	/**
+	 * A Clock provides a currentTime as a TimeInstantValue that advances montonically over its lifetime.
+	 */
+	part def Clock :> Clocks::Clock {
+		attribute :>> currentTime : TimeInstantValue;
+	}
+	
+	/**
+	 * TimeOf returns a TimeInstantValue for a given Occurrence relative to a given Clock. This TimeInstantValue is the 
+	 * time of the start of the Occurrence, which is considered to be synchronized with the snapshot of the Clock with a 
+	 * currentTime equal to the returned timeInstant.
+	 */
+	calc def TimeOf :> Clocks::TimeOf {
+		in o : Occurrence[1]; 
+		in clock : Clock[1] default defaultClock;
+		return timeInstant : TimeInstantValue[1];
+	}
 
+	/**
+	 * DurationOf returns the duration of a given Occurrence relative to a given Clock, which is equal to the TimeOf 
+	 * the end snapshot of the Occurrence minus the TimeOf its start snapshot.
+	 */
+	calc def DurationOf :> Clocks::DurationOf {
+		in o : Occurrence[1]; 
+		in clock : Clock[1] default defaultClock;
+		return duration : DurationValue;
+	}
+	
 	/**
 	 * Generic time scale to express a time instant, including a textual definition of the meaning of zero time instant value
 	 * 
@@ -81,7 +115,7 @@ package Time {
 	 * Representation of a time instant expressed on the Coordinated Universal Time (UTC) time scale
 	 */
 	attribute def UtcTimeInstantValue :> DateTime { :>> mRef = UTC; }
-	attribute utcTimeInstant: UtcTimeInstantValue;
+	attribute utcTimeInstant: UtcTimeInstantValue :> timeInstant;
 
 	/**
 	 * Representations of a Gregorian calendar date and time of day as specified by the ISO 8601-1 standard.
@@ -142,8 +176,8 @@ package Time {
      * Representation of an ISO 8601-1 date and time in extended string format
 	 */
     attribute def Iso8601DateTime :> UtcTimeInstantValue {
-    	attribute :>> num = getElapsedUtcTime(val);
     	attribute val: Iso8601DateTimeEncoding;
+    	attribute :>> num = getElapsedUtcTime(val);
     	private calc getElapsedUtcTime(iso8601DateTime: Iso8601DateTimeEncoding) : Real {
     		doc /** Return the number of seconds elapsed since the UTC epoch. Can be negative when the date and time is earlier than the epoch. */
     		attribute x: Real;
@@ -161,8 +195,6 @@ package Time {
      * The total time offset is equal to the summation of hourOffset and minuteOffset.
 	 */
     attribute def Iso8601DateTimeStructure :> UtcTimeInstantValue {
-    	attribute :>> num = getElapsedUtcTime(year, month, day, hour, minute, second, microsecond, hourOffset, minuteOffest);
-    	attribute :>> mRef = UTC;
     	attribute year: Integer;
     	attribute month: Natural;
     	attribute day: Natural;
@@ -172,6 +204,8 @@ package Time {
     	attribute microsecond: Natural;
     	attribute hourOffset: Integer;
     	attribute minuteOffest: Integer;
+    	attribute :>> num = getElapsedUtcTime(year, month, day, hour, minute, second, microsecond, hourOffset, minuteOffest);
+    	attribute :>> mRef = UTC;
     	private calc getElapsedUtcTime(year: Integer, month: Natural, day: Natural, hour: Natural, minute: Natural, second: Natural,
     			microsecond: Natural, hourOffset: Integer, minuteOffest: Integer) : Real {
     		attribute x: Real;

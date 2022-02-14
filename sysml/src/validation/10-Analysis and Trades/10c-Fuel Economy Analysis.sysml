@@ -5,7 +5,7 @@ package '10c-Fuel Economy Analysis' {
 	import ISQ::*;
 	import USCustomaryUnits::*;
 	
-	attribute distancePerVolume : QuantityValue = length / volume;	
+	attribute distancePerVolume : ScalarQuantityValue = length / volume;	
 	attribute gallon : MeasurementUnit = 231.0 * 'in'^3;
 	
 	package FuelEconomyRequirementsModel {
@@ -76,7 +76,7 @@ package '10c-Fuel Economy Analysis' {
 			subject vehicle : Vehicle;
 			in calc scenario : NominalScenario;
 			in requirement fuelEconomyRequirement : FuelEconomyRequirement;
-			return calculatedFuelEconomy : QuantityValue;
+			return calculatedFuelEconomy : ScalarQuantityValue;
 			
 			objective fuelEconomyAnalysisObjective {
 				doc /*

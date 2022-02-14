@@ -1,6 +1,6 @@
 package AliasTest {
-	import Quantities::quantities; // import of an alias	
-	attribute q :> quantities;
+	import ISQSpaceTime::breadth; // import of an alias
+	attribute b :> breadth;
 	
     part def P1 {
         port porig1;

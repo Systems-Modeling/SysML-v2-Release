@@ -18,4 +18,24 @@ package ISQ {
     import ISQCharacteristicNumbers::*; // ISO 80000-11 "Characteristic numbers"
     import ISQCondensedMatter::*;       // ISO 80000-12 "Condensed matter physics"
     import ISQInformation::*;           // IEC 80000-13 "Information science and technology"
+
+    /* Additional quantity declarations */
+
+    /** 
+     * temperature difference
+     * 
+     * A separate temperature difference quantity and unit are needed in order to support °C, °F and centrigrade temperature differences
+     */
+    attribute def TemperatureDifferenceUnit :> SimpleUnit {
+        private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq.'Θ'; :>> exponent = 1; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = thermodynamicTemperaturePF; }
+    }
+
+    attribute def TemperatureDifferenceValue :> ScalarQuantityValue {
+        attribute :>> num: Real;
+        attribute :>> mRef: TemperatureDifferenceUnit[1];
+    }
+    
+    attribute temperatureDifference: TemperatureDifferenceValue [*] nonunique :> scalarQuantities;
+
 }

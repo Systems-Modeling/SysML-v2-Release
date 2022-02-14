@@ -9,7 +9,7 @@ package Actions {
 	private import Occurrences::Occurrence;
 	private import Performances::Performance;
 	private import Performances::performances;
-	private import FeatureAccessPerformances::FeatureWritePerformance;
+	private import FeatureReferencingPerformances::FeatureWritePerformance;
 	private import Transfers::TransferBefore;
 	private import ControlPerformances::MergePerformance;
 	private import ControlPerformances::DecisionPerformance;
@@ -135,7 +135,7 @@ package Actions {
 	 * incomingTransferFromSelf that is one of the incomingTransfers of a given receiver Occurrence, 
 	 * outputting the payload from the Transfer.
 	 */
-	action def AcceptAction(out payload[0..*], in receiver: Occurrence[1]) {
+	action def AcceptAction(inout payload[0..*], in receiver: Occurrence[1]) {
 		ref incomingTransfer: TransferBefore[1] :>> incomingTransfersToSelf :> receiver.incomingTransfers {
 			ref :>> target: AcceptAction {
 				ref :>> targetInput = payload;

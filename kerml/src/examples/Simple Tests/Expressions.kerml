@@ -21,7 +21,7 @@ package Expressions {
 				out v_decr : Integer = v - 1;			
 			}
 			succession decrement then update;
-			step update : FeatureAccessPerformances::FeatureWritePerformance {
+			step update : FeatureReferencingPerformances::FeatureWritePerformance {
 				in redefines onOccurrence = w::self {
 					feature redefines startingAt : w {
 						feature redefines accessedFeature redefines v;
