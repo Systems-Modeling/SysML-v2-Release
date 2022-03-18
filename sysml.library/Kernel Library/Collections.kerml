@@ -42,18 +42,28 @@ package Collections {
      * An Array is a fixed size, multi-dimensional Collection of which the elements are nonunique and ordered. 
      * Its dimensions specify how many dimensions the array has, and how many elements there are in each dimension. 
      * The rank is equal to the number of dimensions. The flattenedSize is equal to the total number of elements 
-     * in the array. The elements of an Array can be assessed by a tuple of indices. The number of indices in such tuple is equal to rank. 
-	 * The packing of the elements, i.e. the flattened representation, follows the C programming language convention, 
-	 * namely the last index varies fastest.
+     * in the array.
+     * 
+     * Feature elements is a flattened sequence of all elements of an Array and can be accessed by a tuple of indices. 
+     * The number of indices is equal to rank. The elements are packed according to row-major convention, as in the C programming language.
+     * 
+     * The elements of an Array can be assessed by a tuple of indices. The number of indices in such tuple is equal to rank. 
+	 * The packing of the elements, i.e. the flattened representation, follows the row-major convention, 
+	 * as in the C programming language.
 	 * 
-	 * Note: Array can represent the generalized mathematical concept of an infinite matrix of any rank, i.e. not limited to rank two.
+	 * Note 1. Feature dimensions may be empty, which denotes a zero dimensional array, allowing an Array to collapse to a single element. 
+	 * This is useful to allow for specialization of an Array into a type restricted to represent a scalar. 
+	 * The flattenedSize of a zero dimensional array is 1.
+	 * 
+	 * 
+	 * Note 2: An Array can represent the generalized mathematical concept of an infinite matrix of any rank, i.e. not limited to rank two.
      */
     datatype Array :> OrderedCollection {
         // Feature `dimensions` defines the N-dimensional shape of the Array
         // The alternative name `shape` (as used in many programming languages) is not used as it would interfere with a geometric shape feature.
-        feature dimensions: Positive[1..*] ordered nonunique;
+        feature dimensions: Positive[0..*] ordered nonunique;
         feature rank: Natural[1] = size(dimensions);
-        feature flattenedSize: Natural[1] = dimensions->reduce '*';
+        feature flattenedSize: Positive[1] = dimensions->reduce '*' ?? 1;
         inv { flattenedSize == size(elements) }
     }
     

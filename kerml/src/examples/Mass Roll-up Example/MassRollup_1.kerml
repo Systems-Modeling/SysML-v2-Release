@@ -1,5 +1,5 @@
 package MassRollup_1 {
-	import ScalarFunctions::*;
+	import NumericalFunctions::*;
 
 	class MassedThing {
 		feature mass subsets ISQ::mass;	

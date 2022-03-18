@@ -71,8 +71,9 @@ package KerML {
 	struct LiteralInfinity :> LiteralExpression;
 	struct NullExpression :> Expression;
 	struct OperatorExpression :> InvocationExpression;
-	struct PathStepExpression :> OperatorExpression;
-	struct PathSelectExpression :> OperatorExpression;
+	struct FeatureChainExpression :> OperatorExpression;
+	struct CollectExpression :> OperatorExpression;
+	struct SelectExpression :> OperatorExpression;
 	
 	struct Interaction :> Behavior, Association;
 	struct ItemFlow :> Step, Connector;

@@ -6,6 +6,7 @@ package CollectionFunctions {
 	private import Base::Anything;
 	private import ScalarValues::*;
 	private import SequenceFunctions::equals;
+	private import SequenceFunctions::includes;
 	private import ControlFunctions::exists;
 	import Collections::*;
 	
@@ -25,8 +26,12 @@ package CollectionFunctions {
 		SequenceFunctions::notEmpty(col.elements)
 	}
 	
-	function contains(col: Collection[1], value: Anything[1]): Boolean[1] {
-		col.elements->exists {in x; x == value}
+	function contains(col: Collection[1], values: Anything[*]): Boolean[1] {
+		col.elements->includes(values)
+	}
+	
+	function containsAll(col1: Collection[1], col2: Collection[2]): Boolean[1] {
+		contains(col1, col2.elements)
 	}	
 	
 	function head(col: OrderedCollection[1]): Anything[0..1] {

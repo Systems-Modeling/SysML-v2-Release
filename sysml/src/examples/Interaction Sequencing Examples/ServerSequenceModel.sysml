@@ -37,7 +37,7 @@ package ServerSequenceModel {
 		
 		part consumer {
 			event occurrence subscribe_source_event;
-			then event occurrence deliver_target_event :> suboccurrences;
+			then event occurrence deliver_target_event;
 		}
 	}
 }

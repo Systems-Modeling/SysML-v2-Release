@@ -12,7 +12,10 @@ package Expressions {
 	
 	b = x > y? x-y: y-x;
 	c = x->collect {in xx; xx + 1}; 
-	d = x->reduce {in s; in t; s + t}->reduce '+';
+	c1 = x.{in xx; xx + 1}; 
+	d = x->select {in xx; xx != null};
+	d1 = x.?{in xx; xx != null};
+	e = x->reduce {in s; in t; s + t}->reduce '+';
 	
 	behavior w specializes ControlPerformances::LoopPerformance (inout v: Integer)  {
 		in expr redefines whileTest {v > 3}

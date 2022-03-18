@@ -55,7 +55,7 @@ package UnitsAndScales {
 	 * a VectorMeasurementReference) w.r.t. another (independent or reference) coordinate system.
 	 */
 	attribute def VectorMeasurementReference :> TensorMeasurementReference {
-		attribute :>> dimensions: Positive[1];
+		attribute :>> dimensions: Positive[0..1];
 		attribute isOrthogonal: Boolean[1] default true;
 		attribute placement: CoordinateTransformation[0..1];
 	}
@@ -71,8 +71,7 @@ package UnitsAndScales {
 	 * and for consistency with tensor and vector measurement references.
 	 */
 	abstract attribute def ScalarMeasurementReference :> VectorMeasurementReference {
-		attribute :>> dimensions = 1;
-		attribute :>> order = 0;
+		attribute :>> dimensions = ();
 		attribute :>> isOrthogonal = true;
 		attribute :>> mRefs = self;
 		attribute quantityDimension: QuantityDimension[1];

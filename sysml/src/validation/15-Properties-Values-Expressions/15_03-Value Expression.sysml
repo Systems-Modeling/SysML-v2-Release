@@ -1,7 +1,6 @@
 package '15_03-Value Expression' {
     import SI::*;
     import USCustomaryUnits::*;
-    import BasicGeometry::AxisPlacement3DCartesian;
 
     part def Vehicle_1 {
         attribute mass: MassValue = 1200 [kg];
@@ -13,7 +12,6 @@ package '15_03-Value Expression' {
     part def Wheel {
     	attribute hubDiameter: LengthValue = 18 ['in'];
         attribute width: LengthValue = 245 [mm];
-        attribute placement: AxisPlacement3DCartesian[0..1];
         /**
          * This binds 'outDiameter' to the result of a computed attribute.
          * There is no need to mark it as "derived".

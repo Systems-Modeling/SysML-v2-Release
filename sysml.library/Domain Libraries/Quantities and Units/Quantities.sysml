@@ -9,6 +9,7 @@ package Quantities {
 	private import ScalarValues::Natural;
 	private import ScalarValues::Boolean;
 	private import ScalarValues::String;
+	private import VectorValues::NumericalVectorValue;
 	
 	/**
 	 * The value of a quantity is a tuple of one or more numbers (i.e. mathematical number values) and a reference to a measurement reference.
@@ -31,7 +32,7 @@ package Quantities {
         assert constraint boundMatch { (isBound == mRef.isBound) || (!isBound && mRef.isBound) }
 	}
 	
-	abstract attribute def VectorQuantityValue :> TensorQuantityValue {
+	abstract attribute def VectorQuantityValue :> TensorQuantityValue, NumericalVectorValue {
 		attribute :>> mRef: UnitsAndScales::VectorMeasurementReference;
 	}
 	

@@ -31,7 +31,7 @@ package Performances {
 		/**
 		 * suboccurrences of this Performance that are also Performances.
 		 */
-		step subperformances: Performance[0..*] subsets performances, suboccurrences;
+		step subperformances: Performance[0..*] subsets performances, timeEnclosedOccurrences;
 		
 		/**
 		 * subperformances of this Performance that are Evaluations.

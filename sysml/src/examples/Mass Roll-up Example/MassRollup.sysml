@@ -1,5 +1,5 @@
 package MassRollup {
-	import ScalarFunctions::*;
+	import NumericalFunctions::*;
 	
 	part def MassedThing {
 		attribute mass :> ISQ::mass; 
@@ -21,7 +21,7 @@ package MassRollup {
 		abstract attribute minMass :> ISQ::mass;
 		
 		attribute totalMass redefines MassedThing::totalMass =
-			mass + sum(subcomponents.totalMass.{in p :> ISQ::mass; p > minMass});
+			mass + sum(subcomponents.totalMass.?{in p :> ISQ::mass; p > minMass});
 	}
 
 }

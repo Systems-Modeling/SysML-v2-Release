@@ -1,7 +1,7 @@
 package MassConstraintExample {
 	import ISQ::*;
 	import SI::*;
-	import ScalarFunctions::*;
+	import NumericalFunctions::*;
 	
 	part def Engine {
 		attribute m :> mass;

@@ -1,7 +1,7 @@
 package '10a-Analysis' {
 	import ISQ::*;
 	import SI::*;
-	import ScalarFunctions::*;
+	import NumericalFunctions::*;
 	
 	package VehicleDesignModel {
 		part def Vehicle {

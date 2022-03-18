@@ -22,7 +22,7 @@ package SequenceFunctions {
 		!isEmpty(seq)
 	}
 	function includes(seq1: Anything[0..*] nonunique, seq2: Anything[0..*] nonunique): Boolean[1] {
-		seq2->forAll {in x; seq1->includes(x)}
+		seq2->forAll {in x; seq1->exists{in y; x == y}}
 	}
 	function includesOnly(seq1: Anything[0..*] nonunique, seq2: Anything[0..*] nonunique): Boolean[1] {
 		seq1->includes(seq2) && seq2->includes(seq1)

@@ -34,16 +34,5 @@ package DataFunctions {
 	
 	abstract function '==' specializes BaseFunctions::'=='(x: DataValue[0..1], y: DataValue[0..1]): Boolean[1];
 	
-	abstract function '..'(lower: DataValue[1], upper: DataValue[1]): DataValue[0..*] ordered;
-	
-	abstract function sum(collection: DataValue[0..*] ordered): DataValue[1];
-	abstract function product(collection: DataValue[0..*] ordered): DataValue[1];
-	
-	function sum0(collection: DataValue[0..*] ordered, zero: DataValue[1]): DataValue[1] {
-		collection->reduce '+' ?? zero
-	}
-	
-	function product1(collection: DataValue[0..*] ordered, one: DataValue[1]): DataValue[1] {
-		collection->reduce '*' ?? one
-	}
+	abstract function '..'(lower: DataValue[1], upper: DataValue[1]): DataValue[0..*] ordered;	
 }

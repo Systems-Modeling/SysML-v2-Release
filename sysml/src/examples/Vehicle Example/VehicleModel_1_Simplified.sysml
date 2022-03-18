@@ -10,6 +10,8 @@ package VehicleModel_1_simplified{
             * objectiveFunction to evaluationFunction
             * riskLevels (low, medium, high)
             * 2021-12-30: Allocated flow to interface and mass requirement to vehicle.mass
+            * 2022-02-16: Added change and time events from release 2022-01 to Vehicle health states
+            ^ 2022-03-09: Added Swimlanes package and view to OtherFunctionality
             */
         }
     }
@@ -49,7 +51,6 @@ package VehicleModel_1_simplified{
                 perform action applyParkingBrake;
                 perform action senseTemperature;
                 //the following uses a single concept of event for signal, change, and time event
-                //the time event will be replaced by when eventname
                 exhibit state vehicleStates parallel {
                     ref controller : VehicleController;
                     state operatingStates {
@@ -86,7 +87,9 @@ package VehicleModel_1_simplified{
 
                     state healthStates {
                         entry action initial;
-                        do senseTemperature (out temp);
+                        do senseTemperature{
+                            out temp;
+                        }
 
                         state normal;
                         state maintenance;
@@ -101,7 +104,7 @@ package VehicleModel_1_simplified{
 
                         transition normal_To_degraded
                             first normal
-                            accept when senseTemperature.temp > Tmax
+                            accept when senseTemperature.temp > Tmax 
                             do send OverTemp() to controller
                             then degraded;
 
@@ -434,9 +437,8 @@ package VehicleModel_1_simplified{
             }
         }
         package AttributeDefinitions{
+            //import Quantities::*;
             import ScalarValues::*;
-            // Scalar Functions provides Sum expression
-            import ScalarFunctions::*;
             import ISQ::*;
             import SI::*;
             import USCustomaryUnits::*;
@@ -551,6 +553,7 @@ package VehicleModel_1_simplified{
             }
     }
     package VehicleConfigurations{
+    	import NumericalFunctions::sum;
         package VehicleConfiguration_a{
             package PartsTree{
                 part vehicle_a:Vehicle{
@@ -1791,6 +1794,34 @@ package VehicleModel_1_simplified{
                     //the following causes an error
                     //attribute :>>j;
                 }
+            }
+        }
+        package SwimLanes{
+            part def Part0;
+            part def Part1;
+            part def Part2;
+            part part0:Part0{
+                perform action0;
+                part part1: Part1{
+                    perform action0.action1;
+                    perform action0.action4;
+                }
+                part part2 : Part2 {
+                    perform action0.action2;
+                    perform action0.action3;
+                }
+            }
+            action action0 {
+                action1;
+                action2;
+                action3;
+                action4;
+                
+                first start then action1;
+                first action1 then action2;
+                first action2 then action3;
+                first action3 then action4;
+                first action4 then done;
             }
         }
     }

@@ -16,7 +16,7 @@ package Ports {
 		/**
 		 * The Ports that are subports of this Port.
 		 */
-		port subports: Port :> suboccurrences;
+		port subports: Port :> timeEnclosedOccurrences;
 	}
 	
 	/**

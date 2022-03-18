@@ -15,7 +15,8 @@ package NaturalFunctions {
 	function '<=' specializes IntegerFunctions::'<=' (x: Natural[1], y: Natural[1]): Boolean[1];
 	function '>=' specializes IntegerFunctions::'>=' (x: Natural[1], y: Natural[1]): Boolean[1];	
 
-	function Max specializes IntegerFunctions::Max (x: Natural[1], y: Natural[1]): Natural[1];
+	function max specializes IntegerFunctions::max (x: Natural[1], y: Natural[1]): Natural[1];
+	function min specializes IntegerFunctions::min (x: Natural[1], y: Natural[1]): Natural[1];
 
 	function '==' specializes IntegerFunctions::'==' (x: Natural[0..1], y: Natural[0..1]): Boolean[1];
 	

@@ -1,6 +1,5 @@
 package 'Calculation Definitions' {
 	import ScalarValues::Real;
-	import RealFunctions::Sqrt;
 	import ISQ::*;
 	
 	calc def Power (whlpwr : PowerValue, Cd : Real, Cf : Real, tm : MassValue, v : SpeedValue ) : PowerValue {

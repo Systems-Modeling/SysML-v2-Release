@@ -1,5 +1,5 @@
 package MassRollup_2 {
-	import ScalarFunctions::*;
+	import NumericalFunctions::*;
 	import ISQ::*;
 	
 	class MassedThing {
