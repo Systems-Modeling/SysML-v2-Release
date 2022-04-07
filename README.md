@@ -84,4 +84,4 @@ Copyright © 2019-2021 Maplesoft (Waterloo Maple, Inc.) <br/>
 Copyright © 2019-2022 Mgnite Inc. <br/>
 Copyright © 2019-2022 Model Driven Solutions, Inc. <br/>
 Copyright © 2019-2022 SAF Consulting <br/>
-Copyright © 2021-2022 Twingineering LLC
+Copyright © 2021-2022 Twingineer LLC
