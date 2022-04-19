@@ -32,7 +32,7 @@ package ModelingMetadata {
 	/**
 	 * StatusInfo is used to annotate a model element with status information.
 	 */
-	attribute def StatusInfo {
+	metadata def StatusInfo {
 		/**
 		 * The originator of the annotated element.
 		 */
@@ -51,14 +51,14 @@ package ModelingMetadata {
 		/**
 		 * An assessment of risk for the annotated element.
 		 */
-		attribute risk : Risk [0..1];
+		item risk : Risk [0..1];
 	}
 	
 	/**
 	 * Rationale is used to explain a choice or other decision made related to the
 	 * annotated element.
 	 */
-	attribute def Rationale {
+	metadata def Rationale {
 		/**
 		 * A textual description of the rationale (required).
 		 */
@@ -74,7 +74,7 @@ package ModelingMetadata {
 	/**
 	 * Issue is used to record some issue concerning the annotated element.
 	 */
-	attribute def Issue {
+	metadata def Issue {
 		/**
 		 * A textual description of the issue.
 		 */

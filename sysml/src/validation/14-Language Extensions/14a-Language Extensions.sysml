@@ -9,9 +9,8 @@ package '14a-Language Extensions' {
 			secret;
 		}
 		
-		// Cannot currently be restricted to apply only to
-		// a specific metaclass.
-		attribute def Classified {
+		metadata def Classified {
+			ref :>> annotatedElement : SysML::PartUsage;
 			attribute classificationLevel : ClassificationLevel[1];
 		}
 	}
@@ -28,5 +27,5 @@ package '14a-Language Extensions' {
 			classificationLevel = ClassificationLevel::conf;
 		}
 	}
-		
+
 }

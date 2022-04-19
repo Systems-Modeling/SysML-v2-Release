@@ -1,7 +1,10 @@
 package 'Metadata Example-1' {
 	
-	attribute def SafetyFeature;
-	attribute def SecurityFeature;
+	metadata def SafetyFeature;
+	metadata def SecurityFeature {
+		:> annotatedElement : SysML::PartDefinition;
+		:> annotatedElement : SysML::PartUsage;
+	}
 	
 	metadata SafetyFeature about 
 		vehicle::interior::seatBelt,

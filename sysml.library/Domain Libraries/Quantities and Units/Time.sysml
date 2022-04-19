@@ -179,7 +179,7 @@ package Time {
     	attribute val: Iso8601DateTimeEncoding;
     	attribute :>> num = getElapsedUtcTime(val);
     	private calc getElapsedUtcTime(iso8601DateTime: Iso8601DateTimeEncoding) : Real {
-    		doc /** Return the number of seconds elapsed since the UTC epoch. Can be negative when the date and time is earlier than the epoch. */
+    		/** Return the number of seconds elapsed since the UTC epoch. Can be negative when the date and time is earlier than the epoch. */
     		attribute x: Real;
     		// TO DO: implement summation of ISO 8601 date and time components in x
     		x

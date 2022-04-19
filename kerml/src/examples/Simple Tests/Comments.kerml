@@ -32,7 +32,7 @@ package Comments {
     /** double star - one line comment with spaces after              */
     /** */
 	/* one start comment is allowed only inside a package */
-	doc /** Comment about Comment */
+	comment /** Comment about Comment */
 	comment cmt /* Named Comment */	
 	comment cmt_cmt about cmt /* Other Comment about Comment */
 	

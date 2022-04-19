@@ -4,10 +4,10 @@ package '13b-Safety and Security Features Element Group-2' {
 	import PartsTree::*;
 	
 	package AnnotationDefinitions {
-		attribute def Safety {
+		metadata def Safety {
 			attribute isMandatory : Boolean;
 		}
-		attribute def Security;
+		metadata def Security;
 	}
 	
 	package PartsTree {

@@ -9,7 +9,7 @@ package AnalysisTooling {
 	 * ToolExecution metadata identifies an external analysis tool to be
 	 * used to implement the annotated action.
 	 */
-	attribute def ToolExecution {
+	metadata def ToolExecution {
 		attribute toolName : String;
 		attribute uri : String;
 	}
@@ -21,7 +21,7 @@ package AnalysisTooling {
 	 * variable in the tool that is to correspond to the annotated
 	 * feature.
 	 */
-	attribute def ToolVariable {
+	metadata def ToolVariable {
 		attribute name : String;
 	}
 	

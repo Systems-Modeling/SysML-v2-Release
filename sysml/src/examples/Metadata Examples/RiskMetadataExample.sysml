@@ -9,8 +9,10 @@ package RiskMetadataExample {
             scheduleRisk = medium;
         }
         @Risk {
-        	totalRisk.probability = 0.3;
-        	totalRisk.impact = 0.7;
+        	totalRisk { 
+        		probability = 0.3;
+        		impact = 0.7;
+        	}        	
         }
     }
         

@@ -83,7 +83,7 @@ package Collections {
 	 * TODO: Check that multiple inheritance of `elements` from both OrderedCollection and UniqueCollection is handled correctly.
 	 */	
 	datatype OrderedSet :> OrderedCollection, UniqueCollection {
-		///** Note: Redefinition of `elements` is unique by default. */
+		// Note: Redefinition of `elements` is unique by default.
 		feature elements[0..*] ordered :>> OrderedCollection::elements;
 	}
 		
@@ -116,10 +116,6 @@ package Collections {
 	 * OrderedMap is a variable-size, ordered collection of elements that are key-value pairs. 
 	 */
     datatype OrderedMap :> Map {
-        doc /**
-              * An OrderedMap is a Map that maintains the order of its `elements`.
-              * The default ordering is as initially constructed.
-              */
 		/** Note: Redefinition of `elements` is unique by default. */
 		feature elements: KeyValuePair[0..*] ordered :>> Map::elements;
     }

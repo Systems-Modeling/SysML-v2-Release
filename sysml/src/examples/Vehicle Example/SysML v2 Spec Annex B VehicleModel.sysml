@@ -466,16 +466,16 @@ package sfriedenthal_VehicleModel_1_simplified{
             import AnalysisTooling::*;   
             //define the metadata as follows if not included in the AnalysisTooling library
             /*
-            attribute def ToolExecution {
+            metadata def ToolExecution {
                 attribute toolName:String;
                 attribute uri:String;
             }
             */ 
             
-            attribute def Safety {
+            metadata def Safety {
                 attribute isMandatory : Boolean;
             }
-            attribute def Security;
+            metadata def Security;
         }
         package GenericContext {
             //import ISQ::*;
@@ -1238,9 +1238,11 @@ package sfriedenthal_VehicleModel_1_simplified{
                 scheduleRisk = RiskLevelEnum::medium;
                 costRisk = RiskLevelEnum::low;
             }
-            @RiskLevel about engineTradeOffAnalysis::vehicle_b_engine4cyl::engine::fuelEfficiency {
-                Risk::technicalRisk.probability = 0.3;
-                Risk::technicalRisk.impact = 0.5;
+            @Risk about engineTradeOffAnalysis::vehicle_b_engine4cyl::engine::fuelEfficiency {
+                technicalRisk {
+                	probability = 0.3;
+                	impact = 0.5;
+                }
             }
             
             /*

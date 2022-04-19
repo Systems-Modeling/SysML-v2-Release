@@ -5,84 +5,152 @@ package '14c-Language-Extensions' {
 		
 		abstract occurrence def Situation;
 		
+		abstract occurrence situations : Situation[*] nonunique;
+		
 		occurrence def Cause :> Situation {
-			attribute 'occurrence'[0..1]: Real;
+			attribute occurs[0..1]: Real;
 		}
 		
+		abstract occurrence causes : Cause[*] nonunique;
+		
 		occurrence def FailureMode :> Situation {
-			attribute detectibility[0..1]: Real;
+			attribute detected[0..1]: Real;
 		}
+		
+		abstract occurrence failureModes : FailureMode[*] nonunique;
 		
 		occurrence def Effect :> Situation {
 			attribute severity[0..1]: String;
 		}
 		
+		abstract occurrence effects : Effect[*] nonunique;
+		
 		item def FMEAItem :> Situation {
-			attribute RPN: Real;
+			attribute RPN: Real[0..1];
 			
-			occurrence causes[*]: Cause;
-			occurrence failureModes[*]: FailureMode;
-			occurrence effects[*]: Effect;
+			occurrence :>> causes;
+			occurrence :>> failureModes;
+			occurrence :>> effects;
 		}
+		
+		abstract item fmeaItems : FMEAItem[*] nonunique;
 				
+		connection def Causation :> Occurrences::HappensBefore {
+			end cause[*]: Situation;
+			end effect[*]: Situation;
+		}
+		
+		abstract connection causations : Causation[*] nonunique;
+		
 		requirement def FMEARequirement;
+		
+		abstract requirement fmeaRequirements : FMEARequirement[*] nonunique;
 		
 		requirement def RequirementWithSIL :> FMEARequirement {
 			attribute sil: SIL;
 		}
 		
-		enum def SIL {
-			A;
-			B;
-			C;
-		}
+		enum def SIL { A; B; C; }
 		
-		connection def Causes :> Occurrences::HappensBefore {
-			end cause[*]: Situation;
-			end effect[*]: Situation;
-		}
-		
-		connection def Violates {
+		connection def Violation {
 			end sit[*]: Situation;
 			end req[*]: FMEARequirement;
 		}
+		
+		abstract connection violations : Violation[*] nonunique;
 		
 		abstract connection def ControllingMeasure {
 			end sit[*]: Situation;
 			end req[*]: FMEARequirement;
 		}
 		
-		connection def Prevents :> ControllingMeasure;
-		connection def Mitigates :> ControllingMeasure;
+		connection def Prevention :> ControllingMeasure;
+		
+		abstract connection preventions : Prevention[*] nonunique;
+		
+		connection def Mitigation :> ControllingMeasure;
+		
+		abstract connection mitigations : Mitigation[*] nonunique;
 		
 	}
 	
-	package Annotations {
+	package FMEAMetadata {
+		import Metaobjects::SemanticMetadata;
+		import FMEALibrary::*;
 
 		enum def Status {
 			Approved;
 			NotApproved;
 		}
 		
-		attribute def StatusHolder {
+		metadata def StatusHolder {
 			status: Status;
+		}
+		
+		metadata def <situation> SituationMetadata :> SemanticMetadata {
+			:>> baseType default situations as SysML::Usage;
+		}
+		
+		metadata def <cause> CauseMetadata :> SituationMetadata {
+			:>> baseType = causes as SysML::Usage;
+		}
+		
+		metadata def <failure> FailureModeMetadata :> SituationMetadata {
+			:>> baseType = failureModes as SysML::Usage;
+		}
+		
+		metadata def <effect> EffectMetadata :> SituationMetadata {
+			:>> baseType = effects as SysML::Usage;
+		}
+		
+		metadata def <fmea> FMEAItemMetadata :> SituationMetadata {
+			:> annotatedElement : SysML::ItemDefinition;
+			:> annotatedElement : SysML::ItemUsage;
+			:>> baseType = fmeaItems as SysML::Usage;
+		}
+		
+		metadata def <causation> CausationMetadata :> SemanticMetadata {
+			:>> annotatedElement : SysML::SuccessionAsUsage;
+			:>> baseType = causations as SysML::Usage;
+		}
+		
+		metadata def <fmeaspec> FMEARequirementMetadata :> SemanticMetadata {
+			:>> annotatedElement : SysML::RequirementUsage;
+			:>> baseType = fmeaRequirements as SysML::Usage;
+		}
+		
+		metadata def <violation> ViolationMetadata :> SemanticMetadata {
+			:>> annotatedElement : SysML::ConnectionUsage;
+			:>> baseType = violations as SysML::Usage;
+		}
+		
+		abstract metadata def ControllingMeasureMetadata :> SemanticMetadata {
+			:>> annotatedElement : SysML::ConnectionUsage;
+		}
+		
+		metadata def <prevention> PreventionMetadata :> ControllingMeasureMetadata {
+			:>> baseType = preventions as SysML::Usage;
+		}
+		
+		metadata def <mitigation> MitigationMetadata :> ControllingMeasureMetadata {
+			:>> baseType = mitigations as SysML::Usage;
 		}
 		
 	}
 	
-	package UserModel {
+	package FMEAUserModel {
 		import FMEALibrary::*;
-		import Annotations::*;
+		import FMEAMetadata::*;
 		
-		requirement req1: FMEARequirement {
+		#fmeaspec requirement req1 {
 			doc /* Meter designed according to ISO00124 */
 		}
 		
-		requirement req2: FMEARequirement {
+		#fmeaspec requirement req2 {
 			doc /* Device working for 1 week without the need to replace batteries */
 		}
 		
-		requirement req3: RequirementWithSIL {
+		#fmeaspec requirement req3: RequirementWithSIL {
 			@StatusHolder { status = Status::Approved; }
 			
 			doc /* Alarm when battery has sank */
@@ -90,36 +158,36 @@ package '14c-Language-Extensions' {
 			:>> sil = SIL::A;
 		}
 		
-		connection :Violates connect 'Glucose FMEA Item' to req2;
-		connection :Mitigates connect 'Glucose FMEA Item' to req3;
-			
-		item 'Glucose FMEA Item': FMEAItem {
+		#fmea item def 'Glucose FMEA Item' {
 
-			connection :Prevents connect 'battery depleted' to req1;
+			#prevention connect 'battery depleted' to req1;
 			
-			occurrence 'battery depleted' :> causes {
-				:>> 'occurrence' = 0.005;
+			#cause 'battery depleted' {
+				:>> occurs = 0.005;
 			}
 			
-			connection :Causes connect 'battery depleted' to 'battery cannot be charged';
+			#causation first 'battery depleted' then 'battery cannot be charged';
 			
-			occurrence 'battery cannot be charged' :> failureModes {
-				:>> detectibility = 0.013;
+			#failure 'battery cannot be charged' {
+				:>> detected = 0.013;
 			}
 			
-			connection :Causes connect 'battery cannot be charged' to 'glucose level undetected';
+			#causation first 'battery cannot be charged' then 'glucose level undetected';
 			
-			occurrence 'glucose level undetected' :> effects;
+			#effect 'glucose level undetected';
 			
-			connection :Causes connect 'glucose level undetected' to 'therapy delay';
+			#causation first 'glucose level undetected' then 'therapy delay';
 			
-			occurrence 'therapy delay' :> effects {
+			#effect 'therapy delay' {
 				:>> severity = "High";
 			}
 
 		}
 		
-		item 'Glucose Meter in Use' :> 'Glucose FMEA Item' {
+		#violation connect 'Glucose Meter in Use' to req2;
+		#mitigation connect 'Glucose Meter in Use' to req3;
+			
+		#fmea item 'Glucose Meter in Use' : 'Glucose FMEA Item' {
 			
 			part 'glucose meter' {
 				event 'glucose level undetected'[*];

@@ -64,7 +64,7 @@ package VerificationCases {
 	/**
 	 * VerificationMethod can be used as metadata annotating a verification case or action.
 	 */
-	attribute def VerificationMethod {
+	metadata def VerificationMethod {
 		attribute kind : VerificationMethodKind[1..*];
 	}
 	

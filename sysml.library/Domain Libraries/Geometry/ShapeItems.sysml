@@ -9,21 +9,35 @@ package ShapeItems {
 	private import Objects::*;
 	private import Items::Item;
 	private import SequenceFunctions::isEmpty;
-	
+	private import SequenceFunctions::notEmpty;
+	private import SequenceFunctions::size;	
+	private import ControlFunctions::'?';
+
 	/**
-	 * A Line is a Curve that is a straight line of a given length.
+	 * A PlanarCurve is a Curve with a given length embeddable in a plane.
 	 */
-	item def Line :> Curve {
-		attribute :>> length;
-		attribute :>> outerSpaceDimension = 1;
+	item def PlanarCurve :> Curve {
+		attribute :>> length [1];
+
+		assert constraint { notEmpty(outerSpaceDimension) &  outerSpaceDimension <= 2 }
 	}
 
 	/**
 	 * A PlanarSurface is a flat Surface with a given area.
 	 */
 	item def PlanarSurface :> Surface {
-		attribute :>> area;
+		attribute :>> area [1];
 		attribute :>> outerSpaceDimension = 2;
+
+		item :>> shape : PlanarCurve;
+	}
+
+	/**
+	 * A Line is a Curve that is a straight line of a given length.
+	 */
+	item def Line :> PlanarCurve {
+		attribute :>> length [1];
+		attribute :>> outerSpaceDimension = 1;
 	}
 
 	/**
@@ -39,12 +53,12 @@ package ShapeItems {
 	/**
 	 * A Circle is a Path in the shape of a circle of a given radius.
 	 */
-	item def Circle :> Path {
-		attribute radius :>> radius;
+	item def Circle :> Path, PlanarCurve {
+		attribute :>> radius;
 
 		item :>> faces [0];
 		item :>> edges [1] {
-			attribute circumference :>> length = Circle::radius * TrigFunctions::pi;
+			attribute circumference :>> length = Circle::radius * TrigFunctions::pi * 2;
 			item :>> shape : Item [0];
 			item :>> vertices [0];
 		}
@@ -54,15 +68,15 @@ package ShapeItems {
 	/**
 	 * A Disc is a Shell bounded by a Circle.
 	 */
-	item def Disc :> Shell {
-		attribute radius :>> radius;
+	item def Disc :> Shell, PlanarSurface {
+		attribute :>> radius;
 
 		item :>> shape : Circle [1] {
 			attribute :>> radius = Disc::radius;
 		}
 
 		item :>> faces : PlanarSurface [1] {
-			item :>> edges [1]; 
+			item :>> edges [1];
 		}
 		item :>> edges : Circle [1] = shape;
 		item :>> vertices [0];
@@ -76,9 +90,11 @@ package ShapeItems {
 	item def Sphere :> Shell {
 		attribute :>> radius;
 
-		item faces : Surface [1] :>> faces;
+		item :>> faces [1];
 		item :>> edges [0];
 		item :>> vertices [0];
+
+		attribute :>> genus = 0;
 	}
 
 	/**
@@ -86,28 +102,30 @@ package ShapeItems {
 	 * baseRadius, apexRadius and height.
 	 */
 	item def Cone :> Shell {
-		attribute baseRadius :> radius;
-		attribute apexRadius :> radius default 0 [m];
-		attribute :>> height;
-		attribute isTruncated : Boolean [1] = (apexRadius > 0);
+		attribute baseRadius [1] :> length = radius;
+		attribute apexRadius [1] :> length default 0 [m];
+		attribute :>> height [1];
 
-		item faces : Surface [2..3] :>> faces;
+		attribute :>> radius [1];
+		attribute isTruncated : Boolean [1] = apexRadius > 0;
+
+		item :>> faces [2..3];
 		item bf : Disc [1] :> faces;
 		item af : Disc [0..1] :> faces;
 		item cf : Surface [1] :> faces;
-		constraint { (apexRadius == 0) == isEmpty(af) }
+		assert constraint { (apexRadius == 0) == isEmpty(af) }
 
-		item edges : Circle [1..2] :>> edges;
-		item be [1] :> edges { 
+		item :>> edges : Circle [2..4];
+		item be [2] :> edges { 
 			attribute :>> radius = baseRadius;
 		}
-		item ae [0..1] :> edges { 
+		item ae [0..2] :> edges { 
 			attribute :>> radius = apexRadius;
 		}
-		constraint { isEmpty(af) == isEmpty(ae) }
+		assert constraint { isEmpty(af) ? isEmpty(ae) : size(ae) == 2 }
 
-		item vertices : Point [0..1] :>> vertices;
-		constraint { isEmpty(ae) == isEmpty(vertices) }
+		item :>> vertices [0..1];
+		assert constraint { isEmpty(ae) == notEmpty(vertices) }
 
 		/* Faces to edges */
 		connection :WithinBoth connect bf.edges [1] to be [0..*];
@@ -122,6 +140,7 @@ package ShapeItems {
 		connection :WithinBoth connect be [2] to be [2];
 		connection :WithinBoth connect ae [2] to ae [2];
 
+		attribute :>> genus = 0;
 	}
 
 	/**
@@ -129,9 +148,7 @@ package ShapeItems {
 	 * a right circular cylinder.
 	 */
 	item def Cylinder :> Cone {
-		attribute :>> radius = baseRadius;
-
-		attribute :>> baseRadius = apexRadius;
+		attribute :>> apexRadius = baseRadius;
 	}
 
 	/**
@@ -139,21 +156,21 @@ package ShapeItems {
 	 * given length, width and height.
 	 */
 	item def Cuboid :> Shell {
-		attribute :>> length;
-		attribute :>> width;
-		attribute :>> height;
+		attribute :>> length [1];
+		attribute :>> width [1];
+		attribute :>> height [1];
 
 		item faces : PlanarSurface [6] :>> faces {
 			item :>> edges [4]; 
 		}
-		item tf :> faces [1];
-		item bf :> faces [1];
-		item ff :> faces [1];
-		item rf :> faces [1];
-		item slf :> faces [1];
-		item srf :> faces [1];
+		item tf [1] :> faces;
+		item bf [1] :> faces;
+		item ff [1] :> faces;
+		item rf [1] :> faces;
+		item slf [1] :> faces;
+		item srf [1] :> faces;
 
-		item edges : Line [12] :>> edges {
+		item :>> edges : Line [24] {
 			item :>> vertices [2]; 
 		}
 		item tfe [2]  :> edges { attribute :>> length = Cuboid::length; }
@@ -169,7 +186,7 @@ package ShapeItems {
 		item urle [2] :> edges { attribute :>> length = Cuboid::height; }
 		item urre [2] :> edges { attribute :>> length = Cuboid::height; }
 
-		item vertices : Point [8] :>> vertices;
+		item :>> vertices [24];
 		item tflv [3] :> vertices;
 		item tfrv [3] :> vertices;
 		item trlv [3] :> vertices;
@@ -261,6 +278,8 @@ package ShapeItems {
 		connection :WithinBoth connect bfrv [3] to bfrv [3];
 		connection :WithinBoth connect brlv [3] to brlv [3];
 		connection :WithinBoth connect brrv [3] to brrv [3];
+
+		attribute :>> genus = 0;
 	}
 	alias Box for Cuboid;
 }

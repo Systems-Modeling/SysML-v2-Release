@@ -52,7 +52,7 @@ package RiskMetadata {
 	 * Risk is used to annotate a model element with an assessment of the risk related to it
 	 * in some typical risk areas.
 	 */
-	attribute def Risk {
+	metadata def Risk {
 		/**
 		 * The total risk associated with the annotated element.
 		 */

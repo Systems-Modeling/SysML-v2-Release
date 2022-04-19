@@ -3,10 +3,10 @@ package '11b-Safety and Security Feaure Views' {
 	import ScalarValues::*;
 	
 	package AnnotationDefinitions {	
-		attribute def Safety {
+		metadata def Safety {
 			attribute isMandatory : Boolean;
 		}
-		attribute def Security;
+		metadata def Security;
 	}
 	
 	package PartsTree {

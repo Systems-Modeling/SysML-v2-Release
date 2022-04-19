@@ -2,7 +2,7 @@ package Filtering {
 	import ScalarValues::*;
 	
 	package Annotations {
-		datatype ApprovalAnnotation {
+		metaclass ApprovalAnnotation {
 			approved : Boolean;
 			approver : String;
 			level : Natural;

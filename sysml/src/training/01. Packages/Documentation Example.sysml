@@ -4,7 +4,7 @@ package 'Documentation Example' {
 	     */
 	
 	part def Automobile {
-		doc /* This documentation of Automobile. */
+		doc Document1 /* This documentation of Automobile. */
 	}
 	
 	alias Car for Automobile;

@@ -7,7 +7,7 @@ package ExternalShapeRefExample {
 	/**
 	 * Metadata to reference an externally defined shape.
 	 */
-	attribute def ExternalShapeRef {
+	metadata def ExternalShapeRef {
 		attribute purpose : String[1];
 		attribute shapeIri : String[1];
 	}

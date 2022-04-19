@@ -6,88 +6,87 @@
  */
 package KerML {
 	
-	struct Element;
-	struct Relationship :> Element;
+	metaclass Element;
+	metaclass Relationship :> Element;
 	
-	struct AnnotatingElement :> Element;
-	struct Annotation :> Relationship;
-	struct Comment :> AnnotatingElement;
-	struct Documentation :> Annotation;
-	struct TextualRepresentation :> AnnotatingElement;
+	metaclass AnnotatingElement :> Element;
+	metaclass Annotation :> Relationship;
+	metaclass Comment :> AnnotatingElement;
+	metaclass Documentation :> Annotation;
+	metaclass TextualRepresentation :> AnnotatingElement;
 	
-	struct Import :> Relationship;
-	struct Membership :> Relationship;
-	struct Namespace :> Element;
+	metaclass Import :> Relationship;
+	metaclass Membership :> Relationship;
+	metaclass Namespace :> Element;
 	
-	struct Type :> Namespace;
-	struct Multiplicity :> Feature;
-	struct FeatureMembership :> Membership, TypeFeaturing;
-	struct Specialization :> Relationship;
-	struct Conjugation :> Relationship;
-	struct Disjoining :> Relationship;
+	metaclass Type :> Namespace;
+	metaclass Multiplicity :> Feature;
+	metaclass FeatureMembership :> Membership, TypeFeaturing;
+	metaclass Specialization :> Relationship;
+	metaclass Conjugation :> Relationship;
+	metaclass Disjoining :> Relationship;
 	
-	struct Classifier :> Type;
-	struct Subclassification :> Specialization;
+	metaclass Classifier :> Type;
+	metaclass Subclassification :> Specialization;
 	
-	struct Feature :> Type;
-	struct Subsetting :> Specialization;
-	struct Redefinition :> Subsetting;
-	struct FeatureTyping :> Specialization;
-	struct TypeFeaturing :> Relationship;
-	struct FeatureChaining :> Relationship;
-	struct EndFeatureMembersip :> FeatureMembership;
+	metaclass Feature :> Type;
+	metaclass Subsetting :> Specialization;
+	metaclass Redefinition :> Subsetting;
+	metaclass FeatureTyping :> Specialization;
+	metaclass TypeFeaturing :> Relationship;
+	metaclass FeatureChaining :> Relationship;
+	metaclass EndFeatureMembersip :> FeatureMembership;
 	
-	struct Class :> Classifier;
-	struct DataType :> Classifier;
+	metaclass Class :> Classifier;
+	metaclass DataType :> Classifier;
 	
-	struct Structure :> Class;
+	metaclass Structure :> Class;
 	
-	struct Association :> Classifier, Relationship;
-	struct AssociationStructure :> Association, Structure;
+	metaclass Association :> Classifier, Relationship;
+	metaclass AssociationStructure :> Association, Structure;
 	
-	struct Connector :> Feature, Relationship;
-	struct BindingConnector :> Connector;
-	struct Succession :> Connector;
+	metaclass Connector :> Feature, Relationship;
+	metaclass BindingConnector :> Connector;
+	metaclass Succession :> Connector;
 	
-	struct Behavior :> Class;
-	struct Step :> Feature;
-	struct ParameterMembership :> FeatureMembership;
+	metaclass Behavior :> Class;
+	metaclass Step :> Feature;
+	metaclass ParameterMembership :> FeatureMembership;
 	
-	struct Function :> Behavior;
-	struct Predicate :> Function;
-	struct Expression :> Step;
-	struct BooleanExpression :> Expression;
-	struct Invariant :> BooleanExpression;
-	struct ReturnParameterMembership :> ParameterMembership;
-	struct ResultExpressionMembership :> FeatureMembership;
+	metaclass Function :> Behavior;
+	metaclass Predicate :> Function;
+	metaclass Expression :> Step;
+	metaclass BooleanExpression :> Expression;
+	metaclass Invariant :> BooleanExpression;
+	metaclass ReturnParameterMembership :> ParameterMembership;
+	metaclass ResultExpressionMembership :> FeatureMembership;
 	
-	struct FeatureReferenceExpression :> Expression;
-	struct InvocationExpression :> Expression;
-	struct LiteralExpression :> Expression;
-	struct LiteralInteger :> LiteralExpression;
-	struct LiteralRational :> LiteralExpression;
-	struct LiteralBoolean :> LiteralExpression;
-	struct LiteralString :> LiteralExpression;
-	struct LiteralInfinity :> LiteralExpression;
-	struct NullExpression :> Expression;
-	struct OperatorExpression :> InvocationExpression;
-	struct FeatureChainExpression :> OperatorExpression;
-	struct CollectExpression :> OperatorExpression;
-	struct SelectExpression :> OperatorExpression;
+	metaclass FeatureReferenceExpression :> Expression;
+	metaclass InvocationExpression :> Expression;
+	metaclass LiteralExpression :> Expression;
+	metaclass LiteralInteger :> LiteralExpression;
+	metaclass LiteralRational :> LiteralExpression;
+	metaclass LiteralBoolean :> LiteralExpression;
+	metaclass LiteralString :> LiteralExpression;
+	metaclass LiteralInfinity :> LiteralExpression;
+	metaclass NullExpression :> Expression;
+	metaclass OperatorExpression :> InvocationExpression;
+	metaclass FeatureChainExpression :> OperatorExpression;
+	metaclass CollectExpression :> OperatorExpression;
+	metaclass SelectExpression :> OperatorExpression;
 	
-	struct Interaction :> Behavior, Association;
-	struct ItemFlow :> Step, Connector;
-	struct SuccessionItemFlow :> ItemFlow, Succession;
+	metaclass Interaction :> Behavior, Association;
+	metaclass ItemFlow :> Step, Connector;
+	metaclass SuccessionItemFlow :> ItemFlow, Succession;
 	
-	struct FeatureValue :> Membership;
+	metaclass FeatureValue :> Membership;
 	
-	struct MultiplicityRange :> Multiplicity;
+	metaclass MultiplicityRange :> Multiplicity;
 	
-	struct AnnotatingFeature :> AnnotatingElement, Feature;
-	struct MetadataFeature :> Feature;
-	struct MetadataFeatureValue :> FeatureValue;
+	metaclass Metaclass :> Structure;
+	metaclass MetadataFeature :> AnnotatingElement, Feature;
 	
-	struct Package :> Namespace;
-	struct ElementFilterMembership :> Membership;
+	metaclass Package :> Namespace;
+	metaclass ElementFilterMembership :> Membership;
 	
 }

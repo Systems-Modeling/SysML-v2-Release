@@ -1,118 +1,121 @@
 package SysML {
 	import KerML::*;
 
-	item def Dependency :> Relationship;
+	metadata def Dependency :> Relationship;
 	
-	abstract item def Definition :> Classifier;
-	abstract item def Usage :> Feature;
-	item def ReferenceUsage :> Usage;
-	item def VariantMembership :> Membership;
+	metadata def Definition :> Classifier;
+	metadata def Usage :> Feature;
+	metadata def ReferenceUsage :> Usage;
+	metadata def VariantMembership :> Membership;
 	
-	item def EnumerationDefinition :> AttributeDefinition;
-	item def EnumerationUsage :> AttributeUsage;
+	metadata def EnumerationDefinition :> AttributeDefinition;
+	metadata def EnumerationUsage :> AttributeUsage;
 	
-	item def AttributeDefinition :> Definition, DataType;
-	item def AttributeUsage :> Usage;
+	metadata def AttributeDefinition :> Definition, DataType;
+	metadata def AttributeUsage :> Usage;
 	
-	item def OccurrenceDefinition :> Definition, Class;
-	item def OccurrenceUsage :> Usage;
-	item def LifeClass :> Class;
-	item def PortioningFeature :> Feature;
-	item def EventOccurrenceUsage :> OccurrenceUsage;
+	metadata def OccurrenceDefinition :> Definition, Class;
+	metadata def OccurrenceUsage :> Usage;
+	metadata def LifeClass :> Class;
+	metadata def PortioningFeature :> Feature;
+	metadata def EventOccurrenceUsage :> OccurrenceUsage;
 	
-	item def ItemDefinition :> OccurrenceDefinition, Structure;
-	item def ItemUsage :> OccurrenceUsage;
+	metadata def ItemDefinition :> OccurrenceDefinition, Structure;
+	metadata def ItemUsage :> OccurrenceUsage;
 	
-	item def PartDefinition :> ItemDefinition;
-	item def PartUsage :> ItemUsage;
+	metadata def MetadataDefinition :> ItemDefinition, Metaclass;
+	metadata def MetadataUsage :> ItemDefinition, MetadataFeature;
 	
-	item def PortDefinition :> OccurrenceDefinition, Structure;
-	item def ConjugatePortDefinition :> PortDefinition;
-	item def PortUsage :> OccurrenceUsage;
-	item def PortConjuation :> Conjugation;
-	item def ConjugatePortTyping :> FeatureTyping;
+	metadata def PartDefinition :> ItemDefinition;
+	metadata def PartUsage :> ItemUsage;
 	
-	item def ConnectionDefinition :> PartDefinition, AssociationStructure;
-	abstract item def ConnectorAsUsage :> Connector, Usage;
-	item def BindingConnectorAsUsage :> BindingConnector, ConnectorAsUsage;
-	item def SuccessionAsUsage :> Succession, ConnectorAsUsage;
-	item def ConnectionUsage :> PartUsage, ConnectorAsUsage;
-	item def FlowConnectionUsage :> ItemFlow, ConnectionUsage;
-	item def SuccessionFlowConnectionUsage :> SuccessionItemFlow, ConnectionUsage;
+	metadata def PortDefinition :> OccurrenceDefinition, Structure;
+	metadata def ConjugatePortDefinition :> PortDefinition;
+	metadata def PortUsage :> OccurrenceUsage;
+	metadata def PortConjuation :> Conjugation;
+	metadata def ConjugatePortTyping :> FeatureTyping;
 	
-	item def InterfaceDefinition :> ConnectionDefinition;
-	item def InterfaceUsage :> ConnectionUsage;
+	metadata def ConnectionDefinition :> PartDefinition, AssociationStructure;
+	abstract metadata def ConnectorAsUsage :> Connector, Usage;
+	metadata def BindingConnectorAsUsage :> BindingConnector, ConnectorAsUsage;
+	metadata def SuccessionAsUsage :> Succession, ConnectorAsUsage;
+	metadata def ConnectionUsage :> PartUsage, ConnectorAsUsage;
+	metadata def FlowConnectionUsage :> ItemFlow, ConnectionUsage;
+	metadata def SuccessionFlowConnectionUsage :> SuccessionItemFlow, ConnectionUsage;
 	
-	item def AllocationDefinition :> ConnectionDefinition;
-	item def AllocationUsage :> ConnectionUsage;
+	metadata def InterfaceDefinition :> ConnectionDefinition;
+	metadata def InterfaceUsage :> ConnectionUsage;
 	
-	item def ActionDefinition :> OccurrenceDefinition, Behavior;
-	item def ActionUsage :> OccurrenceUsage, Step;
-	item def PerformActionUsage :> EventOccurrenceUsage, ActionUsage;
-	item def SendActionUsage :> ActionUsage;
-	item def AcceptActionUsage :> ActionUsage;
-	item def ControlNode :> ActionUsage;
-	item def MergeNode :> ControlNode;
-	item def DecisionNode :> ControlNode;
-	item def ForkNode :> ControlNode;
-	item def JoinNode :> ControlNode;
-	item def AssignmentActionUsage :> ActionUsage;
-	item def IfActionUsage :> ActionUsage;
-	abstract item def LoopActionUsage :> ActionUsage;
-	item def WhileLoopActionUsage :> LoopActionUsage;
-	item def ForLoopActionUsage :> LoopActionUsage;
-	item def TriggerInvocationExpression :> InvocationExpression;
+	metadata def AllocationDefinition :> ConnectionDefinition;
+	metadata def AllocationUsage :> ConnectionUsage;
 	
-	item def StateDefinition :> ActionDefinition;
-	item def StateUsage :> ActionUsage;
-	item def ExhibitStateUsage :> PerformActionUsage, StateUsage;
-	item def TransitionUsage :> ActionUsage;
-	item def StateSubactionMembership :> FeatureMembership;
-	item def TransitionFeatureMembership :> FeatureMembership;
+	metadata def ActionDefinition :> OccurrenceDefinition, Behavior;
+	metadata def ActionUsage :> OccurrenceUsage, Step;
+	metadata def PerformActionUsage :> EventOccurrenceUsage, ActionUsage;
+	metadata def SendActionUsage :> ActionUsage;
+	metadata def AcceptActionUsage :> ActionUsage;
+	metadata def ControlNode :> ActionUsage;
+	metadata def MergeNode :> ControlNode;
+	metadata def DecisionNode :> ControlNode;
+	metadata def ForkNode :> ControlNode;
+	metadata def JoinNode :> ControlNode;
+	metadata def AssignmentActionUsage :> ActionUsage;
+	metadata def IfActionUsage :> ActionUsage;
+	abstract metadata def LoopActionUsage :> ActionUsage;
+	metadata def WhileLoopActionUsage :> LoopActionUsage;
+	metadata def ForLoopActionUsage :> LoopActionUsage;
+	metadata def TriggerInvocationExpression :> InvocationExpression;
 	
-	item def CalculationDefinition :> ActionDefinition, Function;
-	item def CalculationUsage :> ActionUsage, Expression;
+	metadata def StateDefinition :> ActionDefinition;
+	metadata def StateUsage :> ActionUsage;
+	metadata def ExhibitStateUsage :> PerformActionUsage, StateUsage;
+	metadata def TransitionUsage :> ActionUsage;
+	metadata def StateSubactionMembership :> FeatureMembership;
+	metadata def TransitionFeatureMembership :> FeatureMembership;
 	
-	item def ConstraintDefinition :> OccurrenceDefinition, Predicate;
-	item def ConstraintUsage :> OccurrenceUsage, BooleanExpression;
-	item def AssertConstraintUsage :> ConstraintUsage, Invariant;
+	metadata def CalculationDefinition :> ActionDefinition, Function;
+	metadata def CalculationUsage :> ActionUsage, Expression;
 	
-	item def RequirementDefinition :> ConstraintDefinition;
-	item def RequirementUsage :> ConstraintUsage;
-	item def SatisfyRequirementUsage :> RequirementUsage, AssertConstraintUsage;
-	item def SubjectMembership :> FeatureMembership;
-	item def ActorMembership :> FeatureMembership;
-	item def StakeholderMembership :> FeatureMembership;
-	item def RequirementConstraintMembership :> FeatureMembership;
+	metadata def ConstraintDefinition :> OccurrenceDefinition, Predicate;
+	metadata def ConstraintUsage :> OccurrenceUsage, BooleanExpression;
+	metadata def AssertConstraintUsage :> ConstraintUsage, Invariant;
 	
-	item def ConcernDefinition :> RequirementDefinition;
-	item def ConcernUsage :> RequirementUsage;
-	item def FramedConcernMembership :> RequirementConstraintMembership;
+	metadata def RequirementDefinition :> ConstraintDefinition;
+	metadata def RequirementUsage :> ConstraintUsage;
+	metadata def SatisfyRequirementUsage :> RequirementUsage, AssertConstraintUsage;
+	metadata def SubjectMembership :> FeatureMembership;
+	metadata def ActorMembership :> FeatureMembership;
+	metadata def StakeholderMembership :> FeatureMembership;
+	metadata def RequirementConstraintMembership :> FeatureMembership;
 	
-	item def CaseDefinition :> CalculationDefinition;
-	item def CaseUsage :> CalculationUsage;
-	item def ObjectiveMembership :> FeatureMembership;
+	metadata def ConcernDefinition :> RequirementDefinition;
+	metadata def ConcernUsage :> RequirementUsage;
+	metadata def FramedConcernMembership :> RequirementConstraintMembership;
 	
-	item def AnalysisCaseDefinition :> CaseDefinition;
-	item def AnalysisCaseUsage :> CaseUsage;
+	metadata def CaseDefinition :> CalculationDefinition;
+	metadata def CaseUsage :> CalculationUsage;
+	metadata def ObjectiveMembership :> FeatureMembership;
 	
-	item def VerificationCaseDefinition :> CaseDefinition;
-	item def VerificationCaseUsage :> CaseUsage;
-	item def RequirementVerificationMembership :> FeatureMembership;
+	metadata def AnalysisCaseDefinition :> CaseDefinition;
+	metadata def AnalysisCaseUsage :> CaseUsage;
 	
-	item def UseCaseDefinition :> CaseDefinition;
-	item def UseCaseUsage :> CaseUsage;
-	item def IncludeUseCaseUsage :> PerformActionUsage, UseCaseUsage;
+	metadata def VerificationCaseDefinition :> CaseDefinition;
+	metadata def VerificationCaseUsage :> CaseUsage;
+	metadata def RequirementVerificationMembership :> FeatureMembership;
 	
-	item def ViewDefinition :> PartDefinition;
-	item def ViewUsage :> PartUsage;
-	item def Expose :> Import;
+	metadata def UseCaseDefinition :> CaseDefinition;
+	metadata def UseCaseUsage :> CaseUsage;
+	metadata def IncludeUseCaseUsage :> PerformActionUsage, UseCaseUsage;
 	
-	item def ViewpointDefinition :> RequirementDefinition;
-	item def ViewpointUsage :> RequirementUsage;
+	metadata def ViewDefinition :> PartDefinition;
+	metadata def ViewUsage :> PartUsage;
+	metadata def Expose :> Import;
 	
-	item def RenderingDefinition :> PartDefinition;
-	item def RenderingUsage :> PartUsage;
-	item def ViewRenderingMembership :> FeatureMembership;
+	metadata def ViewpointDefinition :> RequirementDefinition;
+	metadata def ViewpointUsage :> RequirementUsage;
+	
+	metadata def RenderingDefinition :> PartDefinition;
+	metadata def RenderingUsage :> PartUsage;
+	metadata def ViewRenderingMembership :> FeatureMembership;
 	
 }

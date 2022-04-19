@@ -37,7 +37,7 @@ package Occurrences {
 		feature predecessors: Occurrence[0..*] subsets occurrences;
 		
 		/**
-		 * Occurrences that start after this occcurrence ends.
+		 * Occurrences that start after this occurrence ends.
 		 */
 		feature successors: Occurrence[0..*] subsets occurrences;
 		
@@ -84,7 +84,8 @@ package Occurrences {
 		 * to 3, without regard to higher dimensional spaces it might be emedded in.
 		 */
 		feature innerSpaceDimension : Natural [1];
-		inv { innerSpaceDimension >= 0 & innerSpaceDimension <= 3 }
+
+		inv { innerSpaceDimension <= 3 }
 
 		/**
 		 * For occurrences of innerSpaceDimension 1 or 2, the number of variables need to
@@ -188,7 +189,7 @@ package Occurrences {
 		/**
 		 * Occurrences of which this occurrence is a space shot.
 		 */
-		feature spaceShotOf: Occurrence[1..*] subsets spaceSliceOf;
+		feature spaceShotOf: Occurrence[0..*] subsets spaceSliceOf;
 
 		/**
 		 * Sets of occurrences, where the time and space taken by all the occurrences in each
@@ -270,12 +271,12 @@ package Occurrences {
 		 * An Occurrence of which this one is the space interior.
 		 */
 		feature spaceInteriorOf: Occurrence[0..1] subsets spaceSliceOf;
+
 		inv { notEmpty(spaceInterior) implies spaceInterior.innerSpaceDimension == innerSpaceDimension }
-		inv { innerSpaceDimension == 0 implies isEmpty(spaceInterior) }
 
 		/**
-		 * A space shot of this Occurrence that is not among those of its space interior, of
-		 * which it must be outside. It must have no spaceBoundary.
+		 * A space shot of this Occurrence that is not among those of its space interior, 
+		 * which must be outside it. It must not have a spaceBoundary.
 		 */
 		portion feature spaceBoundary: Occurrence[0..1] subsets spaceShots { 
 			feature redefines isClosed = true;
@@ -286,7 +287,8 @@ package Occurrences {
 		 */
 		feature spaceBoundaryOf: Occurrence[0..*] subsets spaceShotOf;
 
-		inv { isClosed implies contains(self.unionsOf, union(spaceBoundary, spaceInterior)) }
+		inv { !isClosed implies contains(self.unionsOf, union(spaceBoundary, spaceInterior)) }
+		inv { innerSpaceDimension == 0 implies isEmpty(spaceBoundary) }
 
 		connector :OutsideOf 
 			from separateSpaceToo :> spaceInterior [0..1]
@@ -476,8 +478,8 @@ package Occurrences {
 	 * SnapshotsOf asserts one occurrence is a snapshot of another.
 	 */
 	assoc SnapshotOf specializes TimeSliceOf {
-		end feature snapshotOcccurrence: Occurrence[1..*] redefines timeSliceOccurrence subsets snapshottedOccurrence.snapshots;
-		end feature snapshottedOccurrence: Occurrence[0..*] redefines timeSlicedOccurrence subsets snapshotOcccurrence.snapshotOf;
+		end feature snapshotOccurrence: Occurrence[1..*] redefines timeSliceOccurrence subsets snapshottedOccurrence.snapshots;
+		end feature snapshottedOccurrence: Occurrence[0..*] redefines timeSlicedOccurrence subsets snapshotOccurrence.snapshotOf;
 	}
 
 	/**
@@ -498,8 +500,10 @@ package Occurrences {
 	 * it spaceShottedOccurrence.
 	 */
 	assoc SpaceShotOf specializes SpaceSliceOf {
-		end feature spaceShotOcccurrence: Occurrence[1..*] redefines spaceSliceOccurrence subsets spaceShottedOccurrence.spaceShots;
-		end feature spaceShottedOccurrence: Occurrence[1..*] redefines spaceSlicedOccurrence subsets spaceShotOcccurrence.spaceShotOf;
+		end feature spaceShotOccurrence: Occurrence[1..*] redefines spaceSliceOccurrence subsets spaceShottedOccurrence.spaceShots;
+		end feature spaceShottedOccurrence: Occurrence[1..*] redefines spaceSlicedOccurrence subsets spaceShotOccurrence.spaceShotOf;
+
+		inv { spaceShotOccurrence.innerSpaceDimension < spaceShottedOccurrence.innerSpaceDimension }
 	}
 
 	/**

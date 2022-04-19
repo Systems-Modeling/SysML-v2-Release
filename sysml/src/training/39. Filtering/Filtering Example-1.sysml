@@ -1,7 +1,7 @@
 package 'Filtering Example-1' {
 	import ScalarValues::Boolean;
 	
-	attribute def Safety {
+	metadata def Safety {
 		attribute isMandatory : Boolean;
 	}
 	
