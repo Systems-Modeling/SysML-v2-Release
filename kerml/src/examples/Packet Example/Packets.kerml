@@ -5,7 +5,7 @@ package Packets {
 	feature 'packet header' { }
 	
 	feature 'packet data field' {	
-		feature 'packet secondary header' is 'packet header';
+		feature 'packet secondary header' redefines 'packet header';
 		feature 'user data field';
 	}
 	
@@ -15,7 +15,7 @@ package Packets {
 			feature 'packet identification': String;
 			feature 'packet data length': Integer;
 		}
-		feature is 'packet data field';
+		feature redefines 'packet data field';
 	}
 	
 	class 'Thermal Data Packet' specializes 'Data Packet' {

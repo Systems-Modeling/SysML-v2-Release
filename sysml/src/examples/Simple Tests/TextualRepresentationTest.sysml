@@ -3,9 +3,10 @@ package TextualRepresentationTest {
 	
 	item def C {
 	    attribute x: Real;
-	    assert constraint x_constraint;
-	    rep inOCL about x_constraint language "ocl" 
-	        /* self.x > 0.0 */
+	    assert constraint x_constraint {
+		    rep inOCL language "ocl" 
+		        /* self.x > 0.0 */
+	    }
 	}
 	
 	action def setX(c : C, newX : Real) {

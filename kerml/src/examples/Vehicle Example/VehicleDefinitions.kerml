@@ -16,7 +16,7 @@ package VehicleDefinitions {
 	class Axle;	
 	class Wheel;
 	class Lugbolt {
-		tighteningTorque is ISQ::torque;
+		tighteningTorque[1] subsets ISQ::torque;
 	}
 	
 	/* INTERFACE BLOCKS */

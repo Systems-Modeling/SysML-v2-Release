@@ -300,11 +300,16 @@ package Actions {
 		in :>> untilTest default {false};
 	}
 	
+	private abstract action def ForLoopActionBase :> LoopAction {
+		in action body;
+		in ref seq[0..*] ordered nonunique;
+	}
+	
 	/**
 	 * A ForLoopAction is a LoopAction that iterates over an ordered sequence of values.
 	 * It is the base type for all ForLoopActionUsages.
 	 */
-	action def ForLoopAction :> LoopAction {
+	action def ForLoopAction :> ForLoopActionBase {
 		/**
 		 * The loop variable that is assigned successive elements of seq on each
 		 * iteration of the loop.
@@ -314,7 +319,7 @@ package Actions {
 		/**
 		 * The sequence of values over which the loop iterates.
 		 */
-		in ref seq[0..*] ordered nonunique;
+		in ref :>> seq;
 		
 		/**
 		 * The action that is performed on each iteration of the loop.

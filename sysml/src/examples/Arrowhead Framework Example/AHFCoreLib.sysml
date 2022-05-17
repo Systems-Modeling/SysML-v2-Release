@@ -1,52 +1,54 @@
-/** Mandatory Services and Systems */
+// /** Mandatory Services and Systems */
 package AHFCoreLib {
 	import AHFProfileLib::*;
 	import ScalarValues::*;
-	
-	port def ServiceDiscovery :> SD{
+	import AHFProfileMetadata::*;
+
+	#service port def ServiceDiscovery {
 		// The functionalities as Requests (Operations) cannot be defined yet
 		// We could consider using flows to designate the functionalities
 	}
 	
-	port def ServiceDiscoveryDD :> ServiceDiscovery, SDDD{
-		port ServiceDiscovery_HTTP :> idd{// nested port for HTTP protocol
-			/* here we refer the functionalities like operation Register etc. */
-		} 
+	#service port def ServiceDiscoveryDD :> ServiceDiscovery{
 	}
 		
-	port def Authorisation :> SD{
+	#service port def Authorisation {
 		attribute publickey:String; // just as examples
 	}
 
-	port def AuthorisationDD :> Authorisation, SDDD{
-		port Authorisation_HTTP :> idd; // nested port for HTTP protocol
+	#service port def AuthorisationDD :> Authorisation{
 	}
+
 	
-	part def ArrowheadCore :> LocalCloudDD{
-		/** Design Level */
-		/* First the system definitions (SysD) of core systems */
-		part def ServiceRegistryDesign :> SysD {
-			port serviceDiscovery:ServiceDiscovery :> services;
+	#clouddd ArrowheadCore{
+		// /** Design Level */
+		// First the system definitions (SysD) of core systems
+		
+		#system service_registry {
+			#service serviceDiscovery : ServiceDiscovery ;
 		}
 		
-		part def AuthorizationDesign :> SysD {
-			port authorisation:Authorisation :> services;
+		#system authorization{
+			#service authorisation : Authorisation;
 			attribute protocol:String = "HTTP";
 		}
 		
-		part def OrchestrationDesign :> SysD; // just indicated for now
-
-		part service_registry:ServiceRegistryDesign :> systems;
-		part authorization:AuthorizationDesign :> systems;
-		part orchestration:OrchestrationDesign :> systems;
+		#system orchestrationDesign; // just indicated for now
 		
-		/** Design Description level */		
-		part def ServiceRegistryDD :> ServiceRegistryDesign{
-			port :>> serviceDiscovery:ServiceDiscoveryDD;
+		// /** Design Description level */		
+		#systemdd service_registry_DD :> service_registry{
+			#servicedd :>> serviceDiscovery:ServiceDiscoveryDD {
+				#idd serviceDiscovery_HTTP ;// nested port for HTTP protocol
+				// here we refer the functionalities like operation Register etc.
+				#idd serviceDiscovery_MQTT ; // nested port for MQTT protocol
+			}
 		}
-
-		part def Authorization_DD :> AuthorizationDesign, SysDD{
-			port :>> authorisation:AuthorisationDD;
+		
+		#systemdd authorization_DD :> authorization{
+			#servicedd :>> authorisation {
+				#idd authorisation_HTTP ; // nested port for HTTP protocol
+				#idd authorisation_MQTT ; // nested port for MQTT protocol
+			}
 			action Echo_behavior :> ServiceMethod;
 		}
 	}

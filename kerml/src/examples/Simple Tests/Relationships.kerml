@@ -19,8 +19,8 @@ package Relationships {
 	namespace N {		
 		element A;
 		element B {
-        	relationship <x> {
-            	element <y>; // Owned related Element
+        	relationship x {
+            	element y; // Owned related Element
             	relationship from A to B; // Relationship as owned related Element 
 			} 
 		}

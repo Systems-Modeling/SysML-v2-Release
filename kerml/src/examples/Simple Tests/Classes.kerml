@@ -14,7 +14,7 @@ package Classes {
 	
 	private class C specializes Classes::'2' {
 		private y: A, '2'[0..*];
-		z is y;
+		alias z for y;
 	}
 	
 }

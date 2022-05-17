@@ -95,7 +95,7 @@ package SpatialFrames {
 	
 	/**
 	 * The CurrentDisplacementOf two Points relative to a SpatialFrame and Clock is the DisplacementOf
-	 * the Points relative to the SpacialFrame at the currentTime of the Clock.
+	 * the Points relative to the SpatialFrame at the currentTime of the Clock.
 	 */
 	function CurrentDisplacementOf {
 		in point1 : Point[1];

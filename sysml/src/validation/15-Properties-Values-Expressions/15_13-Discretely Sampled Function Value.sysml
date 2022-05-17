@@ -17,10 +17,10 @@ package '15_13-Discretely Sampled Function Value' {
 		
 		// Map the definitional epoch (t = 0) of this scale to a reference epoch expressed in UTC
 		// This modeled as a 1D coordinate transformation (translation only)
-		attribute :>> placement : CoordinateTransformation {
+		attribute :>> transformation : CoordinateFramePlacement {
 			:>> source = UTC;
-			:>> target = self;
 			:>> origin = definitionalEpochInUTC;
+			:>> basisDirections = 1 [UTC];
 		}
   }
 
@@ -40,8 +40,8 @@ package '15_13-Discretely Sampled Function Value' {
 	 * Define Cartesian 3D coordinate systems for position and velocity
 	 * Create a velocity coordinate system from the spatial coordinate system through division by second
 	 */
-	attribute spatialCS: Cartesian3dSpatialCoordinateSystem[1] { :>> mRefs = (m, m, m); }
-	attribute velocityCS: Cartesian3dVelocityCoordinateSystem[1] = spatialCS/s { :>> isBound = false; }
+	attribute spatialCF: Cartesian3dSpatialCoordinateFrame[1] { :>> mRefs = (m, m, m); }
+	attribute velocityCF: Cartesian3dVelocityCoordinateFrame[1] = spatialCF/s { :>> isBound = false; }
 
 	attribute def PositionAndVelocity {
 		attribute position : Cartesian3dPositionVector[1];
@@ -59,11 +59,11 @@ package '15_13-Discretely Sampled Function Value' {
 	/** Example ascent profile */
 	attribute ascentProfile1: AscentProfile {
 		attribute sample1: AscentSample { :>> domainValue = 0.0 [mets]; :>> rangeValue = pv1;
-			attribute pv1: PositionAndVelocity {:>> position = (0, 0, 0) [spatialCS]; :>> velocity = (0, 0, 0) [velocityCS]; } }
+			attribute pv1: PositionAndVelocity {:>> position = (0, 0, 0) [spatialCF]; :>> velocity = (0, 0, 0) [velocityCF]; } }
 		attribute sample2: AscentSample { :>> domainValue = 2.5 [mets]; :>> rangeValue = pv1;
-			attribute pv1: PositionAndVelocity {:>> position = (0.01, 0.03, 8.6) [spatialCS]; :>> velocity = (0, 0, 5.5) [velocityCS]; } }
+			attribute pv1: PositionAndVelocity {:>> position = (0.01, 0.03, 8.6) [spatialCF]; :>> velocity = (0, 0, 5.5) [velocityCF]; } }
 		attribute sample3: AscentSample { :>> domainValue = 5.1 [mets]; :>> rangeValue = pv1;
-			attribute pv1: PositionAndVelocity {:>> position = (0.04, 0.12, 18.6) [spatialCS]; :>> velocity = (0.05, 0.03, 25.3) [velocityCS]; } }
+			attribute pv1: PositionAndVelocity {:>> position = (0.04, 0.12, 18.6) [spatialCF]; :>> velocity = (0.05, 0.03, 25.3) [velocityCF]; } }
 		attribute :>> samples = (sample1, sample2, sample3);
 	}
 }

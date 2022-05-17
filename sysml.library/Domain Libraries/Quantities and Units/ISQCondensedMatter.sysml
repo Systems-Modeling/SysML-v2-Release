@@ -6,7 +6,7 @@
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
  * with Greek letters in Unicode encoding. In running text, AsciiMath is placed between backticks.
  * Note 2: For vector and tensor quantities currently the unit and quantity value type for their (scalar) magnitude is 
- * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate system) 
+ * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate frame) 
  * or TensorMeasurementReference.
  */
 package ISQCondensedMatter {
@@ -39,7 +39,7 @@ package ISQCondensedMatter {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
     }
     attribute latticeVector: Cartesian3dLatticeVector :> vectorQuantities;
 
@@ -58,7 +58,7 @@ package ISQCondensedMatter {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
     }
     attribute fundamentalLatticeVector: Cartesian3dFundamentalLatticeVector :> vectorQuantities;
 
@@ -95,7 +95,7 @@ package ISQCondensedMatter {
      * definition: vector whose scalar products with all fundamental lattice vectors are integral multiples of  `2π`
      * remarks: In crystallography, however, the quantity `G/(2π)` is sometimes used.
      */
-    attribute def Cartesian3dAngularReciprocalLatticeCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dAngularReciprocalLatticeCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -106,7 +106,7 @@ package ISQCondensedMatter {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dAngularReciprocalLatticeCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dAngularReciprocalLatticeCoordinateFrame[1];
     }
     attribute angularReciprocalLatticeVector: Cartesian3dAngularReciprocalLatticeVector :> vectorQuantities;
 
@@ -143,7 +143,7 @@ package ISQCondensedMatter {
      * definition: fundamental translation vectors for the reciprocal lattice
      * remarks: `vec(a_i) * vec(b_i) = 2π δ_(ij)`. In crystallography, however, the quantities `vec(b_j)/(2π)` are also often used.
      */
-    attribute def Cartesian3dFundamentalReciprocalLatticeCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dFundamentalReciprocalLatticeCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -154,7 +154,7 @@ package ISQCondensedMatter {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dFundamentalReciprocalLatticeCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dFundamentalReciprocalLatticeCoordinateFrame[1];
     }
     attribute fundamentalReciprocalLatticeVector: Cartesian3dFundamentalReciprocalLatticeVector :> vectorQuantities;
 
@@ -255,7 +255,7 @@ package ISQCondensedMatter {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
     }
     attribute burgersVector: Cartesian3dBurgersVector :> vectorQuantities;
 
@@ -274,7 +274,7 @@ package ISQCondensedMatter {
         attribute :>> dimensions = 3;
         attribute :>> isBound = true;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
     }
     attribute particlePositionVector: Cartesian3dParticlePositionVector :> vectorQuantities;
 
@@ -293,7 +293,7 @@ package ISQCondensedMatter {
         attribute :>> dimensions = 3;
         attribute :>> isBound = true;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
     }
     attribute equilibriumPositionVector: Cartesian3dEquilibriumPositionVector :> vectorQuantities;
 
@@ -312,7 +312,7 @@ package ISQCondensedMatter {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
     }
     attribute displacementVector: Cartesian3dDisplacementVector :> vectorQuantities;
 

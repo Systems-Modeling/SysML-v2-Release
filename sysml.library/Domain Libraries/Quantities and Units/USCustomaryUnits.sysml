@@ -68,7 +68,7 @@ package <USCU> USCustomaryUnits {
     attribute <'yd³'> 'cubic yard' : VolumeUnit = yd^3;
     attribute <'yd³/min'> 'cubic yard per minute' : VolumeFlowRateUnit = yd^3/min;
     attribute 'cup (US)' : VolumeUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = m^3; :>> conversionFactor = 2.365882E-04; :>> isExact = false; } }
-    attribute <'°F'> 'degree Fahrenheit (temperature interval)' : TemperatureDifferenceUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = K; :>> conversionFactor = 5/9; :>> isExact = true; } }
+    attribute <'°F'> 'degree Fahrenheit (temperature difference)' : TemperatureDifferenceUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = K; :>> conversionFactor = 5/9; :>> isExact = true; } }
     attribute <'°F⋅h/Btu_IT'> 'degree Fahrenheit hour per British thermal unit (IT)' : ThermalResistanceUnit = '°F'*h/Btu_IT;
     attribute <'°F⋅h/Btu_th'> 'degree Fahrenheit hour per British thermal unit (th)' : ThermalResistanceUnit = '°F'*h/Btu_th;
     attribute <'°F⋅h⋅ft²/Btu_IT'> 'degree Fahrenheit hour square foot per British thermal unit (IT)' : ThermalInsulanceUnit = '°F'*h*ft^2/Btu_IT;
@@ -225,9 +225,10 @@ package <USCU> USCustomaryUnits {
 	/*
 	 * degree Fahrenheit interval scale for absolute (thermodynamic) temperature quantities
 	 *
-	 * The scale is defined with an explicit mapping to the degree Celsius interval scale and a coordinate transformation w.r.t. the kelvin scale
+     * The interval scale is defined with an explicit transformation with respect to 
+     * the kelvin thermodynamic temperature scale that specifies the zero shift.
 	 */
-	attribute <'°F_abs'> 'degree fahrenheit (absolute)' : IntervalScale {
+	attribute <'°F_abs'> 'degree fahrenheit (absolute temperature scale)' : IntervalScale {
 		:>> unit = '°F';
 		private attribute temperatureWaterAtFreezingPointInF: DefinitionalQuantityValue {
 			:>> num = 32.0;
@@ -241,10 +242,10 @@ package <USCU> USCustomaryUnits {
 		attribute :>> definitionalQuantityValues = temperatureWaterAtFreezingPointInF;
 		attribute :>> quantityValueMapping = fahrenheitToCelsiusScaleMapping;
 
-        /* CoordinateTransformation (zero shift) w.r.t. thermodynamic temperature in kelvin */ 
+        /* CoordinateFramePlacement (zero shift) w.r.t. the kelvin thermodynamic temperature scale */
         private attribute zeroDegreeFahrenheitInKelvin: ThermodynamicTemperatureValue = 229835/900 [K];
-        attribute zeroShift : CoordinateTransformation { :>> source = K; :>> target = self; :>> origin = zeroDegreeFahrenheitInKelvin; :>> basisDirections = 1 [K]; }
-        attribute :>> placement = zeroShift;
+        attribute zeroDegreeFahrenheitToKelvinShift : CoordinateFramePlacement :>> transformation { 
+        	:>> source = K; :>> origin = zeroDegreeFahrenheitInKelvin;
+        }
 	}
-
 }

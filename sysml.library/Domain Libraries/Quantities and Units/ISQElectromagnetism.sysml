@@ -6,7 +6,7 @@
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
  * with Greek letters in Unicode encoding. In running text, AsciiMath is placed between backticks.
  * Note 2: For vector and tensor quantities currently the unit and quantity value type for their (scalar) magnitude is
- * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate system)
+ * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate frame)
  * or TensorMeasurementReference.
  */
 package ISQElectromagnetism {
@@ -179,7 +179,7 @@ package ISQElectromagnetism {
      * definition: `vec(p) = q (vec(r_+) - vec(r_-))` where `vec(r_+)` and `vec(r_-)` are the position vectors (ISO 80000-3, item 3-1.11) to carriers of electric charges `q` and `-q` (item 6-2), respectively
      * remarks: The electric dipole moment of a substance within a domain is the vector sum of electric dipole moments of electric dipoles included in the domain. See IEC 60050-121, items 121-11-35 and 121-11-36.
      */
-    attribute def Cartesian3dElectricDipoleMomentCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dElectricDipoleMomentCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -190,7 +190,7 @@ package ISQElectromagnetism {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dElectricDipoleMomentCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dElectricDipoleMomentCoordinateFrame[1];
     }
     attribute electricDipoleMomentVector: Cartesian3dElectricDipoleMomentVector :> vectorQuantities;
 
@@ -229,7 +229,7 @@ package ISQElectromagnetism {
      * definition: `vec(P) = (d vec(p))/(dV)` where `vec(p)` is electric dipole moment (item 6-6) of a substance within a domain with volume `V` (ISO 80000-3, item 3-4)
      * remarks: See IEC 60050-121, item 121-11-37.
      */
-    attribute def Cartesian3dElectricPolarizationCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dElectricPolarizationCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -240,7 +240,7 @@ package ISQElectromagnetism {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dElectricPolarizationCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dElectricPolarizationCoordinateFrame[1];
     }
     attribute electricPolarizationVector: Cartesian3dElectricPolarizationVector :> vectorQuantities;
 
@@ -278,7 +278,7 @@ package ISQElectromagnetism {
      * definition: `vec(J) = ρ vec(v)` where `ρ` is electric charge density (item 6-3) and `vec(v)` is velocity (ISO 80000-3, item 3-8.1)
      * remarks: Electric current `I` (item 6-1) through a surface `S` is `I = int_S vec(J) * vec(e_n) dA` where `vec(e_n) dA` is vector surface element. See IEC 60050-121, item 121-11-11.
      */
-    attribute def Cartesian3dElectricCurrentDensityCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dElectricCurrentDensityCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -289,11 +289,11 @@ package ISQElectromagnetism {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dElectricCurrentDensityCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dElectricCurrentDensityCoordinateFrame[1];
     }
     attribute electricCurrentDensityVector: Cartesian3dElectricCurrentDensityVector :> vectorQuantities;
 
-    alias Cartesian3dAreicElectricCurrentCoordinateSystem for Cartesian3dElectricCurrentDensityCoordinateSystem;
+    alias Cartesian3dAreicElectricCurrentCoordinateFrame for Cartesian3dElectricCurrentDensityCoordinateFrame;
     alias areicElectricCurrentVector for electricCurrentDensityVector;
 
     /**
@@ -330,7 +330,7 @@ package ISQElectromagnetism {
      * definition: `vec(J_S) = ρ_A vec(v)` where `ρ_A` is surface density of electric charge (item 6-4) and `vec(v)` is velocity (ISO 80000-3, item 3-8.1)
      * remarks: Electric current `I` (item 6-1) through a curve `C` on a surface is `I = int_C vec(J_S) xx vec(e_n) * d vec(r)` where `vec(e_n)` is a unit vector perpendicular to the surface and line vector element and `d vec(r)` is the differential of position vector `vec(r)`. See IEC 60050-121, item 121-11-12.
      */
-    attribute def Cartesian3dLinearElectricCurrentDensityCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dLinearElectricCurrentDensityCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -341,11 +341,11 @@ package ISQElectromagnetism {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dLinearElectricCurrentDensityCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dLinearElectricCurrentDensityCoordinateFrame[1];
     }
     attribute linearElectricCurrentDensityVector: Cartesian3dLinearElectricCurrentDensityVector :> vectorQuantities;
 
-    alias Cartesian3dLineicElectricCurrentCoordinateSystem for Cartesian3dLinearElectricCurrentDensityCoordinateSystem;
+    alias Cartesian3dLineicElectricCurrentCoordinateFrame for Cartesian3dLinearElectricCurrentDensityCoordinateFrame;
     alias lineicElectricCurrentVector for linearElectricCurrentDensityVector;
 
     /**
@@ -384,7 +384,7 @@ package ISQElectromagnetism {
      * definition: `vec(E) = vec(F)/q` where `vec(F)` is force (ISO 80000-4, item 4-9.1) and `q` is electric charge (item 6-2)
      * remarks: See IEC 60050, item 121-11-18. `q` is the charge of a test particle at rest.
      */
-    attribute def Cartesian3dElectricFieldStrengthCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dElectricFieldStrengthCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -395,7 +395,7 @@ package ISQElectromagnetism {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dElectricFieldStrengthCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dElectricFieldStrengthCoordinateFrame[1];
     }
     attribute electricFieldStrengthVector: Cartesian3dElectricFieldStrengthVector :> vectorQuantities;
 
@@ -499,7 +499,7 @@ package ISQElectromagnetism {
      * definition: `vec(D) = ε_0 vec(E) + vec(P)` where `ε_0` is the electric constant (item 6-14.1 ), `vec(E)` is electric field strength (item 6-10), and `vec(P)` is electric polarization (item 6-7)
      * remarks: The electric flux density is related to electric charge density via `nabla * vec(D) = ρ` where `nabla * vec(D)` denotes the divergence of `vec(D)`. See IEC 60050-121, item 121-11-40.
      */
-    attribute def Cartesian3dElectricFluxDensityCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dElectricFluxDensityCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -510,11 +510,11 @@ package ISQElectromagnetism {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dElectricFluxDensityCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dElectricFluxDensityCoordinateFrame[1];
     }
     attribute electricFluxDensityVector: Cartesian3dElectricFluxDensityVector :> vectorQuantities;
 
-    alias Cartesian3dElectricDisplacementCoordinateSystem for Cartesian3dElectricFluxDensityCoordinateSystem;
+    alias Cartesian3dElectricDisplacementCoordinateFrame for Cartesian3dElectricFluxDensityCoordinateFrame;
     alias electricDisplacementVector for electricFluxDensityVector;
 
     /**
@@ -681,7 +681,7 @@ package ISQElectromagnetism {
      * definition: `vec(J_D) = (del vec(D))/(del t)` where `vec(D)` is electric flux density (item 6-12) and `t` is time (ISO 80000-3, item 3-7)
      * remarks: See IEC 60050-121, item 121-11-42.
      */
-    attribute def Cartesian3dDisplacementCurrentDensityCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dDisplacementCurrentDensityCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -692,7 +692,7 @@ package ISQElectromagnetism {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dDisplacementCurrentDensityCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dDisplacementCurrentDensityCoordinateFrame[1];
     }
     attribute displacementCurrentDensityVector: Cartesian3dDisplacementCurrentDensityVector :> vectorQuantities;
 
@@ -756,7 +756,7 @@ package ISQElectromagnetism {
      * definition: `vec(J_(tot)) = vec(J) +vec(J_D)` where `vec(J)` is electric current density (item 6-8) and `vec(J_D)` is displacement current density (item 6-18)
      * remarks: See IEC 60050-121, item 121-11-44.
      */
-    attribute def Cartesian3dTotalCurrentDensityCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dTotalCurrentDensityCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -767,7 +767,7 @@ package ISQElectromagnetism {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dTotalCurrentDensityCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dTotalCurrentDensityCoordinateFrame[1];
     }
     attribute totalCurrentDensityVector: Cartesian3dTotalCurrentDensityVector :> vectorQuantities;
 
@@ -806,7 +806,7 @@ package ISQElectromagnetism {
      * definition: `vec(F) = q vec(v) xx vec(B)` where `vec(F)` is force (ISO 80000-4, item 4-9.1) and `vec(v)` is velocity (ISO 80000-3, item 3-8.1) of any test particle with electric charge `q` (item 6-2)
      * remarks: The magnetic flux density has zero divergence, `nabla * vec(B) = 0`. See IEC 60050-121, item 121-11-19.
      */
-    attribute def Cartesian3dMagneticFluxDensityCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dMagneticFluxDensityCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -817,7 +817,7 @@ package ISQElectromagnetism {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dMagneticFluxDensityCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dMagneticFluxDensityCoordinateFrame[1];
     }
     attribute magneticFluxDensityVector: Cartesian3dMagneticFluxDensityVector :> vectorQuantities;
 
@@ -905,7 +905,7 @@ package ISQElectromagnetism {
      * definition: `vec(m) = I vec(e_n) A` where `I` is electric current (item 6-1) in a small closed loop, `vec(e_n)` is a unit vector perpendicular to the loop, and `A` is area (ISO 80000-3, item 3-3) of the loop
      * remarks: The magnetic moment of a substance within a domain is the vector sum of the magnetic moments of all entities included in the domain. See IEC 60050-121, items 121-11-49 and 121-11-50.
      */
-    attribute def Cartesian3dMagneticMomentCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dMagneticMomentCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -916,11 +916,11 @@ package ISQElectromagnetism {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dMagneticMomentCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dMagneticMomentCoordinateFrame[1];
     }
     attribute magneticMomentVector: Cartesian3dMagneticMomentVector :> vectorQuantities;
 
-    alias Cartesian3dMagneticAreaMomentCoordinateSystem for Cartesian3dMagneticMomentCoordinateSystem;
+    alias Cartesian3dMagneticAreaMomentCoordinateFrame for Cartesian3dMagneticMomentCoordinateFrame;
     alias magneticAreaMomentVector for magneticMomentVector;
 
     /**
@@ -957,7 +957,7 @@ package ISQElectromagnetism {
      * definition: `vec(M) = (d vec(m)) / (dV)` where `vec(m)` is magnetic moment (item 6-23) of a substance in a domain with volume `V` (ISO 80000-3, item 3-4)
      * remarks: See IEC 60050-121, item 121-11-52.
      */
-    attribute def Cartesian3dMagnetizationCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dMagnetizationCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -968,7 +968,7 @@ package ISQElectromagnetism {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dMagnetizationCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dMagnetizationCoordinateFrame[1];
     }
     attribute magnetizationVector: Cartesian3dMagnetizationVector :> vectorQuantities;
 
@@ -1006,7 +1006,7 @@ package ISQElectromagnetism {
      * definition: `vec(H) = vec(B)/μ_0 - vec(M)` where `vec(B)` is magnetic flux density (item 6-21), `μ_0` is the magnetic constant (item 6-26.1), and `vec(M)` is magnetization (item 6-24)
      * remarks: The magnetic field strength is related to the total current density `vec(J_(t ot))` (item 6-20) via `rot vec(H) = vec(J_(t ot))`. See IEC 60050-121, item 121-11-56.
      */
-    attribute def Cartesian3dMagneticFieldStrengthCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dMagneticFieldStrengthCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -1017,11 +1017,11 @@ package ISQElectromagnetism {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dMagneticFieldStrengthCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dMagneticFieldStrengthCoordinateFrame[1];
     }
     attribute magneticFieldStrengthVector: Cartesian3dMagneticFieldStrengthVector :> vectorQuantities;
 
-    alias Cartesian3dMagnetizingFieldCoordinateSystem for Cartesian3dMagneticFieldStrengthCoordinateSystem;
+    alias Cartesian3dMagnetizingFieldCoordinateFrame for Cartesian3dMagneticFieldStrengthCoordinateFrame;
     alias magnetizingFieldVector for magneticFieldStrengthVector;
 
     /**
@@ -1141,7 +1141,7 @@ package ISQElectromagnetism {
      * definition: `vec(J_m) = μ_0 vec(M)` where `μ_0` is the magnetic constant (item 6-26.1), and `vec(M)` is magnetization (item 6-24)
      * remarks: See IEC 60050-121, item 121-11-54.
      */
-    attribute def Cartesian3dMagneticPolarizationCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dMagneticPolarizationCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -1152,7 +1152,7 @@ package ISQElectromagnetism {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dMagneticPolarizationCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dMagneticPolarizationCoordinateFrame[1];
     }
     attribute magneticPolarizationVector: Cartesian3dMagneticPolarizationVector :> vectorQuantities;
 
@@ -1192,7 +1192,7 @@ package ISQElectromagnetism {
      * definition: `vec(j_m) = μ_0 vec(m)` where `μ_0` is the magnetic constant (item 6-26.1), and `vec(m)` is magnetic moment (item 6-23)
      * remarks: See IEC 60050-121, item 121-11-55.
      */
-    attribute def Cartesian3dMagneticDipoleMomentCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dMagneticDipoleMomentCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -1203,7 +1203,7 @@ package ISQElectromagnetism {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dMagneticDipoleMomentCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dMagneticDipoleMomentCoordinateFrame[1];
     }
     attribute magneticDipoleMomentVector: Cartesian3dMagneticDipoleMomentVector :> vectorQuantities;
 
@@ -1266,7 +1266,7 @@ package ISQElectromagnetism {
      * definition: `vec(B) = rot vec(A)` where `vec(B)` is magnetic flux density (item 6-21)
      * remarks: The magnetic vector potential is not unique since any irrotational vector field can be added to it without changing its rotation. See IEC 60050-121, item 121-11-23.
      */
-    attribute def Cartesian3dMagneticVectorPotentialCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dMagneticVectorPotentialCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = true;
         attribute :>> isOrthogonal = true;
@@ -1277,7 +1277,7 @@ package ISQElectromagnetism {
         attribute :>> dimensions = 3;
         attribute :>> isBound = true;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dMagneticVectorPotentialCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dMagneticVectorPotentialCoordinateFrame[1];
     }
     attribute magneticVectorPotentialVector: Cartesian3dMagneticVectorPotentialVector :> vectorQuantities;
 
@@ -1343,7 +1343,7 @@ package ISQElectromagnetism {
      * definition: `vec(S) = vec(E) xx vec(H)` where `vec(E)` is electric field strength (item 6-10) and `vec(H)` is magnetic field strength (item 6-25)
      * remarks: See IEC 60050-121, item 121-11-66.
      */
-    attribute def Cartesian3dPoyntingCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dPoyntingCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -1354,7 +1354,7 @@ package ISQElectromagnetism {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dPoyntingCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dPoyntingCoordinateFrame[1];
     }
     attribute poyntingVector: Cartesian3dPoyntingVector :> vectorQuantities;
 

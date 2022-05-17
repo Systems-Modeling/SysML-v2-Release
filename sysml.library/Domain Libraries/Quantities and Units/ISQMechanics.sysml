@@ -6,7 +6,7 @@
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
  * with Greek letters in Unicode encoding. In running text, AsciiMath is placed between backticks.
  * Note 2: For vector and tensor quantities currently the unit and quantity value type for their (scalar) magnitude is 
- * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate system) 
+ * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate frame) 
  * or TensorMeasurementReference.
  */
 package ISQMechanics {
@@ -237,7 +237,7 @@ package ISQMechanics {
      * definition: product of mass `m` (item 4-1) of a body and velocity `vec(v)` (ISO 80000-3) of its centre of mass: `vec(p) = m  vec(v)`
      * remarks: None.
      */
-    attribute def Cartesian3dMomentumCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dMomentumCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -248,7 +248,7 @@ package ISQMechanics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dMomentumCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dMomentumCoordinateFrame[1];
     }
     attribute momentumVector: Cartesian3dMomentumVector :> vectorQuantities;
 
@@ -287,7 +287,7 @@ package ISQMechanics {
      * definition: vector (ISO 80000-2) quantity describing interaction between bodies or particles
      * remarks: None.
      */
-    attribute def Cartesian3dForceCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dForceCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -298,7 +298,7 @@ package ISQMechanics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dForceCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dForceCoordinateFrame[1];
     }
     attribute forceVector: Cartesian3dForceVector :> vectorQuantities;
 
@@ -317,7 +317,7 @@ package ISQMechanics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dForceCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dForceCoordinateFrame[1];
     }
     attribute weightVector: Cartesian3dWeightVector :> vectorQuantities;
 
@@ -336,7 +336,7 @@ package ISQMechanics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dForceCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dForceCoordinateFrame[1];
     }
     attribute staticFrictionForceVector: Cartesian3dStaticFrictionForceVector :> vectorQuantities;
 
@@ -357,7 +357,7 @@ package ISQMechanics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dForceCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dForceCoordinateFrame[1];
     }
     attribute kineticFrictionForceVector: Cartesian3dKineticFrictionForceVector :> vectorQuantities;
 
@@ -378,7 +378,7 @@ package ISQMechanics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dForceCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dForceCoordinateFrame[1];
     }
     attribute rollingResistanceVector: Cartesian3dRollingResistanceVector :> vectorQuantities;
 
@@ -401,7 +401,7 @@ package ISQMechanics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dForceCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dForceCoordinateFrame[1];
     }
     attribute dragForceVector: Cartesian3dDragForceVector :> vectorQuantities;
 
@@ -440,7 +440,7 @@ package ISQMechanics {
      * definition: vector (ISO 80000-2) quantity describing the effect of force acting during a time interval: `vec(I) = int_(t_1)^(t_2) vec(F)*dt` where `vec(F)` is force (item 4-9.1), `t` is time (ISO 80000-3) and `[t_1, t_2]` is considered time interval
      * remarks: For a time interval `[t_1, t_2]`, `vec(I)(t_1, t_2) = vec(p)(t_1) - vec(p)(t_2) = vec(Δp)` where `vec(p)` is momentum (item 4-8).
      */
-    attribute def Cartesian3dImpulseCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dImpulseCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -451,7 +451,7 @@ package ISQMechanics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dImpulseCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dImpulseCoordinateFrame[1];
     }
     attribute impulseVector: Cartesian3dImpulseVector :> vectorQuantities;
 
@@ -490,7 +490,7 @@ package ISQMechanics {
      * definition: vector (ISO 80000-2) quantity described by the vector product: `vec(L) = vec(r) xx vec(p)` where `vec(r)` is position vector (ISO 80000-3) with respect to the axis of rotation and `vec(p)` is momentum (item 4-8)
      * remarks: None.
      */
-    attribute def Cartesian3dAngularMomentumCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dAngularMomentumCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -501,7 +501,7 @@ package ISQMechanics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dAngularMomentumCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dAngularMomentumCoordinateFrame[1];
     }
     attribute angularMomentumVector: Cartesian3dAngularMomentumVector :> vectorQuantities;
 
@@ -540,7 +540,7 @@ package ISQMechanics {
      * definition: vector (ISO 80000-2) quantity described by the vector product: `vec(M) = vec(r) xx vec(F)` where `vec(r)` is position vector (ISO 80000-3) with respect to the axis of rotation and `vec(F)` is force (item 4-9.1)
      * remarks: The bending moment of force is denoted by `vec(M)_b`.
      */
-    attribute def Cartesian3dMomentOfForceCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dMomentOfForceCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -551,7 +551,7 @@ package ISQMechanics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dMomentOfForceCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dMomentOfForceCoordinateFrame[1];
     }
     attribute momentOfForceVector: Cartesian3dMomentOfForceVector :> vectorQuantities;
 
@@ -614,7 +614,7 @@ package ISQMechanics {
      * definition: vector (ISO 80000-2) quantity describing the effect of moment of force during a time interval: `vec(H)(t_1; t_2) = int_(t_1)^(t_2) vec(M) dt` where `vec(M)` is moment of force (item 4-12.1), `t` is time (ISO 80000-3) and `[t_1, t_2]` is considered time interval
      * remarks: For a time interval `[t_1, t_2]`, `vec(H)(t_1, t_2) = vec(L)(t_1) - vec(L)(t_2) = vec(ΔL)` where `vec(L)` is angular momentum.
      */
-    attribute def Cartesian3dAngularImpulseCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dAngularImpulseCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -625,7 +625,7 @@ package ISQMechanics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dAngularImpulseCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dAngularImpulseCoordinateFrame[1];
     }
     attribute angularImpulseVector: Cartesian3dAngularImpulseVector :> vectorQuantities;
 
@@ -1313,7 +1313,7 @@ package ISQMechanics {
      * definition: vector (ISO 80000-2) quantity characterizing a flowing fluid by the product of its local mass density `ρ` (item 4-2) and local velocity `vec(v)` (ISO 80000-3): `vec(j_m) = ρ vec(v)`
      * remarks: None.
      */
-    attribute def Cartesian3dMassFlowCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dMassFlowCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -1324,7 +1324,7 @@ package ISQMechanics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dMassFlowCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dMassFlowCoordinateFrame[1];
     }
     attribute massFlowVector: Cartesian3dMassFlowVector :> vectorQuantities;
 

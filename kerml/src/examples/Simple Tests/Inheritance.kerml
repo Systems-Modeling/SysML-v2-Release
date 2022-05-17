@@ -8,7 +8,7 @@ package Inheritance {
 	}
 		
 	feature y: A {
-		feature x is B::f;
+		alias x for B::f;
 		feature g redefines f;
 	}
 	

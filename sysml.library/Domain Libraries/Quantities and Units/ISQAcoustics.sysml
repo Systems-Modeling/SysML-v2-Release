@@ -6,7 +6,7 @@
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
  * with Greek letters in Unicode encoding. In running text, AsciiMath is placed between backticks.
  * Note 2: For vector and tensor quantities currently the unit and quantity value type for their (scalar) magnitude is 
- * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate system) 
+ * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate frame) 
  * or TensorMeasurementReference.
  */
 package ISQAcoustics {
@@ -19,9 +19,9 @@ package ISQAcoustics {
     private import ISQMechanics::PowerValue;
     private import ISQMechanics::PressureValue;
     private import ISQSpaceTime::SpeedValue;
-    private import ISQSpaceTime::Cartesian3dVelocityCoordinateSystem;
+    private import ISQSpaceTime::Cartesian3dVelocityCoordinateFrame;
     private import ISQSpaceTime::AccelerationValue;
-    private import ISQSpaceTime::Cartesian3dAccelerationCoordinateSystem;
+    private import ISQSpaceTime::Cartesian3dAccelerationCoordinateFrame;
     private import ISQThermodynamics::EnergyValue;
 
     /**
@@ -84,7 +84,7 @@ package ISQAcoustics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
     }
     attribute soundParticleDisplacementVector: Cartesian3dSoundParticleDisplacementVector :> vectorQuantities;
 
@@ -103,7 +103,7 @@ package ISQAcoustics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dVelocityCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dVelocityCoordinateFrame[1];
     }
     attribute soundParticleVelocityVector: Cartesian3dSoundParticleVelocityVector :> vectorQuantities;
 
@@ -122,7 +122,7 @@ package ISQAcoustics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dAccelerationCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dAccelerationCoordinateFrame[1];
     }
     attribute soundParticleAccelerationVector: Cartesian3dSoundParticleAccelerationVector :> vectorQuantities;
 
@@ -225,7 +225,7 @@ package ISQAcoustics {
      * definition: vector (ISO 80000-2) quantity given by: `vec(I) = p vec(u)`, where `p` is sound pressure (item 8-2.2) and `vec(u)` is sound particle velocity (item 8-4)
      * remarks: This definition can become inapplicable in situations with a high mean fluid flow.
      */
-    attribute def Cartesian3dSoundIntensityCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dSoundIntensityCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -236,7 +236,7 @@ package ISQAcoustics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSoundIntensityCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dSoundIntensityCoordinateFrame[1];
     }
     attribute soundIntensityVector: Cartesian3dSoundIntensityVector :> vectorQuantities;
 

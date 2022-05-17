@@ -7,7 +7,7 @@ package MassRollup_2 {
 		feature totalMass subsets ISQ::mass =
 			mass + sum(subcomponents.totalMass);
 			
-		feature subcomponents is massedThings;	
+		feature subcomponents redefines massedThings;	
 	}
 	
 	feature massedThings: MassedThing[0..*];

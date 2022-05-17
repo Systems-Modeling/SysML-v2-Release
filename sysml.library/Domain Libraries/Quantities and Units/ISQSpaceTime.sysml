@@ -6,7 +6,7 @@
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
  * with Greek letters in Unicode encoding. In running text, AsciiMath is placed between backticks.
  * Note 2: For vector and tensor quantities currently the unit and quantity value type for their (scalar) magnitude is 
- * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate system) 
+ * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate frame) 
  * or TensorMeasurementReference.
  */
 package ISQSpaceTime {
@@ -159,7 +159,7 @@ package ISQSpaceTime {
         attribute :>> dimensions = 3;
         attribute :>> isBound = true;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
     }
     attribute positionVector: Cartesian3dPositionVector :> vectorQuantities;
 
@@ -178,7 +178,7 @@ package ISQSpaceTime {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
     }
     attribute displacementVector: Cartesian3dDisplacementVector :> vectorQuantities;
 
@@ -363,7 +363,7 @@ package ISQSpaceTime {
      * definition: vector (ISO 80000-2) quantity giving the rate of change of a position vector (item 3-1.10)
      * remarks: The velocity vector is given by: `vec(v) = (d vec(r)) / (dt)` where `vec(r)` denotes the position vector (item 3-1.10) and `t` the duration (item 3-9). When the general symbol `vec(v)` is not used for the velocity, the symbols `u`, `v`, `w` may be used for the components (ISO 80000-2) of the velocity.
      */
-    attribute def Cartesian3dVelocityCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dVelocityCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -374,7 +374,7 @@ package ISQSpaceTime {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dVelocityCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dVelocityCoordinateFrame[1];
     }
     attribute velocityVector: Cartesian3dVelocityVector :> vectorQuantities;
 
@@ -435,7 +435,7 @@ package ISQSpaceTime {
      * definition: vector (ISO 80000-2) quantity giving the rate of change of velocity (item 3-10)
      * remarks: The acceleration vector is given by: `vec(a) = (d vec(v))/(dt)` where `vec(v)` denotes the velocity (item 3-10.1) and `t` the duration (item 3-9). The magnitude (ISO 80000-2) of the acceleration of free fall is usually denoted by `g`.
      */
-    attribute def Cartesian3dAccelerationCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dAccelerationCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -446,7 +446,7 @@ package ISQSpaceTime {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dAccelerationCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dAccelerationCoordinateFrame[1];
     }
     attribute accelerationVector: Cartesian3dAccelerationVector :> vectorQuantities;
 
@@ -483,7 +483,7 @@ package ISQSpaceTime {
      * definition: vector (ISO 80000-2) quantity giving the rate of change of the rotational displacement (item 3-6) as its magnitude (ISO 80000-2) and with a direction equal to the direction of the axis of rotation
      * remarks: The angular velocity vector is given by: `vec(ω) = (d φ) / (dt) vec(u)` where `φ` denotes the angular displacement (item 3-6), `t` the duration (item 3-9), and `vec(u)` the unit vector (ISO 80000-2) along the axis of rotation in the direction for which the rotation corresponds to a right-hand spiral.
      */
-    attribute def Cartesian3dAngularVelocityCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dAngularVelocityCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -494,7 +494,7 @@ package ISQSpaceTime {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dAngularVelocityCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dAngularVelocityCoordinateFrame[1];
     }
     attribute angularVelocityVector: Cartesian3dAngularVelocityVector :> vectorQuantities;
 
@@ -531,7 +531,7 @@ package ISQSpaceTime {
      * definition: vector (ISO 80000-2) quantity giving the rate of change of angular velocity (item 3-12)
      * remarks: The angular acceleration vector is given by: `vec α = (d vec(ω))/(dt)` Where `vec(ω)` denotes the angular velocity (item 3-12) and `t` the duration (item 3-9).
      */
-    attribute def Cartesian3dAngularAccelerationCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dAngularAccelerationCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -542,7 +542,7 @@ package ISQSpaceTime {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dAngularAccelerationCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dAngularAccelerationCoordinateFrame[1];
     }
     attribute angularAccelerationVector: Cartesian3dAngularAccelerationVector :> vectorQuantities;
 
@@ -694,7 +694,7 @@ package ISQSpaceTime {
      * definition: vector normal to the surfaces of constant phase angle (item 3-7) of a wave, with the magnitude (ISO 80000-2) of repetency (item 3-20)
      * remarks: None.
      */
-    attribute def Cartesian3dWaveCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dWaveCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -705,7 +705,7 @@ package ISQSpaceTime {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dWaveCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dWaveCoordinateFrame[1];
     }
     attribute waveVector: Cartesian3dWaveVector :> vectorQuantities;
 

@@ -6,7 +6,7 @@
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
  * with Greek letters in Unicode encoding. In running text, AsciiMath is placed between backticks.
  * Note 2: For vector and tensor quantities currently the unit and quantity value type for their (scalar) magnitude is
- * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate system)
+ * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate frame)
  * or TensorMeasurementReference.
  */
 package ISQChemistryMolecular {

@@ -506,9 +506,9 @@ package VehicleModel_1_simplified{
 
             part def Context {
                 attribute time:TimeValue;
-                attribute spatialCS: Cartesian3dSpatialCoordinateSystem[1] { :>> mRefs = (m, m, m); }
-                attribute velocityCS: Cartesian3dVelocityCoordinateSystem[1] = spatialCS/s { :>> isBound = false; }
-                attribute accelarationCS: Cartesian3dAccelerationCoordinateSystem[1] = velocityCS/s { :>> isBound = false; }
+                attribute spatialCF: Cartesian3dSpatialCoordinateFrame[1] { :>> mRefs = (m, m, m); }
+                attribute velocityCF: Cartesian3dVelocityCoordinateFrame[1] = spatialCF/s { :>> isBound = false; }
+                attribute accelerationCF: Cartesian3dAccelerationCoordinateFrame[1] = velocityCF/s { :>> isBound = false; }
             }
             // consider including in the Context
             // the following should replace startShot and endShot with start and done respectively
@@ -1618,7 +1618,7 @@ package VehicleModel_1_simplified{
                 perform transportPassenger.c.passenger1GetOutOfVehicle.lockDoor_out;
             }
             part vehicle_b_1:>vehicle_b {
-                attribute :>> positionVector = (0,0,0) [spatialCS];
+                attribute :>> positionVector = (0,0,0) [spatialCF];
                 perform transportPassenger.b.providePower redefines providePower;
                 perform transportPassenger.trigger;
             }

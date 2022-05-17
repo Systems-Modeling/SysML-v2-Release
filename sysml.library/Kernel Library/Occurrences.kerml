@@ -13,11 +13,11 @@ package Occurrences {
 	private import Collections::OrderedSet;
 	private import SequenceFunctions::includes;
 	private import CollectionFunctions::contains;
-	
+
 	/**
-	 * Occurrence is the most general classifier of entities that have identity and 
+	 * Occurrence is the most general classifier of entities that have identity and
 	 * occur over time and space.
-	 * 
+	 *
 	 * The features of Occurrence specify the semantics of associations between occurrences that
 	 * assert complete inclusion and exclusion in time or space, or both, which includes
 	 * portions of an occurrence (having the same identity).  Portions include slices and shots
@@ -25,22 +25,22 @@ package Occurrences {
 	 */
 	abstract class Occurrence specializes Anything {
 		private import SequenceFunctions::*;
-		
+
 		feature portionOfLife: Life[1] subsets portionOf;
-		
+
 		feature self: Occurrence[1] redefines Anything::self subsets timeSlices, spaceSlices, sameLifeOccurrences;
 		feature sameLifeOccurrences: Occurrence[1..*] subsets things;
-		
+
 		/**
 		 * Occurrences that end before this occurrence starts.
 		 */
 		feature predecessors: Occurrence[0..*] subsets occurrences;
-		
+
 		/**
 		 * Occurrences that start after this occurrence ends.
 		 */
 		feature successors: Occurrence[0..*] subsets occurrences;
-		
+
 		/**
 		 * Occurrences that end just before this occurrence starts, with no
 		 * possibility of other occurrences happening in the time between them.
@@ -80,15 +80,21 @@ package Occurrences {
 		}
 
 		/**
-		 * The number of variables need to identify space points in this occurrence, from 0
-		 * to 3, without regard to higher dimensional spaces it might be emedded in.
+		 * Occurrences that this one completely includes in both space and time,
+		 * and vice-versa, including this one.
+		 */
+		feature spaceTimeCoincidentOccurrences: Occurrence[1..*] subsets spaceTimeEnclosedOccurrences;		
+
+		/**
+		 * The number of variables needed to identify space points in this occurrence, from 0
+		 * to 3, without regard to higher dimensional spaces it might be embedded in.
 		 */
 		feature innerSpaceDimension : Natural [1];
 
 		inv { innerSpaceDimension <= 3 }
 
 		/**
-		 * For occurrences of innerSpaceDimension 1 or 2, the number of variables need to
+		 * For occurrences of innerSpaceDimension 1 or 2, the number of variables needed to
 		 * identify their space points in higher dimensions they might be embedded in, from
 		 * the innerSpaceDimension to 3. An outerSpaceDimension equal to innerSpaceDimension
 		 * indicates the occurrence is spatially straight (innerSpaceDimension 1 embedded in
@@ -103,25 +109,25 @@ package Occurrences {
 		 * thing occurring), see PortionOf.
 		 */
 		portion feature all portions: Occurrence[1..*] subsets spaceTimeEnclosedOccurrences;
-		
+
 		/**
 		 * Occurrences of which this occurrence is a portion, including at
 		 * least this occurrence.
 		 */
 		feature portionOf : Occurrence[1..*];
-		
+
 		/**
 		 * Portions of an occurrence taking up all of its space over some period of time,
 		 * including at least this occurrence.
 		 */
 		portion feature timeSlices: Occurrence[1..*] subsets portions;
-		
+
 		/**
 		 * Occurrences of which this occurrence is a time slice, including at least this
 		 * occurrence.
 		 */
 		feature timeSliceOf : Occurrence[1..*] subsets portionOf;
-		
+
 		/**
 		 * Time slices of an occurrence that happen at a single instant of time
 		 * (i.e., have no duration).
@@ -130,17 +136,17 @@ package Occurrences {
 			binding startShot[1] = endShot[1];
 		}
 		inv { snapshots == union(startShot, union(middleTimeSlice.snapshots, endShot)) }
-		
+
 		/**
 		 * Occurrences of which this occurrence is a snapshot.
 		 */
 		feature snapshotOf : Occurrence[0..*] subsets timeSliceOf;
-		
+
 		/**
 		 * The snapshot representing the start of the occurrence in time.
 		 */
 		portion feature startShot: Occurrence[1] subsets snapshots;
-		
+
 		/**
 		 * A time slice that takes all the time between the start shot and end shot. There
 		 * is none when the startShot and endShot are the same.
@@ -151,11 +157,11 @@ package Occurrences {
 		/**
 		 * The startShot happens immediately before the middle time slice.
 		 */
-		connector :HappensJustBefore 
-			from earlierOccurrence :> startShot [1] 
+		connector :HappensJustBefore
+			from earlierOccurrence :> startShot [1]
 			to laterOccurrence :> middleTimeSlice [0..1];
 
-		/** 
+		/**
 		 * The snapshot at the end of the occurrence in time.
 		 */
 		portion feature endShot: Occurrence[1] subsets snapshots;
@@ -163,7 +169,7 @@ package Occurrences {
 		/**
 		 * The endShot happens after the middle time slice.
 		 */
-		 connector :HappensJustBefore 
+		 connector :HappensJustBefore
 			from earlierOccurrence :> middleTimeSlice [0..1]
 			to laterOccurrence :> endShot [1];
 
@@ -204,7 +210,7 @@ package Occurrences {
 			connector :Within
 				  from smallerOccurrence :> elements [0..*]
 				  to largerOccurrence :> union [1];
-			connector :Within 
+			connector :Within
 				  from smallerOccurrence :> union.spaceTimeEnclosedPoints [0..*]
 				  to largerOccurrence :> elements [1..*];
 		}
@@ -217,11 +223,11 @@ package Occurrences {
 		 * occurrence).
 		 */
 		feature intersectionsOf: Set[0..*] {
-			feature redefines elements: Occurrence[0..*] { 
+			feature redefines elements: Occurrence[0..*] {
 				feature all notIntersection: Occurrence[0..*] subsets spaceTimeEnclosedPoints;
 			}
 			feature intersection: Occurrence[0..1];
-			
+
 			connector :Within
 				  from smallerOccurrence :> intersection [1]
 				  to largerOccurrence :> elements [0..*];
@@ -249,7 +255,7 @@ package Occurrences {
 				feature redefines elements: Occurrence[1..*];
 				feature all notSubtrahend: Occurrence [0..*] subsets elements;
 			}
-			
+
 			connector :Without
 				  from separateOccurrenceToo :> interdiff.notSubtrahend [0..*]
 				  to separateOccurrence :> subtrahend [1..*];
@@ -275,10 +281,10 @@ package Occurrences {
 		inv { notEmpty(spaceInterior) implies spaceInterior.innerSpaceDimension == innerSpaceDimension }
 
 		/**
-		 * A space shot of this Occurrence that is not among those of its space interior, 
+		 * A space shot of this Occurrence that is not among those of its space interior,
 		 * which must be outside it. It must not have a spaceBoundary.
 		 */
-		portion feature spaceBoundary: Occurrence[0..1] subsets spaceShots { 
+		portion feature spaceBoundary: Occurrence[0..1] subsets spaceShots {
 			feature redefines isClosed = true;
 		}
 
@@ -290,7 +296,7 @@ package Occurrences {
 		inv { !isClosed implies contains(self.unionsOf, union(spaceBoundary, spaceInterior)) }
 		inv { innerSpaceDimension == 0 implies isEmpty(spaceBoundary) }
 
-		connector :OutsideOf 
+		connector :OutsideOf
 			from separateSpaceToo :> spaceInterior [0..1]
 			to separateSpace :> spaceBoundary [1];
 
@@ -301,15 +307,15 @@ package Occurrences {
 		inv { isClosed == isEmpty(spaceBoundary) }
 
 		/**
-		 * The incoming transfers received by this occurrence. 
+		 * The incoming transfers received by this occurrence.
 		 */
 		feature incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
 			end feature redefines source;
 			end feature redefines target;
 		}
-		
+
 		/**
-		 * The incoming transfers with this occurrence as the target. 
+		 * The incoming transfers with this occurrence as the target.
 		 */
 		feature all incomingTransfersToSelf subsets incomingTransfers {
 			end feature redefines source;
@@ -318,15 +324,15 @@ package Occurrences {
 		binding incomingTransfersToSelf.target = self;
 
 		/**
-		 * The outgoing transfers sent from this occurrence. 
+		 * The outgoing transfers sent from this occurrence.
 		 */
 		feature outgoingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
 			end feature redefines source;
 			end feature redefines target;
 		}
-		
+
 		/**
-		 * The outgoing transfers with this occurrence as the source. 
+		 * The outgoing transfers with this occurrence as the source.
 		 */
 		feature all outgoingTransfersFromSelf subsets outgoingTransfers {
 			end feature redefines source;
@@ -334,16 +340,16 @@ package Occurrences {
 		}
 		binding outgoingTransfersFromSelf.source = self;
 	}
-	
+
 	abstract class all Life specializes Occurrence {
 		/**
 		 * Lives are only portions of themselves.
 		 */
 		binding portionOf = self;
 	}
-	
+
 	abstract feature occurrences: Occurrence[0..*] nonunique subsets things;
-	
+
 	/**
 	 * SelfSameLifeLink is a binary association that is equivalent to SelfLink it the
 	 * linked things are DataValues, but asserts that the link things are portions of
@@ -351,7 +357,7 @@ package Occurrences {
 	 * (SelfSameLifeLink is disjoint with LinkObject).
 	 */
 	assoc all SelfSameLifeLink specializes BinaryLink {
-	 
+
 		end feature myselfSameLife: Anything[1..*] redefines source;
 		end feature selfSameLife: Anything[1..*] redefines target;
 
@@ -363,8 +369,8 @@ package Occurrences {
 		feature all targetDataValue : DataValue [0..1] subsets selfSameLife;
 		binding dSelf of sourceDataValue = targetDataValue;
 	}
-	
-	subclassifier SelfLink specializes SelfSameLifeLink; 
+
+	subclassifier SelfLink specializes SelfSameLifeLink;
 
 	/**
 	 * HappensLink is the most general associations that assert temporal relationships between a
@@ -382,26 +388,26 @@ package Occurrences {
 	 * HappensDuring asserts that the shorterOccurrence happens during the longerOccurrence.
 	 * That is, the time interval of the shorterOccurrence is completely within that of the
 	 * longerOccurrence, or every snapshot of the shorterOccurrence happens while (at the
-	 * same time as) some snapshot of the longerOccurrence. Note that this means every 
+	 * same time as) some snapshot of the longerOccurrence. Note that this means every
 	 * Occurrence HappensDuring itself and that HappensDuring is transitive.
 	 */
 	assoc HappensDuring specializes HappensLink {
 		end feature shorterOccurrence: Occurrence[1..*] redefines sourceOccurrence subsets longerOccurrence.timeEnclosedOccurrences;
 		end feature longerOccurrence: Occurrence[1..*] redefines targetOccurrence;
-		
+
 		/*
-		 * HappensDuring and HappensBefore constrain each other. All predecessors of 
-		 * (occurrences happening before) a HappenDuring's longerOccurrence are also 
-		 * predecessors of its shorterOccurrence. Inversely, all successors (occurrences 
+		 * HappensDuring and HappensBefore constrain each other. All predecessors of
+		 * (occurrences happening before) a HappenDuring's longerOccurrence are also
+		 * predecessors of its shorterOccurrence. Inversely, all successors (occurrences
 		 * happening after) its longerOccurrence are also successors of its shorterOccurrence.
 		 */
-		
+
 		subset longerOccurrence.predecessors subsets shorterOccurrence.predecessors;
 		subset longerOccurrence.successors subsets shorterOccurrence.successors;
-		
+
 		subset shorterOccurrence.timeEnclosedOccurrences subsets longerOccurrence.timeEnclosedOccurrences;
 	}
-	
+
 	/**
 	 * HappensWhile asserts that two occurrences happen during each other, that is, they
 	 * each start at the same time and end at the same time.
@@ -409,8 +415,8 @@ package Occurrences {
 	assoc HappensWhile specializes HappensDuring {
 		end feature thisOccurrence: Occurrence[1..*] redefines shorterOccurrence;
 		end feature thatOccurrence: Occurrence[1..*] redefines longerOccurrence;
-		
-		connector :HappensDuring 
+
+		connector :HappensDuring
 			from shorterOccurrence :> thatOccurrence [1]
 			to longerOccurrence :> thisOccurrence  [1];
 	}
@@ -448,24 +454,26 @@ package Occurrences {
 	 * itself and transitive.
 	 */
 	assoc WithinBoth specializes Within {
-		end feature thisOccurrence: Occurrence[1..*] redefines smallerOccurrence;
-		end feature thatOccurrence: Occurrence[1..*] redefines largerOccurrence;
-		
+		end feature thisOccurrence: Occurrence[1..*] redefines smallerOccurrence
+		  subsets thatOccurrence.spaceTimeCoincidentOccurrences;
+		end feature thatOccurrence: Occurrence[1..*] redefines largerOccurrence
+		  subsets thisOccurrence.spaceTimeCoincidentOccurrences;
+
 		connector :Within
 			from smallerOccurrence :> thatOccurrence [1]
 			to largerOccurrence :> thisOccurrence [1];
 	}
 
 	/**
-	 * PortionOf asserts one occurrence is a portion of another, including at least itself. 
+	 * PortionOf asserts one occurrence is a portion of another, including at least itself.
 	 */
-	assoc PortionOf specializes Within { 
-		end feature portionOccurrence: Occurrence[1..*] redefines smallerOccurrence subsets portionedOccurrence.portions; 
+	assoc PortionOf specializes Within {
+		end feature portionOccurrence: Occurrence[1..*] redefines smallerOccurrence subsets portionedOccurrence.portions;
 		end feature portionedOccurrence: Occurrence[1..*] redefines largerOccurrence subsets portionOccurrence.portionOf;
 
 		binding portionOccurrence.portionOfLife[1] = portionedOccurrence.portionOfLife[1];
 	}
-	
+
 	/**
 	 * TimeSliceOf asserts one occurrence is a time slice of another, including at least itself.
 	 */
@@ -473,7 +481,7 @@ package Occurrences {
 		end feature timeSliceOccurrence: Occurrence[1..*] redefines portionOccurrence subsets timeSlicedOccurrence.timeSlices;
 		end feature timeSlicedOccurrence: Occurrence[1..*] redefines portionedOccurrence subsets timeSliceOccurrence.timeSliceOf;
 	}
-	
+
 	/**
 	 * SnapshotsOf asserts one occurrence is a snapshot of another.
 	 */
@@ -494,7 +502,7 @@ package Occurrences {
 
 		inv { spaceSliceOccurrence.innerSpaceDimension <= spaceSlicedOccurrence.innerSpaceDimension }
 	}
-	
+
 	/**
 	 * SpaceShotOf asserts that its spaceShotOccurrence is of a lower inner space dimension than
 	 * it spaceShottedOccurrence.
@@ -534,7 +542,7 @@ package Occurrences {
 		/* HappensBefore is transitive. */
 		subset laterOccurrence.successors subsets earlierOccurrence.successors;
 	}
-	
+
 	/**
 	 * HappensJustBefore is HappensBefore asserting that there is no possibility of another
 	 * occurrences happening in the time between the earlierOccurrence and laterOccurrence.
@@ -553,7 +561,7 @@ package Occurrences {
 	 feature happensBeforeLinks: HappensBefore[0..*] nonunique subsets binaryLinks {
 		end feature earlierOccurrence: Occurrence[0..*] redefines HappensBefore::earlierOccurrence, binaryLinks::source;
 		end feature laterOccurrence: Occurrence[0..*] redefines HappensBefore::laterOccurrence, binaryLinks::target;
-	 } 
+	 }
 
 	/**
 	 * OutsideOf asserts that two occurrences do not overlap in space (not necessarily in time,

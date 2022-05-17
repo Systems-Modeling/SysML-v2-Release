@@ -35,7 +35,7 @@ package ISQBase {
     /**
      * General spatial coordinate system
      */
-    attribute def Cartesian3dSpatialCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dSpatialCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = true;
         attribute :>> isOrthogonal = true;

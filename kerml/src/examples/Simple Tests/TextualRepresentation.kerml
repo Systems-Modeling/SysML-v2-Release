@@ -3,9 +3,10 @@ package TextualRepresentation {
 	
 	class C {
 	    feature x: Real;
-	    inv x_constraint;
-	    rep inOCL about x_constraint language "ocl" 
-	        /* self.x > 0.0 */
+	    inv x_constraint {
+		    rep inOCL language "ocl" 
+		        /* self.x > 0.0 */
+	    }
 	}
 	
 	behavior setX(c : C, newX : Real) {
