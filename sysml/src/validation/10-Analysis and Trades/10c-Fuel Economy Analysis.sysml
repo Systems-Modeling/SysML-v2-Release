@@ -1,7 +1,7 @@
 package '10c-Fuel Economy Analysis' {
 	import ScalarValues::*;
 	import Quantities::*;
-	import UnitsAndScales::*;
+	import MeasurementReferences::*;
 	import ISQ::*;
 	import USCustomaryUnits::*;
 	

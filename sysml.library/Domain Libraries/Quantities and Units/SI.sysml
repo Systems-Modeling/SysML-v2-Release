@@ -5,7 +5,7 @@
  * Note 2: This is a representative but not yet complete list of measurement units.
  */
 package SI {
-    private import UnitsAndScales::*;
+    private import MeasurementReferences::*;
     import ISQ::*;
     import SIPrefixes::*;
 

@@ -16,7 +16,7 @@ package 'Verification Case Usage Example' {
 		perform vehicleMassTest;
 		
 		part scale : Scale {
-			perform vehicleMassTest::collectData {
+			perform vehicleMassTest.collectData {
 				in part :>> testVehicle;
 				
 				// In reality, this would be some more involved process.

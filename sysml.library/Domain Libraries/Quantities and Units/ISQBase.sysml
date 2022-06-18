@@ -8,7 +8,7 @@
 package ISQBase {
     private import ScalarValues::Real;
     private import Quantities::*;
-    private import UnitsAndScales::*;
+    private import MeasurementReferences::*;
 
     /**
      * source: item 3-1.1 length

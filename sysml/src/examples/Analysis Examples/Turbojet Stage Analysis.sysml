@@ -1,6 +1,6 @@
 package 'Turbojet Stage Analysis' {
 	import Quantities::ScalarQuantityValue;
-	import UnitsAndScales::DimensionOneValue;
+	import MeasurementReferences::DimensionOneValue;
 	import ISQ::*;
 	
 	package 'Thermodynamic Functions' {

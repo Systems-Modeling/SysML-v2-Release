@@ -11,7 +11,7 @@ package 'Allocation Definition Example' {
 		}
 		
 		part torqueGenerator : TorqueGenerator {
-			perform providePower::generateTorque;
+			perform providePower.generateTorque;
 		}
 		
 	}
@@ -24,7 +24,7 @@ package 'Allocation Definition Example' {
 		
 		part powerTrain : PowerTrain {
 			part engine {
-				perform providePower::generateTorque;
+				perform providePower.generateTorque;
 			}
 		}
 	

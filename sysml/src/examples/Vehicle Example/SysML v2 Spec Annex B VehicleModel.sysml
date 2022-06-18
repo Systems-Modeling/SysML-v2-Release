@@ -435,7 +435,7 @@ package sfriedenthal_VehicleModel_1_simplified{
 
             // (from Ed's model) the following defines new quantities and units used in fuel economy reqts and analysis
             import Quantities::*;
-            import UnitsAndScales::DerivedUnit;
+            import MeasurementReferences::DerivedUnit;
             import SIPrefixes::kilo;
             
             /* should we add quantity and unit as key words? */
@@ -606,7 +606,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                         attribute mass :> ISQ::mass=875[kg];
                         attribute driveTrainEfficiency:Real = 0.6;
                         port shaftPort_d:ShaftPort_d;
-                        perform ActionTree::providePower::distributeTorque;
+                        perform ActionTree::providePower.distributeTorque;
                         part rearWheel1:Wheel{
                             attribute redefines diameter;
                             port wheelToAxlePort:WheelToAxlePort;
@@ -641,7 +641,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                     }
                     part starterMotor:StarterMotor;
                     part engine:Engine{
-                        perform ActionTree::providePower::generateTorque redefines generateTorque;            
+                        perform ActionTree::providePower.generateTorque redefines generateTorque;            
                         part cylinders:Cylinder[4..6];
                         part alternator{
                             action generateElectricity;
@@ -661,13 +661,13 @@ package sfriedenthal_VehicleModel_1_simplified{
                         //conjugate notation ~
                         //port clutchPort:~DrivePwrPort;
                         port shaftPort_a:ShaftPort_a;
-                        perform ActionTree::providePower::amplifyTorque;
+                        perform ActionTree::providePower.amplifyTorque;
                     }
                     part driveshaft:Driveshaft{
                         attribute mass :> ISQ::mass=100[kg];
                         port shaftPort_b:ShaftPort_b;
                         port shaftPort_c:ShaftPort_c;
-                        perform ActionTree::providePower::transferTorque;
+                        perform ActionTree::providePower.transferTorque;
                     }
                     part vehicleSoftware:VehicleSoftware{
                         part vehicleController: VehicleController {
@@ -1109,7 +1109,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                 objective fuelEconomyAnalysisObjective {
                     /* the objective of this analysis is to determine whether the vehicle design configuration can 
                     satisfy the fuel economy requirements */
-                    require vehicleSpecification::vehicleFuelEconomyRequirements;
+                    require vehicleSpecification.vehicleFuelEconomyRequirements;
                 }
                 
                 action fuelConsumption {
@@ -1197,7 +1197,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                 objective fuelEconomyAnalysisObjective {
                     doc /*the objective of this analysis is to determine whether the vehicle design configuration can 
                     satisfy the fuel economy requirements*/
-                    require vehicleSpecification::vehicleFuelEconomyRequirements;
+                    require vehicleSpecification.vehicleFuelEconomyRequirements;
                 }
                 /* this is the longhand for a calc
                 calc calc1:TraveledDistance(in=scenario) result;

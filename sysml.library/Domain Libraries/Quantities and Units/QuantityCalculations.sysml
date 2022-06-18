@@ -1,8 +1,8 @@
 package QuantityCalculations {
 	import ScalarValues::*;
     import Quantities::ScalarQuantityValue;
-    import UnitsAndScales::ScalarMeasurementReference;
-    import UnitsAndScales::DimensionOneValue;
+    import MeasurementReferences::ScalarMeasurementReference;
+    import MeasurementReferences::DimensionOneValue;
     
     calc def isZero specializes NumericalFunctions::isZero(x: ScalarQuantityValue): Boolean {
     	NumericalFunctions::isZero(x.num)

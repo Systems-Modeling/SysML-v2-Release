@@ -9,10 +9,11 @@ package Base {
      */
 	abstract classifier Anything {
 		/**
-		 * self is a feature that relates everything to itself.
-		 * (This is enforced by tying this feature to Objects::SelfLink::self.)
+		 * The source of a SelfLink of this thing to itself. self is thus a feature that
+		 * relates everything to itself. It is also the value of the nested "that" feature
+		 * of all other things featured by this thing.
 		 */
-		feature self: Anything[1] subsets things;		
+		feature self: Anything[1] subsets things chains things.that;
 	}
 	
 	/**
@@ -26,7 +27,14 @@ package Base {
 	/**
 	 * things is the top-level feature in the language.
 	 */
-	abstract feature things: Anything [0..*] nonunique;
+	abstract feature things: Anything [0..*] nonunique {
+		/**
+		 * For each value of things, the "featuring instance" of that value. 
+		 * This is enforced by declaring Anything::self to be the chaining of things.that, 
+		 * restricting it the single value of self.
+		 */
+		feature that : Anything[1];
+	}
 	
 	/**
 	 * dataValues is a specialization of things restricted to type DataValue.

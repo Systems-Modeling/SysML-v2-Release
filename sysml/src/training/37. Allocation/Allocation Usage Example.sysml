@@ -10,7 +10,7 @@ package 'Allocation Usage Example' {
 		}
 		
 		part torqueGenerator : TorqueGenerator {
-			perform providePower::generateTorque;
+			perform providePower.generateTorque;
 		}
 	}
 	
@@ -22,7 +22,7 @@ package 'Allocation Usage Example' {
 		
 		part powerTrain : PowerTrain {
 			part engine : Engine {
-				perform providePower::generateTorque;
+				perform providePower.generateTorque;
 			}
 		}
 		

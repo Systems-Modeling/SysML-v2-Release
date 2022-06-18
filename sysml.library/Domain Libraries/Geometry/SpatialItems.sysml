@@ -6,9 +6,7 @@ package SpatialItems {
 	private import Objects::Point;
 	private import SpatialFrames::SpatialFrame;
 	private import Quantities::VectorQuantityValue;
-	private import UnitsAndScales::VectorMeasurementReference;
-	private import UnitsAndScales::CoordinateFrame;
-	private import UnitsAndScales::CoordinateTransformation;
+	private import MeasurementReferences::CoordinateFrame;
 	private import Time::Clock;
 	private import Time::TimeInstantValue;
 	private import ISQ::Cartesian3dSpatialCoordinateFrame;
@@ -28,7 +26,7 @@ package SpatialItems {
 		ref item localClock : Clock[1] default Time::defaultClock;
 		
 		/**
-		 * The three-dimensional VectorMeasurementReference to be used as the measurement reference for position 
+		 * The three-dimensional CoordinateFrame to be used as the measurement reference for position 
 		 * and displacement vector values relative to this SpatialItem.
 		 */
 		attribute coordinateFrame : CoordinateFrame[1] default Cartesian3dSpatialCoordinateFrame() {
@@ -44,7 +42,7 @@ package SpatialItems {
 		 * The CurrentPositionOf the originPoint must always be a zero vector.
 		 */
 		assert constraint originPointConstraint {
-			isZeroVector(CurrentPositionOf(originPoint, SpatialItem::self))
+			isZeroVector(CurrentPositionOf(originPoint, that))
 		}
 	}
 
@@ -59,11 +57,11 @@ package SpatialItems {
 		 * and, by default, they have the same localClock as the CompoundSpatialItem.
 		 */
 		item componentItems : SpatialItem[1..*] ordered :> subitems {
-			item nestedLocalClock :>> localClock default localClock;
-			attribute nestedCoordinateFrame :>> coordinateFrame {
+			item :>> localClock default (that as SpatialItem).localClock;
+			attribute :>> coordinateFrame {
 				attribute :>> transformation[1] {
-				 	attribute :>> source = coordinateFrame;
-				 	attribute :>> target = nestedCoordinateFrame;
+				 	attribute :>> source default (that.that.that as SpatialItem).coordinateFrame;
+				 	attribute :>> target default that;
 				}
 			}
 		}

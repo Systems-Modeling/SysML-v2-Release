@@ -31,9 +31,19 @@ package Objects {
 		step involvingPerformances: Performance[0..*] subsets performances;
 		
 		/**
-		 * Performances which are enacted by this object.
+		 * Performances that are enacted by this object.
 		 */
 		abstract step enactedPerformances: Performance[0..*] subsets involvingPerformances, timeEnclosedOccurrences;
+		
+		/**
+		 * Performances that are owned by this object.
+		 */
+		composite step ownedPerformances: Performance[0..*] subsets involvingPerformances, timeEnclosedOccurrences {
+			/**
+			 * The owning object is the default "this" reference for all ownedPerformances.
+			 */
+			feature redefines this default that;
+		}
 
 		/**
 		 * A space boundary that is a structured space object.
@@ -105,8 +115,8 @@ package Objects {
 	 * A StructuredSpaceObject is an Object that is broken up into smaller structured space objects (cells) of
 	 * the same or lower inner space dimension: faces that are surfaces, edges that are curves, and vertices
 	 * that are points, with edges and vertices on the boundary of faces, and vertices on the boundary of
-	 * edges. Cells overlap when a structured space object is closed, as required to be a space boundary of
-	 * an object (faces overlap at their edges and/or vertices, while edges overlap at their vertices). The
+	 * edges. Cells meet when a structured space object is closed, as required to be a space boundary of
+	 * an object (faces meet at their edges and/or vertices, while edges meet at their vertices). The
 	 * inner space dimension of structured space object is the highest of their cells.
 	 */
 	abstract struct StructuredSpaceObject specializes Object {

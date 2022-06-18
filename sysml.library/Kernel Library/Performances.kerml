@@ -15,7 +15,7 @@ package Performances {
 	/**
 	 * Performance is the most general class of behavioral Occurrences that may be performed over time.
 	 */
-	abstract behavior Performance specializes Occurrence () {
+	abstract behavior Performance specializes Occurrence {
 		feature self: Performance redefines Occurrence::self;
 		
 		/**
@@ -29,24 +29,37 @@ package Performances {
 		feature performers: Object[0..*] subsets involvedObjects;
 		
 		/**
-		 * suboccurrences of this Performance that are also Performances.
+		 * timeEnclosedOccurrences of this Performance that are also Performances.
 		 */
-		step subperformances: Performance[0..*] subsets performances, timeEnclosedOccurrences;
+		step enclosedPerformances: Performance[0..*] subsets performances, timeEnclosedOccurrences;
 		
 		/**
-		 * subperformances of this Performance that are Evaluations.
+		 * enclosedPerformances that are composite. 
 		 */
-		expr subevaluations: Evaluation[0..*] subsets evaluations, subperformances;
+		composite step subperformances: Performance[0..*] subsets enclosedPerformances {
+			/**
+			 * The default "this" context of a subperformance is the same as that of its owning Performance.
+			 * This means that the context for any Performance that is in a composition tree rooted
+			 * in a Performance that is not itself owned by an Object is the root Performance. If the
+			 * root Performance is an ownedPerformance of an Object, then that Object is the context.
+			 */
+			feature redefines this default (that as Performance).this;
+		}
 		
 		/**
-		 * subperformances of this performance that are transfers.
+		 * enclosedPerformances of this Performance that are Evaluations.
 		 */
-		step subtransfers: Transfers::Transfer[0..*] subsets transfers, subperformances;
+		expr enclosedEvaluations: Evaluation[0..*] subsets evaluations, enclosedPerformances;
 		
 		/**
-		 * subtransfers of this performance that are transfers-before.
+		 * enclosedPerformances of this performance that are transfers.
+		 */
+		step enclosedTransfers: Transfers::Transfer[0..*] subsets transfers, enclosedPerformances;
+		
+		/**
+		 * enclosedTransfers of this performance that are transfers-before.
 		 */	
-		step subtransfersBefore: Transfers::TransferBefore[0..*] subsets transfersBefore, subtransfers;
+		step enclosedTransfersBefore: Transfers::TransferBefore[0..*] subsets transfersBefore, enclosedTransfers;
 	}
 	
 	/**

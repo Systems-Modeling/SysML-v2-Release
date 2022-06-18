@@ -10,7 +10,7 @@ package 'Requirement Satisfaction' {
 			
 		part engine_v1: Engine {
 			port :>> clutchPort;
-			perform 'provide power'::'generate torque' :>> generateTorque;
+			perform 'provide power'.'generate torque' :>> generateTorque;
 		}	
 	}
 	

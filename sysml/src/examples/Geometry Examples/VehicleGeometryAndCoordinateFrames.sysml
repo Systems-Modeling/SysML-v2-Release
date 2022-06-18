@@ -7,10 +7,10 @@ package VehicleGeometryAndCoordinateFrames {
     import ShapeItems::*;
     import SpatialItems::*;
 
-    import UnitsAndScales::CoordinateFrame;
-    import UnitsAndScales::TranslationRotationSequence;
-    import UnitsAndScales::Translation;
-    import UnitsAndScales::Rotation;
+    import MeasurementReferences::CoordinateFrame;
+    import MeasurementReferences::TranslationRotationSequence;
+    import MeasurementReferences::Translation;
+    import MeasurementReferences::Rotation;
     
     private import Collections::Array;
     private import ScalarValues::Boolean;
@@ -84,7 +84,7 @@ package VehicleGeometryAndCoordinateFrames {
         }
 
         part chassis : Chassis[1] :> componentItems {
-			attribute :>> nestedCoordinateFrame {
+			attribute :>> coordinateFrame {
 				attribute :>> transformation : TranslationRotationSequence {
 	 	          	attribute :>> source = datum;
                 	attribute :>> elements = Translation((-(shape as Box).length/2, -(shape as Box).width/2, 0)[datum]);
@@ -98,7 +98,7 @@ package VehicleGeometryAndCoordinateFrames {
         private attribute wheelYShift : Real = 720;
 
         part leftFrontWheel : Wheel[1] :> componentItems {
-            attribute :>> nestedCoordinateFrame {
+            attribute :>> coordinateFrame {
                 attribute :>> transformation : TranslationRotationSequence {
 	            	attribute :>> source = datum;
                 	attribute :>> elements = (Translation((frontWheelXShift, wheelYShift, 80)[datum]), Rotation(plusXAxis[datum], -90['°']));
@@ -106,7 +106,7 @@ package VehicleGeometryAndCoordinateFrames {
             }
         }
         part rightFrontWheel : Wheel[1] :> componentItems {
-            attribute :>> nestedCoordinateFrame {
+            attribute :>> coordinateFrame {
                 attribute :>> transformation : TranslationRotationSequence {
                 	attribute :>> source = datum;
                 	attribute :>> elements = (Translation((frontWheelXShift, -wheelYShift, 80)[datum]), Rotation((1, 0, 0)[datum], 90['°']));
@@ -114,7 +114,7 @@ package VehicleGeometryAndCoordinateFrames {
             }
         }
         part leftRearWheel : Wheel[1] :> componentItems {
-            attribute :>> nestedCoordinateFrame {
+            attribute :>> coordinateFrame {
                 attribute :>> transformation : TranslationRotationSequence {
                 	attribute :>> source = datum;
                 	attribute :>> elements = (Translation((rearWheelXShift, wheelYShift, 80)[datum]), Rotation((1, 0, 0)[datum], 90['°']));
@@ -122,7 +122,7 @@ package VehicleGeometryAndCoordinateFrames {
             }
         }
         part rightRearWheel : Wheel[1] :> componentItems {
-            attribute :>> nestedCoordinateFrame {
+            attribute :>> coordinateFrame {
                 attribute :>> transformation : TranslationRotationSequence {
 					attribute :>> source = datum;
                 	attribute :>> elements = (Translation((rearWheelXShift, -wheelYShift, 80)[datum]), Rotation((-1, 0, 0)[datum], 90['°']));

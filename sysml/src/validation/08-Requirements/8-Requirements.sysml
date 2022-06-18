@@ -46,7 +46,7 @@ package '8-Requirements' {
 				
 			part engine_v1: Engine {
 				port :>> drivePwrPort;
-				perform 'provide power'::'generate torque' :>> Engine::'generate torque';
+				perform 'provide power'.'generate torque' :>> 'generate torque';
 			}
 			
 			part transmission: Transmission {

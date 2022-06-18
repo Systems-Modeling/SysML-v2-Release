@@ -13,6 +13,12 @@ package PartTest {
 		public abstract part a: A;
 		port x: ~C;
 		package P { }
+		
+		action a1;
+		perform action a2;
+		
+		state s1;
+		exhibit state s2;
 	}
 	
 	private port def C {

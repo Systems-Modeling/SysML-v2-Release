@@ -112,7 +112,7 @@ package '6-Individual and Snapshots' {
 					 * state, which means that the vehicle must me in the state 
 					 * at the time of the snapshot.
 					 */
-					exhibit vehicleStates::on;
+					exhibit vehicleStates.on;
 				}
 				
 				snapshot road_ID1_t0 : Road_ID1 {
@@ -130,7 +130,7 @@ package '6-Individual and Snapshots' {
 					:>> velocity = v1;
 					:>> acceleration = a1;
 					
-					exhibit vehicleStates::on;
+					exhibit vehicleStates.on;
 				}
 				
 				snapshot road_ID1_t1 : Road_ID1 {
@@ -150,7 +150,7 @@ package '6-Individual and Snapshots' {
 					:>> velocity = vn;
 					:>> acceleration = an;
 					
-					exhibit vehicleStates::off;
+					exhibit vehicleStates.off;
 				}
 				
 				snapshot road_ID1_tn : Road_ID1 {

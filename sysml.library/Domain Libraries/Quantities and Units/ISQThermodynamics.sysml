@@ -12,7 +12,7 @@
 package ISQThermodynamics {
     private import ScalarValues::Real;
     private import Quantities::*;
-    private import UnitsAndScales::*;
+    private import MeasurementReferences::*;
     private import ISQBase::*;
 
     // Quantity definitions referenced from other ISQ packages

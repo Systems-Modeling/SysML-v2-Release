@@ -1,5 +1,5 @@
 package '15_01-Constants' {
-	import UnitsAndScales::*;
+	import MeasurementReferences::*;
     import SI::*;
     import RealFunctions::*;
 

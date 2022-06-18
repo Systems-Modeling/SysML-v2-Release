@@ -17,12 +17,12 @@ package Quantities {
 	 * scalar and vector quantities, that are tensor quantities of order 0 and 1 respectively.
 	 * The measurement reference used to express a quantity value must have a type, dimensions and order that match the quantity, i.e.,
 	 * a TensorQuantityValue must use a TensorMeasurementReference, a VectorQuantityValue a VectorMeasurementReference, 
-	 * and a ScalarQuantityValue a ScalarMeasurementReference. See package UnitsAndScales for details.
+	 * and a ScalarQuantityValue a ScalarMeasurementReference. See package MeasurementReferences for details.
 	 */
 	abstract attribute def TensorQuantityValue :> Array {
 		attribute isBound: Boolean;
 		attribute num: Number[1..*] ordered nonunique :>> elements;
-		attribute mRef: UnitsAndScales::TensorMeasurementReference;
+		attribute mRef: MeasurementReferences::TensorMeasurementReference;
         attribute :>> dimensions = mRef.dimensions;
 		attribute order :>> rank = mRef.order;
         attribute contravariantOrder: Natural;
@@ -33,11 +33,11 @@ package Quantities {
 	}
 	
 	abstract attribute def VectorQuantityValue :> TensorQuantityValue, NumericalVectorValue {
-		attribute :>> mRef: UnitsAndScales::VectorMeasurementReference;
+		attribute :>> mRef: MeasurementReferences::VectorMeasurementReference;
 	}
 	
 	abstract attribute def ScalarQuantityValue :> VectorQuantityValue, NumericalValue {
-		attribute :>> mRef: UnitsAndScales::ScalarMeasurementReference;
+		attribute :>> mRef: MeasurementReferences::ScalarMeasurementReference;
 	}
 	
 	/**

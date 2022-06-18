@@ -2,11 +2,6 @@
  * Example vehicle definitions model.
  **/
 package VehicleDefinitions {
-	import ScalarValues::*;
-	import Quantities::*;
-	import UnitsAndScales::*;
-	import ISQ::*;
-	import SI::*;
 	
 	/* BLOCKS */
 	

@@ -85,7 +85,7 @@ package '9-Verification-simplified' {
 			part testOperator : TestOperator;
 			
 			part scale : Scale {
-				perform vehicleMassTest::collectData {
+				perform vehicleMassTest.collectData {
 					in part :>> testVehicle;
 					
 					// In reality, this would be some more involved process.

@@ -3,10 +3,10 @@ package CarWithShapeAndCSG {
     import ShapeItems::*;
     import Objects::Point;
 	import Quantities::VectorQuantityValue;
-	import UnitsAndScales::CoordinateFrame;
-	import UnitsAndScales::TranslationRotationSequence;
-	import UnitsAndScales::Translation;
-	import UnitsAndScales::Rotation;
+	import MeasurementReferences::CoordinateFrame;
+	import MeasurementReferences::TranslationRotationSequence;
+	import MeasurementReferences::Translation;
+	import MeasurementReferences::Rotation;
 	import SI::*;
 
 	/**

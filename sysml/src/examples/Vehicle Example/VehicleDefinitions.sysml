@@ -4,7 +4,7 @@
 package VehicleDefinitions {
 	import ScalarValues::*;
 	import Quantities::*;
-	import UnitsAndScales::*;
+	import MeasurementReferences::*;
 	import ISQ::*;
 	import SI::*;
 	

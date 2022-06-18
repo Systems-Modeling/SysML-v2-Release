@@ -6,9 +6,8 @@ package ShapeItems {
 	private import ScalarValues::Positive;
 	private import ISQ::*;
 	private import SI::m;
-	private import Occurrences::WithinBoth;
+	private import Occurrences::MatesWith;
 	private import Objects::*;
-	private import Links::SelfLink;	
 	private import Items::Item;
 	private import SequenceFunctions::isEmpty;
 	private import SequenceFunctions::notEmpty;
@@ -59,7 +58,7 @@ package ShapeItems {
 
 		assert constraint { isClosed == vertices->forAll{in p1 : Point;
 					vertices->exists{p2 : Point; p1 != p2 and
-							 includes(p1.spaceTimeCoincidentOccurrences, p2) } } }
+							 includes(p1.matingOccurrences, p2) } } }
 	}
 
 	attribute semiMajorAxis : LengthValue [0..*] :> scalarQuantities;
@@ -130,13 +129,13 @@ package ShapeItems {
 
 		assert constraint { (1..size(edges))->forAll {in i;
 					(edges[i] as StructuredSpaceObject).vertices == (vertices[(2*i)-1], vertices[2*i]) and  
-					includes(((edges[i] as StructuredSpaceObject).vertices[2] as Item).spaceTimeCoincidentOccurrences,
+					includes(((edges[i] as StructuredSpaceObject).vertices[2] as Item).matingOccurrences,
 						 (edges[i==size(edges) ? 1 : i+1]as StructuredSpaceObject).vertices[1]) } }
 	}
 
 	/**
-	 * A Triangle is three-sided Polygon  with given length (base), width (perpindicular distance
-	 * from base to apex), and offset of this perpindicular at the base from the center of the base.
+	 * A Triangle is three-sided Polygon  with given length (base), width (perpendicular distance
+	 * from base to apex), and offset of this perpendicular at the base from the center of the base.
 	 */
 	 item def Triangle :> Polygon {
 
@@ -276,7 +275,7 @@ package ShapeItems {
 	}
 
 	/**
-	 * A Hyperboloid is a ConicSurface with only hypebolic cross-sections.
+	 * A Hyperboloid is a ConicSurface with only hyperbolic cross-sections.
 	 */
 	item def Hyperboloid :> ConicSurface {
 		attribute transverseAxis : LengthValue [1] :> scalarQuantities;
@@ -317,8 +316,8 @@ package ShapeItems {
 	 */
 	item def RectangularToroid :> Toroid {
 
-		attribute rectangleLength [1] :>> length;
-		attribute rectangleWidth [1] :>> width;
+		attribute rectangleLength : LengthValue [1] :> scalarQuantities;
+		attribute rectangleWidth  : LengthValue [1] :> scalarQuantities;
 
 		item :>> revolvedCurve: Rectangle [1] {
 			attribute :>> length = rectangleLength;
@@ -363,8 +362,8 @@ package ShapeItems {
 		binding [1] bind base.edges [0..*] = be [0..*];
 		binding [1] bind cf.edges [0..*] = be [0..*];
 
-		/* Coincident edges */
-		connection :WithinBoth connect be [2] to be [2];
+		/* Meeting edges */
+		connection :MatesWith connect be [1] to be [1];
 
 		attribute :>> genus = 0;
 	}
@@ -417,8 +416,8 @@ package ShapeItems {
 
 		binding [1] bind cf.edges [0..*] = ae [0..*];
 
-		/* Coincident edges */
-		connection :WithinBoth connect ae [2] to ae [2];
+		/* Meeting edges */
+		connection :MatesWith connect ae [1] to ae [1];
 	}
 
 	/**
@@ -514,7 +513,6 @@ package ShapeItems {
 
 		/* Bind face edges to specific edges */
 		binding [1] bind tf.edges [0..1] = tfe [0..1];
-		binding [1] bind tf.edges [0..1] = tfe [0..1];
 		binding [1] bind tf.edges [0..1] = tre [0..1];
 		binding [1] bind tf.edges [0..1] = tsle [0..1];
 		binding [1] bind bf.edges [0..1] = bfe [0..1];
@@ -550,25 +548,25 @@ package ShapeItems {
 		binding [1] bind urle.vertices [0..1] = trlv [0..1];
 		binding [1] bind urle.vertices [0..1] = brlv [0..1];
 
-		/* Edge coincidence */
-		connection :WithinBoth connect tfe [2] to tfe [2];
-		connection :WithinBoth connect tre [2] to tre [2];
-		connection :WithinBoth connect tsle [2] to tsle [2];
-		connection :WithinBoth connect bfe [2] to bfe [2];
-		connection :WithinBoth connect bre [2] to bre [2];
-		connection :WithinBoth connect bsle [2] to bsle [2];
-		connection :WithinBoth connect bsre [2] to bsre [2];
-		connection :WithinBoth connect ufle [2] to ufle [2];
-		connection :WithinBoth connect urle [2] to urle [2];
-		connection :WithinBoth connect bsre [2] to bsre [2];
+		/* Meeting edges */
+		connection :MatesWith connect tfe [1] to tfe [1];
+		connection :MatesWith connect tre [1] to tre [1];
+		connection :MatesWith connect tsle [1] to tsle [1];
+		connection :MatesWith connect bfe [1] to bfe [1];
+		connection :MatesWith connect bre [1] to bre [1];
+		connection :MatesWith connect bsle [1] to bsle [1];
+		connection :MatesWith connect bsre [1] to bsre [1];
+		connection :MatesWith connect ufle [1] to ufle [1];
+		connection :MatesWith connect urle [1] to urle [1];
+		connection :MatesWith connect bsre [1] to bsre [1];
 
-		/* Vertex coincidence  */
-		connection :WithinBoth connect tflv [3] to tflv [3];
-		connection :WithinBoth connect trlv [3] to trlv [3];
-		connection :WithinBoth connect bflv [3] to bflv [3];
-		connection :WithinBoth connect bfrv [3] to bfrv [3];
-		connection :WithinBoth connect brlv [3] to brlv [3];
-		connection :WithinBoth connect brrv [3] to brrv [3];
+		/* Meeting vertices  */
+		connection :MatesWith connect tflv [2] to tflv [2];
+		connection :MatesWith connect trlv [2] to trlv [2];
+		connection :MatesWith connect bflv [2] to bflv [2];
+		connection :MatesWith connect bfrv [2] to bfrv [2];
+		connection :MatesWith connect brlv [2] to brlv [2];
+		connection :MatesWith connect brrv [2] to brrv [2];
 	}
 
 	/**
@@ -661,17 +659,15 @@ package ShapeItems {
 		binding [1] bind urre.vertices [0..1] = trrv [0..1];
 		binding [1] bind urre.vertices [0..1] = brrv [0..1];
 
-		/* Edge coincidence */
+		/* Meeting edges */
+		connection :MatesWith connect tsre [1] to tsre [1];
+		connection :MatesWith connect ufre [1] to ufre [1];
+		connection :MatesWith connect urre [1] to urre [1];
+		connection :MatesWith connect bsre [1] to bsre [1];
 
-		connection :WithinBoth connect tsre [2] to tsre [2];
-		connection :WithinBoth connect ufre [2] to ufre [2];
-		connection :WithinBoth connect urre [2] to urre [2];
-		connection :WithinBoth connect bsre [2] to bsre [2];
-
-		/* Vertex coincidence  */
-
-		connection :WithinBoth connect tfrv [3] to tfrv [3];
-		connection :WithinBoth connect trrv [3] to trrv [3];
+		/* Meeting vertices  */
+		connection :MatesWith connect tfrv [2] to tfrv [2];
+		connection :MatesWith connect trrv [2] to trrv [2];
 	}
 
 	/**
@@ -682,19 +678,25 @@ package ShapeItems {
 		attribute :>> width [1];
 		attribute :>> height [1];
 	
-		item :>> tf  : Rectangle;
-		item :>> bf  : Rectangle;
-		item :>> ff  : Rectangle;
-		item :>> rf  : Rectangle;
-		item :>> slf : Rectangle;
-		item :>> srf : Rectangle;
+		item :>> tf  : Rectangle { attribute :>> length = RectangularCuboid::length;
+								   attribute :>> width	= RectangularCuboid::height; }
+		item :>> bf  : Rectangle { attribute :>> length = RectangularCuboid::length;
+								   attribute :>> width	= RectangularCuboid::height; }
+		item :>> ff  : Rectangle { attribute :>> length = RectangularCuboid::length;
+								   attribute :>> width	= RectangularCuboid::width; }
+		item :>> rf  : Rectangle { attribute :>> length = RectangularCuboid::length;
+								   attribute :>> width	= RectangularCuboid::width; }
+		item :>> slf : Rectangle { attribute :>> length = RectangularCuboid::height;
+								   attribute :>> width	= RectangularCuboid::width; }
+		item :>> srf : Rectangle { attribute :>> length = RectangularCuboid::height;
+								   attribute :>> width	= RectangularCuboid::width; }
 	}
 	alias Box for RectangularCuboid;
 
 	/**
 	 * A Pyramid is a Polyhedron with the sides of a polygon (base) forming the bases of triangles
-	 * that join at an apex point.  Its height is the perpindicular distance from the base to the apex,
-	 * and its offsets are between this perpindicular at the base and the center of the base.
+	 * that join at an apex point.	Its height is the perpendicular distance from the base to the apex,
+	 * and its offsets are between this perpendicular at the base and the center of the base.
 	 */
 	item def Pyramid :> Polyhedron { 
 
@@ -719,15 +721,15 @@ package ShapeItems {
 
 		assert constraint { size(apex) == wallNumber }
 
-		/* Base to wall and wall to wall edge coincidence. */
+		/* Base to wall and wall to wall edge mating. */
 		assert constraint { (1..wallNumber)->forAll {in i;
-					includes((wall[i] as Triangle).base.spaceTimeCoincidentOccurrences,
+					includes((wall[i] as Triangle).base.matingOccurrences,
 							 Pyramid::base.edges[i]) and
-					includes(((wall[i] as Triangle).edges[3] as Item).spaceTimeCoincidentOccurrences,
+					includes(((wall[i] as Triangle).edges[3] as Item).matingOccurrences,
 							 (wall[i==wallNumber ? 1 : i+1] as Triangle).edges[2]) } }
 
-		/* Apex coincidence */
-		connection :WithinBoth connect apex [wallNumber] to apex [wallNumber];
+		/* Meeting apices. */
+		connection :MatesWith connect apex [wallNumber] to apex [wallNumber];
 	}
 
 	/**

@@ -1,5 +1,5 @@
 package '15_08-Range Restriction' {
-	import UnitsAndScales::*;
+	import MeasurementReferences::*;
 	import SI::*;
 	import '15_01-Constants'::'Mathematical Constants'::pi;
 	

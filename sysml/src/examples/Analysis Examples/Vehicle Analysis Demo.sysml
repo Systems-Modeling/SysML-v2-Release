@@ -2,7 +2,7 @@ package 'Vehicle Analysis Demo' {
 	package VehicleQuantities {
 	    import ScalarValues::*;
 	    import Quantities::*;
-	    import UnitsAndScales::*;
+	    import MeasurementReferences::*;
 	    import ISQ::*;
 	    import USCustomaryUnits::*;
 	    

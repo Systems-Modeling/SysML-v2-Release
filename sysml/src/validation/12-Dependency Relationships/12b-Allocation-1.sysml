@@ -26,7 +26,7 @@ package '12b-Allocation-1' {
 		}
 		
 		part torqueGenerator : TorqueGenerator {
-			perform providePower::generateTorque :>> generateTorque;
+			perform providePower.generateTorque :>> generateTorque;
 		}
 		
 		satisfy torqueGeneration by torqueGenerator;			
@@ -38,7 +38,7 @@ package '12b-Allocation-1' {
 		
 		part powerTrain : PowerTrain {
 			part engine {
-				perform providePower::generateTorque;
+				perform providePower.generateTorque;
 			}
 		}
 	}

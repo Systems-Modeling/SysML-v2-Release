@@ -4,7 +4,7 @@
 package ISQ {
 	private import ScalarValues::Real;
 	private import Quantities::*;
-	private import UnitsAndScales::*;
+	private import MeasurementReferences::*;
 
 	import ISQBase::*;                  // ISO/IEC 80000 base quantities and general concepts
     import ISQSpaceTime::*;             // ISO 80000-3 "Space and Time"

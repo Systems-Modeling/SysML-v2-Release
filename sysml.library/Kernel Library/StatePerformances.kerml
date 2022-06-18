@@ -19,7 +19,7 @@ package StatePerformances {
 		 */
 		abstract step middle[1..*];
 		
-		// Note: All steps are implicitly considered to be subperformances,
+		// Note: All steps are implicitly considered to be enclosedPerformances,
 		// and hence happening during the state performance.
 		
 		step entry[1];

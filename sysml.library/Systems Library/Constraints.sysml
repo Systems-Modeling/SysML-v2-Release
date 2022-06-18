@@ -13,7 +13,7 @@ package Constraints {
 	 * type of all ConstraintDefinitions.
 	 */
 	abstract constraint def ConstraintCheck :> BooleanEvaluation {
-		ref constraint thisConstraint: ConstraintCheck :>> BooleanEvaluation::self;
+		ref constraint self: ConstraintCheck :>> BooleanEvaluation::self;
 	}
 	
 	/**

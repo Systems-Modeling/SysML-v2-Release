@@ -4,7 +4,7 @@ package '15_13-Discretely Sampled Function Value' {
 	import Collections::Array;
 	import ISQ::*;
 	import SI::*;
-	import UnitsAndScales::*;
+	import MeasurementReferences::*;
 	import Time::*;
 
 	attribute def MissionElapsedTimeScale :> TimeScale {

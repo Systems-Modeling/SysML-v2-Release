@@ -11,8 +11,11 @@ package Occurrences {
 	private import Links::*;
 	private import Collections::Set;
 	private import Collections::OrderedSet;
-	private import SequenceFunctions::includes;
 	private import CollectionFunctions::contains;
+	private import SequenceFunctions::isEmpty;
+	private import SequenceFunctions::notEmpty;
+	private import SequenceFunctions::includes;
+	private import SequenceFunctions::union;
 
 	/**
 	 * Occurrence is the most general classifier of entities that have identity and
@@ -31,6 +34,13 @@ package Occurrences {
 		feature self: Occurrence[1] redefines Anything::self subsets timeSlices, spaceSlices, sameLifeOccurrences;
 		feature sameLifeOccurrences: Occurrence[1..*] subsets things;
 
+		/**
+		 * The "context" Occurrence within which this Occurrence takes place. By default, it is this
+		 * Occurrence itself. However, this is overridden for ownedPerformances of Objects and
+		 * subperformances of Performances.
+		 */
+		feature this : Occurrence[1] default self;
+		
 		/**
 		 * Occurrences that end before this occurrence starts.
 		 */
@@ -83,7 +93,12 @@ package Occurrences {
 		 * Occurrences that this one completely includes in both space and time,
 		 * and vice-versa, including this one.
 		 */
-		feature spaceTimeCoincidentOccurrences: Occurrence[1..*] subsets spaceTimeEnclosedOccurrences;		
+		feature spaceTimeCoincidentOccurrences: Occurrence[1..*] subsets spaceTimeEnclosedOccurrences;
+
+		/**
+		 * Occurrences that have no space between them and this one.
+		 */
+		feature matingOccurrences: Occurrence[1..*] subsets occurrences;
 
 		/**
 		 * The number of variables needed to identify space points in this occurrence, from 0
@@ -282,23 +297,54 @@ package Occurrences {
 
 		/**
 		 * A space shot of this Occurrence that is not among those of its space interior,
-		 * which must be outside it. It must not have a spaceBoundary.
+		 * which must be outside it. It must not have a spaceBoundary.	It can be divided
+		 * into space slices that also have no spaceBoundary, where the outer one surrounds
+		 * the inner ones.
 		 */
 		portion feature spaceBoundary: Occurrence[0..1] subsets spaceShots {
+
 			feature redefines isClosed = true;
+
+			feature spaceBounder: Occurrence redefines self;
+
+			outer: Occurrence [0..1] subsets spaceSlices {
+				feature redefines isClosed = true;
+				feature redefines innerSpaceDimension = spaceBounder.innerSpaceDimension;
+			}
+
+			inner: Occurrence [0..*] subsets spaceSlices {
+				feature redefines isClosed = true;
+				feature redefines innerSpaceDimension = spaceBounder.innerSpaceDimension;
+			}
+
+			inv { notEmpty(inner) implies notEmpty(outer) }
+			inv { notEmpty(outer) implies
+				contains(unionsOf, union(outer, inner)) }
 		}
 
 		/**
 		 * An Occurrence of which this one is the space boundary.
 		 */
-		feature spaceBoundaryOf: Occurrence[0..*] subsets spaceShotOf;
+		feature spaceBoundaryOf: Occurrence[0..*] subsets spaceShotOf {
+			feature spaceBounderOf: Occurrence redefines self;
+			inv { spaceBounderOf.spaceBoundary == that.that }
+		}
 
 		inv { !isClosed implies contains(self.unionsOf, union(spaceBoundary, spaceInterior)) }
 		inv { innerSpaceDimension == 0 implies isEmpty(spaceBoundary) }
 
-		connector :OutsideOf
-			from separateSpaceToo :> spaceInterior [0..1]
-			to separateSpace :> spaceBoundary [1];
+		connector :SurroundedBy
+			from surroundingSpace :> spaceBoundary.outer [1]
+			to surroundedSpace :> spaceInterior [0..*];
+
+		connector :SurroundedBy
+			from surroundingSpace :> spaceInterior [1]
+			to surroundedSpace :> spaceBoundary.inner [0..*];
+
+		/**
+		 * Occurrences that completely occupy the space surrounded by an inner space boundary of this Occurrence.
+		 */
+		feature innerSpaceOccurrences: Occurrence [0..*];
 
 		/**
 		 * Tells whether an occurrence has a spaceBoundary, true if it does, false otherwise.
@@ -439,8 +485,8 @@ package Occurrences {
 	/**
 	 * Within asserts that its largerOccurrence completely overlaps its smallerOccurrence in
 	 * time and space. That is, all four dimensional points of the smallerOccurrence happen
-	 * during and are inside of the largerOccurrence. This means every occurrence is Within
-	 * itself and Within is transitive.
+	 * during and are included in the space of the largerOccurrence. This means every occurrence
+	 * is Within itself and Within is transitive.
 	 */
 	assoc all Within specializes HappensDuring, InsideOf {
 		end feature smallerOccurrence: Occurrence[1..*] redefines shorterOccurrence, smallerSpace
@@ -571,5 +617,63 @@ package Occurrences {
 	assoc OutsideOf specializes Without {
 		end feature separateSpaceToo: Occurrence[0..*] redefines separateOccurrenceToo;
 		end feature separateSpace: Occurrence[0..*] redefines separateOccurrence;
+	}
+
+	/**
+	 * JustOutsideOf is an OutsideOf asserting that two occurrences have some space slices with
+	 * no space between them.
+	 */
+	assoc JustOutsideOf specializes OutsideOf {
+
+		connector :MatesWith [1..*]
+			from separateSpace :> separateSpace.spaceSlices [0..*]
+			to separateSpaceToo :> separateSpaceToo.spaceSlices [0..*];
+	}
+
+	/**
+	 * MatesWith is an OutsideOf asserting that two occurrences have no space between them.
+	 */
+	assoc MatesWith specializes JustOutsideOf {
+		end feature matingSpaceToo: Occurrence[0..*] redefines separateSpaceToo
+		  subsets matingSpace.matingOccurrences;
+		end feature matingSpace: Occurrence[0..*] redefines separateSpace
+		  subsets matingSpaceToo.matingOccurrences;
+		feature inBetweenOccurrence: Occurrence [1] {
+			portion feature redefines spaceBoundary [1];
+			inv { contains(unionsOf, union(matingSpaceToo, matingSpace)) }
+			portion feature redefines spaceInterior [0];
+		}
+	}
+
+	/**
+	 * InnerSpaceOf is an OutsideOf asserting that one occurrence (innerSpace) is the space interior
+	 * of an occurrence (hOccurrence) formed from an inner space boundary of another occurrence (outerSpace). 
+	 */
+	assoc InnerSpaceOf specializes OutsideOf {
+		end feature outerSpace: Occurrence[0..*] redefines separateSpaceToo;
+		end feature innerSpace: Occurrence[0..*] redefines separateSpace subsets outerSpace.innerSpaceOccurrences {
+			feature redefines innerSpaceOccurrences [0]; }
+
+		feature hOccurrence: Occurrence [1];
+			
+		connector hbi: WithinBoth [0..1] from hOccurrence.spaceBoundary [0..1] to outerSpace.spaceBoundary.inner [0..1];
+		connector hbo: WithinBoth [0..1] from hOccurrence.spaceBoundary [0..1] to outerSpace [0..1];
+		connector :WithinBoth from hOccurrence.spaceInterior [1] to innerSpace [1];
+
+		inv { (isEmpty(hbi) == notEmpty(hbo)) &
+		      (notEmpty(hbo) == outerSpace.isClosed) }
+	}
+
+	/**
+	 * SurroundedBy is an OutsideOf asserting that one occurrence (surrounded space) is included
+	 * in space by an inner space occurrence of another (surrounding space).
+	 */
+	assoc SurroundedBy specializes OutsideOf {
+		end feature surroundingSpace: Occurrence[0..*] redefines separateSpaceToo;
+		end feature surroundedSpace: Occurrence[0..*] redefines separateSpace;
+
+		connector :InsideOf
+			from smallerOccurrence :> surroundedSpace [0..1]
+			to largerOccurrence :> surroundingSpace.innerSpaceOccurrences [1..*];
 	}
 }

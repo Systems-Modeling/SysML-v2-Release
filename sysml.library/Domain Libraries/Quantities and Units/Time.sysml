@@ -11,7 +11,7 @@ package Time {
 	private import ScalarValues::String;
 	private import Quantities::ScalarQuantityValue;
 	private import Quantities::scalarQuantities;
-    private import UnitsAndScales::*;
+    private import MeasurementReferences::*;
     import ISQBase::DurationValue;
     import ISQBase::DurationUnit;
     import ISQBase::duration;

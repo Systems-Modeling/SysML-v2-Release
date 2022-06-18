@@ -8,8 +8,7 @@ package RiskMetadata {
 	 * A Level is a Real number in the interval 0.0 to 1.0, inclusive.
 	 */
 	attribute def Level :> Real {
-		private attribute level : Level :>> self;
-		assert constraint { level >= 0.0 and level <= 1.0 }
+		assert constraint { that >= 0.0 and that <= 1.0 }
 	}
 	
 	/**

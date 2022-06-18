@@ -12,6 +12,17 @@ package VehicleModel_1_simplified{
             * 2021-12-30: Allocated flow to interface and mass requirement to vehicle.mass
             * 2022-02-16: Added change and time events from release 2022-01 to Vehicle health states
             ^ 2022-03-09: Added Swimlanes package and view to OtherFunctionality
+            * 2022-03-15  Added other functionality examples - Loop, ConditionalExpression 
+            * 2022-03-19  Update for 2022-02 Release
+                            ScalarFunctions to NumericalFunctions, qualified min in rpm : DerivedUnit = 1 / SI::min;
+                            Added shape from shape library to specify enveloping shape for vehicle_b
+            * 2022-04-03  Added execution test cases to other functionality
+            *2022-04-06   Added while loop to other functionality
+            *2022-05-02   Per 2022-03 release, changed attribute def to metadata def
+            *2022-05-02   Per 2022-03 release, able to define technical risk with nested attributes for probability and impact 
+            *2022-05-02   Per 2022-03 release, added example of keyword in KeyWorkd_MetadataDefinitions
+            *2022-05-18   Per 2022-04 release, changed Cartesian3dSpatialCoordinateSystem to Cartesian3dSpatialCoordinateFrame
+            *2022-05-18   Modified loop based on discussion at Graphical Specification WG
             */
         }
     }
@@ -27,7 +38,7 @@ package VehicleModel_1_simplified{
         import RequirementDefinitions::*;
         import AttributeDefinitions::*;
         import IndividualDefinitions::*;
-        import AnnotationDefinitions::**;
+        import MetadataDefinitions::**;
         package PartDefinitions{
             part def Vehicle:>PhysicalComponent {
                 attribute mass :> ISQ::mass;
@@ -439,6 +450,8 @@ package VehicleModel_1_simplified{
         package AttributeDefinitions{
             //import Quantities::*;
             import ScalarValues::*;
+            // Scalar Functions provides Sum expression
+            import NumericalFunctions::*;
             import ISQ::*;
             import SI::*;
             import USCustomaryUnits::*;
@@ -457,7 +470,7 @@ package VehicleModel_1_simplified{
 
             // (from Ed's model) the following defines new quantities and units used in fuel economy reqts and analysis
             import Quantities::*;
-            import UnitsAndScales::DerivedUnit;
+            import MeasurementReferences::DerivedUnit;
             import SIPrefixes::kilo;
             
             /* should we add quantity and unit as key words? */
@@ -468,7 +481,7 @@ package VehicleModel_1_simplified{
             
             // kpl is approx .425 * mpg
             kpl : DerivedUnit = km / L;
-            rpm : DerivedUnit = 1 / min;
+            rpm : DerivedUnit = 1 / SI::min;
             kW : DerivedUnit = kilo * W;
             //
         }
@@ -483,7 +496,7 @@ package VehicleModel_1_simplified{
             individual def RearAxleAssembly_1:>AxleAssembly;
             individual def Road_1:>Road;
         }
-        package AnnotationDefinitions {
+        package MetadataDefinitions {
             
             import AnalysisTooling::*;   
             //define the metadata as follows if not included in the AnalysisTooling library
@@ -499,6 +512,7 @@ package VehicleModel_1_simplified{
             }
             metadata def Security;
         }
+        
         package GenericContext {
             //import ISQ::*;
             //import SI::*;
@@ -508,7 +522,7 @@ package VehicleModel_1_simplified{
                 attribute time:TimeValue;
                 attribute spatialCF: Cartesian3dSpatialCoordinateFrame[1] { :>> mRefs = (m, m, m); }
                 attribute velocityCF: Cartesian3dVelocityCoordinateFrame[1] = spatialCF/s { :>> isBound = false; }
-                attribute accelerationCF: Cartesian3dAccelerationCoordinateFrame[1] = velocityCF/s { :>> isBound = false; }
+                attribute accelarationCF: Cartesian3dAccelerationCoordinateFrame[1] = velocityCF/s { :>> isBound = false; }
             }
             // consider including in the Context
             // the following should replace startShot and endShot with start and done respectively
@@ -553,7 +567,6 @@ package VehicleModel_1_simplified{
             }
     }
     package VehicleConfigurations{
-    	import NumericalFunctions::sum;
         package VehicleConfiguration_a{
             package PartsTree{
                 part vehicle_a:Vehicle{
@@ -587,6 +600,9 @@ package VehicleModel_1_simplified{
             }
         }
         package VehicleConfiguration_b{
+            //Shapes library for simple geometry
+            import ShapeItems::Box;
+            
             package PartsTree{
                 part vehicle_b : Vehicle{
                     attribute mass redefines mass=dryMass+cargoMass+fuelTank.fuel.fuelMass;
@@ -612,6 +628,14 @@ package VehicleModel_1_simplified{
                         ref vehicle redefines vehicle = vehicle_b;
                     }
                     */
+                    
+                    // Example vehicle with simple enveloping shape that is a solid 
+                    item :> envelopingShapes : Box[1] {
+                        length1:>> length = 4800 [mm];
+                        width1:>> width = 1840 [mm];
+                        height1:>> height = 1350 [mm];
+                    }
+                    
                     part fuelTank:FuelTank{
                         attribute redefines mass=75[kg];
                         ref item redefines fuel{
@@ -629,7 +653,7 @@ package VehicleModel_1_simplified{
                         attribute mass :> ISQ::mass=875[kg];
                         attribute driveTrainEfficiency:Real = 0.6;
                         port shaftPort_d:ShaftPort_d;
-                        perform ActionTree::providePower::distributeTorque;
+                        perform ActionTree::providePower.distributeTorque;
                         part rearWheel1:Wheel{
                             attribute redefines diameter;
                             port wheelToAxlePort:WheelToAxlePort;
@@ -664,7 +688,7 @@ package VehicleModel_1_simplified{
                     }
                     part starterMotor:StarterMotor;
                     part engine:Engine{
-                        perform ActionTree::providePower::generateTorque redefines generateTorque;            
+                        perform ActionTree::providePower.generateTorque redefines generateTorque;            
                         part cylinders:Cylinder[4..6];
                         part alternator{
                             action generateElectricity;
@@ -684,13 +708,13 @@ package VehicleModel_1_simplified{
                         //conjugate notation ~
                         //port clutchPort:~DrivePwrPort;
                         port shaftPort_a:ShaftPort_a;
-                        perform ActionTree::providePower::amplifyTorque;
+                        perform ActionTree::providePower.amplifyTorque;
                     }
                     part driveshaft:Driveshaft{
                         attribute mass :> ISQ::mass=100[kg];
                         port shaftPort_b:ShaftPort_b;
                         port shaftPort_c:ShaftPort_c;
-                        perform ActionTree::providePower::transferTorque;
+                        perform ActionTree::providePower.transferTorque;
                     }
                     part vehicleSoftware:VehicleSoftware{
                         part vehicleController: VehicleController {
@@ -1138,7 +1162,7 @@ package VehicleModel_1_simplified{
                 objective fuelEconomyAnalysisObjective {
                     /* the objective of this analysis is to determine whether the vehicle design configuration can 
                     satisfy the fuel economy requirements */
-                    require vehicleSpecification::vehicleFuelEconomyRequirements;
+                    require vehicleSpecification.vehicleFuelEconomyRequirements;
                 }
                 
                 action fuelConsumption {
@@ -1226,7 +1250,7 @@ package VehicleModel_1_simplified{
                 objective fuelEconomyAnalysisObjective {
                     doc /*the objective of this analysis is to determine whether the vehicle design configuration can 
                     satisfy the fuel economy requirements*/
-                    require vehicleSpecification::vehicleFuelEconomyRequirements;
+                    require vehicleSpecification.vehicleFuelEconomyRequirements;
                 }
                 /* this is the longhand for a calc
                 calc calc1:TraveledDistance(in=scenario) result;
@@ -1269,21 +1293,10 @@ package VehicleModel_1_simplified{
             }
             @Risk about engineTradeOffAnalysis::vehicle_b_engine4cyl::engine::fuelEfficiency {
                 technicalRisk {
-                	probability = 0.3;
-                	impact = 0.5;
+                    probability = 0.3;
+                    impact = 0.5;
                 }
             }
-           
-            /*
-            The following did not parse.
-            
-            @Risk about engineTradeOffAnalysis::vehicle_b_engine4cyl::engine::fuelEfficiency {
-                technicalRisk {
-                    technicalRisk.probability = 0.3;
-                    technicalRisk.impact = 0.5;
-                }
-            }
-            */
             
                 
             import TradeStudies::*;
@@ -1595,8 +1608,9 @@ package VehicleModel_1_simplified{
         
         part missionContext:ContextDefinitions::MissionContext{
             perform transportPassenger;
-            part road:ContextDefinitions::Road;
-            part driver:ContextDefinitions::Driver{
+            // bind parts to actors of use case
+            part road:ContextDefinitions::Road = transportPassenger.road;
+            part driver:ContextDefinitions::Driver = transportPassenger.driver{
                 perform transportPassenger.a.driverGetInVehicle.unlockDoor_in;
                 perform transportPassenger.a.driverGetInVehicle.openDoor_in;
                 perform transportPassenger.a.driverGetInVehicle.enterVehicle; 
@@ -1607,7 +1621,7 @@ package VehicleModel_1_simplified{
                 perform transportPassenger.c.driverGetOutOfVehicle.lockDoor_out;
                 perform transportPassenger.b.driveVehicleToDestination;
             }
-            part passenger1:ContextDefinitions::Passenger{
+            part passenger1:ContextDefinitions::Passenger = transportPassenger.passenger {
                 perform transportPassenger.a.passenger1GetInVehicle.unlockDoor_in;
                 perform transportPassenger.a.passenger1GetInVehicle.openDoor_in;
                 perform transportPassenger.a.passenger1GetInVehicle.enterVehicle; 
@@ -1617,7 +1631,7 @@ package VehicleModel_1_simplified{
                 perform transportPassenger.c.passenger1GetOutOfVehicle.closeDoor_out;
                 perform transportPassenger.c.passenger1GetOutOfVehicle.lockDoor_out;
             }
-            part vehicle_b_1:>vehicle_b {
+            part vehicle_b_1:>vehicle_b = transportPassenger.vehicle{
                 attribute :>> positionVector = (0,0,0) [spatialCF];
                 perform transportPassenger.b.providePower redefines providePower;
                 perform transportPassenger.trigger;
@@ -1826,5 +1840,224 @@ package VehicleModel_1_simplified{
                 first action4 then done;
             }
         }
+        package SimpleExecutionTestCases{
+            // Part0 is the overall context. Should subclass the generic context with ref clock and ref coord system.
+            part def Part0;
+            part def Part1{
+                attribute x:Real;
+            }
+            part def Part2{
+                attribute x:Real;
+                perform action action2;
+                perform action action3;
+                exhibit state part2States{
+                }
+            }
+            part part0:Part0{
+                perform action0;
+                part part1: Part1{
+                    attribute x:>> x = 1;
+                    perform action0.action1;
+                    perform action0.action4;
+                }
+                part part2 : Part2 {
+                    attribute x:>> x := 1;
+                    perform action0.action2 :>> action2;
+                    perform action0.action3 :>> action3;
+                    exhibit state part2States :>> part2States{
+                        entry action initial;
+                        state state1{
+                            //do action2;
+                        }
+                        state state2{
+                            //do action3;
+                        }
+                        transition state1_To_state2
+                            first state1
+                            then state2;
+                    }
+                }
+            }
+            action action0 {
+                action1;
+                action2;
+                action3;
+                action4;
+                
+                first start then action1;
+                first action1 then action2;
+                first action2 then action3;
+                first action3 then action4;
+                first action4 then done;
+            }
+            individual def Part0_1 :> Part0;
+            individual part0_1:Part0_1 :> part0 {
+            }
+            verification testCase_Eval_part0{
+                subject part0_1;
+                objective {
+                    //expected output
+                    /* top level eval of the context part0.
+                    * evaluate the exectuion of the individual part0_1 over its lifetime to geenerate a trace.
+                    */
+                }
+                verification testCase_Eval_part0_decomposition{
+                    objective {
+                        //expected output
+                        /* creates decompositon of part0_1.
+
+                        indivdual part0_:Part0_1{
+                            indivdiual part1_1: Part1_1 :> part1{
+                            }
+                            indvidual part2_1 : Part2_1 :> part2 {
+                            }
+                        }
+                        */
+                    }
+                }
+            }
+        }
+        package ConditionalExpression{
+            part context {
+            attribute illuminationArea;
+            attribute lightLevel;
+            attribute lightLevelMin;
+            perform action illuminateRegion;
+            exhibit state mission_States{
+                attribute stateName:OffNominal;
+                entry action initial;
+                state dark{
+                    entry assign stateName := OffNominal::dark;
+                    do illuminateRegion;
+                }
+                state light{
+                    entry assign stateName := OffNominal::light;
+                }
+                transition initial then dark; 
+                transition dark_To_light
+                    first dark
+                    if lightLevel >= lightLevelMin
+                    then light;
+                transition light_To_dark
+                    first light
+                    if lightLevel < lightLevelMin                    
+                    then dark;
+            }
+            enum def OffNominal {light; dark;}
+            part flashlight {
+                exhibit state offNominal_States {
+                    attribute stateName:OffNominal;
+                    state on  {
+                        state defocused {
+                            entry assign stateName := OffNominal::defocused;
+                        }
+                        state lightFlickering {
+                            entry assign stateName := OffNominal::lightFlickering;
+                        }
+                        state lightLow {
+                            entry assign stateName := OffNominal::lightLow;
+                        }
+                        state lightAlwaysOn {
+                            entry assign stateName := OffNominal::lightAlwaysOn;
+                        }
+                    }
+                }
+                enum def OffNominal {defocused;lightFlickering;lightLow;lightAlwaysOn;}
+            }
+                enum def MissionCriticality {'I-Catastropic'; 'IV-Minor';}
+                
+                attribute missionStateName = mission_States.stateName;
+                attribute systemStateName = flashlight.offNominal_States.stateName;
+                
+                //The following is the conditional expression
+                attribute missionCriticality:MissionCriticality := 
+                    if missionStateName == context::OffNominal::dark and systemStateName == flashlight::OffNominal::lightLow ? MissionCriticality::'I-Catastropic'
+                    else if missionStateName == context::OffNominal::dark and systemStateName == flashlight::OffNominal::lightFlickering ? MissionCriticality::'I-Catastropic'
+                    else if missionStateName == context::OffNominal::dark and systemStateName == flashlight::OffNominal::defocused ? MissionCriticality::'I-Catastropic'
+                    else MissionCriticality::'IV-Minor';
+                }  
+        }
+        package Loop {
+            action actionWithLoop {
+                attribute x:Integer := 1;
+                attribute increment:Integer =1;
+                attribute y:Integer;
+                loop action loop1 {
+                    assign y := 2*x;
+                    then assign x := x+increment;
+                } until x >= 10;
+                then done;
+            }
+            /*
+            //action def Loop1 (in increment:Integer);
+            action actionWithLoop1 {
+                attribute x:Integer := 1;
+                attribute y:Integer;
+                loop action loop1 {
+                    assign y := 2*x;
+                    then assign x := x+1;
+                    then if x < 10 {
+                        assign x := y+1;
+                    }
+                } until x >= 10;
+                then done;
+            }
+            */
+        }
+        package WhileLoop{
+            item def Data;
+            action def Drive_Vehicle (in Initial_Location : Data, in Destination_Location : Data);
+            action def Monitor_Environment;
+            action def Calculate_Waypoint_and_Obstacles;
+            action def Navigate_Vehicle (inout Location : Data);
+
+            action driveVehicle : Drive_Vehicle {
+                private item Location : Data := Initial_Location;
+
+                first start;
+                then while Location != Destination_Location {
+                    action monitorEnvironment : Monitor_Environment;
+                    action calculateWaypointAndObstacles :  Calculate_Waypoint_and_Obstacles;
+                    action navigateVehicle : Navigate_Vehicle(Location);
+                }
+                then done;
+            }
+        }
+        package KeyWord_MetadataDefinitions{
+            import Metaobjects::SemanticMetadata;
+            
+            // the following is used to define the key word failureMode
+            
+            state failureModes[*] nonunique;
+            
+            // with alias
+            /*
+            metadata def <failureMode> FailureMode :> SemanticMetadata {
+                :>> baseType = failureModes as SysML::Usage;
+            }
+            */
+            
+            // without alias   
+            metadata def failureMode :> SemanticMetadata {
+                :>> baseType = failureModes as SysML::Usage;
+            }
+            
+            // without the keyword
+            
+            state wireBroken1 {
+                @ failureMode;
+            }
+            
+
+            //with the key word and the usage kind
+            
+            #failureMode state wireBroken2;
+            
+            //with the key word and no usage kind
+            
+            #failureMode wireBroken3;
+            
+        }
     }
 }
+
