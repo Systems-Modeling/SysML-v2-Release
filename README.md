@@ -53,6 +53,7 @@ Additional content can be accessed at the following URLs.
   * Release notes
      * [https://github.com/Systems-Modeling/SysML-v2-Pilot-Implementation/releases](https://github.com/Systems-Modeling/SysML-v2-Pilot-Implementation/releases)
      * [https://github.com/Systems-Modeling/SysML-v2-API-Services/releases](https://github.com/Systems-Modeling/SysML-v2-API-Services/releases)
+     * [https://github.com/Systems-Modeling/SysML-v2-API-Cookbook/releases](https://github.com/Systems-Modeling/SysML-v2-API-Cookbook/releases)
   * OpenAPI/Swagger documentation for the current API implementation.
     * [http://sysml2.intercax.com:9000/docs/](http://sysml2.intercax.com:9000/docs/)
     * This page acts as an API front end to a live prototype repository implementation
@@ -81,6 +82,7 @@ Copyright © 2019-2022 DEKonsult <br/>
 Copyright © 2019-2021 IncQuery Labs Ltd. <br/>
 Copyright © 2019-2021 Itemis <br/>
 Copyright © 2019-2021 Maplesoft (Waterloo Maple, Inc.) <br/>
+Copyright © 2019-2022 Modelcax LLC
 Copyright © 2019-2022 Mgnite Inc. <br/>
 Copyright © 2019-2022 Model Driven Solutions, Inc. <br/>
 Copyright © 2019-2022 SAF Consulting <br/>
