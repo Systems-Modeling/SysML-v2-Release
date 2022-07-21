@@ -1,5 +1,5 @@
 /**
- * This package provides a libary model of discretely sampled mathematical functions.
+ * This package provides a library model of discretely sampled mathematical functions.
  */
 package SampledFunctions {
 	private import Base::Anything;
@@ -44,7 +44,7 @@ package SampledFunctions {
 	/* Range returns the sequence of the rangeValues of all samples in a SampledFunction. */	
 	calc def Range(fn : SampledFunction) : Anything[0..*] = fn.samples.rangeValue;
 	
-	/* Sample returns a SampledFunction that samples a given calculation over a seqence of domainValues. */
+	/* Sample returns a SampledFunction that samples a given calculation over a sequence of domainValues. */
 	calc def Sample {
 		in calc calculation (x);
 		in attribute domainValues [0..*];

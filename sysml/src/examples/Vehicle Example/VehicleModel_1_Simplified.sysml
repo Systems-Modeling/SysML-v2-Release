@@ -653,7 +653,7 @@ package VehicleModel_1_simplified{
                         attribute mass :> ISQ::mass=875[kg];
                         attribute driveTrainEfficiency:Real = 0.6;
                         port shaftPort_d:ShaftPort_d;
-                        perform ActionTree::providePower.distributeTorque;
+                        perform providePower.distributeTorque;
                         part rearWheel1:Wheel{
                             attribute redefines diameter;
                             port wheelToAxlePort:WheelToAxlePort;
@@ -688,7 +688,7 @@ package VehicleModel_1_simplified{
                     }
                     part starterMotor:StarterMotor;
                     part engine:Engine{
-                        perform ActionTree::providePower.generateTorque redefines generateTorque;            
+                        perform providePower.generateTorque redefines generateTorque;            
                         part cylinders:Cylinder[4..6];
                         part alternator{
                             action generateElectricity;
@@ -708,13 +708,13 @@ package VehicleModel_1_simplified{
                         //conjugate notation ~
                         //port clutchPort:~DrivePwrPort;
                         port shaftPort_a:ShaftPort_a;
-                        perform ActionTree::providePower.amplifyTorque;
+                        perform providePower.amplifyTorque;
                     }
                     part driveshaft:Driveshaft{
                         attribute mass :> ISQ::mass=100[kg];
                         port shaftPort_b:ShaftPort_b;
                         port shaftPort_c:ShaftPort_c;
-                        perform ActionTree::providePower.transferTorque;
+                        perform providePower.transferTorque;
                     }
                     part vehicleSoftware:VehicleSoftware{
                         part vehicleController: VehicleController {

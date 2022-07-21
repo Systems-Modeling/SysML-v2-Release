@@ -81,4 +81,13 @@ package ModelingMetadata {
 		attribute text : String;
 	}
 	
+	/** 
+	 * Refinement is used to identify a dependency as modeling a refinement relationship.
+	 * In such a relationship, the source elements of the relationship provide a more precise and/or 
+	 * accurate representation than the target elements.
+	 */
+	metadata def <refinement> Refinement {
+		:>> annotatedElement : SysML::Dependency;
+	}
+	
 }
