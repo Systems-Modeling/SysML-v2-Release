@@ -14,14 +14,14 @@ package 'Change and Time Triggers' {
 	
 	part def VehicleController;
 	
-	action senseTemperature (out temp : TemperatureValue);
+	action senseTemperature { out temp : TemperatureValue; }
 	
 	state healthStates {
 		in vehicle : Vehicle;
 		in controller : VehicleController;
 		
 		entry; then normal;
-		do senseTemperature (out temp);
+		do senseTemperature;
 		
 		state normal;
 		accept at vehicle.maintenanceTime

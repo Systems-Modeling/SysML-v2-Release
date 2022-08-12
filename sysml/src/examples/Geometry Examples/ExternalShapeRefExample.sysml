@@ -4,10 +4,12 @@ package ExternalShapeRefExample {
 	import ISQ::mass;
 	import SI::mm;
 
-	/**
-	 * Metadata to reference an externally defined shape.
-	 */
 	metadata def ExternalShapeRef {
+		doc
+		/*
+		 * Metadata to reference an externally defined shape.
+		 */
+	
 		attribute purpose : String[1];
 		attribute shapeIri : String[1];
 	}

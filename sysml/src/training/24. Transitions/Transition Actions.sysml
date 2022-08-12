@@ -11,7 +11,7 @@ package 'Transition Actions' {
 	}
 	part def VehicleController;
 	
-	action performSelfTest(in vehicle : Vehicle);
+	action performSelfTest { in vehicle : Vehicle; }
 	
 	state def VehicleStates;
 		
@@ -32,7 +32,7 @@ package 'Transition Actions' {
 			then on;
 			
 		state on {
-			entry performSelfTest(in vehicle = operatingVehicle);
+			entry performSelfTest{ in vehicle = operatingVehicle; }
 			do action providePower { /* ... */ }
 			exit action applyParkingBrake { /* ... */ }
 		}

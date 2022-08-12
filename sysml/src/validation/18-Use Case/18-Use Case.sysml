@@ -21,8 +21,8 @@ package '18-Use Case' {
 			 */
 		}
 		
-		/** Mock-up of a pre-condition. */
 		ref :>> start {
+			doc /* Mock-up of a pre-condition. */
 			assert constraint {
 				doc /* Vehicle at starting location */
 			}
@@ -36,12 +36,14 @@ package '18-Use Case' {
 		}
 		
 		then use case 'drive vehicle' {
-			/**
-			 * Mock-up of an extension point.
-			 * (But reference to 'add fuel' is in the wrong direction, and it doesn't
-			 * make the extension condition sufficient to trigger the behavior.)
-			 */
-			include 'add fuel'[0..*] { 
+			include 'add fuel'[0..*] {
+				doc
+				/*
+				 * Mock-up of an extension point.
+				 * (But reference to 'add fuel' is in the wrong direction, and it doesn't
+				 * make the extension condition sufficient to trigger the behavior.)
+				 */
+			 
 				actor :>> fueler = driver;
 				ref :>> start {
 					doc /* Fuel level < 10% max fuel */
@@ -56,8 +58,8 @@ package '18-Use Case' {
 		
 		then done;
 		
-		/** Mock-up of a post-condition. */
 		ref :>> done {
+			doc /* Mock-up of a post-condition. */
 			assert constraint {
 				doc /* Vehicle at ending location */
 			}

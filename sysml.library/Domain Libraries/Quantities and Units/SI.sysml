@@ -1,10 +1,12 @@
-/**
- * International System of (Measurement) Units -- Système International d'Unités (SI), as defined in ISO/IEC 80000
- *
- * Note 1: In accordance with ISO/IEC 80000 en-GB spelling is used for the names and definitions of the units.
- * Note 2: This is a representative but not yet complete list of measurement units.
- */
 package SI {
+	doc
+	/*
+	 * International System of (Measurement) Units -- Système International d'Unités (SI), as defined in ISO/IEC 80000
+	 *
+	 * Note 1: In accordance with ISO/IEC 80000 en-GB spelling is used for the names and definitions of the units.
+	 * Note 2: This is a representative but not yet complete list of measurement units.
+	 */
+
     private import MeasurementReferences::*;
     import ISQ::*;
     import SIPrefixes::*;
@@ -320,20 +322,28 @@ package SI {
     /* Speed */
     attribute <'km/h'> 'kilometre per hour': SpeedUnit = km/h;
 
-    /*
-     * degree Celsius unit for temperature interval (i.e. temperature difference) quantities
-     */
+	/* 
+	 * Celsius units
+	 */
+	 
     attribute <'°C'> 'degree celsius (temperature difference)' : TemperatureDifferenceUnit {
+    	doc
+	    /*
+	     * degree Celsius unit for temperature interval (i.e. temperature difference) quantities
+	     */
+	     
         attribute :>> unitConversion: ConversionByConvention { :>> referenceUnit = K; :>> conversionFactor = 1; }
    	}
 
-    /*
-     * degree Celsius interval scale for absolute (thermodynamic) temperature quantities
-     *
-     * The interval scale is defined with an explicit transformation with respect to 
-     * the kelvin thermodynamic temperature scale that specifies the zero shift.
-     */
     attribute <'°C_abs'> 'degree celsius (absolute temperature scale)' : IntervalScale {
+    	doc
+	     /*
+	     * degree Celsius interval scale for absolute (thermodynamic) temperature quantities
+	     *
+	     * The interval scale is defined with an explicit transformation with respect to 
+	     * the kelvin thermodynamic temperature scale that specifies the zero shift.
+	     */
+ 
         attribute :>> unit = '°C';
         attribute temperatureWaterAtFreezingPointInC: DefinitionalQuantityValue {
             :>> num = 0; :>> definition = "temperature in degree Celsius of pure water at freezing point";

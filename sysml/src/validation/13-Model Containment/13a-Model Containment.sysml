@@ -8,12 +8,14 @@ package '13a-Model Containment' {
 	
 	requirement PowerTrainRequirements;
 	
-	/**
-	 * This package is used to represent a top-level "model".
-	 * There is no specific syntax for identifying a package
-	 * used in this way.
-	 */
 	package 'Vehicle Model' {
+		doc
+		/*
+		 * This package is used to represent a top-level "model".
+		 * There is no specific syntax for identifying a package
+		 * used in this way.
+		 */
+	
 		
 		package 'Vehicle1-Configuration' {			
 			alias 'Sport Sedan' for vehicle1_c1;
@@ -21,12 +23,14 @@ package '13a-Model Containment' {
 			import 'vehicle1_c1 Specification Context'::'vehicle1-c1 Specification';		
 		}
 		
-		/**
-		 * This package is used to represent a "model library".
-		 * There is no specific syntax for identifying a package
-		 * used in this way.
-		 */
 		package 'Vehicle Reference Model' {
+			doc
+			/*
+			 * This package is used to represent a "model library".
+			 * There is no specific syntax for identifying a package
+			 * used in this way.
+			 */
+		
 			import VehicleA;			
 			import VehicleSubsystems;
 			

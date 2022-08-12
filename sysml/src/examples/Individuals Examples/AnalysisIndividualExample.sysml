@@ -47,17 +47,21 @@ package AnalysisIndividualExample {
 	    import SampledFunctions::SamplePair;
 	    import ControlFunctions::forAll;
 	    
-	    action def FuelConsumption(
-		        in power : PowerValue[*],
-		        out fuelEconomy : DistancePerVolumeValue);
-	
-		analysis def FuelEconomyAnalysis () calculatedFuelEconomy : DistancePerVolumeValue {
+	    action def FuelConsumption {
+			in power : PowerValue[*];
+			out fuelEconomy : DistancePerVolumeValue;
+		}
+		
+		analysis def FuelEconomyAnalysis {
 			subject vehicle: Vehicle;
 
-		    action fuelConsumption : FuelConsumption (
-		    	in power = vehicle.power,
-		        out fuelEconomy : DistancePerVolumeValue = calculatedFuelEconomy) {
+		    action fuelConsumption : FuelConsumption {
+		    	in power = vehicle.power;
+		        out fuelEconomy : DistancePerVolumeValue;
 	        }
+	        
+			return calculatedFuelEconomy : DistancePerVolumeValue =
+				fuelConsumption.fuelEconomy;	        
 	    }
 	}
 	

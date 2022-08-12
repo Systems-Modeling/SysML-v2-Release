@@ -1,7 +1,9 @@
-/**
- * Example from the SysML 1.6 spec, subclause 8.4.1 Wheel Hub Assembly.
- */
 package 'Wheel Package - Updated' {
+	doc
+	/*
+	 * Example from the SysML 1.6 spec, subclause 8.4.1 Wheel Hub Assembly.
+	 */
+
 	import ISQ::*;
 	
 	// Quantities

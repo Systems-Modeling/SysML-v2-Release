@@ -1,7 +1,9 @@
-/**
- * This package provides a library model of discretely sampled mathematical functions.
- */
 package SampledFunctions {
+	doc
+	/*
+	 * This package provides a library model of discretely sampled mathematical functions.
+	 */
+
 	private import Base::Anything;
 	private import ScalarValues::Positive;
 	private import Collections::KeyValuePair;
@@ -11,24 +13,28 @@ package SampledFunctions {
 	private import ControlFunctions::collect;
 	private import ControlFunctions::select;
 	
-	/**
-	 * SamplePair is a key-value pair of a domain-value and a range-value, used as a sample element in SampledFunction.
-	 */
     attribute def SamplePair :> KeyValuePair {
+		doc
+		/*
+		 * SamplePair is a key-value pair of a domain-value and a range-value, used as a sample element in SampledFunction.
+		 */
+	
         attribute domainValue :>> key;
         attribute rangeValue :>> val;
     }
 
-	/**
-     * SampledFunction is a variable-size, ordered collection of 'SamplePair' elements that represents a generic, discretely sampled, 
-     * uni-variate or multi-variate mathematical function. The function must be montonic, either strictly increasing or strictly
-     * decreasing.
-     * 
-     * It maps discrete domain values to discrete range values.
-     * The domain of the function is represented by the sequence of 'domainValue' of each 'SamplePair' in 'samples', and 
-     * the range of the function is represented by the sequence of 'rangeValue' of each 'SamplePair' in 'samples'.
-     */
 	attribute def SampledFunction :> OrderedMap {
+		doc
+		/*
+	     * SampledFunction is a variable-size, ordered collection of 'SamplePair' elements that represents a generic, discretely sampled, 
+	     * uni-variate or multi-variate mathematical function. The function must be montonic, either strictly increasing or strictly
+	     * decreasing.
+	     * 
+	     * It maps discrete domain values to discrete range values.
+	     * The domain of the function is represented by the sequence of 'domainValue' of each 'SamplePair' in 'samples', and 
+	     * the range of the function is represented by the sequence of 'rangeValue' of each 'SamplePair' in 'samples'.
+	     */
+	
 		attribute samples: SamplePair[0..*] ordered :>> elements;
 		
 		assert constraint {
@@ -38,31 +44,57 @@ package SampledFunctions {
 		}
 	}
 	
-	/* Domain returns the sequence of the domainValues of all samples in a SampledFunction. */
-	calc def Domain(fn : SampledFunction) : Anything[0..*] = fn.samples.domainValue;
+	calc def Domain { 
+		doc
+		/* 
+		 * Domain returns the sequence of the domainValues of all samples in a SampledFunction.
+		 */
+		 
+		in fn : SampledFunction; 
+		return : Anything[0..*] = fn.samples.domainValue;
+	}
 	
-	/* Range returns the sequence of the rangeValues of all samples in a SampledFunction. */	
-	calc def Range(fn : SampledFunction) : Anything[0..*] = fn.samples.rangeValue;
+	calc def Range { 
+		doc
+		/* 
+		 * Range returns the sequence of the rangeValues of all samples in a SampledFunction.
+		 */
+			
+		in fn : SampledFunction; 
+		return : Anything[0..*] = fn.samples.rangeValue;
+	}
 	
-	/* Sample returns a SampledFunction that samples a given calculation over a sequence of domainValues. */
 	calc def Sample {
-		in calc calculation (x);
+		doc
+		/* 
+		 * Sample returns a SampledFunction that samples a given calculation over a sequence of domainValues.
+		 */
+		 
+		in calc calculation { in x; }
 		in attribute domainValues [0..*];
 		return sampling = SampledFunction (
 			samples = domainValues->collect { in x; SamplePair(x, calculation(x)) }
 		);
 	}
 	
-	/**
-	 * An Interpolate calculation returns an interpolated range value from a given SampledFunction for a given domain value.
-	 * If the input domain value is outside the bounds of the domainValues of the SampleFunction, null is returned.
-	 */
-	calc def Interpolate (attribute fn : SampledFunction, attribute value) attribute result;
+	calc def Interpolate {
+		doc
+		/*
+		 * An Interpolate calculation returns an interpolated range value from a given SampledFunction for a given domain value.
+		 * If the input domain value is outside the bounds of the domainValues of the SampleFunction, null is returned.
+		 */
+	
+		in attribute fn : SampledFunction;
+		in attribute value;
+		return attribute result;
+	}
 		
-	/** 
-	 * interpolateLinear is an Interpolate calculation assuming a linear functional form between SamplePairs.
-	 */
 	calc interpolateLinear : Interpolate {
+		doc
+		/*
+		 * interpolateLinear is an Interpolate calculation assuming a linear functional form between SamplePairs.
+		 */
+	
 		in attribute fn : SampledFunction;
 		in attribute value;
 		
@@ -70,8 +102,10 @@ package SampledFunctions {
 		private attribute index : Positive[0..1] =
 			(1..size(domainValues))->select { in i : Positive; domainValues[i] <= value }[1];
 			
-		private calc def Linear 
-			(attribute lowerSample : SamplePair, attribute upperSample : SamplePair, attribute value) {
+		private calc def Linear {
+			in attribute lowerSample : SamplePair;
+			in attribute upperSample : SamplePair;
+			in attribute value;
 			private attribute f = (value - lowerSample.domainValue) / (lowerSample.domainValue - upperSample.domainValue);
 			return result = upperSample.rangeValue + f * (lowerSample.rangeValue - upperSample.rangeValue);				
 		}

@@ -14,7 +14,7 @@ package '12b-Allocation-1' {
 	}
 	
 	package LogicalModel {
-		action def GenerateTorque(out torque :> ISQ::torque);
+		action def GenerateTorque { out torque :> ISQ::torque; }
 		
 		part def LogicalElement;
 		part def TorqueGenerator :> LogicalElement {

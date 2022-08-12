@@ -7,17 +7,17 @@ package Expressions {
 	aa : Boolean;
 	x = ToString(a * a + 3 == 4);
 	y = NumericalFunctions::'+'(1,2);
-	z : Boolean = aa & true ^^ zz | false => z;
+	z : Boolean = aa & true xor zz | false implies z;
 	zz : Boolean = aa and true xor aa or false implies z;
 	
-	b = x > y? x-y: y-x;
+	b = if x > y? x-y else y-x;
 	c = x->collect {in xx; xx + 1}; 
 	c1 = x.{in xx; xx + 1}; 
 	d = x->select {in xx; xx != null};
 	d1 = x.?{in xx; xx != null};
 	e = x->reduce {in s; in t; s + t}->reduce '+';
 	
-	behavior w specializes ControlPerformances::LoopPerformance (inout v: Integer)  {
+	behavior w specializes ControlPerformances::LoopPerformance { inout v: Integer;
 		in expr redefines whileTest {v > 3}
 		in step redefines body : Performances::Performance {
 			step decrement {
@@ -35,24 +35,19 @@ package Expressions {
 		}
 	}
 	
-	xx = x == 1 && y == 2? a:
-	     x == 2? b:
-	     x == 3? c:
-	     0;
-	     
-	yy = if x == 1 and y == 2? a
+	xx = if x == 1 and y == 2? a
 	     else if x == 2? b
 	     else if x == 3? c
 	     else 0;
     
-    function TotalMass(partMass, subparts) {
+    function TotalMass { in partMass; in subparts;
 		partMass + (subparts->collect {in p; totalMass(partMass, subparts)}->reduce '+' ?? 0.0)
 	}
 	
-	expr totalMass: TotalMass (mass, sub);
+	expr totalMass: TotalMass { in mass; in sub; }
 	
 	feature f {
-		expr s(x) : Boolean;
+		expr s { in x; return : Boolean; }
 	}
 	
 	bb : Boolean = f.s(1);

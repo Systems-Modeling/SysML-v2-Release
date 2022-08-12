@@ -68,7 +68,10 @@ package '10c-Fuel Economy Analysis' {
 			inclineAngle : AngularMeasureValue;
 		}
 		
-		abstract calc def NominalScenario (t : TimeValue) : ScenarioState;
+		abstract calc def NominalScenario { 
+			in t : TimeValue; 
+			return : ScenarioState;
+		}
 		calc cityScenario : NominalScenario;
 		calc highwayScenario : NominalScenario;
 		

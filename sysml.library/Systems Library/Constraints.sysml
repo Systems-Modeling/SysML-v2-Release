@@ -1,34 +1,44 @@
-/**
- * This package defines the base types for constraints and related elements in the
- * SysML language.
- */
 package Constraints {
+	doc
+	/*
+	 * This package defines the base types for constraints and related elements in the
+	 * SysML language.
+	 */
+
 	private import Performances::BooleanEvaluation;
 	private import Performances::booleanEvaluations;
 	private import Performances::trueEvaluations;
 	private import Performances::falseEvaluations;
 	
-	/**
-	 * ConstraintCheck is the most general class for constraint checking. ConstraintCheck is the base
-	 * type of all ConstraintDefinitions.
-	 */
 	abstract constraint def ConstraintCheck :> BooleanEvaluation {
+		doc
+		/*
+		 * ConstraintCheck is the most general class for constraint checking. ConstraintCheck is the base
+		 * type of all ConstraintDefinitions.
+		 */
+	
 		ref constraint self: ConstraintCheck :>> BooleanEvaluation::self;
 	}
 	
-	/**
-	 * constraintChecks is the base feature of all ConstraintUsages.
-	 */
-	abstract constraint constraintChecks: ConstraintCheck[0..*] nonunique :> booleanEvaluations;
+	abstract constraint constraintChecks: ConstraintCheck[0..*] nonunique :> booleanEvaluations {
+		doc
+		/*
+		 * constraintChecks is the base feature of all ConstraintUsages.
+		 */
+	}
 	
-	/**
-	 * assertedConstraintChecks is the subset of constraintChecks for Constraints asserted to be true.
-	 */
-	abstract constraint assertedConstraintChecks :> constraintChecks, trueEvaluations;
+	abstract constraint assertedConstraintChecks :> constraintChecks, trueEvaluations {
+		doc
+		/*
+		 * assertedConstraintChecks is the subset of constraintChecks for Constraints asserted to be true.
+		 */
+	}
 		
-	/**
-	 * negatedConstraintChecks is the subset of constraintChecks for Constraints asserted to be false.
-	 */
-	abstract constraint negatedConstraintChecks :> constraintChecks, falseEvaluations;
+	abstract constraint negatedConstraintChecks :> constraintChecks, falseEvaluations {
+		doc
+		/*
+		 * negatedConstraintChecks is the subset of constraintChecks for Constraints asserted to be false.
+		 */
+	}
 		
 }

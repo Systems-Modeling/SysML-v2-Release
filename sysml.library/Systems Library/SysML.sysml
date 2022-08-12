@@ -1,4 +1,12 @@
 package SysML {
+	doc
+	/*
+	 * This package contains a reflective SysML model of the SysML abstract syntax.
+	 * 
+	 * NOTE: This model is currently incomplete. It includes all SysML abstract syntax metaclasses,
+	 * but none of their properties.
+	 */
+
 	import KerML::*;
 
 	metadata def Dependency :> Relationship;

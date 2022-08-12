@@ -39,12 +39,15 @@ package ConstraintTest {
 		}	
 	}
 		
-	constraint def MassAnalysis2 (totalMass : MassValue, componentMasses: MassValue[0..*]) {
+	constraint def MassAnalysis2 { 
+		in totalMass : MassValue;
+		in componentMasses: MassValue[0..*];
+		
 		totalMass == sum(componentMasses)
 	}
 	
 	part vehicle2a :> vehicle {
-		assert constraint massConstraint : MassAnalysis2 (totalMass, componentMasses);
+		assert constraint massConstraint : MassAnalysis2;
 		
 		bind massConstraint.totalMass = mass;
 		bind massConstraint.componentMasses[1] = engine.mass;
@@ -53,29 +56,35 @@ package ConstraintTest {
 	}
 		
 	part vehicle2b :> vehicle {
-		assert constraint massAnalysis2 : MassAnalysis2 (
-			totalMass = mass,
-			componentMasses = (engine.mass, frontAxleAssembly.mass, rearAxleAssembly.mass)
-		);
+		assert constraint massAnalysis2 : MassAnalysis2 {
+			in totalMass = mass;
+			in componentMasses = (engine.mass, frontAxleAssembly.mass, rearAxleAssembly.mass);
+		}
 	}
 	
-	constraint def MassAnalysis3 (totalMass : MassValue, componentMasses: MassValue[0..*]);
+	constraint def MassAnalysis3 {
+		in totalMass : MassValue;
+		in componentMasses: MassValue[0..*];
+	}
 	
-	constraint massAnalysis3 : MassAnalysis3 (totalMass : MassValue, componentMasses: MassValue[0..*]) {
+	constraint massAnalysis3 : MassAnalysis3 {
+		in totalMass : MassValue;
+		in componentMasses: MassValue[0..*];
+		
 		totalMass == sum(componentMasses)
 	}
 	
 	part vehicle3 :> vehicle {
-		assert massAnalysis3 (
-			totalMass = mass,
-			componentMasses = (engine.mass, frontAxleAssembly.mass, rearAxleAssembly.mass)
-		);
+		assert massAnalysis3 {
+			in totalMass = mass;
+			in componentMasses = (engine.mass, frontAxleAssembly.mass, rearAxleAssembly.mass);
+		}
 	}
 	
 	part vehicle4 :> vehicle {
 		assert constraint { mass == engine.mass + frontAxleAssembly.mass + rearAxleAssembly.mass }
 	}
 	
-	constraint massLimitation (mass : MassValue, massLimit : MassValue) { mass < massLimit }
-	assert not massLimitation (mass = vehicle3.mass, massLimit = vehicle4.mass);
+	constraint massLimitation { mass : MassValue; massLimit : MassValue; mass < massLimit }
+	assert not massLimitation { :>> mass = vehicle3.mass; :>> massLimit = vehicle4.mass; }
 }

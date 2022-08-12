@@ -9,10 +9,12 @@ package CarWithShapeAndCSG {
 	import MeasurementReferences::Rotation;
 	import SI::*;
 
-	/**
-	 * Car with simple engine
-	 */
 	part def Car :> CompoundSpatialItem {
+		doc
+		/*
+		 * Car with simple engine
+		 */
+	
         item :>> shape = Cuboid(4800 [mm], 1840 [mm], 1350 [mm]);
 
         attribute datum :>> coordinateFrame {
@@ -30,12 +32,14 @@ package CarWithShapeAndCSG {
 		}
 	}
 
-	/**
-	 * Simple 2-cylinder engine
-	 * 
-	 * Note: The engine shape is modeled as a rectangular box with two cylindrical holes, a gross simplification.
-	 */
 	part def Engine :> CompoundSpatialItem {
+		doc
+		/*
+		 * Simple 2-cylinder engine
+		 * 
+		 * Note: The engine shape is modeled as a rectangular box with two cylindrical holes, a gross simplification.
+		 */
+	
 		item :>> shape [1];
 		
 		attribute <ecf> engineCoordinateFrame :>> coordinateFrame;		

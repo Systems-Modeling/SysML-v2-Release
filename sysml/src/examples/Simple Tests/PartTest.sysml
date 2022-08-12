@@ -7,6 +7,7 @@ package PartTest {
 		protected port c: C;
 		readonly attribute x[0..2];
 		derived ref attribute y :> x;
+		ref z : ScalarValues::Integer;
 	}
 	
 	abstract part def <xx> B {

@@ -1,8 +1,10 @@
-/**
- * This package defines the base types for actions and related behavioral elements in the
- * SysML language.
- */
 package Actions {
+	doc
+	/*
+	 * This package defines the base types for actions and related behavioral elements in the
+	 * SysML language.
+	 */
+
 	private import Base::Anything;
 	private import ScalarValues::Positive;
 	private import SequenceFunctions::size;
@@ -19,111 +21,151 @@ package Actions {
 	private import TransitionPerformances::TransitionPerformance;
 	private import TransitionPerformances::NonStateTransitionPerformance;
 	
-	/**
-	 * Action is the most general class of Performances of ActionDefinitions in a system or 
-	 * part of a system. Action is the base class of all ActionDefinitions.
-	 */
 	abstract action def Action :> Performance {
+		doc
+		/*
+		 * Action is the most general class of Performances of ActionDefinitions in a system or 
+		 * part of a system. Action is the base class of all ActionDefinitions.
+		 */
+	
 		ref action self: Action :>> Performance::self;
 		ref action incomingTransfers :>> Performance::incomingTransfers;
 		
-		/**
-		 * The starting snapshot of an Action. 
-		 */
-		action start: Action :>> startShot;
-		
-		/**
-		 * The ending snapshot of an Action.
-		 */
-		action done: Action :>> endShot;
-
-		/**
-		 * The subperformances of this Action that are Actions. 
-		 */
-		action subactions: Action[0..*] :> actions, subperformances {
-			/**
-			 * The "this" reference of a subaction is always the same as that of
-			 * its owning Action.
+		action start: Action :>> startShot {
+			doc
+			/*
+			 * The starting snapshot of an Action. 
 			 */
-			ref occurrence :>> this = (that as Action).this;
+		}
+		
+		action done: Action :>> endShot {
+			doc
+			/*
+			 * The ending snapshot of an Action.
+			 */
+		}
+
+		action subactions: Action[0..*] :> actions, subperformances {
+			doc
+			/*
+			 * The subperformances of this Action that are Actions. 
+			 */
+		
+			ref occurrence :>> this = (that as Action).this {
+				doc
+				/*
+				 * The "this" reference of a subaction is always the same as that of
+				 * its owning Action.
+				 */
+			}
 		}
 	
-		/**
-		 * The subactions of this Action that are SendActions. 
-		 */
-		action sendSubactions: SendAction[0..*] :> subactions;
+		action sendSubactions: SendAction[0..*] :> subactions {
+			doc
+			/*
+			 * The subactions of this Action that are SendActions. 
+			 */
+		}
 	
-		/**
-		 * The subactions of this Action that are AcceptActions. 
-		 */
-		action acceptSubactions: AcceptAction[0..*] :> subactions;
+		action acceptSubactions: AcceptAction[0..*] :> subactions {
+			doc
+			/*
+			 * The subactions of this Action that are AcceptActions. 
+			 */
+		}
 	
-		/**
-		 * The subactions of this Action that are ControlActions.
-		 */
-		abstract action controls : ControlAction[0..*] :> subactions;
+		abstract action controls : ControlAction[0..*] :> subactions {
+			doc
+			/*
+			 * The subactions of this Action that are ControlActions.
+			 */
+		}
 		
-		/**
-		 * The controls of this Action that are MergeActions.
-		 */
-		abstract action merges : MergeAction[0..*] :> controls;
+		abstract action merges : MergeAction[0..*] :> controls {
+			doc
+			/*
+			 * The controls of this Action that are MergeActions.
+			 */
+		}
 		
-		/**
-		 * The controls of this Action that are DecisionActions.
-		 */
-		abstract action decisions : DecisionAction :> controls;
+		abstract action decisions : DecisionAction :> controls {
+			doc
+			/*
+			 * The controls of this Action that are DecisionActions.
+			 */
+		}
 		
-		/**
-		 * The controls of this Action that are JoinActions.
-		 */
-		abstract action joins : JoinAction :> controls;
+		abstract action joins : JoinAction :> controls {
+			doc
+			/*
+			 * The controls of this Action that are JoinActions.
+			 */
+		}
 		
-		/**
-		 * The controls of this Action that are ForkActions.
-		 */
-		abstract action forks : ForkAction :> controls;
+		abstract action forks : ForkAction :> controls {
+			doc
+			/*
+			 * The controls of this Action that are ForkActions.
+			 */
+		}
 		
-		/**
-		 * The subactions of this Action that are TransitionActions. 
-		 */
-		abstract action transitions : TransitionAction[0..*] :> subactions, transitionActions;
+		abstract action transitions : TransitionAction[0..*] :> subactions, transitionActions {
+			doc
+			/*
+			 * The subactions of this Action that are TransitionActions. 
+			 */
+		}
 		
-		/**
-		 * The subactions of this Action that are AssignmentActions.
-		 */
-		abstract action assignments : AssignmentAction[0..*] :> subactions, assignmentActions;
+		abstract action assignments : AssignmentAction[0..*] :> subactions, assignmentActions {
+			doc
+			/*
+			 * The subactions of this Action that are AssignmentActions.
+			 */
+		}
 		
-		/**
-		 * The subactions of this Action that are IfThenActions (including IfThenElseActions).
-		 */
-		abstract action ifSubactions : IfThenAction[0..*] :> subactions, ifThenActions;
+		abstract action ifSubactions : IfThenAction[0..*] :> subactions, ifThenActions {
+			doc
+			/*
+			 * The subactions of this Action that are IfThenActions (including IfThenElseActions).
+			 */
+		}
 		
-		/**
-		 * The subactions of this Action that are LoopActions.
-		 */
-		abstract action loops : LoopAction[0..*] :> subactions, loopActions;
+		abstract action loops : LoopAction[0..*] :> subactions, loopActions {
+			doc
+			/*
+			 * The subactions of this Action that are LoopActions.
+			 */
+		}
 		
-		/**
-		 * The subactions of this Action that are LoopActions.
-		 */
-		abstract action whileLoops : WhileLoopAction[0..*] :> loops, whileLoopActions;
+		abstract action whileLoops : WhileLoopAction[0..*] :> loops, whileLoopActions {
+			doc
+			/*
+			 * The subactions of this Action that are LoopActions.
+			 */
+		}
 		
-		/**
-		 * The subactions of this Action that are LoopActions.
-		 */
-		abstract action forLoops : ForLoopAction[0..*] :> loops, forLoopActions;
+		abstract action forLoops : ForLoopAction[0..*] :> loops, forLoopActions {
+			doc
+			/*
+			 * The subactions of this Action that are LoopActions.
+			 */
+		}
 	}
 	
-	/**
-	 * actions is the base feature for all ActionUsages.
-	 */
-	abstract action actions: Action[0..*] nonunique :> performances;
+	abstract action actions: Action[0..*] nonunique :> performances {
+		doc
+		/*
+		 * actions is the base feature for all ActionUsages.
+		 */
+	}
 	
-	/**
-	 * A SendAction is an Action used to type a SendActionUsage. It initiates an outgoingTransferFromSelf 
-	 * to a designated receiver Occurrence with a given payload.
-	 */
 	action def SendAction {
+		doc
+		/*
+		 * A SendAction is an Action used to type a SendActionUsage. It initiates an outgoingTransferFromSelf 
+		 * to a designated receiver Occurrence with a given payload.
+		 */
+	
 		in payload[0..*];
 		in receiver: Occurrence[1];
 		
@@ -134,17 +176,21 @@ package Actions {
 	    }
 	}
 	
-	/**
-	 * sendActions is the base feature for all SendActionUsages.
-	 */
-	abstract action sendActions: SendAction[0..*] nonunique :> actions;
+	abstract action sendActions: SendAction[0..*] nonunique :> actions {
+		doc
+		/*
+		 * sendActions is the base feature for all SendActionUsages.
+		 */
+	}
 	
-	/**
-	 * An AcceptAction is an Action used to type an AcceptActionUsage. It completes an 
-	 * incomingTransferFromSelf that is one of the incomingTransfers of a given receiver Occurrence, 
-	 * outputting the payload from the Transfer.
-	 */
 	action def AcceptAction {
+		doc
+		/*
+		 * An AcceptAction is an Action used to type an AcceptActionUsage. It completes an 
+		 * incomingTransferFromSelf that is one of the incomingTransfers of a given receiver Occurrence, 
+		 * outputting the payload from the Transfer.
+		 */
+	
 		inout payload[0..*];
 		in receiver: Occurrence[1] default this;
 		
@@ -155,60 +201,76 @@ package Actions {
 		}
 	}
 	
-	/**
-	 * acceptActions is the base feature for all AcceptActionUsages.
-	 */
-	abstract action acceptActions: AcceptAction[0..*] nonunique :> actions;
-	
-	/**
-	 * A ControlAction is the Action of a control node, which has no inherent behavior.
-	 */
-	abstract action def ControlAction :> Action {
-		/**
-		 * A ControlAction is instantaneous.
+	abstract action acceptActions: AcceptAction[0..*] nonunique :> actions {
+		doc
+		/*
+		 * acceptActions is the base feature for all AcceptActionUsages.
 		 */
-		bind start = done;
 	}
 	
-	/**
-	 * A MergeAction is the ControlAction for a merge node.
-	 * 
-	 * Note: Incoming succession connectors to a MergeAction must have source multiplicity 
-	 * 0..1 and subset the incomingHBLink feature inherited from MergePerformance.
-	 */
-	action def MergeAction :> ControlAction, MergePerformance;
+	abstract action def ControlAction :> Action {
+		doc
+		/*
+		 * A ControlAction is the Action of a control node, which has no inherent behavior.
+		 */
 	
-	/** 
-	 * A DecisionAction is the ControlAction for a decision node.
-	 * 
-	 * Note: Outgoing succession connectors from a DecisionAction must have target multiplicity
-	 * 0..1 and subset the outgoingHBLink feature inherited from DecisionPerformance.
-	 * If an outgoing succession has a guard, it should have a transitionStep typed by 
-	 * DecisionTransition.
-	 */
-	action def DecisionAction :> ControlAction, DecisionPerformance;
+		bind start = done {
+			doc
+			/*
+			 * A ControlAction is instantaneous.
+			 */
+		}
+	}
 	
-	/**
-	 * A JoinAction is the ControlAction for a JoinNode.
-	 * 
-	 * Note: Join behavior results from requiring that the source multiplicity of all
-	 * incoming succession connectors be 1..1.
-	 */
-	action def JoinAction :> ControlAction;
+	action def MergeAction :> ControlAction, MergePerformance {
+		doc
+		/*
+		 * A MergeAction is the ControlAction for a merge node.
+		 * 
+		 * Note: Incoming succession connectors to a MergeAction must have source multiplicity 
+		 * 0..1 and subset the incomingHBLink feature inherited from MergePerformance.
+		 */
+	}
 	
-	/**
-	 * A ForkAction is the ControlAction for a ForkNode.
-	 * 
-	 * Note: Fork behavior results from requiring that the target multiplicity of all
-	 * outgoing succession connectors be 1..1.
-	 */
-	action def ForkAction :> ControlAction;
+	action def DecisionAction :> ControlAction, DecisionPerformance {
+		doc
+		/*
+		 * A DecisionAction is the ControlAction for a decision node.
+		 * 
+		 * Note: Outgoing succession connectors from a DecisionAction must have target multiplicity
+		 * 0..1 and subset the outgoingHBLink feature inherited from DecisionPerformance.
+		 * If an outgoing succession has a guard, it should have a transitionStep typed by 
+		 * DecisionTransition.
+		 */
+	}
 	
-	/**
-	 * A TransitionAction is a TransitionPerformance whose transitionLinkSource is an Action.
-	 * It is the base type of all TransitionUsages.
-	 */
+	action def JoinAction :> ControlAction {
+		doc
+		/*
+		 * A JoinAction is the ControlAction for a JoinNode.
+		 * 
+		 * Note: Join behavior results from requiring that the source multiplicity of all
+		 * incoming succession connectors be 1..1.
+		 */
+	}
+	
+	action def ForkAction :> ControlAction {
+		doc
+		/*
+		 * A ForkAction is the ControlAction for a ForkNode.
+		 * 
+		 * Note: Fork behavior results from requiring that the target multiplicity of all
+		 * outgoing succession connectors be 1..1.
+		 */
+	}
+	
 	abstract action def TransitionAction :> Action, TransitionPerformance {
+		doc
+		/*
+		 * A TransitionAction is a TransitionPerformance whose transitionLinkSource is an Action.
+		 * It is the base type of all TransitionUsages.
+		 */
+	
 		in transitionLinkSource : Action :>> TransitionPerformance::transitionLinkSource;
 
 		action accepter: AcceptAction[0..1];
@@ -217,99 +279,127 @@ package Actions {
 		action effect: Action :>> TransitionPerformance::effect;		
 	}
 	
-	/**
-	 * A DecisionTransitionAction is a TransitionAction and NonStateTransitionPerformance that has a 
-	 * guard, but no trigger or effects. It is the base type of TransitionUsages used as 
-	 * conditional successions in action models.
-	 */
 	action def DecisionTransitionAction :> TransitionAction, NonStateTransitionPerformance {
+		doc
+		/*
+		 * A DecisionTransitionAction is a TransitionAction and NonStateTransitionPerformance that has a 
+		 * guard, but no trigger or effects. It is the base type of TransitionUsages used as 
+		 * conditional successions in action models.
+		 */
+	
 		ref action :>> accepter[0..0];
 		ref action :>> effect[0..0];
 	}
 
-	/**
-	 * transitionActions is the base feature for all TransitionUsages.
-	 */
-	abstract action transitionActions: TransitionAction[0..*] nonunique :> actions;
+	abstract action transitionActions: TransitionAction[0..*] nonunique :> actions {
+		doc
+		/*
+		 * transitionActions is the base feature for all TransitionUsages.
+		 */
+	}
 	
-	/**
-	 * An AssignmentAction is an Action, used to type an AssignmentActionUsage. It is also a
-	 * FeatureWritePerformance that updates the accessedFeature of its target Occurrence with
-	 * the given replacementValues.
-	 */
 	action def AssignmentAction :> FeatureWritePerformance, Action {
+		doc
+		/*
+		 * An AssignmentAction is an Action, used to type an AssignmentActionUsage. It is also a
+		 * FeatureWritePerformance that updates the accessedFeature of its target Occurrence with
+		 * the given replacementValues.
+		 */
+	
 		in target : Occurrence[1];
 		inout replacementValues : Anything[0..*] nonunique;
 	}
 	
-	/**
-	 * assignmentActions is the base feature for all AssignmentActionsUsages.
-	 */
-	abstract action assignmentActions : AssignmentAction[0..*] nonunique :> actions;
+	abstract action assignmentActions : AssignmentAction[0..*] nonunique :> actions {
+		doc
+		/*
+		 * assignmentActions is the base feature for all AssignmentActionsUsages.
+		 */
+	}
 	
-	/**
-	 * An IfThenAction is a Kernel IfThenPerformance that is also an Action. 
-	 * It is the base type for all IfActionUsages.
-	 */
 	action def IfThenAction :> Action, IfThenPerformance {
+		doc
+		/*
+		 * An IfThenAction is a Kernel IfThenPerformance that is also an Action. 
+		 * It is the base type for all IfActionUsages.
+		 */
+	
 		in :>> ifTest[1];
 		in action :>> thenClause[0..1];
 	}
 	
-	/**
-	 * An IfThenElseAction is a Kernel IfThenElsePeformance that is also an IfThenAction. 
-	 * It is the base type for all IfActionUsages that have an elseAction.
-	 */
 	action def IfThenElseAction :> IfThenAction, IfThenElsePerformance {
+		doc
+		/*
+		 * An IfThenElseAction is a Kernel IfThenElsePeformance that is also an IfThenAction. 
+		 * It is the base type for all IfActionUsages that have an elseAction.
+		 */
+	
 		in :>> ifTest[1];
 		in action :>> thenClause[0..1];
 		in action :>> elseClause[0..1];
 	}
 	
-	/**
-	 * ifThenActions is the base feature for all IfActionUsages.
-	 */
-	abstract action ifThenActions : IfThenAction[0..*] nonunique :> actions;
-	
-	/**
-	 * ifThenElseActions is the base feature for all IfActionUsages that have an elseAction.
-	 */
-	abstract action ifThenElseActions : IfThenElseAction[0..*] nonunique :> actions;
-	
-	/**
-	 * A LoopAction is the base type for all LoopActionUsages.
-	 */
-	abstract action def LoopAction :> Action {
-		
-		/**
-		 * The action that is performed repeatedly in the loop.
+	abstract action ifThenActions : IfThenAction[0..*] nonunique :> actions {
+		doc
+		/*
+		 * ifThenActions is the base feature for all IfActionUsages.
 		 */
-		in action body[0..*];		
 	}
 	
-	/**
-	 * A WhileLoopAction is a Kernel LoopPerformance that is also a LoopAction.
-	 * It is the base type for all WhileLoopActionUsages.
-	 */
+	abstract action ifThenElseActions : IfThenElseAction[0..*] nonunique :> actions {
+		doc
+		/*
+		 * ifThenElseActions is the base feature for all IfActionUsages that have an elseAction.
+		 */
+	}
+	
+	abstract action def LoopAction :> Action {
+		doc
+		/*
+		 * A LoopAction is the base type for all LoopActionUsages.
+		 */
+	
+		
+		in action body[0..*] {
+			doc
+			/*
+			 * The action that is performed repeatedly in the loop.
+			 */
+		}		
+	}
+	
 	action def WhileLoopAction :> LoopAction, LoopPerformance {
-		/**
-		 * A Boolean expression that must be true for the loop to continue.
-		 * It is evaluated before the body is performed and is always evaluated at 
-		 * least once.
+		doc
+		/*
+		 * A WhileLoopAction is a Kernel LoopPerformance that is also a LoopAction.
+		 * It is the base type for all WhileLoopActionUsages.
 		 */
-		in :>> whileTest default {true};
+	
+		in :>> whileTest default {true} {
+			doc
+			/*
+			 * A Boolean expression that must be true for the loop to continue.
+			 * It is evaluated before the body is performed and is always evaluated at 
+			 * least once.
+			 */
+		}
 		
-		/**
-		 * The action that is performed while the whileTest is true and the
-		 * untilTest is false.
-		 */
-		in action body :>> LoopAction::body, LoopPerformance::body;
+		in action body :>> LoopAction::body, LoopPerformance::body {
+			doc
+			/*
+			 * The action that is performed while the whileTest is true and the
+			 * untilTest is false.
+			 */
+		}
 		
-		/**
-		 * A Boolean expression that must be false for the loop to continue.
-		 * It is evaluated after the body is performed.
-		 */
-		in :>> untilTest default {false};
+		in :>> untilTest default {false} {
+			doc
+			/*
+			 * A Boolean expression that must be false for the loop to continue.
+			 * It is evaluated after the body is performed.
+			 */
+		}
 	}
 	
 	private abstract action def ForLoopActionBase :> LoopAction {
@@ -317,32 +407,42 @@ package Actions {
 		in ref seq[0..*] ordered nonunique;
 	}
 	
-	/**
-	 * A ForLoopAction is a LoopAction that iterates over an ordered sequence of values.
-	 * It is the base type for all ForLoopActionUsages.
-	 */
 	action def ForLoopAction :> ForLoopActionBase {
-		/**
-		 * The loop variable that is assigned successive elements of seq on each
-		 * iteration of the loop.
+		doc
+		/*
+		 * A ForLoopAction is a LoopAction that iterates over an ordered sequence of values.
+		 * It is the base type for all ForLoopActionUsages.
 		 */
-		protected ref var[0..1] :> seq;
+	
+		protected ref var[0..1] :> seq {
+			doc
+			/*
+			 * The loop variable that is assigned successive elements of seq on each
+			 * iteration of the loop.
+			 */
+		}
 		
-		/**
-		 * The sequence of values over which the loop iterates.
-		 */
-		in ref :>> seq;
+		in ref :>> seq {
+			doc
+			/*
+			 * The sequence of values over which the loop iterates.
+			 */
+		}
 		
-		/**
-		 * The action that is performed on each iteration of the loop.
-		 */
-		in action :>> body;
+		in action :>> body {
+			doc
+			/*
+			 * The action that is performed on each iteration of the loop.
+			 */
+		}
 		
-		/**
-		 * The index of the element of seq assigned to var on the current iteration
-		 * of the loop.
-		 */
-		private attribute index : Positive;
+		private attribute index : Positive {
+			doc
+			/*
+			 * The index of the element of seq assigned to var on the current iteration
+			 * of the loop.
+			 */
+		}
 		
 		private action initialization
 			assign index := 1;
@@ -354,18 +454,24 @@ package Actions {
 			}
 	}
 	
-	/**
-	 * loopActions is the base feature for all LoopActionUsages.
-	 */
-	abstract action loopActions : LoopAction[0..*] nonunique :> actions;
+	abstract action loopActions : LoopAction[0..*] nonunique :> actions {
+		doc
+		/*
+		 * loopActions is the base feature for all LoopActionUsages.
+		 */
+	}
 	
-	/**
-	 * whileLoopActions is the base feature for all WhileLoopActionUsages.
-	 */
-	abstract action whileLoopActions : WhileLoopAction[0..*] nonunique :> loopActions;
+	abstract action whileLoopActions : WhileLoopAction[0..*] nonunique :> loopActions {
+		doc
+		/*
+		 * whileLoopActions is the base feature for all WhileLoopActionUsages.
+		 */
+	}
 	
-	/**
-	 * forLoopActions is the base feature for all ForLoopActionUsages.
-	 */
-	abstract action forLoopActions : ForLoopAction[0..*] nonunique :> loopActions;
+	abstract action forLoopActions : ForLoopAction[0..*] nonunique :> loopActions {
+		doc
+		/*
+		 * forLoopActions is the base feature for all ForLoopActionUsages.
+		 */
+	}
 }

@@ -98,7 +98,9 @@ package EVSample {
         require constraint { actualRange >= requiredRange }
     }
 
-    analysis def RangeAnalysis :> VehicleAnalysis () simulatedRange : LengthValue {
+    analysis def RangeAnalysis :> VehicleAnalysis {
+    	return simulatedRange : LengthValue;
+    	
         requirement rangeRequirement :>> vehicleRequirement : RangeRequirement;
 
         objective rangeAnalysisObjective {
@@ -119,7 +121,9 @@ package EVSample {
         require constraint { actualEfficiency >= requiredEfficiency }
     }
 
-    analysis def EfficiencyAnalysis :> VehicleAnalysis () simulatedEfficiency {
+    analysis def EfficiencyAnalysis :> VehicleAnalysis {
+    	return simulatedEfficiency;
+    	
         requirement efficiencyRequirement :>> vehicleRequirement : EfficiencyRequirement;
 
         objective efficiencyAnalysisObjective {
@@ -135,7 +139,9 @@ package EVSample {
         attribute requiredMaxSpeed :> ISQ::speed;
     }
 
-    analysis def MaxSpeedAnalysis :> VehicleAnalysis () simulatedMaxSpeed {
+    analysis def MaxSpeedAnalysis :> VehicleAnalysis {
+    	return simulatedMaxSpeed;
+    	
         requirement maxSpeedRequirement :>> vehicleRequirement : MaxSpeedRequirement;
 
         objective maxSpeedAnalysisObjective {

@@ -11,14 +11,26 @@ package '10d-Dynamics Analysis' {
 	
 	package DynamicsModel {
 	    
-	    calc def Acceleration(p : PowerValue, m : MassValue, v : SpeedValue) : AccelerationValue =
-	        p / (m * v);
+	    calc def Acceleration {
+	    	in p : PowerValue;
+	    	in m : MassValue;
+	    	in v : SpeedValue;
+	    	return : AccelerationValue = p / (m * v);
+	    }
 	    
-	    calc def Velocity(v0 : SpeedValue, a : AccelerationValue, dt : TimeValue) : SpeedValue =
-	        v0 + a * dt;
+	    calc def Velocity {
+	    	in v0 : SpeedValue; 
+	    	in a : AccelerationValue; 
+	    	in dt : TimeValue;
+	    	return : SpeedValue = v0 + a * dt;
+	    }
 	    
-	    calc def Position(x0 : LengthValue, v : SpeedValue, dt : TimeValue) : LengthValue =
-	        x0 + v * dt;
+	    calc def Position {
+	    	in x0 : LengthValue;
+	    	in v : SpeedValue; 
+	    	in dt : TimeValue;
+	    	return : LengthValue = x0 + v * dt;
+	    }
 	    
 	    action def StraightLineDynamics {
 	        in power : PowerValue;

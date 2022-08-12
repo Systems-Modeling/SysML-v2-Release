@@ -4,56 +4,56 @@ package QuantityCalculations {
     import MeasurementReferences::ScalarMeasurementReference;
     import MeasurementReferences::DimensionOneValue;
     
-    calc def isZero specializes NumericalFunctions::isZero(x: ScalarQuantityValue): Boolean {
-    	NumericalFunctions::isZero(x.num)
+    calc def isZero specializes NumericalFunctions::isZero { in x: ScalarQuantityValue[1]; 
+        return : Boolean[1] = NumericalFunctions::isZero(x.num);
     }
-    calc def isUnit specializes NumericalFunctions::isUnit(x: ScalarQuantityValue): Boolean {
-    	NumericalFunctions::isUnit(x.num)
+    calc def isUnit specializes NumericalFunctions::isUnit { in x: ScalarQuantityValue[1]; 
+        return : Boolean[1] = NumericalFunctions::isUnit(x.num);
     }
     
-    calc def '[' specializes BaseFunctions::'[' (x: Number, y: ScalarMeasurementReference): ScalarQuantityValue;
+    calc def '[' specializes BaseFunctions::'[' { in x: Number[1]; in y: ScalarMeasurementReference[1]; return : ScalarQuantityValue[1]; }
 
-	calc def abs specializes NumericalFunctions::abs (x: ScalarQuantityValue): ScalarQuantityValue;
+	calc def abs specializes NumericalFunctions::abs { in x: ScalarQuantityValue[1]; return : ScalarQuantityValue[1]; }
 
-	calc def '+' specializes NumericalFunctions::'+' (x: ScalarQuantityValue, y: ScalarQuantityValue[0..1]): ScalarQuantityValue;
-	calc def '-' specializes NumericalFunctions::'-' (x: ScalarQuantityValue, y: ScalarQuantityValue[0..1]): ScalarQuantityValue;
-	calc def '*' specializes NumericalFunctions::'*' (x: ScalarQuantityValue, y: ScalarQuantityValue): ScalarQuantityValue;
-	calc def '/' specializes NumericalFunctions::'/' (x: ScalarQuantityValue, y: ScalarQuantityValue): ScalarQuantityValue;
-	calc def '**' specializes NumericalFunctions::'**' (x: ScalarQuantityValue, y: Real): ScalarQuantityValue;
-	calc def '^' specializes NumericalFunctions::'^' (x: ScalarQuantityValue, y: Real): ScalarQuantityValue;
+	calc def '+' specializes NumericalFunctions::'+' { in x: ScalarQuantityValue[1]; in y: ScalarQuantityValue[0..1]; return : ScalarQuantityValue; }
+	calc def '-' specializes NumericalFunctions::'-' { in x: ScalarQuantityValue; in y: ScalarQuantityValue[0..1]; return : ScalarQuantityValue[1]; }
+	calc def '*' specializes NumericalFunctions::'*' { in x: ScalarQuantityValue[1]; in y: ScalarQuantityValue[1]; return : ScalarQuantityValue[1]; }
+	calc def '/' specializes NumericalFunctions::'/' { in x: ScalarQuantityValue[1]; in y: ScalarQuantityValue[1]; return : ScalarQuantityValue[1]; }
+	calc def '**' specializes NumericalFunctions::'**' { in x: ScalarQuantityValue[1]; in y: Real[1]; return : ScalarQuantityValue[1]; }
+	calc def '^' specializes NumericalFunctions::'^' { in x: ScalarQuantityValue[1]; in y: Real[1]; return : ScalarQuantityValue[1]; }
 	
-	calc def '<' specializes NumericalFunctions::'<' (x: ScalarQuantityValue, y: ScalarQuantityValue): Boolean;
-	calc def '>' specializes NumericalFunctions::'>' (x: ScalarQuantityValue, y: ScalarQuantityValue): Boolean;
-	calc def '<=' specializes NumericalFunctions::'<=' (x: ScalarQuantityValue, y: ScalarQuantityValue): Boolean;
-	calc def '>=' specializes NumericalFunctions::'>=' (x: ScalarQuantityValue, y: ScalarQuantityValue): Boolean;
+	calc def '<' specializes NumericalFunctions::'<' { in x: ScalarQuantityValue[1]; in y: ScalarQuantityValue[1]; return : Boolean[1]; }
+	calc def '>' specializes NumericalFunctions::'>' { in x: ScalarQuantityValue[1]; in y: ScalarQuantityValue[1]; return : Boolean[1]; }
+	calc def '<=' specializes NumericalFunctions::'<=' { in x: ScalarQuantityValue[1]; in y: ScalarQuantityValue[1]; return : Boolean[1]; }
+	calc def '>=' specializes NumericalFunctions::'>=' { in x: ScalarQuantityValue[1]; in y: ScalarQuantityValue[1]; return : Boolean[1]; }
 
-	calc def max specializes NumericalFunctions::max (x: ScalarQuantityValue, y: ScalarQuantityValue): ScalarQuantityValue;
-	calc def min specializes NumericalFunctions::min (x: ScalarQuantityValue, y: ScalarQuantityValue): ScalarQuantityValue;
+	calc def max specializes NumericalFunctions::max { in x: ScalarQuantityValue[1]; in y: ScalarQuantityValue[1]; return : ScalarQuantityValue[1]; }
+	calc def min specializes NumericalFunctions::min { in x: ScalarQuantityValue[1]; in y: ScalarQuantityValue[1]; return : ScalarQuantityValue[1]; }
 
-	calc def '==' specializes DataFunctions::'==' (x: ScalarQuantityValue, y: ScalarQuantityValue): Boolean;
+	calc def '==' specializes DataFunctions::'==' { in x: ScalarQuantityValue[1]; in y: ScalarQuantityValue[1]; return : Boolean[1]; }
 		
-	calc def sqrt(x: ScalarQuantityValue): ScalarQuantityValue;
+	calc def sqrt{ in x: ScalarQuantityValue[1]; return : ScalarQuantityValue[1]; }
 
-	calc def floor (x: ScalarQuantityValue): ScalarQuantityValue;
-	calc def round (x: ScalarQuantityValue): ScalarQuantityValue;
+	calc def floor { in x: ScalarQuantityValue[1]; return : ScalarQuantityValue[1]; }
+	calc def round { in x: ScalarQuantityValue[1]; return : ScalarQuantityValue[1]; }
 	
-	calc def ToString specializes BaseFunctions::ToString (x: ScalarQuantityValue): String;
-	calc def ToInteger(x: ScalarQuantityValue): Integer;
-	calc def ToRational(x: ScalarQuantityValue): Rational;
-	calc def ToReal(x: ScalarQuantityValue): Real;
-	calc def ToDimensionOneValue(x: Real): DimensionOneValue;
+	calc def ToString specializes BaseFunctions::ToString { in x: ScalarQuantityValue[1]; return : String; }
+	calc def ToInteger { in x: ScalarQuantityValue[1]; return : Integer[1]; }
+	calc def ToRational { in x: ScalarQuantityValue[1]; return : Rational[1]; }
+	calc def ToReal { in x: ScalarQuantityValue[1]; return : Real[1]; }
+	calc def ToDimensionOneValue { in x: Real[1]; return : DimensionOneValue[1]; }
 	
-	calc def sum specializes NumericalFunctions::sum (collection: ScalarQuantityValue[0..*]): ScalarQuantityValue {
-		private attribute zero : ScalarQuantityValue;
+	calc def sum specializes NumericalFunctions::sum { in collection: ScalarQuantityValue[0..*]; 
+        private attribute zero : ScalarQuantityValue[1];
 		assert constraint { isZero(zero) }
-		NumericalFunctions::sum0(collection, zero)
+		return : ScalarQuantityValue = NumericalFunctions::sum0(collection, zero);
 	}
 	
-	calc def product specializes NumericalFunctions::product (collection: ScalarQuantityValue[0..*]): ScalarQuantityValue {
-		private attribute one : ScalarQuantityValue;
+	calc def product specializes NumericalFunctions::product { in collection: ScalarQuantityValue[0..*]; 
+		private attribute one : ScalarQuantityValue[1];
 		assert constraint { isUnit(one) }
-		NumericalFunctions::product1(collection, one)
+        return : ScalarQuantityValue = NumericalFunctions::product1(collection, one);
 	}
 
-    calc def ConvertQuantity(x: ScalarQuantityValue, targetMRef: ScalarMeasurementReference): ScalarQuantityValue;
+    calc def ConvertQuantity{ in x: ScalarQuantityValue[1]; in targetMRef: ScalarMeasurementReference[1]; return : ScalarQuantityValue[1]; }
 }

@@ -1,40 +1,57 @@
 package UseCases {
+	doc
+	/*
+	 * This package defines the base types for use cases and related behavioral elements in the SysML language.
+	 */
+	 
 	private import Cases::Case;
 	private import Cases::cases;
 	
-	/**
-	 * UseCase is the most general class of performances of UseCaseDefinitions. 
-	 * UseCase is the base class of all UseCaseDefinitions.
-	 */
 	use case def UseCase :> Case {
+		doc
+		/*
+		 * UseCase is the most general class of performances of UseCaseDefinitions. 
+		 * UseCase is the base class of all UseCaseDefinitions.
+		 */
+	
 		ref use case self : UseCase :>> Case::self;
 		subject subj :>> Case::subj;
 		objective obj :>> Case::obj;
 		
-		/**
-		 * The starting snapshot of a Use Case. 
-		 */
-		ref use case start: UseCase :>> start;
+		ref use case start: UseCase :>> start {
+			doc
+			/*
+			 * The starting snapshot of a Use Case. 
+			 */
+		}
 		
-		/**
-		 * The ending snapshot of a Use Case.
-		 */
-		ref use case done: UseCase :>> done;
+		ref use case done: UseCase :>> done {
+			doc
+			/*
+			 * The ending snapshot of a Use Case.
+			 */
+		}
 
-		/**
-		 * Other UseCases carried out as part of the performance of this UseCase.
-		 */
-		abstract ref subUseCases : UseCase[0..*] :> subcases;
+		abstract ref subUseCases : UseCase[0..*] :> subcases {
+			doc
+			/*
+			 * Other UseCases carried out as part of the performance of this UseCase.
+			 */
+		}
 		
-		/**
-		 * Other UseCases included by this UseCase (i.e., as modeled by an 
-		 * IncludeUseCaseUsage).
-		 */
-		abstract ref includedUseCases : UseCase[0..*] :> subUseCases;
+		abstract ref includedUseCases : UseCase[0..*] :> subUseCases {
+			doc
+			/*
+			 * Other UseCases included by this UseCase (i.e., as modeled by an 
+			 * IncludeUseCaseUsage).
+			 */
+		}
 	}
 	
-	/**
-	 * useCases is the base feature of all UseCaseUsages.
-	 */
-	use case useCases : UseCase[0..*] nonunique :> cases;
+	use case useCases : UseCase[0..*] nonunique :> cases {
+		doc
+		/*
+		 * useCases is the base feature of all UseCaseUsages.
+		 */
+	}
 }

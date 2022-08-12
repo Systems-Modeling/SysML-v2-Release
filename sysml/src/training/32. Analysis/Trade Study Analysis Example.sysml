@@ -6,28 +6,31 @@ package 'Trade Study Analysis Example' {
 	part engine4cyl : Engine;
 	part engine6cyl : Engine;
 	
-	calc def PowerRollup(engine : Engine) : ISQ::PowerValue;
-	calc def MassRollup(engine : Engine) : ISQ::PowerValue;
-	calc def EfficiencyRollup(engine : Engine): ISQ::PowerValue;
-	calc def CostRollup(engine : Engine) : ISQ::PowerValue;
+	calc def PowerRollup { in engine : Engine; return : ISQ::PowerValue; }
+	calc def MassRollup { in engine : Engine; return : ISQ::MassValue; }
+	calc def EfficiencyRollup { in engine : Engine; return : Real; }
+	calc def CostRollup { in engine : Engine; return : Real; }
 	
-	calc def EngineEvaluation 
-		(power : ISQ::PowerValue, mass : ISQ::MassValue, efficiency : Real, cost : Real) 
-		evaluation : Real {
-			// Compute evaluation...
-		}
+	calc def EngineEvaluation { 
+		in power : ISQ::PowerValue;
+		in mass : ISQ::MassValue;
+		in efficiency : Real;
+		in cost : Real;
+		return evaluation : Real;
+		// Compute evaluation...
+	}
 		
 	analysis engineTradeStudy : TradeStudy {
 		subject : Engine = (engine4cyl, engine6cyl);
 		objective : MaximizeObjective;
 
 		calc :>> evaluationFunction {
-			in part engine :>> alternative : Engine;
+			in part anEngine :>> alternative : Engine;
 			
-			calc powerRollup: PowerRollup (engine) return power : ISQ::PowerValue;
-			calc massRollup: MassRollup (engine) return mass : ISQ::MassValue;
-			calc efficiencyRollup: EfficiencyRollup (engine) return efficiency : Real;
-			calc costRollup: CostRollup (engine) return cost : Real;
+			calc powerRollup: PowerRollup { in engine = anEngine; return power; }
+			calc massRollup: MassRollup { in engine = anEngine; return mass; }
+			calc efficiencyRollup: EfficiencyRollup { in engine = anEngine; return efficiency; }
+			calc costRollup: CostRollup { in engine = anEngine; return cost; }
 			
 			return :>> result : Real = EngineEvaluation(
 				powerRollup.power, massRollup.mass, efficiencyRollup.efficiency, costRollup.cost

@@ -37,18 +37,18 @@ package MassConstraintExample {
 		}
 	}
 	
-	constraint def MassConstraint3 (
-		totalMass : MassValue, 
-		partMasses : MassValue[0..*]) {
+	constraint def MassConstraint3 {
+		in totalMass : MassValue; 
+		in partMasses : MassValue[0..*];
 			
 		totalMass == sum(partMasses)
 	}
 	
 	part def Vehicle3 {
-		assert constraint massConstraint : MassConstraint3 (
-			totalMass = m, 
-			partMasses = (eng.m, trans.m)
-		);
+		assert constraint massConstraint : MassConstraint3 {
+			in totalMass = m;
+			in partMasses = (eng.m, trans.m);
+		}
 		
 		attribute m : MassValue;
 		
@@ -61,22 +61,23 @@ package MassConstraintExample {
 		}
 	}
 	
-	constraint def MassConstraint4 (
-		totalMass : MassValue, 
-		partMasses : MassValue[0..*]);
+	constraint def MassConstraint4 {
+		in totalMass : MassValue;
+		in partMasses : MassValue[0..*];
+	}
 	
-	constraint mc : MassConstraint4 (
-		totalMass : MassValue, 
-		partMasses : MassValue[0..*]) {
+	constraint mc : MassConstraint4 {
+		in totalMass : MassValue; 
+		in partMasses : MassValue[0..*];
 		
 		totalMass == sum(partMasses)
 	}
 	
 	part def Vehicle4 {
-		assert mc (
-			totalMass = m, 
-			partMasses = (eng.m, trans.m)
-		);
+		assert mc {
+			in totalMass = m;
+			in partMasses = (eng.m, trans.m);
+		}
 		
 		attribute m : MassValue;
 		
@@ -89,18 +90,18 @@ package MassConstraintExample {
 		}
 	}
 	
-	constraint def MassLimit (
-		mass : MassValue, 
-		maxMass : MassValue) {
+	constraint def MassLimit {
+		in mass : MassValue; 
+		in maxMass : MassValue;
 			
 		mass <= maxMass
 	}
 	
 	part def Vehicle5 {
-		assert constraint ml : MassLimit (
-			mass = m, 
-			maxMass = 2500 [kg]
-		);
+		assert constraint ml : MassLimit {
+			in mass = m;
+			in maxMass = 2500 [kg];
+		}
 		
 		attribute m : MassValue = eng.m + trans.m;
 		

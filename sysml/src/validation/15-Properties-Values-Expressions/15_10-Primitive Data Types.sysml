@@ -5,49 +5,61 @@ package '15.10-Primitive Data Types' {
 	 * model libraries or models as needed.
 	 */
 	 
-	/**
+	import ScalarValues::Integer {
+	doc
+	/*
 	 * The unqualified Integer is signed, in line with integer numbers in mathematics.
 	 */
-	import ScalarValues::Integer;
+	}
 	
 	import ScalarValues::Natural;
-	/** Mathematically, unsigned integers are just natural numbers (non-negative integers). */
-	attribute def UnsignedInteger :> Natural;
+	attribute def UnsignedInteger :> Natural {
+		doc /* Mathematically, unsigned integers are just natural numbers (non-negative integers). */		
+	}
 	
-	/**
+	import ScalarValues::Real {
+	doc
+	/*
 	 * The unqualified Real is signed, in line with real numbers in mathematics.
 	 */
-	import ScalarValues::Real;
+	}
 	
-	/** TODO: Move this to the model library.
-	 * (To be discussed whether Unsigned attribute defs should really be part of the primitive 
-	 * data / attribute defs. These are more a computer data type concern.)
-	 */
 	attribute def UnsignedReal :> Real {
+		doc
+		/* TODO: Move this to the model library.
+		 * (To be discussed whether Unsigned attribute defs should really be part of the primitive 
+		 * data / attribute defs. These are more a computer data type concern.)
+		 */
 		attribute x: Real :>> self;
 		assert constraint { x >= 0.0 }
 	}
 	
-	/**
-	 * String attributes are sequences of characters.
-	 * TODO: Specify any requirements on character encoding.
-	 */
-	import ScalarValues::String;
+	import ScalarValues::String {
+		doc
+		/*
+		 * String attributes are sequences of characters.
+		 * TODO: Specify any requirements on character encoding.
+		 */
+	}
 	
-	/**
-	 * Boolean type has two legal attributes: true, false.
-	 */
-	import ScalarValues::Boolean;
+	import ScalarValues::Boolean {
+		doc
+		/*
+		 * Boolean type has two legal attributes: true, false.
+		 */
+	}
 	
 	/* TODO: Specify standardized string encodings. */
 	import Time::DateTime;
 	
-	/**
-	 * Enumerations are defined as an implicit restriction of the extent of the
-	 * enumeration type to the listed enumeration values.
-	 * Note: Enumerations are currently limited to attributes.
-	 */
 	enum def ConditionColor {
+		doc
+		/*
+		 * Enumerations are defined as an implicit restriction of the extent of the
+		 * enumeration type to the listed enumeration values.
+		 * Note: Enumerations are currently limited to attributes.
+		 */
+	
 		enum red;
 		enum yellow;
 		enum green;

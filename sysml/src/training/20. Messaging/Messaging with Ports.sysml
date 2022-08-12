@@ -7,8 +7,8 @@ package 'Messaging Example' {
 		item picture : Picture;
 	}
 	
-	action def Focus(in scene : Scene, out image : Image);
-	action def Shoot(in image : Image, out picture : Picture);
+	action def Focus { in item scene : Scene; out item image : Image; }
+	action def Shoot { in item image : Image; out item picture : Picture; }
 	action def TakePicture;
 	
 	part screen {
@@ -27,8 +27,10 @@ package 'Messaging Example' {
 				out item image;
 			}
 			
+			flow from focus.image to shoot.image;
+		
 			then action shoot : Shoot {
-				in item image flow from focus.image; 
+				in item image; 
 				out item picture;
 			}
 			

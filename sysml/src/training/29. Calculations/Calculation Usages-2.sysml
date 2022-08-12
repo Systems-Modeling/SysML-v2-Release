@@ -12,7 +12,9 @@ package 'Calculation Usages-2' {
 		attribute wheelPower : PowerValue;
 		attribute mass : MassValue;
 		
-		calc updateState(delta_t : TimeValue, currState : DynamicState) {
+		calc updateState { 
+			in delta_t : TimeValue; 
+			in currState : DynamicState;
 			attribute totalPower : PowerValue = Power(wheelPower, C_d, C_f, mass, currState.v);
 			
 			return attribute newState : DynamicState {

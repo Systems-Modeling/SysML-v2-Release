@@ -9,7 +9,7 @@ package TextualRepresentation {
 	    }
 	}
 	
-	behavior setX(c : C, newX : Real) {
+	behavior setX { in c : C; in newX : Real;
 	    language "alf" 
 	        /* c.x = newX;
 	         * WriteLine("Set new x");

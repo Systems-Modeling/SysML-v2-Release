@@ -1,8 +1,9 @@
-/**
- * Example from the SysML 1.6 spec, subclause 8.4.5 Constraining Decomposition,
- * updated for usage-focused approach.
- */
 package 'Vehicle Decomposition - Updated' {
+	doc
+	/*
+	 * Example from the SysML 1.6 spec, subclause 8.4.5 Constraining Decomposition,
+	 * updated for usage-focused approach.
+	 */
 	
 	// Blocks
 	

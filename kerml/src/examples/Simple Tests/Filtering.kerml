@@ -22,14 +22,14 @@ package Filtering {
 	
 	package UpperLevelApprovals {
 	    import DesignModel::**;
-	    filter @Annotations::ApprovalAnnotation && 
-	           Annotations::ApprovalAnnotation::approved && 
+	    filter @Annotations::ApprovalAnnotation and 
+	           Annotations::ApprovalAnnotation::approved and 
 	           Annotations::ApprovalAnnotation::level > 1;
 	}
 	
 	package UpperLevelApprovals1 {
 	    import Annotations::**;
-	    import DesignModel::**[@ApprovalAnnotation && approved && level > 1];
+	    import DesignModel::**[@ApprovalAnnotation and approved and level > 1];
 	}
 
 }

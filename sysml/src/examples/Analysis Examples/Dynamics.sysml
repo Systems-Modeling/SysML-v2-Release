@@ -4,21 +4,22 @@ package Dynamics {
 	
 	// Function definitions
 	
-	calc def Power
-		(in whlpwr : PowerValue, in Cd : Real, in Cf : Real, in tm : MassValue, in v : SpeedValue )
-		return tp : PowerValue {
-			
-		whlpwr - Cd * v - Cf * tm * v
+	calc def Power {
+		in whlpwr : PowerValue; in Cd : Real; in Cf : Real; in tm : MassValue; in v : SpeedValue;
+		return tp : PowerValue = whlpwr - Cd * v - Cf * tm * v;
 	}
 	
-	calc def Acceleration (dt : TimeValue, tm : MassValue, tp: PowerValue) a : AccelerationValue { 
-		tp * dt * tp
+	calc def Acceleration { in dt : TimeValue; in tm : MassValue; in tp: PowerValue; 
+		return a : AccelerationValue = tp * dt * tp;
 	}
 	
-	calc def Velocity (dt : TimeValue, v0 : SpeedValue, a : AccelerationValue) v : SpeedValue = v0 + a * dt;
+	calc def Velocity { in dt : TimeValue; in v0 : SpeedValue; in a : AccelerationValue;
+		return v : SpeedValue = v0 + a * dt;
+	}
  	
-	calc def Position (dt : TimeValue, x0 : LengthValue, v : SpeedValue) : LengthValue = x0 + v * dt;
-	
+	calc def Position { in dt : TimeValue; in x0 : LengthValue; in v : SpeedValue; 
+		return: LengthValue = x0 + v * dt;
+	}
 
 	// Analysis action def
 	
@@ -58,22 +59,25 @@ package Dynamics {
 	}	
 	
 	action dyn2 : StraightLineVehicleDynamics {
-		calc acc : Acceleration (
-			dt = dyn2::dt, 
-			tm = dyn2::tm, 
-			tp = Power(whlpwr, Cd, Cf, tm, v_in)
-		) return a = a_out;
+		calc acc : Acceleration {
+			in dt = dyn2::dt;
+			in tm = dyn2::tm;
+			in tp = Power(whlpwr, Cd, Cf, tm, v_in);
+			return a = a_out;
+		}
 		
-		calc vel : Velocity (
-			dt = dyn2::dt, 
-			v0 = dyn2::v_in, 
-			a = acc.a
-		) return v = v_out;
+		calc vel : Velocity {
+			in dt = dyn2::dt;
+			in v0 = dyn2::v_in; 
+			in a = acc.a;
+			return v = v_out;
+		}
 		
-		calc pos : Position (
-			dt = dyn2::dt, 
-			x0 = dyn2::x_in, 
-			v0 = vel.v
-		) return x = x_out;		
+		calc pos : Position {
+			in dt = dyn2::dt;
+			in x0 = dyn2::x_in;
+			in v0 = vel.v;
+		  	return x = x_out;		
+		}
 	}
 }

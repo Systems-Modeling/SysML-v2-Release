@@ -1,7 +1,8 @@
-/**
- * Example from the SysML 1.6 spec, subclause 8.4.5 Constraining Decomposition.
- */
 package 'Vehicle Decomposition' {
+	doc
+	/*
+	 * Example from the SysML 1.6 spec, subclause 8.4.5 Constraining Decomposition.
+	 */
 	
 	part def Vehicle {
 		part chs : 'Chassis Assembly'[1] {

@@ -36,7 +36,9 @@ package CartSample {
                 :>> output : CartOutput;
                 :>> stateSpace : CartState;
 
-                calc :>> getDerivative(input: CartInput, stateSpace: CartState) {
+                calc :>> getDerivative { 
+                	in input: CartInput; 
+                	in stateSpace: CartState;
                     CartStateDerivative(input.force / mass)
                 }
                 calc :>> getOutput {

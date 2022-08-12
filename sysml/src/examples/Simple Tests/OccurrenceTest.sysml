@@ -3,9 +3,17 @@ package OccurrenceTest {
 		attribute a;
 		ref occurrence occ1 : Occ;
 		occurrence occ2 : Occ;
+		item x;
+		part y;
 		
 		individual snapshot s : Ind;
 		timeslice t;
+	}
+	
+	occurrence occ : Occ {
+		occurrence o1 : Occ;
+		ref occurrence o2 : Occ;
+		item z;
 	}
 
 	individual occurrence def Ind {

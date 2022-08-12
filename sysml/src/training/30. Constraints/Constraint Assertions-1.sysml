@@ -6,18 +6,18 @@ package 'Constraint Assertions-1' {
 	part def Engine;
 	part def Transmission;
 	
-	constraint def MassConstraint (
-		partMasses : MassValue[0..*],
-		massLimit : MassValue) {
+	constraint def MassConstraint {
+		in partMasses : MassValue[0..*];
+		in massLimit : MassValue;
 			
 		sum(partMasses) <= massLimit
 	}
 	
 	part def Vehicle {
-		assert constraint massConstraint : MassConstraint (
-			partMasses = (chassisMass, engine.mass, transmission.mass),
-			massLimit = 2500[kg]
-		);
+		assert constraint massConstraint : MassConstraint {
+			in partMasses = (chassisMass, engine.mass, transmission.mass);
+			in massLimit = 2500[kg];
+		}
 		
 		attribute chassisMass : MassValue;
 		

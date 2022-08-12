@@ -1,18 +1,22 @@
-/**
- * This package defines the base types for verification cases and related behavioral elements 
- * in the SysML language.
- */
 package VerificationCases {
+	doc
+	/*
+	 * This package defines the base types for verification cases and related behavioral elements 
+	 * in the SysML language.
+	 */
+
 	private import Cases::Case;
 	private import Cases::cases;
 	private import Requirements::RequirementCheck;
 	private import ScalarValues::Boolean;
 	
-	/**
-	 * VerificationCase is the most general class of performances of VerificationCaseDefinitions. 
-	 * VericationCase is the base class of all VerificationCaseDefinitions.
-	 */
 	abstract verification def VerificationCase :> Case {
+		doc
+		/*
+		 * VerificationCase is the most general class of performances of VerificationCaseDefinitions. 
+		 * VericationCase is the base class of all VerificationCaseDefinitions.
+		 */
+	
 		ref verification self : VerificationCase :>> Case::self;		
 		subject subj :>> Case::subj;
 		return verdict : VerdictKind :>> result;
@@ -20,59 +24,76 @@ package VerificationCases {
 		objective obj :>> Case::obj {
 			subject subj = VerificationCase::subj;
 			
-			/**
-			 * A record of the evaluations of the RequirementChecks of requirements being verified.
-			 */
-			requirement requirementVerifications[0..*];
+			requirement requirementVerifications[0..*] {
+				doc
+				/*
+				 * A record of the evaluations of the RequirementChecks of requirements being verified.
+				 */
+			}
 		}
 		
-		/**
-		 * Checks on whether the verifiedRequirements of the VerificationCase have been satisfied.
-		 */
-		ref requirement requirementVerifications[0..*] = obj.requirementVerifications;
+		ref requirement requirementVerifications[0..*] = obj.requirementVerifications {
+			doc
+			/*
+			 * Checks on whether the verifiedRequirements of the VerificationCase have been satisfied.
+			 */
+		}
 		
-		/**
-		 * The subcases of this VerificationCase that are VerificationCaseUsages.
-		 */
-		abstract ref verification subVerificationCases : Case[0..*] :> verificationCases, subcases;
+		abstract ref verification subVerificationCases : Case[0..*] :> verificationCases, subcases {
+			doc
+			/*
+			 * The subcases of this VerificationCase that are VerificationCaseUsages.
+			 */
+		}
 		
 	}
 	
-	/**
-	 * verificationCases is the base feature of all VerificationCaseUsages.
-	 */
-	abstract verification verificationCases : VerificationCase[0..*] nonunique  :> cases;
+	abstract verification verificationCases : VerificationCase[0..*] nonunique  :> cases {
+		doc
+		/*
+		 * verificationCases is the base feature of all VerificationCaseUsages.
+		 */
+	}
 	
-	/**
-	 * VerdictKind is an enumeration of the possible results of a VerificationCase.
-	 */
 	enum def VerdictKind {
+		doc
+		/*
+		 * VerdictKind is an enumeration of the possible results of a VerificationCase.
+		 */
+	
 		pass;
 		fail;
 		inconclusive;
 		error;
 	}
 	
-	/**
-	 * PassIf returns a pass or fail VerdictKind depending on whether its argument is
-	 * true or false.
-	 */
-	calc def PassIf(in isPassing : Boolean) {
-		return verdict : VerdictKind = isPassing? VerdictKind::pass : VerdictKind::fail;
+	calc def PassIf {
+		doc
+		/*
+		 * PassIf returns a pass or fail VerdictKind depending on whether its argument is
+		 * true or false.
+		 */
+	
+		in attribute isPassing : Boolean;
+		return attribute verdict : VerdictKind = if isPassing? VerdictKind::pass else VerdictKind::fail;
 	}
 	
-	/**
-	 * VerificationMethod can be used as metadata annotating a verification case or action.
-	 */
 	metadata def VerificationMethod {
+		doc
+		/*
+		 * VerificationMethod can be used as metadata annotating a verification case or action.
+		 */
+	
 		attribute kind : VerificationMethodKind[1..*];
 	}
 	
-	/**
-	 * VerificationMethodKind is an enumeration of the standard methods by which verification
-	 * can be carried out.
-	 */
 	enum def VerificationMethodKind {
+		doc
+		/*
+		 * VerificationMethodKind is an enumeration of the standard methods by which verification
+		 * can be carried out.
+		 */
+	
 		inspect;
 		analyze;
 		demo;

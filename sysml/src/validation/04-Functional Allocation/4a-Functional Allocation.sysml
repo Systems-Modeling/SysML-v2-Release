@@ -10,11 +10,13 @@ package '4a-Functional Allocation' {
 			in fuelCmd: FuelCmd;
 		}
 
-		/**
+		perform 'provide power' {
+		doc
+		/*
 		 * This allocates the action '3a-Function-based Behavior-1'::'provide power' as an enacted 
 		 * performance of 'vehicle_c1_functional_allocation'.
 		 */
-		perform 'provide power' {
+		
 			// This assigns the fuelCmdPort to provide the input to 'provide power'.
 			in fuelCmd = fuelCmdPort.fuelCmd;
 		}
@@ -36,10 +38,11 @@ package '4a-Functional Allocation' {
 				in fuelCmd: FuelCmd;
 			}
 			
-			/**
-			 *  This allocates one of the sub-steps of 'provide power' to a sub-part of vehicle_c1. 
-			 */ 
 			perform 'provide power'.'generate torque' {
+				/*
+				 *  This allocates one of the sub-steps of 'provide power' to a sub-part of vehicle_c1. 
+				 */
+
 				in fuelCmd = fuelCmdPort.fuelCmd;
 				out engineTorque = drivePwrPort.engineTorque;
 			}

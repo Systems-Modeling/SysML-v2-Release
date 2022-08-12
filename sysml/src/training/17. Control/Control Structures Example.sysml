@@ -6,8 +6,8 @@ package 'Control Structures Example' {
 	part battery;
 	part powerSystem;
 	
-	action def MonitorBattery (out charge : Real);
-	action def AddCharge (in charge : Real);
+	action def MonitorBattery { out charge : Real; }
+	action def AddCharge { in charge : Real; }
 	action def EndCharging;
 	
 	action def ChargeBattery {

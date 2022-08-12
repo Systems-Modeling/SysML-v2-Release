@@ -8,13 +8,22 @@ package Classes {
 	}
 	
 	abstract class <'2'> B {
-		public abstract feature a: A;
+		public abstract feature a: A {
+			composite feature aa: A;
+		}
+		public composite feature a1: A;
+		feature x {
+			composite feature a: A;
+		}
 		package P { }
 	}
 	
-	private class C specializes Classes::'2' {
+	private struct C specializes Classes::'2' {
 		private y: A, '2'[0..*];
 		alias z for y;
+		composite feature c : C {
+			composite feature cc : C;
+		}
 	}
 	
 }

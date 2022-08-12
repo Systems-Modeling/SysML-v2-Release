@@ -24,23 +24,30 @@ package '15_13-Discretely Sampled Function Value' {
 		}
   }
 
-	/** 
-	 * Define mission elapsed time scale starting at given UTC date time (in microsecond resolution)
-	 */
 	attribute mets: MissionElapsedTimeScale { 
+		doc
+		/*
+		 * Define mission elapsed time scale starting at given UTC date time (in microsecond resolution)
+		 */
 		:>> definitionalEpochInUTC { :>> val = "2020-08-23T22:42:32.924534Z";}		
 	}
 
-	/**
-	 * Define scalar quantity value type for mission elapsed time
-	 */
-	attribute def MissionElapsedTimeValue :> TimeInstantValue { :>> mRef = mets; }
+	attribute def MissionElapsedTimeValue :> TimeInstantValue {
+		doc
+		/*
+		 * Define scalar quantity value type for mission elapsed time
+		 */
+	 	:>> mRef = mets; 
+	}
 
-	/**
-	 * Define Cartesian 3D coordinate systems for position and velocity
-	 * Create a velocity coordinate system from the spatial coordinate system through division by second
-	 */
-	attribute spatialCF: Cartesian3dSpatialCoordinateFrame[1] { :>> mRefs = (m, m, m); }
+	attribute spatialCF: Cartesian3dSpatialCoordinateFrame[1] {
+		doc
+		/*
+		 * Define Cartesian 3D coordinate systems for position and velocity
+		 * Create a velocity coordinate system from the spatial coordinate system through division by second
+		 */
+	 	:>> mRefs = (m, m, m); 
+	}
 	attribute velocityCF: Cartesian3dVelocityCoordinateFrame[1] = spatialCF/s { :>> isBound = false; }
 
 	attribute def PositionAndVelocity {
@@ -56,8 +63,8 @@ package '15_13-Discretely Sampled Function Value' {
 		attribute :>> samples: AscentSample[*] ordered;
 	}
 
-	/** Example ascent profile */
 	attribute ascentProfile1: AscentProfile {
+		doc /* Example ascent profile */
 		attribute sample1: AscentSample { :>> domainValue = 0.0 [mets]; :>> rangeValue = pv1;
 			attribute pv1: PositionAndVelocity {:>> position = (0, 0, 0) [spatialCF]; :>> velocity = (0, 0, 0) [velocityCF]; } }
 		attribute sample2: AscentSample { :>> domainValue = 2.5 [mets]; :>> rangeValue = pv1;

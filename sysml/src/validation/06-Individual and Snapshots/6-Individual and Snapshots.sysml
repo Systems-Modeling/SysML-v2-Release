@@ -84,35 +84,39 @@ package '6-Individual and Snapshots' {
 		import 'Individual Definitions'::*;
 		import Values::*;
 		
-		/**
-		 * An individual usage must be typed by an individual definition,
-		 * representing the condition of that individual during some or all
-		 * of its life.
-		 */
 		individual reference : 'Temporal-Spatial Reference_ID1' {
+			/*
+			 * An individual usage must be typed by an individual definition,
+			 * representing the condition of that individual during some or all
+			 * of its life.
+			 */
+		
 			snapshot context_t0 : VehicleRoadContext_ID1 {
-				/**
-				 * This is a concise notation for showing the redefinition
-				 * of a attribute property.
-				 */
-				:>> t = t0;
+				:>> t = t0 {
+					/*
+					 * This is a concise notation for showing the redefinition
+					 * of a attribute property.
+					 */
+				}
 				
-				/**
-				 * A snapshot is a kind of individual usage restricted to
-				 * a single instant of time.
-				 */
 				snapshot vehicle_ID1_t0 : VehicleA_ID1 {
+					/*
+					 * A snapshot is a kind of individual usage restricted to
+					 * a single instant of time.
+					 */
+				
 					:>> mass = m;
 					:>> position = p0;
 					:>> velocity = v0;
 					:>> acceleration = a0;
 					
-					/**
-					 * This asserts that the snapshot exhibits the referenced 
-					 * state, which means that the vehicle must me in the state 
-					 * at the time of the snapshot.
-					 */
-					exhibit vehicleStates.on;
+					exhibit vehicleStates.on {
+						/*
+						 * This asserts that the snapshot exhibits the referenced 
+						 * state, which means that the vehicle must me in the state 
+						 * at the time of the snapshot.
+						 */
+					}
 				}
 				
 				snapshot road_ID1_t0 : Road_ID1 {

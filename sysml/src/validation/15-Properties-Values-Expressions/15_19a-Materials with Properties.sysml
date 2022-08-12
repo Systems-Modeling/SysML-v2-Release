@@ -53,11 +53,12 @@ package '15_19a-Materials with Properties' {
     attribute Carbon: Metal { :>> atomicMass = 12.011[Da]; }
     attribute Manganese: Metal { :>> atomicMass = 54.938[Da]; }
     
-	/**
-	 * Value property with redefined/added sub-properties.
-	 * (Particular example of high tensile strength steel.)
-	 */
     attribute Steel_980: Alloy {
+		/*
+		 * Value property with redefined/added sub-properties.
+		 * (Particular example of high tensile strength steel.)
+		 */
+	
         private attribute fraction1: MaterialFraction { :>> material = Iron; :>> massFraction = 0.9862[one]; }
         private attribute fraction2: MaterialFraction { :>> material = Carbon; :>> massFraction = 0.0018[one]; }
         private attribute fraction3: MaterialFraction { :>> material = Manganese; :>> massFraction = 0.012[one]; }

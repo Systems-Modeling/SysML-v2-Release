@@ -12,11 +12,13 @@ package '15_03-Value Expression' {
     part def Wheel {
     	attribute hubDiameter: LengthValue = 18 ['in'];
         attribute width: LengthValue = 245 [mm];
-        /**
-         * This binds 'outDiameter' to the result of a computed attribute.
-         * There is no need to mark it as "derived".
-         */
-        attribute outerDiameter: LengthValue = (hubDiameter + 2 * tire.height) [mm];
+        attribute outerDiameter: LengthValue = (hubDiameter + 2 * tire.height) [mm] {
+	        doc
+	        /*
+	         * This binds 'outDiameter' to the result of a computed attribute.
+	         * There is no need to mark it as "derived".
+	         */
+        }
         part tire: Tire[1];
     }
     

@@ -1,28 +1,32 @@
-/**
- * Example usages of elements from the vehicle definitions model.
- **/
 package VehicleUsages {
+	doc
+	/*
+	 * Example usages of elements from the vehicle definitions model.
+	 */
+	 
 	import SI::N;
 	import SI::m;
 	import VehicleDefinitions::*;
 
-	/* VALUES */	 
+	/* VALUES */
+		 
 	feature T1 = 10.0[N * m];
 	feature T2 = 20.0[N * m];
 	
 	/* PARTS */	
-	/** Narrow-rim wheel configuration with 4 to 5 lugbolts. **/
+	
 	feature narrowRimWheel: Wheel {
+		doc /* Narrow-rim wheel configuration with 4 to 5 lugbolts. */
 		composite lugbolt: Lugbolt[4..5];
 	}
-	
-	/** Wide-rim wheel configuration with 4 to 6 lugbolts. **/	
+		
 	feature wideRimWheel: Wheel {
+		doc /* Wide-rim wheel configuration with 4 to 6 lugbolts. */
 		composite lugbolt: Lugbolt[4..6];
 	}
 
-	/** Basic Vehicle configuration showing a part hierarchy. **/
 	feature vehicle_C1: Vehicle {
+		doc /* Basic Vehicle configuration showing a part hierarchy. */
 		composite frontAxleAssembly: AxleAssembly {
 			composite frontWheel[2] redefines narrowRimWheel {
 				composite lugbolt[4] redefines narrowRimWheel::lugbolt {
@@ -41,8 +45,8 @@ package VehicleUsages {
 		}
 	}
 	
-	/** Specialized configuration with part-specific ports. **/
 	feature vehicle_C2 subsets vehicle_C1 {
+		doc /* Specialized configuration with part-specific ports. */
 		composite frontAxleAssembly redefines vehicle_C1::frontAxleAssembly {
 			composite leftFrontWheel subsets vehicle_C1::frontAxleAssembly::frontWheel = vehicle_C1::frontAxleAssembly::frontWheel[1] {
 				composite hub: VehicleDefinitions::WheelHubIF;
@@ -84,8 +88,8 @@ package VehicleUsages {
 		}		
 	}
 	
-	/** Further specialized configuration with a connector to a deeply-nested feature. **/
 	feature vehicle_C3 subsets vehicle_C2 {
+		doc /* Further specialized configuration with a connector to a deeply-nested feature. */
 		composite transmission: Transmission {
 			out feature drive: DriveIF;
 		}

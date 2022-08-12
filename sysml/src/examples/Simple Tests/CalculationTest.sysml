@@ -13,20 +13,12 @@ package CalculationExample {
 		part trans : VehiclePart;
 	}
 	
-	calc def MassSum (partMasses : MassValue[0..*]) totalMass : MassValue {
-		sum(partMasses)
-	}
-	
-	calc ms: MassSum (
-		partMasses = (vehicle.eng.m, vehicle.trans.m))
-		totalMass = vehicle.m;
-		
-	calc def MassSum1 {
+	calc def MassSum {
 		in partMasses : MassValue[0..*];
 		return totalMass : MassValue = sum(partMasses);
 	}
 	
-	calc ms1: MassSum {
+	calc ms: MassSum {
 		in partMasses = (vehicle.eng.m, vehicle.trans.m);
 		return totalMass = vehicle.m;
 	}

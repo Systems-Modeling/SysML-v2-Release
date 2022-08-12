@@ -3,11 +3,11 @@ package AssignmentTest {
 	part def Counter {
 		attribute count : ScalarValues::Integer := 0;
 		
-		action incr() {
+		action incr {
 			assign count := count + 1;
 		}
 		
-		action decr() {
+		action decr {
 			assign count := count - 1;
 		}
 	}
@@ -36,8 +36,11 @@ package AssignmentTest {
 		then wait;
 	}
 	
-	calc def Increment(c : Counter) : Counter {
-		perform c.incr();
+	calc def Increment { 
+		in c : Counter;
+		return : Counter;
+		
+		perform c.incr;
 		c
 	}
 	

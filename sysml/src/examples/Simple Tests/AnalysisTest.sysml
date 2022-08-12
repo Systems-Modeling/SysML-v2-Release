@@ -27,7 +27,7 @@ package AnalysisTest {
 			doc /* ... */
 		}
 		
-		analysis analysisCase : AnalysisCase () return mass;
+		analysis analysisCase : AnalysisCase { return mass; }
 	}
 	
 	part analysisContext {

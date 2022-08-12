@@ -19,13 +19,15 @@ package '3e-Function-based Behavior-item' {
 			perform action 'assemble vehicle' {
 				
 				action 'assemble transmission into vehicle' {
-					in item 'vehicle assy without transmission or engine' : VehicleAssembly;
-					/** Note: A part can be treated as an item. */
-					in item transmission : Transmission;
+					in item 'vehicle assy without transmission or engine' : VehicleAssembly;					
+					in item transmission : Transmission {
+						/* Note: A part can be treated as an item. */
+					}
 					
-					out item 'vehicle assy without engine' : VehicleAssembly = 'vehicle assy without transmission or engine' {
-						/** Note: An item can become a part of something else. */
-						part transmission : Transmission = 'assemble transmission into vehicle'.transmission;
+					out item 'vehicle assy without engine' : VehicleAssembly = 'vehicle assy without transmission or engine' {						
+						part transmission : Transmission = 'assemble transmission into vehicle'.transmission {
+							/* Note: An item can become a part of something else. */
+						}
 					}
 				}
 				
@@ -46,10 +48,11 @@ package '3e-Function-based Behavior-item' {
 			
 			bind 'assemble vehicle'.'assemble engine into vehicle'.assembledVehicle = vehicle;
 			
-			/**
-			 * Note: An in item one context can become a part in an other.
-			 */
 			part vehicle : Vehicle {
+				/*
+				 * Note: An in item one context can become a part in an other.
+				 */
+			
 				part transmission: Transmission;
 				part engine: Engine;
 				

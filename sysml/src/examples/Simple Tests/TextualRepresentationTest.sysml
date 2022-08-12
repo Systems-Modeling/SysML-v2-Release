@@ -9,7 +9,10 @@ package TextualRepresentationTest {
 	    }
 	}
 	
-	action def setX(c : C, newX : Real) {
+	action def setX {
+		in c : C;
+		in newX : Real;
+		
 	    language "alf" 
 	        /* c.x = newX;
 	         * WriteLine("Set new x");

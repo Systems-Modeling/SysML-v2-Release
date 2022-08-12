@@ -1,6 +1,5 @@
- 
-// ** This is the Norwegian use-case for Arrowhead Framework */
 package AHFNorway {
+	doc /* This is the Norwegian use-case for Arrowhead Framework */
 	// The use-case is for Productive4.0 and Arrowhead Tools
 	// The system is taken from a chemical factory
 	// This is focusing on the monitoring of products when delivered
@@ -9,15 +8,17 @@ package AHFNorway {
 	import AHFCoreLib::**;
 	import ScalarValues::*;
 
-	/** Service design */		
 	#service def APISService {
+		doc /* Service design */		
+
 		attribute :>> serviceDefinition = "APISPullService";
 		attribute :>> intrfce_protocol = "{JSON}";
 		attribute :>> serviceURL = "pull";
 	}
 
-	/** Service design description with nested protocol-specific ports */	
 	#servicedd port def APIS_DD :> APISService {
+		doc /* Service design description with nested protocol-specific ports */	
+
 		#idd APIS_HTTP {
 			// the asynch implementation of synchronous remote calls
 			out cll:CallGiveItems;
@@ -76,8 +77,9 @@ package AHFNorway {
 			:>> portno = 6565;
 			attribute x:Boolean;
 			
-			action giveItems :> ServiceMethod (in itms:String, out ack:Boolean) 
-			 {  /* Forward itms and return an ack */
+			action giveItems :> ServiceMethod
+			 {  in itms:String; out ack:Boolean;
+			 	/* Forward itms and return an ack */
 			 	first start;
 			 	then send Return_AllItems(itms) to apisc.APIS_MQTT;
 			 	success = true;
@@ -92,7 +94,7 @@ package AHFNorway {
 					accept cl:CallGiveItems via tellu.APIS_HTTP
 					do action {
 						first start;
-						then action giveItems(in itms=cl.itms,out ack=x);
+						then action giveItems{ in itms=cl.itms; out ack=x; }
 						then send ResultGiveItems(x) to tellu.APIS_HTTP;
 					}
 				then WaitOnData;				

@@ -65,21 +65,24 @@ package '8-Requirements' {
 	package 'Vehicle Requirements' {	
 		import 'Vehicle Definitions'::*;
 	
-		/**
-		 * The optional requirement ID  of this requirement ('1') is given after the keyword "id" (using name syntax).
-		 * Every requirement is parameterized by a "subject". The "subject" of this requirement is implicitly "Anything".
-		 */
 		requirement def <'1'> MassLimitationRequirement {
+			/*
+			 * The optional requirement ID  of this requirement ('1') is given after the keyword "id" (using name syntax).
+			 * Every requirement is parameterized by a "subject". The "subject" of this requirement is implicitly "Anything".
+			 */
+		
 			// The requirement text is given by the documentation in the requirement def body.
 			doc /* The actual mass shall be less than or equal to the required mass. */
 			
 			attribute massActual: MassValue;
 			attribute massReqd: MassValue;
 			
-			/**
-			 * A constraint can be used to formalize a requirement.
-			 */
-			require constraint { massActual <= massReqd }
+			require constraint {
+				/*
+				 * A constraint can be used to formalize a requirement.
+				 */
+				 massActual <= massReqd 
+			 }
 		}
 		
 		requirement def <'2'> ReliabilityRequirement;
@@ -87,25 +90,29 @@ package '8-Requirements' {
 		requirement <'1.1'> vehicleMass1: MassLimitationRequirement {
 			doc /* The vehicle mass shall be less than or equal to 2000 kg when the fuel tank is full. */
 			
-			/**
-			 * The subject of this requirement is redefined to be a "Vehicle".
-			 */
-			subject vehicle : Vehicle;
+			subject vehicle : Vehicle {
+				/*
+				 * The subject of this requirement is redefined to be a "Vehicle".
+				 */
+			}
 			
-			/**
-			 * This redefinition binds the vehicle mass to the actual mass.
-			 */
-			attribute :>> massActual: MassValue = vehicle.mass;
+			attribute :>> massActual: MassValue = vehicle.mass {
+				/*
+				 * This redefinition binds the vehicle mass to the actual mass.
+				 */
+			}
 			
-			/**
-			 * This redefinition sets the required mass to 2000 kg.
-			 */
-			attribute :>> massReqd = 2000 [kg];
+			attribute :>> massReqd = 2000 [kg] {
+				/*
+				 * This redefinition sets the required mass to 2000 kg.
+				 */
+			}
 			
-			/**
-			 * A constraint can also be used to specify an assumption.
-			 */
 			assume constraint fuelConstraint {
+				/*
+				 * A constraint can also be used to specify an assumption.
+				 */
+			
 				doc /* full fuel tank */
 				vehicle.fuelLevel >= vehicle.fuelTankCapacity
 			}
@@ -145,22 +152,25 @@ package '8-Requirements' {
 		import 'vehicle1-c1 Specification'::*;
 		import 'engine-v1 Specification'::*;
 		
-		/**
+		requirement 'vehicle1-c1 Specification' {
+		doc
+		/*
 		 * This models a "requirement group" as a requirement that references other requirements.
 		 */
-		requirement 'vehicle1-c1 Specification' {
+		
 			subject vehicle : Vehicle;
-			/** 
-			 * This is a reference to a requirement defined outside the group.
-			 * By default, the subject of the requirement is bound to that of the group.
-			 */
-			require vehicleMass1;
+			require vehicleMass1 {
+				/*
+				 * This is a reference to a requirement defined outside the group.
+				 * By default, the subject of the requirement is bound to that of the group.
+				 */				
+			}
 			// ...
 		}
 		
 		requirement 'engine-v1 Specification' {
 			subject engine : Engine;
-			/** 
+			/* 
 			 * Here the subjects of the referenced requirements are defined to be specific properties of the
 			 * subject of the group.
 			 */
@@ -172,11 +182,12 @@ package '8-Requirements' {
 			}
 		}
 		
-		/**
-		 * This asserts that if the assumptions of 'vehicle1-c1 Specification' are true with 'vehicle_c1' as
-		 * the subject, then the required constraints are also true.
-		 */
-		satisfy 'vehicle1-c1 Specification' by vehicle1_c1;
+		satisfy 'vehicle1-c1 Specification' by vehicle1_c1 {
+			/*
+			 * This asserts that if the assumptions of 'vehicle1-c1 Specification' are true with 'vehicle_c1' as
+			 * the subject, then the required constraints are also true.
+			 */
+		}
 		satisfy 'engine-v1 Specification' by vehicle1_c1.engine_v1;
 	}
 	

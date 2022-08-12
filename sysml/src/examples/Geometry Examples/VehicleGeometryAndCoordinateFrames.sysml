@@ -24,14 +24,16 @@ package VehicleGeometryAndCoordinateFrames {
         item :>> shape = Box(4800 [mm], 1840 [mm], 1350 [mm]);
     }
 
-	/**
-	 * Generic wheel with lugbolts
-	 * 
-	 * The radius is estimated for a 22 inch hub plus 110 mm tire height.
-	 * The wheel width is equal to the cylinder height.
-	 * The wheel has 5 lugbolts that are evenly distributed along a circle centered at the wheel's center.
-	 */
     part def Wheel :> SpatialItem {
+		doc
+		/*
+		 * Generic wheel with lugbolts
+		 * 
+		 * The radius is estimated for a 22 inch hub plus 110 mm tire height.
+		 * The wheel width is equal to the cylinder height.
+		 * The wheel has 5 lugbolts that are evenly distributed along a circle centered at the wheel's center.
+		 */
+	
     	ref item :>> self : Wheel;
         item :>> shape : Cylinder {
             :>> radius = 22/2*25.4 + 110 [mm]; 

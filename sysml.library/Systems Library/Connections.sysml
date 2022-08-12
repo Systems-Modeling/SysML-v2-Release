@@ -1,8 +1,10 @@
-/**
- * This package defines the base types for connections and related structural elements 
- * in the SysML language.
- */
 package Connections {
+	doc
+	/*
+	 * This package defines the base types for connections and related structural elements 
+	 * in the SysML language.
+	 */
+
 	private import Base::Anything;
 	private import Occurrences::Occurrence;
 	private import Objects::LinkObject;
@@ -18,63 +20,79 @@ package Connections {
 	private import Actions::Action;
 	private import Actions::actions;
 
-	/**
-	 * Connection is the most general class of links between things within some 
-	 * containing structure. Connection is the base type of all ConnectionDefinitions.
-	 */
-	abstract connection def Connection :> LinkObject, Part;
+	abstract connection def Connection :> LinkObject, Part {
+		doc
+		/*
+		 * Connection is the most general class of links between things within some 
+		 * containing structure. Connection is the base type of all ConnectionDefinitions.
+		 */
+	}
 	 
-	/**
-	 * BinaryConnection is the most general class of binary links between two things 
-	 * within some containing structure. BinaryConnection is the base type of all 
-	 * ConnectionDefinitions with exactly two ends.
-	 */
 	abstract connection def BinaryConnection :> Connection, BinaryLinkObject {
+		doc
+		/*
+		 * BinaryConnection is the most general class of binary links between two things 
+		 * within some containing structure. BinaryConnection is the base type of all 
+		 * ConnectionDefinitions with exactly two ends.
+		 */
+	
 		end source: Anything[0..*] :>> BinaryLinkObject::source;
 		end target: Anything[0..*] :>> BinaryLinkObject::target;
 	}
 	
-	/**
-	 * FlowConnection is the class of binary connections that represent a transfer 
-	 * of objects or values between two occurrences. It is the base type of all
-	 * FlowConnectionUsages.
-	 */
 	abstract connection def FlowConnection :> BinaryConnection, Transfer {
+		doc
+		/*
+		 * FlowConnection is the class of binary connections that represent a transfer 
+		 * of objects or values between two occurrences. It is the base type of all
+		 * FlowConnectionUsages.
+		 */
+	
 		end source: Occurrence[0..*] :>> BinaryConnection::source, Transfer::source;
 		end target: Occurrence[0..*] :>> BinaryConnection::target, Transfer::target;
 	}
 	
-	/**
-	 * SuccessionFlowConnection is the subclass of flow connections that represent 
-	 * temporally ordered transfers. It is the base type of all SuccessionFlowConnectionUsages.
-	 */
 	abstract connection def SuccessionFlowConnection :> FlowConnection, TransferBefore {
+		doc
+		/*
+		 * SuccessionFlowConnection is the subclass of flow connections that represent 
+		 * temporally ordered transfers. It is the base type of all SuccessionFlowConnectionUsages.
+		 */
+	
 		end source: Occurrence[0..*] :>> FlowConnection::source, TransferBefore::source;
 		end target: Occurrence[0..*] :>> FlowConnection::target, TransferBefore::target;
 	}
 	
-	/**
-	 * connections is the base feature of all ConnectionUsages.
-	 */
-	abstract connection connections: Connection[0..*] nonunique :> linkObjects, parts;
+	abstract connection connections: Connection[0..*] nonunique :> linkObjects, parts {
+		doc
+		/*
+		 * connections is the base feature of all ConnectionUsages.
+		 */
+	}
 	
-	/**
-	 * binaryConnections is the base feature of all binary ConnectionUsages.
-	 */
-	abstract connection binaryConnections: Connection[0..*] nonunique :> connections, binaryLinkObjects;
+	abstract connection binaryConnections: Connection[0..*] nonunique :> connections, binaryLinkObjects {
+		doc
+		/*
+		 * binaryConnections is the base feature of all binary ConnectionUsages.
+		 */
+	}
 	
-	/**
-	 * flowConnections is the base feature of all FlowConnectionUsages.
-	 */
 	abstract connection flowConnections: FlowConnection[0..*] nonunique :> binaryConnections, transfers {
+		doc
+		/*
+		 * flowConnections is the base feature of all FlowConnectionUsages.
+		 */
+	
 		end source: Occurrence[0..*] :>> FlowConnection::source, binaryConnections::source, transfers::source;
 		end target: Occurrence[0..*] :>> FlowConnection::target, binaryConnections::target, transfers::target;
 	}
 	
-	/**
-	 * successionFlowConnections is the base feature of all SuccessionFlowConnectionUsages.
-	 */
 	abstract connection successionFlowConnections: SuccessionFlowConnection[0..*] nonunique :> flowConnections, transfersBefore {
+		doc
+		/*
+		 * successionFlowConnections is the base feature of all SuccessionFlowConnectionUsages.
+		 */
+	
 		end source: Occurrence[0..*] :>> SuccessionFlowConnection::source, flowConnections::source, transfersBefore::source;
 		end target: Occurrence[0..*] :>> SuccessionFlowConnection::target, flowConnections::target, transfersBefore::target;
 	}

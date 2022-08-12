@@ -57,10 +57,11 @@ package '15_19-Materials with Properties' {
         attribute atomicMass :>> Metal::atomicMass = 54.938[Da];
     }
 
- 	/**
-	 * Particular example of high tensile strength steel.
-	 */
     individual def Steel_980 :> Alloy {
+	 	/*
+		 * Particular example of high tensile strength steel.
+		 */
+ 	
         attribute fraction1 :> fractions {
         	ref :>> material : Iron;
         	attribute :>> massFraction = 0.9862[one];

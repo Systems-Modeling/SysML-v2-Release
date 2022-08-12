@@ -4,7 +4,8 @@ package 'Opaque Action Example' {
 		attribute ready : ScalarValues::Boolean;
 	}
 	
-	action def UpdateSensors (in sensors : Sensor[*]) {
+	action def UpdateSensors {
+		in sensors : Sensor[*];
 		language "Alf" 
 			/* 
 			 * for (sensor in sensors) {

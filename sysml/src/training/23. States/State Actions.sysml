@@ -6,12 +6,12 @@ package 'State Actions' {
 	
 	part def Vehicle;
 	
-	action performSelfTest(in vehicle : Vehicle);
+	action performSelfTest { in vehicle : Vehicle; }
 	
-	state def VehicleStates (operatingVehicle : Vehicle);
+	state def VehicleStates { in operatingVehicle : Vehicle; }
 		
-	state vehicleStates : VehicleStates 
-		(operatingVehicle : Vehicle) {
+	state vehicleStates : VehicleStates {
+		in operatingVehicle : Vehicle;
 			
 		entry; then off;
 		
@@ -24,7 +24,7 @@ package 'State Actions' {
 			then on;
 			
 		state on {
-			entry performSelfTest(in vehicle = operatingVehicle);
+			entry performSelfTest{ in vehicle = operatingVehicle; }
 			do action providePower { /* ... */ }
 			exit action applyParkingBrake { /* ... */ }
 		}

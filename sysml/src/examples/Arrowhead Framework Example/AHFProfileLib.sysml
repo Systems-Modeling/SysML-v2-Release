@@ -3,29 +3,32 @@ package AHFProfileLib {
 	import ScalarValues::*;
 	
 	// Design level
-	/** Service definition 
-	*/
-	port def SD{		
+	port def SD{
+		doc /* Service definition */
+		
 		attribute serviceDefinition:String;
 		attribute serviceURL:String;
 		attribute intrfce_protocol:String; // which may be "REST" or "MQTT" etc.		 
 	}	
 		
-	/** System of Systems Definition */	
 	part def SysLocalCloudsDesign {
+		doc /* System of Systems Definition */	
+
 		// System of Local Clouds 
 		part locclouds:LocalCloudDesign[1..*];
 	}
 	
 	part system_of_systems:SysLocalCloudsDD; // defining a top level usage
 	
-	/** Local Cloud definition */
 	part def LocalCloudDesign {
+		doc /* Local Cloud definition */
+
 		part systems:SysD[1..*];	
 	}
 
-	/** System definitions */	
 	part def SysD {
+		doc /* System definitions */	
+
 		port services: SD[1..*];
 		attribute systemname: String;
 		attribute address: String;
@@ -33,18 +36,21 @@ package AHFProfileLib {
 	}	
 
 	// Design Description level
-	/** Interface Design Description of services */
-	port def IDD :> SD{		
+	port def IDD :> SD{
+		doc /* Interface Design Description of services */
+		
 		attribute encoding_kind:String;
 	}
 	
-	/** Service Definition Design Description */
-	port def SDDD :> SD{		
+	port def SDDD :> SD{
+		doc /* Service Definition Design Description */
+		
 		port idd:IDD[*]; // nested protocol-specific services
 	}	
 
-	/** System of Systems Detailed Description */	
 	part def SysLocalCloudsDD :> SysLocalCloudsDesign {
+		doc /* System of Systems Detailed Description */	
+
 		part :>> locclouds:LocalCloudDD[1..*]; // the descriptions
 	}
 
@@ -52,8 +58,9 @@ package AHFProfileLib {
 		part :>> systems:SysDD[1..*];
 	}
 
-	/** System Detailed Description */
 	part def SysDD :> SysD{
+		doc /* System Detailed Description */
+
 		port :>> services:SDDD;
 		action ServiceMethod[1..*]; //means general behaviors
 	}

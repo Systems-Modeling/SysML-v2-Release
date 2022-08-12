@@ -1,8 +1,10 @@
-/**
- * This package defines the base types for items and related structural elements in the
- * SysML language.
- */
 package Items {
+	doc
+	/*
+	 * This package defines the base types for items and related structural elements in the
+	 * SysML language.
+	 */
+
 	private import Objects::Object;
 	private import Objects::objects;
 	private import Parts::Part;
@@ -19,46 +21,62 @@ package Items {
 	private import SequenceFunctions::union;
 	private import ControlFunctions::forAll;
 	
-	/**
-	 * Item is the most general class of objects that are part of, exist in or flow through a system. 
-	 * Item is the base type of all ItemDefinitions.
-	 */
 	abstract item def Item :> Object {
+		doc
+		/*
+		 * Item is the most general class of objects that are part of, exist in or flow through a system. 
+		 * Item is the base type of all ItemDefinitions.
+		 */
+	
 		ref self: Item :>> Object::self;
 		
 		item start: Item :>> startShot;
 		item done: Item :>> endShot;
 		
-		/**
-		 * The shape of an Item is its spatial boundary.
-		 */
-		item shape : Item :>> spaceBoundary;
+		item shape : Item :>> spaceBoundary {
+		doc
+			/*
+			 * The shape of an Item is its spatial boundary.
+			 */
+		}
 		
-		/**
-		 * Each enveloping shape is the shape of an Item that spacially overlaps this Item for its
-		 * entire lifetime.
-		 */
 		item envelopingShapes : Item[0..*] {
+		doc
+			/*
+			 * Each enveloping shape is the shape of an Item that spacially overlaps this Item for its
+			 * entire lifetime.
+			 */		
 
-			 /** Enables two dimensional items to be enveloped by two or three dimensional shapes. */
+			 /* Enables two dimensional items to be enveloped by two or three dimensional shapes. */
 			attribute :>> innerSpaceDimension = 
 				if (that as Item).innerSpaceDimension == 3  | (that as Item).outerSpaceDimension == 3? 2 
-				else (that as Item).outerSpaceDimension - 1; 
+				else (that as Item).outerSpaceDimension - 1 {
+				doc
+			 	/* 
+			 	 * Enables two dimensional items to be enveloped by two or three dimensional shapes.
+			 	 */				
+			}
 			assert constraint { (that as Item).innerSpaceDimension < 3 implies notEmpty(outerSpaceDimension) }
 
-			item envelopingItem [1]; /* Shape constraint below, to avoid envelopingShape being a portion. */
+			item envelopingItem [1];
 
-			assert constraint { 
+			assert constraint {
+				doc
+				/* 
+				 * This constraint prevents an envelopingShape frombeing a portion.
+				 */
+				 
 				envelopingItem.shape.spaceTimeCoincidentOccurrences->includes(that) and
 				envelopingItem.spaceTimeEnclosedOccurrences->includes(that.that) 
 			}
 		}
 		
-		/**
-		 * envelopingShapes that are structured space objects with every face or every edge
-		 * intersecting this Item.
-		 */
 		item boundingShapes : StructuredSpaceObject [0..*] :> envelopingShapes {
+		doc
+			/*
+			 * envelopingShapes that are structured space objects with every face or every edge
+			 * intersecting this Item.
+			 */		
 
 			item boundingShape: Item :>> self;
 
@@ -75,43 +93,57 @@ package Items {
 			}
 		}
 
-		/**
-		 * Voids are inner space occurrences of this Item.
-		 */
-		item voids :>> innerSpaceOccurrences [0..*];
+		item voids :>> innerSpaceOccurrences [0..*] {
+			doc
+			/*
+			 * Voids are inner space occurrences of this Item.
+			 */
+		}
 
-		/**
-		 * An Item is solid if it has no voids.
-		 */
-		attribute isSolid = isEmpty(voids);
+		attribute isSolid = isEmpty(voids) {
+			doc
+			/*
+			 * An Item is solid if it has no voids.
+			 */
+		}
 		
-		/**
-		 * The Items that are composite subitems of this Item.
-		 */
-		abstract item subitems: Item[0..*] :> items;
+		abstract item subitems: Item[0..*] :> items, subobjects {
+			doc
+			/*
+			 * The Items that are composite subitems of this Item.
+			 */
+		}
 		
-		/**
-		 * The subitems of this Item that are Parts.
-		 */
-		abstract part subparts: Part[0..*] :> subitems, parts;
+		abstract part subparts: Part[0..*] :> subitems, parts {
+			doc
+			/*
+			 * The subitems of this Item that are Parts.
+			 */
+		}
 		
-		/**
-		 * Constraints that have been checked by this Item.
-		 */
-		abstract ref constraint checkedConstraints: ConstraintCheck[0..*] :> constraintChecks, enactedPerformances;
+		abstract constraint checkedConstraints: ConstraintCheck[0..*] :> constraintChecks, ownedPerformances {
+			doc
+			/*
+			 * Constraints that have been checked by this Item.
+			 */
+		}
 	}
 	
-	/**
-	 * Touching items are just outside each other and happen at the same time.
-	 */
 	connection def Touches :> JustOutsideOf, HappensWhile {
+		doc
+		/*
+		 * Touching items are just outside each other and happen at the same time.
+		 */
+	
 		end item touchedItemToo [0..*] :>> separateSpaceToo, thisOccurrence;
 		end item touchedItem [0..*] :>> separateSpace, thatOccurrence;
 	}
 
-	/**
-	 * items is the base feature of all ItemUsages.
-	 */
-	abstract item items : Item[0..*] nonunique :> objects;
+	abstract item items : Item[0..*] nonunique :> objects {
+		doc
+		/*
+		 * items is the base feature of all ItemUsages.
+		 */
+	}
 	
 }

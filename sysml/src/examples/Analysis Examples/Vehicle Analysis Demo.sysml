@@ -97,25 +97,28 @@ package 'Vehicle Analysis Demo' {
 	package DynamicsModel {
 	    import VehicleQuantities::*;
 	    
-	    calc def Acceleration(p : PowerValue, m : MassValue, v : SpeedValue) : AccelerationValue =
-	        p / (m * v);
+	    calc def Acceleration { in p : PowerValue; in m : MassValue; in v : SpeedValue;
+	    	return : AccelerationValue = p / (m * v);
+	    }
 	    
-	    calc def Velocity(v0 : SpeedValue, a : AccelerationValue, dt : TimeValue) : SpeedValue =
-	        v0 + a * dt;
+	    calc def Velocity { in v0 : SpeedValue; in a : AccelerationValue; in dt : TimeValue;
+	    	return : SpeedValue = v0 + a * dt;
+		}
+		    
+	    calc def Position { in x0 : LengthValue; in v : SpeedValue; in dt : TimeValue;
+	    	return : LengthValue = x0 + v * dt;
+	    }
 	    
-	    calc def Position(x0 : LengthValue, v : SpeedValue, dt : TimeValue) : LengthValue =
-	        x0 + v * dt;
+	    constraint def StraightLineDynamicsEquations {
+	        in p : PowerValue;
+	        in m : MassValue;
+	        in dt : TimeValue;
+	        in x_i : LengthValue;
+	        in v_i : SpeedValue;
+	        in x_f : LengthValue;
+	        in v_f : SpeedValue;
+	        in a : AccelerationValue;
 	    
-	    constraint def StraightLineDynamicsEquations(
-	        p : PowerValue,
-	        m : MassValue,
-	        dt : TimeValue,
-	        x_i : LengthValue,
-	        v_i : SpeedValue,
-	        x_f : LengthValue,
-	        v_f : SpeedValue,
-	        a : AccelerationValue
-	    ) {
 	        attribute v_avg : SpeedValue = (v_i + v_f)/2;
 	
 	        a == Acceleration(p, m, v_avg) &
@@ -123,26 +126,26 @@ package 'Vehicle Analysis Demo' {
 	        x_f == Position(x_i, v_avg, dt)
 	    }
 	    
-	    action def StraightLineDynamics (
-	        in power : PowerValue,
-	        in mass : MassValue,
-	        in delta_t : TimeValue,
-	        in x_in : LengthValue,
-	        in v_in : SpeedValue,
-	        out x_out : LengthValue,
-	        out v_out : SpeedValue,
-	        out a_out : AccelerationValue
-	    ) {
-	        assert constraint dynamics : StraightLineDynamicsEquations (
-	            p = power,
-	            m = mass,
-	            dt = delta_t,
-	            x_i = x_in,
-	            v_i = v_in,
-	            x_f = x_out,
-	            v_f = v_out,
-	            a = a_out
-	        );
+	    action def StraightLineDynamics {
+	        in power : PowerValue;
+	        in mass : MassValue;
+	        in delta_t : TimeValue;
+	        in x_in : LengthValue;
+	        in v_in : SpeedValue;
+	        out x_out : LengthValue;
+	        out v_out : SpeedValue;
+	        out a_out : AccelerationValue;
+	    
+	        assert constraint dynamics : StraightLineDynamicsEquations {
+	            in p = power;
+	            in m = mass;
+	            in dt = delta_t;
+	            in x_i = x_in;
+	            in v_i = v_in;
+	            in x_f = x_out;
+	            in v_f = v_out;
+	            in a = a_out;
+	        }
 	    }
 	}
 	
@@ -169,10 +172,11 @@ package 'Vehicle Analysis Demo' {
 			n : Natural = size(samples);
 		}
 		
-		analysis def FuelEconomyAnalysis () calculatedFuelEconomy : DistancePerVolumeValue {
+		analysis def FuelEconomyAnalysis { 
 			subject vehicle: Vehicle;
 			in attribute scenario : NominalScenario;
 			in requirement fuelEconomyRequirement : FuelEconomyRequirement;
+			return calculatedFuelEconomy : DistancePerVolumeValue;
 			
 			objective fuelEconomyAnalysisObjective {
 				doc 
@@ -191,14 +195,11 @@ package 'Vehicle Analysis Demo' {
 					:>> actualFuelEconomy = calculatedFuelEconomy;
 				}
 			}
-			
-		    
-			//import scenario::*;
 		
-			action dynamicsAnalysis(
-				in sc: NominalScenario,
-				out power : PowerValue[*],
-				out acceleration : AccelerationValue[*]	) {
+			action dynamicsAnalysis {
+				in sc: NominalScenario;
+				out power : PowerValue[*];
+				out acceleration : AccelerationValue[*];
 				/*
 				 * Solve for the required engine power as a function of time
 				 * to support the scenarios.
@@ -223,10 +224,10 @@ package 'Vehicle Analysis Demo' {
 				}
 			}
 
-		    action fuelConsumptionAnalysis(
-		        in power : PowerValue[*] = dynamicsAnalysis.power,
-		        in acceleration : AccelerationValue[*] = dynamicsAnalysis.acceleration,
-		        out fuelEconomy : DistancePerVolumeValue = calculatedFuelEconomy ) {
+		    action fuelConsumptionAnalysis {
+		        in power : PowerValue[*] = dynamicsAnalysis.power;
+		        in acceleration : AccelerationValue[*] = dynamicsAnalysis.acceleration;
+		        out fuelEconomy : DistancePerVolumeValue = calculatedFuelEconomy;
 		        /*
 		         * Solve the engine equations to determine how much fuel is
 		         * consumed. The engine RPM is a function of the speed of the
@@ -270,13 +271,13 @@ package 'Vehicle Analysis Demo' {
 	    attribute cityScenario : NominalScenario;
 	    attribute highwayScenario : NominalScenario;
 	
-	    analysis cityFuelEconomyAnalysis : FuelEconomyAnalysis () {
+	    analysis cityFuelEconomyAnalysis : FuelEconomyAnalysis {
 	        subject vehicle = vehicle_c1;
 	        attribute :>> scenario = cityScenario;
 	        requirement :>> fuelEconomyRequirement = cityFuelEconomyRequirement;
 	    }
 	
-	    analysis highwayFuelEconomyAnalysis : FuelEconomyAnalysis () {
+	    analysis highwayFuelEconomyAnalysis : FuelEconomyAnalysis {
 	        subject vehicle = vehicle_c1;
 	        attribute :>> scenario = highwayScenario;
 	        requirement :>> fuelEconomyRequirement = highwayFuelEconomyRequirement;

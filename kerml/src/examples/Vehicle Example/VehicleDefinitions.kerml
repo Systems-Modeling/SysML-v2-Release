@@ -1,7 +1,9 @@
-/**
- * Example vehicle definitions model.
- **/
 package VehicleDefinitions {
+	doc
+	/*
+	 * Example vehicle definitions model.
+	 */
+
 	
 	/* BLOCKS */
 	
@@ -30,10 +32,12 @@ package VehicleDefinitions {
 	
 	/* ASSOCIATION BLOCKS */
 	
-	/** An association intended to be used as the type of a connector
-	 *  mounting a Wheel to an Axle.
-	 **/
 	assoc Mounting {
+		doc
+		/*
+		 *  mounting a Wheel to an Axle.
+		 */
+	
 		end axleMount: AxleMountIF;
 		end hub: WheelHubIF;
 	}

@@ -1,7 +1,9 @@
-/**
- * This package provides a model of items that represent basic geometric shapes. 
- */
 package ShapeItems {
+	doc
+	/*
+	 * This package provides a model of items that represent basic geometric shapes. 
+	 */
+
 	private import ScalarValues::Boolean;
 	private import ScalarValues::Positive;
 	private import ISQ::*;
@@ -13,43 +15,51 @@ package ShapeItems {
 	private import SequenceFunctions::notEmpty;
 	private import SequenceFunctions::size;
 	private import SequenceFunctions::includes;
-	private import ControlFunctions::'?';
+	private import ControlFunctions::'if';
 	private import ControlFunctions::forAll;
 	private import ControlFunctions::exists;
 	private import Quantities::scalarQuantities;
 
-	/**
-	 * A PlanarCurve is a Curve with a given length embeddable in a plane.
-	 */
 	item def PlanarCurve :> Curve {
+		doc
+		/*
+		 * A PlanarCurve is a Curve with a given length embeddable in a plane.
+		 */
+	
 		attribute :>> length [1];
 
 		attribute :>> outerSpaceDimension;
 		assert constraint { notEmpty(outerSpaceDimension) &  outerSpaceDimension <= 2 }
 	}
 
-	/**
-	 * A PlanarSurface is a flat Surface with a given area.
-	 */
 	item def PlanarSurface :> Surface {
+		doc
+		/*
+		 * A PlanarSurface is a flat Surface with a given area.
+		 */
+	
 		attribute :>> area [1];
 		attribute :>> outerSpaceDimension = 2;
 
 		item :>> shape : PlanarCurve;
 	}
 
-	/**
-	 * A Line is a Curve that is a straight line of a given length.
-	 */
 	item def Line :> PlanarCurve {
+		doc
+		/*
+		 * A Line is a Curve that is a straight line of a given length.
+		 */
+	
 		attribute :>> length [1];
 		attribute :>> outerSpaceDimension = 1;
 	}
 
-	/**
-	 * Path is the most general structured Curve.
-	 */
 	abstract item def Path :> StructuredSpaceObject, Curve {
+		doc
+		/*
+		 * Path is the most general structured Curve.
+		 */
+	
 		item :>> faces [0];
 		item :>> edges [1..*] {
 			item :>> vertices [0..2];
@@ -68,30 +78,36 @@ package ShapeItems {
 	attribute baseLength : LengthValue [0..*] :> scalarQuantities;
 	attribute baseWidth : LengthValue [0..*] :> scalarQuantities;
 
-	/**
-	 * A ConicSection is a closed PlanarCurve, possibly disconnected, see Hyperbola.
-	 */
 	item def ConicSection :> Path, PlanarCurve {
+		doc
+		/*
+		 * A ConicSection is a closed PlanarCurve, possibly disconnected, see Hyperbola.
+		 */
+	
 
 		item :>> edges [1..2];
 
 		item :>> vertices [0];
 	}
 
-	/**
-	 * An Ellipse is a ConicSection in the shape of an ellipse of a given semiaxes.
-	 */
 	item def Ellipse :> ConicSection {
+		doc
+		/*
+		 * An Ellipse is a ConicSection in the shape of an ellipse of a given semiaxes.
+		 */
+	
 		attribute :>> semiMajorAxis [1];
 		attribute :>> semiMinorAxis [1];
 
 		item :>> edges [1];
 	}
 
-	/**
-	 * A Circle is an Ellipse with semiaxes equal to its radius.
-	 */
 	item def Circle :> Ellipse {
+		doc
+		/*
+		 * A Circle is an Ellipse with semiaxes equal to its radius.
+		 */
+	
 		attribute :>> radius [1] = semiMajorAxis;
 
 		assert constraint { semiMajorAxis == semiMinorAxis }
@@ -101,28 +117,33 @@ package ShapeItems {
 		}
 	}
 
-	/**
-	 * A Parabola is a ConicSection in the shape of a parabola of a given focal length.
-	 */
 	item def Parabola :> ConicSection {
+		doc
+		/*
+		 * A Parabola is a ConicSection in the shape of a parabola of a given focal length.
+		 */
+	
 		attribute focalDistance : LengthValue [1] :> scalarQuantities;
 
 		item :>> edges [1];
 	}
 
-	/**
-	 * A Hyperbola is a ConicSection in the shape of a hyperbola with given axes.
-	 */
 	item def Hyperbola :> ConicSection {
+		doc
+		/*
+		 * A Hyperbola is a ConicSection in the shape of a hyperbola with given axes.
+		 */
+	
 		attribute tranverseAxis : LengthValue [1] :> scalarQuantities;
 		attribute conjugateAxis : LengthValue [1] :> scalarQuantities;
 	}
 
-	/**
-	 * A Polygon is a closed planar Path with straight edges.
-	 */
 	item def Polygon :> Path, PlanarCurve {
-
+		doc
+		/*
+		 * A Polygon is a closed planar Path with straight edges.
+		 */
+	
 		item :>> edges : Line { item :>> vertices [2]; }
 
 		attribute :>> isClosed = true;
@@ -130,15 +151,16 @@ package ShapeItems {
 		assert constraint { (1..size(edges))->forAll {in i;
 					(edges[i] as StructuredSpaceObject).vertices == (vertices[(2*i)-1], vertices[2*i]) and  
 					includes(((edges[i] as StructuredSpaceObject).vertices[2] as Item).matingOccurrences,
-						 (edges[i==size(edges) ? 1 : i+1]as StructuredSpaceObject).vertices[1]) } }
+						 (edges[if i==size(edges) ? 1 else i+1]as StructuredSpaceObject).vertices[1]) } }
 	}
 
-	/**
-	 * A Triangle is three-sided Polygon  with given length (base), width (perpendicular distance
-	 * from base to apex), and offset of this perpendicular at the base from the center of the base.
-	 */
-	 item def Triangle :> Polygon {
-
+	item def Triangle :> Polygon {
+		doc
+		/*
+		 * A Triangle is three-sided Polygon  with given length (base), width (perpendicular distance
+		 * from base to apex), and offset of this perpendicular at the base from the center of the base.
+		 */
+	
 		attribute :>> length [1];
 		attribute :>> width [1];
 		attribute :>> xoffset [1];
@@ -154,11 +176,12 @@ package ShapeItems {
 		item v31  [2] ordered = (vertices[6], vertices[1]);
 	}
 
-	/**
-	 * A RightTriangle is a Triangle with sides opposite the hypotenuse at right angles.
-	 */
 	item def RightTriangle :> Triangle {
-
+		doc
+		/*
+		 * A RightTriangle is a Triangle with sides opposite the hypotenuse at right angles.
+		 */
+	
 		attribute :>> xoffset = length / 2;
 
 		item :>> e2 { attribute :>> length = Triangle::width; }
@@ -168,11 +191,12 @@ package ShapeItems {
 		}
 	}
 
-	/**
-	 * A Quadrilateral is a four-sided Polygon.
-	 */
 	item def Quadrilateral :> Polygon {
-
+		doc
+		/*
+		 * A Quadrilateral is a four-sided Polygon.
+		 */
+	
 		item :>> edges [4] = (e1, e2, e3, e4);
 		item e1 [1];
 		item e2 [1];
@@ -186,10 +210,12 @@ package ShapeItems {
 		item v41 [2] ordered = (vertices[7], vertices[1]);
 	}
 
-	/**
-	 * A Rectangle is a Quadrilateral four right angles and given length and width.
-	 */
 	item def Rectangle :> Quadrilateral {
+		doc
+		/*
+		 * A Rectangle is a Quadrilateral four right angles and given length and width.
+		 */
+	
 		attribute :>> length [1];
 		attribute :>> width [1];
 
@@ -199,15 +225,19 @@ package ShapeItems {
 		item :>> e4 { attribute :>> length = e2.length; }
 	}
 
-	/**
-	 * Shell is the most general structured Surface.
-	 */
-	abstract item def Shell :> StructuredSpaceObject, Surface;
+	abstract item def Shell :> StructuredSpaceObject, Surface {
+		doc
+		/*
+		 * Shell is the most general structured Surface.
+		 */
+	}
 
-	/**
-	 * A Disc is a Shell bound by an Ellipse.
-	 */
 	item def Disc :> Shell, PlanarSurface {
+		doc
+		/*
+		 * A Disc is a Shell bound by an Ellipse.
+		 */
+	
 		attribute :>> semiMajorAxis [1];
 		attribute :>> semiMinorAxis [1];
 
@@ -223,19 +253,23 @@ package ShapeItems {
 		item :>> vertices [0];
 	}
 
-	/**
-	 * A CircularDisc is a Disc bound by a Circle.
-	 */
 	item def CircularDisc :> Disc {
+		doc
+		/*
+		 * A CircularDisc is a Disc bound by a Circle.
+		 */
+	
 		attribute :>> radius [1] = semiMajorAxis;
 		item :>> shape : Circle;
 		item :>> edges : Circle;
 	}
 
-	/**
-	 * A ConicSurface is a Surface that has ConicSection cross-sections.
-	 */
 	item def ConicSurface :> Shell {
+		doc
+		/*
+		 * A ConicSurface is a Surface that has ConicSection cross-sections.
+		 */
+	
 		item :>> faces [1..2];
 		item :>> edges [0];
 		item :>> vertices [0];
@@ -243,10 +277,12 @@ package ShapeItems {
 		attribute :>> genus = 0;
 	}
 
-	/**
-	 * An Ellipsoid is a ConicSurface with only elliptical cross-sections.
-	 */
 	item def Ellipsoid :> ConicSurface {
+		doc
+		/*
+		 * An Ellipsoid is a ConicSurface with only elliptical cross-sections.
+		 */
+	
 		attribute semiAxis1 : LengthValue [1] :> scalarQuantities; 
 		attribute semiAxis2 : LengthValue [1] :> scalarQuantities;
 		attribute semiAxis3 : LengthValue [1] :> scalarQuantities;
@@ -254,10 +290,11 @@ package ShapeItems {
 		item :>> faces [1];
 	}
 
-	/**
-	 * A Sphere is an Ellipsoid with all the same semiaxes.
-	 */
 	item def Sphere :> Ellipsoid {
+		doc
+		/*
+		 * A Sphere is an Ellipsoid with all the same semiaxes.
+		 */	
 
 		attribute :>> radius [1] = semiAxis1;
 
@@ -265,28 +302,33 @@ package ShapeItems {
 						    ( semiAxis2 ==  semiAxis3 ) }
 	}
 
-	/**
-	 * A Paraboloid is a ConicSurface with only parabolic cross-sections.
-	 */
 	item def Paraboloid :> ConicSurface {
+		doc
+		/*
+		 * A Paraboloid is a ConicSurface with only parabolic cross-sections.
+		 */
+	
 		attribute focalDistance : LengthValue [1] :> scalarQuantities;
 
 		item :>> faces [1];
 	}
 
-	/**
-	 * A Hyperboloid is a ConicSurface with only hyperbolic cross-sections.
-	 */
 	item def Hyperboloid :> ConicSurface {
+		doc
+		/*
+		 * A Hyperboloid is a ConicSurface with only hyperbolic cross-sections.
+		 */
+	
 		attribute transverseAxis : LengthValue [1] :> scalarQuantities;
 		attribute conjugateAxis : LengthValue [1] :> scalarQuantities;
 	}
 
-	/**
-	 * A Toroid is a surface generated from revolving a planar closed curve about an line coplanar
-	 * with the curve. It is single sided with one hole.
-	 */
 	item def Toroid :> Shell {
+		doc
+		/*
+		 * A Toroid is a surface generated from revolving a planar closed curve about an line coplanar
+		 * with the curve. It is single sided with one hole.
+		 */	
 
 		attribute revolutionRadius : LengthValue [1] :> scalarQuantities;
 
@@ -299,10 +341,11 @@ package ShapeItems {
 		attribute :>> genus = 1;
 	}
 
-	/**
-	 * A Torus is a revolution of a Circle.
-	 */
 	item def Torus :> Toroid {
+		doc
+		/*
+		 * A Torus is a revolution of a Circle.
+		 */	
 
 		attribute majorRadius :>> revolutionRadius;
 		attribute minorRadius : LengthValue [1] :> scalarQuantities;
@@ -311,10 +354,11 @@ package ShapeItems {
 	}
 
 
-	/**
-	 * A RectangularToroid is a revolution of a Rectangle.
-	 */
 	item def RectangularToroid :> Toroid {
+		doc
+		/*
+		 * A RectangularToroid is a revolution of a Rectangle.
+		 */	
 
 		attribute rectangleLength : LengthValue [1] :> scalarQuantities;
 		attribute rectangleWidth  : LengthValue [1] :> scalarQuantities;
@@ -325,12 +369,14 @@ package ShapeItems {
 		}
 	}
 
-	/**
-	 * A ConeOrCylinder is Shell that a Cone or a Cylinder with a given elliptical base,
-	 * height, width (perpendicular distance from the base to the center of the top side or vertex),
-	 * and offsets of this perpendicular at the base from the center of the base.
-	 */
 	item def ConeOrCylinder :> Shell {
+		doc
+		/*
+		 * A ConeOrCylinder is Shell that a Cone or a Cylinder with a given elliptical base,
+		 * height, width (perpendicular distance from the base to the center of the top side or vertex),
+		 * and offsets of this perpendicular at the base from the center of the base.
+		 */
+	
 		attribute :>> semiMajorAxis [1];
 		attribute :>> semiMinorAxis [1];
 		attribute :>> height [1];
@@ -352,8 +398,8 @@ package ShapeItems {
 			attribute :>> semiMajorAxis = be.semiMajorAxis;
 			attribute :>> semiMinorAxis = be.semiMinorAxis;
 		}
-		assert constraint { size(ae) == ( isEmpty(af) ? 0 : 2 ) &
-				            size(edges) == (isEmpty(af) ? 2 : 4 )  }
+		assert constraint { size(ae) == (if isEmpty(af) ? 0 else 2) and
+				            size(edges) == (if isEmpty(af) ? 2 else 4)  }
 
 		item :>> vertices [0..1] = faces.vertices;
 		assert constraint { isEmpty(af) == notEmpty(vertices) }
@@ -368,10 +414,11 @@ package ShapeItems {
 		attribute :>> genus = 0;
 	}
 
-	/**
-	 * A Cone has one elliptical sides joined to a point by a curved side.
-	 */
 	item def Cone :> ConeOrCylinder {
+		doc
+		/*
+		 * A Cone has one elliptical sides joined to a point by a curved side.
+		 */	
 
 		item :>> faces [2];
 
@@ -381,17 +428,20 @@ package ShapeItems {
 		binding [1] bind cf.vertices [0..*] = apex [0..*];
 	}
 
-	/**
-	 * An EccentricCone is a Cone with least one positive offset.
-	 */
 	item def EccentricCone :> Cone {
+		doc
+		/*
+		 * An EccentricCone is a Cone with least one positive offset.
+		 */
+	
 		assert constraint { xoffset > 0 or yoffset > 0 }
 	}
 
-	/**
-	 * A CircularCone is a Cone with a circular base.
-	 */
 	item def CircularCone :> Cone {
+		doc
+		/*
+		 * A CircularCone is a Cone with a circular base.
+		 */	
 
 		attribute :>> radius [1] = semiMajorAxis;
 
@@ -400,37 +450,46 @@ package ShapeItems {
 		item :>> base : CircularDisc;
 	}
 
-	/**
-	 * A RightCircularCone is a CircularCone with zero offsets.
-	 */
 	item def RightCircularCone :> CircularCone {
+		doc
+		/*
+		 * A RightCircularCone is a CircularCone with zero offsets.
+		 */
+	
 		attribute :>> xoffset { attribute :>> num = 0; }
 		attribute :>> yoffset { attribute :>> num = 0; }
 	}
 
-	/**
-	 * A Cylinder has two elliptical sides joined by a curved side.
-	 */
 	item def Cylinder :> ConeOrCylinder {
+		doc
+		/*
+		 * A Cylinder has two elliptical sides joined by a curved side.
+		 */
+	
 		item :>> af [1];
 
 		binding [1] bind cf.edges [0..*] = ae [0..*];
 
-		/* Meeting edges */
-		connection :MatesWith connect ae [1] to ae [1];
+		connection :MatesWith connect ae [1] to ae [1] {
+			doc /* Meeting edges */
+		}
 	}
 
-	/**
+	item def EccentricCylinder :> Cylinder {
+	doc
+	/*
 	 * An EccentricCylinder is a Cylinder with least one positive offset.
 	 */
-	item def EccentricCylinder :> Cylinder {
+	
 		assert constraint { xoffset > 0 or yoffset > 0 }
 	}
 
-	/**
-	 * A CircularCylinder is a Cylinder with two circular sides.
-	 */
-	 item def CircularCylinder :> Cylinder {
+	item def CircularCylinder :> Cylinder {
+		doc
+		/*
+		 * A CircularCylinder is a Cylinder with two circular sides.
+		 */
+	
 		attribute :>> radius [1] = semiMajorAxis;
 
 		assert constraint { semiMajorAxis == semiMinorAxis }
@@ -439,18 +498,21 @@ package ShapeItems {
 		item :>> af : CircularDisc;
 	}
 
-	/**
-	 * A RightCircularCylinder is a CircularCylinder with zero offsets.
-	 */
 	item def RightCircularCylinder :> CircularCylinder {
+		doc
+		/*
+		 * A RightCircularCylinder is a CircularCylinder with zero offsets.
+		 */
+	
 		attribute :>> xoffset { attribute :>> num = 0; }
 		attribute :>> yoffset { attribute :>> num = 0; }
 	}
 
-	/**
-	 * A Polyhedron is a closed Shell with polygonal sides.
-	 */
 	item def Polyhedron :> Shell {
+		doc
+		/*
+		 * A Polyhedron is a closed Shell with polygonal sides.
+		 */	
 
 		attribute :>> isClosed = true;
 
@@ -458,16 +520,16 @@ package ShapeItems {
 		
 		item :>> edges = faces.edges;
 		
-		attribute :>> outerSpaceDimension = (size(faces) > 2 ? 3 : 2);
+		attribute :>> outerSpaceDimension = if size(faces) > 2 ? 3 else 2;
 
 		attribute :>> genus = 0;
 	}
 
-	/**
-	 * A CuboidOrTriangularPrism is a Polyhedron that is either a Cuboid or TriangularPrism.
-	 */
-
 	item def CuboidOrTriangularPrism :> Polyhedron {
+		doc
+		/*
+		 * A CuboidOrTriangularPrism is a Polyhedron that is either a Cuboid or TriangularPrism.
+		 */
 
 		item :>> faces [5..6];
 		item tf	 : Quadrilateral [1] :> faces;
@@ -569,11 +631,13 @@ package ShapeItems {
 		connection :MatesWith connect brrv [2] to brrv [2];
 	}
 
-	/**
-	 * A TriangularPrism is a Polyhedron with five sides, two triangular and
-	 * the others quadrilateral.
-	 */
 	item def TriangularPrism :> CuboidOrTriangularPrism {
+		doc
+		/*
+		 * A TriangularPrism is a Polyhedron with five sides, two triangular and
+		 * the others quadrilateral.
+		 */
+	
 
 		item :>> faces [5];
 		item :>> ff : Triangle;
@@ -591,11 +655,13 @@ package ShapeItems {
 		binding [1] bind tre.vertices  [0..1] = bfrv [0..1];
 	}
 
-	/**
-	 * A RightTriangularPrism  a TriangularPrism with two right triangluar sides,
-	 * with given length, width, and height.
-	 */
-	item def RightTriangularPrism :> TriangularPrism { 
+	item def RightTriangularPrism :> TriangularPrism {
+		doc
+		/*
+		 * A RightTriangularPrism  a TriangularPrism with two right triangluar sides,
+		 * with given length, width, and height.
+		 */
+	 
 		attribute :>> length [1];
 		attribute :>> width [1];
 		attribute :>> height [1];
@@ -625,10 +691,11 @@ package ShapeItems {
 	}
 	alias Wedge for RightTriangularPrism;
 
-	/**
-	 * A Cuboid is a Polyhedron with six sides, all quadrilateral.
-	 */
 	item def Cuboid :> CuboidOrTriangularPrism {
+		doc
+		/*
+		 * A Cuboid is a Polyhedron with six sides, all quadrilateral.
+		 */	
 
 		item :>> faces [6];
 		item :>> ff : Quadrilateral;
@@ -670,10 +737,12 @@ package ShapeItems {
 		connection :MatesWith connect trrv [2] to trrv [2];
 	}
 
-	/**
-	 * A RectangularCuboid is a Cuboid with all Rectangular sides.
-	 */
 	item def RectangularCuboid :> Cuboid {
+		doc
+		/*
+		 * A RectangularCuboid is a Cuboid with all Rectangular sides.
+		 */
+	
 		attribute :>> length [1];
 		attribute :>> width [1];
 		attribute :>> height [1];
@@ -693,12 +762,13 @@ package ShapeItems {
 	}
 	alias Box for RectangularCuboid;
 
-	/**
-	 * A Pyramid is a Polyhedron with the sides of a polygon (base) forming the bases of triangles
-	 * that join at an apex point.	Its height is the perpendicular distance from the base to the apex,
-	 * and its offsets are between this perpendicular at the base and the center of the base.
-	 */
-	item def Pyramid :> Polyhedron { 
+	item def Pyramid :> Polyhedron {
+		doc
+		/*
+		 * A Pyramid is a Polyhedron with the sides of a polygon (base) forming the bases of triangles
+		 * that join at an apex point.	Its height is the perpendicular distance from the base to the apex,
+		 * and its offsets are between this perpendicular at the base and the center of the base.
+		 */	 
 
 		attribute :>> height [1];
 		attribute :>> xoffset;
@@ -726,17 +796,18 @@ package ShapeItems {
 					includes((wall[i] as Triangle).base.matingOccurrences,
 							 Pyramid::base.edges[i]) and
 					includes(((wall[i] as Triangle).edges[3] as Item).matingOccurrences,
-							 (wall[i==wallNumber ? 1 : i+1] as Triangle).edges[2]) } }
+							 (wall[if i==wallNumber ? 1 else i+1] as Triangle).edges[2]) } }
 
 		/* Meeting apices. */
 		connection :MatesWith connect apex [wallNumber] to apex [wallNumber];
 	}
 
-	/**
-	 * A Tetrahedron is Pyramid with a triangular base.
-	 */
 	item def Tetrahedron :> Pyramid {
-
+		doc
+		/*
+		 * A Tetrahedron is Pyramid with a triangular base.
+		 */
+	
 		attribute :>> baseLength [1];
 		attribute :>> baseWidth [1];
 
@@ -746,10 +817,11 @@ package ShapeItems {
 		}
 	}
 
-	/**
-	 * A RectangularPyramid is Pyramid with a rectangular base.
-	 */
 	item def RectangularPyramid :> Pyramid {
+		doc
+		/*
+		 * A RectangularPyramid is Pyramid with a rectangular base.
+		 */	
 
 		attribute :>> baseLength [1];
 		attribute :>> baseWidth [1];

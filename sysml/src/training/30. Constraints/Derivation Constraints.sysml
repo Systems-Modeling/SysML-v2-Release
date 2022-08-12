@@ -10,14 +10,14 @@ package 'Derivation Constraints' {
 		attribute totalMass : MassValue = chassisMass + engine.mass + transmission.mass;
 	}
 	
-	constraint def Dynamics (
-		mass: MassValue,
-		initialSpeed : SpeedValue,
-		finalSpeed : SpeedValue,
-		deltaT : TimeValue,
-		force : ForceValue ) {
+	constraint def Dynamics {
+		in mass: MassValue;
+		in initialSpeed : SpeedValue;
+		in finalSpeed : SpeedValue;
+		in deltaT : TimeValue;
+		in force : ForceValue;
 
-		force * deltaT == mass * (finalSpeed - initialSpeed) &
+		force * deltaT == mass * (finalSpeed - initialSpeed) and
 		mass > 0[kg]
 	}
 	

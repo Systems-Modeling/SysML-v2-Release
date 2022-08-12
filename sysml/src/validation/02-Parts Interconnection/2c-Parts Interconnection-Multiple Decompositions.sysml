@@ -27,23 +27,27 @@ package '2c-Parts Interconnection-Multiple Decompositions' {
 	}
 	part def C4;
 	
-	/**
+	part a11: A1 {
+	doc
+	/*
 	 * Decomposition 1 - Subsystems b11, b12
 	 */
-	part a11: A1 {
+	
 		part b11: B11 {
 			part c1: C1;			
 			part c2: C2;
 			
 			connect c1.pa to c2.pc;
 			
-			/**
-			 * This combines the definition of a port with a binding
-			 * connector. (It is the same notation used to bind a
-			 * attribute to a attribute property or a reference to a reference
-			 * property.)
-			 */
-			port :>> pe = c1.pb;
+			port :>> pe = c1.pb {
+				doc
+				/*
+				 * This combines the definition of a port with a binding
+				 * connector. (It is the same notation used to bind a
+				 * attribute to a attribute property or a reference to a reference
+				 * property.)
+				 */
+			}
 		}
 		
 		part b12: B12 {
@@ -56,10 +60,12 @@ package '2c-Parts Interconnection-Multiple Decompositions' {
 		connect b11.pe to b12.pf;
 	}
 	
-	/**
-	 * Decomposition 2 - Assemblies b21, b22
-	 */
 	part a12: A1 {
+		doc
+		/*
+		 * Decomposition 2 - Assemblies b21, b22
+		 */
+	
 		part b21: B21 {
 			/*
 			 * The c-level entities are already composite parts within

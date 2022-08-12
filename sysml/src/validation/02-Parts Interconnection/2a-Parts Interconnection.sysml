@@ -21,10 +21,11 @@ package '2a-Parts Interconnection' {
 		port def WheelToAxlePort;
 		port def WheelToRoadPort;
 		
-		/**
-		 * A port definition can have nested ports.
-		 */
-		port def VehicleToRoadPort { 
+		port def VehicleToRoadPort {
+			/*
+			 * A port definition can have nested ports.
+			 */
+		 
 			port wheelToRoadPort: WheelToRoadPort[2];
 		}
 	
@@ -63,19 +64,21 @@ package '2a-Parts Interconnection' {
 			port shaftPort_c: ShaftPort_c;
 		}	
 		
-		/**
-		 * Ports do not have to be defined on part defs.
-		 * They can be added directly to their usages.
-		 */
-		part def Differential;
+		part def Differential {
+			/*
+			 * Ports do not have to be defined on part defs.
+			 * They can be added directly to their usages.
+			 */
+		}
 		part def Wheel;
 		
 		// Interface Definitions
 		
-		/**
-		 * The ends of an interface definition are always ports.
-		 */
 		interface def EngineToTransmissionInterface {
+			/*
+			 * The ends of an interface definition are always ports.
+			 */
+		
 			end drivePwrPort: DrivePwrPort;
 			end clutchPort: ClutchPort;
 		}
@@ -84,17 +87,19 @@ package '2a-Parts Interconnection' {
 			end shaftPort_a: ShaftPort_a;
 			end shaftPort_d: ShaftPort_d;
 			
-			/**
-			 * 'driveshaft' is a reference to the driveshaft that will
-			 * act as the "interface medium" for this interface.
-			 */
-			ref driveshaft: Driveshaft;
+			ref driveshaft: Driveshaft {
+				/*
+				 * 'driveshaft' is a reference to the driveshaft that will
+				 * act as the "interface medium" for this interface.
+				 */
+			}
 			
-			/**
-			 * The two ends of 'DriveShaftInterface' are always connected
-			 * via the referenced 'driveshaft'.
-			 */
-			connect shaftPort_a to driveshaft.shaftPort_b;
+			connect shaftPort_a to driveshaft.shaftPort_b {
+				/*
+				 * The two ends of 'DriveShaftInterface' are always connected
+				 * via the referenced 'driveshaft'.
+				 */
+			}
 			connect driveshaft.shaftPort_c to shaftPort_d;
 		}
 		
@@ -108,47 +113,52 @@ package '2a-Parts Interconnection' {
 			
 			part engine: Engine;
 			
-			/**
-			 * A usage of an interface definition connects two ports relative to 
-			 * a containing context.
-			 */
 			interface :EngineToTransmissionInterface
-				connect engine.drivePwrPort to transmission.clutchPort;
+				connect engine.drivePwrPort to transmission.clutchPort {
+				/*
+				 * A usage of an interface definition connects two ports relative to 
+				 * a containing context.
+				 */
+			}
 				
 			part transmission: Transmission;
 			
-			/**
-			 * This 'driveshaft' is the part of 'vehicle1_c1' that will act as the
-			 * interface medium in the following 'DriveshaftInterface' usage.
-			 */
-			part driveshaft: Driveshaft;
+			part driveshaft: Driveshaft {
+				/*
+				 * This 'driveshaft' is the part of 'vehicle1_c1' that will act as the
+				 * interface medium in the following 'DriveshaftInterface' usage.
+				 */
+			}
 			
 			interface :DriveshaftInterface
 				connect transmission.shaftPort_a to rearAxleAssembly.shaftPort_d {
-					/**
-					 * The reference property from 'DriveshaftInterface' is redefined
-					 * in order to bind it to the appropriate part of 'vehicle1_c1'.
-					 */
-					ref :>> driveshaft = vehicle1_c1.driveshaft;
+					ref :>> driveshaft = vehicle1_c1.driveshaft {
+						/*
+						 * The reference property from 'DriveshaftInterface' is redefined
+						 * in order to bind it to the appropriate part of 'vehicle1_c1'.
+						 */
+					}
 				}
 	
 			part rearAxleAssembly: RearAxleAssembly {
 				bind shaftPort_d = differential.shaftPort_d;
 				
 				part differential: Differential {
-					/**
-					 * If the part def has no ports, then they can be defined directly in
-					 * a usage of the part def.
-					 */
-					port shaftPort_d: ShaftPort_d;
+					port shaftPort_d: ShaftPort_d {
+						/*
+						 * If the part def has no ports, then they can be defined directly in
+						 * a usage of the part def.
+						 */
+					}
 					port leftDiffPort: DiffPort;
 					port rightDiffPort: DiffPort;
 				}
 				
-				/**
-				 * A connection can be to a port that is arbitrarily deeply nested, on either end. 
-				 */
-				interface differential.leftDiffPort to rearAxle.leftHalfAxle.axleToDiffPort;
+				interface differential.leftDiffPort to rearAxle.leftHalfAxle.axleToDiffPort {
+					/*
+					 * A connection can be to a port that is arbitrarily deeply nested, on either end. 
+					 */
+				}
 				interface differential.rightDiffPort to rearAxle.rightHalfAxle.axleToDiffPort;
 		
 				part rearAxle: RearAxle {

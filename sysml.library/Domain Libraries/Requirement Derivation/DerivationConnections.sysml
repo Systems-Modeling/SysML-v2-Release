@@ -8,7 +8,7 @@ package DerivationConnections {
 		doc /* originalRequirements are the original requirements in Derivation connections. */
 	}
 	requirement derivedRequirements[*] {
-		doc /* derivedRequiremetns are the derived requirments in Derivation connections. */
+		doc /* derivedRequirements are the derived requirments in Derivation connections. */
 	}
 	
 	abstract connection def Derivation {

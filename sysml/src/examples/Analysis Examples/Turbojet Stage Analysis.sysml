@@ -4,27 +4,29 @@ package 'Turbojet Stage Analysis' {
 	import ISQ::*;
 	
 	package 'Thermodynamic Functions' {
-	    calc def 'Ideal Gas Law' (in rho, in R_bar, in T) return p {
-	        rho * R_bar * T
+	    calc def 'Ideal Gas Law' { in rho; in R_bar; in T;
+	    	return p = rho * R_bar * T;
 	    }
 	    
-	    // The "in" and "return" direction markers are optional.
-	    calc def 'Reversible Adiabatic Compression Density' (rho_1, p_1, p_2, gamma) rho_2 {
-	        rho_1 * (p_2 / p_1)^(1/gamma)
+	    calc def 'Reversible Adiabatic Compression Density' { in rho_1; in p_1; in p_2; in gamma;
+	    	return rho_2 = rho_1 * (p_2 / p_1)^(1/gamma);
 	    }
 	    
-	    // Shorthand for "mathematical" function definition (with no steps but the returned expression)
-	    calc def 'Reversible Adiabatic Compression Temperature' (T_1, p_1, p_2, gamma) 
-	    	T_2 = T_1 * (p_2 / p_1)**((gamma - 1) / gamma);
+	    calc def 'Reversible Adiabatic Compression Temperature' { in T_1; in p_1; in p_2; in gamma;
+	    	return T_2 = T_1 * (p_2 / p_1)**((gamma - 1) / gamma);
+	    }
 	    
-	    calc def 'Total Pressure' (P_static, rho, V) = 1/2 * rho * V^2 + P_static;
+	    calc def 'Total Pressure' { in P_static; in rho; in V;
+	    	1/2 * rho * V^2 + P_static
+	    }
 	    
 	    // Showing explicit parameter typing
-	    calc def 'Total Temperature' (T_static : TemperatureValue, Cp : DimensionOneValue, V : VolumeValue) : TemperatureValue 
-	    	= 1/(2 * Cp) * V^2 + T_static;
+	    calc def 'Total Temperature' { in T_static : TemperatureValue; in Cp : DimensionOneValue; in V : VolumeValue;
+	    	return : TemperatureValue = 1/(2 * Cp) * V^2 + T_static;
+	    }
 	    
-	    calc def 'Total Enthalpy' (h_total, h_static, V) H_total {
-	    	1/2 * V^2 + h_static
+	    calc def 'Total Enthalpy' { in h_total; in h_static; in V;
+	    	return H_total = 1/2 * V^2 + h_static;
 	    }
 	}
 	
@@ -83,25 +85,23 @@ package 'Turbojet Stage Analysis' {
 	        
 	        part 'Inlet Gas' : 'Thermodynamics Structure'::'Moving Ideal Gas Parcel' {
 	        	// Explicit binding notation
-	        	calc 'Solve for Pressure1' : 'Ideal Gas Law' (rho, R_bar, T) p;
+	        	calc 'Solve for Pressure1' : 'Ideal Gas Law';
 	        	bind 'Density' = 'Solve for Pressure1'.rho;
 	        	bind 'Specific Gas Constant' = 'Solve for Pressure1'.R_bar;
 	        	bind 'Static Temperature' = 'Solve for Pressure1'.T;
 	        	bind 'Static Pressure' = 'Solve for Pressure1'.p;	        	
 	        	
-	        	// Shorthand parameter binding notation (also using optional "in" and "return")
-	            calc 'Solve for Pressure2' : 'Ideal Gas Law'(
-	                in rho = 'Density',
-	                in R_bar = 'Specific Gas Constant',
-	                in T = 'Static Temperature'
-	            ) return p = 'Static Pressure';
-	            
+	        	// Shorthand parameter binding notation
+	            calc 'Solve for Pressure2' : 'Ideal Gas Law' {
+	                in rho = 'Density';
+	                in R_bar = 'Specific Gas Constant';
+	                in T = 'Static Temperature';
+	            	return p = 'Static Pressure';
+				}
+				            
 	            // Invocation expression notation
 	            attribute :>> 'Static Pressure' = 'Ideal Gas Law'('Density', 'Specific Gas Constant', 'Static Temperature');
 
-	            // Equation as binding (possible future notation) 
-	            // eqn 'Static Pressure' = 'Ideal Gas Law'('Density', 'Specific Gas Constant', 'Static Temperature');
-	            
 	            // Equation as a constraint (note "==")
 	            constraint { 'Static Pressure' == 'Ideal Gas Law'('Density', 'Specific Gas Constant', 'Static Temperature') }
 	        }

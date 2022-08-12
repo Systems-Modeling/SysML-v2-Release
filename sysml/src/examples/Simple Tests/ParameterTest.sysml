@@ -6,7 +6,7 @@ package ParameterTest {
 	
 	attribute a : A;
 	
-	calc def F (p : A, q : ScalarValues::Integer): ScalarValues::Integer;
+	calc def F { in p : A; in q : ScalarValues::Integer; return :  ScalarValues::Integer; }
 	
 	attribute f = F(a, 2);
 	attribute g = F(q = 1, p = a);

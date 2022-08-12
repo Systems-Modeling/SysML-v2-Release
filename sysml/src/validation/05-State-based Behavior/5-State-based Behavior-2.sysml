@@ -18,7 +18,7 @@ package '5-State-based Behavior-2' {
 
 		action def 'Perform Self Test';
 		action def 'Apply Parking Brake';
-		action def 'Sense Temperature'(out temp: TemperatureValue);
+		action def 'Sense Temperature' { out temp: TemperatureValue; }
 		
 		attribute def 'Vehicle Start Signal';
 		attribute def 'Vehicle On Signal';
@@ -67,7 +67,7 @@ package '5-State-based Behavior-2' {
 			
 			state 'health states' {
 				entry; then normal;
-				do 'sense temperature' (out temp);
+				do 'sense temperature' { out temp; }
 				
 				/*
 				 * The shorthand can be used for multiple transitions after
@@ -113,7 +113,9 @@ package '5-State-based Behavior-2' {
 			attribute maintenanceTime: Time::DateTime;
 			attribute Tmax: TemperatureValue;
 			
-			perform 'provide power' :>> VehicleA::'provide power' (in fuelCmd = fuelCmdPort.fuelCmd);
+			perform 'provide power' :>> VehicleA::'provide power' {
+				in fuelCmd = fuelCmdPort.fuelCmd;
+			}
 				
 			exhibit 'vehicle states' :>> VehicleA::'vehicle states';
 				

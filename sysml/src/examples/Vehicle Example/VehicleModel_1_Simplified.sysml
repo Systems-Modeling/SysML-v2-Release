@@ -1212,27 +1212,38 @@ package VehicleModel_1_simplified{
             }
 
             //calc def FuelConsumption (bestFuelConsumption: Real, idlingFuelConsumption: Real, tpd_avg: Real) : KilometersPerLitre {
-            calc def FuelConsumption (bestFuelConsumption: Real, idlingFuelConsumption: Real, tpd_avg:>timePerDistance) :> distancePerVolume {
+            calc def FuelConsumption {
+            	in bestFuelConsumption: Real;
+            	in idlingFuelConsumption: Real; 
+            	in tpd_avg:>timePerDistance; 
+            	
                 attribute f = bestFuelConsumption + idlingFuelConsumption * tpd_avg;
-                1/f
+                return :> distancePerVolume = 1/f;
             }
-            calc def AverageTravelTimePerDistance(scenario: Scenario) tpd_avg:>timePerDistance;
-            calc def TraveledDistance(scenario: Scenario) distance:> length;
-            calc def IdlingFuelConsumptionPerTime(engine: Engine) f_a : Real {
+            calc def AverageTravelTimePerDistance { in scenario: Scenario; return tpd_avg:>timePerDistance; }
+            calc def TraveledDistance { in scenario: Scenario; return distance:> length; }
+            calc def IdlingFuelConsumptionPerTime { 
+            	in engine: Engine; 
                 attribute idlingFuelConsumptionPerDisplacement: Real = 0.5;
-                engine.displacement * idlingFuelConsumptionPerDisplacement
+                return f_a : Real = engine.displacement * idlingFuelConsumptionPerDisplacement;
             }
 
             attribute specificGravityOfGasoline: Real = 0.76;
-            calc def BestFuelConsumptionPerDistance(mass: MassValue, bsfc: Real, tpd_avg:> timePerDistance, distance:>length) f_b : Real {
-                attribute required_power_avg:> ISQ::power;
+            calc def BestFuelConsumptionPerDistance {
+            	in mass: MassValue;
+            	in bsfc: Real;
+            	in tpd_avg:> timePerDistance;
+            	in distance:>length;
+            	
+                attribute required_power_avg:> power;
                 constraint {
                     required_power_avg == 1/2 * mass * tpd_avg **(-3) / distance
                 }
-                bsfc * specificGravityOfGasoline * required_power_avg * tpd_avg
+                
+                return  f_b : Real = bsfc * specificGravityOfGasoline * required_power_avg * tpd_avg;
             }
 
-            calc def ComputeBSFC(engine: Engine): Real;
+            calc def ComputeBSFC { in engine: Engine; return : Real; }
 
             analysis fuelEconomyAnalysis  {
                 
@@ -1301,9 +1312,9 @@ package VehicleModel_1_simplified{
                 
             import TradeStudies::*;
             //objective function with criterion engine mass, engine power, and engine cost
-            calc def EngineEvaluation (engineMass:>ISQ::mass, enginePower:>ISQ::power, engineFuelEfficiency:Real,engineCost:Real) eval:Real;
-            calc def EngineEvaluation_4cyl (engineMass:>ISQ::mass, enginePower:>ISQ::power, engineFuelEfficiency:Real,engineCost:Real) eval:Real;
-            calc def EngineEvaluation_6cyl (engineMass:>ISQ::mass, enginePower:>ISQ::power, engineFuelEfficiency:Real,engineCost:Real) eval:Real;
+            calc def EngineEvaluation { in engineMass:>ISQ::mass; in enginePower:>ISQ::power; in engineFuelEfficiency:Real; in engineCost:Real; return eval:Real; }
+            calc def EngineEvaluation_4cyl { in engineMass:>ISQ::mass; in enginePower:>ISQ::power; in engineFuelEfficiency:Real; in engineCost:Real; return eval:Real; }
+            calc def EngineEvaluation_6cyl { in engineMass:>ISQ::mass; in enginePower:>ISQ::power; in engineFuelEfficiency:Real; in engineCost:Real; return eval:Real; }
             analysis engineTradeOffAnalysis:TradeStudy{
                 subject vehicleAlternatives[2]:>vehicle_b;   
                 
@@ -1375,8 +1386,9 @@ package VehicleModel_1_simplified{
                @ VerificationMethod{
                     kind = (VerificationMethodKind::test, VerificationMethodKind::analyze);
                 }
-                action weighVehicle (
-                    out massMeasured:>ISQ::mass);
+                action weighVehicle {
+                    out massMeasured:>ISQ::mass;
+                }
                 then action evaluatePassFail {
                     in massMeasured:>ISQ::mass;
                     out verdict = PassIf(vehicleSpecification.vehicleMassRequirement(vehicle_b));
@@ -1698,7 +1710,7 @@ package VehicleModel_1_simplified{
         package MandatorySafetyGroup {
             /* Parts that contribute to safety AND are mandatory. */
             import vehicle_b::**;
-            filter @Safety && Safety::isMandatory;
+            filter @Safety and Safety::isMandatory;
         }
     }
     package Views_Viewpoints{
@@ -1758,12 +1770,11 @@ package VehicleModel_1_simplified{
             attribute b;
             attribute c;
             attribute d;
-            constraint {(a>b) => (d>c)}
+            constraint {(a>b) implies (d>c)}
 
             constraint constraint1 {a>b}
             constraint constraint2 {d>c}
-            constraint {constraint1 () => constraint2()}
-            //constraint {constraint1() implies constraint2()}
+            constraint {constraint1 () implies constraint2()}
         }
         package RedundancyExample{
             import SequenceFunctions::size;
@@ -2006,19 +2017,21 @@ package VehicleModel_1_simplified{
         }
         package WhileLoop{
             item def Data;
-            action def Drive_Vehicle (in Initial_Location : Data, in Destination_Location : Data);
+            action def Drive_Vehicle { in Initial_Location : Data; in Destination_Location : Data; }
             action def Monitor_Environment;
             action def Calculate_Waypoint_and_Obstacles;
-            action def Navigate_Vehicle (inout Location : Data);
+            action def Navigate_Vehicle { inout Location : Data; }
 
             action driveVehicle : Drive_Vehicle {
-                private item Location : Data := Initial_Location;
+                private item driveLocation : Data := Initial_Location;
 
                 first start;
-                then while Location != Destination_Location {
+                then while driveLocation != Destination_Location {
                     action monitorEnvironment : Monitor_Environment;
                     action calculateWaypointAndObstacles :  Calculate_Waypoint_and_Obstacles;
-                    action navigateVehicle : Navigate_Vehicle(Location);
+                    action navigateVehicle : Navigate_Vehicle {
+                    	inout Location = driveLocation;
+                    }
                 }
                 then done;
             }

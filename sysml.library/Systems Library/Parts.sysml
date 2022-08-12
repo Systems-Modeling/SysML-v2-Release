@@ -1,8 +1,10 @@
-/**
+package Parts {
+doc
+/*
  * This package defines the base types for parts and related structural elements in the
  * SysML language.
  */
-package Parts {
+
 	private import Objects::Object;
 	private import Objects::objects;
 	private import Items::Item;
@@ -14,50 +16,66 @@ package Parts {
 	private import States::StateAction;
 	private import States::stateActions;
 	
-	/**
-	 * Part is the most general class of objects that represent all or a part of a system.
-	 * Part is the base type of all PartDefinitions.
-	 */
 	abstract part def Part :> Item {
+		doc
+		/*
+		 * Part is the most general class of objects that represent all or a part of a system.
+		 * Part is the base type of all PartDefinitions.
+		 */
+	
 		ref self: Part :>> Item::self;
 		
 		part start: Part :>> Item::start;
 		part done: Part :>> Item::done;
 		
-		/**
-		 * Ports that are owned by this Part.
-		 */
-		abstract port ownedPorts: Port[0..*] :> ports, timeEnclosedOccurrences;
-		
-		/**
-		 * Actions that are performed by this Part.
-		 */
-		abstract ref action performedActions: Action[0..*] :> actions, enactedPerformances;
-		
-		/**
-		 * Actions that are owned by this Part.
-		 */
-		abstract action ownedActions: Action[0..*] :> actions, ownedPerformances {
-			/**
-			 * The "this" reference of an ownedAction is always its owning Part.
+		abstract port ownedPorts: Port[0..*] :> ports, timeEnclosedOccurrences {
+			doc
+			/*
+			 * Ports that are owned by this Part.
 			 */
-		 	ref part :>> this : Part = that as Part;
 		}
 		
-		/**
-		 * StateActions that are exhibited by this Part.
-		 */
-		abstract ref state exhibitedStates: StateAction[0..*] :> stateActions, performedActions;
+		abstract ref action performedActions: Action[0..*] :> actions, enactedPerformances {
+			doc
+			/*
+			 * Actions that are performed by this Part.
+			 */
+		}
 		
-		/**
-		 * StateActions that are owned by this Part.
-		 */
-		abstract state ownedStates: StateAction[0..*] :> stateActions, ownedActions;
+		abstract action ownedActions: Action[0..*] :> actions, ownedPerformances {
+			doc
+			/*
+			 * Actions that are owned by this Part.
+			 */
+		
+		 	ref part :>> this : Part = that as Part {
+				doc
+				/*
+				 * The "this" reference of an ownedAction is always its owning Part.
+				 */
+			}
+		}
+		
+		abstract ref state exhibitedStates: StateAction[0..*] :> stateActions, performedActions {
+			doc
+			/*
+			 * StateActions that are exhibited by this Part.
+			 */
+		}
+		
+		abstract state ownedStates: StateAction[0..*] :> stateActions, ownedActions {
+			doc
+			/*
+			 * StateActions that are owned by this Part.
+			 */
+		}
 	}
 	
-	/** 
-	 * parts is the base feature of all part properties.
-	 */
-	abstract part parts: Part[0..*] nonunique :> items;
+	abstract part parts: Part[0..*] nonunique :> items {
+		doc
+		/*
+		 * parts is the base feature of all part properties.
+		 */
+	}
 	
 }

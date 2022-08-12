@@ -1,18 +1,18 @@
-/** AAA */
+/* AAA */
 //a lexical comment ("note") is not a part of model
 package Comments {
 	// inside package
-	/**
+	/*
 *AAA
  * BBB*/	
- /**
+ /*
     *
     *
     * AAA  ***   
     *BBB
     								*/
 
-   /**
+   /*
  *       AAAA
  *       BBBB           */	
  /* AAAA
@@ -28,15 +28,10 @@ package Comments {
  *    CCC DDD    
  */
 	
-    /** double star - one line comment */
-    /** double star - one line comment with spaces after              */
-    /** */
-	/* one start comment is allowed only inside a package */
-	comment /** Comment about Comment */
+	/* comment inside a package */
 	comment cmt /* Named Comment */	
 	comment cmt_cmt about cmt /* Other Comment about Comment */
 	
-	/** Documention Comment on Class C */
 	class C {
 		doc /* Documentation on Class C */
 		comment /* Comment in Class C */

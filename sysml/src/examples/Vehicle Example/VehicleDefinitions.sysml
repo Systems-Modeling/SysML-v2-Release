@@ -1,7 +1,9 @@
-/**
- * Example vehicle definitions model.
- **/
 package VehicleDefinitions {
+	doc
+	/*
+	 * Example vehicle definitions model.
+	 */
+
 	import ScalarValues::*;
 	import Quantities::*;
 	import MeasurementReferences::*;
@@ -40,9 +42,8 @@ package VehicleDefinitions {
 	
 	/* INTERFACE DEFINITIONS */
 	
-	/** The definition of the interface for mounting a Wheel to an Axle.
-	 */
 	interface def Mounting {
+		doc /* The definition of the interface for mounting a Wheel to an Axle. */
 		end axleMount: AxleMountIF;
 		end hub: WheelHubIF;
 		

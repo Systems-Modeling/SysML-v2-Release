@@ -1,12 +1,14 @@
 package '15_02-Basic Value Properties' {
 	import ScalarValues::*;
 	
-	/**
-	 * Real world user models would use a quantity type
-	 * from the library model. A attribute def is defined
-	 * here to show that it is possible.
-	 */
-    attribute def LengthValue :> Real;
+    attribute def LengthValue :> Real {
+		doc
+		/*
+		 * Real world user models would use a quantity type
+		 * from the library model. A attribute def is defined
+		 * here to show that it is possible.
+		 */
+	}
 
     part def Tire {
     	attribute manufacturer: String;
