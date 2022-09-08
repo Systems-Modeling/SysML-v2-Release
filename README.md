@@ -80,9 +80,9 @@ under the GNU Lesser General Public License (LGPL) v3.0 (see `LICENSE` and `LICE
 Copyright © 2019-2021 California Institute of Technology (Jet Propulsion Laboratory) <br/>
 Copyright © 2019-2022 DEKonsult <br/>
 Copyright © 2019-2021 IncQuery Labs Ltd. <br/>
+Copyright © 2019-2022 Intercax LLC <br/>
 Copyright © 2019-2021 Itemis <br/>
 Copyright © 2019-2021 Maplesoft (Waterloo Maple, Inc.) <br/>
-Copyright © 2019-2022 Intercax LLC <br/>
 Copyright © 2019-2022 Mgnite Inc. <br/>
 Copyright © 2019-2022 Model Driven Solutions, Inc. <br/>
 Copyright © 2019-2022 SAF Consulting <br/>
