@@ -82,7 +82,7 @@ Copyright © 2019-2022 DEKonsult <br/>
 Copyright © 2019-2021 IncQuery Labs Ltd. <br/>
 Copyright © 2019-2021 Itemis <br/>
 Copyright © 2019-2021 Maplesoft (Waterloo Maple, Inc.) <br/>
-Copyright © 2019-2022 Modelcax LLC <br/>
+Copyright © 2019-2022 Intercax LLC <br/>
 Copyright © 2019-2022 Mgnite Inc. <br/>
 Copyright © 2019-2022 Model Driven Solutions, Inc. <br/>
 Copyright © 2019-2022 SAF Consulting <br/>
