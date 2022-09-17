@@ -38,6 +38,7 @@ The release repository contains the items listed below. For a Zip archive of the
     * SysML v2 specification documents (PDF)
         1. Kernel Modeling Language (KerML), version 1.0
         2. OMG Systems Modeling Language (SysML), version 2.0
+        2.C SysML v1 to SysML v2 Transformation (Annex C of the SysML specification)
         3. Systems Modeling Application Programming Interface (API) and Services, version 1.0
   * In the `install` directory
     * `eclipse` - Installer for Eclipse plugins for Kernel Modeling Language (KerML) and System Modeling Language (SysML) editors
@@ -74,8 +75,9 @@ Both presentations are licensed under the Creative Commons Attribution 4.0  Inte
 To view a copy of this license, visit [http://creativecommons.org/licenses/by/4.0/](http://creativecommons.org/licenses/by/4.0/) 
 or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-The Jupyter and Eclipse software and all included SysML v2 models are licensed by the respective copyright holders listed below 
-under the GNU Lesser General Public License (LGPL) v3.0 (see `LICENSE` and `LICENSE-GPL` files).
+The Jupyter and Eclipse software and all included SysML v2 models in this repository are licensed by the respective copyright holders listed below 
+under the GNU Lesser General Public License (LGPL) v3.0 (see `LICENSE` and `LICENSE-GPL` files). Licensing for software and models in other
+SysML v2 repositories is as given in of those repository.
 
 Copyright © 2019-2021 California Institute of Technology (Jet Propulsion Laboratory) <br/>
 Copyright © 2019-2022 DEKonsult <br/>
