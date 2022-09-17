@@ -32,9 +32,9 @@ package VehicleRequirementDerivation {
 	}
 	
 	#derivation connection {
-		end #original :> vehicleMassRequirement;
-		end #derive :> chassisMassRequirement;
-		end #derive :> engineMassRequirement;
+		end #original ::> vehicleMassRequirement;
+		end #derive ::> chassisMassRequirement;
+		end #derive ::> engineMassRequirement;
 	}
 	
 }

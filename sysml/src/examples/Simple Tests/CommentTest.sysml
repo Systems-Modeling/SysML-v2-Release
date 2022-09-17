@@ -37,7 +37,7 @@ package CommentTest {
 	part def C {
 		doc /* Documentation in Part Def */
 		comment /* Comment in Part Def */
-		comment about Comments /* Comment about Package */
+		comment about CommentTest /* Comment about Package */
 	}
 	/* abc */
 	part def A;

@@ -1,23 +1,34 @@
 package RequirementMetadataExample {
+	import Metaobjects::SemanticMetadata;
 	import ModelingMetadata::*;
 	import RiskMetadata::*;
 	import RiskLevelEnum::*;
 	
+	requirement def Goal;
+	requirement goals : Goal[*] nonunique;
+	metadata def goal :> SemanticMetadata {
+	    :>> baseType = goals as SysML::RequirementUsage;
+	}
+
     requirement <'1'> vehicleMassRequirement {
         doc /* The total mass of a vehicle shall be less than or equal to the required mass. */
  
         @StatusInfo {
             status = StatusKind::tbd;
-            risk = requirement_1_risk;            
-            originator = "Bob";
+            risk {
+		    	totalRisk = high;
+		    	technicalRisk = medium;
+		    	scheduleRisk = low;
+		    	costRisk = medium;
+		    }            
+		    originator = "Bob";
             owner = "Mary";
         }
     }
     
-    metadata requirement_1_risk : Risk {
-    	totalRisk = high;
-    	technicalRisk = medium;
-    	scheduleRisk = low;
-    	costRisk = medium;
+    #goal requirement deliverPayload {
+    	assume #goal constraint payloadMassLimit;
+    	require #goal vehicleMassRequirement;
     }
+    
 }

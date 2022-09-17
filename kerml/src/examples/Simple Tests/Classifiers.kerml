@@ -9,4 +9,8 @@ package Classifiers {
 	subclassifier C specializes B;
 	
 	classifier C specializes A, B;
+	
+	classifier D disjoint from C differences A, B;
+	classifier E specializes C intersects A, B;
+	classifier F unions A unions B;
 }

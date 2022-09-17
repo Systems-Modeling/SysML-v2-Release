@@ -19,12 +19,12 @@ package CauseAndEffectExample {
 	part effected2 : Effected2;
 	
 	#multicausation connection : MultiCauseEffect connect
-		( cause1 :> causer1, cause2 :> causer2,
-		  effect1 :> effected1, effect2 :> effected2 );
+		( cause1 ::> causer1, cause2 ::> causer2,
+		  effect1 ::> effected1, effect2 ::> effected2 );
 		  
 	#multicausation connect
-		( cause1 :> causer1, cause2 :> causer2,
-		  effect1 :> effected1, effect2 :> effected2 );
+		( cause1 ::> causer1, cause2 ::> causer2,
+		  effect1 ::> effected1, effect2 ::> effected2 );
 
     occurrence a;
     item b;
@@ -32,16 +32,16 @@ package CauseAndEffectExample {
     action d;
     
 	#multicausation connection {
-		end #cause :> a;
-		end #cause :> b;
-		end #effect :> c;
-		end #effect :> d;
+		end #cause ::> a;
+		end #cause ::> b;
+		end #effect ::> c;
+		end #effect ::> d;
 	}
 	
-	#cause causeA :> a;
-	#cause causeB :> b;
-	#effect effectC :> c;
-	#effect effectD :> d;
+	#cause causeA ::> a;
+	#cause causeB ::> b;
+	#effect effectC ::> c;
+	#effect effectD ::> d;
 	
 	#multicausation connect ( causeA, causeB, effectC, effectD );
 	

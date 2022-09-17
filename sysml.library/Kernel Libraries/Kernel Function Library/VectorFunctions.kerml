@@ -154,6 +154,7 @@ package VectorFunctions {
 		/*
 		 * The angle between two NumericalVectorValues, as a NumericalValue.
 		 */
+		 
 	 	in v: NumericalVectorValue[1]; 
 	 	in w: NumericalVectorValue[1]; 
 		return theta: NumericalValue[1];

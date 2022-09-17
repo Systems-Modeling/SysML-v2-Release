@@ -52,7 +52,7 @@ package ControlFunctions {
 	
 	abstract function collect { 
 		in collection: Anything[0..*] ordered nonunique;
-		in expr mapper[0..*] { in argument: Anything[1]; return: Anything[0..*] ordered nonunique; }
+		in expr mapper[0..*] { in argument: Anything[1]; return : Anything[0..*] ordered nonunique; }
 		return : Anything[0..*] ordered nonunique;
 	}
 	

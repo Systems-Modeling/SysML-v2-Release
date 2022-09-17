@@ -13,7 +13,7 @@ package 'Interface Example' {
 		part eng : Engine;
 		
 		interface : FuelInterface connect 
-			supplierPort :> tankAssy.fuelTankPort to 
-			consumerPort :> eng.engineFuelPort;
+			supplierPort ::> tankAssy.fuelTankPort to 
+			consumerPort ::> eng.engineFuelPort;
 	} 
 }

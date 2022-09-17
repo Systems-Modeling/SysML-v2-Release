@@ -12,6 +12,6 @@ package ArgumentResolutionBug {
 		feature a : A;
 		feature b : B;
 		
-		connector a :> a.x to b;
+		connector a ::> a.x to b;
 	}
 }

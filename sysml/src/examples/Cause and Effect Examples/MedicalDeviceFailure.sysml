@@ -14,9 +14,9 @@ package MedicalDeviceFailure {
 		}
 		
 		#multicausation connection {
-			end #cause :> battery.depleted;
-			end #cause :> battery.cannotBeCharged;
-			end #effect :> deviceFails;
+			end #cause ::> battery.depleted;
+			end #cause ::> battery.cannotBeCharged;
+			end #effect ::> deviceFails;
 		}
 		
 		#causation connect deviceFails to patient.therapyDelayed;

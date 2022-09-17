@@ -8,7 +8,7 @@ package 'Action Performance Example' {
 	part camera : Camera {
 		
 		perform action takePhoto[*] ordered 
-			:> takePicture;
+			references takePicture;
 		
 		part f : AutoFocus {
 			perform takePhoto.focus;			

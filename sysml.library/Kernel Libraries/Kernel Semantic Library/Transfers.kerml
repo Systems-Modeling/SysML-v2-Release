@@ -75,8 +75,8 @@ package Transfers {
 			 * The output of the items from the sourceOutput.
 			 */
 		
-			end transferSource subsets source[1];
-			end transferPayload subsets item[1..*] subsets transferSource.sourceOutput;
+			end transferSource references source[1];
+			end transferPayload references item[1..*] subsets transferSource.sourceOutput;
 		}
 		
 		connector targetInputLink: BinaryLinkObject[1..*] {
@@ -85,8 +85,8 @@ package Transfers {
 			 * The input of the items to the targetInput.
 			 */
 		
-			end transferTarget subsets target[1];
-			end transferPayload subsets item[1..*] subsets transferTarget.targetInput;
+			end transferTarget references target[1];
+			end transferPayload references item[1..*] subsets transferTarget.targetInput;
 		}
 		
 		private connector sending: HappensDuring[1..*] from startShot[1] to sourceOutputLink[1..*] {

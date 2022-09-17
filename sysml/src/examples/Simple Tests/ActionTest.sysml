@@ -1,7 +1,17 @@
 package ActionTest {
+	action def A{ in x; }
+	
+	action a: A { 
+		first start;
+		
+		action b { in y = x; }
+		
+		bind x = b.y;
+	}
+	
 	attribute def S;
 	
-	action a {
+	action a1 {
 		first start;		
 		then merge m;
 		then accept S;

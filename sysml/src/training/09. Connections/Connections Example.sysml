@@ -12,8 +12,8 @@ package 'Connections Example' {
 	part def LugBoltJoint;
 	
 	connection def PressureSeat {
-		end : TireBead[1];
-		end : TireMountingRim[1];
+		end bead : TireBead[1];
+		end mountingRim : TireMountingRim[1];
 	}
 	
 	part wheelHubAssembly : WheelHubAssembly {
@@ -26,17 +26,17 @@ package 'Connections Example' {
 				part rim : TireMountingRim[2];
 				part mountingHoles : LugBoltMountingHole[5];
 			}						
-			connection : PressureSeat connect t.bead to w.rim;		
+			connection : PressureSeat 
+				connect bead references t.bead 
+				to mountingRim references w.rim;		
 		}
 		
 		part lugBoltJoints : LugBoltJoint[0..5];
 		part hub : Hub[1] {
 			part h : LugBoltThreadableHole[5];
 		}
-		connect lugBoltJoints[0..1] 
-			 to mountingHole :> wheel.w.mountingHoles[1];
-		connect lugBoltJoints[0..1] 
-			 to threadedHole :> hub.h[1];
+		connect lugBoltJoints[0..1] to wheel.w.mountingHoles[1];
+		connect lugBoltJoints[0..1] to hub.h[1];
 	}
 	
 }

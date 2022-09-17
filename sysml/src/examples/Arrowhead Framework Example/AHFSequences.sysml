@@ -75,12 +75,12 @@ package AHFNorwaySequences {
 
 		
 		interface APIS_transfer_interface : Interfaces::Interface connect (
-			tlu :> AHFNorway_LocalCloudDD.TellUConsumer.apisp.APIS_HTTP, // port reference
-		    apsph :> AHFNorway_LocalCloudDD.APISProducer.tellu.APIS_HTTP, 
-			apspm :> AHFNorway_LocalCloudDD.APISProducer.apisc.APIS_MQTT,
-			apsc :> AHFNorway_LocalCloudDD.APISConsumer.apisp.APIS_MQTT,
-			mqget :> AHFNorway_LocalCloudDD.MQTTServer.getTopic,
-			mqgive :> AHFNorway_LocalCloudDD.MQTTServer.giveTopic) {
+			tlu ::> AHFNorway_LocalCloudDD.TellUConsumer.apisp.APIS_HTTP, // port reference
+		    apsph ::> AHFNorway_LocalCloudDD.APISProducer.tellu.APIS_HTTP, 
+			apspm ::> AHFNorway_LocalCloudDD.APISProducer.apisc.APIS_MQTT,
+			apsc ::> AHFNorway_LocalCloudDD.APISConsumer.apisp.APIS_MQTT,
+			mqget ::> AHFNorway_LocalCloudDD.MQTTServer.getTopic,
+			mqgive ::> AHFNorway_LocalCloudDD.MQTTServer.giveTopic) {
 			
 			message publish_returnallitems of Publish
 			from apspm to mqget;

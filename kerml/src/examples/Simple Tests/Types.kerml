@@ -27,4 +27,10 @@ package Types {
 	
 	type Conjugate3 conjugates Original;
 	type Conjugate4 ~ Conjugate1;
+	
+	type C :> B disjoint from A;
+	
+	type D :> Base::Anything unions A, B;
+	type E :> Base::Anything intersects A, B;
+	type F :> Base::Anything differences A, B;
 }
