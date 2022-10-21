@@ -1,4 +1,4 @@
-package AnalysisTooling {
+standard library package AnalysisTooling {
 	doc
 	/*
 	 * This package contains definitions for metadata annotations related

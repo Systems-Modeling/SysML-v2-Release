@@ -1,4 +1,4 @@
-package TrigFunctions {
+standard library package TrigFunctions {
 	doc
 	/*
 	 * This package defines basic trigonometric functions on real numbers.

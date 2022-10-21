@@ -2,7 +2,7 @@ package 'Variation Definitions' {
 	import ScalarValues::Real;
 	import SI::mm;
 	
-	attribute def Diameter :> Real;
+	attribute def Diameter :> ISQ::LengthValue;
 	
     part def Cylinder {
         attribute diameter : Diameter[1];

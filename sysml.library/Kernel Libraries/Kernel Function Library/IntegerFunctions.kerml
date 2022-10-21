@@ -1,4 +1,4 @@
-package IntegerFunctions {
+standard library package IntegerFunctions {
 	doc
 	/*
 	 * This package defines functions on Integer values, including concrete specializations of the 

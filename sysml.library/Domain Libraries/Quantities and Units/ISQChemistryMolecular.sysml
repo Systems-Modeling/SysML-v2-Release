@@ -1,4 +1,4 @@
-package ISQChemistryMolecular {
+standard library package ISQChemistryMolecular {
     doc
     /*
      * International System of Quantities and Units

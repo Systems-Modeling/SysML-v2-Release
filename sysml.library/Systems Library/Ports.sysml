@@ -1,4 +1,4 @@
-package Ports {
+standard library package Ports {
 	doc
 	/*
 	 * This package defines the base types for ports and related structural elements 

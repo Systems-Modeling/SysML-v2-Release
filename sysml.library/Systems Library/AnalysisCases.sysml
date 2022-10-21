@@ -1,4 +1,4 @@
-package AnalysisCases {
+standard library package AnalysisCases {
 	doc
 	/*
 	 * This package defines the base types for analysis cases and related behavioral elements 

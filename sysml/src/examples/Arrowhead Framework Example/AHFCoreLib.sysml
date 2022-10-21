@@ -1,5 +1,5 @@
 // /** Mandatory Services and Systems */
-package AHFCoreLib {
+library package AHFCoreLib {
 	import AHFProfileLib::*;
 	import ScalarValues::*;
 	import AHFProfileMetadata::*;

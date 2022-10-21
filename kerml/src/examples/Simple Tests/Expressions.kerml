@@ -55,4 +55,10 @@ package Expressions {
 	class C {
 		count := 0;
 	}
+	
+	feature obj1 : C;
+	feature obj2 : C;
+	
+	test1 = obj1 === obj2;
+	test2 = x !== obj2;
 }

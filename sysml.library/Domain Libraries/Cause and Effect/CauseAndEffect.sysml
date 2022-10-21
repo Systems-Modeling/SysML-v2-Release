@@ -1,4 +1,4 @@
-package CauseAndEffect {
+standard library package CauseAndEffect {
 	doc /* This package provides language-extension metadata for cause-effect modeling. */
 	
 	import CausationConnections::*;
@@ -67,7 +67,7 @@ package CauseAndEffect {
 		 * MulticausationMetadata is SemanticMetadata for a Multicausation connection.
 		 */
 		 
-		ref :>> baseType = multicausations as SysML::Usage;
+		ref :>> baseType = multicausations meta SysML::Usage;
 	}
 	
 	metadata def <causation> CausationSemanticMetadadata :> CausationMetadata, SemanticMetadata {
@@ -76,6 +76,6 @@ package CauseAndEffect {
 		 * CausationMetadata is SemanticMetadata for a Causation connection.
 		 */
 		 
-		ref :>> baseType = causations as SysML::Usage;
+		ref :>> baseType = causations meta SysML::Usage;
 	}
 }

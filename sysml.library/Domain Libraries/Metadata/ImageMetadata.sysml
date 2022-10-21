@@ -1,4 +1,4 @@
-package ImageMetadata {
+standard library package ImageMetadata {
 	doc
 	/*
 	 * This package provides attributive data and metadata to allow a model element to be

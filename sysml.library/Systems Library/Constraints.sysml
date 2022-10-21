@@ -1,4 +1,4 @@
-package Constraints {
+standard library package Constraints {
 	doc
 	/*
 	 * This package defines the base types for constraints and related elements in the

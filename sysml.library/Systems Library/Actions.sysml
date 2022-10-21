@@ -1,4 +1,4 @@
-package Actions {
+standard library package Actions {
 	doc
 	/*
 	 * This package defines the base types for actions and related behavioral elements in the
@@ -7,12 +7,18 @@ package Actions {
 
 	private import Base::Anything;
 	private import ScalarValues::Positive;
+	private import ScalarValues::Natural;
 	private import SequenceFunctions::size;
+	private import SequenceFunctions::isEmpty;
 	private import Occurrences::Occurrence;
+	private import Occurrences::HappensWhile;
 	private import Performances::Performance;
 	private import Performances::performances;
+	private import Transfers::SendPerformance;
+	private import Transfers::sendPerformances;
+	private import Transfers::AcceptPerformance;
+	private import Transfers::acceptPerformances;
 	private import FeatureReferencingPerformances::FeatureWritePerformance;
-	private import Transfers::TransferBefore;
 	private import ControlPerformances::MergePerformance;
 	private import ControlPerformances::DecisionPerformance;
 	private import ControlPerformances::IfThenPerformance;
@@ -20,6 +26,8 @@ package Actions {
 	private import ControlPerformances::LoopPerformance;
 	private import TransitionPerformances::TransitionPerformance;
 	private import TransitionPerformances::NonStateTransitionPerformance;
+	private import Transfers::MessageTransfer;
+	private import Connections::MessageConnection;
 	
 	abstract action def Action :> Performance {
 		doc
@@ -159,52 +167,52 @@ package Actions {
 		 */
 	}
 	
-	action def SendAction {
+	action def SendAction :> Action, SendPerformance {
 		doc
 		/*
-		 * A SendAction is an Action used to type a SendActionUsage. It initiates an outgoingTransferFromSelf 
-		 * to a designated receiver Occurrence with a given payload.
+		 * A SendAction is an Action used to type SendActionUsages. It initiates an outgoingTransferFromSelf 
+		 * from a designated sender Occurrence with a given payload, optionally to a designated receiver.
 		 */
 	
-		in payload[0..*];
-		in receiver: Occurrence[1];
-		
-	    ref outgoingTransfer: TransferBefore[1] :>> outgoingTransfersFromSelf :> receiver.incomingTransfers {
-	    	ref :>> source: SendAction {
-	    		ref :>> sourceOutput = payload;
-	    	}
-	    }
+		in payload :>> sentItem;
+	    ref sentMessage :>> sentTransfer: MessageTransfer, MessageConnection;
 	}
 	
-	abstract action sendActions: SendAction[0..*] nonunique :> actions {
+	abstract action sendActions: SendAction[0..*] nonunique :> actions, sendPerformances {
 		doc
 		/*
 		 * sendActions is the base feature for all SendActionUsages.
 		 */
 	}
 	
-	action def AcceptAction {
+	action def AcceptMessageAction :> Action, AcceptPerformance {
 		doc
 		/*
-		 * An AcceptAction is an Action used to type an AcceptActionUsage. It completes an 
-		 * incomingTransferFromSelf that is one of the incomingTransfers of a given receiver Occurrence, 
-		 * outputting the payload from the Transfer.
+		 * An AcceptMessageAction is an Action that identifies an incomingTransferToSelf
+		 * of a designated receiver Occurrence, providing its payload as output.
 		 */
+		inout payload :>> acceptedItem;
+		ref acceptedMessage :>> acceptedTransfer: MessageTransfer, MessageConnection;
+	}
 	
-		inout payload[0..*];
-		in receiver: Occurrence[1] default this;
-		
-		ref incomingTransfer: TransferBefore[1] :>> incomingTransfersToSelf :> receiver.incomingTransfers {
-			ref :>> target: AcceptAction {
-				ref :>> targetInput = payload;
-			}
+	action def AcceptAction :> AcceptMessageAction {
+		doc
+		/*
+		 * An AcceptAction is an AcceptMessageAction used to type AcceptActionUsages that are
+		 * not accepters for TransitionActions. It waits for a payload or message of the specified 
+		 * kind to be accepted by a nested state transition.
+		 */
+		inout :>> payload = aState.aTransition.apayload;
+		ref :>> acceptedMessage = aState.aTransition.accepter.acceptedMessage;
+		state aState  {
+			transition aTransition first start accept apayload: Anything via receiver then done;
 		}
 	}
 	
-	abstract action acceptActions: AcceptAction[0..*] nonunique :> actions {
+	abstract action acceptActions: AcceptAction[0..*] nonunique :> actions, acceptPerformances {
 		doc
 		/*
-		 * acceptActions is the base feature for all AcceptActionUsages.
+		 * acceptActions is the base feature for standalone AcceptActionUsages.
 		 */
 	}
 	
@@ -267,14 +275,19 @@ package Actions {
 	abstract action def TransitionAction :> Action, TransitionPerformance {
 		doc
 		/*
-		 * A TransitionAction is a TransitionPerformance whose transitionLinkSource is an Action.
+		 * A TransitionAction is a TransitionPerformance with an Action as transitionLinkSource.
 		 * It is the base type of all TransitionUsages.
 		 */
 	
 		in transitionLinkSource : Action :>> TransitionPerformance::transitionLinkSource;
+		ref acceptedMessage : MessageConnection :>> trigger;
+		
+		ref receiver :>> triggerTarget;
 
-		action accepter: AcceptAction[0..1];
-		bind trigger = accepter.incomingTransfer;
+		action accepter : AcceptMessageAction :>> 'accept';
+		
+		bind receiver = accepter.receiver;
+		bind acceptedMessage = accepter.acceptedMessage;
 		
 		action effect: Action :>> TransitionPerformance::effect;		
 	}

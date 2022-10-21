@@ -1,4 +1,4 @@
-package Calculations {
+standard library package Calculations {
 	doc
 	/*
 	 * This package defines the base types for calculations and related behavioral elements in the

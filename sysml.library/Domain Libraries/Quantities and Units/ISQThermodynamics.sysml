@@ -1,4 +1,4 @@
-package ISQThermodynamics {
+standard library package ISQThermodynamics {
     doc
     /*
      * International System of Quantities and Units

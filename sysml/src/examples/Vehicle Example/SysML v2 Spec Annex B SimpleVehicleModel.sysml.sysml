@@ -467,7 +467,7 @@ package SimpleVehicleModel{
             
             // with alias <fm>
             metadata def <fm> failureMode :> SemanticMetadata {
-                :>> baseType = failureModes as SysML::StateUsage;
+                :>> baseType = failureModes meta SysML::StateUsage;
             }
         }
         package GenericContext {
@@ -1295,12 +1295,12 @@ package SimpleVehicleModel{
                     //ignition on
                     transition 'wait-wait-1'
                         first wait
-                        do send IgnitionCmd (ignitionOnOff=IgnitionOnOff::on) to handPort
+                        do send IgnitionCmd (ignitionOnOff=IgnitionOnOff::on) via handPort
                         then wait;
                     // ignition off
                     transition 'wait-wait-2'
                         first wait
-                        do send IgnitionCmd (ignitionOnOff=IgnitionOnOff::off) to handPort
+                        do send IgnitionCmd (ignitionOnOff=IgnitionOnOff::off) via handPort
                         then wait;
                 }
             }

@@ -1,4 +1,4 @@
-package DataFunctions {
+standard library package DataFunctions {
 	doc
 	/*
 	 * This package defines the abstract base functions corresponding to all the unary and binary operators 
@@ -8,6 +8,11 @@ package DataFunctions {
 	private import Base::DataValue;
 	private import ScalarValues::Boolean;
 	private import ControlFunctions::reduce;
+	
+	function '===' specializes BaseFunctions::'==='{ in x: DataValue[0..1]; in y: DataValue[0..1]; 
+		return : Boolean[1] = x == y;
+	}
+	
 	
 	abstract function '+' { in x: DataValue[1]; in y: DataValue[0..1]; return : DataValue[1]; }
 	abstract function '-' { in x: DataValue[1]; in y: DataValue[0..1]; return : DataValue[1]; }

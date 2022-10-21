@@ -1,4 +1,4 @@
-package Interfaces {
+standard library package Interfaces {
 	doc
 	/*
 	 * This package defines the base types for interfaces and related structural elements in the SysML language.

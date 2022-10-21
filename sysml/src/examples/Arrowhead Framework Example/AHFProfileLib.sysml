@@ -1,4 +1,4 @@
-package AHFProfileLib {
+library package AHFProfileLib {
 	// Systems and Services and their functionalities
 	import ScalarValues::*;
 	
@@ -45,7 +45,7 @@ package AHFProfileLib {
 	port def SDDD :> SD{
 		doc /* Service Definition Design Description */
 		
-		port idd:IDD[*]; // nested protocol-specific services
+		port idds:IDD[*]; // nested protocol-specific services
 	}	
 
 	part def SysLocalCloudsDD :> SysLocalCloudsDesign {
@@ -66,52 +66,52 @@ package AHFProfileLib {
 	}
 }
 
-package AHFProfileMetadata{
+library package AHFProfileMetadata{
 	import Metaobjects::SemanticMetadata;
 	import AHFProfileLib::*;
 
 	port global_sd:SD;
 	metadata def <service> SDMetadata :> SemanticMetadata{
-		// :>> baseType = system_of_systems.locclouds.systems.services as SysML::PortUsage;
-		// :>> baseType = SysD::services as SysML::PortUsage;
-		:>> baseType = global_sd as SysML::PortUsage;
+		// :>> baseType = system_of_systems.locclouds.systems.services meta SysML::PortUsage;
+		// :>> baseType = SysD::services meta SysML::PortUsage;
+		:>> baseType = global_sd meta SysML::PortUsage;
 	}
 	
 	metadata def <sos> SysLocalCloudsMetadata :> SemanticMetadata{
-		:>> baseType = system_of_systems as SysML::PartUsage;
+		:>> baseType = system_of_systems meta SysML::PartUsage;
 	}
 	
 	metadata def <cloud> LocalCloudsMetadata :> SemanticMetadata{
-		:>> baseType = system_of_systems.locclouds as SysML::PartUsage;
+		:>> baseType = system_of_systems::locclouds meta SysML::PartUsage;
 	}
 	
 	metadata def <system> SysDMetadata :> SemanticMetadata{
-		:>> baseType = system_of_systems.locclouds.systems as SysML::PartUsage;
-		// :>> baseType = LocalCloudDesign::systems as SysML::PartUsage;
+		:>> baseType = system_of_systems::locclouds::systems meta SysML::PartUsage;
+		// :>> baseType = LocalCloudDesign::systems meta SysML::PartUsage;
 	}
 
 	metadata def <idd> IDDMetadata :> SDMetadata{
-		// :>> baseType = system_of_systems.locclouds.systems.services.idd as SysML::PortUsage;
-		// :>> baseType = SDDD::idd as SysML::PortUsage;
-		:>> global_sddd.idd;
+		// :>> baseType = system_of_systems.locclouds.systems.services.idd meta SysML::PortUsage;
+		:>> baseType = SDDD::idds meta SysML::PortUsage;
+		// :>> global_sddd.idd;
 	}
 
 	port global_sddd:SDDD;
 	metadata def <servicedd> SDDDMetadata :> SDMetadata {
-		// :>> baseType = system_of_systems.locclouds.systems.services as SysML::PortUsage;
-		:>> baseType = global_sddd as SysML::PortUsage;
+		// :>> baseType = system_of_systems.locclouds.systems.services meta SysML::PortUsage;
+		:>> baseType = global_sddd meta SysML::PortUsage;
 	}
 	
 	metadata def <clouddd> LocalCloudsDDMetadata :> LocalCloudsMetadata{
-		:>> baseType = system_of_systems.locclouds as SysML::PartUsage;
+		:>> baseType = system_of_systems::locclouds meta SysML::PartUsage;
 	}
 	
 	part global_clouddd:LocalCloudDD;
 	part global_systemsdd:SysDD;
 	metadata def <systemdd> SysDDMetadata :> SysDMetadata{
-		// :>> baseType = system_of_systems.locclouds.systems as SysML::PartUsage;
-		//:>> baseType = LocalCloudDD::systems as SysML::PartUsage;
-		:>> baseType = global_systemsdd as SysML::PartUsage;
+		// :>> baseType = system_of_systems.locclouds.systems meta SysML::PartUsage;
+		//:>> baseType = LocalCloudDD::systems meta SysML::PartUsage;
+		:>> baseType = global_systemsdd meta SysML::PartUsage;
 	}	
 	
 }

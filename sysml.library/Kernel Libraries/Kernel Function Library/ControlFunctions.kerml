@@ -1,4 +1,4 @@
-package ControlFunctions {
+standard library package ControlFunctions {
 	doc
 	/*
 	 * This package defines functions that correspond to operators in the KerML expression notation 

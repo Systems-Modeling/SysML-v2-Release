@@ -7,7 +7,7 @@ package RequirementMetadataExample {
 	requirement def Goal;
 	requirement goals : Goal[*] nonunique;
 	metadata def goal :> SemanticMetadata {
-	    :>> baseType = goals as SysML::RequirementUsage;
+	    :>> baseType = goals meta SysML::RequirementUsage;
 	}
 
     requirement <'1'> vehicleMassRequirement {

@@ -1,4 +1,4 @@
-package ISQ {
+standard library package ISQ {
     doc
     /*
      * International system of quantities (ISQ), as defined in ISO/IEC 80000

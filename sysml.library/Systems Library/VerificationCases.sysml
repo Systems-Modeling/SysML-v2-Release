@@ -1,4 +1,4 @@
-package VerificationCases {
+standard library package VerificationCases {
 	doc
 	/*
 	 * This package defines the base types for verification cases and related behavioral elements 

@@ -1,4 +1,4 @@
-package Links {
+standard library package Links {
 	doc
 	/*
 	 * This package defines associations and features that are related to the typing of links.

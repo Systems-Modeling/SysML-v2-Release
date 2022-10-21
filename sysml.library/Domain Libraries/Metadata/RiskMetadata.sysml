@@ -1,4 +1,4 @@
-package RiskMetadata {
+standard library package RiskMetadata {
 	doc
 	/*
 	 * This package defines metadata for annotating model elements with assessments of risk.

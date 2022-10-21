@@ -1,4 +1,4 @@
-package ScalarValues {
+standard library package ScalarValues {
 	doc
 	/*
 	 * This package contains a basic set of primitive scalar (non-collection) data types. 

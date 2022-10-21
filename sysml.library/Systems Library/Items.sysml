@@ -1,4 +1,4 @@
-package Items {
+standard library package Items {
 	doc
 	/*
 	 * This package defines the base types for items and related structural elements in the

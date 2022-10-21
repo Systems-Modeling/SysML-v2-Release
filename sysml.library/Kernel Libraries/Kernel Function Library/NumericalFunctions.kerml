@@ -1,4 +1,4 @@
-package NumericalFunctions {
+standard library package NumericalFunctions {
 	doc
 	/*
 	 * This package defines abstract functions on Numerical values for general arithmetic and comparison operations.

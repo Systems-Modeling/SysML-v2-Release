@@ -1,4 +1,4 @@
-package ISQElectromagnetism {
+standard library package ISQElectromagnetism {
     doc
     /*
      * International System of Quantities and Units

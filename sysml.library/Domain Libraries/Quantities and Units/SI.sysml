@@ -1,4 +1,4 @@
-package SI {
+standard library package SI {
 	doc
 	/*
 	 * International System of (Measurement) Units -- Système International d'Unités (SI), as defined in ISO/IEC 80000

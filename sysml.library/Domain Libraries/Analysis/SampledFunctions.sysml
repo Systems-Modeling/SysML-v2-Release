@@ -1,4 +1,4 @@
-package SampledFunctions {
+standard library package SampledFunctions {
 	doc
 	/*
 	 * This package provides a library model of discretely sampled mathematical functions.

@@ -1,4 +1,4 @@
-package BooleanFunctions {
+standard library package BooleanFunctions {
 	doc
 	/*
 	 * This package defines functions on Boolean values, including those corresponding to 

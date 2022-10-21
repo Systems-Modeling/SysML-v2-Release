@@ -1,4 +1,4 @@
-package RealFunctions {
+standard library package RealFunctions {
 	doc
 	/*
 	 * This package defines Functions on Real values, including concrete specializations of the 

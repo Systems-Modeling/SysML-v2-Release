@@ -1,4 +1,4 @@
-package ISQCharacteristicNumbers {
+standard library package ISQCharacteristicNumbers {
     doc
     /*
      * International System of Quantities and Units

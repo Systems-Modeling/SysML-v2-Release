@@ -1,4 +1,4 @@
-package Metaobjects {
+standard library package Metaobjects {
 	doc
 	/*
 	 * This package defines Metaclasses and Features that are related to the typing of syntactic and semantic metadata.

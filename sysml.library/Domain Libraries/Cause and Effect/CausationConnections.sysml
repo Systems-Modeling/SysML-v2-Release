@@ -1,4 +1,4 @@
-package CausationConnections {	
+standard library package CausationConnections {	
 	doc 
 	/* 
 	 * This package provides a library model modeling causes, effects, and causation connections 

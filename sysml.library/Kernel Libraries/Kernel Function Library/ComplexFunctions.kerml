@@ -1,4 +1,4 @@
-package ComplexFunctions {
+standard library package ComplexFunctions {
 	doc
 	/*
 	 * This package defines functions on Complex values, including concrete specializations of the 

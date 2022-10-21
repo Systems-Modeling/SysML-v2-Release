@@ -1,4 +1,4 @@
-package StringFunctions {
+standard library package StringFunctions {
 	doc
 	/*
 	 * This package defines functions on String values, including those corresponding to string concatenation 

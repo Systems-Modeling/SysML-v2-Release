@@ -1,4 +1,4 @@
-package DerivationConnections {
+standard library package DerivationConnections {
 	doc
 	/*
 	 * This package provides a library model for derivation connections between requirements.

@@ -137,7 +137,7 @@ package VehicleVariabilityModel {
 			    assert constraint {
 			        (generateTorque == generateTorque::generateTorque4Cyl & 
 			        	amplifyTorque == amplifyTorque::amplifyTorqueManual
-			        ) ^
+			        ) xor
 			        (generateTorque == generateTorque::generateTorque6Cyl & 
 			        	amplifyTorque == amplifyTorque::amplifyTorqueAutomatic
 			        )

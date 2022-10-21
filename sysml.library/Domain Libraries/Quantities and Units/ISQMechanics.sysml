@@ -1,4 +1,4 @@
-package ISQMechanics {
+standard library package ISQMechanics {
     doc
     /*
      * International System of Quantities and Units

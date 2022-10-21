@@ -1,4 +1,4 @@
-package MeasurementReferences {
+standard library package MeasurementReferences {
 	doc
 	/*
 	 * This package defines the representations for measurement references.

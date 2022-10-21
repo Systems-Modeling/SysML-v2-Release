@@ -1,4 +1,4 @@
-package CollectionFunctions {
+standard library package CollectionFunctions {
 	doc
 	/*
 	 * This package defines functions on Collections (as defined in the Collections package). 

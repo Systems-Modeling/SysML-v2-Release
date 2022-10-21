@@ -1,4 +1,4 @@
-package Cases {
+standard library package Cases {
 	doc
 	/*
 	 * This package defines the base types for cases and related behavioral elements 

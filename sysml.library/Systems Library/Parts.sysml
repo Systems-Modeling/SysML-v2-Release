@@ -1,4 +1,4 @@
-package Parts {
+standard library package Parts {
 doc
 /*
  * This package defines the base types for parts and related structural elements in the

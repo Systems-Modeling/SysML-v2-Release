@@ -1,4 +1,4 @@
-package NaturalFunctions {
+standard library package NaturalFunctions {
 	doc
 	/*
 	 * This package defines functions on Natural values, including concrete specialization of the 

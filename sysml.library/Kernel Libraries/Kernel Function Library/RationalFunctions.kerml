@@ -1,4 +1,4 @@
-package RationalFunctions {
+standard library package RationalFunctions {
 	doc
 	/*
 	 * This package defines Functions on Rational values, including concrete specializations of the 

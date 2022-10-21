@@ -1,4 +1,4 @@
-package Performances {
+standard library package Performances {
 	doc
 	/*
 	 * This package defines classifiers and features that related to the typing of performances and evaluations.
@@ -8,11 +8,16 @@ package Performances {
 	private import Base::things;
 	private import Occurrences::Occurrence;
 	private import Occurrences::occurrences;
+	private import Occurrences::HappensDuring;
 	private import Objects::Object;
 	private import Objects::BinaryLinkObject;
+	private import Metaobjects::Metaobject;
+	private import Transfers::Transfer;
 	private import Transfers::transfers;
+	private import Transfers::TransferBefore;
 	private import Transfers::transfersBefore;
 	private import ScalarValues::*;
+	private import SequenceFunctions::includes;
 	
 	abstract behavior Performance specializes Occurrence {
 		doc
@@ -36,12 +41,23 @@ package Performances {
 			 */
 		}
 		
+		feature redefines isDispatch default true;
+  		feature redefines dispatchScope default thisPerformance;
+  		
 		step enclosedPerformances: Performance[0..*] subsets performances, timeEnclosedOccurrences {
 			doc
 			/*
 			 * timeEnclosedOccurrences of this Performance that are also Performances.
 			 */
 		}
+		
+		feature thisPerformance: Performance [1] default self {
+			doc
+			/*
+			 * Defaults to the root of the subperformance composition tree.
+			 */
+		}
+		connector :HappensDuring from self[1] to thisPerformance[1]; 
 		
 		composite step subperformances: Performance[0..*] subsets enclosedPerformances, suboccurrences {
 			doc
@@ -58,6 +74,8 @@ package Performances {
 				 * root Performance is an ownedPerformance of an Object, then that Object is the context.
 				 */
 			}
+		
+			feature redefines thisPerformance default (that as Performance).thisPerformance;
 		}
 		
 		expr enclosedEvaluations: Evaluation[0..*] subsets evaluations, enclosedPerformances {
@@ -67,14 +85,14 @@ package Performances {
 			 */
 		}
 		
-		step enclosedTransfers: Transfers::Transfer[0..*] subsets transfers, enclosedPerformances {
+		step enclosedTransfers: Transfer[0..*] subsets transfers, enclosedPerformances {
 			doc
 			/*
 			 * enclosedPerformances of this performance that are transfers.
 			 */
 		}
 		
-		step enclosedTransfersBefore: Transfers::TransferBefore[0..*] subsets transfersBefore, enclosedTransfers {
+		step enclosedTransfersBefore: TransferBefore[0..*] subsets transfersBefore, enclosedTransfers {
 			doc
 			/*
 			 * enclosedTransfers of this performance that are transfers-before.
@@ -100,6 +118,15 @@ package Performances {
 		 */
 	 
 		return : Boolean[1];
+	}
+	
+	abstract function MetadataAccessEvaluation specializes Evaluation {
+		doc
+		/*
+		 * MetadataAccessEvaluation is a specialization of Evaluation for the case of MetadataAccessExpressions.
+		 */
+		
+		return : Metaobject[1..*];
 	}
 	
 	abstract function LiteralEvaluation specializes Evaluation {
@@ -177,7 +204,7 @@ package Performances {
 	 	end feature performerObject: Object[0..*] redefines involvedObject subsets performance.performers;
 	 	end feature performance: Performance[0..*] redefines involvingPerformance subsets performerObject.enactedPerformances;
 	 }
-	
+
 	abstract step performances: Performance[0..*] nonunique subsets occurrences {
 		doc
 		/*
@@ -199,7 +226,7 @@ package Performances {
 		 */
 	}
 	
-	abstract expr trueEvaluations :> booleanEvaluations {
+	abstract expr trueEvaluations subsets booleanEvaluations {
 		doc
 		/*
 		 * trueEvaluations is a subset of booleanEvaluations that result in true. It is the most general
@@ -209,7 +236,7 @@ package Performances {
 		true
 	}
 	
-	abstract expr falseEvaluations :> booleanEvaluations {
+	abstract expr falseEvaluations subsets booleanEvaluations {
 		doc
 		/*
 		 * falseEvaluations is a subset of booleanEvaluations that result in true. It is the most general
@@ -217,6 +244,13 @@ package Performances {
 		 */
 	
 		false
+	}
+	
+	abstract expr metadataAccessEvaluations: MetadataAccessEvaluation[0..*] nonunique subsets evaluations {
+		doc
+		/*
+		 * metadataAccessEvaluations is a specialization of evaluations restricted to type MetadataAccessEvaluation. 
+		 */
 	}
 	
 	abstract expr literalEvaluations: LiteralEvaluation[0..*] nonunique subsets evaluations {
@@ -261,5 +295,4 @@ package Performances {
 		 * nullEvaluations is a specialization of evaluations restricted to type NullEvaluation.
 		 */
 	}
-	
 }

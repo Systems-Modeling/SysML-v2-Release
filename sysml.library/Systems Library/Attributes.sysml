@@ -1,4 +1,4 @@
-package Attributes {
+standard library package Attributes {
 doc
 /*
  * This package defines the base types for attributes and related structural elements 

@@ -1,4 +1,4 @@
-package VectorCalculations {
+standard library package VectorCalculations {
 	private import ScalarValues::Boolean;
 	private import ScalarValues::Number;
     private import Quantities::VectorQuantityValue;

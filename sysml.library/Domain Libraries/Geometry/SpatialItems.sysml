@@ -1,4 +1,4 @@
-package SpatialItems {
+standard library package SpatialItems {
 	doc
 	/*
 	 * This package models physical items that have a spatial extent and act as a spatial frame of reference

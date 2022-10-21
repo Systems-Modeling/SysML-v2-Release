@@ -1,4 +1,4 @@
-package 'Model Library Example' {
+library package 'Model Library Example' {
 	import ScalarValues::Real;
 	import RiskMetadata::Level;
 	

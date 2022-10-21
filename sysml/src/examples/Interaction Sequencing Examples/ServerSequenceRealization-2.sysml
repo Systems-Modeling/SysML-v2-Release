@@ -1,5 +1,4 @@
 package ServerSequenceRealization_2 {
-	import Transfers::TransferBefore;
 	import ServerSequenceModel::*;
 	import Configuration::*;
 	
@@ -15,14 +14,13 @@ package ServerSequenceRealization_2 {
 			
 			port publicationPort : ~PublicationPort;
 			
-			perform action producerBehavior {
-				action publish send Publish(someTopic, somePublication) to publicationPort;
+			perform action producerBehavior {	
+				action publish send Publish(someTopic, somePublication) via publicationPort;
 			}
-			
 		}
 		
 		interface producer_2.publicationPort to server_2.publicationPort {
-			bind source::incomingTransfers = target::incomingTransfers;
+			bind source::outgoingTransfersFromSelf = target::incomingTransfersToSelf;
 		}
 		
 		part server_2[1] {
@@ -49,7 +47,7 @@ package ServerSequenceRealization_2 {
 		}
 		
 		interface consumer_2.subscriptionPort to server_2.subscriptionPort {
-			bind source::incomingTransfers = target::incomingTransfers;
+			bind source::outgoingTransfersFromSelf = target::incomingTransfersToSelf;
 		}
 		
 		part consumer_2[1] {
@@ -80,9 +78,28 @@ package ServerSequenceRealization_2 {
 			event consumerBehavior.subscribe[1] :>> subscribe_source_event;
 			event consumerBehavior.delivery[1] :>> deliver_target_event;
 		}
-		
-		message :> producer_2.producerBehavior.publish.outgoingTransfer :>> publish_message;
-		message :> consumer_2.consumerBehavior.subscribe.outgoingTransfer :>> subscribe_message;
-		message :> server_2.serverBehavior.delivering.effect.outgoingTransfer :>> deliver_message;
+
+		message :>> publish_message: Transfers::MessageTransfer {
+ 			end :>> source = producer.publicationPort;
+ 			end :>> target = server.publicationPort;
+ 		}
+		message :>> subscribe_message: Transfers::MessageTransfer {
+ 			end :>> source = consumer.subscriptionPort;
+ 			end :>> target = server.subscriptionPort;
+ 		}
+		message :>> deliver_message: Transfers::MessageTransfer {
+ 			end :>> source = server;
+ 			end :>> target = consumer;
+ 		}
+ 		
+ 		/* Binding sent/accept messages to specification model messages. */
+		  /* Sends */
+ 		bind producer_2.producerBehavior.publish.sentMessage = publish_message;
+ 		bind consumer_2.consumerBehavior.subscribe.sentMessage = subscribe_message;
+ 		bind server_2.serverBehavior.delivering.effect.sentMessage = deliver_message;
+ 		  /* Accepts */
+ 		bind consumer_2.consumerBehavior.delivery.acceptedMessage = subscribe_message;
+ 		bind server_2.serverBehavior.subscribing.accepter.acceptedMessage = subscribe_message;
+ 		bind server_2.serverBehavior.delivering.accepter.acceptedMessage = publish_message;
 	}
 }

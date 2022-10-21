@@ -1,4 +1,4 @@
-package VectorValues {
+standard library package VectorValues {
 	doc
 	/*
 	 * This package provides a basic model of abstract vectors as well as concrete vectors

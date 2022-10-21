@@ -1,4 +1,4 @@
-package RequirementDerivation {
+standard library package RequirementDerivation {
 	doc /* This package provides language-extension metadata for modeling requirement derivation. */
 	
 	import DerivationConnections::*;
@@ -12,7 +12,7 @@ package RequirementDerivation {
 		 */
 		 
 		:> annotatedElement : SysML::Usage;
-		:>> baseType = derivedRequirements as SysML::Usage;		
+		:>> baseType = derivedRequirements meta SysML::Usage;
 	}
 	
 	metadata def <derive> DerivedRequirementMetadata :> SemanticMetadata {
@@ -23,7 +23,7 @@ package RequirementDerivation {
 		 */
 		 
 		:> annotatedElement : SysML::Usage;	
-		:>> baseType = originalRequirements as SysML::Usage;
+		:>> baseType = originalRequirements meta SysML::Usage;
 	}
 	
 	metadata def <derivation> DerivationMetadata :> SemanticMetadata {
@@ -34,6 +34,6 @@ package RequirementDerivation {
 		 
 		:> annotatedElement : SysML::ConnectionDefinition;
 		:> annotatedElement : SysML::ConnectionUsage;
-		:>> baseType = derivations as SysML::Usage;
+		:>> baseType = derivations meta SysML::Usage;
 	}	
 }

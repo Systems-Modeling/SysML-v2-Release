@@ -1,5 +1,4 @@
 package ServerSequenceRealization_3 {
-	import Transfers::TransferBefore;
 	import ServerSequenceModel::*;
 	import Configuration::*;
 	
@@ -39,7 +38,6 @@ package ServerSequenceRealization_3 {
 			}
 			
 			flow publish_request from producerBehavior.publish.request to publicationPort.publish;
-					
 		}
 		
 		interface publication_interface : PublicationInterface connect producer_3.publicationPort to server_3.publicationPort {

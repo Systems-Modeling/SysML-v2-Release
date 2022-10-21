@@ -1,4 +1,4 @@
-package ISQAcoustics {
+standard library package ISQAcoustics {
     doc
     /*
      * International System of Quantities and Units

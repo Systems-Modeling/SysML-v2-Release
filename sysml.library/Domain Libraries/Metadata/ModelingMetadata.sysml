@@ -1,4 +1,4 @@
-package ModelingMetadata {
+standard library package ModelingMetadata {
 	doc
 	/*
 	 * This package contains definitions of metadata generally useful for annotating models.

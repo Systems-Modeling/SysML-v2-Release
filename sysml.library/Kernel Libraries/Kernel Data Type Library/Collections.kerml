@@ -1,4 +1,4 @@
-package Collections {
+standard library package Collections {
 	doc
 	/*
 	 * This package defines a standard set of Collection data types. Unlike sequences of values 

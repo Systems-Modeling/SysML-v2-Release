@@ -1,4 +1,4 @@
-package ISQAtomicNuclear {
+standard library package ISQAtomicNuclear {
     doc
     /*
      * International System of Quantities and Units

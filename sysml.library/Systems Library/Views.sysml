@@ -1,4 +1,4 @@
-package Views {
+standard library package Views {
 	doc
 	/*
 	 * This package defines the base types for views, viewpoints, renderings and related elements 

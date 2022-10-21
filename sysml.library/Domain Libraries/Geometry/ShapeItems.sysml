@@ -1,4 +1,4 @@
-package ShapeItems {
+standard library package ShapeItems {
 	doc
 	/*
 	 * This package provides a model of items that represent basic geometric shapes. 

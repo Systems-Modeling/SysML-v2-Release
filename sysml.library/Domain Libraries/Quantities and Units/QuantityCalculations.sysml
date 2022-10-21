@@ -1,4 +1,4 @@
-package QuantityCalculations {
+standard library package QuantityCalculations {
 	import ScalarValues::*;
     import Quantities::ScalarQuantityValue;
     import MeasurementReferences::ScalarMeasurementReference;

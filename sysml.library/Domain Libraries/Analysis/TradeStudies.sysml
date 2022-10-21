@@ -1,4 +1,4 @@
-package TradeStudies {
+standard library package TradeStudies {
 	doc
 	/*
 	 * This package provides a simple framework for defining trade-off study analysis cases.

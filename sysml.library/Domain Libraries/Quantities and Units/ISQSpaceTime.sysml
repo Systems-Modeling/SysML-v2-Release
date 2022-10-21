@@ -1,4 +1,4 @@
-package ISQSpaceTime {
+standard library package ISQSpaceTime {
     doc
     /*
      * International System of Quantities and Units

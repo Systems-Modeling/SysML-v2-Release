@@ -1,4 +1,4 @@
-package Requirements {
+standard library package Requirements {
 	doc
 	/*
 	 * This package defines the base types for requirements and related elements in the SysML language.

@@ -1,4 +1,4 @@
-package Time {
+standard library package Time {
 	doc
 	/*
 	 * This package specifies concepts to support time-related quantities and metrology, beyond 

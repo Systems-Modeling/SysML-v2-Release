@@ -1,4 +1,4 @@
-package Quantities {
+standard library package Quantities {
 	doc
 	/*
 	 * This package defines the root representations for quantities and their values.

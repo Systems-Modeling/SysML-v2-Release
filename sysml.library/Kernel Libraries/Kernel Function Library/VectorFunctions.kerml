@@ -1,4 +1,4 @@
-package VectorFunctions {
+standard library package VectorFunctions {
 	doc
 	/*
 	 * This package defines abstract functions on VectorValues corresponding to the algebraic operations

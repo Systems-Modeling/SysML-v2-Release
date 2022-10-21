@@ -1,4 +1,4 @@
-package SpatialFrames {
+standard library package SpatialFrames {
 	doc
 	/*
 	 * This package models spatial frames of reference for quantifying the position of points 
@@ -69,7 +69,7 @@ package SpatialFrames {
 	}
 	
 	abstract function CurrentPositionOf {
-	doc
+		doc
 		/*
 		 * The CurrentPositionOf a Point relative to a SpatialFrame and a Clock is the PositionOf
 		 * the Point relative to the SpatialFrame at the currentTime of the Clock.
@@ -83,7 +83,7 @@ package SpatialFrames {
 	}
 		
 	function DisplacementOf {
-	doc
+		doc
 		/*
 		 * The DisplacementOf two Points relative to a SpatialFrame, at a specific time relative to a
 		 * given Clock, is the displacementVector computed as the difference between the PositionOf the 

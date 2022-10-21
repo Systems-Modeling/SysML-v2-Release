@@ -1,4 +1,4 @@
-package Occurrences {
+standard library package Occurrences {
 	doc
 	/*
 	 * This package defines modeling constructs for anything existing or occurring in time and space, with
@@ -45,6 +45,7 @@ package Occurrences {
 			 * subperformances of Performances.
 			 */
 		}
+		connector :HappensDuring from self[1] to this[1];
 		
 		feature localClock : Clock[1] default universalClock  {
 			doc
@@ -67,6 +68,8 @@ package Occurrences {
 			 	 * Occurrence.
 			 	 */
 			 }
+			 
+			 feature redefines incomingTransferSort default (that as Occurrence).incomingTransferSort;
 		}
 		
 		feature predecessors: Occurrence[0..*] subsets occurrences {
@@ -457,6 +460,33 @@ package Occurrences {
 			end feature redefines source;
 			end feature redefines target;
 		}
+		
+		feature isDispatch : Boolean[1] default false {
+			doc
+			/*
+			 * Determines whether transfers to the dispatch scope might be accepted more than once.
+			 */
+		}
+ 		feature dispatchScope: Occurrence [1] default self;
+ 		connector :HappensDuring from self[1] to dispatchScope[1];
+ 		
+ 		feature isRunToCompletion: Boolean [1] default true {
+			doc
+			/*
+			 * Determines whether transition performances might happen during state entry performances
+			 * within the run to completion scope.
+			 */
+		}
+		feature runToCompletionScope: Occurrence [1] default self;
+		connector :HappensDuring from self[1] to runToCompletionScope[1];
+ 
+ 		feature incomingTransferSort : IncomingTransferSort [0..*] default earlierFirstIncomingTransferSort {
+			doc
+			/*
+			 * Determines which transfer to accept when multiple are available and which of the unaccepted 
+			 * transfers are never to be accepted (dispatched).
+			 */
+		}
 
 		feature all incomingTransfersToSelf subsets incomingTransfers {
 			doc
@@ -501,11 +531,21 @@ package Occurrences {
 	}
 
 	abstract feature occurrences: Occurrence[0..*] nonunique subsets things;
+	
+	predicate IncomingTransferSort specializes Performances::BooleanEvaluation {    
+		in t1: Transfers::Transfer [1];
+		in t2: Transfers::Transfer [1];  
+		return t1First: Boolean [1]; 
+	}
+
+	bool earlierFirstIncomingTransferSort : IncomingTransferSort {
+		return t1First = includes(t1.endShot.successors, t2.endShot);
+	}
 
 	assoc all SelfSameLifeLink specializes BinaryLink {
 		doc
 		/*
-		 * SelfSameLifeLink is a binary association that is equivalent to SelfLink it the
+		 * SelfSameLifeLink is a binary association that is equivalent to SelfLink if the
 		 * linked things are DataValues, but asserts that the link things are portions of
 		 * the same Life if they are Occurrences. A SelfSameLink is not itself an Occurrence
 		 * (SelfSameLifeLink is disjoint with LinkObject).

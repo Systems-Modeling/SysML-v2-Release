@@ -1,6 +1,5 @@
 package ServerSequenceModel {
-	import ScalarValues::*;
-	import Transfers::Transfer;
+	import ScalarValues::String;
 	import SignalDefinitions::*;
 
 	package SignalDefinitions {

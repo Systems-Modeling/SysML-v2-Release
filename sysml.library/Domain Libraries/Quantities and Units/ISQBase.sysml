@@ -1,4 +1,4 @@
-package ISQBase {
+standard library package ISQBase {
     doc
     /*
      * International System of Quantities and Units

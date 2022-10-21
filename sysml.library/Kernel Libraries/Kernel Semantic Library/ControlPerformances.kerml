@@ -1,4 +1,4 @@
-package ControlPerformances {
+standard library package ControlPerformances {
 	doc
 	/*
 	 * This package defines Behaviors to be used to type Steps that control the sequencing of performance

@@ -1,4 +1,4 @@
-package <USCU> USCustomaryUnits {
+standard library package <USCU> USCustomaryUnits {
 	doc
 	/*
 	 * Measurement unit declarations generated from NIST SP811 Appendix B

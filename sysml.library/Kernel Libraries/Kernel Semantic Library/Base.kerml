@@ -1,5 +1,4 @@
-
-package Base {
+standard library package Base {
 	doc 
 	/*
 	 * This package defines the classifiers and features that provide the bases for the typing

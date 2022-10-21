@@ -1,4 +1,4 @@
-package Allocations {
+standard library package Allocations {
 	doc
 	/*
 	 * This package defines the base types for allocations and related structural elements

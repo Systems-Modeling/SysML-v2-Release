@@ -1,4 +1,4 @@
-package Triggers {
+standard library package Triggers {
 	doc
 	/*
 	 * This package contains functions that return ChangeSignals for triggering

@@ -1,4 +1,4 @@
-package Metadata {
+standard library package Metadata {
 doc
 /*
  * This package defines the base types for metadata definitions and related 

@@ -1,4 +1,4 @@
-package Observation {
+standard library package Observation {
 	doc
 	/*
 	 * This package models a framework for monitoring Boolean conditions and notifying

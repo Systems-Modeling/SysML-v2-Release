@@ -1,4 +1,4 @@
-package FeatureReferencingPerformances {
+standard library package FeatureReferencingPerformances {
 	doc
 	/*
 	 * This package defines Behaviors used to read, write and monitor values of a referenced Feature of an 

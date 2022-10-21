@@ -1,4 +1,4 @@
-package SIPrefixes {
+standard library package SIPrefixes {
 	doc
 	/*
 	 * Definition of SI unit prefixes as specified in ISO/IEC 80000-1

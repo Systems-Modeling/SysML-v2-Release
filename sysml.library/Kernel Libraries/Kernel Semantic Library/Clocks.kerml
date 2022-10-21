@@ -1,4 +1,4 @@
-package Clocks {
+standard library package Clocks {
 	doc
 	/*
 	 * This package models Clocks that provide an advancing numerical reference 

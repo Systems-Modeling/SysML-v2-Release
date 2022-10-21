@@ -1,4 +1,4 @@
-package States {
+standard library package States {
 	doc
 	/*
 	 * This package defines the base types for states and related behavioral elements in the
@@ -27,8 +27,7 @@ package States {
 		do action doAction: Action :>> 'do' :> subactions;
 		exit action exitAction: Action :>> 'exit';
 		
-		attribute :>> isTriggerDuring = true;
-		attribute :>> isAcceptFirst = true;
+		attribute :>> isTriggerDuring;
 		
 		ref state self: StateAction :>> Action::self, StatePerformance::self;
 		
@@ -83,7 +82,7 @@ package States {
 			TransitionAction::transitionLinkSource, StateTransitionPerformance::transitionLinkSource;
 			
 		out payload[0..*];
-		in receiver : Occurrence[1];
+		in :>> receiver;
 		
 		bind payload = accepter.payload;
 		bind receiver = accepter.receiver;
@@ -95,5 +94,4 @@ package States {
 		 * stateActions is the base feature for all StateUsages.
 		 */
 	}
-	
 }

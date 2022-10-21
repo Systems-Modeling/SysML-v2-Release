@@ -1,4 +1,4 @@
-package ISQLight {
+standard library package ISQLight {
     doc
     /*
      * International System of Quantities and Units
