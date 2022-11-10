@@ -18,7 +18,7 @@ standard library package SysML {
 	}		
 			
 	metadata def ActionUsage specializes Step, OccurrenceUsage {
-		derived ref item actionDefinition : Behavior[1..*] redefines behavior, occurrenceDefinition;
+		derived ref item actionDefinition : Behavior[0..*] redefines behavior, occurrenceDefinition;
 	}		
 			
 	metadata def ActorMembership specializes ParameterMembership {
@@ -30,7 +30,7 @@ standard library package SysML {
 	}		
 			
 	metadata def AllocationUsage specializes ConnectionUsage {
-		derived ref item allocationDefinition : AllocationDefinition[1..*] redefines connectionDefinition;
+		derived ref item allocationDefinition : AllocationDefinition[0..*] redefines connectionDefinition;
 	}		
 			
 	metadata def AnalysisCaseDefinition specializes CaseDefinition {
@@ -40,7 +40,7 @@ standard library package SysML {
 			
 	metadata def AnalysisCaseUsage specializes CaseUsage {
 		derived ref item analysisAction : ActionUsage[0..*] subsets feature;
-		derived ref item analysisCaseDefinition : AnalysisCaseDefinition[1..1] redefines caseDefinition;
+		derived ref item analysisCaseDefinition : AnalysisCaseDefinition[0..1] redefines caseDefinition;
 		derived ref item resultExpression : Expression[0..1] subsets ownedFeature;
 	}		
 			
@@ -59,7 +59,7 @@ standard library package SysML {
 	metadata def AttributeUsage specializes Usage {
 		attribute isReference : Boolean[1..1] redefines isReference;
 		
-		derived ref item attributeDefinition : DataType[1..*] redefines definition;
+		derived ref item attributeDefinition : DataType[0..*] redefines definition;
 	}		
 			
 	metadata def BindingConnectorAsUsage specializes BindingConnector, ConnectorAsUsage;		
@@ -69,7 +69,7 @@ standard library package SysML {
 	}		
 			
 	metadata def CalculationUsage specializes Expression, ActionUsage {
-		derived ref item calculationDefinition : Function[1..1] redefines function, actionDefinition;
+		derived ref item calculationDefinition : Function[0..1] redefines function, actionDefinition;
 	}		
 			
 	metadata def CaseDefinition specializes CalculationDefinition {
@@ -80,7 +80,7 @@ standard library package SysML {
 			
 	metadata def CaseUsage specializes CalculationUsage {
 		derived ref item objectiveRequirement : RequirementUsage[0..1] subsets nestedRequirement;
-		derived ref item caseDefinition : CaseDefinition[1..1] redefines calculationDefinition;
+		derived ref item caseDefinition : CaseDefinition[0..1] redefines calculationDefinition;
 		derived ref item subjectParameter : Usage[1..1] subsets parameter, nestedUsage;
 		derived ref item actorParameter : PartUsage[0..*] subsets nestedPart, parameter;
 	}		
@@ -88,7 +88,7 @@ standard library package SysML {
 	metadata def ConcernDefinition specializes RequirementDefinition;		
 			
 	metadata def ConcernUsage specializes RequirementUsage {
-		derived ref item concernDefinition : ConcernDefinition[1..1] redefines requirementDefinition;
+		derived ref item concernDefinition : ConcernDefinition[0..1] redefines requirementDefinition;
 	}		
 			
 	metadata def ConjugatedPortDefinition specializes PortDefinition {
@@ -102,11 +102,11 @@ standard library package SysML {
 	}		
 			
 	metadata def ConnectionDefinition specializes AssociationStructure, PartDefinition {
-		derived ref item connectionEnd : Usage[2..*] redefines associationEnd;
+		derived ref item connectionEnd : Usage[0..*] redefines associationEnd;
 	}		
 			
 	metadata def ConnectionUsage specializes ConnectorAsUsage, PartUsage {
-		derived ref item connectionDefinition : AssociationStructure[1..*] subsets itemDefinition redefines association;
+		derived ref item connectionDefinition : AssociationStructure[0..*] subsets itemDefinition redefines association;
 	}		
 			
 	abstract metadata def ConnectorAsUsage specializes Usage, Connector;		
@@ -187,7 +187,7 @@ standard library package SysML {
 	metadata def FlowConnectionDefinition specializes Interaction, ActionDefinition, ConnectionDefinition;		
 			
 	metadata def FlowConnectionUsage specializes ConnectionUsage, ItemFlow, ActionUsage {
-		derived ref item flowConnectionDefinition : Interaction[1..*] redefines actionDefinition, interaction, connectionDefinition;
+		derived ref item flowConnectionDefinition : Interaction[0..*] redefines actionDefinition, interaction, connectionDefinition;
 	}		
 			
 	metadata def ForLoopActionUsage specializes LoopActionUsage {
@@ -215,17 +215,17 @@ standard library package SysML {
 	}		
 			
 	metadata def InterfaceDefinition specializes ConnectionDefinition {
-		derived ref item interfaceEnd : PortUsage[2..*] redefines connectionEnd;
+		derived ref item interfaceEnd : PortUsage[0..*] redefines connectionEnd;
 	}		
 			
 	metadata def InterfaceUsage specializes ConnectionUsage {
-		derived ref item interfaceDefinition : InterfaceDefinition[1..*] redefines connectionDefinition;
+		derived ref item interfaceDefinition : InterfaceDefinition[0..*] redefines connectionDefinition;
 	}		
 			
 	metadata def ItemDefinition specializes Structure, OccurrenceDefinition;		
 			
 	metadata def ItemUsage specializes OccurrenceUsage {
-		derived ref item itemDefinition : Structure[1..*] subsets occurrenceDefinition;
+		derived ref item itemDefinition : Structure[0..*] subsets occurrenceDefinition;
 	}		
 			
 	metadata def JoinNode specializes ControlNode;		
@@ -241,7 +241,7 @@ standard library package SysML {
 	metadata def MetadataDefinition specializes ItemDefinition, Metaclass;		
 			
 	metadata def MetadataUsage specializes ItemUsage, MetadataFeature {
-		derived ref item metadataDefinition : Metaclass[1..1] redefines itemDefinition, metaclass;
+		derived ref item metadataDefinition : Metaclass[0..1] redefines itemDefinition, metaclass;
 	}		
 			
 	metadata def ObjectiveMembership specializes FeatureMembership {
@@ -258,7 +258,7 @@ standard library package SysML {
 		attribute isIndividual : Boolean[1..1];
 		attribute portionKind : PortionKind[0..1];
 		
-		derived ref item occurrenceDefinition : Class[1..*] redefines definition;
+		derived ref item occurrenceDefinition : Class[0..*] redefines definition;
 		derived ref item portioningFeature : PortioningFeature[0..1] subsets ownedFeature;
 		derived ref item individualDefinition : OccurrenceDefinition[0..1] subsets occurrenceDefinition;
 	}		
@@ -266,7 +266,7 @@ standard library package SysML {
 	metadata def PartDefinition specializes ItemDefinition;		
 			
 	metadata def PartUsage specializes ItemUsage {
-		derived ref item partDefinition : PartDefinition[1..*] subsets itemDefinition;
+		derived ref item partDefinition : PartDefinition[0..*] subsets itemDefinition;
 	}		
 			
 	metadata def PerformActionUsage specializes ActionUsage, EventOccurrenceUsage {
@@ -283,7 +283,7 @@ standard library package SysML {
 	}		
 			
 	metadata def PortUsage specializes OccurrenceUsage {
-		derived ref item portDefinition : PortDefinition[1..*] redefines occurrenceDefinition;
+		derived ref item portDefinition : PortDefinition[0..*] redefines occurrenceDefinition;
 	}		
 			
 	enum def PortionKind {
@@ -304,7 +304,7 @@ standard library package SysML {
 	}		
 			
 	metadata def RenderingUsage specializes PartUsage {
-		derived ref item renderingDefinition : RenderingDefinition[1..1] redefines partDefinition;
+		derived ref item renderingDefinition : RenderingDefinition[0..1] redefines partDefinition;
 	}		
 			
 	enum def RequirementConstraintKind {
@@ -335,7 +335,7 @@ standard library package SysML {
 		attribute reqId : String[0..1] redefines shortName;
 		derived attribute text : String[0..*];
 		
-		derived ref item requirementDefinition : RequirementDefinition[1..1] redefines constraintDefinition;
+		derived ref item requirementDefinition : RequirementDefinition[0..1] redefines constraintDefinition;
 		derived ref item requiredConstraint : ConstraintUsage[0..*] subsets ownedFeature;
 		derived ref item assumedConstraint : ConstraintUsage[0..*] subsets ownedFeature;
 		derived ref item subjectParameter : Usage[1..1] subsets parameter, nestedUsage;
@@ -390,7 +390,7 @@ standard library package SysML {
 	metadata def StateUsage specializes ActionUsage {
 		attribute isParallel : Boolean[1..1];
 		
-		derived ref item stateDefinition : Behavior[1..*] redefines actionDefinition;
+		derived ref item stateDefinition : Behavior[0..*] redefines actionDefinition;
 		derived ref item entryAction : ActionUsage[0..1];
 		derived ref item doAction : ActionUsage[0..1];
 		derived ref item exitAction : ActionUsage[0..1];
@@ -469,7 +469,7 @@ standard library package SysML {
 		derived ref item nestedAllocation : AllocationUsage[0..*] subsets nestedConnection;
 		derived ref item nestedConcern : ConcernUsage[0..*] subsets nestedRequirement;
 		derived ref item nestedOccurrence : OccurrenceUsage[0..*] subsets nestedUsage;
-		derived ref item definition : Classifier[1..*] redefines type;
+		derived ref item definition : Classifier[0..*] redefines type;
 		derived ref item nestedUseCase : UseCaseUsage[0..*] subsets nestedCase;
 		derived ref item nestedFlow : FlowConnectionUsage[0..*] subsets nestedConnection;
 		derived ref item nestedMetadata : MetadataUsage[0..*] subsets nestedItem;
@@ -480,7 +480,7 @@ standard library package SysML {
 	}		
 			
 	metadata def UseCaseUsage specializes CaseUsage {
-		derived ref item useCaseDefinition : UseCaseDefinition[1..1] redefines caseDefinition;
+		derived ref item useCaseDefinition : UseCaseDefinition[0..1] redefines caseDefinition;
 		derived ref item includedUseCase : UseCaseUsage[0..*];
 	}		
 			
@@ -493,7 +493,7 @@ standard library package SysML {
 	}		
 			
 	metadata def VerificationCaseUsage specializes CaseUsage {
-		derived ref item verificationCaseDefinition : VerificationCaseDefinition[1..1] subsets caseDefinition;
+		derived ref item verificationCaseDefinition : VerificationCaseDefinition[0..1] subsets caseDefinition;
 		derived ref item verifiedRequirement : RequirementUsage[0..*];
 	}		
 			
@@ -510,7 +510,7 @@ standard library package SysML {
 	}		
 			
 	metadata def ViewUsage specializes PartUsage {
-		derived ref item viewDefinition : ViewDefinition[1..1] redefines partDefinition;
+		derived ref item viewDefinition : ViewDefinition[0..1] redefines partDefinition;
 		derived ref item satisfiedViewpoint : ViewpointUsage[0..*] subsets nestedUsage;
 		derived ref item exposedNamespace : Namespace[0..*];
 		derived ref item viewRendering : RenderingUsage[0..1] subsets nestedUsage;
@@ -523,7 +523,7 @@ standard library package SysML {
 	}		
 			
 	metadata def ViewpointUsage specializes RequirementUsage {
-		derived ref item viewpointDefinition : ViewpointDefinition[1..1] redefines requirementDefinition;
+		derived ref item viewpointDefinition : ViewpointDefinition[0..1] redefines requirementDefinition;
 		derived ref item viewpointStakeholder : PartUsage[0..*];
 	}		
 			

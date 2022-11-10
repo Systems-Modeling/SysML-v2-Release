@@ -44,7 +44,7 @@ standard library package Connections {
 		end target: Anything[0..*] :>> BinaryLinkObject::target;
 	}
 	
-	abstract flow def MessageConnection :> BinaryConnection, Transfer {
+	abstract flow def MessageConnection :> BinaryConnection, Transfer, Action {
 		doc
 		/*
 		 * MessageConnection is the class of binary connections that represent a transfer 
@@ -117,7 +117,7 @@ standard library package Connections {
 		 */
 	}
 	
-	abstract message messageConnections: MessageConnection[0..*] nonunique :> binaryConnections, transfers {
+	abstract message messageConnections: MessageConnection[0..*] nonunique :> binaryConnections, transfers, actions {
 		doc
 		/*
 		 * messageConnections is the base feature of all FlowConnectionUsages.

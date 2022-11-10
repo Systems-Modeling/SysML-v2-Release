@@ -29,4 +29,7 @@ package MetadataTest {
 		@Security;
 	}
 	
+	private #Classified #Security feature z1;
+	abstract #Classified z2;
+	
 }

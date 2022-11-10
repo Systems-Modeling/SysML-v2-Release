@@ -37,8 +37,7 @@ standard library package BaseFunctions {
 	}
 	
     abstract function 'all'{
-    	abstract feature all 'type': Object;
-    	return : Object[0..*];
+     	return : Object[0..*];
     }
     
 	abstract function 'istype'{ 
@@ -67,14 +66,12 @@ standard library package BaseFunctions {
 	
 	abstract function 'as'{ 
 		in seq: Anything[0..*] ordered nonunique; 
-		abstract feature 'type': Anything;
 		return : Anything[0..*] ordered nonunique;
 	}
 	
 	abstract function 'meta'{ 
 		in seq: Metaobject[0..*] ordered nonunique; 
-		abstract feature 'type': Metaobject;
-		return : Anything[0..*] ordered nonunique;
+		return : Metaobject[0..*] ordered nonunique;
 	}
 	
 }

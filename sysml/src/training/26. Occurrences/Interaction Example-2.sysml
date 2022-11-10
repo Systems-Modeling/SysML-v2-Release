@@ -1,9 +1,9 @@
 package 'Interaction Example-2' {
 	import 'Event Occurrence Example'::*;
 	
-	attribute def SetSpeed;
-	attribute def SensedSpeed;
-	attribute def FuelCommand;
+	item def SetSpeed;
+	item def SensedSpeed;
+	item def FuelCommand;
 	
 	occurrence def CruiseControlInteraction {
 		
