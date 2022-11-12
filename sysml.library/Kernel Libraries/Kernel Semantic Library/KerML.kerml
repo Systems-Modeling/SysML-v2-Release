@@ -385,7 +385,7 @@ standard library package KerML {
 		}		
 				
 		metaclass LiteralRational specializes LiteralExpression {
-			feature value : double[1..1];
+			feature value : Real[1..1];
 		}		
 				
 		metaclass LiteralString specializes LiteralExpression {

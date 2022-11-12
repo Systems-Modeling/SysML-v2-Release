@@ -114,7 +114,7 @@ standard library package SysML {
 	metadata def ConstraintDefinition specializes OccurrenceDefinition, Predicate;		
 			
 	metadata def ConstraintUsage specializes BooleanExpression, OccurrenceUsage {
-		derived ref item constraintDefinition : Predicate[1..1] redefines predicate;
+		derived ref item constraintDefinition : Predicate[0..1] redefines predicate;
 	}		
 			
 	abstract metadata def ControlNode specializes ActionUsage;		
