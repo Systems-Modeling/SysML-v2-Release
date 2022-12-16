@@ -5,9 +5,9 @@ standard library package StateSpaceRepresentation {
 	 * commonly used in control systems.
 	 */
 
-    import ISQ::DurationValue;
-    import Quantities::VectorQuantityValue;
-    import VectorCalculations::*;
+    private import ISQ::DurationValue;
+    private import Quantities::VectorQuantityValue;
+    private import VectorCalculations::*;
 
     abstract attribute def StateSpace :> VectorQuantityValue;
     abstract attribute def Input :> VectorQuantityValue;

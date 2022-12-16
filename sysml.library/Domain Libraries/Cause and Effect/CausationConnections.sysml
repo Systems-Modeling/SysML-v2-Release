@@ -5,6 +5,10 @@ standard library package CausationConnections {
 	 * between them.
 	 */
 
+	private import SequenceFunctions::isEmpty;
+	private import SequenceFunctions::size;
+	private import SequenceFunctions::intersection;
+		 
 	abstract occurrence causes[*] {
 		doc /* Occurrences that are causes. */
 	}
@@ -24,8 +28,6 @@ standard library package CausationConnections {
 		 * should subset 'causes', while ends representing effects should subset 'effects'.
 		 * There must be at least one cause and at least one effect.
 		 */
-		 
-		private import SequenceFunctions::*;
 		 
 		ref occurrence causes[1..*] :>> causes :> participant {
 			doc /* The causing occurrences. */

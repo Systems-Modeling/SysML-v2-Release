@@ -3,6 +3,9 @@ standard library package DerivationConnections {
 	/*
 	 * This package provides a library model for derivation connections between requirements.
 	 */
+	 
+	private import SequenceFunctions::excludes;
+	private import ControlFunctions::allTrue;
 	
 	requirement originalRequirements[*] {
 		doc /* originalRequirements are the original requirements in Derivation connections. */
@@ -38,7 +41,7 @@ standard library package DerivationConnections {
 		private assert constraint originalNotDerived {
 			doc /* The original requirement must not be a derived requirement. */
 			
-			derivedRequirements->SequenceFunctions::excludes(originalRequirement)
+			derivedRequirements->excludes(originalRequirement)
 		}
 		
 		private assert constraint originalImpliesDerived {
@@ -48,7 +51,7 @@ standard library package DerivationConnections {
 			 * be satisfied.
 			 */
 			 
-			originalRequirement.result implies ControlFunctions::allTrue(derivedRequirements.result)
+			originalRequirement.result implies allTrue(derivedRequirements.result)
 		}	
 	}
 	

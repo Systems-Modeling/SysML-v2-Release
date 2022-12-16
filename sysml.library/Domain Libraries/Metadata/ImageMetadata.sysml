@@ -6,7 +6,7 @@ standard library package ImageMetadata {
 	 * adorn graphical or textual renderings.
 	 */
 	 
-	import ScalarValues::String;
+	private import ScalarValues::String;
 	
 	attribute def Image {
 		doc

@@ -49,14 +49,13 @@ standard library package KerML {
 			derived feature textualRepresentation : TextualRepresentation[0..*] subsets ownedElement;
 		}		
 				
-		metaclass Import specializes Relationship {
+		abstract metaclass Import specializes Relationship {
 			feature visibility : VisibilityKind[1..1];
-			feature importedMemberName : String[0..1];
 			feature isRecursive : Boolean[1..1];
 			feature isImportAll : Boolean[1..1];
 			
-			feature importedNamespace : Namespace[1..1] redefines target;
 			derived feature importOwningNamespace : Namespace[1..1] subsets owningRelatedElement redefines source;
+			derived feature importedElement : Element[1..1];
 		}		
 				
 		metaclass Membership specializes Relationship {
@@ -69,6 +68,10 @@ standard library package KerML {
 			derived feature membershipOwningNamespace : Namespace[1..1] subsets owningRelatedElement redefines source;
 		}		
 				
+		metaclass MembershipImport specializes Import {
+			feature importedMembership : Membership[1..1] redefines target;
+		}		
+				
 		metaclass Namespace specializes Element {
 			abstract derived feature membership : Membership[0..*];
 			composite derived feature ownedImport : Import[0..*] subsets ownedRelationship;
@@ -76,6 +79,10 @@ standard library package KerML {
 			derived feature ownedMember : Element[0..*] subsets 'member';
 			composite derived feature ownedMembership : Membership[0..*] subsets membership, ownedRelationship;
 			derived feature importedMembership : Membership[0..*] subsets membership;
+		}		
+				
+		metaclass NamespaceImport specializes Import {
+			feature importedNamespace : Namespace[1..1] redefines target;
 		}		
 				
 		metaclass OwningMembership specializes Membership {

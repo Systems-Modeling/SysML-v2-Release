@@ -5,7 +5,7 @@ standard library package ParametersOfInterestMetadata {
 	 * including measures of effectiveness (MOE) and other key measures of performance (MOP).
 	 */
 	 
-	 import Metaobjects::SemanticMetadata;
+	 private import Metaobjects::SemanticMetadata;
 	 
 	 attribute measuresOfEffectiveness[*] nonunique {
 	 	doc /* Base feature for attributes that are measures of effectiveness. */
