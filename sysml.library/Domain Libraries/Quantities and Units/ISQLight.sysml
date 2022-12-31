@@ -408,11 +408,11 @@ standard library package ISQLight {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
-    /* ISO-80000-7 item 7-8.1 radiant exitance , radiant emittance */
+    /* ISO-80000-7 item 7-8.1 radiant exitance, radiant emittance */
     attribute def RadiantExitanceValue :> ScalarQuantityValue {
         doc
         /*
-         * source: item 7-8.1 radiant exitance , radiant emittance
+         * source: item 7-8.1 radiant exitance, radiant emittance
          * symbol(s): `M_e`, `(M)`
          * application domain: generic
          * name: RadiantExitance
