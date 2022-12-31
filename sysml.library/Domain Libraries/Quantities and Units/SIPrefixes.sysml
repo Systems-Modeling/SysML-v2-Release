@@ -11,6 +11,8 @@ standard library package SIPrefixes {
 	 * 
 	 * See also https://en.wikipedia.org/wiki/Unit_prefix
 	 */
+	attribute quecto: UnitPrefix { :>> longName = "quecto"; :>> symbol = "q"; :>> conversionFactor = 1E-30; }
+	attribute ronto: UnitPrefix { :>> longName = "ronto"; :>> symbol = "r"; :>> conversionFactor = 1E-27; }
 	attribute yocto: UnitPrefix { :>> longName = "yocto"; :>> symbol = "y"; :>> conversionFactor = 1E-24; }
 	attribute zepto: UnitPrefix { :>> longName = "zepto"; :>> symbol = "z"; :>> conversionFactor = 1E-21; }
 	attribute atto: UnitPrefix { :>> longName = "atto"; :>> symbol = "a"; :>> conversionFactor = 1E-18; }
@@ -31,7 +33,9 @@ standard library package SIPrefixes {
 	attribute exa: UnitPrefix { :>> longName = "exa"; :>> symbol = "E"; :>> conversionFactor = 1E18; }
 	attribute zetta: UnitPrefix { :>> longName = "zetta"; :>> symbol = "Z"; :>> conversionFactor = 1E21; }
 	attribute yotta: UnitPrefix { :>> longName = "yotta"; :>> symbol = "Y"; :>> conversionFactor = 1E24; }
-	
+	attribute ronna: UnitPrefix { :>> longName = "ronna"; :>> symbol = "R"; :>> conversionFactor = 1E27; }
+	attribute quetta: UnitPrefix { :>> longName = "quetta"; :>> symbol = "Q"; :>> conversionFactor = 1E30; }
+
 	/*
 	 * ISO/IEC 80000-1 prefixes for binary multiples, i.e. multiples of 1024 (= 2^10)
 	 * 
