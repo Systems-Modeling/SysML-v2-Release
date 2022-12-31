@@ -703,7 +703,7 @@ standard library package ISQThermodynamics {
          * measurement unit(s): J/(kg*K), m^2*s^-2*K^-1
          * tensor order: 0
          * definition: quotient of entropy and mass: `s = S/m` where `S` is entropy (item 5-18) and `m` is mass (ISO 80000-4)
-         * remarks: For the corresponding quantity related to amount of substance, see ISO 80000-9.
+         * remarks: For the corresponding quantities related to amount of substance, see ISO 80000-9.
          */
         attribute :>> num: Real;
         attribute :>> mRef: SpecificEntropyUnit[1];

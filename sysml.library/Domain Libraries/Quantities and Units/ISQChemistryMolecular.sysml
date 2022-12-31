@@ -409,14 +409,14 @@ standard library package ISQChemistryMolecular {
          */
     }
 
-    /* ISO-80000-9 item 9-13 amount-of-substance fraction mole fraction */
-    attribute def AmountOfSubstanceFractionMoleFractionValue :> DimensionOneValue {
+    /* ISO-80000-9 item 9-13 amount-of-substance fraction, mole fraction */
+    attribute def AmountOfSubstanceFractionValue :> DimensionOneValue {
         doc
         /*
-         * source: item 9-13 amount-of-substance fraction mole fraction
+         * source: item 9-13 amount-of-substance fraction, mole fraction
          * symbol(s): `x_X`, `y_X`
          * application domain: generic
-         * name: AmountOfSubstanceFractionMoleFraction (specializes DimensionOneQuantity)
+         * name: AmountOfSubstanceFraction (specializes DimensionOneQuantity)
          * quantity dimension: 1
          * measurement unit(s): 1
          * tensor order: 0
