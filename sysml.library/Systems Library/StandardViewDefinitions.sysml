@@ -4,44 +4,20 @@ standard library package StandardViewDefinitions {
          */
     import SysML::*;
 
-    view def <cv> ContainmentView {
-        doc /*
-             * View definition to present the hierarchical membership structure of model
-             * elements starting from an exposed root element.
-             * The typical rendering in graphical notation is as an indented list of rows,
-             * consisting of dynamically collapsible-expandable nodes that represent
-             * branches and leaves of the tree.
-             */
-    }
-
-    view def <mv> MemberView {
+    view def <gv> GeneralView {
         doc /*
              * View definition to present any members of exposed model element(s).
              * This is the most general view, enabling presentation of any model element.
              * The typical rendering in graphical notation is as a graph of nodes and edges.
-             */
-    }
-
-    view def <pv> PackageView {
-        doc /*
-             * View definition to present package structure and content.
-             * Owned or imported packages are presented as nodes and their members can
-             * be presented in textual compartments.
-             */
-    }
-
-    view def <duv> DefinitionAndUsageView {
-        doc /*
-             * View definition to present Definition and Usage members of exposed model
-             * element(s), as well as the relationships between them.
-             */
-    }
-
-    view def <tv> TreeView {
-        doc /*
-             * View definition to present exposed features as nodes, and membership
-             * relationships as edges.
-             * The typical rendering in graphical notation is as a graph of nodes and edges.
+             * Specializations of GeneralView can be specified through appropriate selection of filters, e.g.:
+             * - package view, filtering on Package, Package containment, package Import
+             * - definition and usage view, filtering on Definition, Usage, Specialization, FeatureTyping (covering defined by)
+             * - requirement view, filtering on RequirementDefinition, RequirementUsage, Specialization, FeatureTyping, 
+             *   SatisfyRequirementUsage, AllocationDefinition, AllocationUsage,
+             * - view and viewpoint view, filtering on ViewDefinition, ViewUsage, ViewpointDefinition, ViewpointUsage, 
+             *   RenderingDefinition, RenderingUsage, ConcernDefinition, ConcernUsage, StakeholderMembership, ...
+             * - language extension view, filtering on Metaclass, MetadataFeature, MetadataAccessExpression, ...
+             * Note: filters are specified by referencing concepts from the KerML.kerml and SysML.sysml standard library packages.
              */
     }
 
@@ -102,100 +78,18 @@ standard library package StandardViewDefinitions {
              */
     }
 
-    view def <ucv> UseCaseView {
+    view def <cv> CaseView {
         doc /*
-             * View definition to present exposed use cases.
-             * Valid nodes and edges in a UseCaseView are:
-             * - Use case, with subject
-             * - Actor
-             * - Include relationship
-             * - Objective
-             * - Compartments
-             * - Binding connection between an actor and an input parameter with same
-             *   name (TBC)
-             */
-    }
-
-    view def <rv> RequirementView {
-        doc /*
-             * View definition to present exposed requirements and their relationships.
-             * Valid nodes and edges in a UseCaseView are:
-             * - Requirement, including possible metadata
-             * - Nested requirements
-             * - Objective
-             * - Requirement allocation
-             * - Requirement satisfaction (shown in a satisfy requirements compartment)
-             * - Verified by
-             */
-    }
-
-    view def <acv> AnalysisCaseView {
-        doc /*
-             * View definition to present exposed analysis cases and their relationships.
-             * Valid nodes and edges in an AnalysisCaseView are:
-             * - Analysis case
-             * - Actor
-             * - Objective
-             * - Action
-             * - Calculation
-             * - Compartments
-             * - Binding connection between an actor and an input parameter with same
-             *   name (TBC)
-             */
-    }
-
-    view def <vcv> VerificationCaseView {
-        doc /*
-             * View definition to present exposed verification cases and their
-             * relationships.
-             * Valid nodes and edges in a VerificationCaseView are:
-             * - Verification case, with subject, i.e., unit/article under verification
-             * - Actor
-             * - Objective
-             * - Action, e.g., steps needed to perform the verification
-             * - Requirement
-             * - Verify relationship
-             * - Compartments
-             * - Binding connection between an actor and an input parameter with the
-             *   same name
-             */
-    }
-
-    view def <vvv> ViewAndViewpointView {
-        doc /*
-             * View definition to present exposed View and Viewpoint.
-             * Valid nodes and edges in a ViewAndViewpointView are:
-             * - View definition
-             * - View usage
-             * - Viewpoint definition
-             * - Viewpoint Usage
-             * - Stakeholder
-             * - Concern definition
-             * - Concern Usage
-             * - Expose
-             * - Exposed element
-             * - Subclassification
-             * - Defined by
-             * - Subset
-             * - Redefinition
-             */
-    }
-
-    view def <lev> LanguageExtensionView {
-        doc /*
-             * View definition to present an exposed metadata definition used to extend
-             * a library concept.
-             */
-    }
-
-    view def <gv> GridView {
-        doc /*
-             * View definition to present exposed model elements and their relationships,
-             * arranged in a rectangular grid.
-             * GridView is the generalization of the following more specialized views:
-             * - Tabular view
-             * - Data value tabular view
-             * - Relationship matrix view
+             * View definition to present use cases, analysis cases or verification cases.
+             * In one view in principle only one of use cases, analysis cases or verification cases is rendered.
+             * - Valid nodes and edges in any CaseView are: CaseDefinition, CaseUsage, SubjectMembership, 
+             *   ObjectiveMembership, ActorMembership, RequirementDefinition, RequirementUsage
+             * - Valid nodes and edges in a use case view are: UseCaseDefinition, UseCaseUsage, 
+             *   IncludeUseCaseUsage, ...
+             * - Valid nodes and edges in an analysis view are: AnalysisCaseDefinition, AnalysisCaseUsage, 
+             *   ...
+             * - Valid nodes and edges in a verification view are: VerificationCaseDefinition, VerificationCaseUsage, 
+             *   ...
              */
     }
 
@@ -218,6 +112,27 @@ standard library package StandardViewDefinitions {
              * - object rendering mode, e.g., shaded, wireframe, hidden line
              * - object pan (placement) and rotate (orientation) settings
              * - color maps
+             */
+    }
+
+    view def <grv> GridView {
+        doc /*
+             * View definition to present exposed model elements and their relationships,
+             * arranged in a rectangular grid.
+             * GridView is the generalization of the following more specialized views:
+             * - Tabular view
+             * - Data value tabular view
+             * - Relationship matrix view, e.g. presenting allocation or dependency relationships
+             */
+    }
+
+    view def <bv> BrowserView {
+        doc /*
+             * View definition to present the hierarchical membership structure of model
+             * elements starting from one or more exposed root elements.
+             * The typical rendering in graphical notation is as an indented list of rows,
+             * consisting of dynamically collapsible-expandable nodes that represent
+             * branches and leaves of the tree, as in graphical user interface widgets.
              */
     }
 }

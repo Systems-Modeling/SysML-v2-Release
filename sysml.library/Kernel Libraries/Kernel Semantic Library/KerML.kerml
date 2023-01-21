@@ -24,17 +24,23 @@ standard library package KerML {
 			feature body : String[1..1];
 		}		
 				
+		metaclass Dependency specializes Relationship {
+			feature client : Element[1..*] redefines source;
+			feature supplier : Element[1..*] redefines target;
+		}		
+				
 		metaclass Documentation specializes Comment {
 			derived feature documentedElement : Element[1..1] subsets owner redefines annotatedElement;
 		}		
 				
-		metaclass Element {
+		abstract metaclass Element {
 			feature elementId : String[1..1];
 			feature aliasIds : String[0..*];
-			feature shortName : String[0..1];
-			feature name : String[0..1];
+			feature declaredShortName : String[0..1];
+			feature declaredName : String[0..1];
 			feature isImpliedIncluded : Boolean[1..1];
-			derived feature effectiveName : String[0..1];
+			derived feature shortName : String[0..1];
+			derived feature name : String[0..1];
 			derived feature qualifiedName : String[0..1];
 			derived feature isLibraryElement : Boolean[1..1];
 			
@@ -93,7 +99,7 @@ standard library package KerML {
 			composite derived feature ownedMemberElement : Element[1..1] subsets ownedRelatedElement redefines memberElement;
 		}		
 				
-		metaclass Relationship specializes Element {
+		abstract metaclass Relationship specializes Element {
 			feature isImplied : Boolean[1..1];
 			
 			feature target : Element[0..*] subsets relatedElement;

@@ -11,7 +11,9 @@ package PartTest {
 	}
 	
 	abstract part def <xx> B {
-		public abstract part a: A;
+		public abstract part a: A[1..2];
+		public abstract part b subsets a;
+		public abstract part c[0..1] subsets a;
 		port x: ~C;
 		package P { }
 		

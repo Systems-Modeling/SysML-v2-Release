@@ -60,7 +60,7 @@ standard library package SysML {
 		metadata def AttributeDefinition specializes DataType, Definition;		
 				
 		metadata def AttributeUsage specializes Usage {
-			attribute isReference : Boolean[1..1] redefines isReference;
+			derived attribute isReference : Boolean[1..1] redefines isReference;
 			
 			derived ref item attributeDefinition : DataType[0..*] redefines definition;
 		}		
@@ -160,11 +160,6 @@ standard library package SysML {
 			derived ref item ownedMetadata : MetadataUsage[0..*] subsets ownedItem;
 		}		
 				
-		metadata def Dependency specializes Relationship {
-			ref item client : Element[1..*] redefines source;
-			ref item supplier : Element[1..*] redefines target;
-		}		
-				
 		metadata def EnumerationDefinition specializes AttributeDefinition {
 			attribute isVariation : Boolean[1..1] redefines isVariation;
 			
@@ -176,6 +171,8 @@ standard library package SysML {
 		}		
 				
 		metadata def EventOccurrenceUsage specializes OccurrenceUsage {
+			derived attribute isReference : Boolean[1..1] redefines isReference;
+			
 			derived ref item eventOccurrence : OccurrenceUsage[1..1];
 		}		
 				
@@ -233,7 +230,9 @@ standard library package SysML {
 				
 		metadata def JoinNode specializes ControlNode;		
 				
-		metadata def LifeClass specializes Class;		
+		metadata def LifeClass specializes Class {
+			attribute isSufficient : Boolean[1..1] redefines isSufficient;
+		}		
 				
 		abstract metadata def LoopActionUsage specializes ActionUsage {
 			derived ref item bodyAction : ActionUsage[1..1];
@@ -327,7 +326,7 @@ standard library package SysML {
 		}		
 				
 		metadata def RequirementDefinition specializes ConstraintDefinition {
-			attribute reqId : String[0..1] redefines shortName;
+			attribute reqId : String[0..1] redefines declaredShortName;
 			derived attribute text : String[0..*];
 			
 			derived ref item assumedConstraint : ConstraintUsage[0..*] subsets ownedFeature;
@@ -339,7 +338,7 @@ standard library package SysML {
 		}		
 				
 		metadata def RequirementUsage specializes ConstraintUsage {
-			attribute reqId : String[0..1] redefines shortName;
+			attribute reqId : String[0..1] redefines declaredShortName;
 			derived attribute text : String[0..*];
 			
 			derived ref item requirementDefinition : RequirementDefinition[0..1] redefines constraintDefinition;

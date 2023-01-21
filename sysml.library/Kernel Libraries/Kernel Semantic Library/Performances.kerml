@@ -184,7 +184,7 @@ standard library package Performances {
 		return : Anything[0..0];
 	}
 
-	assoc Involves specializes BinaryLinkObject {
+	assoc all Involves specializes BinaryLinkObject {
 		doc
 		/*
 		 * Involves asserts that the Behavior carried out by the involvingPerformance involves the
@@ -195,7 +195,7 @@ standard library package Performances {
 		end feature involvedObject: Object[0..*] redefines target subsets involvingPerformance.involvedObjects;
 	}
 	
-	assoc Performs specializes Involves {
+	assoc all Performs specializes Involves {
 		doc
 		/*
 		 * Performance asserts that the performer enacts the Behavior carried out by the performance.
