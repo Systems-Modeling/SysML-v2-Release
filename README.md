@@ -69,7 +69,7 @@ Additional content can be accessed at the following URLs.
 
 The specification documents are copyrighted by the SST member organizations listed in those documents under the terms given there.
 
-The `Intro to the SysML v2 Language-Textual Notation` presentation is Copyright © 2019-2022 Model Driven Solutions, Inc. </br>
+The `Intro to the SysML v2 Language-Textual Notation` presentation is Copyright © 2019-2023 Model Driven Solutions, Inc. </br>
 The `Intro to the SysML v2 Language-Graphical Notation` presentation is Copyright © 2021-2022 Sandy Friedenthal. </br>
 Both presentations are licensed under the Creative Commons Attribution 4.0  International License. </br>
 To view a copy of this license, visit [http://creativecommons.org/licenses/by/4.0/](http://creativecommons.org/licenses/by/4.0/) 
@@ -80,12 +80,12 @@ under the GNU Lesser General Public License (LGPL) v3.0 (see `LICENSE` and `LICE
 SysML v2 repositories is as given in of those repository.
 
 Copyright © 2019-2021 California Institute of Technology (Jet Propulsion Laboratory) <br/>
-Copyright © 2019-2022 DEKonsult <br/>
+Copyright © 2019-2023 DEKonsult <br/>
 Copyright © 2019-2021 IncQuery Labs Ltd. <br/>
-Copyright © 2019-2022 Intercax LLC <br/>
+Copyright © 2019-2023 Intercax LLC <br/>
 Copyright © 2019-2021 Itemis <br/>
 Copyright © 2019-2021 Maplesoft (Waterloo Maple, Inc.) <br/>
-Copyright © 2019-2022 Mgnite Inc. <br/>
-Copyright © 2019-2022 Model Driven Solutions, Inc. <br/>
-Copyright © 2019-2022 SAF Consulting <br/>
-Copyright © 2021-2022 Twingineer LLC
+Copyright © 2019-2023 Mgnite Inc. <br/>
+Copyright © 2019-2023 Model Driven Solutions, Inc. <br/>
+Copyright © 2019-2023 SAF Consulting <br/>
+Copyright © 2021-2023 Twingineer LLC
