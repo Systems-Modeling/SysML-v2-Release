@@ -3,9 +3,6 @@ package '15_01-Constants' {
     import SI::*;
     import RealFunctions::*;
 
-    /* TODO: Move mathematical and fundamental physical constants to model library package(s) */
-    /* TODO: Add concept of precision for Real values */
-    
     /* Note: Value properties that are bound to specific values are constants and have the specified
      * values in all contexts. It is not legal to redefine them.
      */    
@@ -36,7 +33,6 @@ package '15_01-Constants' {
 	     * Standard fundamental physical constants
 	     * 
 	     * Physical constants have a standard measured attribute to a finite precision.
-	     * TODO: Represent physical constant attribute error bounds.
 	     *
 	     * The reference source is:
 	     * CODATA - Task Group on Fundamental Physical Constants (TGFC) - 2018 CODATA recommended values

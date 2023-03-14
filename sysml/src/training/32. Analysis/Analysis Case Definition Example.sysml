@@ -8,7 +8,6 @@ package 'Analysis Case Definition Example' {
 	import ScalarValues::Positive;
 	
 	attribute def DistancePerVolumeValue :> ScalarQuantityValue;
-    attribute gallon = 231.0 * 'in' ** 3;
 
 	part def Vehicle {
         attribute mass : MassValue;
@@ -43,7 +42,7 @@ package 'Analysis Case Definition Example' {
 			}
 			
 			require constraint {
-				fuelEconomyResult > 30 [mi / gallon]
+				fuelEconomyResult > 30 [mi / gal]
 			}
 		}
 	    
@@ -60,14 +59,14 @@ package 'Analysis Case Definition Example' {
 			assert constraint {
 				(1..size(scenario)-1)->forAll {in i: Positive;
 					StraightLineDynamicsEquations (
-						power[i],
+						power#(i),
 						vehicle.mass,
-						scenario.time[i+1] - scenario.time[i],
-						scenario.position[i],
-						scenario.speed[i],
-						scenario.position[i+1],
-						scenario.speed[i+1],
-						acceleration[i+1]                    
+						scenario.time#(i+1) - scenario.time#(i),
+						scenario.position#(i),
+						scenario.speed#(i),
+						scenario.position#(i+1),
+						scenario.speed#(i+1),
+						acceleration#(i+1)                    
 					)
 				}
 			}

@@ -1,18 +1,29 @@
 standard library package QuantityCalculations {
-	import ScalarValues::*;
-    import Quantities::ScalarQuantityValue;
-    import MeasurementReferences::ScalarMeasurementReference;
-    import MeasurementReferences::DimensionOneValue;
+	doc
+	/*
+	 * This package package defines calculations for the construction of and computations on ScalarQuantityValues.
+	 */
+	 
+	private import ScalarValues::*;
+    private import Quantities::ScalarQuantityValue;
+    private import MeasurementReferences::ScalarMeasurementReference;
+    private import MeasurementReferences::DimensionOneValue;
     
-    calc def isZero specializes NumericalFunctions::isZero { in x: ScalarQuantityValue[1]; 
+    calc def '[' specializes BaseFunctions::'[' { 
+    	in num: Number[1]; 
+    	in mRef: ScalarMeasurementReference[1]; 
+    	return quantity : ScalarQuantityValue[1];
+    }
+
+    calc def isZero specializes NumericalFunctions::isZero { 
+    	in x: ScalarQuantityValue[1]; 
         return : Boolean[1] = NumericalFunctions::isZero(x.num);
     }
-    calc def isUnit specializes NumericalFunctions::isUnit { in x: ScalarQuantityValue[1]; 
+    calc def isUnit specializes NumericalFunctions::isUnit { 
+    	in x: ScalarQuantityValue[1]; 
         return : Boolean[1] = NumericalFunctions::isUnit(x.num);
     }
     
-    calc def '[' specializes BaseFunctions::'[' { in x: Number[1]; in y: ScalarMeasurementReference[1]; return : ScalarQuantityValue[1]; }
-
 	calc def abs specializes NumericalFunctions::abs { in x: ScalarQuantityValue[1]; return : ScalarQuantityValue[1]; }
 
 	calc def '+' specializes NumericalFunctions::'+' { in x: ScalarQuantityValue[1]; in y: ScalarQuantityValue[0..1]; return : ScalarQuantityValue; }

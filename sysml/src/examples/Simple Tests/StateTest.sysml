@@ -9,8 +9,8 @@ package StateTest {
 	action act;
 	
 	state def S {
-		do action B;
-		entry action A; then S1;
+		do action A;
+		entry; then S1;
 		
 		state S1;
 			accept s : Sig

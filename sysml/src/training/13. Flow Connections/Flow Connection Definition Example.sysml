@@ -4,15 +4,16 @@ package 'Flow Connection Definition Example' {
 	part def Vehicle;
 	
 	flow def FuelFlow {
-		end part supplierPort : FuelTankAssembly;
-		end part consumerPort : Engine;
+		ref :>> payload : Fuel;
+		end port supplierPort : FuelOutPort;
+		end port consumerPort : FuelInPort;
 	}
 	
 	part vehicle : Vehicle {
 		part tankAssy : FuelTankAssembly;
 		part eng : Engine;
 		
-		flow : FuelFlow of Fuel
+		flow : FuelFlow
 		  from tankAssy.fuelTankPort.fuelSupply
 			to eng.engineFuelPort.fuelSupply;
 			

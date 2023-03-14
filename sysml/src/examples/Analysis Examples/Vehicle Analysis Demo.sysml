@@ -207,18 +207,18 @@ package 'Vehicle Analysis Demo' {
 				assert constraint straightLineDynamics {
 					(1..sc.n-1)->forAll {in i: Integer;
 						private thisSample : NominalScenario::TimeStateRecord = 
-							sc.samples[i];
+							sc.samples#(i);
 						private nextSample : NominalScenario::TimeStateRecord = 
-							sc.samples[i+1];
+							sc.samples#(i+1);
 						StraightLineDynamicsEquations (
-							p = power[i],
+							p = power#(i),
 							m = vehicle.mass,
 							dt = nextSample.t - thisSample.t,
 							x_i = thisSample.s.position,
 							v_i = thisSample.s.velocity,
 							x_f = nextSample.s.position,
 							v_f = nextSample.s.velocity,
-							a = acceleration[i]                    
+							a = acceleration#(i)                    
 						)
 					}
 				}

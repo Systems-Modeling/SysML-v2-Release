@@ -24,7 +24,7 @@ standard library package States {
 		 */
 	
 		entry action entryAction :>> 'entry';
-		do action doAction: Action :>> 'do' :> subactions;
+		do action doAction: Action :>> 'do';
 		exit action exitAction: Action :>> 'exit';
 		
 		attribute :>> isTriggerDuring;

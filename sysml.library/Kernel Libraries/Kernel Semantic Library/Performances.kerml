@@ -76,28 +76,7 @@ standard library package Performances {
 			}
 		
 			feature redefines thisPerformance default (that as Performance).thisPerformance;
-		}
-		
-		expr enclosedEvaluations: Evaluation[0..*] subsets evaluations, enclosedPerformances {
-			doc
-			/*
-			 * enclosedPerformances of this Performance that are Evaluations.
-			 */
-		}
-		
-		step enclosedTransfers: Transfer[0..*] subsets transfers, enclosedPerformances {
-			doc
-			/*
-			 * enclosedPerformances of this performance that are transfers.
-			 */
-		}
-		
-		step enclosedTransfersBefore: TransferBefore[0..*] subsets transfersBefore, enclosedTransfers {
-			doc
-			/*
-			 * enclosedTransfers of this performance that are transfers-before.
-			 */
-		}
+		}		
 	}
 	
 	abstract function Evaluation specializes Performance {
@@ -239,7 +218,7 @@ standard library package Performances {
 	abstract expr falseEvaluations subsets booleanEvaluations {
 		doc
 		/*
-		 * falseEvaluations is a subset of booleanEvaluations that result in true. It is the most general
+		 * falseEvaluations is a subset of booleanEvaluations that result in false. It is the most general
 		 * feature of invariants that are negated.
 		 */
 	

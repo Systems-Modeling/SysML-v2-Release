@@ -37,17 +37,6 @@ standard library package ISQBase {
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
-    attribute def Cartesian3dSpatialCoordinateFrame :> VectorMeasurementReference {
-        doc
-        /*
-         * General spatial coordinate system
-         */
-        attribute :>> dimensions = 3;
-        attribute :>> isBound = true;
-        attribute :>> isOrthogonal = true;
-        attribute :>> mRefs: LengthValue[3];
-    }
-
     /* ISO-80000-3 item 3-9 duration, time */
     attribute def DurationValue :> ScalarQuantityValue {
         doc

@@ -20,9 +20,12 @@ standard library package AnalysisCases {
 	
 		ref analysis self : AnalysisCase :>> Case::self;		
 		subject subj :>> Case::subj;
-		objective obj :>> Case::obj;
 		
-		abstract ref analysis subAnalysisCases : AnalysisCase[0..*] :> analysisCases, subcases {
+		objective obj :>> Case::obj {
+			subject subj = AnalysisCase::result;
+		}
+		
+		abstract analysis subAnalysisCases : AnalysisCase[0..*] :> analysisCases, subcases {
 			doc
 			/*
 			 * Other AnalysisCases carried out as part of the performance of this AnalysisCase.
@@ -52,24 +55,24 @@ standard library package AnalysisCases {
 	}
 	
 	abstract analysis analysisCases : AnalysisCase[0..*] nonunique :> cases {
-	doc
-	/*
-	 * analysisCases is the base feature of all AnalysisCaseUsages.
-	 */
+		doc
+		/*
+		 * analysisCases is the base feature of all AnalysisCaseUsages.
+		 */
 	}
 	
 	action def AnalysisAction {
-	doc
-	/*
-	 * An AnalysisAction is a specialized kind of Action intended to be used as a step in an AnalysisCase.
-	 */
+		doc
+		/*
+		 * An AnalysisAction is a specialized kind of Action intended to be used as a step in an AnalysisCase.
+		 */
 	}
 	
 	calc def AnalysisCalculation :> Calculation, AnalysisAction {
-	doc
-	/*
-	 * An AnalysisCalculation is a specialized kind of Calculation inteded to be used in a step of an AnalysisCase.
-	 */
+		doc
+		/*
+		 * An AnalysisCalculation is a specialized kind of Calculation inteded to be used in a step of an AnalysisCase.
+		 */
 	}
 	
 }

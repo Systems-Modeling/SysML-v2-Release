@@ -5,7 +5,7 @@ package '15_11-Variable Length Collection Types' {
 	part def SparePart;
 	part def Person;
 	
-	/* TODO: Define syntactic sugar for instantiating collection types. */
+	/* Examples of declaring syntactic sugar-like names for instantiating collection types. */
 	
 	attribute def 'Bag<SparePart>' :> Bag {
 		ref part :>> elements: SparePart;

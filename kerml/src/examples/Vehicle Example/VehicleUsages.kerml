@@ -4,14 +4,12 @@ package VehicleUsages {
 	 * Example usages of elements from the vehicle definitions model.
 	 */
 	 
-	import SI::N;
-	import SI::m;
 	import VehicleDefinitions::*;
 
 	/* VALUES */
 		 
-	feature T1 = 10.0[N * m];
-	feature T2 = 20.0[N * m];
+	feature T1 = 10.0;
+	feature T2 = 20.0;
 	
 	/* PARTS */	
 	
@@ -48,10 +46,10 @@ package VehicleUsages {
 	feature vehicle_C2 subsets vehicle_C1 {
 		doc /* Specialized configuration with part-specific ports. */
 		composite frontAxleAssembly redefines vehicle_C1::frontAxleAssembly {
-			composite leftFrontWheel subsets vehicle_C1::frontAxleAssembly::frontWheel = vehicle_C1::frontAxleAssembly::frontWheel[1] {
+			composite leftFrontWheel subsets vehicle_C1::frontAxleAssembly::frontWheel = vehicle_C1::frontAxleAssembly::frontWheel#(1) {
 				composite hub: VehicleDefinitions::WheelHubIF;
 			}
-			composite rightFrontWheel subsets vehicle_C1::frontAxleAssembly::frontWheel = vehicle_C1::frontAxleAssembly::frontWheel[2] {
+			composite rightFrontWheel subsets vehicle_C1::frontAxleAssembly::frontWheel = vehicle_C1::frontAxleAssembly::frontWheel#(2) {
 				feature hub: VehicleDefinitions::WheelHubIF;
 			}
 			
@@ -68,10 +66,10 @@ package VehicleUsages {
 		}
 		
 		composite rearAxleAssembly redefines vehicle_C1::rearAxleAssembly {
-			composite leftRearWheel subsets vehicle_C1::rearAxleAssembly::rearWheel = vehicle_C1::rearAxleAssembly::rearWheel[1] {
+			composite leftRearWheel subsets vehicle_C1::rearAxleAssembly::rearWheel = vehicle_C1::rearAxleAssembly::rearWheel#(1) {
 				feature hub: WheelHubIF;
 			}
-			composite rightRearWheel subsets vehicle_C1::rearAxleAssembly::rearWheel = vehicle_C1::rearAxleAssembly::rearWheel[2] {
+			composite rightRearWheel subsets vehicle_C1::rearAxleAssembly::rearWheel = vehicle_C1::rearAxleAssembly::rearWheel#(2) {
 				feature hub: WheelHubIF;
 			}
 

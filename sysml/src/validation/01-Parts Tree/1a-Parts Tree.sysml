@@ -101,8 +101,8 @@ package '1a-Parts Tree' {
 					 * each of the two wheels, as given by their defining expressions.
 					 */
 				}
-				part frontWheel_1 subsets frontWheel = frontWheel[1];
-				part frontWheel_2 subsets frontWheel = frontWheel[2];
+				part frontWheel_1 subsets frontWheel = frontWheel#(1);
+				part frontWheel_2 subsets frontWheel = frontWheel#(2);
 			}
 			
 			part rearAxleAssembly: AxleAssembly {
@@ -114,8 +114,8 @@ package '1a-Parts Tree' {
 				part rearAxle: Axle;
 				
 				part rearWheel: Wheel[2] ordered;
-				part rearWheel_1 subsets rearWheel = rearWheel[1];
-				part rearWheel_2 subsets rearWheel = rearWheel[2];
+				part rearWheel_1 subsets rearWheel = rearWheel#(1);
+				part rearWheel_2 subsets rearWheel = rearWheel#(2);
 			}
 			
 		}

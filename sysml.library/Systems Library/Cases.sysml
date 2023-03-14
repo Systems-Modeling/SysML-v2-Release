@@ -43,7 +43,7 @@ standard library package Cases {
 			 * A check of whether the objective RequirementUsage was satisfied for this Case.
 			 */
 		
-			subject = Case::result;
+			subject subj default Case::result;
 		}
 		
 		return ref result[0..*] {
@@ -53,7 +53,7 @@ standard library package Cases {
 			 */
 		}
 		
-		abstract ref case subcases : Case[0..*] :> cases, subcalculations {
+		abstract case subcases : Case[0..*] :> cases, subcalculations {
 			doc
 			/*
 			 * Other Cases carried out as part of the performance of this Case.

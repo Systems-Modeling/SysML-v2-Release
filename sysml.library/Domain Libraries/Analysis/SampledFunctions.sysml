@@ -39,8 +39,8 @@ standard library package SampledFunctions {
 		
 		assert constraint {
 			// Note: Assumes the functions '<' and '>' are defined for the domain type.
-			(1..size(samples)-1)->forAll { in i; (samples.domainValue[i] < samples.domainValue[i+1]) } or  // Strictly increasing
-            (1..size(samples)-1)->forAll { in i; (samples.domainValue[i] > samples.domainValue[i+1]) }     // Strictly decreasing
+			(1..size(samples)-1)->forAll { in i; (samples.domainValue#(i) < samples.domainValue#(i+1)) } or  // Strictly increasing
+            (1..size(samples)-1)->forAll { in i; (samples.domainValue#(i) > samples.domainValue#(i+1)) }     // Strictly decreasing
 		}
 	}
 	
@@ -100,7 +100,7 @@ standard library package SampledFunctions {
 		
 		private attribute domainValues = Domain(fn);
 		private attribute index : Positive[0..1] =
-			(1..size(domainValues))->select { in i : Positive; domainValues[i] <= value }[1];
+			(1..size(domainValues))->select { in i : Positive; domainValues#(i) <= value }#(1);
 			
 		private calc def Linear {
 			in attribute lowerSample : SamplePair;
@@ -112,8 +112,8 @@ standard library package SampledFunctions {
 		
 		return result [0..1] =
 			if index == null or index == size(domainValues)? null
-			else if domainValues[index] < domainValues[index+1]? Linear(fn.samples[index], fn.samples[index+1], value)
-			else Linear(fn.samples[index+1], fn.samples[index], value);
+			else if domainValues#(index) < domainValues#(index+1)? Linear(fn.samples#(index), fn.samples#(index+1), value)
+			else Linear(fn.samples#(index+1), fn.samples#(index), value);
 	}
 	
 }

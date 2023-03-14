@@ -8,8 +8,10 @@ standard library package StatePerformances {
 	private import ScalarValues::Boolean;
 	private import ScalarValues::Natural;
 	private import TransitionPerformances::TransitionPerformance;
+	private import Occurrences::Occurrence;
 	private import Occurrences::HappensDuring;
 	private import Transfers::Transfer;
+	private import Transfers::MessageTransfer;
 	private import Performances::Performance;
 	private import ControlPerformances::DecisionPerformance;
 	private import ControlFunctions::forAll;
@@ -42,11 +44,19 @@ standard library package StatePerformances {
 		private succession do.startShot[1] then nonDoMiddle.startShot[*];
 		private succession middle[*] then exit[1];
 
+
+		readonly feature incomingTransitionTrigger : MessageTransfer [0..1] default null {
+			doc
+			/*
+			 * Transfer that triggered a transition into this state performance. 
+			 */
+		}
+
 		private inv { isEmpty(accepted) == isEmpty(acceptable) }
 		feature accepted: Transfer[0..1] subsets acceptable {
 			doc
 			/* A transfer to the trigger target of an outgoing transition performance
-			 * for an outoging successon that is taken for this state occurrence.
+			 * for an outgoing successon that is taken for this state occurrence.
 			 */
 		}
 		feature deferrable: Transfer[0..*] subsets acceptable {
@@ -99,8 +109,9 @@ standard library package StatePerformances {
 			return  : TransitionPerformance [*] =
 				union(subtransitionPerformances,  
 		      		subtransitionPerformances->collect{in sp:TransitionPerformance; 
-							 		allSubtransitionPerformances(sp) } ); }
-		}
+							 		allSubtransitionPerformances(sp) } ); 
+ 		}
+	}
 	
 	behavior StateTransitionPerformance specializes TransitionPerformance {
 		feature isTriggerDuring: Boolean[1];
@@ -111,6 +122,11 @@ standard library package StatePerformances {
 			feature redefines StatePerformance::acceptable;
 		}
 		private succession transitionLinkSource.nonDoMiddle[*] then Performance::self[1];
+
+		private feature transitionLinkTarget [0..1] : Occurrence = transitionLink.laterOccurrence {
+			inv { (that istype StatePerformance) implies
+			      (that as StatePerformance).incomingTransitionTrigger == trigger }
+		}
 		
 		feature acceptable: Transfer [*] subsets transitionLinkSource.acceptable, triggerTarget.incomingTransfersToSelf;
 

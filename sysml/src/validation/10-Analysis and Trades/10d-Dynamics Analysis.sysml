@@ -64,7 +64,7 @@ package '10d-Dynamics Analysis' {
 			
 			for i in 1..powerProfile->size()-1 {
 				perform action dynamics : StraightLineDynamics {
-					in power = powerProfile[i];
+					in power = powerProfile#(i);
 					in mass = vehicle.mass;
 					in delta_t = deltaT;
 					in x_in = position;

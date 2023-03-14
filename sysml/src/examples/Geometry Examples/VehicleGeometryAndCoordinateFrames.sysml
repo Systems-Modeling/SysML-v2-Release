@@ -47,18 +47,14 @@ package VehicleGeometryAndCoordinateFrames {
 		/* 
 		 * As an example of a more involved placement of composite parts, constrain the positions of the coordinate frame origins 
 		 * of the lugbolts to a circle with radius lbpr distributed evenly over 360°.
-		 * 		
-		 * Currently casting (lugBolts[i] as LugBolt) is needed to resolve coordinateFrame
-		 * TODO: When origin position is available as position3dVector rather than Point, use SpatialItem::PositionOf to reformulate 
-		 * the constraint in terms of the origin postion of each of lugbolts.
 		 */
         attribute <lbpr> lugBoltPlacementRadius :>> radius default 60 [mm];
 		private attribute lugBoltDistributionAngle :>> planeAngle = 360/numberOfBolts ['°'];
         private attribute lbda : Real = lugBoltDistributionAngle.num * (pi/180); // lugBoltDistributionAngle in radian
 		assert constraint {
-			1..numberOfBolts->forAll { 
+			(1..numberOfBolts)->forAll {
 				in i : Natural;
-				private attribute lbcf = (lugBolts[i] as LugBolt).coordinateFrame;
+				private attribute lbcf = lugBolts#(i).coordinateFrame; 
 				private attribute trs : TranslationRotationSequence {
 					:>> source = wcf;
 					:>> target = lbcf;
@@ -76,7 +72,7 @@ package VehicleGeometryAndCoordinateFrames {
     	}
     }
 
-    part vehicle : Vehicle, CompoundSpatialItem {
+    part vehicle : Vehicle, SpatialItem {
 		/* 
 		 * Vehicle frame origin at center of bottom plate of chassis
 		 * with +Z upwards and +X in the forward (front) direction

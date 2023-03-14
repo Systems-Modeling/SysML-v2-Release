@@ -6,7 +6,8 @@ package '15_19a-Materials with Properties' {
 	
     attribute def AtomicMassValue :> MassValue;
     
-	// TODO: Move definition of tensile strength and N/mm² to SI
+	/* Example declarations of a quantity and unit that are not specified in ISQ and SI */
+
 	attribute def TensileStrengthUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }

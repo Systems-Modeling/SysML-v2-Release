@@ -184,10 +184,10 @@ standard library package SysML {
 			attribute isImportAll : Boolean[1..1] redefines isImportAll;
 		}		
 				
-		metadata def FlowConnectionDefinition specializes Interaction, ActionDefinition, ConnectionDefinition;		
+		metadata def FlowConnectionDefinition specializes Interaction, ConnectionDefinition, ActionDefinition;		
 				
 		metadata def FlowConnectionUsage specializes ConnectionUsage, ItemFlow, ActionUsage {
-			derived ref item flowConnectionDefinition : Interaction[0..*] redefines actionDefinition, interaction, connectionDefinition;
+			derived ref item flowConnectionDefinition : Interaction[0..*] redefines actionDefinition, connectionDefinition, interaction;
 		}		
 				
 		metadata def ForLoopActionUsage specializes LoopActionUsage {
@@ -238,7 +238,7 @@ standard library package SysML {
 			derived ref item bodyAction : ActionUsage[1..1];
 		}		
 				
-		metadata def MembershipExpose specializes Expose, MembershipImport;		
+		metadata def MembershipExpose specializes MembershipImport, Expose;		
 				
 		metadata def MergeNode specializes ControlNode;		
 				
@@ -265,7 +265,6 @@ standard library package SysML {
 			attribute portionKind : PortionKind[0..1];
 			
 			derived ref item occurrenceDefinition : Class[0..*] redefines definition;
-			derived ref item portioningFeature : PortioningFeature[0..1] subsets ownedFeature;
 			derived ref item individualDefinition : OccurrenceDefinition[0..1] subsets occurrenceDefinition;
 		}		
 				
@@ -296,10 +295,6 @@ standard library package SysML {
 			enum 'timeslice';
 			enum 'snapshot';
 		}
-				
-		metadata def PortioningFeature specializes Feature {
-			derived attribute portionKind : PortionKind[1..1];
-		}		
 				
 		metadata def ReferenceUsage specializes Usage {
 			derived attribute isReference : Boolean[1..1] redefines isReference;
@@ -375,7 +370,7 @@ standard library package SysML {
 		metadata def StateDefinition specializes ActionDefinition {
 			attribute isParallel : Boolean[1..1];
 			
-			derived ref item 'state' : StateUsage[0..*] subsets step;
+			derived ref item 'state' : StateUsage[0..*] subsets 'action';
 			derived ref item entryAction : ActionUsage[0..1];
 			derived ref item doAction : ActionUsage[0..1];
 			derived ref item exitAction : ActionUsage[0..1];

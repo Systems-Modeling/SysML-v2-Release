@@ -64,8 +64,8 @@ package '1c-Parts Tree Redefinition' {
 				 * allowing it to be used in the following part declarations.
 				 */
 				
-				part frontWheel_1 subsets frontWheel = frontWheel[1];
-				part frontWheel_2 subsets frontWheel = frontWheel[2];
+				part frontWheel_1 subsets frontWheel = frontWheel#(1);
+				part frontWheel_2 subsets frontWheel = frontWheel#(2);
 			}
 				
 			part rearAxleAssembly_c1 redefines rearAxleAssembly {
@@ -77,8 +77,8 @@ package '1c-Parts Tree Redefinition' {
 					 */
 				}
 						
-				part rearWheel_1 subsets rearWheel = rearWheel[1];
-				part rearWheel_2 subsets rearWheel = rearWheel[2];
+				part rearWheel_1 subsets rearWheel = rearWheel#(1);
+				part rearWheel_2 subsets rearWheel = rearWheel#(2);
 			}		
 		}
 		

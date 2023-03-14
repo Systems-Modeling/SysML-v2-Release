@@ -4,11 +4,11 @@ standard library package ISQAcoustics {
      * International System of Quantities and Units
      * Generated on 2022-08-07T14:44:27Z from standard ISO-80000-8:2020 "Acoustics"
      * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-8:ed-2:v1:en
-     * 
+     *
      * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
      * with Greek letters in Unicode encoding. In running text, AsciiMath is placed between backticks.
-     * Note 2: For vector and tensor quantities currently the unit and quantity value type for their (scalar) magnitude is 
-     * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate system) 
+     * Note 2: For vector and tensor quantities currently the unit and quantity value type for their (scalar) magnitude is
+     * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate system)
      * or TensorMeasurementReference.
      */
 
@@ -20,10 +20,11 @@ standard library package ISQAcoustics {
     /* Quantity definitions referenced from other ISQ packages */
     private import ISQMechanics::PowerValue;
     private import ISQMechanics::PressureValue;
+    private import ISQSpaceTime::CartesianSpatial3dCoordinateFrame;
     private import ISQSpaceTime::SpeedValue;
-    private import ISQSpaceTime::Cartesian3dVelocityCoordinateFrame;
+    private import ISQSpaceTime::CartesianVelocity3dCoordinateFrame;
     private import ISQSpaceTime::AccelerationValue;
-    private import ISQSpaceTime::Cartesian3dAccelerationCoordinateFrame;
+    private import ISQSpaceTime::CartesianAcceleration3dCoordinateFrame;
     private import ISQThermodynamics::EnergyValue;
 
     /* ISO-80000-8 item 8-1 logarithmic frequency range */
@@ -98,7 +99,7 @@ standard library package ISQAcoustics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute soundParticleDisplacementVector: Cartesian3dSoundParticleDisplacementVector :> vectorQuantities;
@@ -120,7 +121,7 @@ standard library package ISQAcoustics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dVelocityCoordinateFrame[1];
+        attribute :>> mRef: CartesianVelocity3dCoordinateFrame[1];
     }
 
     attribute soundParticleVelocityVector: Cartesian3dSoundParticleVelocityVector :> vectorQuantities;
@@ -142,7 +143,7 @@ standard library package ISQAcoustics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dAccelerationCoordinateFrame[1];
+        attribute :>> mRef: CartesianAcceleration3dCoordinateFrame[1];
     }
 
     attribute soundParticleAccelerationVector: Cartesian3dSoundParticleAccelerationVector :> vectorQuantities;

@@ -10,16 +10,20 @@ standard library package SequenceFunctions {
 	private import ScalarValues::*;
 	private import ControlFunctions::*;
 	
+	function '#' specializes BaseFunctions::'#' { in seq: Anything[0..*] ordered nonunique; in index: Positive[1];
+		return : Anything[0..1];
+	}
+	
 	function equals{ in x: Anything[0..*] ordered nonunique; in y: Anything[0..*] ordered nonunique; 
 		return : Boolean[1] =
 			size(x) == size(y) and
-			(1..size(x))->forAll {in i; x[i] == y[i]};
+			(1..size(x))->forAll {in i; x#(i) == y#(i)};
 	}
 
 	function same{ in x: Anything[0..*] ordered nonunique; in y: Anything[0..*] ordered nonunique;
 		return : Boolean[1] =
 			size(x) == size(y) and
-			(1..size(x))->forAll {in i; x[i] === y[i]};
+			(1..size(x))->forAll {in i; x#(i) === y#(i)};
 	}
 
 	function size{ in seq: Anything[0..*] nonunique;
@@ -66,21 +70,17 @@ standard library package SequenceFunctions {
 	
 	function subsequence{ in seq: Anything[0..*] ordered nonunique; 
 		in startIndex: Positive[1]; in endIndex: Positive[1] default size(seq);
-		return : Anything[0..*] = (startIndex..endIndex)->collect {in i; seq[i]};
+		return : Anything[0..*] = (startIndex..endIndex)->collect {in i; seq#(i)};
 	}
 	function head{ in seq: Anything[0..*] ordered nonunique;
-		return : Anything[0..1] = seq[1];
+		return : Anything[0..1] = seq#(1);
 	}
 	function tail{ in seq: Anything[0..*] ordered nonunique;
 		return : Anything[0..*] ordered nonunique = subsequence(seq, 2);
 	}
 	function last{ in seq: Anything[0..*] ordered nonunique;
-		return : Anything[0..1] = seq[size(seq)];
+		return : Anything[0..1] = seq#(size(seq));
 	}
-	
-	function '[' specializes BaseFunctions::'[' { in seq: Anything[0..*] ordered nonunique; in index: Natural[1];
-		return : Anything[0..1];
-	}	
 	
 	behavior add { inout seq: Anything[0..*] ordered nonunique; in values: Anything[0..*] ordered nonunique;
 		private feature newSeq = seq->including(values);

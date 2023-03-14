@@ -32,7 +32,15 @@ package '15_07-System of Units and Scales' {
 	 */
 	 
 	 /*
-	  * TODO: Allow annotation of a System Of Units and Scales package with additional information that records its provenance.
-	  * TODO: Support explicit identification of the base units.
+	  * Above capabilities were implemented in:
+	  * - standard library MeasurementReferences:
+      *   TensorMeasurementReference, VectorMeasurementReference, ScalarMeasurementReference,
+      *   MeasurementUnit, OrdinalScale, IntervalScale, CyclicRatioScale, LogarithmicScale, 
+      *   SystemOfUnits
+	  * - standard library SI:
+	  *   attribute <si> 'ISO/IEC 80000 International System of Units' : SystemOfUnits
+      *     :>> systemOfQuantities = isq;
+      *     :>> baseUnits = (m, kg, s, A, K, mol, cd);
+      *   }
 	  */
 }

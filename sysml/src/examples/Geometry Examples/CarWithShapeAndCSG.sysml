@@ -9,7 +9,7 @@ package CarWithShapeAndCSG {
 	import MeasurementReferences::Rotation;
 	import SI::*;
 
-	part def Car :> CompoundSpatialItem {
+	part def Car :> SpatialItem {
 		doc
 		/*
 		 * Car with simple engine
@@ -32,7 +32,7 @@ package CarWithShapeAndCSG {
 		}
 	}
 
-	part def Engine :> CompoundSpatialItem {
+	part def Engine :> SpatialItem {
 		doc
 		/*
 		 * Simple 2-cylinder engine

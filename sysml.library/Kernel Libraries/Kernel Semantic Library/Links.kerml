@@ -13,7 +13,7 @@ standard library package Links {
 		 * Link is the most general association between two or more things.
 		 */
 
-		feature participant: Anything[2..*] nonunique ordered;
+		readonly feature participant: Anything[2..*] nonunique ordered;
 	}
 	
 	assoc all BinaryLink specializes Link {
@@ -25,8 +25,8 @@ standard library package Links {
 		 
 	    feature participant: Anything[2] nonunique ordered redefines Link::participant;
 		
-		end feature source: Anything[0..*] nonunique subsets participant;
-	    end feature target: Anything[0..*] nonunique subsets participant;
+		readonly end feature source: Anything[0..*] subsets participant;
+	    readonly end feature target: Anything[0..*] subsets participant;
 	}
 	
 	assoc all SelfLink specializes BinaryLink {

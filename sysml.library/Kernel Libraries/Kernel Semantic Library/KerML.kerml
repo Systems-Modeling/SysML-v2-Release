@@ -256,7 +256,7 @@ standard library package KerML {
 			derived feature ownedEndFeature : Feature[0..*] subsets endFeature, ownedFeature;
 			composite derived feature ownedConjugator : Conjugation[0..1] subsets ownedRelationship;
 			derived feature inheritedFeature : Feature[0..*] subsets 'feature';
-			derived feature 'multiplicity' : Multiplicity[0..1] subsets 'member';
+			derived feature 'multiplicity' : Multiplicity[0..1] subsets ownedMember;
 			derived feature unioningType : Type[0..*];
 			composite derived feature ownedIntersecting : Intersecting[0..*] subsets ownedRelationship;
 			derived feature intersectingType : Type[0..*];
@@ -439,7 +439,7 @@ standard library package KerML {
 				
 		metaclass ReferenceSubsetting specializes Subsetting {
 			feature referencedFeature : Feature[1..1] redefines subsettedFeature;
-			derived feature referencingFeature : Feature[1..1] redefines owningFeature, subsettingFeature;
+			derived feature referencingFeature : Feature[1..1] redefines subsettingFeature, owningFeature;
 		}		
 				
 		metaclass ResultExpressionMembership specializes FeatureMembership {

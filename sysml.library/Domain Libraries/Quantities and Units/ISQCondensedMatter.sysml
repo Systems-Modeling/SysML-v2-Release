@@ -21,6 +21,7 @@ standard library package ISQCondensedMatter {
     private import ISQElectromagnetism::ElectricPotentialDifferenceValue;
     private import ISQElectromagnetism::MagneticFluxDensityValue;
     private import ISQElectromagnetism::ResistivityValue;
+    private import ISQSpaceTime::CartesianSpatial3dCoordinateFrame;
     private import ISQSpaceTime::AngularFrequencyValue;
     private import ISQSpaceTime::AngularMeasureValue;
     private import ISQSpaceTime::RepetencyValue;
@@ -43,7 +44,7 @@ standard library package ISQCondensedMatter {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute latticeVector: Cartesian3dLatticeVector :> vectorQuantities;
@@ -65,7 +66,7 @@ standard library package ISQCondensedMatter {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute fundamentalLatticeVector: Cartesian3dFundamentalLatticeVector :> vectorQuantities;
@@ -293,7 +294,7 @@ standard library package ISQCondensedMatter {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute burgersVector: Cartesian3dBurgersVector :> vectorQuantities;
@@ -315,7 +316,7 @@ standard library package ISQCondensedMatter {
         attribute :>> dimensions = 3;
         attribute :>> isBound = true;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute particlePositionVector: Cartesian3dParticlePositionVector :> vectorQuantities;
@@ -337,7 +338,7 @@ standard library package ISQCondensedMatter {
         attribute :>> dimensions = 3;
         attribute :>> isBound = true;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute equilibriumPositionVector: Cartesian3dEquilibriumPositionVector :> vectorQuantities;
@@ -359,7 +360,7 @@ standard library package ISQCondensedMatter {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute displacementVector: Cartesian3dDisplacementVector :> vectorQuantities;

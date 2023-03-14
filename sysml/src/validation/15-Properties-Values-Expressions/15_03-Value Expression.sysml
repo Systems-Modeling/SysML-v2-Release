@@ -23,8 +23,8 @@ package '15_03-Value Expression' {
     }
     
     part def Tire {
-    	attribute profileDepth: LengthValue = 6.0 [mm];
-    	/* TODO: Change profileDepth by adding tolerance: profileDepth: LengthValue = @i{6.0 ± 0.5} [mm]; */
+    	attribute profileDepth: LengthValue default 6.0 [mm];
+        constraint hasLegalProfileDepth {profileDepth >= 3.5 [mm]}
     	attribute height: LengthValue = 45 [mm];
     }
 }

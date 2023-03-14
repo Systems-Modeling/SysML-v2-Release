@@ -48,21 +48,21 @@ standard library package CollectionFunctions {
 		return : Anything[0..1] = SequenceFunctions::last(col.elements);
 	}
 	
-	function '[' specializes BaseFunctions::'[' { in col: OrderedCollection[1]; in index: Positive[1];
+	function '#' specializes BaseFunctions::'#' { in col: OrderedCollection[1]; in index: Positive[1];
 		// Cast ensures this function is not called recursively if the elements of col are OrderedCollections.
-		return : Anything[0..1] = (col.elements as Anything)[index];		
+		return : Anything[0..1] = (col.elements as Anything)#(index);		
 	}
 	
-	function 'array[' specializes BaseFunctions::'[' { in arr: Array[1]; in indexes: Positive[n] ordered nonunique;		
+	function 'array#' specializes BaseFunctions::'#' { in arr: Array[1]; in indexes: Positive[n] ordered nonunique;		
 		private feature n : Natural[1] = arr.rank;
 		
 		// Assumes row-major ordering for elements.
 		private function index { in arr: Array[1]; i : Natural; indexes : Positive[1..*];
-			if i <= 1? indexes[1] else arr.dimensions[i] * (index(arr, i-1, indexes) - 1) + indexes[i]
+			if i <= 1? indexes#(1) else arr.dimensions#(i) * (index(arr, i-1, indexes) - 1) + indexes#(i)
 		}
 		
 		return : Anything[0..1] =
-			if n == 0 or (1..n)->exists {in i; indexes[i] > arr.dimensions[i]}? null 
-			else arr.elements[index(arr, n, indexes)];
+			if n == 0 or (1..n)->exists {in i; indexes#(i) > arr.dimensions#(i)}? null 
+			else arr.elements#(index(arr, n, indexes));
 	}	
 }

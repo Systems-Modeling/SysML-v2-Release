@@ -53,7 +53,7 @@ package Expressions {
 	bb : Boolean = f.s(1);
 	
 	class C {
-		count := 0;
+		count : ScalarValues::Integer := 0;
 	}
 	
 	feature obj1 : C;
@@ -61,4 +61,9 @@ package Expressions {
 	
 	test1 = obj1 === obj2;
 	test2 = x !== obj2;
+	
+	class L {
+		feature c : C[*];
+		feature count : ScalarValues::Integer =  c#(1).count;
+	}
 }

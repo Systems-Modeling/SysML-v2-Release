@@ -3,8 +3,8 @@ package MassRollup_2 {
 	import ISQ::*;
 	
 	class MassedThing {
-		feature mass subsets ISQ::mass; 
-		feature totalMass subsets ISQ::mass =
+		feature mass : ScalarValues::Real; 
+		feature totalMass : ScalarValues::Real =
 			mass + sum(subcomponents.totalMass);
 			
 		feature subcomponents redefines massedThings;	

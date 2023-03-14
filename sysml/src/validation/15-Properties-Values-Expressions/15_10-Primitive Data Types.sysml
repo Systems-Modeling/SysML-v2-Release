@@ -26,9 +26,8 @@ package '15.10-Primitive Data Types' {
 	
 	attribute def UnsignedReal :> Real {
 		doc
-		/* TODO: Move this to the model library.
-		 * (To be discussed whether Unsigned attribute defs should really be part of the primitive 
-		 * data / attribute defs. These are more a computer data type concern.)
+		/*
+		 * Example of restriction of the base Real datatype.
 		 */
 		attribute x: Real :>> self;
 		assert constraint { x >= 0.0 }
@@ -38,7 +37,6 @@ package '15.10-Primitive Data Types' {
 		doc
 		/*
 		 * String attributes are sequences of characters.
-		 * TODO: Specify any requirements on character encoding.
 		 */
 	}
 	
@@ -49,7 +47,6 @@ package '15.10-Primitive Data Types' {
 		 */
 	}
 	
-	/* TODO: Specify standardized string encodings. */
 	import Time::DateTime;
 	
 	enum def ConditionColor {

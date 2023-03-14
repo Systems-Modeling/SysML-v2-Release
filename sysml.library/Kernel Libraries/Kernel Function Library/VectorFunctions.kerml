@@ -194,7 +194,7 @@ standard library package VectorFunctions {
 		 */
 	}
 	feature cartesian3DZeroVector: CartesianThreeVectorValue[1] =
-		cartesianZeroVector[3];
+		cartesianZeroVector#(3);
 	
 	function isCartesianZeroVector specializes isZeroVector {
 		doc
@@ -213,7 +213,7 @@ standard library package VectorFunctions {
 		return u: CartesianVectorValue[1] =
 			if w == null? v
 			else CartesianVectorOf(
-				(1..w.dimension)->collect{in i : Positive; v[i] + w[i]}
+				(1..w.dimension)->collect{in i : Positive; v#(i) + w#(i)}
 			);
 	}
 	
@@ -225,7 +225,7 @@ standard library package VectorFunctions {
 			CartesianVectorOf(
 				if w == null? CartesianVectorOf(v.elements->collect{in x : Real; -x})
 				else CartesianVectorOf(
-					(1..v.dimension)->collect{in i : Positive; v[i] - w[i]}
+					(1..v.dimension)->collect{in i : Positive; v#(i) - w#(i)}
 				)
 			);
 	}
@@ -249,7 +249,7 @@ standard library package VectorFunctions {
 		in w : CartesianVectorValue[1];
 		inv precondition { v.dimension == w.dimension }
 		return x: Real[1] =
-			(1..v.dimension)->collect{in i : Positive; v[i] * w[i]}->reduce RealFunctions::'+';
+			(1..v.dimension)->collect{in i : Positive; v#(i) * w#(i)}->reduce RealFunctions::'+';
 	}
 	
 	function cartesianNorm specializes norm { 

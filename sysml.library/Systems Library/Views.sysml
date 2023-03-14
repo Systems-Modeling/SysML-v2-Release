@@ -27,10 +27,10 @@ standard library package Views {
 			 */
 		}
 		
-		viewpoint viewpointSatisfactions : ViewpointCheck[0..*] {
+		viewpoint viewpointSatisfactions : ViewpointCheck[0..*] :>> viewpointChecks {
 		doc
 			/*
-			 * Checks that the View satisfies all required ViewpointsUsages.
+			 * Checks that the View satisfies all required ViewpointUsages.
 			 */
 		}
 		

@@ -13,21 +13,21 @@ package VehicleDefinitions {
 	class Axle;	
 	class Wheel;
 	class Lugbolt {
-		tighteningTorque[1] subsets ISQ::torque;
+		tighteningTorque[1] : ScalarValues::Real;
 	}
 	
 	/* INTERFACE BLOCKS */
 	
 	class DriveIF { 
-		in driveTorque :> ISQ::torque;
+		in driveTorque: ScalarValues::Real;
 	}
 	
 	class AxleMountIF { 
-		out transferredTorque :> ISQ::torque;
+		out transferredTorque : ScalarValues::Real;
 	}
 	
 	class WheelHubIF { 
-		in appliedTorque :> ISQ::torque;
+		in appliedTorque : ScalarValues::Real;
 	}
 	
 	/* ASSOCIATION BLOCKS */

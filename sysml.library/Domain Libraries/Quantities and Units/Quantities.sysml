@@ -12,7 +12,8 @@ standard library package Quantities {
 	private import ScalarValues::Boolean;
 	private import ScalarValues::String;
 	private import VectorValues::NumericalVectorValue;
-	
+	private import VectorValues::ThreeVectorValue;
+
 	abstract attribute def TensorQuantityValue :> Array {
 		doc
 		/*
@@ -35,11 +36,11 @@ standard library package Quantities {
         assert constraint orderSum { contravariantOrder + covariantOrder == order }
         assert constraint boundMatch { (isBound == mRef.isBound) or (not isBound and mRef.isBound) }
 	}
-	
+
 	abstract attribute def VectorQuantityValue :> TensorQuantityValue, NumericalVectorValue {
 		attribute :>> mRef: MeasurementReferences::VectorMeasurementReference;
 	}
-	
+
 	abstract attribute def ScalarQuantityValue :> VectorQuantityValue, NumericalValue {
 		attribute :>> mRef: MeasurementReferences::ScalarMeasurementReference;
 	}
@@ -55,12 +56,22 @@ standard library package Quantities {
 	abstract attribute vectorQuantities: VectorQuantityValue[*] nonunique :> tensorQuantities;
 	abstract attribute scalarQuantities: ScalarQuantityValue[*] nonunique :> vectorQuantities;
 
+	abstract attribute def '3dVectorQuantityValue' :> VectorQuantityValue, ThreeVectorValue {
+        doc
+    	/*
+    	 * Most general representation of real 3-vector quantities
+    	 */
+
+        attribute :>> num: Real[3];
+	}
+	alias ThreeDVectorQuantityValue for '3dVectorQuantityValue';
+	
     /*
      * Define generic aliases QuantityValue and quantities for the top level quantity attribute def and attribute.
      */
 	alias QuantityValue for TensorQuantityValue;
 	alias quantities for tensorQuantities;
-	
+
 	attribute def SystemOfQuantities {
 		doc
 		/*
@@ -84,7 +95,7 @@ standard library package Quantities {
 		attribute quantity: ScalarQuantityValue[1];
 		attribute exponent: Real[1];
 	}
-	
+
 	attribute def QuantityDimension {
 		doc
 		/*

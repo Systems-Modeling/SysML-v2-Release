@@ -139,7 +139,7 @@ standard library package OccurrenceFunctions {
 		inout group: Occurrence[0..*] ordered nonunique;
 		in index: Positive[1];
 		
-		private feature oldOcc = group[index];
+		private feature oldOcc = group#(index);
 		
 		private composite step removeStep : remove {
 			inout seq = group;

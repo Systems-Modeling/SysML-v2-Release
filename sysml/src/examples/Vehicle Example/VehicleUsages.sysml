@@ -51,8 +51,8 @@ package VehicleUsages {
 		doc /* Specialized configuration with part-specific ports. */
 
 		part redefines frontAxleAssembly {
-			part leftFrontWheel subsets frontWheel = frontWheel[1];
-			part rightFrontWheel subsets frontWheel = frontWheel[2];
+			part leftFrontWheel subsets frontWheel = frontWheel#(1);
+			part rightFrontWheel subsets frontWheel = frontWheel#(2);
 			
 			interface leftFrontMount: Mounting connect 
 				frontAxle.leftMountingPoint to leftFrontWheel.hub;
@@ -62,8 +62,8 @@ package VehicleUsages {
 		}
 		
 		part rearAxleAssembly redefines vehicle_C1::rearAxleAssembly {
-			part leftRearWheel subsets rearWheel = rearWheel[1];
-			part rightRearWheel subsets rearWheel = rearWheel[2];
+			part leftRearWheel subsets rearWheel = rearWheel#(1);
+			part rightRearWheel subsets rearWheel = rearWheel#(2);
 
 			interface leftRearMount: Mounting connect 
 				rearAxle.leftMountingPoint to leftRearWheel.hub;

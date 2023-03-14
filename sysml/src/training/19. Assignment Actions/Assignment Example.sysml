@@ -24,7 +24,7 @@ package 'For Loop Example' {
 		
 		for i in 1..powerProfile->size() {
 			perform action dynamics : StraightLineDynamics {
-				in power = powerProfile[i];
+				in power = powerProfile#(i);
 				in mass = vehicleMass;
 				in delta_t = deltaT;
 				in x_in = position;

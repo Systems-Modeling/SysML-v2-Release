@@ -10,6 +10,7 @@ standard library package MeasurementReferences {
 	private import VectorValues::ThreeVectorValue;
 
 	private import SequenceFunctions::size;
+	private import SequenceFunctions::equals;
 	private import ControlFunctions::forAll;
 	private import Quantities::QuantityDimension;
 	private import Quantities::VectorQuantityValue;
@@ -41,7 +42,7 @@ standard library package MeasurementReferences {
 		 * 
 		 * Attribute mRefs specifies the scalar measurement references for all dimensions of a tensor quantity.
 		 *
-		 * The humanId of a TensorMeasurementReference is the unique symbol by which the measurement reference is known.
+		 * The short name of a TensorMeasurementReference is the unique symbol by which the measurement reference is known.
 		 * The name of a TensorMeasurementReference is spelled-out human readable name of the measurement reference.
 		 *
 		 * For example, typical measurement references for (scalar) quantity speed are declared with the following humanId and name:
@@ -55,7 +56,7 @@ standard library package MeasurementReferences {
 	
 		attribute isBound: Boolean[1] default false;
 		attribute order :>> rank;
-		attribute mRefs: ScalarMeasurementReference[1..*] :>> elements;
+		attribute mRefs: ScalarMeasurementReference[1..*] nonunique :>> elements;
 		attribute definitionalQuantityValues: DefinitionalQuantityValue[0..*];
 	}
 
@@ -113,37 +114,45 @@ standard library package MeasurementReferences {
 		}
 	}
 
+    attribute def '3dCoordinateFrame' :> CoordinateFrame {
+        doc
+    	/*
+         * Most general 3-dimensional coordinate frame
+         */
+        attribute :>> dimensions = 3;
+    }
+    alias ThreeDCoordinateFrame for '3dCoordinateFrame';
+
     abstract attribute def CoordinateTransformation {
-		doc
-		/*
-		 * CoordinateTransformation is the most general representation of the transformation of a target coordinate frame 
-		 * with respect to a source coordinate frame.
-		 */
-	
+        doc
+        /*
+	     * CoordinateTransformation is the most general representation of the transformation of a target VectorMeasurementReference 
+	     * with respect to a source VectorMeasurementReference.
+	     */
 	 	attribute source: VectorMeasurementReference[1];
 	 	attribute target: VectorMeasurementReference[1];
-	 	assert constraint { source.dimensions == target.dimensions }
+	 	assert constraint validSourceTargetDimensions { source.dimensions == target.dimensions }
     }
 
 	attribute def CoordinateFramePlacement :> CoordinateTransformation {
-		doc
-		/*
-		 * CoordinateFramePlacement is a CoordinateTransformation by placement of the target frame in the source frame.
-		 *  
-		 * Attribute origin specifies the location of the origin of the target frame through a vector in the source frame.
-		 * 
-		 * Attribute basisDirections specifies the orientation of the target frame by specifying the directions of 
-		 * the respective basis vectors of the target frame via direction vectors in the source frame. An empty sequence of
-		 * basisDirections signifies no change of orientation of the target coordinate frame.
-		 */
-	
-	 	attribute origin : VectorQuantityValue[1];
-	 	attribute basisDirections : VectorQuantityValue[0..*] ordered;
-	 	assert constraint { origin.dimensions == source.dimensions }
-	 	assert constraint { size(basisDirections) == 0 or size(basisDirections) == source.dimensions[1]}
-	 	assert constraint { 1..size(basisDirections)->forAll { in i : Natural; 
-	 		(basisDirections[i] as VectorQuantityValue).dimensions == source.dimensions } 
-	 	}
+    	doc
+    	/*
+    	 * CoordinateFramePlacement is a CoordinateTransformation by placement of the target frame in the source frame.
+    	 *  
+    	 * Attribute origin specifies the location of the origin of the target frame as a vector in the source frame.
+    	 * 
+    	 * Attribute basisDirections specifies the orientation of the target frame by specifying the directions of 
+    	 * the respective basis vectors of the target frame via direction vectors in the source frame. An empty sequence of
+    	 * basisDirections signifies no change of orientation of the target coordinate frame.
+    	 */
+
+		attribute origin : VectorQuantityValue[1];
+		attribute basisDirections : VectorQuantityValue[0..*] ordered nonunique;
+		assert constraint validOriginDimensions { origin.dimensions == source.dimensions }
+		assert constraint { size(basisDirections) == 0 or size(basisDirections) == source.dimensions#(1)}
+        assert constraint validateBasisDirections { basisDirections->forAll { in basisDirection : VectorQuantityValue; 
+            basisDirection.dimensions->equals(source.dimensions) }
+        }
 	 }
 
 	abstract attribute def TranslationOrRotation {
@@ -194,7 +203,7 @@ standard library package MeasurementReferences {
 	 * the original sequence cannot be retrieved as there are infinitely many sequences representing the reduced transformation.
 	 */
 	
-		attribute :>> elements : TranslationOrRotation[1..*];
+		attribute :>> elements : TranslationOrRotation[1..*] ordered nonunique;
 	}
 
 	attribute def AffineTransformationMatrix3d :> CoordinateTransformation, Array {
@@ -224,12 +233,28 @@ standard library package MeasurementReferences {
 			attribute translationVector : ThreeVectorValue[1] { :>> elements : Real[3]; }
 			attribute :>> dimensions = (4, 4);
 			attribute :>> elements : Real[16] ordered nonunique = (
-				rotationMatrix.elements[1], rotationMatrix.elements[2], rotationMatrix.elements[3], translationVector[1],
-				rotationMatrix.elements[4], rotationMatrix.elements[5], rotationMatrix.elements[6], translationVector[2],
-				rotationMatrix.elements[7], rotationMatrix.elements[8], rotationMatrix.elements[9], translationVector[3],
+				rotationMatrix.elements#(1), rotationMatrix.elements#(2), rotationMatrix.elements#(3), translationVector#(1),
+				rotationMatrix.elements#(4), rotationMatrix.elements#(5), rotationMatrix.elements#(6), translationVector#(2),
+				rotationMatrix.elements#(7), rotationMatrix.elements#(8), rotationMatrix.elements#(9), translationVector#(3),
 				0, 0, 0, 1);
-			assert constraint { source.dimensions == 3 }
+			assert constraint validSourceDimensions { source.dimensions == 3 }
 	}
+
+	attribute def NullTransformation :> AffineTransformationMatrix3d {
+		doc
+		/*
+		 * NullTransformation is a three dimensional CoordinateTransformation that places the target CoordinateFrame at the
+		 * same position and orientation as the source CoordinateFrame.
+		 */
+		 attribute :>> rotationMatrix {
+		     attribute :>> elements = (1, 0, 0, 0, 1, 0, 0, 0, 1);
+		 }
+		 attribute :>> translationVector {
+		     attribute :>> elements = (0, 0, 0);
+		 }
+ 	}
+
+	attribute nullTransformation : NullTransformation [1];
 
 	abstract attribute def MeasurementUnit :> ScalarMeasurementReference {
 		doc
@@ -447,23 +472,27 @@ standard library package MeasurementReferences {
 	attribute def DimensionOneUnit :> DerivedUnit {
 		doc
 		/*
-		 * Explicit definitions of "unit of dimension one" also known as "dimensionless unit" as well as the value and quantity of dimension one.
+		 * Explicit definition of "unit of dimension one", also known as "dimensionless unit".
 		 */
 	
 		attribute :>> unitPowerFactors = ();
 	}
 	attribute def DimensionOneValue :> ScalarQuantityValue {
+		doc
+		/*
+		 * A ScalarQuantityValue with a DimensionOneUnit.
+		 */
 		attribute :>> num: Real;
 		attribute :>> mRef: DimensionOneUnit;
 	}
 	attribute dimensionOneQuantities : DimensionOneValue[*] nonunique :> scalarQuantities;
 
-	attribute one = DimensionOneUnit();
+	attribute one : DimensionOneUnit[1] = DimensionOneUnit();
 
 	attribute def CountValue :> DimensionOneValue {
 		doc
 		/*
-		 * Explicit definitions of generic "count" quantity.
+		 * Explicit definition of a generic "count" quantity as a DimensionOneValue.
 		 */
 	}
 	attribute countQuantities : CountValue[*] nonunique :> dimensionOneQuantities;
@@ -489,8 +518,6 @@ standard library package MeasurementReferences {
 		doc
 		/*
 		 * Constraint definition to verify that the given unit power factors comply with the required quantity dimension
-		 *
-		 * TODO: The implementation of this constraint requires reflection.
 		 */
 	
     	in unitPowerFactors: UnitPowerFactor[*] ordered;

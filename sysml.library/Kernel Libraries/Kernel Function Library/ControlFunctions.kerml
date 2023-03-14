@@ -65,7 +65,7 @@ standard library package ControlFunctions {
 	function selectOne { 
 		in collection: Anything[0..*] ordered nonunique;
 		in expr selector1[0..*] { in argument: Anything[1]; return : Boolean[1]; }
-		return : Anything[0..1] = collection->select {in x; selector1(x)}[1];
+		return : Anything[0..1] = collection->select {in x; selector1(x)}#(1);
 	}
 	
 	abstract function reject{ 

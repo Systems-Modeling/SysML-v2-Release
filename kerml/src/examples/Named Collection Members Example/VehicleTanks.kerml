@@ -16,10 +16,10 @@ package VehicleTanks {
 	
 	class Vehicle1 specializes Vehicle {
 		composite tanks: Tank[4] ordered redefines Vehicle::tanks {
-			feature main1[1] subsets tanks = tanks[1];
-			feature main2[1] subsets tanks = tanks[2];
-			feature aux1[1] subsets tanks = tanks[3];
-			feature aux2[1] subsets tanks = tanks[4];
+			feature main1[1] subsets tanks = tanks#(1);
+			feature main2[1] subsets tanks = tanks#(2);
+			feature aux1[1] subsets tanks = tanks#(3);
+			feature aux2[1] subsets tanks = tanks#(4);
 		}
 		
 		composite eng: V6Engine;

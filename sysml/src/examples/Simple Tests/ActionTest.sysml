@@ -27,6 +27,7 @@ package ActionTest {
 	
 	action b {
 		attribute f : ScalarValues::Boolean;
+		ref action a : A;
 	}
 	
 }

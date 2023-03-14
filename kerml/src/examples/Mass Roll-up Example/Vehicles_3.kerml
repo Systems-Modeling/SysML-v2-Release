@@ -30,18 +30,18 @@ package Vehicles_3 {
 	
 	import SI::*;
 	feature v: vehicle {
-		feature m redefines CarPart::m = 1000[kg];
+		feature m redefines CarPart::m = 1000;
 		composite :>> engine = e;
 		composite :>> transmission = t;
 	}
 	
 	feature e :> engine {
-		feature m redefines CarPart::m = 100[kg];
+		feature m redefines CarPart::m = 100;
 	}
 	
 	feature t :> transmission {
-		feature m redefines CarPart::m = 50[kg];
+		feature m redefines CarPart::m = 50;
 	}
 	
-	// v.totalMass evaluates to 1150.0[kg]
+	// v.totalMass evaluates to 1150.0
 }

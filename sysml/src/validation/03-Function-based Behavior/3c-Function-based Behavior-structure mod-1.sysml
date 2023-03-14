@@ -31,14 +31,19 @@ package '3c-Function-based Behavior-structure mod-1' {
 			}
 		}
 		
-		perform action {
+		action {
 			// Create a link and assign it as the TrailerHitch connection.
 			// Link participants are determined from inherited ends.
 			action 'connect trailer to vehicle'
 				assign 'vehicle-trailer system'.trailerHitch := TrailerHitch();
 				
+			// Destroy the link object.
+			then action 'destroy connection of trailer to vehicle' : 
+				OccurrenceFunctions::destroy {
+				:>> occ = 'vehicle-trailer system'.trailerHitch;
+			}
+				
 			// Remove the link from the TrailerHitch connection.
-			// TODO: Destroy the link object.
 			then action 'disconnect trailer from vehicle'
 				assign 'vehicle-trailer system'.trailerHitch := null;
 		}	

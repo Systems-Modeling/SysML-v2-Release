@@ -2,10 +2,10 @@ package MassRollup_1 {
 	import NumericalFunctions::*;
 
 	class MassedThing {
-		feature mass subsets ISQ::mass;	
+		feature mass : ScalarValues::Real;	
 		composite subcomponents: MassedThing[0..*];
 
-		feature totalMass subsets ISQ::mass = 
+		feature totalMass : ScalarValues::Real = 
 			mass + sum(subcomponents.totalMass);
 	}
 }

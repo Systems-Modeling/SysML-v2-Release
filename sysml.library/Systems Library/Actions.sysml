@@ -155,14 +155,14 @@ standard library package Actions {
 		abstract action whileLoops : WhileLoopAction[0..*] :> loops, whileLoopActions {
 			doc
 			/*
-			 * The subactions of this Action that are LoopActions.
+			 * The loops of this Action that are WhileLoopActions.
 			 */
 		}
 		
 		abstract action forLoops : ForLoopAction[0..*] :> loops, forLoopActions {
 			doc
 			/*
-			 * The subactions of this Action that are LoopActions.
+			 * The loops of this Action that are ForLoopActions.
 			 */
 		}
 	}
@@ -468,7 +468,7 @@ standard library package Actions {
 			assign index := 1;
 		then private action whileLoop
 			while index <= size(seq) {
-				assign var := seq[index];
+				assign var := seq#(index);
 				then perform body;
 				then assign index := index + 1;
 			}

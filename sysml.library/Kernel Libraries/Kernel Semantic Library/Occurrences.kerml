@@ -34,7 +34,7 @@ standard library package Occurrences {
 
 		feature portionOfLife: Life[1] subsets portionOf;
 
-		feature self: Occurrence[1] redefines Anything::self subsets timeSlices, spaceSlices, sameLifeOccurrences;
+		feature self: Occurrence[1] redefines Anything::self subsets timeSlices, spaceSlices, spaceTimeCoincidentOccurrences, sameLifeOccurrences;
 		feature sameLifeOccurrences: Occurrence[1..*] subsets things;
 
 		feature this : Occurrence[1] default self {
@@ -151,11 +151,12 @@ standard library package Occurrences {
 			 */
 
 			/* timeCoincidentOccurrences occurrences happen during each other. */
-			feature thisOccurrence: Occurrence[1] subsets that;
-			feature thatOccurrence: Occurrence[1] subsets self;
+			feature thatOccurrence: Occurrence[1] subsets longerOccurrence;
+			feature thisOccurrence: Occurrence[1] subsets shorterOccurrence;
+
 			connector :HappensDuring
-				from shorterOccurrence references thatOccurrence [1]
-				to longerOccurrence references thisOccurrence [1];
+				from shorterOccurrence references thisOccurrence [1]
+				to longerOccurrence references thatOccurrence [1];
 		}
 
 		feature spaceEnclosedOccurrences: Occurrence[1..*] subsets occurrences {
@@ -166,8 +167,8 @@ standard library package Occurrences {
 			 */
 
 			/* spaceEnclosedOccurrences is transitive. */
-			feature smallerSpace: Occurrence[1] subsets that;
-			feature largerSpace: Occurrence[1] subsets self;
+			feature largerSpace: Occurrence[1] subsets that;
+			feature smallerSpace: Occurrence[1] subsets self;
 			subset smallerSpace.spaceEnclosedOccurrences subsets largerSpace.spaceEnclosedOccurrences;
 		}
 
@@ -189,12 +190,20 @@ standard library package Occurrences {
 			binding startShot[1] = endShot[1];
 		}
 
-		feature spaceTimeCoincidentOccurrences: Occurrence[1..*] subsets spaceTimeEnclosedOccurrences inverse of spaceTimeCoincidentOccurrences {
+		feature spaceTimeCoincidentOccurrences: Occurrence[1..*] subsets timeCoincidentOccurrences, spaceEnclosedOccurrences inverse of spaceTimeCoincidentOccurrences {
 			doc
 			/*
 			 * Occurrences that this one completely includes in both space and time,
 			 * and vice-versa, including this one.
 			 */
+
+			/* spaceTimeCoincidentOccurrences occurrences are inside of each other. */
+			feature redefines thatOccurrence subsets largerSpace;
+			feature redefines thisOccurrence subsets smallerSpace;
+
+			connector :InsideOf
+				from largerSpace references thatOccurrence [1]
+				to smallerSpace references thisOccurrence [1];
 		}
 
 		feature outsideOfOccurrences: Occurrence[0..*] subsets withoutOccurrences inverse of outsideOfOccurrences {
@@ -664,8 +673,8 @@ standard library package Occurrences {
 		/*
 		 * SelfSameLifeLink is a binary association that is equivalent to SelfLink if the
 		 * linked things are DataValues, but asserts that the link things are portions of
-		 * the same Life if they are Occurrences. A SelfSameLink is not an Occurrence
-		 * (SelfSameLifeLink is disjoint with LinkObject).
+		 * the same Life if they are Occurrences. A SelfSameLifeLink is not an Occurrence
+		 * (and so SelfSameLifeLink is disjoint with LinkObject).
 		 */
 
 		end feature myselfSameLife: Anything[1..*] redefines source;
@@ -750,7 +759,7 @@ standard library package Occurrences {
 		end feature largerOccurrence: Occurrence[1..*] redefines longerOccurrence, largerSpace;
 	 }
 
-	assoc all WithinBoth specializes Within {
+	assoc all WithinBoth specializes Within, HappensWhile {
 		doc
 		/*
 		 * WithinBoth asserts that two occurrences are Within each other, that is, they occupy the
@@ -758,9 +767,9 @@ standard library package Occurrences {
 		 * itself and transitive.
 		 */
 
-		end feature thisOccurrence: Occurrence[1..*] redefines smallerOccurrence
+		end feature thisOccurrence redefines smallerOccurrence redefines HappensWhile::thisOccurrence
 		  subsets thatOccurrence.spaceTimeCoincidentOccurrences;
-		end feature thatOccurrence: Occurrence[1..*] redefines largerOccurrence
+		end feature thatOccurrence redefines largerOccurrence redefines HappensWhile::thatOccurrence 
 		  subsets thisOccurrence.spaceTimeCoincidentOccurrences;
 	}
 

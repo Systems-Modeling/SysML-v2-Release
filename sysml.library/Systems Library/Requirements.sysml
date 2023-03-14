@@ -24,14 +24,14 @@ standard library package Requirements {
 		 * then all the required constraints must be true.
 		 */
 	
-		ref constraint assumptions[0..*] :> constraintChecks {
+		constraint assumptions[0..*] :> constraintChecks, subperformances {
 			doc
 			/*
 			 * Assumptions that must hold for the required constraints to apply.
 			 */
 		}
 		
-		ref constraint constraints[0..*] :> constraintChecks {
+		constraint constraints[0..*] :> constraintChecks, subperformances {
 			doc
 			/*
 			 * The required constraints that are to be checked.
@@ -51,8 +51,6 @@ standard library package Requirements {
 		/*
 		 * RequirementCheck is the most general class for requirements checking. RequirementsCheck is the base
 		 * type of all requirement definitions.
-		 * 
-		 * 
 		 */
 	
 		ref requirement :>> self: RequirementCheck;
@@ -86,17 +84,17 @@ standard library package Requirements {
 		 * Note: assumptions and constraints are redefined here solely to simplify the
 		 * resolution of their qualified names as library elements.
 		 */
-		ref constraint assumptions :>> RequirementConstraintCheck::assumptions;
-		ref constraint constraints :>> RequirementConstraintCheck::constraints;
+		constraint assumptions :>> RequirementConstraintCheck::assumptions;
+		constraint constraints :>> RequirementConstraintCheck::constraints;
 		
-		abstract ref requirement subrequirements[0..*] :> requirementChecks, constraints {
+		abstract requirement subrequirements[0..*] :> requirementChecks, constraints {
 			doc
 			/*
 			 * Nested requirements, which are also required constraints.
 			 */
 		}
 		
-		abstract ref concern concerns[0..*] :> concernChecks, constraints {
+		abstract concern concerns[0..*] :> concernChecks, subrequirements {
 			doc
 			/*
 			 * The checks of any concerns being addressed (as required constraints).

@@ -69,7 +69,7 @@ package VehicleIndividuals {
 			 */
 		}	
 			
-		snapshot part vehicle1_C2_t0 :> vehicle1_C2, vehicle1_t0 {
+		snapshot part vehicle1_C2_t0 : Vehicle1 :> vehicle1_C2, vehicle1_t0 {
 			doc
 			/*
 			 * This is a snapshot of Vehicle1 in configuration vehicle1_C2 at time t0.
@@ -91,7 +91,7 @@ package VehicleIndividuals {
 			}
 		}
 		
-		snapshot part vehicle1_C2_t1 :> vehicle1_C2, vehicle1_t0_t1.done {
+		snapshot part vehicle1_C2_t1 : Vehicle1 :> vehicle1_C2, vehicle1_t0_t1.done {
 			doc
 			/*
 			 * This is a snapshot of Vehicle1 in configuration vehicle_C2 at time t1.

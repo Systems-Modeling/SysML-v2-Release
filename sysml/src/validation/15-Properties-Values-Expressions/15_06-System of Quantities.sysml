@@ -26,8 +26,15 @@ package '15_06-System of Quantities' {
 	 */
 	 
 	 /*
-	  * TODO: Support definition of a System Of Quantities package with additional information that records its provenance.
-	  * TODO: Support explicit identification of the base quantities.
-	  * TODO: Add integrated support for vectors, matrices, nth-order tensors in general (prototypes exist).
+	  * Above capabilities were implemented in:
+      * - standard library Quantities:
+      *   TensorQuantityValue, VectorQuantityValue, ScalarQuantityValue,
+      *   tensorQuantities, vectorQuantities, scalarQuantities, 
+      *   SystemOfQuantities
+	  * - standard library MeasurementReferences:
+	  *   TensorMeasurementReference, VectorMeasurementReference, ScalarMeasurementReference,
+      *   SystemOfUnits
+	  * - standard library ISQBase:
+	  *   attribute <isq> 'International System of Quantities': SystemOfQuantities in ISQBase
 	  */
 }

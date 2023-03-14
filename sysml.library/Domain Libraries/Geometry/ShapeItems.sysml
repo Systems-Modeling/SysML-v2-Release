@@ -11,6 +11,7 @@ standard library package ShapeItems {
 	private import Occurrences::MatesWith;
 	private import Objects::*;
 	private import Items::Item;
+	private import SequenceFunctions::equals;
 	private import SequenceFunctions::isEmpty;
 	private import SequenceFunctions::notEmpty;
 	private import SequenceFunctions::size;
@@ -149,9 +150,9 @@ standard library package ShapeItems {
 		attribute :>> isClosed = true;
 
 		assert constraint { (1..size(edges))->forAll {in i;
-					(edges[i] as StructuredSpaceObject).vertices == (vertices[(2*i)-1], vertices[2*i]) and  
-					includes(((edges[i] as StructuredSpaceObject).vertices[2] as Item).matingOccurrences,
-						 (edges[if i==size(edges) ? 1 else i+1]as StructuredSpaceObject).vertices[1]) } }
+					edges#(i).vertices->equals((vertices#((2*i)-1), vertices#(2*i))) and  
+					includes((edges#(i).vertices#(2) as Item).matingOccurrences,
+						 edges#(if i==size(edges) ? 1 else i+1).vertices#(1)) } }
 	}
 
 	item def Triangle :> Polygon {
@@ -171,9 +172,9 @@ standard library package ShapeItems {
 		item e3 [1];
 
 		item :>> vertices [6];
-		item v12  [2] ordered = (vertices[2], vertices[3]);
-		item apex [2] ordered = (vertices[4], vertices[5]);
-		item v31  [2] ordered = (vertices[6], vertices[1]);
+		item v12  [2] ordered = (vertices#(2), vertices#(3));
+		item apex [2] ordered = (vertices#(4), vertices#(5));
+		item v31  [2] ordered = (vertices#(6), vertices#(1));
 	}
 
 	item def RightTriangle :> Triangle {
@@ -204,10 +205,10 @@ standard library package ShapeItems {
 		item e4 [1];
 
 		item :>> vertices [8];
-		item v12 [2] ordered = (vertices[2], vertices[3]);
-		item v23 [2] ordered = (vertices[4], vertices[5]);
-		item v34 [2] ordered = (vertices[6], vertices[7]);
-		item v41 [2] ordered = (vertices[7], vertices[1]);
+		item v12 [2] ordered = (vertices#(2), vertices#(3));
+		item v23 [2] ordered = (vertices#(4), vertices#(5));
+		item v34 [2] ordered = (vertices#(6), vertices#(7));
+		item v41 [2] ordered = (vertices#(6), vertices#(1));
 	}
 
 	item def Rectangle :> Quadrilateral {
@@ -793,10 +794,10 @@ standard library package ShapeItems {
 
 		/* Base to wall and wall to wall edge mating. */
 		assert constraint { (1..wallNumber)->forAll {in i;
-					includes((wall[i] as Triangle).base.matingOccurrences,
-							 Pyramid::base.edges[i]) and
-					includes(((wall[i] as Triangle).edges[3] as Item).matingOccurrences,
-							 (wall[if i==wallNumber ? 1 else i+1] as Triangle).edges[2]) } }
+					includes(wall#(i).base.matingOccurrences,
+							 Pyramid::base.edges#(i)) and
+					includes((wall#(i).edges#(3) as Item).matingOccurrences,
+							 wall#(if i==wallNumber ? 1 else i+1).edges#(2)) } }
 
 		/* Meeting apices. */
 		connection :MatesWith connect apex [wallNumber] to apex [wallNumber];

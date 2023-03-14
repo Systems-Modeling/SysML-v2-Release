@@ -30,6 +30,8 @@ standard library package ControlPerformances {
 			 * Specializations subset this by all
 			 * successions going out of a decision step.
 			 */
+
+			 feature redefines earlierOccurrence subsets that;
 		}
 	}
 	
@@ -49,6 +51,8 @@ standard library package ControlPerformances {
 			 * Specializations subset this by all
 			 * successions coming into a merge step.
 			 */
+
+			 feature redefines laterOccurrence subsets that;
 		}
 	}
 

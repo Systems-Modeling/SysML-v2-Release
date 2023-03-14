@@ -176,12 +176,12 @@ package '2a-Parts Interconnection' {
 				 * 
 				 * (":>" is a shorthand here for "subsets".)
 				 */
-				part leftWheel :> rearWheel = rearWheel[1] {
+				part leftWheel :> rearWheel = rearWheel#(1) {
 					port wheelToAxlePort: WheelToAxlePort;
 					port wheelToRoadPort: WheelToRoadPort;
 				}
 				
-				part rightWheel :> rearWheel = rearWheel[2] {
+				part rightWheel :> rearWheel = rearWheel#(2) {
 					port wheelToAxlePort: WheelToAxlePort;
 					port wheelToRoadPort: WheelToRoadPort;
 				}
@@ -195,8 +195,8 @@ package '2a-Parts Interconnection' {
 				 vehicleToRoadPort.rightWheelToRoadPort;
 				
 			port vehicleToRoadPort redefines VehicleA::vehicleToRoadPort {
-				port leftWheelToRoadPort :> wheelToRoadPort = wheelToRoadPort[1];
-				port rightWheelToRoadPort :> wheelToRoadPort = wheelToRoadPort[2];
+				port leftWheelToRoadPort :> wheelToRoadPort = wheelToRoadPort#(1);
+				port rightWheelToRoadPort :> wheelToRoadPort = wheelToRoadPort#(2);
 			}
 			
 		}
