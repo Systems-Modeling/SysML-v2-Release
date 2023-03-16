@@ -1,4 +1,4 @@
-# OMG System Modeling Language™ (SysML®) v2 Release
+# OMG Systems Modeling Language™ (SysML®) v2 Release
 
 The [SysML v2 Release](https://github.com/Systems-Modeling/SysML-v2-Release) repository contains the latest incremental release of the SysML v2 specification documents, 
 example models and model library. It also provides instructions for user installation of SysML v2 Pilot Implementation editors. For developer installs, please see the
