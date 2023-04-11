@@ -75,9 +75,9 @@ Both presentations are licensed under the Creative Commons Attribution 4.0  Inte
 To view a copy of this license, visit [http://creativecommons.org/licenses/by/4.0/](http://creativecommons.org/licenses/by/4.0/) 
 or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-The Jupyter and Eclipse software and all included SysML v2 models in this repository are licensed by the respective copyright holders listed below 
+The Jupyter and Eclipse software and all included KerML and SysML v2 models in this repository are licensed by the respective copyright holders listed below 
 under the GNU Lesser General Public License (LGPL) v3.0 (see `LICENSE` and `LICENSE-GPL` files). Licensing for software and models in other
-SysML v2 repositories is as given in of those repository.
+SysML v2 repositories is as given in those repositories.
 
 Copyright © 2019-2021 California Institute of Technology (Jet Propulsion Laboratory) <br/>
 Copyright © 2019-2023 DEKonsult <br/>
