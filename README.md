@@ -41,11 +41,11 @@ The release repository contains the items listed below. For a Zip archive of the
         * `Intro to the SysML v2 Language-Textual Notation.pdf`
         * `Intro to the SysML v2 Language-Graphical Notation.pdf`
     * Specification documents (PDF)
-        1. Kernel Modeling Language (KerML), version 1.0
-        2. OMG Systems Modeling Language (SysML), version 2.0
-           a. Part 1: Language Specification
-           b. Part 2: SysML v1 to v2 Transformation
-        3. Systems Modeling Application Programming Interface (API) and Services, version 1.0
+      1. Kernel Modeling Language (KerML), version 1.0
+      2. OMG Systems Modeling Language (SysML), version 2.0
+         - Part 1: Language Specification
+         - Part 2: SysML v1 to v2 Transformation
+      3. Systems Modeling Application Programming Interface (API) and Services, version 1.0
   * In the `install` directory
     * `eclipse` - Installer for Eclipse plugins for Kernel Modeling Language (KerML) and System Modeling Language (SysML) editors
     * `jupyter` - Installer for a SysML language kernel for Jupyter, with JupyterLab integration 
