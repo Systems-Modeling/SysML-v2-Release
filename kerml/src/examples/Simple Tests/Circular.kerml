@@ -5,4 +5,8 @@ package Circular {
 	package P {
 		import Circular::*;
 	}
+	
+	feature x :> z;
+	feature y :> x;
+	feature z :> y;
 }

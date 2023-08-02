@@ -4,8 +4,9 @@ package Connectors {
 		feature a : A;
 		feature b : A;
 		
-		connector from a to b;
-		connector {
+		connector c1 from a to b;
+		abstract connector c2 = c;
+		connector = c2 {
 			end feature references a;
 			end feature references b;
 		}
@@ -23,5 +24,10 @@ package Connectors {
 			end feature references a;
 			end feature references b;
 		}
+	}
+	
+	class B {
+	    feature a : A;	    
+	    connector :> a.c1 from a.a to a.b;
 	}
 }

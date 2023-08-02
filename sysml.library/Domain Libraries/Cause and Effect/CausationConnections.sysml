@@ -61,11 +61,11 @@ standard library package CausationConnections {
 		 * connections with multiple causes.)
 		 */
 		 
-		end occurrence theCause[*] :>> causes :> source {
+		end occurrence theCause[*] :>> causes :>> source {
 			doc /* The single causing occurrence. */
 		}
 		
-		end occurrence theEffect[*] :>> effects :> target {
+		end occurrence theEffect[*] :>> effects :>> target {
 			doc /* The single effect occurrence resulting from the cause. */
 		}
 	}

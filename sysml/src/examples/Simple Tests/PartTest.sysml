@@ -30,4 +30,10 @@ package PartTest {
 		alias z2 for y;
 	}
 	
+    part p1 :> p2;
+    part p2 :> p3; 
+    part p3 :> p1;
+    
+    part p4 :> p4;
+	
 }

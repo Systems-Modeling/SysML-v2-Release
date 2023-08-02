@@ -169,8 +169,11 @@ standard library package Transfers {
 	interaction FlowTransferBefore specializes FlowTransfer, TransferBefore {
 		doc
 		/*
-		 * FlowTransferbefore is a FlowTransfer that is also a TransferBefore. 
+		 * FlowTransferBefore is a FlowTransfer that is also a TransferBefore. 
 		 */
+		 
+        end feature source: Occurrence[0..*] redefines Transfer::source, TransferBefore::source;
+        end feature target: Occurrence[0..*] redefines Transfer::target, TransferBefore::target;		 
 	}
 	
 	step transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {

@@ -162,23 +162,23 @@ package '14c-Language-Extensions' {
 
 			#prevention connect 'battery depleted' to req1;
 			
-			#cause 'battery depleted' {
+			#cause occurrence 'battery depleted' {
 				:>> occurs = 0.005;
 			}
 			
 			#causation first 'battery depleted' then 'battery cannot be charged';
 			
-			#failure 'battery cannot be charged' {
+			#failure occurrence 'battery cannot be charged' {
 				:>> detected = 0.013;
 			}
 			
 			#causation first 'battery cannot be charged' then 'glucose level undetected';
 			
-			#effect 'glucose level undetected';
+			#effect occurrence 'glucose level undetected';
 			
 			#causation first 'glucose level undetected' then 'therapy delay';
 			
-			#effect 'therapy delay' {
+			#effect occurrence 'therapy delay' {
 				:>> severity = "High";
 			}
 

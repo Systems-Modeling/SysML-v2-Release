@@ -22,13 +22,13 @@ package ConjugationTest {
 			port p2: ~P;		
 		}
 	
-		connection a: A connect p.p1 to p.p2 {
-			end port p3: P;
-			end port p4: ~P;
+		connection a: A {
+			end port p3: P ::> p.p1;
+			end port p4: ~P ::> p.p2;
 		}
-		interface i: I connect p.p1 to p.p2 {
-			end port p3: P;
-			end port p4: ~P;
+		interface i: I {
+			end port p3: P ::> p.p1;
+			end port p4: ~P ::> p.p2;
 		}
 	}
 	

@@ -1501,10 +1501,10 @@ package SimpleVehicleModel{
                         }
                     }
                 }
-                // varaition point based on variation of part definition
-                variation part transmissionChoices:TransmissionChoices;
+                // variation point based on variation of part definition
+                part transmissionChoices:TransmissionChoices;
                 // optional variation point
-                variation part sunroof:Sunroof;
+                part sunroof:Sunroof[0..1];
                 // selection constraint
                 assert constraint selectionConstraint{
                     (engine==engine::engine4Cyl and transmissionChoices==TransmissionChoices::transmissionManual) xor

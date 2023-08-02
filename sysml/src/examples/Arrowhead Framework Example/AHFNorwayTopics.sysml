@@ -19,13 +19,13 @@ package AHFNorway {
 	#servicedd port def APIS_DD :> APISService {
 		doc /* Service design description with nested protocol-specific ports */	
 
-		#idd APIS_HTTP {
+		#idd port APIS_HTTP {
 			// the asynch implementation of synchronous remote calls
 			out cll:CallGiveItems;
 			in retrn:ResultGiveItems;
 		}
 		
-		#idd APIS_MQTT  {
+		#idd port APIS_MQTT  {
 			// GetAllItems functionality
 			out pub:Publish;
 			out retall:Return_AllItems;
@@ -57,7 +57,7 @@ package AHFNorway {
 			// Call apisp::APIS_HTTP::giveItems(in allitems: String = "All the items", out ackback:Boolean);
 			
 			state TellUbehavior{
-				entry send CallGiveItems("All the items") to apisp.APIS_HTTP;
+				entry send CallGiveItems("All the items") via apisp.APIS_HTTP;
 				then Wait;
 				state Wait;
 					accept rs:ResultGiveItems
@@ -81,13 +81,13 @@ package AHFNorway {
 			 {  in itms:String; out ack:Boolean;
 			 	/* Forward itms and return an ack */
 			 	first start;
-			 	then send Return_AllItems(itms) to apisc.APIS_MQTT;
+			 	then send Return_AllItems(itms) via apisc.APIS_MQTT;
 			 	success = true;
 			 	bind ack = success;
 			 }
 			
 			state APISPbehavior{
-				entry send Publish("Return_AllItems") to apisc.APIS_MQTT;
+				entry send Publish("Return_AllItems") via apisc.APIS_MQTT;
 				then WaitOnData; 
 				
 				state WaitOnData;
@@ -95,7 +95,7 @@ package AHFNorway {
 					do action {
 						first start;
 						then action giveItems{ in itms=cl.itms; out ack=x; }
-						then send ResultGiveItems(x) to tellu.APIS_HTTP;
+						then send ResultGiveItems(x) via tellu.APIS_HTTP;
 					}
 				then WaitOnData;				
 			}
@@ -110,7 +110,7 @@ package AHFNorway {
 			
 			// Now sending signal to the remote behavior through the port functionality
 			state MQTT_APISP {
-				entry send Subscribe("Return_AllItems") to apisp.APIS_MQTT; 
+				entry send Subscribe("Return_AllItems") via apisp.APIS_MQTT; 
 				then Idle;		
 				state Idle;
 					accept Return_AllItems via apisp.APIS_MQTT
@@ -138,7 +138,7 @@ package AHFNorway {
  				
  				state Idle;
  					accept retrnall:Return_AllItems via getTopic.APIS_MQTT
- 					do send retrnall to giveTopic.APIS_MQTT
+ 					do send retrnall via giveTopic.APIS_MQTT
  				then Idle;
  			} 			
  		}

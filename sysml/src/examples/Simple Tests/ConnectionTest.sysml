@@ -38,8 +38,8 @@ package ConnectionTest {
 	}
 	
 	flow def F {
-		end p : P;
-		end q;
+		end f_p : P;
+		end f_q;
 	}
 	
 	message : F from p to p;

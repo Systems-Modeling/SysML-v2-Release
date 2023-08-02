@@ -123,8 +123,8 @@ standard library package Connections {
 		 * messageConnections is the base feature of all FlowConnectionUsages.
 		 */
 	
-		end source: Occurrence[0..*] :>> MessageConnection::source, binaryConnections::source, transfers::source;
-		end target: Occurrence[0..*] :>> MessageConnection::target, binaryConnections::target, transfers::target;
+		end occurrence source: Occurrence[0..*] :>> MessageConnection::source, binaryConnections::source, transfers::source;
+		end occurrence target: Occurrence[0..*] :>> MessageConnection::target, binaryConnections::target, transfers::target;
 	}
 	
 	abstract message flowConnections: FlowConnection[0..*] nonunique :> messageConnections, flowTransfers {
@@ -134,8 +134,8 @@ standard library package Connections {
 		 * and target input.
 		 */
 	
-		end source: Occurrence[0..*] :>> FlowConnection::source, messageConnections::source, flowTransfers::source;
-		end target: Occurrence[0..*] :>> FlowConnection::target, messageConnections::target, flowTransfers::target;
+		end occurrence source: Occurrence[0..*] :>> FlowConnection::source, messageConnections::source, flowTransfers::source;
+		end occurrence target: Occurrence[0..*] :>> FlowConnection::target, messageConnections::target, flowTransfers::target;
 	}
 	
 	abstract message successionFlowConnections: SuccessionFlowConnection[0..*] nonunique :> flowConnections, flowTransfersBefore {
@@ -144,7 +144,7 @@ standard library package Connections {
 		 * successionFlowConnections is the base feature of all SuccessionFlowConnectionUsages.
 		 */
 	
-		end source: Occurrence[0..*] :>> SuccessionFlowConnection::source, flowConnections::source, flowTransfersBefore::source;
-		end target: Occurrence[0..*] :>> SuccessionFlowConnection::target, flowConnections::target, flowTransfersBefore::target;
+		end occurrence source: Occurrence[0..*] :>> SuccessionFlowConnection::source, flowConnections::source, flowTransfersBefore::source;
+		end occurrence target: Occurrence[0..*] :>> SuccessionFlowConnection::target, flowConnections::target, flowTransfersBefore::target;
 	}
 }
