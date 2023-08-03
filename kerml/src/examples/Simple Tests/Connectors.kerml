@@ -5,8 +5,7 @@ package Connectors {
 		feature b : A;
 		
 		connector c1 from a to b;
-		abstract connector c2 = c;
-		connector = c2 {
+		connector c2 {
 			end feature references a;
 			end feature references b;
 		}
