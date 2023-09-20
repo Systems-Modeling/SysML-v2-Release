@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  jupyter_sysml:
+    container_name: 'jupyter_sysml_mamba'
+    build: .
+    ports:
+      - 8888:8888
+    volumes:
+      - ./files:/home
