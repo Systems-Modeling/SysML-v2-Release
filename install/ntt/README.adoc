@@ -1,0 +1,79 @@
+= SysML v2 Release  Installation @NTTDATA
+
+*Requirements:* Eclipse 2022-09 (4.25), with Java Development Kit
+
+(*Note:* The release may work on later versions of Eclipse, but it has only been tested on 2022-09.)
+
+== Install and Configure GIT 
+
+. Download newest git version for Windows ( https://git-scm.com/download/win ) - Windows Setup recommended  
+. Enter `git bash` in Windows start menu and open it.
+. Navigate to the folder you want to store the SysML-v2 repository (using linux commands like `cd` or `ls`)
+. Enter `git clone https://github.com/sonofmbse/SysML-v2.git` and wait till repro is downloaded
+
+== Installing the plugins
+
+. Open an Eclipse workspace.
+. Select `Help > Install New Software`.
+. Select `+Add...+` and then, in the add dialog, select `+Archive...+` .
+. Navigate to the `org.omg.sysml.site.zip` archive and select it. (You can give it a name if you wish.) Click `Add`.
+. In the Install window, select the `KerML and SysML Editors` category and click `Next`.
+. Continue with the installation (select `Install Anyway` if asked), and, when it is complete, restart Eclipse.
+
+== Installing PlantUML graphical visualization
+
+Graphical visualization is available in Eclipse using the open source https://plantuml.com[PlantUML] tooling to render diagrams.
+
+. Make sure that your Eclipse has PlantUML with SysMLv2 extensions. You can install it from the update site of https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates with Help > Install New Software
+. PlantUML visualization requires that https://www.graphviz.org[GraphViz] be installed. Visit https://www.graphviz.org/download/
+and download the appropriate package for your environment.
+ ** The recommended GraphViz version is 2.44.1.  Make sure you have initialized GraphViz with `dot -c` command.  See https://plantuml.com/ja/graphviz-dot for details.
+. If Eclipse cannot automatically find the path to the GraphViz executable, you can set it by going to `Preferences > PlantUML`.
+For details, visit https://plantuml.com/en/eclipse.
+
+== Installing the model library and modeling projects
+
+If you are updating an existing installation of an earlier SysML v2 release, then, before proceeding with the procedure
+below, delete the `kerml`, `sysml` and `sysml.library` projects from your workspace, selecting `Delete project contents from disk`.
+
+. Select `File > Import`.
+. Under `General`, choose `Existing Projects into Workspace`.
+. Browse to the `sysml.library` directory and select it.
+. Under `Projects`, select `sysml.library`, under `Options` select `Copy projects into workspace`, then click `Finish`.
+. Turn off `Project > Build Automatically`, then select `+Project > Clean...+` and build _only_ `sysml.library`.
+. Repeat the above steps for the `kerml` and `sysml` projects.
+
+*Important Note:* Import the `kerml` and `sysml` projects _only_ after importing and building the `sysml.library` project.
+
+After installation is complete, if you wish to turn `Build Automatically` back on, first go to `Preferences > General > Workspace > Build`
+and make sure that `sysml.library` is before `kerml` and `sysml` in the build order.
+
+== Working with model files
+
+. Double click on a file with a `.kerml` or `.sysml` extension to view it in a Kernel Modeling Language (KerML) or Systems Modeling Language (SysML).
+. Create new KerML files in the `kerml/src` directory with the extension `.kerml`.
+. Create new SysML files in the `sysml/src` directory with the extension `.sysml`.
+. You can view the model library files in the `sysml.library` project, but _do not change them_.
+. To show SysML diagrams, in `+Window > Show View > Other...+` select the PlantUML view. The diagram rendered in the view is relative to the text selected
+in the active SysML editor view. Tree (BDD-like), interconnection (IBD-like) and state machine views are currently supported.
+
+*Release Note:* While performance has improved further in this release, there are still cases in which the processing of a file with
+several name resolution errors can take a long time, particularly if the `Quantities and Units` library is being used.
+
+== Initializing new model projects
+
+You can also create a separate project for your KerML or SysML files.
+
+. Select `+File > New > Project...+` to open the New Project wizard.
+. Select `General/Project`.
+. Enter the project name (and location if necessary), then press Next.
+. On the Project References page, check the `sysml.library` project. This step tells Eclipse which other projects should be visible for resolving cross-references.
+. Right-click the new project and select `Configure > Convert` to an Xtext project. This step sets up the indexing infrastructure necessary for resolving references between different files.
+. Create any text files with `.kerml` or `.sysml` extensions to start working with a new file.
+
+NOTE: Adding the project references to an existing project can be done in the project Properties dialog available from the popup menu on the project in the Project References page.
+
+NOTE: If the Xtext setup (step 5) is missed, opening the KerML or SysML editor shows a dialog asking to convert the project to an Xtext project.
+Accepting this has the same results as manually selecting the menu item on the project.
+
+== Push to git repository 
