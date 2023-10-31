@@ -4,7 +4,7 @@
 
 (*Note:* The release may work on later versions of Eclipse, but it has only been tested on 2022-09.)
 
-== Install and Configure GIT 
+== Install and configure git
 
 . Download newest git version for Windows ( https://git-scm.com/download/win ) - Windows Setup recommended  
 . Enter `git bash` in Windows start menu and open it.
@@ -16,7 +16,7 @@
 . Open an Eclipse workspace.
 . Select `Help > Install New Software`.
 . Select `+Add...+` and then, in the add dialog, select `+Archive...+` .
-. Navigate to the `org.omg.sysml.site.zip` archive and select it. (You can give it a name if you wish.) Click `Add`.
+. Navigate to the `install/eclipse/org.omg.sysml.site.zip` archive at the cloned git repro (see above). Click `Add`.
 . In the Install window, select the `KerML and SysML Editors` category and click `Next`.
 . Continue with the installation (select `Install Anyway` if asked), and, when it is complete, restart Eclipse.
 
@@ -27,19 +27,25 @@ Graphical visualization is available in Eclipse using the open source https://pl
 . Make sure that your Eclipse has PlantUML with SysMLv2 extensions. You can install it from the update site of https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates with Help > Install New Software
 . PlantUML visualization requires that https://www.graphviz.org[GraphViz] be installed. Visit https://www.graphviz.org/download/
 and download the appropriate package for your environment.
- ** The recommended GraphViz version is 2.44.1.  Make sure you have initialized GraphViz with `dot -c` command.  See https://plantuml.com/ja/graphviz-dot for details.
+ ** The recommended GraphViz version is 2.44.1. (Version 2-49.0 is also fine)  Make sure you have initialized GraphViz with `dot -c` command.  See https://plantuml.com/ja/graphviz-dot for details.
 . If Eclipse cannot automatically find the path to the GraphViz executable, you can set it by going to `Preferences > PlantUML`.
 For details, visit https://plantuml.com/en/eclipse.
 
+== Install Egit
+. Open an Eclipse workspace.
+. Select `Help > Install New Software`.
+. Select `+Add...+` and then, `Name = EGit` and `Location =http://download.eclipse.org/egit/updates` .
+. Select all
+. Restart Eclipse
+. Window -> Show View -> Other... -> Git/ Git Repositories
+. Add an exisiting local Git repository
+. Select folder cloned from git repro (see steps above)
+
 == Installing the model library and modeling projects
 
-If you are updating an existing installation of an earlier SysML v2 release, then, before proceeding with the procedure
-below, delete the `kerml`, `sysml` and `sysml.library` projects from your workspace, selecting `Delete project contents from disk`.
-
-. Select `File > Import`.
-. Under `General`, choose `Existing Projects into Workspace`.
-. Browse to the `sysml.library` directory and select it.
-. Under `Projects`, select `sysml.library`, under `Options` select `Copy projects into workspace`, then click `Finish`.
+. Browse to the `sysml.library` directory in the Git Repositories window and select it.
+. Click right and `Import Projects ...` 
+. Click Finish
 . Turn off `Project > Build Automatically`, then select `+Project > Clean...+` and build _only_ `sysml.library`.
 . Repeat the above steps for the `kerml` and `sysml` projects.
 
@@ -77,3 +83,9 @@ NOTE: If the Xtext setup (step 5) is missed, opening the KerML or SysML editor s
 Accepting this has the same results as manually selecting the menu item on the project.
 
 == Push to git repository 
+To push to the git repository using the Eclipse extention (Egit) a view steps are needet to get permission 
+. Ask git admin for 'Personal access token' 
+
+NOTE: Github admins can create this token  Github -> Settings -> Developer Settings -> Personal access tokens 
+
+. Follow link https://stackoverflow.com/a/68802292/6505250
