@@ -18,7 +18,7 @@ package Dynamics {
 	}
  	
 	calc def Position { in dt : TimeValue; in x0 : LengthValue; in v : SpeedValue; 
-		return: LengthValue = x0 + v * dt;
+		return x : LengthValue = x0 + v * dt;
 	}
 
 	// Analysis action def
@@ -63,21 +63,21 @@ package Dynamics {
 			in dt = dyn2::dt;
 			in tm = dyn2::tm;
 			in tp = Power(whlpwr, Cd, Cf, tm, v_in);
-			return a = a_out;
 		}
+		bind a_out = acc.a;
 		
 		calc vel : Velocity {
 			in dt = dyn2::dt;
 			in v0 = dyn2::v_in; 
 			in a = acc.a;
-			return v = v_out;
 		}
+		bind v_out = vel.v;
 		
 		calc pos : Position {
 			in dt = dyn2::dt;
 			in x0 = dyn2::x_in;
 			in v0 = vel.v;
-		  	return x = x_out;		
 		}
+		bind x_out = pos.x;
 	}
 }

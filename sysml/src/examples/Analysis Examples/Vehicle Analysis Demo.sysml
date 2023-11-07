@@ -58,7 +58,7 @@ package 'Vehicle Analysis Demo' {
 	    
 	    part vehicle_c1 : Vehicle {
 	        port :>> fuelInPort {
-	            in item :>> fuel;
+	            in item :>> fuel; 
 	        }
 	
 	        part fuelTank : FuelTank {
@@ -273,14 +273,14 @@ package 'Vehicle Analysis Demo' {
 	
 	    analysis cityFuelEconomyAnalysis : FuelEconomyAnalysis {
 	        subject vehicle = vehicle_c1;
-	        attribute :>> scenario = cityScenario;
-	        requirement :>> fuelEconomyRequirement = cityFuelEconomyRequirement;
+	        in attribute scenario = cityScenario;
+	        in requirement fuelEconomyRequirement = cityFuelEconomyRequirement;
 	    }
 	
 	    analysis highwayFuelEconomyAnalysis : FuelEconomyAnalysis {
 	        subject vehicle = vehicle_c1;
-	        attribute :>> scenario = highwayScenario;
-	        requirement :>> fuelEconomyRequirement = highwayFuelEconomyRequirement;
+	        in attribute scenario = highwayScenario;
+	        in requirement fuelEconomyRequirement = highwayFuelEconomyRequirement;
 	    }
 	
 	    part vehicle_c1_analysized :> vehicle_c1 {

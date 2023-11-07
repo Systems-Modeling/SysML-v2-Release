@@ -40,10 +40,10 @@ standard library package RationalFunctions {
 	function ToRational{ in x: String[1]; return : Rational[1]; }
 	
 	function sum specializes RealFunctions::sum { in collection: Rational[0..*];
-		return : Rational[1] = NumericalFunctions::sum0(collection, rat(0, 1));
+		return : Rational[1] default NumericalFunctions::sum0(collection, rat(0, 1));
 	}
 	
 	function product specializes RealFunctions::product { in collection: Rational[0..*];
-		return : Rational[1] = NumericalFunctions::product1(collection, rat(1, 1));
+		return : Rational[1] default NumericalFunctions::product1(collection, rat(1, 1));
 	}	
 }

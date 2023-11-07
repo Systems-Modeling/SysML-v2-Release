@@ -97,7 +97,7 @@ package AHFNorway {
 						then action giveItems{ in itms=cl.itms; out ack=x; }
 						then send ResultGiveItems(x) via tellu.APIS_HTTP;
 					}
-				then WaitOnData;				
+				then WaitOnData;		
 			}
 		}
 		

@@ -109,7 +109,7 @@ standard library package VectorFunctions {
 	 
 		in v: NumericalVectorValue[1]; 
 		in x: NumericalValue[1];
-		return w: NumericalVectorValue[1] = scalarVectorMult(x, v);
+		return w: NumericalVectorValue[1] default scalarVectorMult(x, v);
 	}
 	
 	abstract function vectorScalarDiv specializes DataFunctions::'/' {

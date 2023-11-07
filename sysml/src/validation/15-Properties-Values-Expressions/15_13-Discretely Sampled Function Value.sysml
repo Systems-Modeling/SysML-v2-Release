@@ -46,7 +46,7 @@ package '15_13-Discretely Sampled Function Value' {
 		 * Define Cartesian 3D coordinate systems for position and velocity
 		 * Create a velocity coordinate system from the spatial coordinate system through division by second
 		 */
-	attribute spatialCF: CartesianSpatial3dCoordinateFrame[1] { :>> mRefs = (m, m, m); }
+	   :>> mRefs = (m, m, m);
 	}
 	attribute velocityCF: CartesianVelocity3dCoordinateFrame[1] = spatialCF/s;
 

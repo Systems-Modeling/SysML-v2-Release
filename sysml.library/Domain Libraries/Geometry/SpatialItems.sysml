@@ -70,7 +70,6 @@ standard library package SpatialItems {
 				attribute :>> mRefs default (that.that as SpatialItem).coordinateFrame.mRefs;
 				attribute :>> transformation[1] default nullTransformation {
 					attribute :>> source default (that.that.that as SpatialItem).coordinateFrame;
-					attribute :>> target default that;
 				}
 			}
 		}

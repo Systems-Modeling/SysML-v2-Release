@@ -35,7 +35,7 @@ package 'Verification Case Usage Example' {
 	individual testSystem : TestSystem :> massVerificationSystem {
 		timeslice test1 {
 			perform action :>> vehicleMassTest {
-				individual :>> testVehicle : TestVehicle1 {
+				in individual :>> testVehicle : TestVehicle1 {
 					:>> mass = 2500[SI::kg];
 				}
 			}
@@ -43,7 +43,7 @@ package 'Verification Case Usage Example' {
 		
 		then timeslice test2 {
 			perform action :>> vehicleMassTest {
-				individual :>> testVehicle : TestVehicle2 {
+				in individual :>> testVehicle : TestVehicle2 {
 					:>> mass = 3000[SI::kg];
 				}
 			}

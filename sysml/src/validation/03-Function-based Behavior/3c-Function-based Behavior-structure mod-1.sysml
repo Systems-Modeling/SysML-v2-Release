@@ -40,7 +40,7 @@ package '3c-Function-based Behavior-structure mod-1' {
 			// Destroy the link object.
 			then action 'destroy connection of trailer to vehicle' : 
 				OccurrenceFunctions::destroy {
-				:>> occ = 'vehicle-trailer system'.trailerHitch;
+				inout occ = 'vehicle-trailer system'.trailerHitch;
 			}
 				
 			// Remove the link from the TrailerHitch connection.

@@ -238,7 +238,6 @@ standard library package Time {
     	attribute hourOffset: Integer;
     	attribute minuteOffset: Integer;
     	attribute :>> num = getElapsedUtcTime(year, month, day, hour, minute, second, microsecond, hourOffset, minuteOffset);
-    	attribute :>> mRef = UTC;
     	private calc getElapsedUtcTime {
     		in year: Integer; 
     		in month: Natural; 

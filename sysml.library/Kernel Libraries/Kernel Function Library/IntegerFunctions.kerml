@@ -34,10 +34,10 @@ standard library package IntegerFunctions {
 	function ToInteger { in x: String[1]; return : Integer[1]; }
 	
 	function sum specializes RationalFunctions::sum { in collection: Integer[0..*]; 
-		return : Integer[1] = NumericalFunctions::sum0(collection, 0);
+		return : Integer[1] default NumericalFunctions::sum0(collection, 0);
 	}
 	
 	function product specializes RationalFunctions::product { in collection: Integer[0..*];
-		return : Integer[1] = NumericalFunctions::product1(collection, 1);
+		return : Integer[1] default NumericalFunctions::product1(collection, 1);
 	}
 }	

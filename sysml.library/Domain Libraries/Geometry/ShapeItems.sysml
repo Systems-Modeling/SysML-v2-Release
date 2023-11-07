@@ -109,9 +109,9 @@ standard library package ShapeItems {
 		 * A Circle is an Ellipse with semiaxes equal to its radius.
 		 */
 	
-		attribute :>> radius [1] = semiMajorAxis;
-
-		assert constraint { semiMajorAxis == semiMinorAxis }
+		attribute :>> radius [1];
+        attribute :>> semiMajorAxis [1] = radius;
+        attribute :>> semiMinorAxis [1] = radius;
 
 		item :>> edges {
 			attribute length [1] = Circle::radius * TrigFunctions::pi * 2;

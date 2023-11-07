@@ -27,7 +27,7 @@ package ViewTest {
 			frame concern c1;
 			concern c2;
 		}
-		rendering r1: R[0..1]; 
+		render rendering r1: R[0..1]; 
 		
 		view v: V[0..*] {
 			expose P::*;

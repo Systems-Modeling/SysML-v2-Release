@@ -11,8 +11,8 @@ package 'Part Definition Example' {
 	}
 	
 	attribute def VehicleStatus {
-		gearSetting : Integer;
-		acceleratorPosition : Real;
+		attribute gearSetting : Integer;
+		attribute acceleratorPosition : Real;
 	}
 	
 	part def Engine;	

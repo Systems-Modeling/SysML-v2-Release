@@ -177,10 +177,10 @@ standard library package ISQSpaceTime {
          * Note 1: The Cartesian basis vectors `vec(e_x)`, `vec(e_y)` and `vec(e_z)` form an orthonormal right-handed coordinate frame.
          * Note 2: The measurement units for the 3 dimensions are typically the same, but may be different.
          */
-        attribute xUnit : LengthUnit;
-        attribute yUnit : LengthUnit;
-        attribute zUnit : LengthUnit;
-        attribute :>> mRefs = (xUnit, yUnit, zUnit);
+        attribute xUnit : LengthUnit = mRefs#(1);
+        attribute yUnit : LengthUnit = mRefs#(2);
+        attribute zUnit : LengthUnit = mRefs#(3);
+        attribute :>> mRefs : LengthUnit[3];
         attribute :>> isOrthogonal = true;
     }
 
@@ -575,7 +575,6 @@ standard library package ISQSpaceTime {
          * definition: vector (ISO 80000-2) quantity giving the rate of change of a position vector (item 3-1.10)
          * remarks: The velocity vector is given by: `vec(v) = (d vec(r)) / (dt)` where `vec(r)` denotes the position vector (item 3-1.10) and `t` the duration (item 3-9). When the general symbol `vec(v)` is not used for the velocity, the symbols `u`, `v`, `w` may be used for the components (ISO 80000-2) of the velocity.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> mRef: CartesianVelocity3dCoordinateFrame[1];
     }
@@ -652,7 +651,6 @@ standard library package ISQSpaceTime {
          * definition: vector (ISO 80000-2) quantity giving the rate of change of velocity (item 3-10)
          * remarks: The acceleration vector is given by: `vec(a) = (d vec(v))/(dt)` where `vec(v)` denotes the velocity (item 3-10.1) and `t` the duration (item 3-9). The magnitude (ISO 80000-2) of the acceleration of free fall is usually denoted by `g`.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> mRef: CartesianAcceleration3dCoordinateFrame[1];
     }
@@ -704,7 +702,6 @@ standard library package ISQSpaceTime {
          * definition: vector (ISO 80000-2) quantity giving the rate of change of the rotational displacement (item 3-6) as its magnitude (ISO 80000-2) and with a direction equal to the direction of the axis of rotation
          * remarks: The angular velocity vector is given by: `vec(ω) = (d φ) / (dt) vec(u)` where `φ` denotes the angular displacement (item 3-6), `t` the duration (item 3-9), and `vec(u)` the unit vector (ISO 80000-2) along the axis of rotation in the direction for which the rotation corresponds to a right-hand spiral.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dAngularVelocityCoordinateFrame[1];
@@ -757,8 +754,7 @@ standard library package ISQSpaceTime {
          * definition: vector (ISO 80000-2) quantity giving the rate of change of angular velocity (item 3-12)
          * remarks: The angular acceleration vector is given by: `vec α = (d vec(ω))/(dt)` Where `vec(ω)` denotes the angular velocity (item 3-12) and `t` the duration (item 3-9).
          */
-        attribute :>> dimensions = 3;
-        attribute :>> isBound = false;
+         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dAngularAccelerationCoordinateFrame[1];
     }
@@ -947,7 +943,6 @@ standard library package ISQSpaceTime {
          * definition: vector normal to the surfaces of constant phase angle (item 3-7) of a wave, with the magnitude (ISO 80000-2) of repetency (item 3-20)
          * remarks: None.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dWaveCoordinateFrame[1];

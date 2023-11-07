@@ -47,10 +47,10 @@ standard library package RealFunctions {
 	function ToReal{ in x: String[1]; return : Real[1]; }
 	
 	function sum specializes ComplexFunctions::sum { in collection: Real[0..*]; 
-        return : Real = NumericalFunctions::sum0(collection, 0.0);
+        return : Real default NumericalFunctions::sum0(collection, 0.0);
 	}
 	
 	function product specializes ComplexFunctions::product { in collection: Real[0..*]; 
-        return : Real = NumericalFunctions::product1(collection, 1.0);
+        return : Real default NumericalFunctions::product1(collection, 1.0);
 	}	
 }

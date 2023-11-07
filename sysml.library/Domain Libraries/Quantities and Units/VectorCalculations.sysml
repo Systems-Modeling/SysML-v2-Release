@@ -54,8 +54,9 @@ standard library package VectorCalculations {
 	        :>> mRef = transformation.source;
 	    }
 	    return targetVector : VectorQuantityValue {
-	        :>> mRef = transformation.target;
-	        :>> dimensions = sourceVector.dimensions;
+	        :>> mRef = transformation.target {
+	            :>> dimensions = sourceVector.mRef.dimensions;
+	        }
     	}
 	}
 }

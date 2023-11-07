@@ -41,7 +41,7 @@ standard library package TransitionPerformances {
 
 		feature accNum: Natural [1] = if isEmpty(trigger) ? 0 else 1;
 		step accept: AcceptPerformance[accNum] subsets timeEnclosedOccurrences, acceptPerformances {
-			feature redefines receiver = triggerTarget;
+			in feature redefines receiver = triggerTarget;
 			feature redefines acceptedTransfer = trigger;
 		}
 
