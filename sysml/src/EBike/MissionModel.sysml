@@ -19,5 +19,11 @@
     	}
 		package MissionViews{
 			doc 'Mission Views' /* This package contains the specific views for the mission system model. The packages witht the elements to be displayed have to be imported for the rendering of the views */
+    		import EnterpriseViews_ViewpointsDefinitionsLibrary::EnterpriseViewpointDefinitions::*;
+    		import EnterpriseViews_ViewpointsDefinitionsLibrary::EnterpriseViewDefinitions::*;
+    		import Structure::*;
+    		view MissionPackageStructureView:PackageStructureView{
+    			expose missionContext::*;
+    		}
     	}
     }
