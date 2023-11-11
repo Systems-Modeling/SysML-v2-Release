@@ -1,6 +1,6 @@
  package MissionModel{
     	doc 'Mission Model' /* This Package contains the operational context around the system of interest (SoI) and use cases related to the SoI */
-    	import EnterpriseLanguageExtensionsLibrary::*;
+    	import EnterpriseLanguageExtensionsLibrary::OOSEMConcepts;
     	import MissionDefinitions::*;
     	import MissionRequirements::*;
     	import EnterpriseViews_ViewpointsDefinitionsLibrary::*;
