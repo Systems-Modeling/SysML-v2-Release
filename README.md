@@ -7,6 +7,7 @@ To install, follow the instructions at install\ntt
 
 ## Idea
 
+To develop a Method how Sysml 2.0 can be used to structure complex models and implement version control into modeling systems. Improve coworking on complex systems with traceabiltiy.
 
 
 ## Usage
