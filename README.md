@@ -16,5 +16,5 @@ Implement features or change code:
 1. create feature branch from master
 2. change your branch
 3. create pull request if changes are implemented and tested (!!! not to safe your daily work)
-4. Merge will be reviewd and discussed in merge sessions with the core dev team
+4. Merge will be reviewed and discussed in merge sessions with the core dev team
 
