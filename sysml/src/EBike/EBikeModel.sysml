@@ -1,12 +1,12 @@
 package 'EBikeSystemModel' {
 	doc 'EBike Model' /* This Package contains the system of interest (SoI) */
-	import EnterpriseLanguageExtensionsLibrary::*;
+	import EnterpriseLanguageExtensionsLibrary::OOSEMConcepts::*;
     import EBikeDefinitions::*;
     import EnterpriseViews_ViewpointsDefinitionsLibrary::*;  
     import ISQ::*;
     import EBikeAnalysis::*;
     import EBikeVerification::*;
-    import ParametersOfInterestMetadata::mop;
+    import ParametersOfInterestMetadata::mop; 
     package EBikeBlackBoxSpezification {
     	// The BlackBox spezification is made of the system boundary, the ports, interacting items, methods and properites 
     }
