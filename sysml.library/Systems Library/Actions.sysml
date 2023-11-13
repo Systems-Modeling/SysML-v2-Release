@@ -209,11 +209,11 @@ standard library package Actions {
 		 * not accepters for TransitionActions. It waits for a payload or message of the specified 
 		 * kind to be accepted by a nested state transition.
 		 */
-		inout :>> payload = aState.aTransition.apayload;
 		ref :>> acceptedMessage = aState.aTransition.accepter.acceptedMessage;
 		state aState  {
 			transition aTransition first start accept apayload: Anything via receiver then done;
 		}
+		bind payload = aState.aTransition.apayload;
 	}
 	
 	abstract action acceptActions: AcceptAction[0..*] nonunique :> actions, acceptPerformances {

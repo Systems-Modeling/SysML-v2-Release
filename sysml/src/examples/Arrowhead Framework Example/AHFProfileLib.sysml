@@ -74,7 +74,7 @@ library package AHFProfileMetadata{
 	metadata def <service> SDMetadata :> SemanticMetadata{
 		// :>> baseType = system_of_systems.locclouds.systems.services meta SysML::PortUsage;
 		// :>> baseType = SysD::services meta SysML::PortUsage;
-		:>> baseType = global_sd meta SysML::PortUsage;
+		:>> baseType default global_sd meta SysML::PortUsage;
 	}
 	
 	metadata def <sos> SysLocalCloudsMetadata :> SemanticMetadata{
@@ -82,12 +82,12 @@ library package AHFProfileMetadata{
 	}
 	
 	metadata def <cloud> LocalCloudsMetadata :> SemanticMetadata{
-		:>> baseType = system_of_systems::locclouds meta SysML::PartUsage;
+		:>> baseType default system_of_systems::locclouds meta SysML::PartUsage;
 	}
 	
 	metadata def <system> SysDMetadata :> SemanticMetadata{
-		:>> baseType = system_of_systems::locclouds::systems meta SysML::PartUsage;
-		// :>> baseType = LocalCloudDesign::systems meta SysML::PartUsage;
+		:>> baseType default system_of_systems::locclouds::systems meta SysML::PartUsage;
+		// :>> baseType default LocalCloudDesign::systems meta SysML::PartUsage;
 	}
 
 	metadata def <idd> IDDMetadata :> SDMetadata{

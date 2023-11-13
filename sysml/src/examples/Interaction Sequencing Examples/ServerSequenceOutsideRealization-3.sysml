@@ -40,7 +40,7 @@ package ServerSequenceOutsideRealization_3 {
 			/* Internal flows are instantaneous to make arrival/leave ordering in SequenceModelOutside.sysml
 			 * equivalent to ordering participant internals in ServerSequenceRealization-3.sysml. */
 			flow publish_request from producerBehavior.publish.request to publicationPort.publish
-				{ attribute :>> isInstant = true;}	
+				{ attribute :>> isInstant = true;}
 		}
 		
 		interface publication_interface : PublicationInterface connect producer_3.publicationPort to server_3.publicationPort {

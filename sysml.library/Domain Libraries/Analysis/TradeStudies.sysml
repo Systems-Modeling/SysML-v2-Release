@@ -158,13 +158,13 @@ standard library package TradeStudies {
 			in calc :>> fn = evaluationFunction;
 		}
 		
-		return ref selectedAlternative = studyAlternatives->selectOne {in ref a {
+		return selectedAlternative : Anything = studyAlternatives->selectOne {in ref a {
 			doc
 			/*
 			 * The alternative selected by this TradeStudy, which is the one that meets the
 			 * requirement of the tradeStudyObjective.
 			 */
-		} tradeStudyObjective(a)};
+		} tradeStudyObjective(selectedAlternative = a)};
 	}
 	
 }

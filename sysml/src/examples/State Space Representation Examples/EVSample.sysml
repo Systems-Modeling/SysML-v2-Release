@@ -153,7 +153,7 @@ package EVSample {
 
 
     part vehicle : Vehicle {
-        attribute :>> mass = 1000[kg];
+        attribute :>> mass default 1000[kg];
 
         /* airFrictionCoefficient [kg / m] = 1/2 * rho[kg/m^3] * Cd * S[m^2],
          * where rho is air density, S is front projected area. */
@@ -162,8 +162,8 @@ package EVSample {
         attribute efficiency;
 
         action vehicleBehavior : ContinuousStateSpaceDynamics {
-            :>> input : VehicleInput;
-            :>> output : VehicleOutput;
+            in input : VehicleInput;
+            out output : VehicleOutput;
             :>> stateSpace : VehicleState;
         }
         
@@ -173,8 +173,8 @@ package EVSample {
             :>> socInit = 0.8;
             :>> internalResistance = 1.8['Ω'];
             action batteryBehavior : ContinuousStateSpaceDynamics {
-                :>> input : BatteryInput;
-                :>> output : BatteryOutput;
+                in input : BatteryInput;
+                out output : BatteryOutput;
                 :>> stateSpace : BatteryState;
             }
         }
@@ -187,8 +187,8 @@ package EVSample {
             :>> motL = 0.2[H];
 
             action motorBehavior : ContinuousStateSpaceDynamics {
-                :>> input : MotorInput;
-                :>> output : MotorOutput;
+                in input : MotorInput;
+                out output : MotorOutput;
                 :>> stateSpace : MotorState;
             }
         }
@@ -197,11 +197,11 @@ package EVSample {
         flow vehicleBehavior.output.accel to tire.tireBehavior.input.accel;
 
         part tire: Tire {
-            :>> moment = 300['kg⋅m²'];
-            :>> radius = 0.7[m];
+            :>> moment default 300['kg⋅m²'];
+            :>> radius default 0.7[m];
             action tireBehavior : ContinuousStateSpaceDynamics {
-                :>> input : TireInput;
-                :>> output : TireOutput;
+                in input : TireInput;
+                out output : TireOutput;
             }
         }
 

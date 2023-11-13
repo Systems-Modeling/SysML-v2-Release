@@ -14,7 +14,7 @@ package ServerSequenceOutsideRealization_2 {
 			/* Requiring FIFO sort (as opposed to just default) to make arrival/leave ordering
 			 * in ServerSequenceModelOutside.sysml equivalent to accept/send ordering in
 			 * ServerSquenceRealization-2.sysml. */
-			feature :>> incomingTransferSort = Occurrences::earlierFirstIncomingTransferSort;
+			:>> incomingTransferSort = Occurrences::earlierFirstIncomingTransferSort;
 			
 			port publicationPort : ~PublicationPort;
 			
@@ -30,7 +30,7 @@ package ServerSequenceOutsideRealization_2 {
 		part server_2[1] {
 			port publicationPort : PublicationPort;
 			port subscriptionPort : SubscriptionPort;
-			feature :>> incomingTransferSort = Occurrences::earlierFirstIncomingTransferSort;
+			:>> incomingTransferSort = Occurrences::earlierFirstIncomingTransferSort;
 			
 			exhibit state serverBehavior {
 				entry; then waitForSubscription;
@@ -57,7 +57,7 @@ package ServerSequenceOutsideRealization_2 {
 		
 		part consumer_2[1] {
 			attribute myTopic : String;
-			feature :>> incomingTransferSort = Occurrences::earlierFirstIncomingTransferSort;
+			:>> incomingTransferSort = Occurrences::earlierFirstIncomingTransferSort;
 			
 			port subscriptionPort : ~SubscriptionPort;
 			

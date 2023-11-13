@@ -302,7 +302,6 @@ standard library package ISQAtomicNuclear {
          * definition: for a particle, vector (ISO 80000-2) quantity causing a change to its energy (ISO 80000-5) `ΔW` in an external magnetic field of field flux density `vec(B)` (IEC 80000-6): `ΔW` = -`vec(μ)` · `vec(B)`
          * remarks: For an atom or nucleus, this energy is quantized and can be written as: `W` = `g μ_x M B` where `g` is the appropriate `g` factor (item 10-14.1 or item 10-14.2), `μ_x` is mostly the Bohr magneton or nuclear magneton (item 10-9.2 or item 10-9.3), `M` is magnetic quantum number (item 10-13.4), and `B` is magnitude of the magnetic flux density. See also IEC 80000-6.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dMagneticDipoleMomentCoordinateFrame[1];
@@ -389,7 +388,6 @@ standard library package ISQAtomicNuclear {
          * definition: vector (ISO 80000-2) quantity expressing the internal angular momentum (ISO 80000-4) of a particle or a particle system
          * remarks: Spin is an additive vector quantity.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dSpinCoordinateFrame[1];
@@ -444,7 +442,6 @@ standard library package ISQAtomicNuclear {
          * definition: vector (ISO 80000-2) quantity in a quantum system composed of the vectorial sum of angular momentum `vec(L)` (ISO 80000-4) and spin `vec(s)` (item 10-10)
          * remarks: In atomic and nuclear physics, orbital angular momentum is usually denoted by `vec(l)` or `vec(L)`. The magnitude of `vec(J)` is quantized so that: `J^2 = ℏ^2 j (j+1)` where `j` is the total angular momentum quantum number (item 10-13.6). Total angular momentum and magnetic dipole moment have the same direction. `j` is not the magnitude of the total angular momentum `vec(J)` but its projection onto the quantization axis, divided by `ℏ`.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dTotalAngularMomentumCoordinateFrame[1];
@@ -1599,7 +1596,6 @@ standard library package ISQAtomicNuclear {
          * definition: vector whose component in direction of an area normal is given by: `vec(J_n) = int Φ_Ω(θ, α) cos(θ) dΩ` where `Φ_Ω(θ, α)` is the directional distribution of the particle fluence rate (item 10-44), and ` θ` and `α` are polar and azimuthal angles, respectively
          * remarks: Usually the word "particle" is replaced by the name of a specific particle, for example proton current. Symbol `vec(S)` is recommended when there is a possibility of confusion with the symbol `vec(J)` for electric current density. For neutron current, the symbol `vec(J)` is generally used. The distribution functions expressed in terms of speed and energy, `vec(J_v)` and `vec(J_E)`, are related to `vec(J)` by: `vec(J) = int vec(J_v) dv = int vec(J_E) dE`. The directional distribution of the particle fluence rate is also denoted as particle radiance.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dParticleCurrentDensityCoordinateFrame[1];

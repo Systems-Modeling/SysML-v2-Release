@@ -82,8 +82,7 @@ package CarWithShapeAndCSG {
 
 		/* CSG difference of rawEngineBlock minus cylinder1 minus cylinder2 */
 		attribute :> differencesOf[1] {
-			item :>> minuend = rawEngineBlock;
-			item :>> subtrahend = (cylinder1, cylinder2);
+			item :>> elements = (rawEngineBlock, cylinder1, cylinder2);
 		}
 	}
 }

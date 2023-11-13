@@ -250,7 +250,6 @@ standard library package ISQMechanics {
          * definition: product of mass `m` (item 4-1) of a body and velocity `vec(v)` (ISO 80000-3) of its centre of mass: `vec(p) = m  vec(v)`
          * remarks: None.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dMomentumCoordinateFrame[1];
@@ -305,7 +304,6 @@ standard library package ISQMechanics {
          * definition: vector (ISO 80000-2) quantity describing interaction between bodies or particles
          * remarks: None.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dForceCoordinateFrame[1];
@@ -334,7 +332,6 @@ standard library package ISQMechanics {
          * definition: force (item 4-9.1) acting on a body in the gravitational field of Earth: `vec(F_g) = m vec(g)` where `m` (item 4-1) is the mass of the body and `vec(g)` is the local acceleration of free fall (ISO 80000-3)
          * remarks: In colloquial language, the name "weight" continues to be used where "mass" is meant. This practice should be avoided. Weight is an example of a gravitational force. Weight comprises not only the local gravitational force but also the local centrifugal force due to the rotation of the Earth.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dForceCoordinateFrame[1];
@@ -356,7 +353,6 @@ standard library package ISQMechanics {
          * definition: force (item 4-9.1) resisting the motion before a body starts to slide on a surface
          * remarks: For the static friction coefficient, see item 4-23.1.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dForceCoordinateFrame[1];
@@ -380,7 +376,6 @@ standard library package ISQMechanics {
          * definition: force (item 4-9.1) resisting the motion when a body slides on a surface
          * remarks: For the kinetic friction factor, see item 4-23.2.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dForceCoordinateFrame[1];
@@ -404,7 +399,6 @@ standard library package ISQMechanics {
          * definition: force (item 4-9.1) resisting the motion when a body rolls on a surface
          * remarks: For the rolling resistance factor, see item 4-23.3.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dForceCoordinateFrame[1];
@@ -430,7 +424,6 @@ standard library package ISQMechanics {
          * definition: force (item 4-9.1) resisting the motion of a body in a fluid
          * remarks: For the drag coefficient, see item 4-23.4.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dForceCoordinateFrame[1];
@@ -478,7 +471,6 @@ standard library package ISQMechanics {
          * definition: vector (ISO 80000-2) quantity describing the effect of force acting during a time interval: `vec(I) = int_(t_1)^(t_2) vec(F)*dt` where `vec(F)` is force (item 4-9.1), `t` is time (ISO 80000-3) and `[t_1, t_2]` is considered time interval
          * remarks: For a time interval `[t_1, t_2]`, `vec(I)(t_1, t_2) = vec(p)(t_1) - vec(p)(t_2) = vec(Δp)` where `vec(p)` is momentum (item 4-8).
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dImpulseCoordinateFrame[1];
@@ -533,7 +525,6 @@ standard library package ISQMechanics {
          * definition: vector (ISO 80000-2) quantity described by the vector product: `vec(L) = vec(r) xx vec(p)` where `vec(r)` is position vector (ISO 80000-3) with respect to the axis of rotation and `vec(p)` is momentum (item 4-8)
          * remarks: None.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dAngularMomentumCoordinateFrame[1];
@@ -588,7 +579,6 @@ standard library package ISQMechanics {
          * definition: vector (ISO 80000-2) quantity described by the vector product: `vec(M) = vec(r) xx vec(F)` where `vec(r)` is position vector (ISO 80000-3) with respect to the axis of rotation and `vec(F)` is force (item 4-9.1)
          * remarks: The bending moment of force is denoted by `vec(M)_b`.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dMomentOfForceCoordinateFrame[1];
@@ -670,7 +660,6 @@ standard library package ISQMechanics {
          * definition: vector (ISO 80000-2) quantity describing the effect of moment of force during a time interval: `vec(H)(t_1; t_2) = int_(t_1)^(t_2) vec(M) dt` where `vec(M)` is moment of force (item 4-12.1), `t` is time (ISO 80000-3) and `[t_1, t_2]` is considered time interval
          * remarks: For a time interval `[t_1, t_2]`, `vec(H)(t_1, t_2) = vec(L)(t_1) - vec(L)(t_2) = vec(ΔL)` where `vec(L)` is angular momentum.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dAngularImpulseCoordinateFrame[1];
@@ -1472,7 +1461,6 @@ standard library package ISQMechanics {
          * definition: vector (ISO 80000-2) quantity characterizing a flowing fluid by the product of its local mass density `ρ` (item 4-2) and local velocity `vec(v)` (ISO 80000-3): `vec(j_m) = ρ vec(v)`
          * remarks: None.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dMassFlowCoordinateFrame[1];

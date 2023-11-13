@@ -21,10 +21,6 @@ standard library package AnalysisCases {
 		ref analysis self : AnalysisCase :>> Case::self;		
 		subject subj :>> Case::subj;
 		
-		objective obj :>> Case::obj {
-			subject subj = AnalysisCase::result;
-		}
-		
 		abstract analysis subAnalysisCases : AnalysisCase[0..*] :> analysisCases, subcases {
 			doc
 			/*
@@ -37,21 +33,7 @@ standard library package AnalysisCases {
 			/*
 			 * The subactions of this AnalysisCase that are AnalysisActions.
 			 */
-		}
-		
-		calc resultEvaluation : Evaluation[0..1] :> evaluations {
-			doc
-			/*
-			 * The Evaluation of the resultExpression from the definition of this AnalysisCase.
-			 */
-		}
-		
-		return ref result = resultEvaluation() {
-			doc
-			/*
-			 * The result of this AnalysisCase is bound to the result of the resultEvaluation.
-			 */
-		}
+		}		
 	}
 	
 	abstract analysis analysisCases : AnalysisCase[0..*] nonunique :> cases {

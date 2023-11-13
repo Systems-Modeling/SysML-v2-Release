@@ -13,7 +13,7 @@ package MassRollup {
 	part compositeThing : MassedThing {
 		part subcomponents: MassedThing[*];
 		
-		attribute redefines totalMass =
+		attribute redefines totalMass default
 			mass + sum(subcomponents.totalMass); 
 	}
 	

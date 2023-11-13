@@ -29,7 +29,7 @@ standard library package Quantities {
 		attribute num: Number[1..*] ordered nonunique :>> elements;
 		attribute mRef: MeasurementReferences::TensorMeasurementReference;
         attribute :>> dimensions = mRef.dimensions;
-		attribute order :>> rank = mRef.order;
+		attribute order :>> rank;
         attribute contravariantOrder: Natural;
         attribute covariantOrder: Natural;
 

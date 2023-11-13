@@ -48,12 +48,8 @@ package SimpleQuadcopter {
         
         /* Strut shape is CSG difference of rawStrut minus motorCutout */
         attribute :> differencesOf[1] {
-            item :>> minuend = rawStrut;
-            item :>> subtrahend = motorCutout;
+            item :>> elements = (rawStrut, motorCutout);
         }        
-        // Current syntax is not end-user friendly
-        // It will be possible to specify following simple CSG expression:
-        // item :>> shape = rawStrut - motorCutout;
     }
     
     part def PropellerMotorAssy :> SpatialItem {

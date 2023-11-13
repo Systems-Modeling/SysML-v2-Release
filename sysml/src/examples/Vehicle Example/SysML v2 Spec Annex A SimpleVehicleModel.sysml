@@ -868,7 +868,7 @@ package SimpleVehicleModel{
                         doc /* The total mass of the vehicle shall be less than or equal to the required mass.
                         Assume total mass includes a full tank of gas of 60 kg*/
                         attribute redefines massRequired=2000 [kg];                     
-                        attribute redefines massActual = vehicle.dryMass + fuelMassActual;
+                        attribute redefines massActual default vehicle.dryMass + fuelMassActual;
                         attribute fuelMassActual:>ISQ::mass;
                         attribute fuelMassMax:>ISQ::mass = 60 [kg];
                         assume constraint {fuelMassActual==fuelMassMax}
@@ -905,7 +905,7 @@ package SimpleVehicleModel{
                         attribute redefines massActual = engine1.mass;
                     }
                     requirement torqueGenerationRequirement : TorqueGenerationRequirement{
-                        subject generateTorque = engine1.generateTorque;
+                        subject generateTorque default engine1.generateTorque;
                     }
 
                     requirement drivePowerOutputRequirement : DrivePowerOutputRequirement{

@@ -27,7 +27,7 @@ standard library package Transfers {
 			 * The entity whose output is the source of the items to be transferred.
 			 */
 		
-			out feature sourceOutput: Occurrence[0..*];
+			feature sourceOutput: Occurrence[0..*];
 		}
 		
 		end feature target: Occurrence[0..*] redefines BinaryLink::target {
@@ -36,10 +36,10 @@ standard library package Transfers {
 			 * The entity whose input is the target of the items to be transferred.
 			 */
 		
-			in feature targetInput: Occurrence[0..*];
+		    feature targetInput: Occurrence[0..*];
 		}
 		
-		readonly feature isInstant: Boolean[1] = notEmpty(instant) {
+		readonly feature isInstant: Boolean[1] {
 			doc
 			/*
 			 * If isInstance is true, then the transfer is instantaneous.
@@ -55,7 +55,8 @@ standard library package Transfers {
 		
 		feature itemNum: Natural [1] = size(item);
 		
-		private binding instant[0..1] of startShot[0..1] = endShot[0..1] {
+		private instantNum: Natural[1] = if isInstant? 1 else 0;
+		private binding instant[instantNum] of startShot[0..1] = endShot[0..1] {
 			doc
 			/*
 			 * If isInstant is true, then the start and end of the transfer happen at the same time.
@@ -228,10 +229,12 @@ standard library package Transfers {
 		 * from a designated sender Occurrence carrying a given item, optionally to a designated receiver.
 		 */
 	
-		in feature sentItem [0..*] = sentTransfer.item;
+		in feature sentItem [0..*];
 		in feature sender: Occurrence[1] default this;
 		in feature receiver: Occurrence[0..1];
-		feature sentTransfer: MessageTransfer [1] subsets sender.outgoingTransfersFromSelf;
+		feature sentTransfer: MessageTransfer [1] subsets sender.outgoingTransfersFromSelf {
+            feature redefines item = sentItem;
+		}
 		binding receiver.incomingTransfersToSelf[0..1] = sentTransfer[1];
 
 		succession self then sentTransfer;
@@ -243,10 +246,12 @@ standard library package Transfers {
 		 * AcceptPerformance is a performance that requires an incomingTransferToSelf
 		 * of a desigated receiver Occurrence, providing its item as output.
 		 */
-		inout feature acceptedItem[0..*] = acceptedTransfer.item;
+		inout feature acceptedItem[0..*];
 		in feature receiver: Occurrence[1] default this;
 		feature acceptedTransfer: MessageTransfer[1] subsets receiver.incomingTransfersToSelf;
 		succession acceptedTransfer then self.endShot;
+		
+		binding acceptedItem = acceptedTransfer.item;
 	}
 
 	abstract step sendPerformances: SendPerformance[0..*] nonunique subsets performances {

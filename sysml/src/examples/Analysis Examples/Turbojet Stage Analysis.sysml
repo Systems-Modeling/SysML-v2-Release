@@ -96,8 +96,7 @@ package 'Turbojet Stage Analysis' {
 	                in rho = 'Density';
 	                in R_bar = 'Specific Gas Constant';
 	                in T = 'Static Temperature';
-	            	return p = 'Static Pressure';
-				}
+				}				
 				            
 	            // Invocation expression notation
 	            attribute :>> 'Static Pressure' = 'Ideal Gas Law'('Density', 'Specific Gas Constant', 'Static Temperature');

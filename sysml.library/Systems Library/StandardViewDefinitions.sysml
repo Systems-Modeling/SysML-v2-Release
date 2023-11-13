@@ -78,21 +78,6 @@ standard library package StandardViewDefinitions {
              */
     }
 
-    view def <cv> CaseView {
-        doc /*
-             * View definition to present use cases, analysis cases or verification cases.
-             * In one view in principle only one of use cases, analysis cases or verification cases is rendered.
-             * - Valid nodes and edges in any CaseView are: CaseDefinition, CaseUsage, SubjectMembership, 
-             *   ObjectiveMembership, ActorMembership, RequirementDefinition, RequirementUsage
-             * - Valid nodes and edges in a use case view are: UseCaseDefinition, UseCaseUsage, 
-             *   IncludeUseCaseUsage, ...
-             * - Valid nodes and edges in an analysis view are: AnalysisCaseDefinition, AnalysisCaseUsage, 
-             *   ...
-             * - Valid nodes and edges in a verification view are: VerificationCaseDefinition, VerificationCaseUsage, 
-             *   ...
-             */
-    }
-
     view def <gev> GeometryView {
         doc /*
              * View definition to present a visualization of exposed spatial items in two

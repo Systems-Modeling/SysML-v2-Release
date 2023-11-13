@@ -38,10 +38,10 @@ standard library package ComplexFunctions {
 	function ToComplex { in x: String[1]; return : Complex[1]; }
 	
 	function sum specializes NumericalFunctions::sum { in collection: Complex[0..*];
-		return : Complex[1] = NumericalFunctions::sum0(collection, rect(0.0, 0.0));
+		return : Complex[1] default NumericalFunctions::sum0(collection, rect(0.0, 0.0));
 	}
 	
 	function product specializes NumericalFunctions::product { in collection: Complex[0..*];
-		return : Complex[1] = NumericalFunctions::product1(collection, rect(1.0, 0.0));
+		return : Complex[1] default NumericalFunctions::product1(collection, rect(1.0, 0.0));
 	}	
 }

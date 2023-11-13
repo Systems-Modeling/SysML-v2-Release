@@ -96,7 +96,6 @@ standard library package ISQAcoustics {
          * definition: vector (ISO 80000-2) quantity giving the instantaneous displacement (ISO 80000-3) of a particle in a medium from what would be its position in the absence of sound waves
          * remarks: None.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
@@ -118,7 +117,6 @@ standard library package ISQAcoustics {
          * definition: vector (ISO 80000-2) quantity given by: `vec(u) = del(vec(δ))/del(t)`, where `vec(δ)` is sound particle displacement (item 8-3) and `t` is time (ISO 80000-3)
          * remarks: The definition is limited to small-amplitude acoustic disturbances such that the magnitude of `vec(u)` is small relative to the phase speed (ISO 80000-3) of sound.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: CartesianVelocity3dCoordinateFrame[1];
@@ -140,7 +138,6 @@ standard library package ISQAcoustics {
          * definition: vector (ISO 80000-2) quantity given by: `vec(a) = (del(vec(u)))/(del(t))`, where `vec(u)` is sound particle velocity (item 8-4) and `t` is time
          * remarks: The definition is limited to small-amplitude acoustic disturbances such that the magnitude of `vec(u)` is small relative to the phase speed (ISO 80000-3) of sound.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: CartesianAcceleration3dCoordinateFrame[1];
@@ -264,7 +261,6 @@ standard library package ISQAcoustics {
          * definition: vector (ISO 80000-2) quantity given by: `vec(I) = p vec(u)`, where `p` is sound pressure (item 8-2.2) and `vec(u)` is sound particle velocity (item 8-4)
          * remarks: This definition can become inapplicable in situations with a high mean fluid flow.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dSoundIntensityCoordinateFrame[1];

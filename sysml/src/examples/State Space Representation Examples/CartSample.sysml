@@ -32,8 +32,8 @@ package CartSample {
     part context {
         part cart : Cart {
             action cartBehavior : ContinuousStateSpaceDynamics {
-                :>> input : CartInput;
-                :>> output : CartOutput;
+                in input : CartInput;
+                out output : CartOutput;
                 :>> stateSpace : CartState;
 
                 calc :>> getDerivative { 
@@ -51,7 +51,8 @@ package CartSample {
             attribute pusherForce :> ISQ::force;
 
             action pusherBehavior : ContinuousStateSpaceDynamics {
-                :>> output : PusherOutput;
+                in input;
+                out output : PusherOutput;
                 calc :>> getOutput {
                     PusherOutput(pusherForce)
                 }

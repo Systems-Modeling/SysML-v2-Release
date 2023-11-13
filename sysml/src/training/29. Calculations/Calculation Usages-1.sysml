@@ -11,8 +11,8 @@ package 'Calculation Usages-1' {
 			in delta_t : TimeValue;
 			in v_in : SpeedValue;
 			in x_in : LengthValue;
-			out v_out : SpeedValue;
-			out x_out : LengthValue;
+			out v_out : SpeedValue = vel.v;
+			out x_out : LengthValue = pos.x;
 		
 			calc acc : Acceleration {
 				in tp = Power(wheelPower, C_d, C_f, mass, v_in);
@@ -25,14 +25,14 @@ package 'Calculation Usages-1' {
 				in dt = delta_t;
 				in v0 = v_in;
 				in a = acc.a;
-				return v = v_out;
+				return v;
 			}
 			
 			calc pos : Position {
 				in dt = delta_t;
 				in x0 = x_in;
 				in v0 = vel.v;
-				return x = x_out;	
+				return x;	
 			}
 		}
 	} 
