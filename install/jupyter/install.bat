@@ -2,6 +2,7 @@
 :: SysML 2 Pilot Implementation
 :: Copyright (C) 2020 California Institute of Technology ("Caltech")
 :: Copyright (C) 2021 Twingineer LLC
+:: Copyright (C) 2023 Model Driven Solutions, Inc.
 ::
 :: This program is free software: you can redistribute it and/or modify
 :: it under the terms of the GNU Lesser General Public License as published by
@@ -20,7 +21,7 @@
 
 @echo off
 
-set /A SYSML_VERSION="0.37.0"
+set SYSML_VERSION="0.37.0"
 
 echo --- Step 1: Testing Conda installation ---
 where conda

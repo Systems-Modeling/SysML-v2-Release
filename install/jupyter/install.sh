@@ -3,6 +3,7 @@
 # SysML 2 Pilot Implementation
 # Copyright (C) 2020 California Institute of Technology ("Caltech")
 # Copyright (C) 2021 Twingineer LLC
+# Copyright (C) 2023 Model Driven Solutions, Inc.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as published by
