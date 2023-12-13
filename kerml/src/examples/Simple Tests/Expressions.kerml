@@ -17,21 +17,24 @@ package Expressions {
 	d1 = x.?{in xx; xx != null};
 	e = x->reduce {in s; in t; s + t}->reduce '+';
 	
-	behavior w specializes ControlPerformances::LoopPerformance { inout v: Integer;
-		in expr redefines whileTest {v > 3}
-		in step redefines body : Performances::Performance {
-			step decrement {
-				out v_decr : Integer = v - 1;			
-			}
-			succession decrement then update;
-			step update : FeatureReferencingPerformances::FeatureWritePerformance {
-				in redefines onOccurrence = w::self {
-					feature redefines startingAt : w {
-						inout feature redefines accessedFeature redefines v;
-					}
-				}
-				inout replacementValues = decrement.v_decr;
-			}
+	behavior w { inout v : Integer;
+	    step : ControlPerformances::LoopPerformance {
+    		in expr whileTest {v > 3}
+    		in expr untilTest;
+    		in step body {
+    			step decrement {
+    				out v_decr : Integer = v - 1;			
+    			}
+    			succession decrement then update;
+    			step update : FeatureReferencingPerformances::FeatureWritePerformance {
+    				in redefines onOccurrence = w::self {
+    					feature redefines startingAt : w {
+    						inout feature redefines accessedFeature redefines v;
+    					}
+    				}
+    				inout replacementValues = decrement.v_decr;
+    			}
+    		}
 		}
 	}
 	

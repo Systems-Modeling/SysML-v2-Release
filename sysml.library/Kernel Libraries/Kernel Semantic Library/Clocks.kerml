@@ -8,9 +8,17 @@ standard library package Clocks {
 	private import ScalarValues::NumericalValue;
 	private import ScalarValues::Real;
 	private import Occurrences::Occurrence;
+	private import Occurrences::Life;
 	private import ControlFunctions::forAll;
 	
-	readonly feature universalClock : Clock[1] {
+	private struct UniversalClockLife[1] :> Clock, Life {
+	    doc
+	    /*
+	     * UniversalClockLife is the classifier of the singleton Life of the universalClock.
+	     */
+	}
+	
+	feature universalClock : UniversalClockLife[1] {
 		doc
 		/*
 		 * universalClock is a single Clock that can be used as a default universal

@@ -159,7 +159,7 @@ package '8-Requirements' {
 		 */
 		
 			subject vehicle : Vehicle;
-			require vehicleMass1 {
+			requirement references vehicleMass1 {
 				/*
 				 * This is a reference to a requirement defined outside the group.
 				 * By default, the subject of the requirement is bound to that of the group.
@@ -175,10 +175,10 @@ package '8-Requirements' {
 			 * subject of the group.
 			 */
 			require torqueGeneration {
-				subject generateTorque = engine.'generate torque';
+				in :>> generateTorque = engine.'generate torque';
 			}
 			require drivePowerInterface {
-				subject drivePwrPort = engine.drivePwrPort;
+				in :>> drivePwrPort = engine.drivePwrPort; 
 			}
 		}
 		

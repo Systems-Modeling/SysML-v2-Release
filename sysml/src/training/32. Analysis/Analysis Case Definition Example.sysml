@@ -28,8 +28,6 @@ package 'Analysis Case Definition Example' {
     
 	analysis def FuelEconomyAnalysis {
 		subject vehicle : Vehicle;
-		return fuelEconomyResult : DistancePerVolumeValue;
-		
 		objective fuelEconomyAnalysisObjective {
 			/*
 			 * The objective of this analysis is to determine whether the
@@ -74,12 +72,14 @@ package 'Analysis Case Definition Example' {
 		
 		then action solveForFuelConsumption {
 			in power : PowerValue[*] = solveForPower.power;
-			out fuelEconomy : DistancePerVolumeValue = fuelEconomyResult;
+			out fuelEconomy : DistancePerVolumeValue;
 		
 			/*
 			 * Solve the engine equations to determine how much fuel is
 			 * consumed.
 			 */
 		}
+		
+        return fuelEconomyResult : DistancePerVolumeValue = solveForFuelConsumption.fuelEconomy;
 	}
 }

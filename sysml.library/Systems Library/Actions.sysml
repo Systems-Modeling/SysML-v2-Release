@@ -68,14 +68,14 @@ standard library package Actions {
 			}
 		}
 	
-		action sendSubactions: SendAction[0..*] :> subactions {
+		action sendSubactions: SendAction[0..*] :> subactions, sendActions {
 			doc
 			/*
 			 * The subactions of this Action that are SendActions. 
 			 */
 		}
 	
-		action acceptSubactions: AcceptAction[0..*] :> subactions {
+		action acceptSubactions: AcceptAction[0..*] :> subactions, acceptActions {
 			doc
 			/*
 			 * The subactions of this Action that are AcceptActions. 
@@ -124,7 +124,7 @@ standard library package Actions {
 			 */
 		}
 		
-		abstract action decisionTransitions : DecisionTransitionAction[0..*] :> transitionActions {
+		abstract action decisionTransitions : DecisionTransitionAction[0..*] :> transitions {
 			doc
 			/*
 			 * The subactions of this Action that are DecisionTransitionActions. 
@@ -335,6 +335,14 @@ standard library package Actions {
 		/*
 		 * assignmentActions is the base feature for all AssignmentActionsUsages.
 		 */
+		 
+        in :>> target : Occurrence[1] default that as Occurrence {
+            doc
+            /*
+             * The default target for assignmentActions is its featuring instance (if that is 
+             * an Occurrence).
+             */
+        }
 	}
 	
 	action def IfThenAction :> Action, IfThenPerformance {

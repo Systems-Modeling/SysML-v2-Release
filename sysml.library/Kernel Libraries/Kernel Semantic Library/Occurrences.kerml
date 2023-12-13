@@ -20,16 +20,18 @@ standard library package Occurrences {
 	private import SequenceFunctions::includes;
 	private import SequenceFunctions::union;
 
-	/*
-	 * Occurrence is the most general classifier of entities that have identity and
-	 * occur over time and space.
-	 *
-	 * The features of Occurrence specify the semantics of associations between occurrences that
-	 * assert complete inclusion and exclusion in time or space, or both, which includes
-	 * portions of an occurrence (having the same identity).  Portions include slices and shots
-	 * over time and space.
-	 */
-	abstract class Occurrence specializes Anything {
+	abstract class Occurrence specializes Anything disjoint from DataValue {
+        doc
+        /*
+         * Occurrence is the most general classifier of entities that have identity and
+         * occur over time and space.
+         *
+         * The features of Occurrence specify the semantics of associations between occurrences that
+         * assert complete inclusion and exclusion in time or space, or both, which includes
+         * portions of an occurrence (having the same identity).  Portions include slices and shots
+         * over time and space.
+         */
+        
 		private import SequenceFunctions::*;
 
 		feature portionOfLife: Life[1] subsets portionOf;

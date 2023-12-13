@@ -177,7 +177,7 @@ standard library package Transfers {
         end feature target: Occurrence[0..*] redefines Transfer::target, TransferBefore::target;		 
 	}
 	
-	step transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
+	abstract flow transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
 		doc
 		/*
 		 * transfers is a specialization of performances and binaryLinks restricted to type 
@@ -188,14 +188,14 @@ standard library package Transfers {
 		end feature target: Occurrence[0..*] redefines Transfer::target, binaryLinks::target;
 	}
 	
-	step messageTransfers: MessageTransfer[0..*] nonunique subsets transfers {
+	abstract flow messageTransfers: MessageTransfer[0..*] nonunique subsets transfers {
 		doc
 		/*
 		 * messageTransfers is a specialization of transfers restricted to type MessageTransfers.
 		 */
 	}
 	
-	step flowTransfers: FlowTransfer[0..*] nonunique subsets transfers {
+	abstract flow flowTransfers: FlowTransfer[0..*] nonunique subsets transfers {
 		doc
 		/*
 		 * flowTransfers is a specialization of transfers restricted to type FlowTransfers.
@@ -203,7 +203,7 @@ standard library package Transfers {
 		 */
 	}
 	  
-	step transfersBefore: TransferBefore[0..*] nonunique subsets transfers, happensBeforeLinks {
+	abstract flow transfersBefore: TransferBefore[0..*] nonunique subsets transfers, happensBeforeLinks {
 		doc
 		/*
 		 * transfersBefore is a specialization of transfers and happensBeforeLinks restricted to
@@ -214,7 +214,7 @@ standard library package Transfers {
 		end feature target: Occurrence[0..*] redefines transfers::target, HappensBefore::laterOccurrence;
 	}
 	
-	step flowTransfersBefore: FlowTransferBefore[0..*] nonunique subsets flowTransfers, transfersBefore {
+	abstract flow flowTransfersBefore: FlowTransferBefore[0..*] nonunique subsets flowTransfers, transfersBefore {
 		doc
 		/*
 		 * flowTransfersBefore is a specialization of flowTransfers and transfersBefore that is restricted

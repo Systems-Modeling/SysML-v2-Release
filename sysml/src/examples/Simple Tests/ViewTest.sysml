@@ -33,6 +33,8 @@ package ViewTest {
 			expose P::*;
 			render r;
 			
+			rendering r2;
+			
 			alias vp1 for p1;
 			// Note: "expose" imports all.
 			alias vp2 for p2;

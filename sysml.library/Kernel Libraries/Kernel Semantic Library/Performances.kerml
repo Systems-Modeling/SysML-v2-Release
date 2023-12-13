@@ -19,7 +19,7 @@ standard library package Performances {
 	private import ScalarValues::*;
 	private import SequenceFunctions::includes;
 	
-	abstract behavior Performance specializes Occurrence {
+	abstract behavior Performance specializes Occurrence disjoint from Object {
 		doc
 		/*
 		 * Performance is the most general class of behavioral Occurrences that may be performed over time.

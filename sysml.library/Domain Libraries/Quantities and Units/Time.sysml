@@ -21,7 +21,7 @@ standard library package Time {
     import ISQSpaceTime::TimeUnit;
     import ISQSpaceTime::time;
     
-    readonly part universalClock : Clock[1] = Clocks::universalClock {
+    readonly part universalClock : Clock[1] :> Clocks::universalClock {
    	    doc
 	    /*
 	     * universalClock is a single Clock that can be used as a default universal time reference.
