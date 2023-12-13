@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sysml:Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sysml="https://www.omg.org/spec/SysML/20230201" xmi:id="0b5cbacd-1ec9-4607-bd8a-ef801404224e" elementId="0b5cbacd-1ec9-4607-bd8a-ef801404224e">
+  <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="9dd609c8-3224-453a-8d35-806e23d752ce" elementId="9dd609c8-3224-453a-8d35-806e23d752ce">
+    <ownedRelatedElement xsi:type="sysml:LibraryPackage" xmi:id="f2060738-a332-5939-a333-5c19553b0566" declaredName="Metaobjects" isStandard="true">
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="b5bbf5bb-ba17-4bb2-806a-94057a2de25f" elementId="b5bbf5bb-ba17-4bb2-806a-94057a2de25f">
+        <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="650574a5-d5ab-4ced-94a5-6e3f52ea0ca9" elementId="650574a5-d5ab-4ced-94a5-6e3f52ea0ca9" body="This package defines Metaclasses and Features that are related to the typing of syntactic and semantic metadata.&#xA;"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:MembershipImport" xmi:id="b3461d0c-558c-4e26-bc81-954e0b364a65" elementId="b3461d0c-558c-4e26-bc81-954e0b364a65" visibility="private">
+        <importedMembership href="Objects.kermlx#4ddcda0f-0878-4d0e-938d-8f04f38617a8"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:MembershipImport" xmi:id="d8e1f8cb-73c3-4b52-86a6-6e2d342b7bee" elementId="d8e1f8cb-73c3-4b52-86a6-6e2d342b7bee" visibility="private">
+        <importedMembership href="Objects.kermlx#3e744795-37a1-4c63-a21b-4dbab0c8c60f"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:MembershipImport" xmi:id="5414c537-72ba-458d-b5ff-4e9445aaef30" elementId="5414c537-72ba-458d-b5ff-4e9445aaef30" visibility="private">
+        <importedMembership href="KerML.kermlx#f4b807dd-b5bf-4c24-9a23-fa142fa2668f"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:MembershipImport" xmi:id="e9aa8bee-c754-4831-a4da-51253b9aabd1" elementId="e9aa8bee-c754-4831-a4da-51253b9aabd1" visibility="private">
+        <importedMembership href="KerML.kermlx#a38ac34d-53bb-49b4-96bf-6c5dbfaea5fe"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="027f05e5-76d1-4395-bd86-e51550f0d2ca" elementId="027f05e5-76d1-4395-bd86-e51550f0d2ca">
+        <ownedRelatedElement xsi:type="sysml:Metaclass" xmi:id="a6ece412-39bd-5163-b559-16d5d8640426" elementId="a6ece412-39bd-5163-b559-16d5d8640426" declaredName="Metaobject" isAbstract="true">
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="0fa60a52-409f-4169-b0bd-a21ab2e6fd6f" elementId="0fa60a52-409f-4169-b0bd-a21ab2e6fd6f" subclassifier="a6ece412-39bd-5163-b559-16d5d8640426">
+            <superclassifier href="Objects.kermlx#918874f5-fe8f-55ac-b6ad-2ac0204d0ad0"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="050bd797-e5dd-47b3-b49a-837d14cd5c16" elementId="050bd797-e5dd-47b3-b49a-837d14cd5c16">
+            <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="ece10ec9-a9e8-4eb4-a7bd-fd3459063020" elementId="ece10ec9-a9e8-4eb4-a7bd-fd3459063020" body="A Metaobject contains syntactic or semantic information about one or more annotatedElements. &#xA;It is the most general Metaclass. All other Metaclasses must subclassify it directly or indirectly.&#xA;"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="1a640c64-b8d8-4d94-90ca-0afd2d284026" elementId="1a640c64-b8d8-4d94-90ca-0afd2d284026">
+            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="c58a223f-e67c-5f3e-9ce2-93bf8b7a09eb" elementId="c58a223f-e67c-5f3e-9ce2-93bf8b7a09eb">
+              <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="a3632d5a-aace-4cc1-a104-d6a388efc4be" elementId="a3632d5a-aace-4cc1-a104-d6a388efc4be" redefiningFeature="c58a223f-e67c-5f3e-9ce2-93bf8b7a09eb">
+                <redefinedFeature href="Objects.kermlx#6b641ff0-58ce-5ed5-87bb-68abcc821a78"/>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="bf7aa9be-c151-452d-b356-eb1146669e7f" elementId="bf7aa9be-c151-452d-b356-eb1146669e7f" typedFeature="c58a223f-e67c-5f3e-9ce2-93bf8b7a09eb" type="a6ece412-39bd-5163-b559-16d5d8640426"/>
+            </ownedRelatedElement>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="752ae2e5-31ac-4515-b9d4-eaee0cd8312f" elementId="752ae2e5-31ac-4515-b9d4-eaee0cd8312f">
+            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="619988f5-49d9-5c7e-9785-f3edd5b4d3fd" elementId="619988f5-49d9-5c7e-9785-f3edd5b4d3fd" declaredName="annotatedElement" isAbstract="true" isReadOnly="true">
+              <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="d5f9dfef-1103-4ba5-8940-b8adbcd09eaa" elementId="d5f9dfef-1103-4ba5-8940-b8adbcd09eaa" typedFeature="619988f5-49d9-5c7e-9785-f3edd5b4d3fd">
+                <type href="KerML.kermlx#ec8cc35b-b5da-5ecc-9cea-4eb1c2462d41"/>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="f1d15f71-ecda-41bb-ad50-0e4edb3f1395" elementId="f1d15f71-ecda-41bb-ad50-0e4edb3f1395">
+                <ownedRelatedElement xsi:type="sysml:MultiplicityRange" xmi:id="1b356f4a-b9cb-423d-b16d-3ccabb9e777e" elementId="1b356f4a-b9cb-423d-b16d-3ccabb9e777e">
+                  <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="0f2f0728-919e-4015-9eb1-cecc41c82263" elementId="0f2f0728-919e-4015-9eb1-cecc41c82263">
+                    <ownedRelatedElement xsi:type="sysml:LiteralInteger" xmi:id="4de13b8b-4f0f-4d60-b667-d5961c4a8c44" elementId="4de13b8b-4f0f-4d60-b667-d5961c4a8c44" value="1">
+                      <ownedRelationship xsi:type="sysml:ReturnParameterMembership" xmi:id="6fd8f57a-baea-484c-91fa-3d63c31a71da" elementId="6fd8f57a-baea-484c-91fa-3d63c31a71da">
+                        <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="62f06939-c436-4993-8e69-1e70e46f8382" elementId="62f06939-c436-4993-8e69-1e70e46f8382" direction="out"/>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="67559dfb-5a65-4cf2-ade9-006db848b6d0" elementId="67559dfb-5a65-4cf2-ade9-006db848b6d0">
+                    <ownedRelatedElement xsi:type="sysml:LiteralInfinity" xmi:id="8a0871f3-8956-4807-88ec-d6362398f68c" elementId="8a0871f3-8956-4807-88ec-d6362398f68c">
+                      <ownedRelationship xsi:type="sysml:ReturnParameterMembership" xmi:id="58f7a223-23f3-44fb-8fcc-678d5625597b" elementId="58f7a223-23f3-44fb-8fcc-678d5625597b">
+                        <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="45330bed-a240-4255-a3ba-0441e8795810" elementId="45330bed-a240-4255-a3ba-0441e8795810" direction="out"/>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="b7ac81de-b9c0-4ee9-bf9d-4cfaec1b8ccd" elementId="b7ac81de-b9c0-4ee9-bf9d-4cfaec1b8ccd">
+                <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="73f39b70-1ec5-478b-830f-2f5c2ecf4867" elementId="73f39b70-1ec5-478b-830f-2f5c2ecf4867" body="The Elements annotated by this Metaobject. This is set automatically when a Metaobject is&#xA;instantiated as the value of a MetadataFeature.&#xA;"/>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="0cf3694e-ee94-4128-a659-f93cd845f84d" elementId="0cf3694e-ee94-4128-a659-f93cd845f84d">
+        <ownedRelatedElement xsi:type="sysml:Metaclass" xmi:id="ce7328c2-6ebb-51b6-8feb-dceb1148085a" elementId="ce7328c2-6ebb-51b6-8feb-dceb1148085a" declaredName="SemanticMetadata" isAbstract="true">
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="7f31346e-6005-4fa0-9ec5-c767a290e9eb" elementId="7f31346e-6005-4fa0-9ec5-c767a290e9eb" superclassifier="a6ece412-39bd-5163-b559-16d5d8640426" subclassifier="ce7328c2-6ebb-51b6-8feb-dceb1148085a"/>
+          <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="5fb33229-f15c-404c-84a4-b5f880519080" elementId="5fb33229-f15c-404c-84a4-b5f880519080">
+            <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="d60aab75-640d-406a-bda7-617b27aa5d7b" elementId="d60aab75-640d-406a-bda7-617b27aa5d7b" body="SemanticMetadata is a Metaobject that requires its single annotatedType to directly or indirectly specialize &#xA;a baseType that models the semantics for the annotatedType.&#xA;"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="d87ae13b-cd13-4851-ad3c-19d755ed1ae8" elementId="d87ae13b-cd13-4851-ad3c-19d755ed1ae8">
+            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="2a8ddda1-4188-5a2c-948a-e6048de1639b" elementId="2a8ddda1-4188-5a2c-948a-e6048de1639b" isAbstract="true" isReadOnly="true">
+              <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="8bd69bee-1e3f-44c8-ade6-f1769347f876" elementId="8bd69bee-1e3f-44c8-ade6-f1769347f876" redefiningFeature="2a8ddda1-4188-5a2c-948a-e6048de1639b" redefinedFeature="619988f5-49d9-5c7e-9785-f3edd5b4d3fd"/>
+              <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="c46aa009-fd72-4e5f-b04b-b998065bb61c" elementId="c46aa009-fd72-4e5f-b04b-b998065bb61c" typedFeature="2a8ddda1-4188-5a2c-948a-e6048de1639b">
+                <type href="KerML.kermlx#5977e951-773f-5c64-b418-edd5764c4c4f"/>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="d9461d1e-5243-426b-82e7-7057b10d6fb2" elementId="d9461d1e-5243-426b-82e7-7057b10d6fb2">
+                <ownedRelatedElement xsi:type="sysml:MultiplicityRange" xmi:id="5c7d6479-416b-486e-8af2-ed66b2403bb6" elementId="5c7d6479-416b-486e-8af2-ed66b2403bb6">
+                  <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="3c66add7-9148-4c79-bbe5-e4ec1fb20ebc" elementId="3c66add7-9148-4c79-bbe5-e4ec1fb20ebc">
+                    <ownedRelatedElement xsi:type="sysml:LiteralInteger" xmi:id="aabf2a5a-e59c-4e6a-87f8-9692c476f16e" elementId="aabf2a5a-e59c-4e6a-87f8-9692c476f16e" value="1">
+                      <ownedRelationship xsi:type="sysml:ReturnParameterMembership" xmi:id="8309805b-9ca7-41ff-81cb-1ed9fbf92ce0" elementId="8309805b-9ca7-41ff-81cb-1ed9fbf92ce0">
+                        <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="acdee183-4027-42e6-85a1-9f36d074e356" elementId="acdee183-4027-42e6-85a1-9f36d074e356" direction="out"/>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="d02bb1a0-e32e-4085-bd09-2d4b4d76a59d" elementId="d02bb1a0-e32e-4085-bd09-2d4b4d76a59d">
+                <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="cbb629a4-6a61-44f2-a1bf-a269d0f5fa8f" elementId="cbb629a4-6a61-44f2-a1bf-a269d0f5fa8f" body="The single annotatedElement of this SemanticMetadata, which must be a Type.&#xA;"/>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="e6f64afb-d339-4102-9652-898b13771647" elementId="e6f64afb-d339-4102-9652-898b13771647">
+            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="4dea7712-ce02-5503-8f54-1e7318e6bf38" elementId="4dea7712-ce02-5503-8f54-1e7318e6bf38" declaredName="baseType">
+              <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="7ef45988-544d-44d1-9fae-f6c52d0ff417" elementId="7ef45988-544d-44d1-9fae-f6c52d0ff417" typedFeature="4dea7712-ce02-5503-8f54-1e7318e6bf38">
+                <type href="KerML.kermlx#5977e951-773f-5c64-b418-edd5764c4c4f"/>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="a24ae66e-58ee-4ea6-b5ab-f0453231d363" elementId="a24ae66e-58ee-4ea6-b5ab-f0453231d363">
+                <ownedRelatedElement xsi:type="sysml:MultiplicityRange" xmi:id="e64c4fe9-ea64-4c47-9005-7a2958b1e27e" elementId="e64c4fe9-ea64-4c47-9005-7a2958b1e27e">
+                  <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="ef2bf9a5-3768-420e-aefb-9d52748d850a" elementId="ef2bf9a5-3768-420e-aefb-9d52748d850a">
+                    <ownedRelatedElement xsi:type="sysml:LiteralInteger" xmi:id="90407b27-7f9f-410b-9607-9d2fb5aaa107" elementId="90407b27-7f9f-410b-9607-9d2fb5aaa107" value="1">
+                      <ownedRelationship xsi:type="sysml:ReturnParameterMembership" xmi:id="8a79d1ca-a5c3-4e4b-8d43-e58409025046" elementId="8a79d1ca-a5c3-4e4b-8d43-e58409025046">
+                        <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="b5fec030-2158-465a-9564-0bc7d65f2b88" elementId="b5fec030-2158-465a-9564-0bc7d65f2b88" direction="out"/>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="c8f0673b-e86d-4aa5-b6ab-693fdde12cd6" elementId="c8f0673b-e86d-4aa5-b6ab-693fdde12cd6">
+                <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="be3b95fc-48ff-4bb8-8545-8ff092de94bf" elementId="be3b95fc-48ff-4bb8-8545-8ff092de94bf" body="The required base Type for the annotatedType.&#xA;"/>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="5662b1e4-f851-4fec-b694-d148b7b8ac3b" elementId="5662b1e4-f851-4fec-b694-d148b7b8ac3b">
+        <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="a50bacf7-b826-59b4-b4db-bd6845a41b16" elementId="a50bacf7-b826-59b4-b4db-bd6845a41b16" declaredName="metaobjects">
+          <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="a879a949-d870-447c-8fcd-d23e119b55fa" elementId="a879a949-d870-447c-8fcd-d23e119b55fa" typedFeature="a50bacf7-b826-59b4-b4db-bd6845a41b16" type="a6ece412-39bd-5163-b559-16d5d8640426"/>
+          <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="32898694-fc95-48ab-8741-e22f1760421e" elementId="32898694-fc95-48ab-8741-e22f1760421e">
+            <ownedRelatedElement xsi:type="sysml:MultiplicityRange" xmi:id="7712d446-1e21-4842-ba25-b139fa4e886f" elementId="7712d446-1e21-4842-ba25-b139fa4e886f">
+              <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="44dbb967-c08a-4e10-921c-23000d9441c2" elementId="44dbb967-c08a-4e10-921c-23000d9441c2">
+                <ownedRelatedElement xsi:type="sysml:LiteralInteger" xmi:id="3de14a65-4068-4593-8a26-709f96fb4764" elementId="3de14a65-4068-4593-8a26-709f96fb4764">
+                  <ownedRelationship xsi:type="sysml:ReturnParameterMembership" xmi:id="ac676af2-7891-4c71-934a-7872f955e16f" elementId="ac676af2-7891-4c71-934a-7872f955e16f">
+                    <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="3552f3ee-54d0-4a00-bec7-08eefe37737a" elementId="3552f3ee-54d0-4a00-bec7-08eefe37737a" direction="out"/>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="d4f7efde-ca9b-429f-99fb-66a6045719bf" elementId="d4f7efde-ca9b-429f-99fb-66a6045719bf">
+                <ownedRelatedElement xsi:type="sysml:LiteralInfinity" xmi:id="65136326-967d-4feb-882d-123eb68f0d10" elementId="65136326-967d-4feb-882d-123eb68f0d10">
+                  <ownedRelationship xsi:type="sysml:ReturnParameterMembership" xmi:id="1f541314-2146-43e9-8e01-0c826c81fbf0" elementId="1f541314-2146-43e9-8e01-0c826c81fbf0">
+                    <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="cc51908d-c9de-49b9-a366-54a092c0ac72" elementId="cc51908d-c9de-49b9-a366-54a092c0ac72" direction="out"/>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:Subsetting" xmi:id="a6716eee-2666-4a3b-83ab-16f1d88dd9ed" elementId="a6716eee-2666-4a3b-83ab-16f1d88dd9ed" subsettingFeature="a50bacf7-b826-59b4-b4db-bd6845a41b16">
+            <subsettedFeature href="Objects.kermlx#33d1bd68-58e2-555e-98a3-b0b679542260"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="cdd049b9-3a58-40ed-a275-500da11abb69" elementId="cdd049b9-3a58-40ed-a275-500da11abb69">
+            <ownedRelatedElement xsi:type="sysml:Comment" xmi:id="a1a41a64-7288-4d43-b955-b4e391c11001" elementId="a1a41a64-7288-4d43-b955-b4e391c11001" body="metaobjects is a specialization of objects restricted to type Metadata. It is the most general &#xA;MetadataFeature. All other MetadataFeatures must subset it directly or indirectly.&#xA;"/>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+    </ownedRelatedElement>
+  </ownedRelationship>
+</sysml:Namespace>
