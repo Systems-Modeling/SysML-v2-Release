@@ -6,12 +6,14 @@ development repositories also available from the [Systems Modeling](https://gith
 
 ## Team
 
-The SysML v2 Submission Team (SST) was a joint team of over 200 individuals from over 80 industry, academia and government organizations, 
-who worked together to develop the next major version of the Object Management Group (OMG) System Modeling Language (SysML). 
-The goal was to deliver a SysML v2 specification validated by the user community, demonstrable with a pilot implementation 
-and providing a smooth migration path for SysML v1 users and models.
+This implementation is maintained by the Reference Implementation Working Group of the [OMG® Systems Modeling Community (SMC)](https://www.omg.org/communities/systems-modeling-community.htm). 
+The SMC is a community for systems modeling end users, tool vendors and academia to share practices that promote the adoption and advancement of Model-Based Systems Engineering (MBSE). 
+It's purpose is to:
+* Provide a forum for systems modeling end users, tool vendors and academia to share practices that promote the adoption and advancement of Model-Based Systems Engineering (MBSE).
+* Act as a bridge to the OMG Standard Development Organization (SDO) process, providing validated inputs to the SDO to update relevant specifications based on evolving user needs, including the Kernel Modeling Language (KerML), the OMG Systems Modeling Language™ (SysML®) and Systems Modeling API & Services.
+* Provide support for building other modeling languages and domain-specific extensions based on KerML and/or SysML.
 
-In February 2023, the team submitted three specifications to OMG, which were adopted as _beta specifications._
+In June 2023, the OMG adopted the following three _beta specifications._
 
 * [Kernel Modeling Language (KerML), version 1.0](https://www.omg.org/spec/KerML/1.0/Beta1)
 * [OMG Systems Modeling Language (SysML), version 2.0](https://www.omg.org/spec/SysML/2.0/Beta1)
@@ -53,7 +55,9 @@ The release repository contains the items listed below. For a Zip archive of the
   * Model projects (KerMl and SysML textual notation)
       * `kerml` - Example models in the Kernel Modeling Language (KerML)
       * `sysml` - Example models in the Systems Modeling Language (SysML) v2
-      * `sysml.library` - Normative model libraries for both KerML and SysML
+      * `sysml.library` - Normative model libraries for both KerML and SysML, textual notation representation
+      * `sysml.library.xmi` - Normative model libraries for both KerML and SysML, XMI representation
+        * **Note:** These are Eclipse XMI files (`.kermlx` and `.sysmlx` extensions), which is not a fully normative OMG XMI representation. The XMI is exported _without_ derived property values or implied relationships.
   
 Additional content can be accessed at the following URLs.
 
