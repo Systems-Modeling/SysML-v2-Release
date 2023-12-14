@@ -13,6 +13,8 @@ It's purpose is to:
 * Act as a bridge to the OMG Standard Development Organization (SDO) process, providing validated inputs to the SDO to update relevant specifications based on evolving user needs, including the Kernel Modeling Language (KerML), the OMG Systems Modeling Language™ (SysML®) and Systems Modeling API & Services.
 * Provide support for building other modeling languages and domain-specific extensions based on KerML and/or SysML.
 
+## Specifications
+
 In June 2023, the OMG adopted the following three _beta specifications._
 
 * [Kernel Modeling Language (KerML), version 1.0](https://www.omg.org/spec/KerML/1.0/Beta1)
