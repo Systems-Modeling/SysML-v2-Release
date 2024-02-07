@@ -733,8 +733,22 @@ standard library package Occurrences {
 		end feature thatOccurrence: Occurrence[1..*] redefines longerOccurrence
 		  subsets thisOccurrence.timeCoincidentOccurrences;
 	}
+	
+	assoc SpaceLink specializes BinaryLink disjoint from Occurrence {
+        doc
+        /*
+         * SpaceLink is the most general association that asserts spatial relationships between a
+         * sourceOccurrence and a targetOccurrence. Because SpaceLinks assert spatial
+         * relationships, they cannot also be Occurrences that happen in space.  Therefore
+         * SpaceLink is disjoint with LinkObject, that is, no SpaceLink can also be a
+         * LinkObject.
+         */
+      
+        end feature sourceOccurrence: Occurrence[0..*] redefines BinaryLink::source;
+        end feature targetOccurrence: Occurrence[0..*] redefines BinaryLink::target;
+    }
 
-	assoc all InsideOf specializes BinaryLink {
+	assoc all InsideOf specializes SpaceLink {
 		doc
 		/*
 		 * InsideOf asserts that its largerSpace completely overlaps its smallerSpace in space (not
@@ -743,7 +757,7 @@ standard library package Occurrences {
 		 * Occurrence is InsideOf itself and that InsideOf is transitive.
 		 */
 
-		end feature smallerSpace: Occurrence[1..*] redefines source, largerSpace.spaceEnclosedOccurrences;
+		end feature smallerSpace: Occurrence[1..*] redefines source subsets largerSpace.spaceEnclosedOccurrences;
 		end feature largerSpace: Occurrence[1..*] redefines target;
 	}
 
@@ -881,7 +895,7 @@ standard library package Occurrences {
 		end feature laterOccurrence: Occurrence[0..*] redefines HappensBefore::laterOccurrence, binaryLinks::target;
 	 }
 
-	assoc all OutsideOf specializes Without {
+	assoc all OutsideOf specializes SpaceLink, Without {
 		doc
 		/*
 		 * OutsideOf asserts that two occurrences do not overlap in space (not necessarily in time,

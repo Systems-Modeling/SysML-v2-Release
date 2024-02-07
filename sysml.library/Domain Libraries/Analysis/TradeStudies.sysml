@@ -84,6 +84,10 @@ standard library package TradeStudies {
 		 * selectedAlternative have the minimum ObjectiveFunction value of all the
 		 * given alternatives.
 		 */
+		 
+		subject :>> selectedAlternative;
+		in ref :>> alternatives;
+		in calc :>>fn;
 	
 		out attribute :>> best = alternatives->minimize {
 			doc
@@ -103,6 +107,10 @@ standard library package TradeStudies {
 		 * given alternatives.
 		 */
 	
+        subject :>> selectedAlternative;
+        in ref :>> alternatives;
+        in calc :>>fn;
+    
 		out attribute :>> best = alternatives->maximize {
 			doc
 			/*
@@ -154,6 +162,7 @@ standard library package TradeStudies {
 			 * defined one.
 			 */
 		
+            subject :>> selectedAlternative;
 			in ref :>> alternatives = studyAlternatives;
 			in calc :>> fn = evaluationFunction;
 		}

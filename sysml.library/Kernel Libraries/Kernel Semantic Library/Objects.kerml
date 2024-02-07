@@ -72,7 +72,7 @@ standard library package Objects {
 		}
 	}
 	
-	abstract assoc struct LinkObject specializes Link, Object disjoint from SelfLink, SelfSameLifeLink, HappensLink {
+	abstract assoc struct LinkObject specializes Link, Object {
 		doc
 		/*
 		 * LinkObject is the most general association structure, being both a Link and an Object.

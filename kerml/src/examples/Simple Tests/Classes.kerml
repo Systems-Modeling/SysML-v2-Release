@@ -5,6 +5,7 @@ package Classes {
 	public class <'1'> A { 
 		feature b: B;
 		protected in c: C;
+		portion feature p : A;
 	}
 	
 	abstract class <'2'> B {
@@ -13,7 +14,10 @@ package Classes {
 		}
 		public composite feature a1: A;
 		feature x {
-			composite feature a: A;
+			composite feature a: A {
+			    portion feature q : A;
+			}
+			portion feature q : A;
 		}
 		package P { }
 	}

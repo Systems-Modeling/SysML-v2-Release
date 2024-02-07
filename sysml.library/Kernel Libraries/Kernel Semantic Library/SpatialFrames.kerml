@@ -22,7 +22,8 @@ standard library package SpatialFrames {
          * DefaultFrameLife is the classifier of the singleton Life of the defaultFrame.
          */
     }
-    feature defaultFrame : DefaultFrameLife[1] {
+    
+    readonly feature defaultFrame : DefaultFrameLife[1] {
         doc
         /*
          * defaultFrame is a fixed SpatialFrame used as a universal default.

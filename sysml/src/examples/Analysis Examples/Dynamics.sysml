@@ -51,6 +51,14 @@ package Dynamics {
 	// Analysis actions
 	
 	action dyn1 : StraightLineVehicleDynamics {
+        in attribute dt : TimeValue;
+        in attribute whlpwr : PowerValue;
+        in attribute Cd : Real;
+        in attribute Cf: Real;
+        in attribute tm : MassValue;
+        in attribute v_in : SpeedValue;
+        in attribute x_in : LengthValue;
+
 		attribute tp : PowerValue = Power(whlpwr, Cd, Cf, tm, v_in);
 		
 		out attribute :>> a_out : AccelerationValue = Acceleration(dt, tm, tp);

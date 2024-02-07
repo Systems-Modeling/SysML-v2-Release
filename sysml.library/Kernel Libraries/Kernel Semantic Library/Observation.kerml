@@ -24,7 +24,7 @@ standard library package Observation {
          */
     }
     
-	feature defaultMonitor[1] : DefaultMonitorLife {
+	readonly feature defaultMonitor[1] : DefaultMonitorLife {
 		doc
 		/*
 		 * defaultMonitor is a single ChangeMonitor that can be used as a default.

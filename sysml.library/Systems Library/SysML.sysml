@@ -42,7 +42,7 @@ standard library package SysML {
 		}		
 				
 		metadata def AnalysisCaseUsage specializes CaseUsage {
-			derived ref item analysisAction : ActionUsage[0..*] subsets feature;
+			derived ref item analysisAction : ActionUsage[0..*] subsets usage;
 			derived ref item analysisCaseDefinition : AnalysisCaseDefinition[0..1] redefines caseDefinition;
 			derived ref item resultExpression : Expression[0..1] subsets ownedFeature;
 		}		
@@ -52,8 +52,8 @@ standard library package SysML {
 		}		
 				
 		metadata def AssignmentActionUsage specializes ActionUsage {
-			derived ref item targetArgument : Expression[1..1];
-			derived ref item valueExpression : Expression[1..1];
+			derived ref item targetArgument : Expression[0..1];
+			derived ref item valueExpression : Expression[0..1];
 			derived ref item referent : Feature[1..1] subsets member;
 		}		
 				
@@ -127,36 +127,36 @@ standard library package SysML {
 		metadata def Definition specializes Classifier {
 			attribute isVariation : Boolean[1..1];
 			
-			derived ref item ownedUsage : Usage[0..*] subsets ownedFeature, usage;
-			derived ref item ownedPort : PortUsage[0..*] subsets ownedUsage;
-			derived ref item directedUsage : Usage[0..*] subsets usage, directedFeature;
-			derived ref item usage : Usage[0..*] subsets feature;
-			derived ref item ownedState : StateUsage[0..*] subsets ownedAction;
-			derived ref item ownedConstraint : ConstraintUsage[0..*] subsets ownedOccurrence;
-			derived ref item ownedTransition : TransitionUsage[0..*] subsets ownedUsage;
-			derived ref item ownedRequirement : RequirementUsage[0..*] subsets ownedConstraint;
-			derived ref item ownedCalculation : CalculationUsage[0..*] subsets ownedAction;
-			derived item variantMembership : VariantMembership[0..*] subsets ownedMembership;
-			derived ref item ownedAnalysisCase : AnalysisCaseUsage[0..*] subsets ownedCase;
 			derived ref item 'variant' : Usage[0..*] subsets ownedMember;
-			derived ref item ownedCase : CaseUsage[0..*] subsets ownedCalculation;
+			derived item variantMembership : VariantMembership[0..*] subsets ownedMembership;
+			derived ref item usage : Usage[0..*] subsets feature;
+			derived ref item directedUsage : Usage[0..*] subsets usage, directedFeature;
+			derived ref item ownedUsage : Usage[0..*] subsets ownedFeature, usage;
 			derived ref item ownedReference : ReferenceUsage[0..*] subsets ownedUsage;
-			derived ref item ownedAction : ActionUsage[0..*] subsets ownedOccurrence;
-			derived ref item ownedConnection : ConnectorAsUsage[0..*] subsets ownedPart;
+			derived ref item ownedAttribute : AttributeUsage[0..*] subsets ownedUsage;
+			derived ref item ownedEnumeration : EnumerationUsage[0..*] subsets ownedAttribute;
+			derived ref item ownedOccurrence : OccurrenceUsage[0..*] subsets ownedUsage;
 			derived ref item ownedItem : ItemUsage[0..*] subsets ownedOccurrence;
 			derived ref item ownedPart : PartUsage[0..*] subsets ownedItem;
+			derived ref item ownedPort : PortUsage[0..*] subsets ownedUsage;
+			derived ref item ownedConnection : ConnectorAsUsage[0..*] subsets ownedPart;
+			derived ref item ownedFlow : FlowConnectionUsage[0..*] subsets ownedConnection;
 			derived ref item ownedInterface : InterfaceUsage[0..*] subsets ownedConnection;
-			derived ref item ownedAttribute : AttributeUsage[0..*] subsets ownedUsage;
+			derived ref item ownedAllocation : AllocationUsage[0..*] subsets ownedConnection;
+			derived ref item ownedAction : ActionUsage[0..*] subsets ownedOccurrence;
+			derived ref item ownedState : StateUsage[0..*] subsets ownedAction;
+			derived ref item ownedTransition : TransitionUsage[0..*] subsets ownedUsage;
+			derived ref item ownedCalculation : CalculationUsage[0..*] subsets ownedAction;
+			derived ref item ownedConstraint : ConstraintUsage[0..*] subsets ownedOccurrence;
+			derived ref item ownedRequirement : RequirementUsage[0..*] subsets ownedConstraint;
+			derived ref item ownedConcern : ConcernUsage[0..*] subsets ownedRequirement;
+			derived ref item ownedCase : CaseUsage[0..*] subsets ownedCalculation;
+			derived ref item ownedAnalysisCase : AnalysisCaseUsage[0..*] subsets ownedCase;
+			derived ref item ownedVerificationCase : VerificationCaseUsage[0..*] subsets ownedCase;
+			derived ref item ownedUseCase : UseCaseUsage[0..*] subsets ownedCase;
 			derived ref item ownedView : ViewUsage[0..*] subsets ownedPart;
 			derived ref item ownedViewpoint : ViewpointUsage[0..*] subsets ownedRequirement;
 			derived ref item ownedRendering : RenderingUsage[0..*] subsets ownedPart;
-			derived ref item ownedVerificationCase : VerificationCaseUsage[0..*] subsets ownedCase;
-			derived ref item ownedEnumeration : EnumerationUsage[0..*] subsets ownedAttribute;
-			derived ref item ownedAllocation : AllocationUsage[0..*] subsets ownedConnection;
-			derived ref item ownedConcern : ConcernUsage[0..*] subsets ownedRequirement;
-			derived ref item ownedOccurrence : OccurrenceUsage[0..*] subsets ownedUsage;
-			derived ref item ownedUseCase : UseCaseUsage[0..*] subsets ownedCase;
-			derived ref item ownedFlow : FlowConnectionUsage[0..*] subsets ownedConnection;
 			derived ref item ownedMetadata : MetadataUsage[0..*] subsets ownedItem;
 		}		
 				
@@ -324,12 +324,12 @@ standard library package SysML {
 			attribute reqId : String[0..1] redefines declaredShortName;
 			derived attribute text : String[0..*];
 			
-			derived ref item assumedConstraint : ConstraintUsage[0..*] subsets ownedFeature;
-			derived ref item requiredConstraint : ConstraintUsage[0..*] subsets ownedFeature;
 			derived ref item subjectParameter : Usage[1..1] subsets parameter, ownedUsage;
-			derived ref item framedConcern : ConcernUsage[0..*] subsets requiredConstraint;
 			derived ref item actorParameter : PartUsage[0..*] subsets ownedPart, parameter;
 			derived ref item stakeholderParameter : PartUsage[0..*] subsets ownedPart, parameter;
+			derived ref item assumedConstraint : ConstraintUsage[0..*] subsets ownedFeature;
+			derived ref item requiredConstraint : ConstraintUsage[0..*] subsets ownedFeature;
+			derived ref item framedConcern : ConcernUsage[0..*] subsets requiredConstraint;
 		}		
 				
 		metadata def RequirementUsage specializes ConstraintUsage {
@@ -440,39 +440,39 @@ standard library package SysML {
 			attribute isVariation : Boolean[1..1];
 			derived attribute isReference : Boolean[1..1];
 			
-			derived ref item nestedUsage : Usage[0..*] subsets ownedFeature, usage;
-			derived ref item owningUsage : Usage[0..1] subsets owningType;
-			derived ref item owningDefinition : Definition[0..1] subsets owningType;
-			derived ref item nestedPort : PortUsage[0..*] subsets nestedUsage;
-			derived ref item nestedAction : ActionUsage[0..*] subsets nestedOccurrence;
-			derived ref item nestedState : StateUsage[0..*] subsets nestedAction;
-			derived ref item nestedConstraint : ConstraintUsage[0..*] subsets nestedOccurrence;
-			derived ref item nestedTransition : TransitionUsage[0..*] subsets nestedUsage;
-			derived ref item nestedRequirement : RequirementUsage[0..*] subsets nestedConstraint;
-			derived ref item nestedCalculation : CalculationUsage[0..*] subsets nestedAction;
-			derived ref item directedUsage : Usage[0..*] subsets usage, directedFeature;
-			derived ref item nestedCase : CaseUsage[0..*] subsets nestedCalculation;
-			derived ref item nestedAnalysisCase : AnalysisCaseUsage[0..*] subsets nestedCase;
-			derived item variantMembership : VariantMembership[0..*] subsets ownedMembership;
-			derived ref item usage : Usage[0..*] subsets feature;
 			derived ref item 'variant' : Usage[0..*] subsets ownedMember;
+			derived item variantMembership : VariantMembership[0..*] subsets ownedMembership;
+			derived ref item owningDefinition : Definition[0..1] subsets owningType;
+			derived ref item owningUsage : Usage[0..1] subsets owningType;
+			derived ref item definition : Classifier[0..*] redefines type;
+			derived ref item usage : Usage[0..*] subsets feature;
+			derived ref item directedUsage : Usage[0..*] subsets usage, directedFeature;
+			derived ref item nestedUsage : Usage[0..*] subsets ownedFeature, usage;
 			derived ref item nestedReference : ReferenceUsage[0..*] subsets nestedUsage;
-			derived ref item nestedConnection : ConnectorAsUsage[0..*] subsets nestedPart;
+			derived ref item nestedAttribute : AttributeUsage[0..*] subsets nestedUsage;
+			derived ref item nestedEnumeration : EnumerationUsage[0..*] subsets nestedAttribute;
+			derived ref item nestedOccurrence : OccurrenceUsage[0..*] subsets nestedUsage;
 			derived ref item nestedItem : ItemUsage[0..*] subsets nestedOccurrence;
 			derived ref item nestedPart : PartUsage[0..*] subsets nestedItem;
+			derived ref item nestedPort : PortUsage[0..*] subsets nestedUsage;
+			derived ref item nestedConnection : ConnectorAsUsage[0..*] subsets nestedPart;
+			derived ref item nestedFlow : FlowConnectionUsage[0..*] subsets nestedConnection;
 			derived ref item nestedInterface : InterfaceUsage[0..*] subsets nestedConnection;
-			derived ref item nestedAttribute : AttributeUsage[0..*] subsets nestedUsage;
+			derived ref item nestedAllocation : AllocationUsage[0..*] subsets nestedConnection;
+			derived ref item nestedAction : ActionUsage[0..*] subsets nestedOccurrence;
+			derived ref item nestedState : StateUsage[0..*] subsets nestedAction;
+			derived ref item nestedTransition : TransitionUsage[0..*] subsets nestedUsage;
+			derived ref item nestedCalculation : CalculationUsage[0..*] subsets nestedAction;
+			derived ref item nestedConstraint : ConstraintUsage[0..*] subsets nestedOccurrence;
+			derived ref item nestedRequirement : RequirementUsage[0..*] subsets nestedConstraint;
+			derived ref item nestedConcern : ConcernUsage[0..*] subsets nestedRequirement;
+			derived ref item nestedCase : CaseUsage[0..*] subsets nestedCalculation;
+			derived ref item nestedAnalysisCase : AnalysisCaseUsage[0..*] subsets nestedCase;
+			derived ref item nestedVerificationCase : VerificationCaseUsage[0..*] subsets nestedCase;
+			derived ref item nestedUseCase : UseCaseUsage[0..*] subsets nestedCase;
 			derived ref item nestedView : ViewUsage[0..*] subsets nestedPart;
 			derived ref item nestedViewpoint : ViewpointUsage[0..*] subsets nestedRequirement;
 			derived ref item nestedRendering : RenderingUsage[0..*] subsets nestedPart;
-			derived ref item nestedVerificationCase : VerificationCaseUsage[0..*] subsets nestedCase;
-			derived ref item nestedEnumeration : EnumerationUsage[0..*] subsets nestedAttribute;
-			derived ref item nestedAllocation : AllocationUsage[0..*] subsets nestedConnection;
-			derived ref item nestedConcern : ConcernUsage[0..*] subsets nestedRequirement;
-			derived ref item nestedOccurrence : OccurrenceUsage[0..*] subsets nestedUsage;
-			derived ref item definition : Classifier[0..*] redefines type;
-			derived ref item nestedUseCase : UseCaseUsage[0..*] subsets nestedCase;
-			derived ref item nestedFlow : FlowConnectionUsage[0..*] subsets nestedConnection;
 			derived ref item nestedMetadata : MetadataUsage[0..*] subsets nestedItem;
 		}		
 				
@@ -500,8 +500,8 @@ standard library package SysML {
 				
 		metadata def ViewDefinition specializes PartDefinition {
 			derived ref item 'view' : ViewUsage[0..*] subsets usage;
-			derived ref item satisfiedViewpoint : ViewpointUsage[0..*] subsets ownedUsage;
-			derived ref item viewRendering : RenderingUsage[0..1] subsets ownedUsage;
+			derived ref item satisfiedViewpoint : ViewpointUsage[0..*] subsets ownedRequirement;
+			derived ref item viewRendering : RenderingUsage[0..1];
 			derived ref item viewCondition : Expression[0..*] subsets ownedMember;
 		}		
 				
@@ -512,9 +512,9 @@ standard library package SysML {
 				
 		metadata def ViewUsage specializes PartUsage {
 			derived ref item viewDefinition : ViewDefinition[0..1] redefines partDefinition;
-			derived ref item satisfiedViewpoint : ViewpointUsage[0..*] subsets nestedUsage;
+			derived ref item satisfiedViewpoint : ViewpointUsage[0..*] subsets nestedRequirement;
 			derived ref item exposedElement : Element[0..*] subsets member;
-			derived ref item viewRendering : RenderingUsage[0..1] subsets nestedUsage;
+			derived ref item viewRendering : RenderingUsage[0..1];
 			derived ref item viewCondition : Expression[0..*] subsets ownedMember;
 		}		
 				

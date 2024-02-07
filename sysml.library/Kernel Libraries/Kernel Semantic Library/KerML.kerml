@@ -11,12 +11,14 @@ standard library package KerML {
 		metaclass AnnotatingElement specializes Element {
 			feature annotation : Annotation[0..*];
 			derived feature annotatedElement : Element[1..*] redefines annotatedElement;
+			composite derived feature ownedAnnotatingRelationship : Annotation[0..*] subsets annotation, ownedRelationship;
 		}		
 				
 		metaclass Annotation specializes Relationship {
 			feature annotatingElement : AnnotatingElement[1..1] redefines source;
 			feature annotatedElement : Element[1..1] redefines target, annotatedElement;
 			derived feature owningAnnotatedElement : Element[0..1] subsets annotatedElement, owningRelatedElement;
+			derived feature owningAnnotatingElement : AnnotatingElement[0..1] subsets annotatingElement, owningRelatedElement;
 		}		
 				
 		metaclass Comment specializes AnnotatingElement {
@@ -222,6 +224,11 @@ standard library package KerML {
 			feature redefinedFeature : Feature[1..1] redefines subsettedFeature;
 		}		
 				
+		metaclass ReferenceSubsetting specializes Subsetting {
+			feature referencedFeature : Feature[1..1] redefines subsettedFeature;
+			derived feature referencingFeature : Feature[1..1] redefines subsettingFeature, owningFeature;
+		}		
+				
 		metaclass Specialization specializes Relationship {
 			feature general : Type[1..1] redefines target;
 			feature specific : Type[1..1] redefines source;
@@ -237,7 +244,7 @@ standard library package KerML {
 		metaclass Subsetting specializes Specialization {
 			feature subsettedFeature : Feature[1..1] redefines general;
 			feature subsettingFeature : Feature[1..1] redefines specific;
-			derived feature owningFeature : Feature[1..1] subsets subsettingFeature redefines owningType;
+			derived feature owningFeature : Feature[0..1] subsets subsettingFeature redefines owningType;
 		}		
 				
 		metaclass Type specializes Namespace {
@@ -311,8 +318,6 @@ standard library package KerML {
 		}		
 				
 		metaclass Connector specializes Feature, Relationship {
-			feature isDirected : Boolean[1..1];
-			
 			derived feature relatedFeature : Feature[0..*] redefines relatedElement;
 			derived feature association : Association[0..*] redefines 'type';
 			derived feature connectorEnd : Feature[0..*] redefines endFeature;
@@ -412,7 +417,7 @@ standard library package KerML {
 		}		
 				
 		metaclass MetadataFeature specializes AnnotatingElement, Feature {
-			derived feature 'metaclass' : Metaclass[0..1] redefines 'type';
+			derived feature 'metaclass' : Metaclass[0..1] subsets 'type';
 		}		
 				
 		metaclass MultiplicityRange specializes Multiplicity {
@@ -437,11 +442,6 @@ standard library package KerML {
 				
 		metaclass Predicate specializes Function;		
 				
-		metaclass ReferenceSubsetting specializes Subsetting {
-			feature referencedFeature : Feature[1..1] redefines subsettedFeature;
-			derived feature referencingFeature : Feature[1..1] redefines subsettingFeature, owningFeature;
-		}		
-				
 		metaclass ResultExpressionMembership specializes FeatureMembership {
 			composite derived feature ownedResultExpression : Expression[1..1] redefines ownedMemberFeature;
 		}		
@@ -460,7 +460,7 @@ standard library package KerML {
 		metaclass Structure specializes Class;		
 				
 		metaclass Succession specializes Connector {
-			derived feature transitionStep : Step[0..1] subsets ownedFeature;
+			derived feature transitionStep : Step[0..1];
 			derived feature triggerStep : Step[0..*];
 			derived feature effectStep : Step[0..*];
 			derived feature guardExpression : Expression[0..*];
