@@ -22,7 +22,7 @@ standard library package KerML {
 		}		
 				
 		metaclass Comment specializes AnnotatingElement {
-			feature locale : String[0..1];
+			feature 'locale' : String[0..1];
 			feature body : String[1..1];
 		}		
 				

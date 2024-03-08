@@ -1,12 +1,9 @@
 package 'Individuals and Snapshots Example' {
 	import 'Part Definition Example'::*;
 	
-	individual item def PhysicalContext;
-	individual part def Vehicle_1 :> Vehicle;
-	
-	individual item context : PhysicalContext {
+	individual part def Vehicle_1 :> Vehicle {
 		
-		snapshot part vehicle_1_t0 : Vehicle_1 {
+		snapshot part vehicle_1_t0 {
 			:>> mass = 2000.0;
 			:>> status {
 				:>> gearSetting = 0;
@@ -14,7 +11,7 @@ package 'Individuals and Snapshots Example' {
 			}
 		}
 		
-		snapshot part vehicle_1_t1 : Vehicle_1 {
+		snapshot part vehicle_1_t1 {
 			:>> mass = 1500.0;
 			:>> status {
 				:>> gearSetting = 2;
@@ -22,6 +19,6 @@ package 'Individuals and Snapshots Example' {
 			}
 		}
 		
-		first vehicle_1_t0 then vehicle_1_t1;	
+		first vehicle_1_t0 then vehicle_1_t1;
 	}
 }

@@ -43,10 +43,7 @@ package ConnectionTest {
 		end end2 ::> d2;
 	}
 	
-	flow def F {
-		end f_p : P;
-		end f_q;
-	}
+	abstract flow def F;
 	
 	message : F from p to p;
 }

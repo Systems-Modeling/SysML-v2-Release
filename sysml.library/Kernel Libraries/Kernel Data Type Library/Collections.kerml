@@ -90,7 +90,8 @@ standard library package Collections {
 		 */
 	}
 
-	datatype OrderedSet :> OrderedCollection, UniqueCollection {
+	datatype OrderedSet :> OrderedCollection, UniqueCollection 
+		intersects OrderedCollection, UniqueCollection {
 		doc
 		/*
 		 * OrderedSet is a variable-size, ordered collection of unique elements.

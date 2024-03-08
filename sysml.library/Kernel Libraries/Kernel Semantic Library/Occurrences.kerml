@@ -174,7 +174,8 @@ standard library package Occurrences {
 			subset smallerSpace.spaceEnclosedOccurrences subsets largerSpace.spaceEnclosedOccurrences;
 		}
 
-		feature all spaceTimeEnclosedOccurrences: Occurrence[1..*] subsets timeEnclosedOccurrences, spaceEnclosedOccurrences {
+		feature all spaceTimeEnclosedOccurrences: Occurrence[1..*] subsets timeEnclosedOccurrences, spaceEnclosedOccurrences
+			intersects timeEnclosedOccurrences, spaceEnclosedOccurrences {
 			doc
 			/*
 			 * Occurrences that this one completely includes in both space and time,
@@ -192,7 +193,8 @@ standard library package Occurrences {
 			binding startShot[1] = endShot[1];
 		}
 
-		feature spaceTimeCoincidentOccurrences: Occurrence[1..*] subsets timeCoincidentOccurrences, spaceEnclosedOccurrences inverse of spaceTimeCoincidentOccurrences {
+		feature spaceTimeCoincidentOccurrences: Occurrence[1..*] subsets timeCoincidentOccurrences, spaceEnclosedOccurrences 
+			intersects timeCoincidentOccurrences, spaceEnclosedOccurrences inverse of spaceTimeCoincidentOccurrences {
 			doc
 			/*
 			 * Occurrences that this one completely includes in both space and time,
@@ -670,13 +672,12 @@ standard library package Occurrences {
 		return t1First = includes(t1.endShot.successors, t2.endShot);
 	}
 
-	assoc all SelfSameLifeLink specializes BinaryLink disjoint from Occurrence {
+	assoc all SelfSameLifeLink specializes BinaryLink {
 		doc
 		/*
 		 * SelfSameLifeLink is a binary association that is equivalent to SelfLink if the
 		 * linked things are DataValues, but asserts that the link things are portions of
-		 * the same Life if they are Occurrences. A SelfSameLifeLink is not an Occurrence
-		 * (and so SelfSameLifeLink is disjoint with LinkObject).
+		 * the same Life if they are Occurrences. 
 		 */
 
 		end feature myselfSameLife: Anything[1..*] redefines source;

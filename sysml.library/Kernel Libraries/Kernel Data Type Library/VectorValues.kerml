@@ -18,7 +18,7 @@ standard library package VectorValues {
 		 */
 	}
 	
-	datatype NumericalVectorValue :> VectorValue, Array {
+	datatype NumericalVectorValue :> VectorValue, Array intersects VectorValue, Array {
 		doc
 		/*
 		 * A NumericalVectorValue is a kind of VectorValue that is specifically represented
@@ -53,7 +53,8 @@ standard library package VectorValues {
 		feature :>> dimension = 3;
 	}
 	
-	datatype CartesianThreeVectorValue :> CartesianVectorValue, ThreeVectorValue {
+	datatype CartesianThreeVectorValue :> CartesianVectorValue, ThreeVectorValue 
+		intersects CartesianVectorValue, ThreeVectorValue {
 		doc
 		/*
 		 * A CartesianThreeVectorValue is a NumericalVectorValue that is both Cartesian and

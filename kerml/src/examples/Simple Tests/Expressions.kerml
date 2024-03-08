@@ -9,6 +9,7 @@ package Expressions {
 	y = NumericalFunctions::'+'(1,2);
 	z : Boolean = aa & true xor zz | false implies z;
 	zz : Boolean = aa and true xor aa or false implies z;
+	grp = -x + x * y * y + a ** 3 ^ 4;
 	
 	b = if x > y? x-y else y-x;
 	c = x->collect {in xx; xx + 1}; 

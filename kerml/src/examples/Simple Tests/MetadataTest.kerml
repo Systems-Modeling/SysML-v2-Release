@@ -32,4 +32,10 @@ package MetadataTest {
 	private #Classified #Security feature z1;
 	abstract #Classified z2;
 	
+	feature z {
+	    #Security #Classified metadata Classified {
+	        classificationLevel = secret;
+	    }
+	}
+	
 }

@@ -35,12 +35,12 @@ package '3c-Function-based Behavior-structure mod-2' {
 			action 'connect trailer to vehicle' {
 				// Assert that exactly one connection exists during the
 				// performance of this action.
-				abstract ref connection :>> trailerHitch[1];
+				abstract ref :>> trailerHitch[1];
 			}
 			then action 'disconnect trailer from vehicle' {
 				// Assert that exactly no connection exists during the
 				// performance of this action.
-				abstract ref connection :>> trailerHitch[0];				
+				abstract ref :>> trailerHitch[0];		
 			}
 		}
 		

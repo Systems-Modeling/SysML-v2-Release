@@ -48,8 +48,8 @@ package 'Interaction Realization-1' {
 			}
 		}
 		
-		message :> driver_a.driverBehavior.sendSetSpeed.sentMessage :>> setSpeedMessage;
-		message :> vehicle_a.speedometer_a.speedometerBehavior.sendSensedSpeed.sentMessage :>> sensedSpeedMessage;
-		message :> vehicle_a.cruiseController_a.controllerBehavior.sendFuelCommand.sentMessage :>> fuelCommandMessage;
+		message :>> setSpeedMessage = driver_a.driverBehavior.sendSetSpeed.sentMessage;
+		message :>> sensedSpeedMessage = vehicle_a.speedometer_a.speedometerBehavior.sendSensedSpeed.sentMessage;
+		message :>> fuelCommandMessage = vehicle_a.cruiseController_a.controllerBehavior.sendFuelCommand.sentMessage;
 	}
 }

@@ -143,7 +143,7 @@ package SimpleVehicleModel{
                 attribute mass:>ISQ::mass;
             }
             part def FrontAxle:>Axle{
-                attribute steeringAngle:>ISQ::planeAngle;
+                attribute steeringAngle:>ISQ::angularMeasure;
             }
             part def HalfAxle{
                 port shankCompositePort:ShankCompositePort{
