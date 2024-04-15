@@ -26,4 +26,8 @@ package OccurrenceTest {
 	}
 	
 	individual snapshot s4 : Ind;
+	
+	occurrence o1 {
+	  occurrence o2;
+	}
 }
