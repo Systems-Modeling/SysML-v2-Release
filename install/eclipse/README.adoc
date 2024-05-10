@@ -1,14 +1,14 @@
 = SysML v2 Release Eclipse Installation
 
-*Requirements:* Eclipse 2022-09 (4.25), with Java Development Kit
+*Requirements:* Eclipse 2024-03 (4.31), with Java Development Kit
 
-(*Note:* The release may work on later versions of Eclipse, but it has only been tested on 2022-09.)
+(*Note:* The release may work on later versions of Eclipse, but it has only been tested on 2024-03.)
 
 == Installing the plugins
 
 . Open an Eclipse workspace.
 . Select `Help > Install New Software`.
-. Select `+Add...+` and then, in the add dialog, select `+Archive...+` .
+. Select `Add...` and then, in the add dialog, select `Archive...` .
 . Navigate to the `org.omg.sysml.site.zip` archive and select it. (You can give it a name if you wish.) Click `Add`.
 . In the Install window, select the `KerML and SysML Editors` category and click `Next`.
 . Continue with the installation (select `Install Anyway` if asked), and, when it is complete, restart Eclipse.
@@ -32,8 +32,9 @@ below, delete the `kerml`, `sysml` and `sysml.library` projects from your worksp
 . Select `File > Import`.
 . Under `General`, choose `Existing Projects into Workspace`.
 . Browse to the `sysml.library` directory and select it.
-. Under `Projects`, select `sysml.library`, under `Options` select `Copy projects into workspace`, then click `Finish`.
-. Turn off `Project > Build Automatically`, then select `+Project > Clean...+` and build _only_ `sysml.library`.
+. Under `Projects`, select `sysml.library`, under `Options` select `Copy projects into workspace`, then click `Finish`. 
+  (If Eclipse asks whether to "overwrite settings", select `No`.)
+. Turn off `Project > Build Automatically`, then select `Project > Clean...` and build _only_ `sysml.library`.
 . Repeat the above steps for the `kerml` and `sysml` projects.
 
 *Important Note:* Import the `kerml` and `sysml` projects _only_ after importing and building the `sysml.library` project.
@@ -47,7 +48,7 @@ and make sure that `sysml.library` is before `kerml` and `sysml` in the build or
 . Create new KerML files in the `kerml/src` directory with the extension `.kerml`.
 . Create new SysML files in the `sysml/src` directory with the extension `.sysml`.
 . You can view the model library files in the `sysml.library` project, but _do not change them_.
-. To show SysML diagrams, in `+Window > Show View > Other...+` select the PlantUML view. The diagram rendered in the view is relative to the text selected
+. To show SysML diagrams, in `Window > Show View > Other...` select the PlantUML view. The diagram rendered in the view is relative to the text selected
 in the active SysML editor view. Tree (BDD-like), interconnection (IBD-like) and state machine views are currently supported.
 
 *Release Note:* While performance has improved further in this release, there are still cases in which the processing of a file with

@@ -22,7 +22,7 @@
 
 set -e
 
-SYSML_VERSION="0.40.0"
+SYSML_VERSION="0.41.1"
 
 echo "--- Step 1: Testing Conda installation ---"
 command -v conda || (echo "Conda is not installed. Please install Conda and re-run." && return 1)
@@ -34,7 +34,7 @@ java -version
 
 echo "--- Step 3: Installing Jupyter SysML kernel and dependencies ---"
 jupyter kernelspec remove sysml -f > /dev/null 2>&1 || true
-conda install "jupyter-sysml-kernel=$SYSML_VERSION" python=3.* jupyterlab=2.* graphviz=2.* nodejs=15.* -c conda-forge -y
+conda install "jupyter-sysml-kernel=$SYSML_VERSION" python=3.* jupyterlab=3.* graphviz=2.* nodejs="<17" -c conda-forge -y
 
 echo "--- Step 4: Installing JupyterLab SysML extension ---"
 jupyter labextension uninstall @systems-modeling/jupyterlab-sysml > /dev/null 2>&1 || true
