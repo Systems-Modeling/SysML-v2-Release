@@ -8,8 +8,8 @@ package Dependencies {
 	
 	import System::*;
 	
-//	dependency Use from 'Application Layer' to 'Service Layer';
-//	dependency from 'Service Layer' to 'Data Layer';
+	dependency Use from 'Application Layer' to 'Service Layer';
+	dependency from 'Service Layer' to 'Data Layer';
 	
 	feature x;
 	feature y;
