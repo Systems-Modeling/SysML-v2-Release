@@ -1,6 +1,6 @@
 package MassRollup_2 {
-	import NumericalFunctions::*;
-	import ISQ::*;
+	private import NumericalFunctions::*;
+	private import ISQ::*;
 	
 	class MassedThing {
 		feature mass : ScalarValues::Real; 

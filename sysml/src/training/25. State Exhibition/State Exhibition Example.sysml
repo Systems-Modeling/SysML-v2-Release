@@ -1,5 +1,5 @@
 package 'State Exhibition Example' {
-	import 'Transition Actions'::*;
+	private import 'Transition Actions'::*;
 	
 	part vehicle : Vehicle {
 		

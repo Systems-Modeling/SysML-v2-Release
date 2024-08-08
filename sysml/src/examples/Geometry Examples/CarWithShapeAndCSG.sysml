@@ -1,13 +1,13 @@
 package CarWithShapeAndCSG {
-	import SpatialItems::*;
-    import ShapeItems::*;
-    import Objects::Point;
-	import Quantities::VectorQuantityValue;
-	import MeasurementReferences::CoordinateFrame;
-	import MeasurementReferences::TranslationRotationSequence;
-	import MeasurementReferences::Translation;
-	import MeasurementReferences::Rotation;
-	import SI::*;
+	private import SpatialItems::*;
+	private import ShapeItems::*;
+	private import Objects::Point;
+	private import Quantities::VectorQuantityValue;
+	private import MeasurementReferences::CoordinateFrame;
+	private import MeasurementReferences::TranslationRotationSequence;
+	private import MeasurementReferences::Translation;
+	private import MeasurementReferences::Rotation;
+	private import SI::*;
 
 	part def Car :> SpatialItem {
 		doc

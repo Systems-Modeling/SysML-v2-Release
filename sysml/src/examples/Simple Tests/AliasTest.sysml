@@ -1,5 +1,5 @@
 package AliasTest {
-	import ISQSpaceTime::breadth; // import of an alias
+	private import ISQSpaceTime::breadth; // import of an alias
 	attribute b :> breadth;
 	
     part def P1 {

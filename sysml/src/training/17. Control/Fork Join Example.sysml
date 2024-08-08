@@ -1,5 +1,5 @@
 package 'Fork Join Example' {
-	import ScalarValues::*;
+	private import ScalarValues::*;
 	
 	attribute def TurnKeyToOn;
 	attribute def BrakePressure;

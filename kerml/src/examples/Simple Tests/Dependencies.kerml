@@ -6,7 +6,7 @@ package Dependencies {
 		package 'Data Layer';
 	}
 	
-	import System::*;
+	public import System::*;
 	
 	dependency Use from 'Application Layer' to 'Service Layer';
 	dependency from 'Service Layer' to 'Data Layer';

@@ -1,7 +1,7 @@
 package '13b-Safety and Security Features Element Group-2' {
-	import ScalarValues::*;
-	import AnnotationDefinitions::*;
-	import PartsTree::*;
+	private import ScalarValues::*;
+	private import AnnotationDefinitions::*;
+	private import PartsTree::*;
 	
 	package AnnotationDefinitions {
 		metadata def Safety {
@@ -32,21 +32,21 @@ package '13b-Safety and Security Features Element Group-2' {
 	
 	package 'Safety Features' {
 		/* Parts that contribute to safety. */		
-		import vehicle::**[@Safety];
+		private import vehicle::**[@Safety];
 	}
 	
 	package 'Security Features' {
 		/* Parts that contribute to security. */		
-		import vehicle::**[@Security];
+		private import vehicle::**[@Security];
 	}
 	
 	package 'Safety & Security Features' {
 		/* Parts that contribute to safety OR security. */		 
-		import vehicle::**[@Safety or @Security];
+		private import vehicle::**[@Safety or @Security];
 	}
 	
 	package 'Mandatory Saftey Features' {
 		/* Parts that contribute to safety AND are mandatory. */
-		import vehicle::**[@Safety and Safety::isMandatory];
+		private import vehicle::**[@Safety and Safety::isMandatory];
 	}
 }

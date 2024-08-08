@@ -40,10 +40,14 @@ standard library package States {
 			 */
 		}
 		
-		abstract state substates: StateAction[0..*] :> stateActions, subactions {
+		action substates: StateAction[0..*] :> stateActions, subactions {
 			doc
 			/*
 			 * The subactions of this state that are states.
+			 * 
+			 * NOTE: This feature is declared as an ActionUsage, not a StateUsage, so that the constraint 
+ 			 * checkStateUsageExclusiveStateSpecialization does not apply to it, since this constraint 
+			 * would otherwise incorrectly require that "substates" subset "exclusiveStates".
 			 */
 		}
 		

@@ -1,10 +1,10 @@
 // ** This is the Norwegian use-case for Arrowhead Framework */
 package AHFNorwaySequences {
 	// Here we show sequences of the Norwegian use-case
-	import AHFProfileLib::*;
-	import AHFCoreLib::*;
-	import AHFNorway::*;
-	import ScalarValues::*;
+	private import AHFProfileLib::*;
+	private import AHFCoreLib::*;
+	private import AHFNorway::*;
+	private import ScalarValues::*;
 	
 	part AHFN_LocalCloudDD_Seqs = AHFNorway_LocalCloudDD{
 		occurrence def APIS_transfer_lifetime {			

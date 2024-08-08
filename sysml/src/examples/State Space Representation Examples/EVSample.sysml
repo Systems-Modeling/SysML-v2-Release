@@ -1,7 +1,7 @@
 // State Space Representation EV example
 package EVSample {
-    import SI::*;
-    import StateSpaceRepresentation::*;
+    private import SI::*;
+    private import StateSpaceRepresentation::*;
 
     attribute <'A⋅h'> 'ampere hour'  : ElectricChargeUnit = A*h;
 

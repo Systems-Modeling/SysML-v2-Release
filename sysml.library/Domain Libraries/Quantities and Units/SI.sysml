@@ -8,8 +8,8 @@ standard library package SI {
 	 */
 
     private import MeasurementReferences::*;
-    import ISQ::*;
-    import SIPrefixes::*;
+    public import ISQ::*;
+    public import SIPrefixes::*;
 
     /*
      * SI simple unit needed in support of creation of the base units

@@ -1,11 +1,12 @@
 package 'Analysis Case Definition Example' {
-	import 'Calculation Definitions'::*;
-	import 'Analytical Constraints'::*;
-	import USCustomaryUnits::*;
-	import SequenceFunctions::size;
-	import Quantities::ScalarQuantityValue;
-	import ControlFunctions::*;
-	import ScalarValues::Positive;
+	private import ScalarValues::Real;
+	private import 'Calculation Definitions'::*;
+	private import 'Analytical Constraints'::*;
+	private import USCustomaryUnits::*;
+	private import SequenceFunctions::size;
+	private import Quantities::ScalarQuantityValue;
+	private import ControlFunctions::*;
+	private import ScalarValues::Positive;
 	
 	attribute def DistancePerVolumeValue :> ScalarQuantityValue;
 

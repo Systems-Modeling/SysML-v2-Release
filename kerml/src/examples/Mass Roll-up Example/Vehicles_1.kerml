@@ -1,5 +1,6 @@
 package Vehicles_1 {
-	import MassRollup_1::*;
+	private import ScalarValues::String;
+	private import MassRollup_1::*;
 
 	class Vehicle specializes MassedThing {
 		feature vin: String;
@@ -25,7 +26,7 @@ package Vehicles_1 {
 	
 	// Example usage
 	
-	import SI::*;
+	private import SI::*;
 	feature v: Vehicle {
 		feature m redefines Vehicle::m = 1000;
 		composite engine redefines Vehicle::engine {

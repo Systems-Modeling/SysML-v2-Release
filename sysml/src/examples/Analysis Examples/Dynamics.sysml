@@ -1,6 +1,6 @@
 package Dynamics {
-	import ScalarValues::Real;
-	import ISQ::*;
+	private import ScalarValues::Real;
+	private import ISQ::*;
 	
 	// Function definitions
 	

@@ -1,5 +1,5 @@
 package MetadataTest {
-	import 'User Defined Extensions'::*;
+	private import 'User Defined Extensions'::*;
 	
 	library package 'User Defined Extensions' {
 		

@@ -1,5 +1,5 @@
 package 'For Loop Example' {
-	import SequenceFunctions::*;
+	private import SequenceFunctions::*;
 	
     action def StraightLineDynamics {
         in power : ISQ::PowerValue;

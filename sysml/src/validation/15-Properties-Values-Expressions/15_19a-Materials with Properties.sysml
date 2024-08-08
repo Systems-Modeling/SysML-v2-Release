@@ -1,8 +1,8 @@
 package '15_19a-Materials with Properties' {
-	import ScalarValues::*;
-	import Quantities::*;
-	import MeasurementReferences::*;
-	import SI::*;
+	private import ScalarValues::*;
+	private import Quantities::*;
+	private import MeasurementReferences::*;
+	private import SI::*;
 	
     attribute def AtomicMassValue :> MassValue;
     

@@ -1,5 +1,5 @@
 package Filtering {
-	import ScalarValues::*;
+	private import ScalarValues::*;
 	
 	package Annotations {
 		metaclass ApprovalAnnotation {
@@ -10,7 +10,7 @@ package Filtering {
 	}
 	
 	package DesignModel {
-	    import Annotations::*;
+	    private import Annotations::*;
 	    struct System {
 	         @ApprovalAnnotation {
 	            approved = true;
@@ -22,7 +22,7 @@ package Filtering {
 	}
 
 	package UpperLevelApprovals {
-	    import DesignModel::**;
+	    private import DesignModel::**;
 	    filter Annotations::ApprovalAnnotation::approved and 
 	           Annotations::ApprovalAnnotation::level > 1;
 	    
@@ -30,15 +30,15 @@ package Filtering {
 	}
 	
 	package UpperLevelApprovals1 {
-	    import Annotations::**;
-	    import DesignModel::**[@Structure][approved and level > 1];
+	    private import Annotations::**;
+	    private import DesignModel::**[@Structure][approved and level > 1];
 	    
 	    struct Test :> System;	    
 	}
 	
- import KerML::*;
+ 	private import KerML::*;
 	package Meta {
-		import DesignModel::*;
+		private import DesignModel::*;
 		filter (Element::name == "System" and not Type::isAbstract) or 
 		       Feature::isComposite;
 		

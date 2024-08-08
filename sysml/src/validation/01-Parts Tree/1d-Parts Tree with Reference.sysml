@@ -9,7 +9,7 @@ package '1d-Parts Tree with Reference' {
 	}
 	
 	package Usages {
-		import Definitions::*;
+		private import Definitions::*;
 		
 		part vehicle_trailer_system {
 			

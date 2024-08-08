@@ -1,5 +1,5 @@
 package 'Individuals and Snapshots Example' {
-	import 'Part Definition Example'::*;
+	public import 'Part Definition Example'::*;
 	
 	individual part def Vehicle_1 :> Vehicle {
 		

@@ -1,10 +1,8 @@
 class Camera {
-	import Base::*;
-	import ScalarValues::*;
-	import Occurrences::*;
+	private import ScalarValues::*;
 	
-	portion focusedState: Camera subsets Occurrence::timeSlices;
-	portion shotState: Camera subsets Occurrence::timeSlices;
+	portion focusedState: Camera subsets timeSlices;
+	portion shotState: Camera subsets timeSlices;
 	
 	succession focusedState then shotState;
 }

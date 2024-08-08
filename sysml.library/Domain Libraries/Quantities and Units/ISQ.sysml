@@ -8,18 +8,18 @@ standard library package ISQ {
 	private import Quantities::*;
 	private import MeasurementReferences::*;
 
-	import ISQBase::*;                  // ISO/IEC 80000 base quantities and general concepts
-    import ISQSpaceTime::*;             // ISO 80000-3 "Space and Time"
-    import ISQMechanics::*;             // ISO 80000-4 "Mechanics"
-    import ISQThermodynamics::*;        // ISO 80000-5 "Thermodynamics"
-    import ISQElectromagnetism::*;      // IEC 80000-6 "Electromagnetism"
-    import ISQLight::*;                 // ISO 80000-7 "Light"
-    import ISQAcoustics::*;             // ISO 80000-8 "Acoustics"
-    import ISQChemistryMolecular::*;    // ISO 80000-9 "Physical chemistry and molecular physics"
-    import ISQAtomicNuclear::*;         // ISO 80000-10 "Atomic and nuclear physics"
-    import ISQCharacteristicNumbers::*; // ISO 80000-11 "Characteristic numbers"
-    import ISQCondensedMatter::*;       // ISO 80000-12 "Condensed matter physics"
-    import ISQInformation::*;           // IEC 80000-13 "Information science and technology"
+	public import ISQBase::*;                  // ISO/IEC 80000 base quantities and general concepts
+    public import ISQSpaceTime::*;             // ISO 80000-3 "Space and Time"
+    public import ISQMechanics::*;             // ISO 80000-4 "Mechanics"
+    public import ISQThermodynamics::*;        // ISO 80000-5 "Thermodynamics"
+    public import ISQElectromagnetism::*;      // IEC 80000-6 "Electromagnetism"
+    public import ISQLight::*;                 // ISO 80000-7 "Light"
+    public import ISQAcoustics::*;             // ISO 80000-8 "Acoustics"
+    public import ISQChemistryMolecular::*;    // ISO 80000-9 "Physical chemistry and molecular physics"
+    public import ISQAtomicNuclear::*;         // ISO 80000-10 "Atomic and nuclear physics"
+    public import ISQCharacteristicNumbers::*; // ISO 80000-11 "Characteristic numbers"
+    public import ISQCondensedMatter::*;       // ISO 80000-12 "Condensed matter physics"
+    public import ISQInformation::*;           // IEC 80000-13 "Information science and technology"
 
     /* Additional quantity declarations */
 

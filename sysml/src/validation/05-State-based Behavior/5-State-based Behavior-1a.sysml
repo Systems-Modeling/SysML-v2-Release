@@ -1,6 +1,6 @@
 package '5-State-based Behavior-1a' {
-	import ScalarValues::*;
-	import ISQ::*;
+	private import ScalarValues::*;
+	private import ISQ::*;
 	
 	package Definitions {
 		part def VehicleA {
@@ -44,7 +44,7 @@ package '5-State-based Behavior-1a' {
 	}
 	
 	package Usages {
-		import Definitions::*;
+		private import Definitions::*;
 		
 		/*
 		 * These actions are used enabled in the state usage 

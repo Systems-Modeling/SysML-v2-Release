@@ -1,6 +1,6 @@
 library package 'Model Library Example' {
-	import ScalarValues::Real;
-	import RiskMetadata::Level;
+	private import ScalarValues::Real;
+	private import RiskMetadata::Level;
 	
 	abstract occurrence def Situation;
 	

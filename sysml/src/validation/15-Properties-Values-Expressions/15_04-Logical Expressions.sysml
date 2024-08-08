@@ -1,5 +1,5 @@
 package '15_04-Logical Expressions' {
-	import ScalarValues::*;
+	private import ScalarValues::*;
 	
 	part def Engine;
 	part def '4CylEngine' :> Engine;

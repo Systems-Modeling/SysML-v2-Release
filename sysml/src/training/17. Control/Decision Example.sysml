@@ -1,5 +1,5 @@
 package 'Decision Example' {
-	import ScalarValues::*;
+	private import ScalarValues::*;
 	
 	attribute def BatteryCharged;
 	

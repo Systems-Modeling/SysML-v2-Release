@@ -1,5 +1,5 @@
 package VehicleRequirementDerivation {
-	import RequirementDerivation::*;
+	private import RequirementDerivation::*;
 	
 	part vehicle {
 		attribute mass :> ISQ::mass;

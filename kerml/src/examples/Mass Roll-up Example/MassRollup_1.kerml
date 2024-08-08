@@ -1,5 +1,5 @@
 package MassRollup_1 {
-	import NumericalFunctions::*;
+	private import NumericalFunctions::*;
 
 	class MassedThing {
 		feature mass : ScalarValues::Real;	

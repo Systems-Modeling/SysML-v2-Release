@@ -4,8 +4,8 @@ package ChangingFeatureValuesModelToBeExecuted {
 	/* 
 	 */
 
-	import ScalarValues::Boolean;
-	import FeatureReferencingPerformances::FeatureWritePerformance;
+	private import ScalarValues::Boolean;
+	private import FeatureReferencingPerformances::FeatureWritePerformance;
 
 	behavior Manufacture {
 		feature objectToFinish : Product [1];
@@ -73,10 +73,11 @@ package ChangingFeatureValuesExecution {
 	/* 
 	 */
 
-	import Atoms::*;
-	import ChangingFeatureValuesModelToBeExecuted::*;
-	import Occurrences::Occurrence;
-	import Occurrences::HappensBefore;
+	private import Atoms::*;
+	private import ChangingFeatureValuesModelToBeExecuted::*;
+	private import Occurrences::Occurrence;
+	private import Occurrences::HappensBefore;
+	private import FeatureReferencingPerformances::FeatureWritePerformance;
 
 	struct ProductTimeSlice specializes Product {
 		readonly feature redefines isPainted;

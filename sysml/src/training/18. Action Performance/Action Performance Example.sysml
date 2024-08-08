@@ -1,5 +1,5 @@
 package 'Action Performance Example' {
-	import 'Action Decomposition'::*;
+	private import 'Action Decomposition'::*;
 	
 	part def Camera;
 	part def AutoFocus;

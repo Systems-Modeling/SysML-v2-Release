@@ -4,7 +4,7 @@ package QualifiedNameImportTest {
 	}
 	package P2 {
 		package P2a {
-			import P1::*;
+			public import P1::*;
 		}
 		// The following should not fail.
 		// A is a member of P2a because of the import.

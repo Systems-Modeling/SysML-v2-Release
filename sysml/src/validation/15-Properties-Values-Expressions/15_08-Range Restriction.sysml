@@ -1,7 +1,7 @@
 package '15_08-Range Restriction' {
-	import ISQ::*;
-	import SI::*;
-	import '15_01-Constants'::'Mathematical Constants'::pi;
+	private import ISQ::*;
+	private import SI::*;
+	private import '15_01-Constants'::'Mathematical Constants'::pi;
 	
 	part def HeadLightsTiltKnob {
 		attribute headLightsTile : LightBeamTiltAngleValue[1];

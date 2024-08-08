@@ -4,7 +4,7 @@ package VehicleUsages {
 	 * Example usages of elements from the vehicle definitions model.
 	 */
 	 
-	import VehicleDefinitions::*;
+	private import VehicleDefinitions::*;
 
 	/* VALUES */
 		 

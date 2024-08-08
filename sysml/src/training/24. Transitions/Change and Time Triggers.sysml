@@ -1,8 +1,8 @@
 package 'Change and Time Triggers' {
-	import ISQ::TemperatureValue;
-	import ISQ::DurationValue;
-	import Time::TimeInstantValue;
-	import SI::h;
+	private import ISQ::TemperatureValue;
+	private import ISQ::DurationValue;
+	private import Time::TimeInstantValue;
+	private import SI::h;
 	
 	attribute def OverTemp;
 	

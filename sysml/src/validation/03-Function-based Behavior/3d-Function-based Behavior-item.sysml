@@ -1,7 +1,7 @@
 package '3d-Function-based Behavior-item' {
-	import ScalarValues::Real;
-	import Definitions::*;
-	import Usages::*;
+	private import ScalarValues::Real;
+	public import Definitions::*;
+	public import Usages::*;
 	
 	package Definitions {
 		

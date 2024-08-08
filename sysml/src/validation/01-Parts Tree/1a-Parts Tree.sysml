@@ -1,5 +1,5 @@
 package '1a-Parts Tree' {
-	import SI::kg;
+	private import SI::kg;
 	
 	package Definitions {	
 		part def Vehicle {
@@ -26,7 +26,7 @@ package '1a-Parts Tree' {
 	package Usages {
 		private import Definitions::* {
 			/*
-			 * A "private" import makes the imported names private to the
+			 * A "private" private import makes the imported names private to the
 			 * imported package.
 			 */
 		}

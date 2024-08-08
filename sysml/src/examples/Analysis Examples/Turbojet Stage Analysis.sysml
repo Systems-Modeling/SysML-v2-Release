@@ -1,7 +1,7 @@
 package 'Turbojet Stage Analysis' {
-	import Quantities::ScalarQuantityValue;
-	import MeasurementReferences::DimensionOneValue;
-	import ISQ::*;
+	private import Quantities::ScalarQuantityValue;
+	private import MeasurementReferences::DimensionOneValue;
+	private import ISQ::*;
 	
 	package 'Thermodynamic Functions' {
 	    calc def 'Ideal Gas Law' { in rho; in R_bar; in T;
@@ -81,7 +81,7 @@ package 'Turbojet Stage Analysis' {
 	package 'Low-Pressure Compressor Analysis' {
 	    
 	    part 'Analysis Context' {
-	        import 'Thermodynamic Functions'::*;
+	        private import 'Thermodynamic Functions'::*;
 	        
 	        part 'Inlet Gas' : 'Thermodynamics Structure'::'Moving Ideal Gas Parcel' {
 	        	// Explicit binding notation

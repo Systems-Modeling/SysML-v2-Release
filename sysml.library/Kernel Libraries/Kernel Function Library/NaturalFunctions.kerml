@@ -5,7 +5,7 @@ standard library package NaturalFunctions {
 	 * general arithmetic and comparison operations.
 	 */
 
-	import ScalarValues::*;
+	public import ScalarValues::*;
 	
 	function '+' specializes IntegerFunctions::'+' { in x: Natural[1]; in y: Natural[0..1]; return : Natural[1]; }
 	function '*' specializes IntegerFunctions::'*' { in x: Natural[1]; in y: Natural[1]; return : Natural[1]; }

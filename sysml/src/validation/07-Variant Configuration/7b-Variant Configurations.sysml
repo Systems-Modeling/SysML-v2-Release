@@ -1,8 +1,8 @@
 package '7b-Variant Configurations' {
-	import RequirementsModel::*;
-	import DesignModel::*;
-	import VariantDefinitions::*;
-	import ControlFunctions::forAll;
+	private import RequirementsModel::*;
+	private import DesignModel::*;
+	private import VariantDefinitions::*;
+	private import ControlFunctions::forAll;
 	
 	package RequirementsModel {
 		requirement def EnginePerformanceRequirement;

@@ -1,6 +1,6 @@
 package '12b-Allocation' {
-	import LogicalModel::*;
-	import PhysicalModel::*;
+	private import LogicalModel::*;
+	private import PhysicalModel::*;
 	
 	package LogicalModel {
 		action providePower {

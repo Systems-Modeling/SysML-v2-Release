@@ -1,5 +1,5 @@
 package '15_06-System of Quantities' {
-    import ISQ::*;
+    private import ISQ::*;
 
 	/*
 	 * A System of Quantities is represented by a model library package.

@@ -1,5 +1,5 @@
 package 'Local Clock Example' {
-	import ScalarValues::String;
+	private import ScalarValues::String;
 	
 	item def Start;
 	item def Request;

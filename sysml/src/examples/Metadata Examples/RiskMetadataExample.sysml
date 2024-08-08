@@ -1,6 +1,6 @@
 package RiskMetadataExample {
-	import RiskMetadata::*;
-	import RiskLevelEnum::*;
+	private import RiskMetadata::*;
+	private import RiskLevelEnum::*;
 	
     part engine4cyl{
         @Risk {

@@ -1,5 +1,5 @@
 part def Camera {
-	import PictureTaking::*;
+	private import PictureTaking::*;
 	
 	perform action takePicture[*] :> PictureTaking::takePicture;
 	

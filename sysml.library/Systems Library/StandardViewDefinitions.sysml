@@ -2,7 +2,7 @@ standard library package StandardViewDefinitions {
     doc /*
          * This package defines the standard view definitions for the SysML language.
          */
-    import SysML::*;
+    public import SysML::*;
 
     view def <gv> GeneralView {
         doc /*

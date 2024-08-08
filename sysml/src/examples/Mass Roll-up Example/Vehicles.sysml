@@ -1,6 +1,6 @@
 package VehicleMasses {
-	import ScalarValues::*;
-	import MassRollup::*;
+	private import ScalarValues::*;
+	private import MassRollup::*;
 	
 	part def CarPart :> MassedThing {			
 		attribute serialNumber: String;
@@ -21,7 +21,7 @@ package VehicleMasses {
 	}
 
 	// Example usage
-	import SI::*;	
+	private import SI::*;	
 	part c :> car {
 		redefines mass = 1000 [kg];
 		part redefines engine {

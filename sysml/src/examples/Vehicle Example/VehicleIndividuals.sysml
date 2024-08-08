@@ -1,6 +1,7 @@
 package VehicleIndividuals {
-	import VehicleUsages::*;
-	import Time::DateTime;
+	private import VehicleUsages::*;
+	private import Time::DateTime;
+	private import SI::kg;
 	
 	package IndividualDefinitions {
 
@@ -29,7 +30,7 @@ package VehicleIndividuals {
 	}
 	
 	package IndividualSnapshots {
-		import IndividualDefinitions::*;
+		public import IndividualDefinitions::*;
 	
 		attribute t0: DateTime;
 		attribute t1: DateTime;
@@ -59,7 +60,7 @@ package VehicleIndividuals {
 	}
 	
 	package IndividualConfigurations {
-		import IndividualSnapshots::*;
+		public import IndividualSnapshots::*;
 	
 		individual part vehicle1_C2: Vehicle1 :> vehicle_C2 {
 			doc

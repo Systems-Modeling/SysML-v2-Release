@@ -1,7 +1,7 @@
 package Expressions {
-	import ScalarFunctions::*;
-	import BaseFunctions::ToString;
-	import ControlFunctions::*;
+	private import ScalarFunctions::*;
+	private import BaseFunctions::ToString;
+	private import ControlFunctions::*;
 	
 	a: Integer;
 	aa : Boolean;
@@ -70,4 +70,7 @@ package Expressions {
 		feature c : C[*];
 		feature count : ScalarValues::Integer =  c#(1).count;
 	}
+	
+	feature l = L();
+	feature w1 = w(xx);
 }

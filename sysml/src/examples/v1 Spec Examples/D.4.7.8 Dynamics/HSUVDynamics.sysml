@@ -1,7 +1,7 @@
 package HSUVDynamics {
-	import ScalarValues::*;
-	import SequenceFunctions::size;
-	import ControlFunctions::*;
+	private import ScalarValues::*;
+	private import SequenceFunctions::size;
+	private import ControlFunctions::*;
 	
 	attribute def Horsepwr :> Real;
 	attribute def Weight :> Real;

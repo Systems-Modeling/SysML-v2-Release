@@ -1,6 +1,6 @@
 library package 'Semantic Metadata Example' {
-	import 'Model Library Example'::*;
-	import Metaobjects::SemanticMetadata;
+	private import 'Model Library Example'::*;
+	private import Metaobjects::SemanticMetadata;
 
 	metadata def situation :> SemanticMetadata {
 		:>> baseType = situations meta SysML::Usage;

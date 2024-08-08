@@ -1,5 +1,5 @@
 package TextualRepresentation {
-	import ScalarValues::Real;
+	private import ScalarValues::Real;
 	
 	class C {
 	    feature x: Real;

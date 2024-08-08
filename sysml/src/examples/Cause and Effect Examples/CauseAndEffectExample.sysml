@@ -1,5 +1,5 @@
 package CauseAndEffectExample {
-	import CauseAndEffect::*;
+	private import CauseAndEffect::*;
 	
 	part def Causer1;
 	part def Causer2;

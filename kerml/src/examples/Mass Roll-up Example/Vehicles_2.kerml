@@ -1,5 +1,6 @@
 package Vehicles_2 {
-	import MassRollup_1::*;
+	private import ScalarValues::String;
+	private import MassRollup_1::*;
 	
 	class CarPart specializes MassedThing {		
 		feature serialNumber: String;
@@ -22,7 +23,7 @@ package Vehicles_2 {
 	
 	// Example usage
 	
-	import SI::*;
+	private import SI::*;
 	feature v: vehicle {
 		feature m redefines CarPart::m = 1000;
 		composite engine redefines vehicle::engine {

@@ -1,6 +1,6 @@
 package CarWithEnvelopingShape {
-	import ShapeItems::Box;
-	import SI::mm;
+	private import ShapeItems::Box;
+	private import SI::mm;
 
 	part def Car {
 		doc

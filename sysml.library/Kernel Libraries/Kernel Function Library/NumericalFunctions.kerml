@@ -4,7 +4,7 @@ standard library package NumericalFunctions {
 	 * This package defines abstract functions on Numerical values for general arithmetic and comparison operations.
 	 */
 
-	import ScalarValues::*;
+	public import ScalarValues::*;
 	private import ControlFunctions::reduce;
 	
 	abstract function isZero{ in x: NumericalValue[1]; return : Boolean; }

@@ -1,5 +1,5 @@
 package MedicalDeviceFailure {
-	import CauseAndEffect::*;
+	private import CauseAndEffect::*;
 	
 	part medicalDevice {
 		part battery {

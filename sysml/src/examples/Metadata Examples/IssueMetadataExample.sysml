@@ -1,5 +1,5 @@
 package IssueMetadataExample {
-	import ModelingMetadata::Issue;
+	private import ModelingMetadata::Issue;
 	
     //Example: the following identifies an issue with the interface
     

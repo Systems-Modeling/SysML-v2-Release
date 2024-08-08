@@ -15,7 +15,7 @@ package 'Allocation Usage Example' {
 	}
 	
 	package PhysicalModel {
-		import LogicalModel::*;
+		private import LogicalModel::*;
 	
 		part def PowerTrain;
 		part def Engine;

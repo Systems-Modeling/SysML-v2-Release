@@ -1,6 +1,7 @@
 package 'User Keyword Example' {
-	import 'Semantic Metadata Example'::*;
-	import RiskMetadata::LevelEnum;
+	private import ScalarValues::Real;
+	private import 'Semantic Metadata Example'::*;
+	private import RiskMetadata::LevelEnum;
 	
 	part def Device {
 		part battery {

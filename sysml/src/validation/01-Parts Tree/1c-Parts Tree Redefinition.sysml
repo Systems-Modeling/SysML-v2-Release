@@ -1,5 +1,5 @@
 package '1c-Parts Tree Redefinition' {
-	import SI::kg;
+	private import SI::kg;
 	
 	package Definitions {	
 		part def Vehicle {

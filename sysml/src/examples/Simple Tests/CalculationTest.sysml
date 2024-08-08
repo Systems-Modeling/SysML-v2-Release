@@ -1,6 +1,6 @@
 package CalculationExample {
-	import ISQ::*;
-	import NumericalFunctions::*;
+	private import ISQ::*;
+	private import NumericalFunctions::*;
 	
 	part def VehiclePart {
 		attribute m : MassValue;

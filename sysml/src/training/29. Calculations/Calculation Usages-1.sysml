@@ -1,5 +1,7 @@
 package 'Calculation Usages-1' {
-	import 'Calculation Definitions'::*;
+	private import ScalarValues::Real;
+	private import ISQ::*;
+	private import 'Calculation Definitions'::*;
 	
 	part def VehicleDynamics {
 		attribute C_d : Real;

@@ -1,7 +1,7 @@
 package 'Constraint Assertions-1' {
-	import ISQ::*;
-	import SI::*;
-	import NumericalFunctions::*;
+	private import ISQ::*;
+	private import SI::*;
+	private import NumericalFunctions::*;
 	
 	part def Engine;
 	part def Transmission;

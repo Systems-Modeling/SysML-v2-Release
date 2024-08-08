@@ -5,7 +5,7 @@ standard library package RationalFunctions {
 	 * general arithmetic and comparison operations.
 	 */
 
-	import ScalarValues::*;
+	public import ScalarValues::*;
 	
 	function rat { in numer: Integer[1]; in denum: Integer[1]; return : Rational[1]; }
 	function numer { in rat: Rational[1]; return : Integer[1]; }

@@ -1,5 +1,5 @@
 package '15_02-Basic Value Properties' {
-	import ScalarValues::*;
+	private import ScalarValues::*;
 	
     attribute def LengthValue :> Real {
 		doc

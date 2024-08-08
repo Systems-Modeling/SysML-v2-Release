@@ -21,10 +21,10 @@ package SequencesExecution {
 	/* 
 	 */
 
-	import Atoms::*;
-	import SequencesModelToBeExecuted::*;
-	import Occurrences::Occurrence;
-	import Occurrences::HappensBefore;
+	private import Atoms::*;
+	private import SequencesModelToBeExecuted::*;
+	private import Occurrences::Occurrence;
+	private import Occurrences::HappensBefore;
 
 	#atom
 	behavior MyPaint specializes Paint;

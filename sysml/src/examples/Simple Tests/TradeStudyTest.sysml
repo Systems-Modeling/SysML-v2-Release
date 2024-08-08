@@ -1,6 +1,6 @@
 package TradeStudyTest {
-	import ScalarValues::Real;
-	import TradeStudies::*;
+	private import ScalarValues::Real;
+	private import TradeStudies::*;
 	
 	part def Engine;
 	part engine1: Engine;

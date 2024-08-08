@@ -1,6 +1,6 @@
 package 'Variation Definitions' {
-	import ScalarValues::Real;
-	import SI::mm;
+	private import ScalarValues::Real;
+	private import SI::mm;
 	
 	attribute def Diameter :> ISQ::LengthValue;
 	

@@ -1,5 +1,5 @@
 package JohnIndividualExample {
-	import Objects::*;
+	private import Objects::*;
 	
 	class Person specializes Object {
 		doc

@@ -4,7 +4,7 @@ standard library package ScalarFunctions {
 	 * This package defines abstract functions that specialize the DataFunctions for use with ScalarValues. 
 	 */
 
-	import ScalarValues::*;
+	public import ScalarValues::*;
 	
 	abstract function '+' specializes DataFunctions::'+' { in x: ScalarValue[1]; in y: ScalarValue[0..1]; return : ScalarValue[1]; }
 	abstract function '-' specializes DataFunctions::'-' { in x: ScalarValue[1]; in y: ScalarValue[0..1]; return : ScalarValue[1]; }

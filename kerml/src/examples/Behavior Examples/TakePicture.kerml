@@ -1,6 +1,5 @@
 behavior TakePicture {
-	import Base::*;
-	import Camera;
+	private import Camera;
 	
 	feature camera: Camera[1] subsets involvedObjects;
 	

@@ -1,8 +1,8 @@
 // SysML v2 Interpretation of the SysML v1 Room Connection Example
 package RoomModel { 
     package RoomDefinitionModelLibrary{
-        import Port_Definitions::*;
-        import Flow_Definitions::*;
+        private import Port_Definitions::*;
+        private import Flow_Definitions::*;
         package Part_Definitions{
             // Rooms
             part def Classroom {
@@ -41,10 +41,10 @@ package RoomModel {
     }
     package Room_Configuration{
         // defining the parts and their interconnection in context 
-        import RoomDefinitionModelLibrary::*;
-        import RoomDefinitionModelLibrary::Part_Definitions::*;
-        import RoomDefinitionModelLibrary::Port_Definitions::*;
-        import RoomDefinitionModelLibrary::Flow_Definitions::*;
+        private import RoomDefinitionModelLibrary::*;
+        private import RoomDefinitionModelLibrary::Part_Definitions::*;
+        private import RoomDefinitionModelLibrary::Port_Definitions::*;
+        private import RoomDefinitionModelLibrary::Flow_Definitions::*;
         part roomContext{
             part c:Classroom;
             part s:Storageroom;

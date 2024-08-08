@@ -1,6 +1,6 @@
 package '2a-Parts Interconnection' {
-	import Definitions::*;
-	import Usages::*;
+	public import Definitions::*;
+	public import Usages::*;
 
 	package Definitions {		
 		// Port Definitions

@@ -1,8 +1,8 @@
 package ExternalShapeRefExample {
-	import ScalarValues::String;
-	import ShapeItems::*;
-	import ISQ::mass;
-	import SI::mm;
+	private import ScalarValues::String;
+	private import ShapeItems::*;
+	private import ISQ::mass;
+	private import SI::mm;
 
 	metadata def ExternalShapeRef {
 		doc

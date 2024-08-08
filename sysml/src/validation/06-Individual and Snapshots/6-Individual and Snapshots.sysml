@@ -1,7 +1,7 @@
 package '6-Individual and Snapshots' {
-	import ScalarValues::Real;
-	import Time::DateTime;
-	import ISQ::*;
+	private import ScalarValues::Real;
+	private import Time::DateTime;
+	private import ISQ::*;
 	
 	package 'Part Definitions' {	
 		part def 'Temporal-Spatial Reference' {
@@ -38,7 +38,7 @@ package '6-Individual and Snapshots' {
 	}
 	
 	package 'Individual Definitions' {
-		import 'Part Definitions'::*;
+		private import 'Part Definitions'::*;
 		
 		/*
 		 * An individual definition restricts the instances of a part def to
@@ -81,8 +81,8 @@ package '6-Individual and Snapshots' {
 	}
 	
 	package 'Individuals and Snapshots' {
-		import 'Individual Definitions'::*;
-		import Values::*;
+		private import 'Individual Definitions'::*;
+		private import Values::*;
 		
 		individual reference : 'Temporal-Spatial Reference_ID1' {
 			/*

@@ -1,6 +1,6 @@
 package '17b-Sequence-Modeling' {
-	import ScalarValues::*;
-	import PayloadDefinitions::*;
+	private import ScalarValues::*;
+	private import PayloadDefinitions::*;
 
 	package PayloadDefinitions {
 	    item def Subscribe {

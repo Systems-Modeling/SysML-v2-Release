@@ -10,8 +10,8 @@ standard library package Triggers {
 	private import ScalarValues::NumericalValue;
 	private import Occurrences::Occurrence;
 	
-	import Clocks::*;
-	import Observation::*;
+	public import Clocks::*;
+	public import Observation::*;
 	
 	struct TimeSignal :> ChangeSignal {
 		doc

@@ -1,6 +1,6 @@
 package 'Use Case Usage Example' {
 	
-	import 'Use Case Definition Example'::*;
+	private import 'Use Case Definition Example'::*;
 	
 	part def 'Fuel Station';
 	

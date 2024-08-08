@@ -1,7 +1,7 @@
 package '11a-View-Viewpoint' {
 	
 	package SystemModel {
-		import SI::*;
+		private import SI::*;
 		
 		part def Vehicle;
 		part def AxleAssembly;
@@ -30,7 +30,7 @@ package '11a-View-Viewpoint' {
 	}
 	
 	package ViewModel {
-		import Views::*;
+		private import Views::*;
 	
 		part 'systems engineer';
 		

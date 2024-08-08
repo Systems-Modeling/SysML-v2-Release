@@ -5,7 +5,7 @@ standard library package BooleanFunctions {
 	 * (non-conditional) logical operators in the KerML expression notation.
 	 */
 
-	import ScalarValues::*;
+	public import ScalarValues::*;
 	
 	function 'not' specializes ScalarFunctions::'not' { in x: Boolean[1]; return : Boolean[1]; }
 	function 'xor' specializes ScalarFunctions::'xor' { in x: Boolean[1]; in y: Boolean[1]; return : Boolean[1]; }

@@ -1,6 +1,6 @@
 package '9-Verification-simplified' {
-	import VerificationCases::*;
-	import Definitions::*;
+	private import VerificationCases::*;
+	private import Definitions::*;
 	
 	package Definitions {
 	

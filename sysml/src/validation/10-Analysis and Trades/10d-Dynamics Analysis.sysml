@@ -1,5 +1,5 @@
 package '10d-Dynamics Analysis' {
-	import ISQ::*;
+	private import ISQ::*;
 	
 	package VehicleModel {
 	
@@ -45,11 +45,11 @@ package '10d-Dynamics Analysis' {
 	}
 	
 	package AnalysisModel {
-		import VehicleModel::*;
-		import DynamicsModel::*;
-		import SampledFunctions::*;
-		import ScalarValues::Natural;
-		import SequenceFunctions::*;
+		private import VehicleModel::*;
+		private import DynamicsModel::*;
+		private import SampledFunctions::*;
+		private import ScalarValues::Natural;
+		private import SequenceFunctions::*;
 		
 		analysis def DynamicsAnalysis {
 			subject vehicle : Vehicle;

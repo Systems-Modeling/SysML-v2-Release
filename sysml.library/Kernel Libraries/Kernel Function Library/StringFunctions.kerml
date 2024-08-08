@@ -5,7 +5,7 @@ standard library package StringFunctions {
 	 * and comparison operators in the KerML expression notation.
 	 */
 
-	import ScalarValues::*;
+	public import ScalarValues::*;
 	
 	function '+' specializes ScalarFunctions::'+' { in x: String[1]; in y:String[1]; return : String[1]; }
 	

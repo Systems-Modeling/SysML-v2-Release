@@ -1,4 +1,4 @@
-public import Packets::*;
+private import Packets::*;
 private import ScalarValues::Real;
 package 'Packet Usage' {
 	

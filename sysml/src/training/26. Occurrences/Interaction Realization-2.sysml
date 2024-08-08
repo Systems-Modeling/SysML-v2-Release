@@ -1,5 +1,5 @@
 package 'Interaction Realization-2' {
-	import 'Interaction Example-1'::*;
+	private import 'Interaction Example-1'::*;
 	
 	part driver_b : Driver {
 		port setSpeedPort {

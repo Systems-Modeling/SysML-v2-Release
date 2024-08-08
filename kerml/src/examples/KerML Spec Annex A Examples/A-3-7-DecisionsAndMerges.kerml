@@ -4,10 +4,10 @@ package DecisionsAndMergesModelToBeExecuted {
 	/* 
 	 */
 
-	import ControlPerformances::DecisionPerformance;
-	import ControlPerformances::MergePerformance;
-	import Occurrences::HappensBefore;
-	import Links::SelfLink;
+	private import ControlPerformances::DecisionPerformance;
+	private import ControlPerformances::MergePerformance;
+	private import Occurrences::HappensBefore;
+	private import Links::SelfLink;
 
 	behavior Manufacture {
 		  /* Before decision. */
@@ -51,10 +51,12 @@ package DecisionsAndMergesExecution {
 	/* 
 	 */
 
-	import Atoms::*;
-	import DecisionsAndMergesModelToBeExecuted::*;
-	import Occurrences::Occurrence;
-	import Occurrences::HappensBefore;
+	private import Atoms::*;
+	private import DecisionsAndMergesModelToBeExecuted::*;
+	private import Occurrences::Occurrence;
+	private import Occurrences::HappensBefore;
+	private import ControlPerformances::DecisionPerformance;
+	private import ControlPerformances::MergePerformance;
 
 	  /* Before decision. */
 	#atom

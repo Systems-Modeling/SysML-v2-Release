@@ -1,5 +1,5 @@
 package HSUVRequirements {
-	import Requirements::*;
+	private import Requirements::*;
 	
 	requirement <'UR1.1'> Load: FunctionalRequirementCheck {
 		// The following requirements are composite sub-requirements.

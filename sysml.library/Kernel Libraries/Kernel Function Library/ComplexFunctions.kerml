@@ -5,7 +5,7 @@ standard library package ComplexFunctions {
 	 * general arithmetic and comparison operations.
 	 */
 
-	import ScalarValues::*;
+	public import ScalarValues::*;
 		
 	feature i: Complex[1] = rect(0.0, 1.0);
 	
