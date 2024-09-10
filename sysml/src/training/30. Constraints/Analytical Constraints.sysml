@@ -1,5 +1,6 @@
 package 'Analytical Constraints' {
-	import 'Calculation Definitions'::*;
+	private import ISQ::*;
+	private import 'Calculation Definitions'::*;
 	
 	constraint def StraightLineDynamicsEquations {
 		in p : PowerValue;

@@ -1,11 +1,12 @@
 package 'Analysis Case Definition Example' {
-	import 'Calculation Definitions'::*;
-	import 'Analytical Constraints'::*;
-	import USCustomaryUnits::*;
-	import SequenceFunctions::size;
-	import Quantities::ScalarQuantityValue;
-	import ControlFunctions::*;
-	import ScalarValues::Positive;
+	private import ScalarValues::Real;
+	private import 'Calculation Definitions'::*;
+	private import 'Analytical Constraints'::*;
+	private import USCustomaryUnits::*;
+	private import SequenceFunctions::size;
+	private import Quantities::ScalarQuantityValue;
+	private import ControlFunctions::*;
+	private import ScalarValues::Positive;
 	
 	attribute def DistancePerVolumeValue :> ScalarQuantityValue;
 
@@ -28,8 +29,6 @@ package 'Analysis Case Definition Example' {
     
 	analysis def FuelEconomyAnalysis {
 		subject vehicle : Vehicle;
-		return fuelEconomyResult : DistancePerVolumeValue;
-		
 		objective fuelEconomyAnalysisObjective {
 			/*
 			 * The objective of this analysis is to determine whether the
@@ -74,12 +73,14 @@ package 'Analysis Case Definition Example' {
 		
 		then action solveForFuelConsumption {
 			in power : PowerValue[*] = solveForPower.power;
-			out fuelEconomy : DistancePerVolumeValue = fuelEconomyResult;
+			out fuelEconomy : DistancePerVolumeValue;
 		
 			/*
 			 * Solve the engine equations to determine how much fuel is
 			 * consumed.
 			 */
 		}
+		
+        return fuelEconomyResult : DistancePerVolumeValue = solveForFuelConsumption.fuelEconomy;
 	}
 }

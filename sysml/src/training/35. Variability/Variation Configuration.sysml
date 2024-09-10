@@ -1,5 +1,5 @@
 package 'Variation Configuration' {
-	import 'Variation Usages'::*;
+	private import 'Variation Usages'::*;
 	
 	part vehicle4Cyl :> vehicleFamily {
 		part redefines engine = engine::'4cylEngine';

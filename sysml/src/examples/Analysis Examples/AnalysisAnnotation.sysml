@@ -1,7 +1,7 @@
 package AnalysisAnnotation {
-	import ScalarValues::Real;
-	import AnalysisTooling::*;
-	import ISQ::*;
+	private import ScalarValues::Real;
+	private import AnalysisTooling::*;
+	private import ISQ::*;
 	
 	action def ComputeDynamics {
 		metadata ToolExecution {

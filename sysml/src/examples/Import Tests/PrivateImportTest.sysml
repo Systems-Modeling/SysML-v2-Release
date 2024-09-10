@@ -8,7 +8,7 @@ package PrivateImportTest {
 
 	part x: P1::A;
 	
-	import P2::*;
+	public import P2::*;
 	// This should fail.
 	// A is not visible, because the import in P2 is private.
 	// part y: A;
@@ -25,7 +25,7 @@ package PrivateImportTest {
 	part z: B;
 	
 	package P4 {
-		import all P2::*;
+		public import all P2::*;
 		
 		// This should not fail because "import all" overrides private import.
 		part z1: A;

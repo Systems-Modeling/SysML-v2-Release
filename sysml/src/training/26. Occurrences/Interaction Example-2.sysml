@@ -1,5 +1,5 @@
 package 'Interaction Example-2' {
-	import 'Event Occurrence Example'::*;
+	private import 'Event Occurrence Example'::*;
 	
 	item def SetSpeed;
 	item def SensedSpeed;

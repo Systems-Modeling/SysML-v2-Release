@@ -1,6 +1,6 @@
 package ServerSequenceModel {
-	import ScalarValues::String;
-	import SignalDefinitions::*;
+	private import ScalarValues::String;
+	public import SignalDefinitions::*;
 
 	package SignalDefinitions {
 	    item def Subscribe {

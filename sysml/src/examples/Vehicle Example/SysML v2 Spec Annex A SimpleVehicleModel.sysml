@@ -1,21 +1,21 @@
 package SimpleVehicleModel{
     // 2023-02 release
-    import Definitions::*;  
-    import ISQ::*;
+    public import Definitions::*;  
+    public import ISQ::*;
     package Definitions{
-        import PartDefinitions::*;
-        import PortDefinitions::*;
-        import ItemDefinitions::*;
-        import SignalDefinitions::*;
-        import InterfaceDefinitions::*;
-        import AllocationDefinitions::*;
-        import ActionDefinitions::*;
-        import StateDefinitions::*;
-        import RequirementDefinitions::*;
-        import AttributeDefinitions::*;
-        import IndividualDefinitions::*;
-        import MetadataDefinitions::**;
-        import KeyWord_MetadataDefinitions::*;
+        public import PartDefinitions::*;
+        public import PortDefinitions::*;
+        public import ItemDefinitions::*;
+        public import SignalDefinitions::*;
+        public import InterfaceDefinitions::*;
+        public import AllocationDefinitions::*;
+        public import ActionDefinitions::*;
+        public import StateDefinitions::*;
+        public import RequirementDefinitions::*;
+        public import AttributeDefinitions::*;
+        public import IndividualDefinitions::*;
+        public import MetadataDefinitions::**;
+        public import KeyWord_MetadataDefinitions::*;
         package PartDefinitions{
             part def Vehicle {
                 attribute mass :> ISQ::mass;
@@ -143,7 +143,7 @@ package SimpleVehicleModel{
                 attribute mass:>ISQ::mass;
             }
             part def FrontAxle:>Axle{
-                attribute steeringAngle:>ISQ::planeAngle;
+                attribute steeringAngle:>ISQ::angularMeasure;
             }
             part def HalfAxle{
                 port shankCompositePort:ShankCompositePort{
@@ -401,14 +401,14 @@ package SimpleVehicleModel{
             }
         }
         package AttributeDefinitions{
-            import ScalarValues::*;
-            import Quantities::*;
-            import MeasurementReferences::DerivedUnit;
-            import SIPrefixes::kilo;
+            public import ScalarValues::*;
+            public import Quantities::*;
+            public import MeasurementReferences::DerivedUnit;
+            public import SIPrefixes::kilo;
             // Numerical Functions provides basic operators such as Sum expression
-            import NumericalFunctions::*;
-            import SI::*;
-            import USCustomaryUnits::*;
+            public import NumericalFunctions::*;
+            public import SI::*;
+            public import USCustomaryUnits::*;
             alias Torque for ISQ::TorqueValue;
             
             enum def Colors {black;grey;red;}
@@ -443,14 +443,14 @@ package SimpleVehicleModel{
             individual def Road_1:>Road;
         }
         package MetadataDefinitions { 
-            import AnalysisTooling::*;   
+            public import AnalysisTooling::*;   
             metadata def Safety {
                 attribute isMandatory : Boolean;
             }
             metadata def Security;
         }
         package KeyWord_MetadataDefinitions{
-            import Metaobjects::SemanticMetadata;
+            public import Metaobjects::SemanticMetadata;
             
             // the following is used to define the key word failureMode
             state failureModes[*] nonunique;
@@ -498,8 +498,8 @@ package SimpleVehicleModel{
         }
     }
     package VehicleLogicalToPhysicalAllocation{
-        import VehicleConfigurations::VehicleConfiguration_b::PartsTree::**;
-        import VehicleLogicalConfiguration::PartsTree::*;
+        public import VehicleConfigurations::VehicleConfiguration_b::PartsTree::**;
+        public import VehicleLogicalConfiguration::PartsTree::*;
 
         allocation vehicleLogicalToPhysicalAllocation:LogicalToPhysical
             allocate vehicleLogical to vehicle_b{
@@ -547,9 +547,9 @@ package SimpleVehicleModel{
         }
         package VehicleConfiguration_b{
             //Shapes library for simple geometry
-            import ShapeItems::Box;
-            import ParametersOfInterestMetadata::mop;
-            import ModelingMetadata::*; // incudes status info
+            public import ShapeItems::Box;
+            public import ParametersOfInterestMetadata::mop;
+            public import ModelingMetadata::*; // incudes status info
             
             package PartsTree{
                 part vehicle_b : Vehicle{
@@ -857,8 +857,8 @@ package SimpleVehicleModel{
                 }
             }
             package Requirements{
-                import RequirementDerivation::*;
-                import ModelingMetadata::*; // incudes status info
+                public import RequirementDerivation::*;
+                public import ModelingMetadata::*; // incudes status info
                 item marketSurvey;
                 dependency from vehicleSpecification to marketSurvey;
                 
@@ -923,7 +923,7 @@ package SimpleVehicleModel{
             }
         }    
         package Engine4Cyl_Variant{
-            import ModelingMetadata::*; // incudes refinement
+            public import ModelingMetadata::*; // incudes refinement
             part engine:Engine{
                 part cylinders:Cylinder[4..8] ordered;
             }
@@ -1014,12 +1014,12 @@ package SimpleVehicleModel{
         }
     }
     package VehicleAnalysis{
-        import RiskMetadata::*;
-        import RiskLevelEnum::*;
-        // recursive import uses double asterisk **
-        import VehicleConfigurations::VehicleConfiguration_b::**;
+        public import RiskMetadata::*;
+        public import RiskLevelEnum::*;
+        // recursive public import uses double asterisk **
+        public import VehicleConfigurations::VehicleConfiguration_b::**;
         package FuelEconomyAnalysisModel{
-            import SampledFunctions::SampledFunction;
+            public import SampledFunctions::SampledFunction;
               
             /*
             This analysis model was provided by Hisashi Miyashita on January 27, 2021
@@ -1139,7 +1139,7 @@ package SimpleVehicleModel{
             }
             
                 
-            import TradeStudies::*;
+            public import TradeStudies::*;
             //evaluation function with criterion engine mass, engine power, and engine cost
             calc def EngineEvaluation {
                 in engineMass:>ISQ::mass;
@@ -1200,12 +1200,12 @@ package SimpleVehicleModel{
         }
     }
     package VehicleVerification{
-        import VehicleConfigurations::VehicleConfiguration_b::**;
-        import VerificationCaseDefinitions::*;
-        import VerificationCases1::*;
+        public import VehicleConfigurations::VehicleConfiguration_b::**;
+        public import VerificationCaseDefinitions::*;
+        public import VerificationCases1::*;
         // the following is a model library which contains VerdictKind
-        import VerificationCases::*;
-        import VerificationSystem::*;
+        public import VerificationCases::*;
+        public import VerificationSystem::*;
         package VerificationCaseDefinitions{
             verification def MassTest;
             verification def AccelerationTest;
@@ -1309,9 +1309,9 @@ package SimpleVehicleModel{
     }
     package MissionContext{
         /* Define mission context with mission use cases for vehicle_b */
-        import VehicleConfigurations::VehicleConfiguration_b::**;
-        import ParametersOfInterestMetadata::moe;
-        import TransportPassengerScenario::*;
+        public import VehicleConfigurations::VehicleConfiguration_b::**;
+        public import ParametersOfInterestMetadata::moe;
+        public import TransportPassengerScenario::*;
         package ContextDefinitions{
             part def MissionContext:>GenericContext::Context;
             part def Road;
@@ -1378,7 +1378,7 @@ package SimpleVehicleModel{
             }
         }
         package TransportPassengerScenario{
-            import ContextDefinitions::TransportPassenger;
+            public import ContextDefinitions::TransportPassenger;
             
             // this version uses nesting vs fork and join for concurrent actions
             use case transportPassenger:TransportPassenger{
@@ -1487,7 +1487,7 @@ package SimpleVehicleModel{
             }
         }
         package VehiclePartsTree{
-            import VariationPointDefinitions::*;
+            public import VariationPointDefinitions::*;
             abstract part vehicleFamily {
                 // variation with nested variation
                 variation part engine:Engine{
@@ -1517,25 +1517,25 @@ package SimpleVehicleModel{
         }
     }
     package SafetyandSecurityGroups {
-        import VehicleConfigurations::VehicleConfiguration_b::PartsTree::*;
+        public import VehicleConfigurations::VehicleConfiguration_b::PartsTree::*;
         package SafetyGroup {
             /* Parts that contribute to safety. */
-            import vehicle_b::**;
+            public import vehicle_b::**;
             filter @Safety;
         }
         package SecurityGroup {
             /* Parts that contribute to security. */
-            import vehicle_b::**;
+            public import vehicle_b::**;
             filter @Security;
         }
         package SafetyandSecurityGroup {
             /* Parts that contribute to safety OR security. */
-            import vehicle_b::**;
+            public import vehicle_b::**;
             filter @Safety or @Security;
         }
         package MandatorySafetyGroup {
             /* Parts that contribute to safety AND are mandatory. */
-            import vehicle_b::**;
+            public import vehicle_b::**;
             filter @Safety and Safety::isMandatory;
         }
     }
@@ -1552,8 +1552,8 @@ package SimpleVehicleModel{
             }
         }
         package ViewDefinitions{
-            //Import Views to access rendering method library 
-            import Views::*;
+            //public import Views to access rendering method library 
+            public import Views::*;
             view def TreeView{
                 render asTreeDiagram;
             }
@@ -1566,9 +1566,9 @@ package SimpleVehicleModel{
             view def PartsInterconnection:>NestedView;
         }
         package VehicleViews{
-            import ViewpointDefinitions::*;
-            import ViewDefinitions::*;
-            import VehicleConfigurations::VehicleConfiguration_b::*;
+            public import ViewpointDefinitions::*;
+            public import ViewDefinitions::*;
+            public import VehicleConfigurations::VehicleConfiguration_b::*;
             view vehiclePartsTree_Safety:PartsTreeView{
                 satisfy requirement sv:SafetyViewpoint;
                 expose PartsTree::**;

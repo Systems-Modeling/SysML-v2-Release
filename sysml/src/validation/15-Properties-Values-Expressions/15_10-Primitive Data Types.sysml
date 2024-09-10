@@ -5,19 +5,19 @@ package '15.10-Primitive Data Types' {
 	 * model libraries or models as needed.
 	 */
 	 
-	import ScalarValues::Integer {
+	private import ScalarValues::Integer {
 	doc
 	/*
 	 * The unqualified Integer is signed, in line with integer numbers in mathematics.
 	 */
 	}
 	
-	import ScalarValues::Natural;
+	private import ScalarValues::Natural;
 	attribute def UnsignedInteger :> Natural {
 		doc /* Mathematically, unsigned integers are just natural numbers (non-negative integers). */		
 	}
 	
-	import ScalarValues::Real {
+	private import ScalarValues::Real {
 	doc
 	/*
 	 * The unqualified Real is signed, in line with real numbers in mathematics.
@@ -33,21 +33,21 @@ package '15.10-Primitive Data Types' {
 		assert constraint { x >= 0.0 }
 	}
 	
-	import ScalarValues::String {
+	private import ScalarValues::String {
 		doc
 		/*
 		 * String attributes are sequences of characters.
 		 */
 	}
 	
-	import ScalarValues::Boolean {
+	private import ScalarValues::Boolean {
 		doc
 		/*
 		 * Boolean type has two legal attributes: true, false.
 		 */
 	}
 	
-	import Time::DateTime;
+	private import Time::DateTime;
 	
 	enum def ConditionColor {
 		doc

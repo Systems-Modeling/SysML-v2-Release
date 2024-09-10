@@ -1,5 +1,5 @@
 package 'Enumeration Definitions-1' {
-	import ScalarValues::Real;
+	private import ScalarValues::Real;
 	
 	enum def TrafficLightColor {
 		enum green;

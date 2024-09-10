@@ -16,7 +16,7 @@ standard library package VectorFunctions {
 	private import SequenceFunctions::size;
 	private import ControlFunctions::*;
 	
-	import VectorValues::*;
+	public import VectorValues::*;
 	
 	/* Generic arithmetic functions for all VectorValues. */
 	

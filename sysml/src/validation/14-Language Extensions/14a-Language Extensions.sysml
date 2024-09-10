@@ -1,5 +1,5 @@
 package '14a-Language Extensions' {
-	import 'User Defined Extensions'::*;
+	private import 'User Defined Extensions'::*;
 	
 	package 'User Defined Extensions' {
 		

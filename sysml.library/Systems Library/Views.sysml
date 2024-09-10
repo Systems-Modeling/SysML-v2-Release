@@ -27,7 +27,7 @@ standard library package Views {
 			 */
 		}
 		
-		viewpoint viewpointSatisfactions : ViewpointCheck[0..*] :>> viewpointChecks {
+		viewpoint viewpointSatisfactions : ViewpointCheck[0..*] :> viewpointChecks, checkedConstraints {
 		doc
 			/*
 			 * Checks that the View satisfies all required ViewpointUsages.

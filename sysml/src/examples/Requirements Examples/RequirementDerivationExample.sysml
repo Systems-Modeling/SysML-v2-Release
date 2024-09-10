@@ -1,5 +1,5 @@
 package RequirementDerivationExample {
-	import RequirementDerivation::*;
+	private import RequirementDerivation::*;
 	
 	requirement def Req1;
 	

@@ -1,7 +1,7 @@
 package ConstraintTest {
-	import ISQ::MassValue;
-	import SI::kg;
-	import NumericalFunctions::sum;
+	private import ISQ::MassValue;
+	private import SI::kg;
+	private import NumericalFunctions::sum;
 	
 	constraint def MassAnalysis {
 		attribute totalMass: MassValue;

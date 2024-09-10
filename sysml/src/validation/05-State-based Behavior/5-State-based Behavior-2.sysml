@@ -1,7 +1,7 @@
 package '5-State-based Behavior-2' {
-	import ScalarValues::*;
-	import ISQ::*;
-	import '3a-Function-based Behavior-1'::*;
+	private import ScalarValues::*;
+	private import ISQ::*;
+	private import '3a-Function-based Behavior-1'::*;
 	
 	package Definitions {
 		part def VehicleA {
@@ -31,7 +31,7 @@ package '5-State-based Behavior-2' {
 	}
 	
 	package Usages {
-		import Definitions::*;
+		private import Definitions::*;
 		 
 		action 'perform self test': 'Perform Self Test';
 		action 'apply parking brake': 'Apply Parking Brake';

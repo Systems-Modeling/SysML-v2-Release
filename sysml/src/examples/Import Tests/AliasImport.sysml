@@ -6,7 +6,7 @@ package AliasImport {
 	}
 	
 	package Usages {
-	    import Definitions::Car;
+	    private import Definitions::Car;
 	
 	    part vehicle : Car;
 	}

@@ -6,7 +6,7 @@ package DependencyTest {
 		package 'Data Layer';
 	}
 	
-	import System::*;
+	private import System::*;
 	
 	dependency Use from 'Application Layer' to 'Service Layer';
 	dependency from 'Service Layer' to 'Data Layer';

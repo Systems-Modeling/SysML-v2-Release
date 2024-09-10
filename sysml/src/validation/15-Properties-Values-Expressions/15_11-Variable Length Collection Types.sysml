@@ -1,6 +1,6 @@
 package '15_11-Variable Length Collection Types' {
-	import ScalarValues::*;
-	import Collections::*;
+	private import ScalarValues::*;
+	private import Collections::*;
 	
 	part def SparePart;
 	part def Person;

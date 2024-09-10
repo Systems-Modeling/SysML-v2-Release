@@ -1,7 +1,7 @@
 package 'Metadata Example-2' {
 	
 	action computeDynamics {
-		import AnalysisTooling::*;
+		private import AnalysisTooling::*;
 		
 		metadata ToolExecution {
 			toolName = "ModelCenter";

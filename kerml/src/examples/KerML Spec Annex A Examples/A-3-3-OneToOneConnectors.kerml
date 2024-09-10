@@ -4,8 +4,8 @@ package OneToOneConnectorsModelToBeExecuted {
 	/* 
 	 */
 
-        import WithoutConnectorsModelToBeExecuted::Wheel;
-        import WithoutConnectorsModelToBeExecuted::BikeFork;
+    public import WithoutConnectorsModelToBeExecuted::Wheel;
+    public import WithoutConnectorsModelToBeExecuted::BikeFork;
 
 	classifier Bicycle {
 		feature rollsOn : Wheel [2];
@@ -23,11 +23,11 @@ package OneToOneConnectorsExecution {
 	/* 
 	 */
 
-	import Atoms::*;
-	import OneToOneConnectorsModelToBeExecuted::*;
-	import WithoutConnectorsExecution::MyWheel1;
-	import WithoutConnectorsExecution::MyWheel2;
-	import WithoutConnectorsExecution::MyWheel;
+	private import Atoms::*;
+	public import OneToOneConnectorsModelToBeExecuted::*;
+	public import WithoutConnectorsExecution::MyWheel1;
+	public import WithoutConnectorsExecution::MyWheel2;
+	public import WithoutConnectorsExecution::MyWheel;
 
 	#atom
 	classifier MyBikeFork1 specializes BikeFork;

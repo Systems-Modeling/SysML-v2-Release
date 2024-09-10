@@ -1,8 +1,8 @@
 package RequirementMetadataExample {
-	import Metaobjects::SemanticMetadata;
-	import ModelingMetadata::*;
-	import RiskMetadata::*;
-	import RiskLevelEnum::*;
+	private import Metaobjects::SemanticMetadata;
+	private import ModelingMetadata::*;
+	private import RiskMetadata::*;
+	private import RiskLevelEnum::*;
 	
 	requirement def Goal;
 	requirement goals : Goal[*] nonunique;

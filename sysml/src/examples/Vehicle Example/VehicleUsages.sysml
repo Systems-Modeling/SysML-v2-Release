@@ -4,10 +4,11 @@ package VehicleUsages {
 	 * Example usages of elements from the vehicle definitions model.
 	 */
 
-	import SI::N;
-	import SI::m;
-	import VehicleDefinitions::*;
-	import ScalarFunctions::*;
+	private import SI::N;
+	private import SI::m;
+	private import ScalarFunctions::*;
+
+	public import VehicleDefinitions::*;
 
 	/* VALUES */	 
 	T1 = 10.0 [N * m];

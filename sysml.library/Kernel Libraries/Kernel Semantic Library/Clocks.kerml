@@ -8,9 +8,17 @@ standard library package Clocks {
 	private import ScalarValues::NumericalValue;
 	private import ScalarValues::Real;
 	private import Occurrences::Occurrence;
+	private import Occurrences::Life;
 	private import ControlFunctions::forAll;
 	
-	readonly feature universalClock : Clock[1] {
+	private struct UniversalClockLife[1] :> Clock, Life {
+	    doc
+	    /*
+	     * UniversalClockLife is the classifier of the singleton Life of the universalClock.
+	     */
+	}
+	
+	readonly feature universalClock : UniversalClockLife[1] {
 		doc
 		/*
 		 * universalClock is a single Clock that can be used as a default universal
@@ -29,7 +37,7 @@ standard library package Clocks {
 		 
 		private thisClock : Clock :>> self;
 		
-		readonly feature currentTime : NumericalValue[1] {
+		feature currentTime : NumericalValue[1] {
 			doc
 			/*
 			 * A scalar time reference that advances over the lifetime of the Clock. 
@@ -118,7 +126,7 @@ standard library package Clocks {
 		 * A BasicClock is a Clock whose currentTime is a Real number.
 		 */
 		
-		readonly feature :>> currentTime : Real;
+		feature :>> currentTime : Real;
 	}
 	
 	function BasicTimeOf :> TimeOf {

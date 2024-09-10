@@ -1,10 +1,10 @@
 package VehicleVariabilityModel {
 
 	package DesignModel {
-		import PartDefinitions::*;
-		import PartsTree::*;
-		import ActionDefinitions::*;
-		import ActionTree::*;
+		public import PartDefinitions::*;
+		public import PartsTree::*;
+		public import ActionDefinitions::*;
+		public import ActionTree::*;
 	
 		package PartDefinitions {
 			part def Vehicle;
@@ -62,7 +62,7 @@ package VehicleVariabilityModel {
 	}
 		
 	package '150% Model' {
-		import DesignModel::*;
+		private import DesignModel::*;
 	
 		package PartsTree {
 		
@@ -147,7 +147,7 @@ package VehicleVariabilityModel {
 	}
 	
 	package '100% Model' {
-		import '150% Model'::*;
+		private import '150% Model'::*;
 		
 		// Vehicle instance model
 		

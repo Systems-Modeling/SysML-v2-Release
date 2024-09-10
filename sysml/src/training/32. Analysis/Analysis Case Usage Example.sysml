@@ -1,5 +1,5 @@
 package 'Analysis Case Usage Example' {
-	import 'Analysis Case Definition Example'::*;
+	private import 'Analysis Case Definition Example'::*;
 	
 	part vehicleFuelEconomyAnalysisContext {
 		requirement vehicleFuelEconomyRequirements {

@@ -1,6 +1,6 @@
 package VehicleTanks {
-	import ScalarValues::*;
-	import RealFunctions::*;
+	private import ScalarValues::*;
+	private import RealFunctions::*;
 	
 	class V6Engine;
 	

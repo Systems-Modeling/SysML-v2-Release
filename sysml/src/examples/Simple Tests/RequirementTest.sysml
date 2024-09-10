@@ -1,7 +1,7 @@
 package RequirementTest {
 	constraint def C;
 	constraint c : C;
-	import q::**;
+	private import q::**;
 	requirement def R {
 		assume constraint c1 : C;
 		require c;

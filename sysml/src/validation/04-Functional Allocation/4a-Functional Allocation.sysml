@@ -1,7 +1,7 @@
 package '4a-Functional Allocation' {
-	import '2a-Parts Interconnection'::*;
-	import '3a-Function-based Behavior-1'::*;
-	import '3a-Function-based Behavior-1'::'provide power'::*;
+	private import '2a-Parts Interconnection'::*;
+	private import '3a-Function-based Behavior-1'::*;
+	private import '3a-Function-based Behavior-1'::'provide power'::*;
 		
 	part vehicle1_c1_functional_allocation :> vehicle1_c1 {
 		// Note: The definitions of the port types in '2a-Parts Interconnection' do not include 

@@ -1,5 +1,6 @@
 package 'Derivation Constraints' {
-	import 'Constraints Example-1'::*;
+	private import SI::*;
+	private import 'Constraints Example-1'::*;
 	
 	part vehicle1 : Vehicle {
 		attribute totalMass : MassValue;			

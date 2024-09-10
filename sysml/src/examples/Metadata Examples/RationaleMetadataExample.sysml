@@ -1,5 +1,5 @@
 package RationaleMetadataExample {
-	import ModelingMetadata::Rationale;
+	private import ModelingMetadata::Rationale;
 	
     /* Example: the following provides the rationale for selecting the engine4cyl based on a trade study analysis. 
     The rationale could be contained in the vehicle configuration with the selected engine */
@@ -13,7 +13,7 @@ package RationaleMetadataExample {
     	explanation = engineTradeOffAnalysis;
     }
     
-    import TradeStudies::*;
+    private import TradeStudies::*;
     analysis engineTradeOffAnalysis:TradeStudy{
         subject alternatives :> engine [2] = (engine4cyl, engine6cyl);
 

@@ -1,6 +1,7 @@
 package ServerSequenceRealization_2 {
-	import ServerSequenceModel::*;
-	import Configuration::*;
+	private import ScalarValues::String;
+	private import ServerSequenceModel::*;
+	private import Configuration::*;
 	
 	package Configuration {
 		

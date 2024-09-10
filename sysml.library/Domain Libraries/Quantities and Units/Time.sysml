@@ -14,14 +14,14 @@ standard library package Time {
 	private import Quantities::ScalarQuantityValue;
 	private import Quantities::scalarQuantities;
     private import MeasurementReferences::*;
-    import ISQBase::DurationValue;
-    import ISQBase::DurationUnit;
-    import ISQBase::duration;
-    import ISQSpaceTime::TimeValue;
-    import ISQSpaceTime::TimeUnit;
-    import ISQSpaceTime::time;
+    public import ISQBase::DurationValue;
+    public import ISQBase::DurationUnit;
+    public import ISQBase::duration;
+    public import ISQSpaceTime::TimeValue;
+    public import ISQSpaceTime::TimeUnit;
+    public import ISQSpaceTime::time;
     
-    readonly part universalClock : Clock[1] = Clocks::universalClock {
+    readonly part universalClock : Clock[1] :> Clocks::universalClock {
    	    doc
 	    /*
 	     * universalClock is a single Clock that can be used as a default universal time reference.

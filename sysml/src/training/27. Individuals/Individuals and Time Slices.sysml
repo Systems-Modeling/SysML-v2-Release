@@ -1,5 +1,5 @@
 package 'Individuals and Time Slices' {
-	import 'Individuals and Snapshots Example'::*;
+	private import 'Individuals and Snapshots Example'::*;
 	
 	individual item def Alice :> Person;
 	individual item def Bob :> Person;

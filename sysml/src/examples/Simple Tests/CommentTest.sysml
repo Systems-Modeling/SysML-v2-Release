@@ -22,14 +22,14 @@ package CommentTest {
  *
  * CCCC
  */
- /*
+ locale "en_US" /*
  * AAAA
  * BBBB
  *    CCC DDD    
  */
 	
 	/* comment inside a package */
-	doc /* Documentation about Package */
+	doc locale "en_US" /* Documentation about Package */
 	comment cmt /* Named Comment */	
 	comment cmt_cmt about cmt /* Comment about Comment */
 	
@@ -37,7 +37,7 @@ package CommentTest {
 	part def C {
 		doc /* Documentation in Part Def */
 		comment /* Comment in Part Def */
-		comment about CommentTest /* Comment about Package */
+		comment about CommentTest locale "en_US" /* Comment about Package */
 	}
 	/* abc */
 	part def A;

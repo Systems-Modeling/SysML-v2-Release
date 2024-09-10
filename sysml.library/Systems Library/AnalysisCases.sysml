@@ -27,13 +27,6 @@ standard library package AnalysisCases {
 			 * Other AnalysisCases carried out as part of the performance of this AnalysisCase.
 			 */
 		}
-	
-		action analysisSteps : AnalysisAction[0..*] :> subactions {
-			doc
-			/*
-			 * The subactions of this AnalysisCase that are AnalysisActions.
-			 */
-		}		
 	}
 	
 	abstract analysis analysisCases : AnalysisCase[0..*] nonunique :> cases {
@@ -42,19 +35,4 @@ standard library package AnalysisCases {
 		 * analysisCases is the base feature of all AnalysisCaseUsages.
 		 */
 	}
-	
-	action def AnalysisAction {
-		doc
-		/*
-		 * An AnalysisAction is a specialized kind of Action intended to be used as a step in an AnalysisCase.
-		 */
-	}
-	
-	calc def AnalysisCalculation :> Calculation, AnalysisAction {
-		doc
-		/*
-		 * An AnalysisCalculation is a specialized kind of Calculation inteded to be used in a step of an AnalysisCase.
-		 */
-	}
-	
 }

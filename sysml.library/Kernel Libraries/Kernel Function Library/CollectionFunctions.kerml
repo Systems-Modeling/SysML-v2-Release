@@ -10,7 +10,7 @@ standard library package CollectionFunctions {
 	private import SequenceFunctions::equals;
 	private import SequenceFunctions::includes;
 	private import ControlFunctions::exists;
-	import Collections::*;
+	public import Collections::*;
 	
 	function '==' specializes BaseFunctions::'==' { in col1: Collection[0..1]; in col2: Collection[0..1];
 		return : Boolean[1] = col1.elements->equals(col2.elements);

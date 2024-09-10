@@ -1,5 +1,5 @@
 package 'Message Payload Example' {
-	import 'Event Occurrence Example'::*;
+	private import 'Event Occurrence Example'::*;
 	
 	item def SetSpeed;
 	item def SensedSpeed;

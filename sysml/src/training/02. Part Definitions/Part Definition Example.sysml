@@ -1,5 +1,5 @@
 package 'Part Definition Example' {
-	import ScalarValues::*;
+	private import ScalarValues::*;
 	
 	part def Vehicle {
 		attribute mass : Real;

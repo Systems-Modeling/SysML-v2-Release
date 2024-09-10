@@ -20,16 +20,18 @@ standard library package Occurrences {
 	private import SequenceFunctions::includes;
 	private import SequenceFunctions::union;
 
-	/*
-	 * Occurrence is the most general classifier of entities that have identity and
-	 * occur over time and space.
-	 *
-	 * The features of Occurrence specify the semantics of associations between occurrences that
-	 * assert complete inclusion and exclusion in time or space, or both, which includes
-	 * portions of an occurrence (having the same identity).  Portions include slices and shots
-	 * over time and space.
-	 */
-	abstract class Occurrence specializes Anything {
+	abstract class Occurrence specializes Anything disjoint from DataValue {
+        doc
+        /*
+         * Occurrence is the most general classifier of entities that have identity and
+         * occur over time and space.
+         *
+         * The features of Occurrence specify the semantics of associations between occurrences that
+         * assert complete inclusion and exclusion in time or space, or both, which includes
+         * portions of an occurrence (having the same identity).  Portions include slices and shots
+         * over time and space.
+         */
+        
 		private import SequenceFunctions::*;
 
 		feature portionOfLife: Life[1] subsets portionOf;
@@ -172,7 +174,8 @@ standard library package Occurrences {
 			subset smallerSpace.spaceEnclosedOccurrences subsets largerSpace.spaceEnclosedOccurrences;
 		}
 
-		feature all spaceTimeEnclosedOccurrences: Occurrence[1..*] subsets timeEnclosedOccurrences, spaceEnclosedOccurrences {
+		feature all spaceTimeEnclosedOccurrences: Occurrence[1..*] subsets timeEnclosedOccurrences, spaceEnclosedOccurrences
+			intersects timeEnclosedOccurrences, spaceEnclosedOccurrences {
 			doc
 			/*
 			 * Occurrences that this one completely includes in both space and time,
@@ -190,7 +193,8 @@ standard library package Occurrences {
 			binding startShot[1] = endShot[1];
 		}
 
-		feature spaceTimeCoincidentOccurrences: Occurrence[1..*] subsets timeCoincidentOccurrences, spaceEnclosedOccurrences inverse of spaceTimeCoincidentOccurrences {
+		feature spaceTimeCoincidentOccurrences: Occurrence[1..*] subsets timeCoincidentOccurrences, spaceEnclosedOccurrences 
+			intersects timeCoincidentOccurrences, spaceEnclosedOccurrences inverse of spaceTimeCoincidentOccurrences {
 			doc
 			/*
 			 * Occurrences that this one completely includes in both space and time,
@@ -668,13 +672,12 @@ standard library package Occurrences {
 		return t1First = includes(t1.endShot.successors, t2.endShot);
 	}
 
-	assoc all SelfSameLifeLink specializes BinaryLink disjoint from Occurrence {
+	assoc all SelfSameLifeLink specializes BinaryLink {
 		doc
 		/*
 		 * SelfSameLifeLink is a binary association that is equivalent to SelfLink if the
 		 * linked things are DataValues, but asserts that the link things are portions of
-		 * the same Life if they are Occurrences. A SelfSameLifeLink is not an Occurrence
-		 * (and so SelfSameLifeLink is disjoint with LinkObject).
+		 * the same Life if they are Occurrences. 
 		 */
 
 		end feature myselfSameLife: Anything[1..*] redefines source;
@@ -731,8 +734,22 @@ standard library package Occurrences {
 		end feature thatOccurrence: Occurrence[1..*] redefines longerOccurrence
 		  subsets thisOccurrence.timeCoincidentOccurrences;
 	}
+	
+	assoc SpaceLink specializes BinaryLink disjoint from Occurrence {
+        doc
+        /*
+         * SpaceLink is the most general association that asserts spatial relationships between a
+         * sourceOccurrence and a targetOccurrence. Because SpaceLinks assert spatial
+         * relationships, they cannot also be Occurrences that happen in space.  Therefore
+         * SpaceLink is disjoint with LinkObject, that is, no SpaceLink can also be a
+         * LinkObject.
+         */
+      
+        end feature sourceOccurrence: Occurrence[0..*] redefines BinaryLink::source;
+        end feature targetOccurrence: Occurrence[0..*] redefines BinaryLink::target;
+    }
 
-	assoc all InsideOf specializes BinaryLink {
+	assoc all InsideOf specializes SpaceLink {
 		doc
 		/*
 		 * InsideOf asserts that its largerSpace completely overlaps its smallerSpace in space (not
@@ -741,7 +758,7 @@ standard library package Occurrences {
 		 * Occurrence is InsideOf itself and that InsideOf is transitive.
 		 */
 
-		end feature smallerSpace: Occurrence[1..*] redefines source, largerSpace.spaceEnclosedOccurrences;
+		end feature smallerSpace: Occurrence[1..*] redefines source subsets largerSpace.spaceEnclosedOccurrences;
 		end feature largerSpace: Occurrence[1..*] redefines target;
 	}
 
@@ -879,7 +896,7 @@ standard library package Occurrences {
 		end feature laterOccurrence: Occurrence[0..*] redefines HappensBefore::laterOccurrence, binaryLinks::target;
 	 }
 
-	assoc all OutsideOf specializes Without {
+	assoc all OutsideOf specializes SpaceLink, Without {
 		doc
 		/*
 		 * OutsideOf asserts that two occurrences do not overlap in space (not necessarily in time,

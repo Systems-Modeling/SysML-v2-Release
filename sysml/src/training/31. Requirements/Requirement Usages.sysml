@@ -1,6 +1,6 @@
 package 'Requirement Usages' {
-	import SI::*;
-	import 'Requirement Definitions'::*;
+	private import SI::*;
+	private import 'Requirement Definitions'::*;
 	
 	requirement <'1.1'> fullVehicleMassLimit : VehicleMassLimitationRequirement {
 		subject vehicle : Vehicle;

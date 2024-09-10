@@ -1,6 +1,6 @@
 package '3a-Function-based Behavior-1' {
-	import Definitions::*;
-	import Usages::*;
+	public import Definitions::*;
+	public import Usages::*;
 
 	package Definitions {
 		alias Torque for ISQ::TorqueValue {

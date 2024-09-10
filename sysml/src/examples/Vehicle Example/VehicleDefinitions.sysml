@@ -4,15 +4,17 @@ package VehicleDefinitions {
 	 * Example vehicle definitions model.
 	 */
 
-	import ScalarValues::*;
-	import Quantities::*;
-	import MeasurementReferences::*;
-	import ISQ::*;
-	import SI::*;
+	private import ScalarValues::*;
+	private import Quantities::*;
+	private import MeasurementReferences::*;
+	private import ISQ::*;
+	private import SI::*;
 	
 	/* PART DEFINITIONS */
 	
-	part def Vehicle;	
+	part def Vehicle {
+		attribute mass :> ISQ::mass;
+	}
 	part def Transmission;	
 	part def AxleAssembly;
 	part def Axle {

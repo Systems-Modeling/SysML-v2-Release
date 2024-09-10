@@ -3,11 +3,11 @@ package P1 {
 }
 
 package P2 {
-	import P1::*;
+	private import P1::*;
 	part a : A;
 }
 
-import P2::*;
+private import P2::*;
 
 package P3 {
 	part b subsets a;

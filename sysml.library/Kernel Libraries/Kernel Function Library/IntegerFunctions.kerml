@@ -5,7 +5,7 @@ standard library package IntegerFunctions {
 	 * general arithmetic and comparison operations.
 	 */
 
-	import ScalarValues::*;
+	public import ScalarValues::*;
 	
 	function abs specializes RationalFunctions::abs { in x: Integer[1]; return : Natural[1]; }
 	

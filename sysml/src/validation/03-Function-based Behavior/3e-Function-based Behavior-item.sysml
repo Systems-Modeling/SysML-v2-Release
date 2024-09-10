@@ -1,5 +1,5 @@
 package '3e-Function-based Behavior-item' {
-	import Definitions::*;
+	public import Definitions::*;
 	
 	package Definitions {
 		

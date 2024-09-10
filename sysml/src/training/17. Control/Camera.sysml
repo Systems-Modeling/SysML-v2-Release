@@ -1,5 +1,5 @@
 package Camera {
-	import 'Action Decomposition'::*;
+	private import 'Action Decomposition'::*;
 	
 	part def Camera;
 	part def FocusingSubsystem;

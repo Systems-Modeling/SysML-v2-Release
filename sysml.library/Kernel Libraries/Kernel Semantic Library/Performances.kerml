@@ -19,7 +19,7 @@ standard library package Performances {
 	private import ScalarValues::*;
 	private import SequenceFunctions::includes;
 	
-	abstract behavior Performance specializes Occurrence {
+	abstract behavior Performance specializes Occurrence disjoint from Object {
 		doc
 		/*
 		 * Performance is the most general class of behavioral Occurrences that may be performed over time.
@@ -44,7 +44,8 @@ standard library package Performances {
 		feature redefines isDispatch default true;
   		feature redefines dispatchScope default thisPerformance;
   		
-		step enclosedPerformances: Performance[0..*] subsets performances, timeEnclosedOccurrences {
+		step enclosedPerformances: Performance[0..*] subsets performances, timeEnclosedOccurrences
+			intersects performances, timeEnclosedOccurrences {
 			doc
 			/*
 			 * timeEnclosedOccurrences of this Performance that are also Performances.
@@ -59,7 +60,8 @@ standard library package Performances {
 		}
 		connector :HappensDuring from self[1] to thisPerformance[1]; 
 		
-		composite step subperformances: Performance[0..*] subsets enclosedPerformances, suboccurrences {
+		composite step subperformances: Performance[0..*] subsets enclosedPerformances, suboccurrences
+			intersects enclosedPerformances, suboccurrences {
 			doc
 			/*
 			 * enclosedPerformances that are composite. 
@@ -117,7 +119,8 @@ standard library package Performances {
 		return : ScalarValue[1];
 	}
 	
-	abstract predicate LiteralBooleanEvaluation specializes LiteralEvaluation, BooleanEvaluation {
+	abstract predicate LiteralBooleanEvaluation specializes LiteralEvaluation, BooleanEvaluation
+		intersects LiteralEvaluation, BooleanEvaluation {
 		doc
 		/*
 		 * LiteralBooleanEvaluation is a specialization of LiteralEvaluation for the case of LiteralBooleans.
@@ -241,7 +244,8 @@ standard library package Performances {
 		 */
 	}
 	
-	abstract expr literalBooleanEvaluations: LiteralBooleanEvaluation[0..*] nonunique subsets literalEvaluations, booleanEvaluations {
+	abstract expr literalBooleanEvaluations: LiteralBooleanEvaluation[0..*] nonunique subsets literalEvaluations, booleanEvaluations
+		intersects literalEvaluations, booleanEvaluations {
 		doc
 		/*
 		 * literaBooleanlEvaluations is a specialization of literalEvaluations and booleanEvaluations restricted 

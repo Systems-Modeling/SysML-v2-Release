@@ -1,11 +1,18 @@
 package 'Vehicle Analysis Demo' {
-	package VehicleQuantities {
-	    import ScalarValues::*;
-	    import Quantities::*;
-	    import MeasurementReferences::*;
-	    import ISQ::*;
-	    import USCustomaryUnits::*;
+    private import ScalarValues::*;
+    private import ISQ::*;
+    private import USCustomaryUnits::*;
 	    
+    private import VehicleQuantities::*;
+    private import VehicleModel::*;
+    private import FuelEconomyRequirementsModel::*;
+    private import DynamicsModel::*;
+    private import FuelEconomyAnalysisModel::*;	
+	
+	package VehicleQuantities {
+    	private import Quantities::*;
+    	private import MeasurementReferences::*;
+
 	    attribute def DistancePerVolumeUnit :> DerivedUnit {
 	    	private attribute distancePF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 1; }
 	        private attribute volumePF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
@@ -21,9 +28,7 @@ package 'Vehicle Analysis Demo' {
 	    attribute mpg : DistancePerVolumeUnit = 'mi' / gallon;
 	}
 	
-	package VehicleModel {
-	    import VehicleQuantities::*;
-	    
+	package VehicleModel {	    
 	    item def Fuel;
 	        
 	    port def FuelPort {
@@ -76,8 +81,6 @@ package 'Vehicle Analysis Demo' {
 	}
 	
 	package FuelEconomyRequirementsModel {
-	    import VehicleQuantities::*;
-	
 	    requirement def FuelEconomyRequirement {
 	        attribute actualFuelEconomy : DistancePerVolumeValue;
 	        attribute requiredFuelEconomy : DistancePerVolumeValue;
@@ -95,8 +98,6 @@ package 'Vehicle Analysis Demo' {
 	}
 	
 	package DynamicsModel {
-	    import VehicleQuantities::*;
-	    
 	    calc def Acceleration { in p : PowerValue; in m : MassValue; in v : SpeedValue;
 	    	return : AccelerationValue = p / (m * v);
 	    }
@@ -150,13 +151,10 @@ package 'Vehicle Analysis Demo' {
 	}
 	
 	package FuelEconomyAnalysisModel {
-	    import VehicleModel::*;
-	    import FuelEconomyRequirementsModel::*;
-	    import DynamicsModel::*;
-	    import SequenceFunctions::size;
-	    import SampledFunctions::SampledFunction;
-	    import SampledFunctions::SamplePair;
-	    import ControlFunctions::forAll;
+	    private import SequenceFunctions::size;
+	    private import SampledFunctions::SampledFunction;
+	    private import SampledFunctions::SamplePair;
+	    private import ControlFunctions::forAll;
 	
 		attribute def ScenarioState {
 			position : LengthValue;
@@ -236,14 +234,9 @@ package 'Vehicle Analysis Demo' {
 	        }
 	    }
 	}
-
 	
 	part vehicleFuelEconomyAnalysisContext {
-	    import FuelEconomyAnalysisModel::*;
-	
 	    requirement vehicleFuelEconomyRequirementsGroup {
-	        import FuelEconomyRequirementsModel::*;
-	        
 	        subject vehicle : Vehicle;
 	
 	        requirement vehicleFuelEconomyRequirement_city :> cityFuelEconomyRequirement {

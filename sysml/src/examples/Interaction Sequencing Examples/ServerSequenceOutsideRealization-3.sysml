@@ -1,6 +1,7 @@
 package ServerSequenceOutsideRealization_3 {
-	import ServerSequenceModelOutside::*;
-	import Configuration::*;
+	private import ScalarValues::String;
+	private import ServerSequenceModelOutside::*;
+	private import Configuration::*;
 	
 	package Configuration {
 		

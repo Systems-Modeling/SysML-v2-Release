@@ -151,7 +151,7 @@ standard library package Transfers {
 		}
 	}
 	
-	interaction TransferBefore specializes Transfer, HappensBefore {
+	interaction TransferBefore specializes Transfer, HappensBefore intersects Transfer, HappensBefore {
 		doc
 		/*
 		 * TransferBefore is a specialization of Transfer in which the source happens before
@@ -167,7 +167,7 @@ standard library package Transfers {
 	  	private succession self then target;
 	}
 	
-	interaction FlowTransferBefore specializes FlowTransfer, TransferBefore {
+	interaction FlowTransferBefore specializes FlowTransfer, TransferBefore intersects FlowTransfer, TransferBefore {
 		doc
 		/*
 		 * FlowTransferBefore is a FlowTransfer that is also a TransferBefore. 
@@ -177,7 +177,7 @@ standard library package Transfers {
         end feature target: Occurrence[0..*] redefines Transfer::target, TransferBefore::target;		 
 	}
 	
-	step transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
+	abstract flow transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
 		doc
 		/*
 		 * transfers is a specialization of performances and binaryLinks restricted to type 
@@ -188,38 +188,49 @@ standard library package Transfers {
 		end feature target: Occurrence[0..*] redefines Transfer::target, binaryLinks::target;
 	}
 	
-	step messageTransfers: MessageTransfer[0..*] nonunique subsets transfers {
+	abstract flow messageTransfers: MessageTransfer[0..*] nonunique subsets transfers {
 		doc
 		/*
 		 * messageTransfers is a specialization of transfers restricted to type MessageTransfers.
 		 */
+		
+		end feature source: Occurrence[0..*] redefines MessageTransfer::source, transfers::source;
+		end feature target: Occurrence[0..*] redefines MessageTransfer::target, transfers::target;		
 	}
 	
-	step flowTransfers: FlowTransfer[0..*] nonunique subsets transfers {
+	abstract flow flowTransfers: FlowTransfer[0..*] nonunique subsets transfers {
 		doc
 		/*
 		 * flowTransfers is a specialization of transfers restricted to type FlowTransfers.
 		 * It is the default subsetting for non-succession item flows.
 		 */
+		 
+		end feature source: Occurrence[0..*] redefines FlowTransfer::source, transfers::source;
+		end feature target: Occurrence[0..*] redefines FlowTransfer::target, transfers::target;
 	}
 	  
-	step transfersBefore: TransferBefore[0..*] nonunique subsets transfers, happensBeforeLinks {
+	abstract flow transfersBefore: TransferBefore[0..*] nonunique subsets transfers, happensBeforeLinks
+		intersects transfers, happensBeforeLinks {
 		doc
 		/*
 		 * transfersBefore is a specialization of transfers and happensBeforeLinks restricted to
 		 * type TransferBefore.
 		 */
 	
-		end feature source: Occurrence[0..*] redefines transfers::source, HappensBefore::earlierOccurrence;
-		end feature target: Occurrence[0..*] redefines transfers::target, HappensBefore::laterOccurrence;
+		end feature source: Occurrence[0..*] redefines TransferBefore::source, transfers::source, happensBeforeLinks::earlierOccurrence;
+		end feature target: Occurrence[0..*] redefines TransferBefore::target, transfers::target, happensBeforeLinks::laterOccurrence;
 	}
 	
-	step flowTransfersBefore: FlowTransferBefore[0..*] nonunique subsets flowTransfers, transfersBefore {
+	abstract flow flowTransfersBefore: FlowTransferBefore[0..*] nonunique subsets flowTransfers, transfersBefore
+		intersects flowTransfers, transfersBefore {
 		doc
 		/*
 		 * flowTransfersBefore is a specialization of flowTransfers and transfersBefore that is restricted
 		 * to type FlowTransferBefore. IT is the default subsetting for succession item flows.
 		 */
+    
+		end feature source: Occurrence[0..*] redefines FlowTransferBefore::source, flowTransfers::source, transfersBefore::source;
+		end feature target: Occurrence[0..*] redefines FlowTransferBefore::target, flowTransfers::target, transfersBefore::target;
 	}
 
 	behavior SendPerformance specializes Performance  {

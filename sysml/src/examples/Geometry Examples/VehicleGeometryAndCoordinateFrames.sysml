@@ -1,16 +1,16 @@
 package VehicleGeometryAndCoordinateFrames {
-    import TrigFunctions::*;
-    import ISQ::*;
-	import SI::*;
-	import Time::*;
+    private import TrigFunctions::*;
+    private import ISQ::*;
+    private import SI::*;
+    private import Time::*;
 
-    import ShapeItems::*;
-    import SpatialItems::*;
+    private import ShapeItems::*;
+    private import SpatialItems::*;
 
-    import MeasurementReferences::CoordinateFrame;
-    import MeasurementReferences::TranslationRotationSequence;
-    import MeasurementReferences::Translation;
-    import MeasurementReferences::Rotation;
+    private import MeasurementReferences::CoordinateFrame;
+    private import MeasurementReferences::TranslationRotationSequence;
+    private import MeasurementReferences::Translation;
+    private import MeasurementReferences::Rotation;
     
     private import Collections::Array;
     private import ScalarValues::Boolean;

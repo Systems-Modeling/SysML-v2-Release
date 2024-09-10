@@ -1,5 +1,5 @@
 package ServerSequenceModelOutside {
-	import ServerSequenceModel::*;
+	public import ServerSequenceModel::*;
 
 	part def PubSubSequenceOutside :> PubSubSequence {
 		part :>> producer {

@@ -14,6 +14,8 @@ standard library package SpatialItems {
 	private import Time::TimeInstantValue;
 	private import ScalarValues::Natural;
 	private import ISQ::universalCartesianSpatial3dCoordinateFrame;
+	private import ISQ::Position3dVector;
+	private import ISQ::Displacement3dVector;
 	private import VectorFunctions::isZeroVector;
 	private import SequenceFunctions::isEmpty;
 	private import ControlFunctions::forAll;
@@ -97,9 +99,8 @@ standard library package SpatialItems {
 		in timeInstant : TimeInstantValue[1];
 		in enclosingItem :>> 'frame' : SpatialItem[1];
 		in clock : Clock[1] default enclosingItem.localClock;
-		return positionVector : VectorQuantityValue[1] {
+		return positionVector : Position3dVector[1] {
 			attribute :>> mRef = enclosingItem.coordinateFrame;
-			attribute :>> isBound = true;
 		}
 	}
 
@@ -113,9 +114,8 @@ standard library package SpatialItems {
 		in point : Point[1];
 		in enclosingItem :>> 'frame' : SpatialItem[1];
 		in clock : Clock[1] default enclosingItem.localClock;
-		return positionVector : VectorQuantityValue[1] {
+		return positionVector : Position3dVector[1] {
 			attribute :>> mRef = enclosingItem.coordinateFrame;
-			attribute :>> isBound = true;
 		}
 	}
 
@@ -132,9 +132,8 @@ standard library package SpatialItems {
 		in timeInstant : TimeInstantValue[1];
 		in spatialItem :>> 'frame' : SpatialItem[1];
 		in clock : Clock[1] default spatialItem.localClock;
-		return displacementVector : VectorQuantityValue[1] {
+		return displacementVector : Displacement3dVector[1] {
 			attribute :>> mRef = spatialItem.coordinateFrame;
-			attribute :>> isBound = false;
 		}
 	}
 
@@ -149,9 +148,8 @@ standard library package SpatialItems {
 		in point2 : Point[1];
 		in spatialItem :>> 'frame' : SpatialItem[1];
 		in clock : Clock[1] default spatialItem.localClock;
-		return displacementVector : VectorQuantityValue[1] {
+		return displacementVector : Displacement3dVector[1] {
 			attribute :>> mRef = spatialItem.coordinateFrame;
-			attribute :>> isBound = false;
 		}
 	}
 

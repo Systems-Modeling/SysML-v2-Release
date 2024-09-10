@@ -39,7 +39,7 @@ standard library package VerificationCases {
 			 */
 		}
 		
-		abstract verification subVerificationCases : Case[0..*] :> verificationCases, subcases {
+		abstract verification subVerificationCases : VerificationCase[0..*] :> verificationCases, subcases {
 			doc
 			/*
 			 * The subcases of this VerificationCase that are VerificationCaseUsages.

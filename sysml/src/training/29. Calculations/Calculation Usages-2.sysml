@@ -1,5 +1,7 @@
 package 'Calculation Usages-2' {
-	import 'Calculation Definitions'::*;
+	private import ScalarValues::Real;
+	private import ISQ::*;
+	private import 'Calculation Definitions'::*;
 	
 	attribute def DynamicState {
 		attribute v: SpeedValue;

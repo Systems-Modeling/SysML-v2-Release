@@ -1,5 +1,5 @@
 package 'Variation Usages' {
-	import 'Variation Definitions'::*;
+	private import 'Variation Definitions'::*;
 	
 	part def Vehicle;
 	part def Transmission;

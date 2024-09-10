@@ -4,7 +4,7 @@ standard library package TrigFunctions {
 	 * This package defines basic trigonometric functions on real numbers.
 	 */
 
-	import ScalarValues::Real;
+	public import ScalarValues::Real;
 	
 	feature pi : Real;
 	inv piPrecision { RealFunctions::round(pi * 1E20) == 314159265358979323846.0 }

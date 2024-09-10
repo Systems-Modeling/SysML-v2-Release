@@ -1,11 +1,11 @@
 package 'Time Constraints' {
-	import ISQ::TemperatureValue;
-	import ISQ::DurationValue;
-	import Time::TimeInstantValue;
-	import Time::TimeOf;
-	import Time::DurationOf;
-	import SI::h;
-	import SI::s;
+	private import ISQ::TemperatureValue;
+	private import ISQ::DurationValue;
+	private import Time::TimeInstantValue;
+	private import Time::TimeOf;
+	private import Time::DurationOf;
+	private import SI::h;
+	private import SI::s;
 
 	attribute def MaintenanceDone;
 	

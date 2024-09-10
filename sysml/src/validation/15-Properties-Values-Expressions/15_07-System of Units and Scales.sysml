@@ -1,6 +1,6 @@
 package '15_07-System of Units and Scales' {
-    import ISQ::*;
-    import USCustomaryUnits::*;
+    private import ISQ::*;
+    private import USCustomaryUnits::*;
 
 	/*
 	 * A System of Units and Scales is represented by a model library package.

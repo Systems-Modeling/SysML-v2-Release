@@ -17,7 +17,7 @@ package 'Allocation Definition Example' {
 	}
 	
 	package PhysicalModel {
-		import LogicalModel::*;
+		private import LogicalModel::*;
 		
 		part def PhysicalElement;
 		part def PowerTrain :> PhysicalElement;

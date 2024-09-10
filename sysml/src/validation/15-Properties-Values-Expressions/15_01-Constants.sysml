@@ -1,7 +1,7 @@
 package '15_01-Constants' {
-	import MeasurementReferences::*;
-    import SI::*;
-    import RealFunctions::*;
+    private import MeasurementReferences::*;
+    private import SI::*;
+    private import RealFunctions::*;
 
     /* Note: Value properties that are bound to specific values are constants and have the specified
      * values in all contexts. It is not legal to redefine them.

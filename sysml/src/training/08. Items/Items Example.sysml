@@ -1,5 +1,5 @@
 package 'Items Example' {
-	import ScalarValues::*;
+	private import ScalarValues::*;
 	
 	item def Fuel;
 	item def Person;

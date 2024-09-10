@@ -9,7 +9,7 @@ package '14b-Language-Extensions' {
 	package UserModel {
 		
 		package Definitions {
-			import LibraryModel::*;
+			private import LibraryModel::*;
 			
 			part def VehicleControlUnit :> ECU;
 			part def EngineControlUnit :> ECU;
@@ -22,7 +22,7 @@ package '14b-Language-Extensions' {
 		}
 		
 		package Usages {
-			import Definitions::*;
+			private import Definitions::*;
 			
 			part vehicle1: Vehicle {
 				part vehicleControlUnit : VehicleControlUnit {

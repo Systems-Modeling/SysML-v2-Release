@@ -1,11 +1,11 @@
 package '15_13-Discretely Sampled Function Value' {
-	import SampledFunctions::SampledFunction;
-	import SampledFunctions::SamplePair;
-	import Collections::Array;
-	import ISQ::*;
-	import SI::*;
-	import MeasurementReferences::*;
-	import Time::*;
+	private import SampledFunctions::SampledFunction;
+	private import SampledFunctions::SamplePair;
+	private import Collections::Array;
+	private import ISQ::*;
+	private import SI::*;
+	private import MeasurementReferences::*;
+	private import Time::*;
 
 	attribute def MissionElapsedTimeScale :> TimeScale {
 		:>> unit = s;

@@ -1,7 +1,7 @@
 // State Space Representation cart example
 
 package CartSample {
-    import StateSpaceRepresentation::*;
+    private import StateSpaceRepresentation::*;
     part def Cart {
         attribute mass :> ISQ::mass;
 

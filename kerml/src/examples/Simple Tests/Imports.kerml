@@ -24,13 +24,13 @@ package Imports {
 	}
 	
 	package R {
-		import Q::*;
+		public import Q::*;
 	}
 
 	
 	package S {
-		import P::*;
-		import Q::**;
+		public import P::*;
+		public import Q::**;
 		
 		class X :> A;
 		class Y :> D;
@@ -38,8 +38,8 @@ package Imports {
 	}
 	
 	package S1 {
-		import P::*;
-		import R::*;
+		public import P::*;
+		public import R::*;
 		
 		class X :> A;
 	}

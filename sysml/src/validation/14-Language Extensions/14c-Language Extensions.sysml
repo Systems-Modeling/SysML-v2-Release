@@ -1,5 +1,5 @@
 package '14c-Language-Extensions' {
-	import ScalarValues::*;
+	private import ScalarValues::*;
 	
 	library package FMEALibrary {
 		
@@ -75,8 +75,8 @@ package '14c-Language-Extensions' {
 	}
 	
 	library package FMEAMetadata {
-		import Metaobjects::SemanticMetadata;
-		import FMEALibrary::*;
+		private import Metaobjects::SemanticMetadata;
+		private import FMEALibrary::*;
 
 		enum def Status {
 			Approved;
@@ -139,8 +139,8 @@ package '14c-Language-Extensions' {
 	}
 	
 	package FMEAUserModel {
-		import FMEALibrary::*;
-		import FMEAMetadata::*;
+		private import FMEALibrary::*;
+		private import FMEAMetadata::*;
 		
 		#fmeaspec requirement req1 {
 			doc /* Meter designed according to ISO00124 */

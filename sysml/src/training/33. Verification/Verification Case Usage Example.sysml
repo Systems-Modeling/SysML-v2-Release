@@ -1,5 +1,5 @@
 package 'Verification Case Usage Example' {
-	import 'Verification Case Definition Example'::*;
+	private import 'Verification Case Definition Example'::*;
 	
 	part def MassVerificationSystem;
 	part def Scale;

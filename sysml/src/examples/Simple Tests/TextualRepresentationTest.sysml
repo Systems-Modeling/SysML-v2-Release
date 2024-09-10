@@ -1,5 +1,5 @@
 package TextualRepresentationTest {
-	import ScalarValues::Real;
+	private import ScalarValues::Real;
 	
 	item def C {
 	    attribute x: Real;

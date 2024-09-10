@@ -17,16 +17,16 @@ package '13b-Safety and Security Features Element Group' {
 	package 'Safety Features' {
 		/* Parts that contribute to safety. */
 		
-		import vehicle1_c1::interior::seatBelt;
-		import vehicle1_c1::interior::driverAirBag;
-		import vehicle1_c1::bodyAssy::bumper;		
+		private import vehicle1_c1::interior::seatBelt;
+		private import vehicle1_c1::interior::driverAirBag;
+		private import vehicle1_c1::bodyAssy::bumper;		
 	}
 	
 	package 'Security Features' {
 		/* Parts that contribute to security. */
 		
-		import vehicle1_c1::interior::alarm;
-		import vehicle1_c1::bodyAssy::keylessEntry;
+		private import vehicle1_c1::interior::alarm;
+		private import vehicle1_c1::bodyAssy::keylessEntry;
 	}
 	
 	package 'Safety & Security Features' {
@@ -34,7 +34,7 @@ package '13b-Safety and Security Features Element Group' {
 		 * parts that contribute to security.
 		 */
 		 
-		import 'Safety Features'::*;
-		import 'Security Features'::*;
+		private import 'Safety Features'::*;
+		private import 'Security Features'::*;
 	}
 }

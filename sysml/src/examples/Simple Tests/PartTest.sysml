@@ -14,7 +14,10 @@ package PartTest {
 		public abstract part a: A[1..2];
 		public abstract part b subsets a;
 		public abstract part c[0..1] subsets a;
-		port x: ~C;
+		port x: ~C {
+		    port p;
+		    ref port q;
+		}
 		package P { }
 		
 		action a1;
@@ -28,6 +31,8 @@ package PartTest {
 		private in ref y: A, B;
 		alias z1 for y;
 		alias z2 for y;
+		port c1 : C;
+		ref port c2 : C;
 	}
 	
     part p1 :> p2;

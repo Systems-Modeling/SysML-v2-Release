@@ -29,7 +29,8 @@ standard library package Objects {
 
 		feature self: Object redefines Occurrence::self;
 		
-		composite subobjects: Object[0..*] subsets objects, suboccurrences {
+		composite subobjects: Object[0..*] subsets objects, suboccurrences
+			intersects objects, suboccurrences {
 			doc
 			/*
 			 * The suboccurrences of this Object that are also Objects.
@@ -43,14 +44,16 @@ standard library package Objects {
 			 */
 		}
 		
-		abstract step enactedPerformances: Performance[0..*] subsets involvingPerformances, timeEnclosedOccurrences {
+		abstract step enactedPerformances: Performance[0..*] subsets involvingPerformances, timeEnclosedOccurrences
+			intersects involvingPerformances, timeEnclosedOccurrences {
 			doc
 			/*
 			 * Performances that are enacted by this object.
 			 */
 		}
 		
-		composite step ownedPerformances: Performance[0..*] subsets involvingPerformances, timeEnclosedOccurrences, suboccurrences {
+		composite step ownedPerformances: Performance[0..*] subsets involvingPerformances, timeEnclosedOccurrences, suboccurrences
+			intersects involvingPerformances, timeEnclosedOccurrences, suboccurrences {
 			doc
 			/*
 			 * Performances that are owned by this object.
@@ -72,14 +75,14 @@ standard library package Objects {
 		}
 	}
 	
-	abstract assoc struct LinkObject specializes Link, Object disjoint from SelfLink, SelfSameLifeLink, HappensLink {
+	abstract assoc struct LinkObject specializes Link, Object intersects Link, Object {
 		doc
 		/*
 		 * LinkObject is the most general association structure, being both a Link and an Object.
 		 */
 	}
 	
-	assoc struct BinaryLinkObject specializes BinaryLink, LinkObject {
+	assoc struct BinaryLinkObject specializes BinaryLink, LinkObject intersects BinaryLink, LinkObject {
 		doc
 		/*
 		 * BinaryLinkObject is the most general binary association structure, being both a 
@@ -94,14 +97,15 @@ standard library package Objects {
 		 */
 	}
 	
-	abstract feature linkObjects: LinkObject[0..*] nonunique subsets links, objects {
+	abstract feature linkObjects: LinkObject[0..*] nonunique subsets links, objects intersects links, objects {
 		doc
 		/*
 		 * linkObjects is a specializations of links and objects restricted to type LinkObjects. 
 		 */
 	}
 	
-	abstract feature binaryLinkObjects: BinaryLinkObject[0..*] nonunique subsets binaryLinks, linkObjects {
+	abstract feature binaryLinkObjects: BinaryLinkObject[0..*] nonunique subsets binaryLinks, linkObjects
+		intersects binaryLinks, linkObjects {
 		doc
 		/*
 		 * binaryLinkObjects is a specialization of binaryLinks and linkObjects restricted to 

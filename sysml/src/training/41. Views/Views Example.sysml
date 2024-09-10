@@ -1,7 +1,7 @@
 package 'Views Example' {
-	import Views::*;
-	import 'Viewpoint Example'::*;
-	import 'Filtering Example-2'::*;
+	private import Views::*;
+	private import 'Viewpoint Example'::*;
+	private import 'Filtering Example-2'::*;
 	
 	view def 'Part Structure View' {
 		satisfy 'system structure perspective';		
@@ -9,7 +9,7 @@ package 'Views Example' {
 	}
 	
 	view 'vehicle structure view' : 'Part Structure View' {
-		expose vehicle::**;		
+		expose vehicle::**;
 		render asTreeDiagram;
 	}
 	

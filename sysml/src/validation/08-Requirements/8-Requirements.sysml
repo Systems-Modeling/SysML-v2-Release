@@ -1,9 +1,9 @@
 package '8-Requirements' {
-	import ScalarValues::Real;
-	import ISQ::*;
-	import SI::*;
-	import 'Vehicle Usages'::*;
-	import 'Vehicle Requirements'::*;
+	private import ScalarValues::Real;
+	private import ISQ::*;
+	private import SI::*;
+	public import 'Vehicle Usages'::*;
+	public import 'Vehicle Requirements'::*;
 	
 	package 'Vehicle Definitions' {
 		part def Vehicle {
@@ -33,7 +33,7 @@ package '8-Requirements' {
 	}
 	
 	package 'Vehicle Usages' {
-		import 'Vehicle Definitions'::*;
+		public import 'Vehicle Definitions'::*;
 		
 		action 'provide power' {
 			action 'generate torque' { /* ... */ }
@@ -63,7 +63,7 @@ package '8-Requirements' {
 	}
 	
 	package 'Vehicle Requirements' {	
-		import 'Vehicle Definitions'::*;
+		public import 'Vehicle Definitions'::*;
 	
 		requirement def <'1'> MassLimitationRequirement {
 			/*
@@ -149,8 +149,8 @@ package '8-Requirements' {
 	}
 	
 	part 'vehicle1_c1 Specification Context' {
-		import 'vehicle1-c1 Specification'::*;
-		import 'engine-v1 Specification'::*;
+		private import 'vehicle1-c1 Specification'::*;
+		private import 'engine-v1 Specification'::*;
 		
 		requirement 'vehicle1-c1 Specification' {
 		doc
@@ -159,7 +159,7 @@ package '8-Requirements' {
 		 */
 		
 			subject vehicle : Vehicle;
-			require vehicleMass1 {
+			requirement references vehicleMass1 {
 				/*
 				 * This is a reference to a requirement defined outside the group.
 				 * By default, the subject of the requirement is bound to that of the group.
@@ -175,10 +175,10 @@ package '8-Requirements' {
 			 * subject of the group.
 			 */
 			require torqueGeneration {
-				subject generateTorque = engine.'generate torque';
+				in :>> generateTorque = engine.'generate torque';
 			}
 			require drivePowerInterface {
-				subject drivePwrPort = engine.drivePwrPort;
+				in :>> drivePwrPort = engine.drivePwrPort; 
 			}
 		}
 		
@@ -192,7 +192,7 @@ package '8-Requirements' {
 	}
 	
 	part 'vehicle1_c2 Specification Context' {
-		import 'vehicle1-c2 Specification'::*;
+		private import 'vehicle1-c2 Specification'::*;
 		
 		requirement 'vehicle1-c2 Specification' {
 			subject vehicle : Vehicle;

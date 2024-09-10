@@ -1,6 +1,6 @@
 package '15_03-Value Expression' {
-    import SI::*;
-    import USCustomaryUnits::*;
+    private import SI::*;
+    private import USCustomaryUnits::*;
 
     part def Vehicle_1 {
         attribute mass: MassValue = 1200 [kg];

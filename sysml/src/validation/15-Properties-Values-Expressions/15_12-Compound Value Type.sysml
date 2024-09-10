@@ -1,6 +1,6 @@
 package '15_12-Compound Value Type' {
-	import ScalarValues::*;
-	import USCustomaryUnits::'in';
+	private import ScalarValues::*;
+	private import USCustomaryUnits::'in';
 	
 	/*
 	 * Real world user models would use quantity and vector types

@@ -1,8 +1,8 @@
 package '10b-Trade-off Among Alternative Configurations' {
-	import ScalarValues::Real;
-	import TradeStudies::*;
-	import Definitions::*;
-	import Usages::*;
+	private import ScalarValues::Real;
+	private import TradeStudies::*;
+	private import Definitions::*;
+	private import Usages::*;
 	
 	package Definitions {
 		

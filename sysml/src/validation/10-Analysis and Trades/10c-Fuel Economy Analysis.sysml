@@ -1,9 +1,9 @@
 package '10c-Fuel Economy Analysis' {
-	import ScalarValues::*;
-	import Quantities::*;
-	import MeasurementReferences::*;
-	import ISQ::*;
-	import USCustomaryUnits::*;
+	private import ScalarValues::*;
+	private import Quantities::*;
+	private import MeasurementReferences::*;
+	private import ISQ::*;
+	private import USCustomaryUnits::*;
 	
 	attribute distancePerVolume : ScalarQuantityValue = length / volume;	
 	attribute gallon : MeasurementUnit = 231.0 * 'in'^3;
@@ -58,8 +58,8 @@ package '10c-Fuel Economy Analysis' {
 	}
 	
 	package FuelEconomyAnalysisModel {
-		import VehicleDesignModel::*;
-		import FuelEconomyRequirementsModel::*;
+		private import VehicleDesignModel::*;
+		private import FuelEconomyRequirementsModel::*;
 		
 		attribute def ScenarioState {
 			position : LengthValue;

@@ -1,8 +1,8 @@
 // /** Mandatory Services and Systems */
 library package AHFCoreLib {
-	import AHFProfileLib::*;
-	import ScalarValues::*;
-	import AHFProfileMetadata::*;
+	private import AHFProfileLib::*;
+	private import ScalarValues::*;
+	private import AHFProfileMetadata::*;
 
 	#service port def ServiceDiscovery {
 		// The functionalities as Requests (Operations) cannot be defined yet

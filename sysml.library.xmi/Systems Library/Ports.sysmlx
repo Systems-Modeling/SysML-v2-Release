@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sysml:Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sysml="https://www.omg.org/spec/SysML/20240201" xmi:id="fa80e362-b16d-4609-99f6-e5420a26dfb6" elementId="fa80e362-b16d-4609-99f6-e5420a26dfb6">
+  <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="257f5cd7-a934-4d55-87a2-2acb215d64cd" elementId="257f5cd7-a934-4d55-87a2-2acb215d64cd">
+    <ownedRelatedElement xsi:type="sysml:LibraryPackage" xmi:id="ab0f6590-de22-5369-9335-ff5c8d8aab85" elementId="ab0f6590-de22-5369-9335-ff5c8d8aab85" declaredName="Ports" isStandard="true">
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="ec9bd0d1-3882-42db-b722-c3dfff302bab" elementId="ec9bd0d1-3882-42db-b722-c3dfff302bab">
+        <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="513463da-da38-41e5-94c5-25a15a329d1e" elementId="513463da-da38-41e5-94c5-25a15a329d1e" body="This package defines the base types for ports and related structural elements &#xA;in the SysML language.&#xA;"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:MembershipImport" xmi:id="2f5290d4-b445-4af8-9b34-50f159d8fd68" elementId="2f5290d4-b445-4af8-9b34-50f159d8fd68" visibility="private">
+        <importedMembership href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Objects.kermlx#81aad4bc-2e41-4699-a1a8-24a4979f661e"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:MembershipImport" xmi:id="133df83c-7b76-4875-bf43-8153966db647" elementId="133df83c-7b76-4875-bf43-8153966db647" visibility="private">
+        <importedMembership href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Objects.kermlx#f4a94aaa-a950-42ed-8f50-689300599561"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="fb44f72c-585a-493e-b76b-6e0c360f0374" elementId="fb44f72c-585a-493e-b76b-6e0c360f0374">
+        <ownedRelatedElement xsi:type="sysml:PortDefinition" xmi:id="331276d2-3064-5f35-8685-0a0423aaf3fb" elementId="331276d2-3064-5f35-8685-0a0423aaf3fb" declaredName="Port" isAbstract="true">
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="7557a078-91a7-4bf3-b43f-d02b74d4a141" elementId="7557a078-91a7-4bf3-b43f-d02b74d4a141" subclassifier="331276d2-3064-5f35-8685-0a0423aaf3fb">
+            <superclassifier href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Objects.kermlx#918874f5-fe8f-55ac-b6ad-2ac0204d0ad0"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="6e5552df-f06c-417f-8e49-113771e64f08" elementId="6e5552df-f06c-417f-8e49-113771e64f08">
+            <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="67993f5b-7af2-4c7d-adf5-c98270ca1d39" elementId="67993f5b-7af2-4c7d-adf5-c98270ca1d39" body="Port is the most general class of objects that represent connection points&#xA;for interacting with a Part. Port is the base type of all PortDefinitions.&#xA;"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="d4ad9662-5049-4bab-830d-3108c79c9655" elementId="d4ad9662-5049-4bab-830d-3108c79c9655">
+            <ownedRelatedElement xsi:type="sysml:ReferenceUsage" xmi:id="5c207f49-9e30-5f38-ba42-d76faa2d8218" elementId="5c207f49-9e30-5f38-ba42-d76faa2d8218" declaredName="self" isComposite="false">
+              <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="c34f1195-8c8e-434d-9eec-8b89c59f652d" elementId="c34f1195-8c8e-434d-9eec-8b89c59f652d" typedFeature="5c207f49-9e30-5f38-ba42-d76faa2d8218" type="331276d2-3064-5f35-8685-0a0423aaf3fb"/>
+              <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="c2065142-8a4d-48c3-ad63-d9780bc6577e" elementId="c2065142-8a4d-48c3-ad63-d9780bc6577e" redefiningFeature="5c207f49-9e30-5f38-ba42-d76faa2d8218">
+                <redefinedFeature href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Objects.kermlx#6b641ff0-58ce-5ed5-87bb-68abcc821a78"/>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="7b6d6585-c458-49af-9ee3-f883c3c1bbe2" elementId="7b6d6585-c458-49af-9ee3-f883c3c1bbe2">
+            <ownedRelatedElement xsi:type="sysml:PortUsage" xmi:id="83767a02-f546-544f-9d79-36b42454e9b1" elementId="83767a02-f546-544f-9d79-36b42454e9b1" declaredName="subports" isComposite="true">
+              <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="ca479844-f7a7-4a4b-8661-ce923bbe3ad9" elementId="ca479844-f7a7-4a4b-8661-ce923bbe3ad9" typedFeature="83767a02-f546-544f-9d79-36b42454e9b1" type="331276d2-3064-5f35-8685-0a0423aaf3fb"/>
+              <ownedRelationship xsi:type="sysml:Subsetting" xmi:id="fc59abb9-a79b-42f5-becb-f5f3dde2bbe6" elementId="fc59abb9-a79b-42f5-becb-f5f3dde2bbe6" subsettingFeature="83767a02-f546-544f-9d79-36b42454e9b1">
+                <subsettedFeature href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Occurrences.kermlx#27cd823b-91df-5d0b-967d-25f6c022c384"/>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="e24c7cdd-7da2-47ff-b20b-1387a2588029" elementId="e24c7cdd-7da2-47ff-b20b-1387a2588029">
+                <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="b9d0615c-6c5c-47b0-92b6-99fa6c21c733" elementId="b9d0615c-6c5c-47b0-92b6-99fa6c21c733" body="The Ports that are subports of this Port.&#xA;"/>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="ffc072b6-732e-4c44-aafb-a7703bb40713" elementId="ffc072b6-732e-4c44-aafb-a7703bb40713">
+            <ownedRelatedElement xsi:type="sysml:ConjugatedPortDefinition" xmi:id="548572f0-0efe-5063-9eba-10431829526c" elementId="548572f0-0efe-5063-9eba-10431829526c">
+              <ownedRelationship xsi:type="sysml:PortConjugation" xmi:id="a92c5c78-6552-48c3-af7b-2c8ebdf19b04" elementId="a92c5c78-6552-48c3-af7b-2c8ebdf19b04" originalPortDefinition="331276d2-3064-5f35-8685-0a0423aaf3fb"/>
+            </ownedRelatedElement>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="80dd59b4-0830-44f5-83fa-6f079af94601" elementId="80dd59b4-0830-44f5-83fa-6f079af94601">
+        <ownedRelatedElement xsi:type="sysml:PortUsage" xmi:id="8a89543d-f07a-51e9-b0ab-427f717bfa8a" elementId="8a89543d-f07a-51e9-b0ab-427f717bfa8a" declaredName="ports" isAbstract="true" isUnique="false" isComposite="false">
+          <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="b9d6ba1b-e1dc-40b3-b5bb-ec85a46c6ebc" elementId="b9d6ba1b-e1dc-40b3-b5bb-ec85a46c6ebc" typedFeature="8a89543d-f07a-51e9-b0ab-427f717bfa8a" type="331276d2-3064-5f35-8685-0a0423aaf3fb"/>
+          <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="3f877197-7a87-4472-a15b-94e9bb707630" elementId="3f877197-7a87-4472-a15b-94e9bb707630">
+            <ownedRelatedElement xsi:type="sysml:MultiplicityRange" xmi:id="75706f82-6d48-47a6-ba4b-f047e276d0c2" elementId="75706f82-6d48-47a6-ba4b-f047e276d0c2">
+              <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="38e8ac53-5bc4-4401-8115-0df88d41511e" elementId="38e8ac53-5bc4-4401-8115-0df88d41511e">
+                <ownedRelatedElement xsi:type="sysml:LiteralInteger" xmi:id="9fc17c94-cc00-4368-9820-3922de66bff5" elementId="9fc17c94-cc00-4368-9820-3922de66bff5">
+                  <ownedRelationship xsi:type="sysml:ReturnParameterMembership" xmi:id="47a44633-ca3c-4511-9de2-1ce2382771c5" elementId="47a44633-ca3c-4511-9de2-1ce2382771c5">
+                    <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="a2f827f7-f05c-4096-8900-9233c32030c2" elementId="a2f827f7-f05c-4096-8900-9233c32030c2" direction="out"/>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="129343d0-dabc-4c3f-a8dc-cc35c66ba3b6" elementId="129343d0-dabc-4c3f-a8dc-cc35c66ba3b6">
+                <ownedRelatedElement xsi:type="sysml:LiteralInfinity" xmi:id="e2b2d507-8cc1-4549-ade8-594993e262dd" elementId="e2b2d507-8cc1-4549-ade8-594993e262dd">
+                  <ownedRelationship xsi:type="sysml:ReturnParameterMembership" xmi:id="adfe809d-6588-482a-88bb-f31e9e413343" elementId="adfe809d-6588-482a-88bb-f31e9e413343">
+                    <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="4a94f241-2d1f-4fcb-bb0b-7ddd4cbfc9bb" elementId="4a94f241-2d1f-4fcb-bb0b-7ddd4cbfc9bb" direction="out"/>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:Subsetting" xmi:id="db3a65a7-4d82-4d1a-93f7-7f432a8e602a" elementId="db3a65a7-4d82-4d1a-93f7-7f432a8e602a" subsettingFeature="8a89543d-f07a-51e9-b0ab-427f717bfa8a">
+            <subsettedFeature href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Objects.kermlx#33d1bd68-58e2-555e-98a3-b0b679542260"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="074d395b-4fac-4d51-bfe3-d363ee6fd222" elementId="074d395b-4fac-4d51-bfe3-d363ee6fd222">
+            <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="750d073a-1ea2-4597-ae9c-b6aa32ff577f" elementId="750d073a-1ea2-4597-ae9c-b6aa32ff577f" body="ports is the base feature of all PortUsages.&#xA;"/>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+    </ownedRelatedElement>
+  </ownedRelationship>
+</sysml:Namespace>

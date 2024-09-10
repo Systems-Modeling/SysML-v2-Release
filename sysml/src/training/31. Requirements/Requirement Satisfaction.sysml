@@ -1,5 +1,6 @@
 package 'Requirement Satisfaction' {
-	import 'Requirement Groups'::*;
+	private import 'Requirement Definitions'::*;
+	private import 'Requirement Groups'::*;
 	
 	action 'provide power' {
 		action 'generate torque' { }

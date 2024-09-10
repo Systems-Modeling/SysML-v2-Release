@@ -1,7 +1,7 @@
 package Expressions {
-	import ScalarFunctions::*;
-	import BaseFunctions::ToString;
-	import ControlFunctions::*;
+	private import ScalarFunctions::*;
+	private import BaseFunctions::ToString;
+	private import ControlFunctions::*;
 	
 	a: Integer;
 	aa : Boolean;
@@ -9,6 +9,7 @@ package Expressions {
 	y = NumericalFunctions::'+'(1,2);
 	z : Boolean = aa & true xor zz | false implies z;
 	zz : Boolean = aa and true xor aa or false implies z;
+	grp = -x + x * y * y + a ** 3 ^ 4;
 	
 	b = if x > y? x-y else y-x;
 	c = x->collect {in xx; xx + 1}; 
@@ -17,21 +18,24 @@ package Expressions {
 	d1 = x.?{in xx; xx != null};
 	e = x->reduce {in s; in t; s + t}->reduce '+';
 	
-	behavior w specializes ControlPerformances::LoopPerformance { inout v: Integer;
-		in expr redefines whileTest {v > 3}
-		in step redefines body : Performances::Performance {
-			step decrement {
-				out v_decr : Integer = v - 1;			
-			}
-			succession decrement then update;
-			step update : FeatureReferencingPerformances::FeatureWritePerformance {
-				in redefines onOccurrence = w::self {
-					feature redefines startingAt : w {
-						inout feature redefines accessedFeature redefines v;
-					}
-				}
-				inout replacementValues = decrement.v_decr;
-			}
+	behavior w { inout v : Integer;
+	    step : ControlPerformances::LoopPerformance {
+    		in expr whileTest {v > 3}
+    		in expr untilTest;
+    		in step body {
+    			step decrement {
+    				out v_decr : Integer = v - 1;			
+    			}
+    			succession decrement then update;
+    			step update : FeatureReferencingPerformances::FeatureWritePerformance {
+    				in redefines onOccurrence = w::self {
+    					feature redefines startingAt : w {
+    						inout feature redefines accessedFeature redefines v;
+    					}
+    				}
+    				inout replacementValues = decrement.v_decr;
+    			}
+    		}
 		}
 	}
 	
@@ -66,4 +70,7 @@ package Expressions {
 		feature c : C[*];
 		feature count : ScalarValues::Integer =  c#(1).count;
 	}
+	
+	feature l = L();
+	feature w1 = w(xx);
 }

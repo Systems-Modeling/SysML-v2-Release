@@ -1,6 +1,6 @@
 package VerificationMetadataExample {
-	import VerificationCases::*;
-	import VerificationMethodKind::*;
+	private import VerificationCases::*;
+	private import VerificationMethodKind::*;
 	
     verification def MassTest;
     verification massTests:MassTest {

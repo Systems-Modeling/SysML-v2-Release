@@ -4,7 +4,7 @@ standard library package RiskMetadata {
 	 * This package defines metadata for annotating model elements with assessments of risk.
 	 */
 
-	import ScalarValues::Real;
+	private import ScalarValues::Real;
 	
 	attribute def Level :> Real {
 		doc

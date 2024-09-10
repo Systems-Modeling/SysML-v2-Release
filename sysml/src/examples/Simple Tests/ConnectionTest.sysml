@@ -31,16 +31,19 @@ package ConnectionTest {
 	
 	connection bus : C connect (d1, d2, d3, d4);
 	
+	connection : C {
+	    end :>> end1 ::> d1;
+	    end end2 ::> d2;
+	    end end3 ::> d3;
+	}
+	
 	connection {
 		part q;
 		end end1 ::> d1 :> q;
 		end end2 ::> d2;
 	}
 	
-	flow def F {
-		end f_p : P;
-		end f_q;
-	}
+	abstract flow def F;
 	
 	message : F from p to p;
 }

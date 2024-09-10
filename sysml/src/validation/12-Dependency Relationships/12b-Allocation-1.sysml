@@ -1,8 +1,8 @@
 package '12b-Allocation-1' {
-	import SI::*;
-	import RequirementModel::*;
-	import LogicalModel::*;
-	import PhysicalModel::*;
+	private import SI::*;
+	private import RequirementModel::*;
+	private import LogicalModel::*;
+	private import PhysicalModel::*;
 	
 	package RequirementModel {
 		requirement torqueGeneration {

@@ -1,4 +1,4 @@
-import ScalarValues::*;
+private import ScalarValues::*;
 package AddressBookModel {
 	
 	class Entry {

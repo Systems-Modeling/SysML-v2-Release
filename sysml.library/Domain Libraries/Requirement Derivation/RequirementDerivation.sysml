@@ -1,7 +1,7 @@
 standard library package RequirementDerivation {
 	doc /* This package provides language-extension metadata for modeling requirement derivation. */
 	
-	import DerivationConnections::*;
+	public import DerivationConnections::*;
 	private import Metaobjects::SemanticMetadata;
 	
 	metadata def <original> OriginalRequirementMetadata :> SemanticMetadata {

@@ -1,6 +1,6 @@
 library package AHFProfileLib {
 	// Systems and Services and their functionalities
-	import ScalarValues::*;
+	private import ScalarValues::*;
 	
 	// Design level
 	port def SD{
@@ -67,8 +67,8 @@ library package AHFProfileLib {
 }
 
 library package AHFProfileMetadata{
-	import Metaobjects::SemanticMetadata;
-	import AHFProfileLib::*;
+	private import Metaobjects::SemanticMetadata;
+	private import AHFProfileLib::*;
 
 	port global_sd:SD;
 	metadata def <service> SDMetadata :> SemanticMetadata{

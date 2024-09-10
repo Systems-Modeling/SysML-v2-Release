@@ -3,7 +3,7 @@ package Circular {
 	feature a: A;
 	alias Circ for Circular;
 	package P {
-		import Circular::*;
+		public import Circular::*;
 	}
 	
 	feature x :> z;

@@ -1,5 +1,5 @@
 package 'Filtering Example-1' {
-	import ScalarValues::Boolean;
+	private import ScalarValues::Boolean;
 	
 	metadata def Safety {
 		attribute isMandatory : Boolean;
@@ -25,13 +25,13 @@ package 'Filtering Example-1' {
 	
 	package 'Safety Features' {
 		/* Parts that contribute to safety. */		
-		import vehicle::**;
+		private import vehicle::**;
 		filter @Safety;
 	}
 	
 	package 'Mandatory Safety Features' {
 		/* Parts that contribute to safety AND are mandatory. */
-		import vehicle::**;
+		private import vehicle::**;
 		filter @Safety and Safety::isMandatory;
 	}
 }

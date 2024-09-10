@@ -4,7 +4,7 @@ package 'Wheel Package' {
 	 * Example from the SysML 1.6 spec, subclause 8.4.1 Wheel Hub Assembly.
 	 */
 
-	import ISQ::*;
+	private import ISQ::*;
 	
 	pressure = force / length^2; 
 	

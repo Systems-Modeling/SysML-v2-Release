@@ -3,10 +3,10 @@ package AHFNorway {
 	// The use-case is for Productive4.0 and Arrowhead Tools
 	// The system is taken from a chemical factory
 	// This is focusing on the monitoring of products when delivered
-	import AHFProfileLib::*;
-	import AHFProfileMetadata::*;
-	import AHFCoreLib::**;
-	import ScalarValues::*;
+	private import AHFProfileLib::*;
+	private import AHFProfileMetadata::*;
+	private import AHFCoreLib::**;
+	private import ScalarValues::*;
 
 	#service def APISService {
 		doc /* Service design */		

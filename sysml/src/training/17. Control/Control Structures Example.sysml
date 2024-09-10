@@ -1,5 +1,5 @@
 package 'Control Structures Example' {
-	import ScalarValues::*;
+	private import ScalarValues::*;
 	
 	attribute def BatteryCharged;
 	

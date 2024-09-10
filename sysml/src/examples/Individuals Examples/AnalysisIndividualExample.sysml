@@ -1,10 +1,11 @@
 package AnalysisIndividualExample {
+    private import ScalarValues::*;
+    private import Quantities::*;
+    private import ISQ::*;
+    private import USCustomaryUnits::*;
+    
 	package VehicleQuantities {
-	    import ScalarValues::*;
-	    import Quantities::*;
-	    import MeasurementReferences::*;
-	    import ISQ::*;
-	    import USCustomaryUnits::*;
+	    private import MeasurementReferences::*;
 	    
 	    attribute def DistancePerVolumeUnit :> DerivedUnit {
 	    	private attribute distancePF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 1; }
@@ -23,7 +24,7 @@ package AnalysisIndividualExample {
 	}
 	
 	package VehicleModel {
-	    import VehicleQuantities::*;
+	    public import VehicleQuantities::*;
 	    
 	    part def Vehicle {
 	    	attribute power :> ISQ::power;
@@ -41,11 +42,11 @@ package AnalysisIndividualExample {
 	}
 	
 	package FuelEconomyAnalysisModel {
-	    import VehicleModel::*;
-	    import SequenceFunctions::size;
-	    import SampledFunctions::SampledFunction;
-	    import SampledFunctions::SamplePair;
-	    import ControlFunctions::forAll;
+	    private import VehicleModel::*;
+	    private import SequenceFunctions::size;
+	    private import SampledFunctions::SampledFunction;
+	    private import SampledFunctions::SamplePair;
+	    private import ControlFunctions::forAll;
 	    
 	    action def FuelConsumption {
 			in power : PowerValue[*];
@@ -66,8 +67,8 @@ package AnalysisIndividualExample {
 	}
 	
 	package IndividualAnalysisModel {
-		import VehicleModel::*;
-		import FuelEconomyAnalysisModel::*;
+		private import VehicleModel::*;
+		private import FuelEconomyAnalysisModel::*;
 		
 		individual part def Vehicle_1 :> Vehicle;
 		individual part def Engine_1 :> Engine;

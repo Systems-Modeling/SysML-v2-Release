@@ -1,6 +1,7 @@
 package '15_05-Unification of Expression and Constraint Definition' {
-	import '15_03-Value Expression'::*;
-	import ControlFunctions::forAll;
+	private import '15_03-Value Expression'::*;
+	private import ControlFunctions::forAll;
+	private import SI::*;
 	
 	constraint def DiscBrakeConstraint {
 		in wheelAssy : WheelAssy[4];

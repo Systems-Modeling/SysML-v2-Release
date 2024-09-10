@@ -92,11 +92,18 @@ standard library package ControlPerformances {
 		inv { not ifTest() == elseClause->notEmpty() }
 	}
 	
-	behavior IfThenElsePerformance specializes IfThenPerformance, IfElsePerformance {
+	behavior IfThenElsePerformance specializes IfThenPerformance {
 		doc
 		/*
-		 * An IfThenElsePerformance is an IfThenPerformance and an IfElsePerformance.
+		 * An IfThenElsePerformance is an IfThenPerformance with an additional elseClause that
+		 * occurs after and only after the ifTest evaluation is false.
 		 */
+		 
+		in redefines ifTest;
+		in redefines thenClause;
+        in elseClause : Occurrence[0..1];
+        succession ifTest[1] then elseClause[0..1];
+        inv { not ifTest() == elseClause->notEmpty() }
 	}
 	
 	behavior LoopPerformance specializes Performance {

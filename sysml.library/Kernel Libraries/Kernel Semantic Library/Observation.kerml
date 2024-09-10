@@ -7,6 +7,7 @@ standard library package Observation {
 	 
 	private import ScalarValues::Boolean;
 	private import Occurrences::Occurrence;
+	private import Occurrences::Life;
 	private import SequenceFunctions::including;
 	private import SequenceFunctions::excluding;
 	private import ControlFunctions::select;
@@ -16,7 +17,14 @@ standard library package Observation {
 	private import FeatureReferencingPerformances::BooleanEvaluationResultToMonitorPerformance;
 	private import Transfers::TransferBefore;
 
-	readonly feature defaultMonitor[1] : ChangeMonitor {
+    private struct DefaultMonitorLife[1] :> ChangeMonitor, Life {
+        doc
+        /*
+         * DefaultMonitorLife is the classifier of the singleton Life of the defaultMonitor.
+         */
+    }
+    
+	readonly feature defaultMonitor[1] : DefaultMonitorLife {
 		doc
 		/*
 		 * defaultMonitor is a single ChangeMonitor that can be used as a default.

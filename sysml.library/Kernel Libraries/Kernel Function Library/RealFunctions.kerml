@@ -5,7 +5,7 @@ standard library package RealFunctions {
 	 * general arithmetic and comparison operations.
 	 */
 
-	import ScalarValues::*;
+	public import ScalarValues::*;
 	
 	function re :> ComplexFunctions::re{ in x: Real[1]; 
         return : Real[1] = x;

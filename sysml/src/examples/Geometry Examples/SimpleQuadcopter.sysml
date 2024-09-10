@@ -1,15 +1,15 @@
 package SimpleQuadcopter {
-    import ISQ::*;
-    import SI::*;
-    import SpatialItems::*;
-    import ShapeItems::*;
-    import RealFunctions::sqrt;
-    import TrigFunctions::pi;
-    import TrigFunctions::tan;
-    import MeasurementReferences::CoordinateFrame;
-    import MeasurementReferences::TranslationRotationSequence;
-    import MeasurementReferences::Translation;
-    import MeasurementReferences::Rotation;
+    private import ISQ::*;
+    private import SI::*;
+    private import SpatialItems::*;
+    private import ShapeItems::*;
+    private import RealFunctions::sqrt;
+    private import TrigFunctions::pi;
+    private import TrigFunctions::tan;
+    private import MeasurementReferences::CoordinateFrame;
+    private import MeasurementReferences::TranslationRotationSequence;
+    private import MeasurementReferences::Translation;
+    private import MeasurementReferences::Rotation;
 
     part motorShape : SpatialItem {
         item :>> shape : Cylinder {
