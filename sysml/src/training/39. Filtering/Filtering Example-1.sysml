@@ -25,13 +25,13 @@ package 'Filtering Example-1' {
 	
 	package 'Safety Features' {
 		/* Parts that contribute to safety. */		
-		private import vehicle::**;
+		public import vehicle::**;
 		filter @Safety;
 	}
 	
 	package 'Mandatory Safety Features' {
 		/* Parts that contribute to safety AND are mandatory. */
-		private import vehicle::**;
+		public import vehicle::**;
 		filter @Safety and Safety::isMandatory;
 	}
 }

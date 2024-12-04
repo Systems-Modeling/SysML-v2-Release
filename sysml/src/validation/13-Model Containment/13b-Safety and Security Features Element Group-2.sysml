@@ -32,21 +32,21 @@ package '13b-Safety and Security Features Element Group-2' {
 	
 	package 'Safety Features' {
 		/* Parts that contribute to safety. */		
-		private import vehicle::**[@Safety];
+		public import vehicle::**[@Safety];
 	}
 	
 	package 'Security Features' {
 		/* Parts that contribute to security. */		
-		private import vehicle::**[@Security];
+		public import vehicle::**[@Security];
 	}
 	
 	package 'Safety & Security Features' {
 		/* Parts that contribute to safety OR security. */		 
-		private import vehicle::**[@Safety or @Security];
+		public import vehicle::**[@Safety or @Security];
 	}
 	
 	package 'Mandatory Saftey Features' {
 		/* Parts that contribute to safety AND are mandatory. */
-		private import vehicle::**[@Safety and Safety::isMandatory];
+		public import vehicle::**[@Safety and Safety::isMandatory];
 	}
 }

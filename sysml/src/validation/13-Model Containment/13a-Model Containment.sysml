@@ -20,7 +20,7 @@ package '13a-Model Containment' {
 		package 'Vehicle1-Configuration' {			
 			alias 'Sport Sedan' for vehicle1_c1;
 			
-			private import 'vehicle1_c1 Specification Context'::'vehicle1-c1 Specification';		
+			public import 'vehicle1_c1 Specification Context'::'vehicle1-c1 Specification';		
 		}
 		
 		package 'Vehicle Reference Model' {
@@ -31,31 +31,31 @@ package '13a-Model Containment' {
 			 * used in this way.
 			 */
 		
-			private import VehicleA;			
-			private import VehicleSubsystems;
+			public import VehicleA;			
+			public import VehicleSubsystems;
 			
 			//*
-			// The following would transitively private import all the
+			// The following would transitively import all the
 			// members of the VehicleSubsystems package, rather
 			// then importing the package itself.
 			 
-			   private import VehicleSubsystems::*;
+			   public import VehicleSubsystems::*;
 			*/
 		}
 		
 		package VehicleSubsystems {
-			private import 'Body&Interior';
-			private import 'PowerTrain';
+			public import 'Body&Interior';
+			public import 'PowerTrain';
 		}
 		
 		package 'Body&Interior' {
-			private import BodyAndInteriorRequirements;			
+			public import BodyAndInteriorRequirements;			
 		}
 		
 		package PowerTrain {
-			private import Engine;
-			private import Transmission;
-			private import PowerTrainRequirements;			
+			public import Engine;
+			public import Transmission;
+			public import PowerTrainRequirements;			
 		}
 	}
 	
