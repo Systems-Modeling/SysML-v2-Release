@@ -28,6 +28,7 @@ standard library package Actions {
 	private import TransitionPerformances::NonStateTransitionPerformance;
 	private import Transfers::MessageTransfer;
 	private import Connections::MessageConnection;
+	private import OccurrenceFunctions::destroy;
 	
 	abstract action def Action :> Performance {
 		doc
@@ -81,7 +82,14 @@ standard library package Actions {
 			 * The subactions of this Action that are AcceptActions. 
 			 */
 		}
-	
+		
+		abstract action terminateSubactions : TerminateAction[0..*] :> subactions, terminateActions {
+			doc
+			/*
+			 * The subactions of this Action that are TerminateActions.
+			 */
+		}
+		
 		abstract action controls : ControlAction[0..*] :> subactions {
 			doc
 			/*
@@ -221,6 +229,41 @@ standard library package Actions {
 		/*
 		 * acceptActions is the base feature for standalone AcceptActionUsages.
 		 */
+	}
+	
+	abstract action def TerminateAction :> Action {
+		doc
+		/*
+		 * A TerminateAction is an Action that terminates a given Occurrence, meaning 
+		 * that the Occurrence ends during the performance of this Action. TerminateAction
+		 * is the base type for all TerminateActionUsages.
+		 */
+		 
+		in occurrence terminatedOccurrence[1] {
+			doc
+			/*
+			 * The Occurrence to be terminated.
+			 */
+		}
+		
+		action terminateOccurrence : destroy[1] {
+			in occ = terminatedOccurrence;
+		}
+	}
+	
+	abstract action terminateActions : TerminateAction[0..*] nonunique :> actions {
+		doc
+		/*
+		 * terminateActions is the base feature for all TerminateActionUsages.
+		 */
+		 
+		in occurrence terminatedOccurrence default that as Occurrence {
+			doc
+			/*
+			 * The default terminatedOccurrence for a terminateAction is its
+			 * featuring occurrence (which will generally be a containing Action).
+			 */
+		}
 	}
 	
 	abstract action def ControlAction :> Action {

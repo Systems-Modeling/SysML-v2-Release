@@ -404,6 +404,10 @@ standard library package SysML {
 		
 		metadata def SuccessionFlowConnectionUsage specializes SuccessionItemFlow, FlowConnectionUsage;		
 		
+		metadata def TerminateActionUsage specializes ActionUsage {
+			derived ref item terminatedOccurrenceArgument : Expression[0..1];
+		}		
+		
 		enum def TransitionFeatureKind {
 			enum trigger;
 			enum guard;

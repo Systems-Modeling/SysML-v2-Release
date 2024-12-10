@@ -30,4 +30,11 @@ package ActionTest {
 		ref action a : A;
 	}
 	
+	action def c {
+		first start;
+		then action c1 {
+			terminate c1;
+		}
+		then terminate;
+	}	
 }
