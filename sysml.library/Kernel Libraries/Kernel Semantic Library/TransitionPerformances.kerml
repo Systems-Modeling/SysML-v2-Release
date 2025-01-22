@@ -28,16 +28,16 @@ standard library package TransitionPerformances {
 		feature triggerTarget : Occurrence [1] default this;
 		feature transitionLink: HappensBefore[0..1];
 		
-		private binding transitionLink.earlierOccurrence[0..1] = transitionLinkSource[1];
-		private succession transitionLinkSource[1] then effect[*]; 
-		private succession effect[*] then transitionLink.laterOccurrence[1];
+		private binding [0..1] transitionLink.earlierOccurrence = [1] transitionLinkSource;
+		private succession [1] transitionLinkSource then [*] effect;
+		private succession [*] effect then [1] transitionLink.laterOccurrence;
 		
-		private connector transitionLink[0..1] to trigger[1..*];
+		private connector [0..1] transitionLink to [1..*] trigger;
 		private connector all guardConstraint: TPCGuardConstraint[*] 
-			from transitionLink[0..1] to guard[*];
+			from [0..1] transitionLink to [*] guard;
 			
-		private succession all trigger[*] then guard[*];
-		private succession all guard[*] then effect[*];
+		private succession all [*] trigger then [*] guard;
+		private succession all [*] guard then [*] effect;
 
 		feature accNum: Natural [1] = if isEmpty(trigger) ? 0 else 1;
 		step accept: AcceptPerformance[accNum] subsets timeEnclosedOccurrences, acceptPerformances {
@@ -45,20 +45,20 @@ standard library package TransitionPerformances {
 			feature redefines acceptedTransfer = trigger;
 		}
 
-		private succession guard[*] then accept[accNum];
+		private succession [*] guard then [accNum] accept;
 	}
 	
 	behavior NonStateTransitionPerformance specializes TransitionPerformance {
 		feature isTriggerAfter: Boolean default true;
-		private succession transitionLinkSource[1] then Performance::self[1];
+		private succession [1] transitionLinkSource then [1] Performance::self;
 		private feature taNum: Natural [1] = if isTriggerAfter ? size(trigger) else 0;
-		private succession triggerAfter [taNum] first transitionLinkSource[0..1] then trigger.endShot[*];
+		private succession triggerAfter [taNum] first [0..1] transitionLinkSource then [*] trigger.endShot;
 				
-		private succession all guard[*] then transitionLink.laterOccurrence[0..1];
+		private succession all [*] guard then [0..1] transitionLink.laterOccurrence;
 	}
 	
 	assoc struct TPCGuardConstraint {
-		end feature constrainedHBLink: HappensBefore[0..1];
+		end guardedLink [0..1] feature constrainedHBLink: HappensBefore;
 		end bool constrainedGuard;
 		
 		private inv { allTrue(constrainedGuard()) }

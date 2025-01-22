@@ -30,6 +30,8 @@ standard library package States {
 		attribute :>> isTriggerDuring;
 		
 		ref state self: StateAction :>> Action::self, StatePerformance::self;
+		ref state start: StateAction :>> Action::start, StatePerformance::startShot;
+		ref state done: StateAction :>> Action::done, StatePerformance::endShot;
 		
 		action :>> subactions :> middle {
 			doc
@@ -66,7 +68,7 @@ standard library package States {
 			 */
 		}
 		
-		succession stateSequencing first exclusiveStates[0..1] then exclusiveStates[0..1] {
+		succession stateSequencing first [0..1] exclusiveStates then [0..1] exclusiveStates {
 			doc
 			/*
 			 * Exclusive states cannot overlap, so it must be possible to strictly sequence them in time.

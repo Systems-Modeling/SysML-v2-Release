@@ -103,6 +103,8 @@ standard library package SysML {
 		}		
 		
 		metadata def ConnectionDefinition specializes AssociationStructure, PartDefinition {
+			attribute isSufficient : Boolean[1..1] redefines isSufficient;
+			
 			derived ref item connectionEnd : Usage[0..*] ordered redefines associationEnd;
 		}		
 		
@@ -128,7 +130,7 @@ standard library package SysML {
 			derived ref item 'variant' : Usage[0..*] subsets ownedMember;
 			derived item variantMembership : VariantMembership[0..*] subsets ownedMembership;
 			derived ref item usage : Usage[0..*] ordered subsets feature;
-			derived ref item directedUsage : Usage[0..*] ordered subsets usage, directedFeature;
+			derived ref item directedUsage : Usage[0..*] ordered subsets directedFeature, usage;
 			derived ref item ownedUsage : Usage[0..*] ordered subsets ownedFeature, usage;
 			derived ref item ownedReference : ReferenceUsage[0..*] ordered subsets ownedUsage;
 			derived ref item ownedAttribute : AttributeUsage[0..*] ordered subsets ownedUsage;
@@ -137,7 +139,7 @@ standard library package SysML {
 			derived ref item ownedItem : ItemUsage[0..*] ordered subsets ownedOccurrence;
 			derived ref item ownedPart : PartUsage[0..*] ordered subsets ownedItem;
 			derived ref item ownedPort : PortUsage[0..*] ordered subsets ownedUsage;
-			derived ref item ownedConnection : ConnectorAsUsage[0..*] ordered subsets ownedPart;
+			derived ref item ownedConnection : ConnectorAsUsage[0..*] ordered subsets ownedUsage;
 			derived ref item ownedFlow : FlowConnectionUsage[0..*] subsets ownedConnection;
 			derived ref item ownedInterface : InterfaceUsage[0..*] ordered subsets ownedConnection;
 			derived ref item ownedAllocation : AllocationUsage[0..*] ordered subsets ownedConnection;
@@ -183,10 +185,12 @@ standard library package SysML {
 			attribute isImportAll : Boolean[1..1] redefines isImportAll;
 		}		
 		
-		metadata def FlowConnectionDefinition specializes Interaction, ConnectionDefinition, ActionDefinition;		
+		metadata def FlowConnectionDefinition specializes Interaction, ActionDefinition {
+			derived ref item flowConnectionEnd : Usage[0..*] redefines associationEnd;
+		}		
 		
-		metadata def FlowConnectionUsage specializes ConnectionUsage, ItemFlow, ActionUsage {
-			derived ref item flowConnectionDefinition : Interaction[0..*] ordered redefines actionDefinition, connectionDefinition, interaction;
+		metadata def FlowConnectionUsage specializes ConnectorAsUsage, ItemFlow, ActionUsage {
+			derived ref item flowConnectionDefinition : Interaction[0..*] ordered redefines actionDefinition, interaction;
 		}		
 		
 		metadata def ForLoopActionUsage specializes LoopActionUsage {
@@ -324,7 +328,7 @@ standard library package SysML {
 			derived attribute text : String[0..*];
 			
 			derived ref item subjectParameter : Usage[1..1] subsets parameter, usage;
-			derived ref item actorParameter : PartUsage[0..*] ordered subsets usage, parameter;
+			derived ref item actorParameter : PartUsage[0..*] ordered subsets parameter, usage;
 			derived ref item stakeholderParameter : PartUsage[0..*] ordered subsets parameter, usage;
 			derived ref item assumedConstraint : ConstraintUsage[0..*] ordered subsets ownedFeature;
 			derived ref item requiredConstraint : ConstraintUsage[0..*] ordered subsets ownedFeature;
@@ -340,7 +344,7 @@ standard library package SysML {
 			derived ref item assumedConstraint : ConstraintUsage[0..*] ordered subsets ownedFeature;
 			derived ref item subjectParameter : Usage[1..1] subsets parameter, usage;
 			derived ref item framedConcern : ConcernUsage[0..*] ordered subsets requiredConstraint;
-			derived ref item actorParameter : PartUsage[0..*] ordered subsets usage, parameter;
+			derived ref item actorParameter : PartUsage[0..*] ordered subsets parameter, usage;
 			derived ref item stakeholderParameter : PartUsage[0..*] ordered subsets parameter, usage;
 		}		
 		
@@ -449,7 +453,7 @@ standard library package SysML {
 			derived ref item owningUsage : Usage[0..1] subsets owningType;
 			derived ref item definition : Classifier[0..*] ordered redefines type;
 			derived ref item usage : Usage[0..*] ordered subsets feature;
-			derived ref item directedUsage : Usage[0..*] ordered subsets usage, directedFeature;
+			derived ref item directedUsage : Usage[0..*] ordered subsets directedFeature, usage;
 			derived ref item nestedUsage : Usage[0..*] ordered subsets ownedFeature, usage;
 			derived ref item nestedReference : ReferenceUsage[0..*] ordered subsets nestedUsage;
 			derived ref item nestedAttribute : AttributeUsage[0..*] ordered subsets nestedUsage;
@@ -458,7 +462,7 @@ standard library package SysML {
 			derived ref item nestedItem : ItemUsage[0..*] ordered subsets nestedOccurrence;
 			derived ref item nestedPart : PartUsage[0..*] ordered subsets nestedItem;
 			derived ref item nestedPort : PortUsage[0..*] ordered subsets nestedUsage;
-			derived ref item nestedConnection : ConnectorAsUsage[0..*] ordered subsets nestedPart;
+			derived ref item nestedConnection : ConnectorAsUsage[0..*] ordered subsets nestedUsage;
 			derived ref item nestedFlow : FlowConnectionUsage[0..*] subsets nestedConnection;
 			derived ref item nestedInterface : InterfaceUsage[0..*] ordered subsets nestedConnection;
 			derived ref item nestedAllocation : AllocationUsage[0..*] ordered subsets nestedConnection;

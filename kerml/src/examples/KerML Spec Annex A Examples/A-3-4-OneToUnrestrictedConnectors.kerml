@@ -9,7 +9,7 @@ package OneToUnrestrictedConnectorsModelToBeExecuted {
 	classifier Bicycle {
 		feature carrier : BikeBasket [*];
 		feature holdsWheel : BikeFork [*];
-		connector carrierFixed : BikeBasketFixed from carrier [*] to holdsWheel [1];
+		connector carrierFixed : BikeBasketFixed from [*] carrier to [1] holdsWheel;
 	}
 	classifier BikeBasket;
 
@@ -54,6 +54,6 @@ package OneToUnrestrictedConnectorsExecution {
 	classifier MyBike specializes Bicycle {
 		feature redefines carrier : MyBikeBasket [2];
 		feature redefines holdsWheel : MyBikeFork [2];
-		connector redefines carrierFixed : MyBikeBasket_Fork_BBF_Link [2] from carrier [*] to holdsWheel [1];
+		connector redefines carrierFixed : MyBikeBasket_Fork_BBF_Link [2] from [*] carrier to [1] holdsWheel;
 	}
 }

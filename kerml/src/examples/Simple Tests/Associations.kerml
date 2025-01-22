@@ -1,11 +1,11 @@
 package Associations {	
 	assoc A {
 		end x;
-		end y[1..*];
+		end [1..*] feature y;
 	}
 	
 	assoc B specializes A {
 		end x1;
-		end y1[0..*] redefines y;
+		end [0..*] feature y1 redefines y;
 	}
 }

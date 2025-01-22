@@ -10,7 +10,7 @@ package OneToOneConnectorsModelToBeExecuted {
 	classifier Bicycle {
 		feature rollsOn : Wheel [2];
 		feature holdsWheel : BikeFork [*];
-		connector fixWheel : BikeWheelFixed from rollsOn [1] to holdsWheel [1];
+		connector fixWheel : BikeWheelFixed from [1] rollsOn to [1] holdsWheel;
 	}
 	assoc BikeWheelFixed {
 		end feature wheel : Wheel;
@@ -53,6 +53,6 @@ package OneToOneConnectorsExecution {
 	classifier MyBike specializes Bicycle {
 		feature redefines rollsOn : MyWheel;
 		feature redefines holdsWheel : MyBikeFork;
-		connector redefines fixWheel : MyBikeWheel_Fork_BWF_Link [2] from rollsOn [1] to holdsWheel [1];
+		connector redefines fixWheel : MyBikeWheel_Fork_BWF_Link [2] from [1] rollsOn to [1] holdsWheel;
 	}
 }

@@ -24,9 +24,7 @@ package ServerSequenceOutsideRealization_2 {
 			}
 		}
 		
-		interface producer_2.publicationPort to server_2.publicationPort {
-			bind source::outgoingTransfersFromSelf = target::incomingTransfersToSelf;
-		}
+		interface producer_2.publicationPort to server_2.publicationPort;
 		
 		part server_2[1] {
 			port publicationPort : PublicationPort;
@@ -52,9 +50,7 @@ package ServerSequenceOutsideRealization_2 {
 			}
 		}
 		
-		interface consumer_2.subscriptionPort to server_2.subscriptionPort {
-			bind source::outgoingTransfersFromSelf = target::incomingTransfersToSelf;
-		}
+		interface consumer_2.subscriptionPort to server_2.subscriptionPort;
 		
 		part consumer_2[1] {
 			attribute myTopic : String;

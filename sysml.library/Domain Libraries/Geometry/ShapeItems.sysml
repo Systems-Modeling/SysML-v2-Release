@@ -65,7 +65,7 @@ standard library package ShapeItems {
 		item :>> edges [1..*] {
 			item :>> vertices [0..2];
 		}
-		item :>> vertices = edges.vertices;
+		item :>> vertices [*] = edges.vertices;
 
 		assert constraint { isClosed == vertices->forAll{in p1 : Point;
 					vertices->exists{p2 : Point; p1 != p2 and
@@ -406,11 +406,11 @@ standard library package ShapeItems {
 		assert constraint { isEmpty(af) == notEmpty(vertices) }
 
 		/* Bind face edges to specific edges */
-		binding [1] bind base.edges [0..*] = be [0..*];
-		binding [1] bind cf.edges [0..*] = be [0..*];
+		binding [1] bind [0..*] base.edges = [0..*] be;
+		binding [1] bind [0..*] cf.edges = [0..*] be;
 
 		/* Meeting edges */
-		connection :MatesWith connect be [1] to be [1];
+		connection :MatesWith connect [1] be to [1] be;
 
 		attribute :>> genus = 0;
 	}
@@ -426,7 +426,7 @@ standard library package ShapeItems {
 		item apex :>> vertices;
 
 		/* Bind face vertices to specific vertices */
-		binding [1] bind cf.vertices [0..*] = apex [0..*];
+		binding [1] bind [0..*] cf.vertices = [0..*] apex;
 	}
 
 	item def EccentricCone :> Cone {
@@ -469,9 +469,9 @@ standard library package ShapeItems {
 	
 		item :>> af [1];
 
-		binding [1] bind cf.edges [0..*] = ae [0..*];
+		binding [1] bind [0..*] cf.edges = [0..*] ae;
 
-		connection :MatesWith connect ae [1] to ae [1] {
+		connection :MatesWith connect [1] ae to [1] ae {
 			doc /* Meeting edges */
 		}
 	}
@@ -535,8 +535,8 @@ standard library package ShapeItems {
 		item :>> faces [5..6];
 		item tf	 : Quadrilateral [1] :> faces;
 		item bf	 : Quadrilateral [1] :> faces;
-		item ff	 : Polygon [1] :> faces { item :>> edges [3..4]; }
-		item rf	 : Polygon [1] :> faces { item :>> edges [3..4]; }
+		item ff	 : Polygon [1] :> faces { item :>> Polygon::edges, faces::edges [3..4]; }
+		item rf	 : Polygon [1] :> faces { item :>> Polygon::edges, faces::edges [3..4]; }
 		item slf : Quadrilateral [1] :> faces;
 		item srf : Quadrilateral [0..1] :> faces;
 
@@ -575,61 +575,61 @@ standard library package ShapeItems {
 		assert constraint { ( isEmpty(tfrv) == isEmpty(trrv) ) }
 
 		/* Bind face edges to specific edges */
-		binding [1] bind tf.edges [0..1] = tfe [0..1];
-		binding [1] bind tf.edges [0..1] = tre [0..1];
-		binding [1] bind tf.edges [0..1] = tsle [0..1];
-		binding [1] bind bf.edges [0..1] = bfe [0..1];
-		binding [1] bind bf.edges [0..1] = bre [0..1];
-		binding [1] bind bf.edges [0..1] = bsle [0..1];
-		binding [1] bind bf.edges [0..1] = bsre [0..1];
+		binding [1] bind [0..1] tf.edges = [0..1] tfe;
+		binding [1] bind [0..1] tf.edges = [0..1] tre;
+		binding [1] bind [0..1] tf.edges = [0..1] tsle;
+		binding [1] bind [0..1] bf.edges = [0..1] bfe;
+		binding [1] bind [0..1] bf.edges = [0..1] bre;
+		binding [1] bind [0..1] bf.edges = [0..1] bsle;
+		binding [1] bind [0..1] bf.edges = [0..1] bsre;
 
-		binding [1] bind ff.edges [0..1] = tfe [0..1];
-		binding [1] bind ff.edges [0..1] = bfe [0..1];
-		binding [1] bind ff.edges [0..1] = ufle [0..1];
+		binding [1] bind [0..1] ff.edges = [0..1] tfe;
+		binding [1] bind [0..1] ff.edges = [0..1] bfe;
+		binding [1] bind [0..1] ff.edges = [0..1] ufle;
 
-		binding [1] bind rf.edges [0..1] = tre [0..1];
-		binding [1] bind rf.edges [0..1] = bre [0..1];
-		binding [1] bind rf.edges [0..1] = urle [0..1];
+		binding [1] bind [0..1] rf.edges = [0..1] tre;
+		binding [1] bind [0..1] rf.edges = [0..1] bre;
+		binding [1] bind [0..1] rf.edges = [0..1] urle;
 
 		/* Bind edge vertices to specific vertices */
-		binding [1] bind tfe.vertices [0..1] = tflv [0..1];
-		binding [1] bind tre.vertices [0..1] = trlv [0..1];
-		binding [1] bind tsle.vertices [0..1] = tflv [0..1];
-		binding [1] bind tsle.vertices [0..1] = trlv [0..1];
+		binding [1] bind [0..1] tfe.vertices = [0..1] tflv;
+		binding [1] bind [0..1] tre.vertices = [0..1] trlv;
+		binding [1] bind [0..1] tsle.vertices = [0..1] tflv;
+		binding [1] bind [0..1] tsle.vertices = [0..1] trlv;
 
-		binding [1] bind bfe.vertices [0..1] = bflv [0..1];
-		binding [1] bind bfe.vertices [0..1] = bfrv [0..1];
-		binding [1] bind bre.vertices [0..1] = brlv [0..1];
-		binding [1] bind bre.vertices [0..1] = brrv [0..1];
-		binding [1] bind bsle.vertices [0..1] = bflv [0..1];
-		binding [1] bind bsle.vertices [0..1] = brlv [0..1];
-		binding [1] bind bsre.vertices [0..1] = bfrv [0..1];
-		binding [1] bind bsre.vertices [0..1] = brrv [0..1];
+		binding [1] bind [0..1] bfe.vertices = [0..1] bflv;
+		binding [1] bind [0..1] bfe.vertices = [0..1] bfrv;
+		binding [1] bind [0..1] bre.vertices = [0..1] brlv;
+		binding [1] bind [0..1] bre.vertices = [0..1] brrv;
+		binding [1] bind [0..1] bsle.vertices = [0..1] bflv;
+		binding [1] bind [0..1] bsle.vertices = [0..1] brlv;
+		binding [1] bind [0..1] bsre.vertices = [0..1] bfrv;
+		binding [1] bind [0..1] bsre.vertices = [0..1] brrv;
 
-		binding [1] bind ufle.vertices [0..1] = tflv [0..1];
-		binding [1] bind ufle.vertices [0..1] = bflv [0..1];
-		binding [1] bind urle.vertices [0..1] = trlv [0..1];
-		binding [1] bind urle.vertices [0..1] = brlv [0..1];
+		binding [1] bind [0..1] ufle.vertices = [0..1] tflv;
+		binding [1] bind [0..1] ufle.vertices = [0..1] bflv;
+		binding [1] bind [0..1] urle.vertices = [0..1] trlv;
+		binding [1] bind [0..1] urle.vertices = [0..1] brlv;
 
 		/* Meeting edges */
-		connection :MatesWith connect tfe [1] to tfe [1];
-		connection :MatesWith connect tre [1] to tre [1];
-		connection :MatesWith connect tsle [1] to tsle [1];
-		connection :MatesWith connect bfe [1] to bfe [1];
-		connection :MatesWith connect bre [1] to bre [1];
-		connection :MatesWith connect bsle [1] to bsle [1];
-		connection :MatesWith connect bsre [1] to bsre [1];
-		connection :MatesWith connect ufle [1] to ufle [1];
-		connection :MatesWith connect urle [1] to urle [1];
-		connection :MatesWith connect bsre [1] to bsre [1];
+		connection :MatesWith connect [1] tfe to [1] tfe;
+		connection :MatesWith connect [1] tre to [1] tre;
+		connection :MatesWith connect [1] tsle to [1] tsle;
+		connection :MatesWith connect [1] bfe to [1] bfe;
+		connection :MatesWith connect [1] bre to [1] bre;
+		connection :MatesWith connect [1] bsle to [1] bsle;
+		connection :MatesWith connect [1] bsre to [1] bsre;
+		connection :MatesWith connect [1] ufle to [1] ufle;
+		connection :MatesWith connect [1] urle to [1] urle;
+		connection :MatesWith connect [1] bsre to [1] bsre;
 
 		/* Meeting vertices  */
-		connection :MatesWith connect tflv [2] to tflv [2];
-		connection :MatesWith connect trlv [2] to trlv [2];
-		connection :MatesWith connect bflv [2] to bflv [2];
-		connection :MatesWith connect bfrv [2] to bfrv [2];
-		connection :MatesWith connect brlv [2] to brlv [2];
-		connection :MatesWith connect brrv [2] to brrv [2];
+		connection :MatesWith connect [2] tflv to [2] tflv;
+		connection :MatesWith connect [2] trlv to [2] trlv;
+		connection :MatesWith connect [2] bflv to [2] bflv;
+		connection :MatesWith connect [2] bfrv to [2] bfrv;
+		connection :MatesWith connect [2] brlv to [2] brlv;
+		connection :MatesWith connect [2] brrv to [2] brrv;
 	}
 
 	item def TriangularPrism :> CuboidOrTriangularPrism {
@@ -649,11 +649,11 @@ standard library package ShapeItems {
 		item :>> vertices;
 
 		/* Bind face edges to specific edges */
-		binding [1] bind tf.edges [0..1] = bsre [0..1];
+		binding [1] bind [0..1] tf.edges = [0..1] bsre;
 
 		/* Bind edge vertices to specific vertices */
-		binding [1] bind tfe.vertices  [0..1] = bfrv [0..1];
-		binding [1] bind tre.vertices  [0..1] = bfrv [0..1];
+		binding [1] bind [0..1] tfe.vertices = [0..1] bfrv;
+		binding [1] bind [0..1] tre.vertices = [0..1] bfrv;
 	}
 
 	item def RightTriangularPrism :> TriangularPrism {
@@ -707,35 +707,35 @@ standard library package ShapeItems {
 		item :>> vertices;
 
 		/* Bind face edges to specific edges */
-		binding [1] bind tf.edges [0..1] = tsre [0..1];
-		binding [1] bind ff.edges [0..1] = ufre [0..1];
-		binding [1] bind rf.edges [0..1] = urre [0..1];
+		binding [1] bind [0..1] tf.edges = [0..1] tsre;
+		binding [1] bind [0..1] ff.edges = [0..1] ufre;
+		binding [1] bind [0..1] rf.edges = [0..1] urre;
 
-		binding [1] bind srf.edges [0..1] = tsre [0..1];
-		binding [1] bind srf.edges [0..1] = bsre [0..1];
-		binding [1] bind srf.edges [0..1] = ufre [0..1];
-		binding [1] bind srf.edges [0..1] = urre [0..1];
+		binding [1] bind [0..1] srf.edges = [0..1] tsre;
+		binding [1] bind [0..1] srf.edges = [0..1] bsre;
+		binding [1] bind [0..1] srf.edges = [0..1] ufre;
+		binding [1] bind [0..1] srf.edges = [0..1] urre;
 
 		/* Bind edge vertices to specific vertices */
-		binding [1] bind tfe.vertices  [0..1] = tfrv [0..1];
-		binding [1] bind tre.vertices  [0..1] = trrv [0..1];
-		binding [1] bind tsre.vertices [0..1] = tfrv [0..1];
-		binding [1] bind tsre.vertices [0..1] = trrv [0..1];
+		binding [1] bind [0..1] tfe.vertices = [0..1] tfrv;
+		binding [1] bind [0..1] tre.vertices = [0..1] trrv;
+		binding [1] bind [0..1] tsre.vertices = [0..1] tfrv;
+		binding [1] bind [0..1] tsre.vertices = [0..1] trrv;
 
-		binding [1] bind ufre.vertices [0..1] = tfrv [0..1];
-		binding [1] bind ufre.vertices [0..1] = bfrv [0..1];
-		binding [1] bind urre.vertices [0..1] = trrv [0..1];
-		binding [1] bind urre.vertices [0..1] = brrv [0..1];
+		binding [1] bind [0..1] ufre.vertices = [0..1] tfrv;
+		binding [1] bind [0..1] ufre.vertices = [0..1] bfrv;
+		binding [1] bind [0..1] urre.vertices = [0..1] trrv;
+		binding [1] bind [0..1] urre.vertices = [0..1] brrv;
 
 		/* Meeting edges */
-		connection :MatesWith connect tsre [1] to tsre [1];
-		connection :MatesWith connect ufre [1] to ufre [1];
-		connection :MatesWith connect urre [1] to urre [1];
-		connection :MatesWith connect bsre [1] to bsre [1];
+		connection :MatesWith connect [1] tsre to [1] tsre;
+		connection :MatesWith connect [1] ufre to [1] ufre;
+		connection :MatesWith connect [1] urre to [1] urre;
+		connection :MatesWith connect [1] bsre to [1] bsre;
 
 		/* Meeting vertices  */
-		connection :MatesWith connect tfrv [2] to tfrv [2];
-		connection :MatesWith connect trrv [2] to trrv [2];
+		connection :MatesWith connect [2] tfrv to [2] tfrv;
+		connection :MatesWith connect [2] trrv to [2] trrv;
 	}
 
 	item def RectangularCuboid :> Cuboid {
@@ -800,7 +800,7 @@ standard library package ShapeItems {
 							 wall#(if i==wallNumber ? 1 else i+1).edges#(2)) } }
 
 		/* Meeting apices. */
-		connection :MatesWith connect apex [wallNumber] to apex [wallNumber];
+		connection :MatesWith connect [wallNumber] apex to [wallNumber] apex;
 	}
 
 	item def Tetrahedron :> Pyramid {

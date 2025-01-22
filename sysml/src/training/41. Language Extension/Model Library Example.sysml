@@ -19,8 +19,8 @@ library package 'Model Library Example' {
 	abstract occurrence failures : Failure[*] nonunique :> situations;
 	
 	abstract connection def Causation :> Occurrences::HappensBefore {
-		end cause : Situation[*];
-		end effect : Situation[*];
+		end [*] ref cause : Situation;
+		end [*] ref effect : Situation;
 	}
 	
 	abstract connection causations : Causation[*] nonunique;

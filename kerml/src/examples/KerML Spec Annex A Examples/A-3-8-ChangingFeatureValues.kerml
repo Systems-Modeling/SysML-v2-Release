@@ -15,11 +15,11 @@ package ChangingFeatureValuesModelToBeExecuted {
 		step dry : Dry [*] {
 			redefines objectToDry = objectToFinish;
 		}
-		succession p_before_d first paint [1] then dry [1];
+		succession p_before_d first [1] paint then [1] dry;
 		step ship : Ship [*] {
 			redefines objectToShip = objectToFinish;
 		}
-		succession d_before_s first dry [1] then ship [1];
+		succession d_before_s first [1] dry then [1] ship;
 	}
 
 	struct Product {
@@ -38,7 +38,7 @@ package ChangingFeatureValuesModelToBeExecuted {
 			in redefines replacementValues = false;
 		}
 
-		succession p_before_p first painting [1] then painted [1];
+		succession p_before_p first [1] painting then [1] painted;
 		step painted : FeatureWritePerformance [*] {
 			in redefines onOccurrence : Product = objectToPaint {
 				redefines startingAt : Product {

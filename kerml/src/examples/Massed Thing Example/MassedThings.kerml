@@ -7,7 +7,7 @@ package MassedThings {
 	}
 	
 	public assoc MassedThingAssembly {
-		public end assembly: MassedThing[0..1];
-		public end parts: MassedThing[0..*];
+		public end [0..1] feature assembly: MassedThing;
+		public end [0..*] feature parts: MassedThing;
 	}
 }

@@ -10,7 +10,7 @@ standard library package Performances {
 	private import Occurrences::occurrences;
 	private import Occurrences::HappensDuring;
 	private import Objects::Object;
-	private import Objects::BinaryLinkObject;
+	private import Links::BinaryLink;
 	private import Metaobjects::Metaobject;
 	private import Transfers::Transfer;
 	private import Transfers::transfers;
@@ -58,7 +58,7 @@ standard library package Performances {
 			 * Defaults to the root of the subperformance composition tree.
 			 */
 		}
-		connector :HappensDuring from self[1] to thisPerformance[1]; 
+		connector :HappensDuring from [1] self to [1] thisPerformance; 
 		
 		composite step subperformances: Performance[0..*] subsets enclosedPerformances, suboccurrences
 			intersects enclosedPerformances, suboccurrences {
@@ -166,25 +166,25 @@ standard library package Performances {
 		return : Anything[0..0];
 	}
 
-	assoc all Involves specializes BinaryLinkObject {
+	assoc all InvolvedIn specializes BinaryLink { 
 		doc
 		/*
-		 * Involves asserts that the Behavior carried out by the involvingPerformance involves the
-		 * involvedObject.
+		 * InvolvedIn asserts that the involvedObject is involved in the Behavior carried out by the 
+		 * involvingPerformance.
 		 */
 		 
-		end feature involvingPerformance: Performance[0..*] redefines source subsets involvedObject.involvingPerformances;
-		end feature involvedObject: Object[0..*] redefines target subsets involvingPerformance.involvedObjects;
+		end feature involvedObject: Object redefines source crosses involvingPerformance.involvedObjects;
+		end feature involvingPerformance: Performance redefines target crosses involvedObject.involvingPerformances;
 	}
 	
-	assoc all Performs specializes Involves {
+	assoc all Performs specializes InvolvedIn {
 		doc
 		/*
-		 * Performance asserts that the performer enacts the Behavior carried out by the performance.
+		 * Performs asserts that the performer enacts the Behavior carried out by the performance.
 		 */
 	
-	 	end feature performerObject: Object[0..*] redefines involvedObject subsets performance.performers;
-	 	end feature performance: Performance[0..*] redefines involvingPerformance subsets performerObject.enactedPerformances;
+	 	end feature performerObject: Object redefines involvedObject crosses performance.performers;
+	 	end feature performance: Performance redefines involvingPerformance crosses performerObject.enactedPerformances;
 	 }
 
 	abstract step performances: Performance[0..*] nonunique subsets occurrences {

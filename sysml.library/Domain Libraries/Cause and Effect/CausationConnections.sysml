@@ -41,7 +41,7 @@ standard library package CausationConnections {
 			isEmpty(intersection(causes, effects))
 		}
 		
-		private succession causalOrdering first causes.startShot[nCauses] then effects[nEffects] {
+		private succession causalOrdering first [nCauses] causes.startShot then [nEffects] effects {
 			doc /* All causes must exist before all effects. */
 			attribute nCauses = size(causes);
 			attribute nEffects = size(effects);
@@ -61,11 +61,9 @@ standard library package CausationConnections {
 		 * connections with multiple causes.)
 		 */
 		 
-		end occurrence theCause[*] :>> causes :>> source {
-			doc /* The single causing occurrence. */
-		}
+		end theCauses [*] occurrence theCause :>> causes :>> source;
 		
-		end occurrence theEffect[*] :>> effects :>> target {
+		end theEffects [*] occurrence theEffect :>> effects :>> target {
 			doc /* The single effect occurrence resulting from the cause. */
 		}
 	}

@@ -97,25 +97,25 @@ package AHFNorwaySequences {
 			
 			// Successions on each lifetime
 			// tlu
-			succession first call_getItems.startShot
-			then returnack.endShot;	
+			succession first call_getItems.start
+			then returnack.done;	
 			// apisp (taking both ports)
-			succession first publish_returnallitems.startShot
-			then call_getItems.endShot;
-			succession first call_getItems.endShot
-			then returnallitems.startShot;
-			succession first returnallitems.startShot
-			then returnack.startShot;
+			succession first publish_returnallitems.start
+			then call_getItems.done;
+			succession first call_getItems.done
+			then returnallitems.start;
+			succession first returnallitems.start
+			then returnack.start;
 			// MQTTServer
-			succession first publish_returnallitems.endShot
-			then subscribe_returnallitems.endShot;
+			succession first publish_returnallitems.done
+			then subscribe_returnallitems.done;
 			succession first subscribe_returnallitems
-			then returnallitems.endShot;
-			succession first returnallitems.endShot
-			then sendallitems.startShot;
+			then returnallitems.done;
+			succession first returnallitems.done
+			then sendallitems.start;
 			// apisc
-			succession first subscribe_returnallitems.startShot
-			then sendallitems.endShot;
+			succession first subscribe_returnallitems.start
+			then sendallitems.done;
 		}
 		
 	}

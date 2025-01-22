@@ -29,7 +29,7 @@ standard library package Objects {
 
 		feature self: Object redefines Occurrence::self;
 		
-		composite subobjects: Object[0..*] subsets objects, suboccurrences
+		composite feature subobjects: Object[0..*] subsets objects, suboccurrences
 			intersects objects, suboccurrences {
 			doc
 			/*

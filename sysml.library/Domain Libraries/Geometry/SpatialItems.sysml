@@ -67,7 +67,7 @@ standard library package SpatialItems {
 			 * coordinate frame as the SpatialItem they make up.  A SpatialItem without componentItems occurs
 			 * on its own, separately from its subitems.
 			 */		
-			item :>> localClock default (that as SpatialItem).localClock;
+			item :>> SpatialItem::localClock, subitems::localClock default (that as SpatialItem).localClock;
 			attribute :>> coordinateFrame {
 				attribute :>> mRefs default (that.that as SpatialItem).coordinateFrame.mRefs;
 				attribute :>> transformation[1] default nullTransformation {

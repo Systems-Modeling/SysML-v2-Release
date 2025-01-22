@@ -12,33 +12,33 @@ package DecisionsAndMergesModelToBeExecuted {
 	behavior Manufacture {
 		  /* Before decision. */
 		step admit : Admit [1];
-		succession a_before_i first admit [1] then inspect [1];
+		succession a_before_i first [1] admit then [1] inspect;
 
 		  /* Decision. */
 		step inspect : DecisionPerformance [*];
 
 		  /* Two decision branches. */
-		succession i_before_f first inspect [1] then finish [0..1];
+		succession i_before_f first [1] inspect then [0..1] finish;
 		step finish : Touchup [*];
-		succession i_before_r first inspect [1] then recycle [0..1];
+		succession i_before_r first [1] inspect then [0..1] recycle;
 		step recycle : MarkForRecycling [*];
 
 		  /* Two merge branches. */
-		succession f_before_ms first finish [0..1] then mShip [1];
-		succession r_before_ms first recycle [0..1] then mShip [1];
+		succession f_before_ms first [0..1] finish then [1] mShip;
+		succession r_before_ms first [0..1] recycle then [1] mShip;
 
 		  /* Merge */
 		step mShip : MergePerformance [*];
 
 		  /* After merge */
-		succession ms_before_s first mShip [1] then ship [1];
+		succession ms_before_s first [1] mShip then [1] ship;
 		step ship : Ship [*];
 
 		  /* Decision and merge timing constraints. */
 		feature inspectOutgoingHBLinks : HappensBefore [*] unions i_before_f, i_before_r;
-		connector bindIOHBL : SelfLink from inspectOutgoingHBLinks [1] to inspect.outgoingHBLink [1];
+		connector bindIOHBL : SelfLink from [1] inspectOutgoingHBLinks to [1] inspect.outgoingHBLink;
 		feature mShipIncomingHBLinks : HappensBefore [*] unions f_before_ms, r_before_ms;
-		connector bindmSIHBL : SelfLink from mShipIncomingHBLinks [1] to mShip.incomingHBLink [1];
+		connector bindmSIHBL : SelfLink from [1] mShipIncomingHBLinks to [1] mShip.incomingHBLink;
 	}
 	behavior Admit;
 	behavior Touchup;

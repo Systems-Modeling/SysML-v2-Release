@@ -21,7 +21,7 @@ standard library package Transfers {
 		 * to the target of the interaction.
 		 */
 	
-		end feature source: Occurrence[0..*] redefines BinaryLink::source {
+		end feature source: Occurrence redefines BinaryLink::source {
 			doc
 			/*
 			 * The entity whose output is the source of the items to be transferred.
@@ -30,7 +30,7 @@ standard library package Transfers {
 			feature sourceOutput: Occurrence[0..*];
 		}
 		
-		end feature target: Occurrence[0..*] redefines BinaryLink::target {
+		end feature target: Occurrence redefines BinaryLink::target {
 			doc
 			/*
 			 * The entity whose input is the target of the items to be transferred.
@@ -56,7 +56,7 @@ standard library package Transfers {
 		feature itemNum: Natural [1] = size(item);
 		
 		private instantNum: Natural[1] = if isInstant? 1 else 0;
-		private binding instant[instantNum] of startShot[0..1] = endShot[0..1] {
+		private binding instant[instantNum] of [0..1] startShot = [0..1] endShot {
 			doc
 			/*
 			 * If isInstant is true, then the start and end of the transfer happen at the same time.
@@ -103,8 +103,8 @@ standard library package Transfers {
 			 * The output of the items from the sourceOutput.
 			 */
 		
-			end transferSource references source[1];
-			end transferPayload references item[itemNum] subsets transferSource.sourceOutput;
+			end [1] feature transferSource references source;
+			end [itemNum] feature transferPayload references item subsets transferSource.sourceOutput;
 		}
 		
 		connector targetInputLink: BinaryLinkObject[itemNum] {
@@ -113,11 +113,11 @@ standard library package Transfers {
 			 * The input of the items to the targetInput.
 			 */
 		
-			end transferTarget references target[1];
-			end transferPayload references item[itemNum] subsets transferTarget.targetInput;
+			end [1] feature transferTarget references target;
+			end [itemNum] feature transferPayload references item subsets transferTarget.targetInput;
 		}
 		
-		private connector sending: HappensDuring[itemNum] from startShot[1] to sourceOutputLink[itemNum] {
+		private connector sending: HappensDuring[itemNum] from [1] startShot to [itemNum] sourceOutputLink {
 			doc
 			/*
 			 * The start of the transfer happens during the output of each of the items from the
@@ -125,7 +125,7 @@ standard library package Transfers {
 			 */
 		}
 		
-		private connector moving: HappensWhile[0..*] from sourceOutputLink.endShot[0..*] to startShot[0..1] {
+		private connector moving: HappensWhile[0..*] from [0..*] sourceOutputLink.endShot to [0..1] startShot {
 			doc
 			/*
 			 * If isMove is true, then all items leave the source at the start
@@ -134,7 +134,7 @@ standard library package Transfers {
 		}
 		private inv { isMove implies size(moving) == size(sourceOutputLink) }
 		
-		private connector pushing: HappensWhile[0..*] from sourceOutputLink.startShot[0..*] to startShot[0..1] {
+		private connector pushing: HappensWhile[0..*] from [0..*] sourceOutputLink.startShot to [0..1] startShot {
 			doc
 			/*
 			 * If isPush is true, then the transfer begins when the items are available
@@ -143,7 +143,7 @@ standard library package Transfers {
 		}
 		private inv { isPush implies size(pushing) == size(sourceOutputLink) }
 		
-		private connector delivering: HappensWhile[itemNum] from targetInputLink.startShot[itemNum] to endShot[1] {
+		private connector delivering: HappensWhile[itemNum] from [itemNum] targetInputLink.startShot to [1] endShot {
 			doc
 			/*
 			 * The input of each of the items to the target starts at the end of the transfer.
@@ -158,8 +158,8 @@ standard library package Transfers {
 		 * the transfer, which happens before the target.
 		 */
 	
-	 	end feature source: Occurrence[0..*] redefines Transfer::source, HappensBefore::earlierOccurrence;
-	  	end feature target: Occurrence[0..*] redefines Transfer::target, HappensBefore::laterOccurrence;
+	 	end feature source: Occurrence redefines Transfer::source, HappensBefore::earlierOccurrence;
+	  	end feature target: Occurrence redefines Transfer::target, HappensBefore::laterOccurrence;
 	  	
 	  	feature self: TransferBefore redefines Performance::self;
 	  	
@@ -173,8 +173,8 @@ standard library package Transfers {
 		 * FlowTransferBefore is a FlowTransfer that is also a TransferBefore. 
 		 */
 		 
-        end feature source: Occurrence[0..*] redefines Transfer::source, TransferBefore::source;
-        end feature target: Occurrence[0..*] redefines Transfer::target, TransferBefore::target;		 
+        end feature source: Occurrence redefines Transfer::source, TransferBefore::source;
+        end feature target: Occurrence redefines Transfer::target, TransferBefore::target;		 
 	}
 	
 	abstract flow transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
@@ -184,8 +184,8 @@ standard library package Transfers {
 		 * Transfer.
 		 */
 	
-		end feature source: Occurrence[0..*] redefines Transfer::source, binaryLinks::source;
-		end feature target: Occurrence[0..*] redefines Transfer::target, binaryLinks::target;
+		end feature source: Occurrence redefines Transfer::source, binaryLinks::source;
+		end feature target: Occurrence redefines Transfer::target, binaryLinks::target;
 	}
 	
 	abstract flow messageTransfers: MessageTransfer[0..*] nonunique subsets transfers {
@@ -194,8 +194,8 @@ standard library package Transfers {
 		 * messageTransfers is a specialization of transfers restricted to type MessageTransfers.
 		 */
 		
-		end feature source: Occurrence[0..*] redefines MessageTransfer::source, transfers::source;
-		end feature target: Occurrence[0..*] redefines MessageTransfer::target, transfers::target;		
+		end feature source: Occurrence redefines MessageTransfer::source, transfers::source;
+		end feature target: Occurrence redefines MessageTransfer::target, transfers::target;		
 	}
 	
 	abstract flow flowTransfers: FlowTransfer[0..*] nonunique subsets transfers {
@@ -205,8 +205,8 @@ standard library package Transfers {
 		 * It is the default subsetting for non-succession item flows.
 		 */
 		 
-		end feature source: Occurrence[0..*] redefines FlowTransfer::source, transfers::source;
-		end feature target: Occurrence[0..*] redefines FlowTransfer::target, transfers::target;
+		end feature source: Occurrence redefines FlowTransfer::source, transfers::source;
+		end feature target: Occurrence redefines FlowTransfer::target, transfers::target;
 	}
 	  
 	abstract flow transfersBefore: TransferBefore[0..*] nonunique subsets transfers, happensBeforeLinks
@@ -217,8 +217,8 @@ standard library package Transfers {
 		 * type TransferBefore.
 		 */
 	
-		end feature source: Occurrence[0..*] redefines TransferBefore::source, transfers::source, happensBeforeLinks::earlierOccurrence;
-		end feature target: Occurrence[0..*] redefines TransferBefore::target, transfers::target, happensBeforeLinks::laterOccurrence;
+		end feature source: Occurrence redefines TransferBefore::source, transfers::source, happensBeforeLinks::earlierOccurrence;
+		end feature target: Occurrence redefines TransferBefore::target, transfers::target, happensBeforeLinks::laterOccurrence;
 	}
 	
 	abstract flow flowTransfersBefore: FlowTransferBefore[0..*] nonunique subsets flowTransfers, transfersBefore
@@ -229,8 +229,8 @@ standard library package Transfers {
 		 * to type FlowTransferBefore. IT is the default subsetting for succession item flows.
 		 */
     
-		end feature source: Occurrence[0..*] redefines FlowTransferBefore::source, flowTransfers::source, transfersBefore::source;
-		end feature target: Occurrence[0..*] redefines FlowTransferBefore::target, flowTransfers::target, transfersBefore::target;
+		end feature source: Occurrence redefines FlowTransferBefore::source, flowTransfers::source, transfersBefore::source;
+		end feature target: Occurrence redefines FlowTransferBefore::target, flowTransfers::target, transfersBefore::target;
 	}
 
 	behavior SendPerformance specializes Performance  {
@@ -246,7 +246,7 @@ standard library package Transfers {
 		feature sentTransfer: MessageTransfer [1] subsets sender.outgoingTransfersFromSelf {
             feature redefines item = sentItem;
 		}
-		binding receiver.incomingTransfersToSelf[0..1] = sentTransfer[1];
+		binding [0..1] receiver.incomingTransfersToSelf = [1] sentTransfer;
 
 		succession self then sentTransfer;
 	}

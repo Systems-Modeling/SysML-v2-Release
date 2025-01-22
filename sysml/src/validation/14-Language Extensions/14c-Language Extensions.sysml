@@ -36,8 +36,8 @@ package '14c-Language-Extensions' {
 		abstract item fmeaItems : FMEAItem[*] nonunique;
 				
 		connection def Causation :> Occurrences::HappensBefore {
-			end cause[*]: Situation;
-			end effect[*]: Situation;
+			end [*] ref cause: Situation;
+			end [*] ref effect: Situation;
 		}
 		
 		abstract connection causations : Causation[*] nonunique;
@@ -53,15 +53,15 @@ package '14c-Language-Extensions' {
 		enum def SIL { A; B; C; }
 		
 		connection def Violation {
-			end sit[*]: Situation;
-			end req[*]: FMEARequirement;
+			end [*] ref sit: Situation;
+			end [*] ref req: FMEARequirement;
 		}
 		
 		abstract connection violations : Violation[*] nonunique;
 		
 		abstract connection def ControllingMeasure {
-			end sit[*]: Situation;
-			end req[*]: FMEARequirement;
+			end [*] ref sit: Situation;
+			end [*] ref req: FMEARequirement;
 		}
 		
 		connection def Prevention :> ControllingMeasure;

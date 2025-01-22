@@ -4,8 +4,8 @@ package Redefinition {
 		feature transferSource;
 		feature item;
 		assoc SourceOutputLink specializes Objects::BinaryLinkObject {
-			end source: Occurrence[1];
-			end target: Occurrence[1..*];
+			end [1] feature source: Occurrence;
+			end [1..*] feature target: Occurrence;
 		}
 		connector sourceOutputLink: SourceOutputLink[1..*] from transferSource to item {
 			feature startShot: Occurrence redefines SourceOutputLink::startShot;

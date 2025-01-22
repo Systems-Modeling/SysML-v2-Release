@@ -75,7 +75,7 @@ standard library package ControlPerformances {
 		
 		in redefines ifTest;
 		in thenClause : Occurrence[0..1];
-		succession ifTest[1] then thenClause[0..1];
+		succession [1] ifTest then [0..1] thenClause;
 		inv { ifTest() == thenClause->notEmpty() }
 	}
 	
@@ -88,7 +88,7 @@ standard library package ControlPerformances {
 
 		in redefines ifTest;
 		in elseClause : Occurrence[0..1];
-		succession ifTest[1] then elseClause[0..1];
+		succession [1] ifTest then [0..1] elseClause;
 		inv { not ifTest() == elseClause->notEmpty() }
 	}
 	
@@ -102,7 +102,7 @@ standard library package ControlPerformances {
 		in redefines ifTest;
 		in redefines thenClause;
         in elseClause : Occurrence[0..1];
-        succession ifTest[1] then elseClause[0..1];
+        succession [1] ifTest then [0..1] elseClause;
         inv { not ifTest() == elseClause->notEmpty() }
 	}
 	
@@ -122,13 +122,13 @@ standard library package ControlPerformances {
 		step whileDecision : IfThenPerformance[1..*];
 		step untilDecision : IfElsePerformance[0..*];
 		
-		binding whileDecision.ifTest[1] = whileTest[1];
-		binding whileDecision.thenClause[1] = body[1];
+		binding [1] whileDecision.ifTest = [1] whileTest;
+		binding [1] whileDecision.thenClause = [1] body;
 		
 		succession body then untilDecision;
 		
-		binding untilDecision.ifTest[1] = untilTest[1];
-		binding loopBack of untilDecision.elseClause[0..1] = whileDecision[1];
+		binding [1] untilDecision.ifTest = [1] untilTest;
+		binding loopBack of [0..1] untilDecision.elseClause = [1] whileDecision;
 		
 		inv { loopBack->size() == whileDecision->size() - 1 }
 	}

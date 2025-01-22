@@ -114,13 +114,13 @@ standard library package FeatureReferencingPerformances {
 	  	inv { not beforeValues->equals(afterValues) }
 	
 	  	private connector : HappensWhile 
-	  		from onOccurrence.monitoredOccurrence.beforeTimeSlice.startShot[1] to startShot[1];
+	  		from [1] onOccurrence.monitoredOccurrence.beforeTimeSlice.startShot to [1] startShot;
 	  	private connector : SelfSameLifeLink 
-	  		from onOccurrence.monitoredOccurrence.beforeTimeSlice.monitoredFeature[1] to beforeValues[1];
+	  		from [1] onOccurrence.monitoredOccurrence.beforeTimeSlice.monitoredFeature to [1] beforeValues;
 	  	private connector : SelfSameLifeLink 
-	  		from onOccurrence.monitoredOccurrence.afterSnapshot.monitoredFeature[1] to afterValues[1];
+	  		from [1] onOccurrence.monitoredOccurrence.afterSnapshot.monitoredFeature to [1] afterValues;
 	  	protected connector endWhen : HappensBefore 
-	  		from onOccurrence.monitoredOccurrence.afterSnapshot[1] to endShot[1];
+	  		from [1] onOccurrence.monitoredOccurrence.afterSnapshot to [1] endShot;
 	}
 		
 	behavior EvaluationResultMonitorPerformance specializes FeatureMonitorPerformance {
@@ -173,10 +173,10 @@ standard library package FeatureReferencingPerformances {
     		feature redefines endWhen : HappensJustBefore;
   		}
 
-  		private connector : HappensJustBefore from monitor1 [1] to monitor2 [0..1];
+  		private connector : HappensJustBefore from [1] monitor1 to [0..1] monitor2;
   		inv { isEmpty(monitor2) == (monitor1.afterValues == isToTrue) }
 
-  		private binding monitor1.onOccurrence[1] = onOccurrence[1];
-  		private binding monitor2.onOccurrence[1] = onOccurrence[1];
+  		private binding [1] monitor1.onOccurrence = [1] onOccurrence;
+  		private binding [1] monitor2.onOccurrence = [1] onOccurrence;
 	}
 }

@@ -35,8 +35,8 @@ package 'Connections Example' {
 		part hub : Hub[1] {
 			part h : LugBoltThreadableHole[5];
 		}
-		connect lugBoltJoints[0..1] to wheel.w.mountingHoles[1];
-		connect lugBoltJoints[0..1] to hub.h[1];
+		connect [0..1] lugBoltJoints to [1] wheel.w.mountingHoles;
+		connect [0..1] lugBoltJoints to [1] hub.h;
 	}
 	
 }

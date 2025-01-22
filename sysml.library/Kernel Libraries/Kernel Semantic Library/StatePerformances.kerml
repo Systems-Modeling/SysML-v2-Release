@@ -40,9 +40,9 @@ standard library package StatePerformances {
 		
 		step nonDoMiddle[*] subsets middle = middle->excluding(do);
 
-		private succession entry[1] then middle[*];
-		private succession do.startShot[1] then nonDoMiddle.startShot[*];
-		private succession middle[*] then exit[1];
+		private succession [1] entry then [*] middle;
+		private succession [1] do.startShot then [*] nonDoMiddle.startShot;
+		private succession [*] middle then [1] exit;
 
 
 		readonly feature incomingTransitionTrigger : MessageTransfer [0..1] default null {
@@ -92,7 +92,7 @@ standard library package StatePerformances {
 					  substatePerformances->collect{in sp:StatePerformance; allSubstatePerformances(sp) } );
 		}
 		
-		private succession acceptable[*] then exit[1];
+		private succession [*] acceptable then [1] exit;
 		
 		feature redefines isRunToCompletion default this.isRunToCompletion;
 		feature redefines runToCompletionScope default this.runToCompletionScope; 
@@ -121,7 +121,7 @@ standard library package StatePerformances {
 			feature redefines accepted;
 			feature redefines StatePerformance::acceptable;
 		}
-		private succession transitionLinkSource.nonDoMiddle[*] then Performance::self[1];
+		private succession [*] transitionLinkSource.nonDoMiddle then [1] Performance::self;
 
 		private feature transitionLinkTarget [0..1] : Occurrence = transitionLink.laterOccurrence {
 			inv { (that istype StatePerformance) implies
@@ -135,11 +135,11 @@ standard library package StatePerformances {
 		}
 		
 		private feature tdNum: Natural [1] = if not isTriggerDuring ? 0 else size(trigger);
-		private connector linkTriggerDuring: HappensDuring[tdNum] from trigger.endShot[*] to transitionLinkSource[0..1];
+		private connector linkTriggerDuring: HappensDuring[tdNum] from [*] trigger.endShot to [0..1] transitionLinkSource;
 		
-		private succession all acceptable[0..*] then guard[*];
-		private succession guard[*] then transitionLinkSource.exit[1];
+		private succession all [*] acceptable then [*] guard;
+		private succession [*] guard then [1] transitionLinkSource.exit;
 
-		private succession accept[accNum] then transitionLinkSource.exit[1];
+		private succession [accNum] accept then [1] transitionLinkSource.exit;
 	}
 }

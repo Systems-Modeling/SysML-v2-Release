@@ -16,8 +16,8 @@ standard library package Allocations {
 		 * of all AllocationDefinitions.
 		 */
 	
-		end source: Anything[0..*] :>> BinaryConnection::source;
-		end target: Anything[0..*] :>> BinaryConnection::target;
+		end source: Anything :>> BinaryConnection::source;
+		end target: Anything :>> BinaryConnection::target;
 	}
 	
 	abstract allocation allocations: Allocation[0..*] nonunique :> binaryConnections {

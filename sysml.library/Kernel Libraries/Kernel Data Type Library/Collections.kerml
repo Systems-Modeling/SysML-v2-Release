@@ -97,7 +97,7 @@ standard library package Collections {
 		 * OrderedSet is a variable-size, ordered collection of unique elements.
 		 */	
 		
-		feature elements[0..*] ordered :>> OrderedCollection::elements {
+		feature elements[0..*] ordered :>> OrderedCollection::elements, UniqueCollection::elements {
 			/* Note: Redefinition of `elements` is unique by default. */
 		}
 	}

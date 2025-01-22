@@ -7,11 +7,11 @@ package 'Interface Decomposition Example' {
 	port def FaucetInlet;
 	
 	interface def WaterDelivery {
-		end suppliedBy : SpigotBank[1] {
+		end [1] port suppliedBy : SpigotBank {
 			port hot : Spigot;
 			port cold : Spigot;
 		}
-		end deliveredTo : Faucet[1..*] {
+		end [1..*] port deliveredTo : Faucet {
 			port hot : FaucetInlet;
 			port cold : FaucetInlet;
 		}
