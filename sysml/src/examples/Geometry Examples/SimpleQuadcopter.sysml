@@ -31,7 +31,7 @@ package SimpleQuadcopter {
             }
             attribute :>> coordinateFrame {
                 :>> transformation : TranslationRotationSequence {
-                    :>> elements = (Translation( (0, shape.width/2, 0)[source]));
+                    :>> elements = (new Translation( (0, shape.width/2, 0)[source]));
                 }
             }        
         }
@@ -41,7 +41,7 @@ package SimpleQuadcopter {
             item :>> shape = motorShape.shape;
             attribute :>> coordinateFrame {
                 :>> transformation : TranslationRotationSequence {
-                    :>> elements = (Translation( (175, 0, -1)[source]));
+                    :>> elements = (new Translation( (175, 0, -1)[source]));
                 }
             }
         }
@@ -64,7 +64,7 @@ package SimpleQuadcopter {
             }
             attribute :>> coordinateFrame {
                 :>> transformation : TranslationRotationSequence {
-                    :>> elements = (Translation( (175, 0, 31)[source]));
+                    :>> elements = (new Translation( (175, 0, 31)[source]));
                 }
             }
         }
@@ -73,7 +73,7 @@ package SimpleQuadcopter {
             item :>> shape = motorShape.shape;
             attribute :>> coordinateFrame {
                 :>> transformation : TranslationRotationSequence {
-                    :>> elements = (Translation( (175, 0, 0)[source]));
+                    :>> elements = (new Translation( (175, 0, 0)[source]));
                 }
             }
         }
@@ -103,7 +103,7 @@ package SimpleQuadcopter {
             }
             attribute :>> coordinateFrame {
                 :>> transformation : TranslationRotationSequence {
-                    :>> elements = (Rotation( (0, 1, 0)[source], 180['°']));
+                    :>> elements = (new Rotation( (0, 1, 0)[source], 180['°']));
                 }
             }
         }
@@ -132,7 +132,7 @@ package SimpleQuadcopter {
                 }
                 attribute :>> coordinateFrame {
                     :>> transformation : TranslationRotationSequence {
-                        :>> elements = (Translation( (0, shape.width/2, 0)[source]));
+                        :>> elements = (new Translation( (0, shape.width/2, 0)[source]));
                     }
                 }        
             }
@@ -146,8 +146,8 @@ package SimpleQuadcopter {
                 }
                 attribute :>> coordinateFrame {
                     :>> transformation : TranslationRotationSequence {
-                        :>> elements = (Translation( (0, -shape.length/sqrt(2), -10)[source]), 
-                                        Rotation((0, 0, 1)[source], 45['°']));
+                        :>> elements = (new Translation( (0, -shape.length/sqrt(2), -10)[source]), 
+                                        new Rotation((0, 0, 1)[source], 45['°']));
                     }
                 }        
             }
@@ -170,32 +170,32 @@ package SimpleQuadcopter {
         part strut1 : Strut {
             attribute :>> coordinateFrame {
                 :>> transformation : TranslationRotationSequence {
-                    :>> elements = (Translation( (xStrut.num, yStrut.num, zStrut.num)[source]), 
-                                    Rotation((0, 0, 1)[source], 45['°']));
+                    :>> elements = (new Translation( (xStrut.num, yStrut.num, zStrut.num)[source]), 
+                                    new Rotation((0, 0, 1)[source], 45['°']));
                 }
             }        
         }
         part strut2 : Strut {
             attribute :>> coordinateFrame {
                 :>> transformation : TranslationRotationSequence {
-                    :>> elements = (Translation( (-xStrut.num, yStrut.num, zStrut.num)[source]), 
-                                    Rotation((0, 0, 1)[source], 135['°']));
+                    :>> elements = (new Translation( (-xStrut.num, yStrut.num, zStrut.num)[source]), 
+                                    new Rotation((0, 0, 1)[source], 135['°']));
                 }
             }        
         }
         part strut3 : Strut {
             attribute :>> coordinateFrame {
                 :>> transformation : TranslationRotationSequence {
-                    :>> elements = (Translation( (-xStrut.num, -yStrut.num, zStrut.num)[source]), 
-                                    Rotation((0, 0, 1)[source], 225['°']));
+                    :>> elements = (new Translation( (-xStrut.num, -yStrut.num, zStrut.num)[source]), 
+                                    new Rotation((0, 0, 1)[source], 225['°']));
                 }
             }        
         }
         part strut4 : Strut {
             attribute :>> coordinateFrame {
                 :>> transformation : TranslationRotationSequence {
-                    :>> elements = (Translation( (xStrut.num, -yStrut.num, zStrut.num)[source]), 
-                                    Rotation((0, 0, 1)[source], 315['°']));
+                    :>> elements = (new Translation( (xStrut.num, -yStrut.num, zStrut.num)[source]), 
+                                    new Rotation((0, 0, 1)[source], 315['°']));
                 }
             }        
         }
@@ -203,32 +203,32 @@ package SimpleQuadcopter {
         part propellerMotorAssy1 : PropellerMotorAssy {
             attribute :>> coordinateFrame {
                 :>> transformation : TranslationRotationSequence {
-                    :>> elements = (Translation( (xStrut.num, yStrut.num, zPMAssy.num)[source]), 
-                                    Rotation((0, 0, 1)[source], 45['°']));
+                    :>> elements = (new Translation( (xStrut.num, yStrut.num, zPMAssy.num)[source]), 
+                                    new Rotation((0, 0, 1)[source], 45['°']));
                 }
             }        
         }
         part propellerMotorAssy2 : PropellerMotorAssy {
             attribute :>> coordinateFrame {
                 :>> transformation : TranslationRotationSequence {
-                    :>> elements = (Translation( (-xStrut.num, yStrut.num, zPMAssy.num)[source]), 
-                                    Rotation((0, 0, 1)[source], 135['°']));
+                    :>> elements = (new Translation( (-xStrut.num, yStrut.num, zPMAssy.num)[source]), 
+                                    new Rotation((0, 0, 1)[source], 135['°']));
                 }
             }        
         }
         part propellerMotorAssy3 : PropellerMotorAssy {
             attribute :>> coordinateFrame {
                 :>> transformation : TranslationRotationSequence {
-                    :>> elements = (Translation( (-xStrut.num, -yStrut.num, zPMAssy.num)[source]), 
-                                    Rotation((0, 0, 1)[source], 225['°']));
+                    :>> elements = (new Translation( (-xStrut.num, -yStrut.num, zPMAssy.num)[source]), 
+                                    new Rotation((0, 0, 1)[source], 225['°']));
                 }
             }        
         }
         part propellerMotorAssy4 : PropellerMotorAssy {
             attribute :>> coordinateFrame {
                 :>> transformation : TranslationRotationSequence {
-                    :>> elements = (Translation( (xStrut.num, -yStrut.num, zPMAssy.num)[source]), 
-                                    Rotation((0, 0, 1)[source], 315['°']));
+                    :>> elements = (new Translation( (xStrut.num, -yStrut.num, zPMAssy.num)[source]), 
+                                    new Rotation((0, 0, 1)[source], 315['°']));
                 }
             }        
         }
@@ -237,8 +237,8 @@ package SimpleQuadcopter {
         part camera : Camera {
             attribute :>> coordinateFrame {
                 :>> transformation : TranslationRotationSequence {
-                    :>> elements = (Translation( (59, 0, 2)[source]), 
-                                    Rotation((0, 1, 0)[source], 50['°']));
+                    :>> elements = (new Translation( (59, 0, 2)[source]), 
+                                    new Rotation((0, 1, 0)[source], 50['°']));
                 }
             }        
         }

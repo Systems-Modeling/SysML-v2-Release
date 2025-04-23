@@ -23,9 +23,9 @@ package ChangingFeatureValuesModelToBeExecuted {
 	}
 
 	struct Product {
-		feature isPainted : Boolean [1] := false;
-		feature isDry : Boolean [1] := true;
-		feature isShipped : Boolean [1] := false;
+		var feature isPainted : Boolean [1] := false;
+		var feature isDry : Boolean [1] := true;
+		var feature isShipped : Boolean [1] := false;
 	}
 
 	behavior Paint {
@@ -80,9 +80,9 @@ package ChangingFeatureValuesExecution {
 	private import FeatureReferencingPerformances::FeatureWritePerformance;
 
 	struct ProductTimeSlice specializes Product {
-		readonly feature redefines isPainted;
-		readonly feature redefines isDry;
-		readonly feature redefines isShipped;
+		feature redefines isPainted;
+		feature redefines isDry;
+		feature redefines isShipped;
 	}
 
 	#atom

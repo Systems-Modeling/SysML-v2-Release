@@ -12,8 +12,8 @@ package 'Connections Example' {
 	part def LugBoltJoint;
 	
 	connection def PressureSeat {
-		end bead : TireBead[1];
-		end mountingRim : TireMountingRim[1];
+		end [1] part bead : TireBead;
+		end [1] part mountingRim : TireMountingRim;
 	}
 	
 	part wheelHubAssembly : WheelHubAssembly {

@@ -34,7 +34,7 @@ package 'Messaging Example' {
 				out item picture;
 			}
 			
-			then send Show(shoot.picture) via displayPort;
+			then send new Show(shoot.picture) via displayPort;
 		}
 	}
 }

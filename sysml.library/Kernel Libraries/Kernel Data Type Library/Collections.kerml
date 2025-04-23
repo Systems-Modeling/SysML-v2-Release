@@ -16,8 +16,7 @@ standard library package Collections {
 		doc
 		/*
 		 * Collection is the top level abstract supertype of all collection types.
-		 * The name `elements` is used to denote the elements, members or items of the collection.
-		 * Note: In many programming languages `items` is used but that would be confusing because of the SysML v2 Item concept.
+		 * The name elements is used to denote the members or contents of the collection.
 		 */
 		
 		feature elements[0..*] nonunique;

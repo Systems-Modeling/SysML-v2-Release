@@ -22,9 +22,9 @@ package 'For Loop Example' {
 		private attribute position := initialPosition;
 		private attribute speed := initialSpeed;
 		
-		for i in 1..powerProfile->size() {
+		for vehiclePower in powerProfile {
 			perform action dynamics : StraightLineDynamics {
-				in power = powerProfile#(i);
+				in power = vehiclePower;
 				in mass = vehicleMass;
 				in delta_t = deltaT;
 				in x_in = position;

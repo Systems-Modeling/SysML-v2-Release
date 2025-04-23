@@ -8,6 +8,11 @@ package Behaviors {
     }
     behavior B specializes A {
         in x1;
-        out y1;
+        out var y1;
+    }
+    class C {
+        var z = A().y;
+        step a : A;
+        binding z = a.y;
     }
 }

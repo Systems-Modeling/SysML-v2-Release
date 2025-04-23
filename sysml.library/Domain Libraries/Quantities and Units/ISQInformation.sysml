@@ -2,7 +2,7 @@ standard library package ISQInformation {
     doc
     /*
      * International System of Quantities and Units
-     * Generated on 2022-08-07T14:44:27Z from standard IEC-80000-13:2008 "Information science and technology"
+     * Generated on 2025-03-13T15:00:05Z from standard IEC-80000-13:2008 "Information science and technology"
      * see also https://www.iso.org/obp/ui/#iso:std:iec:80000:-13:ed-1:v1:en
      * 
      * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,

@@ -13,6 +13,6 @@ package DefaultValueTest {
 		attribute :>> m default = n;
 	}
 	
-	part v2 = W();
+	part v2 = new W();
 	
 }

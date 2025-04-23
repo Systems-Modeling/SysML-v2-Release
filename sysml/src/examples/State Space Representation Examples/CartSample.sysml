@@ -39,11 +39,11 @@ package CartSample {
                 calc :>> getDerivative { 
                 	in input: CartInput; 
                 	in stateSpace: CartState;
-                    CartStateDerivative(input.force / mass)
+                    new CartStateDerivative(input.force / mass)
                 }
                 calc :>> getOutput {
                 	in :>> stateSpace : CartState;
-                    CartOutput(stateSpace.velocity)
+                    new CartOutput(stateSpace.velocity)
                 }
             }
         }
@@ -54,7 +54,7 @@ package CartSample {
                 in input;
                 out output : PusherOutput;
                 calc :>> getOutput {
-                    PusherOutput(pusherForce)
+                    new PusherOutput(pusherForce)
                 }
             }
         }

@@ -34,7 +34,7 @@ standard library package Occurrences {
         
 		private import SequenceFunctions::*;
 
-		feature portionOfLife: Life[1] subsets portionOf;
+		feature portionOfLife: Life[1] subsets portionOf default self;
 
 		feature self: Occurrence[1] redefines Anything::self subsets timeSlices, spaceSlices, spaceTimeCoincidentOccurrences, sameLifeOccurrences;
 		feature sameLifeOccurrences: Occurrence[1..*] subsets things;
@@ -74,6 +74,9 @@ standard library package Occurrences {
 			 feature redefines incomingTransferSort default (that as Occurrence).incomingTransferSort;
 		}
 		
+		/* Occurrences may be suboccurrences of no more than one other occurrence. */		
+		feature superoccurrence: Occurrence[0..1] subsets occurrences inverse of suboccurrences;
+
 		feature withoutOccurrences: Occurrence[0..*] unions successors, predecessors, outsideOfOccurrences
 			inverse of withoutOccurrences {
 			doc
@@ -152,13 +155,17 @@ standard library package Occurrences {
 			 * including at least this occurrence.
 			 */
 
-			/* timeCoincidentOccurrences occurrences happen during each other. */
 			feature thatOccurrence: Occurrence[1] subsets longerOccurrence;
 			feature thisOccurrence: Occurrence[1] subsets shorterOccurrence;
 
+			/* timeCoincidentOccurrences occurrences happen during each other. */
 			connector :HappensDuring
 				from [1] shorterOccurrence references thisOccurrence
 				to [1] longerOccurrence references thatOccurrence;
+
+			/* timeCoincidentOccurrences is transitive */
+			subset thatOccurrence.timeCoincidentOccurrences
+				subsets thisOccurrence.timeCoincidentOccurrences;
 		}
 
 		feature spaceEnclosedOccurrences: Occurrence[1..*] subsets occurrences {
@@ -168,10 +175,14 @@ standard library package Occurrences {
 			 * including this one.
 			 */
 
-			/* spaceEnclosedOccurrences is transitive. */
 			feature largerSpace: Occurrence[1] subsets that;
 			feature smallerSpace: Occurrence[1] subsets self;
+
+			/* spaceEnclosedOccurrences is transitive. */
 			subset smallerSpace.spaceEnclosedOccurrences subsets largerSpace.spaceEnclosedOccurrences;
+
+			/* smallerSpace are outside occurrences that are outside their largerSpace */
+			subset smallerSpace.outsideOfOccurrences subsets largerSpace.outsideOfOccurrences;
 		}
 
 		feature all spaceTimeEnclosedOccurrences: Occurrence[1..*] subsets timeEnclosedOccurrences, spaceEnclosedOccurrences
@@ -181,6 +192,9 @@ standard library package Occurrences {
 			 * Occurrences that this one completely includes in both space and time,
 			 * including this one.
 			 */
+
+			/* spaceTimeEnclosedOccurrences is transitive */
+			subset largerSpace.spaceTimeEnclosedOccurrences subsets smallerSpace.spaceTimeEnclosedOccurrences;
 		}
 
 		feature all spaceTimeEnclosedPoints : Occurrence[1..*] subsets spaceTimeEnclosedOccurrences {
@@ -202,13 +216,17 @@ standard library package Occurrences {
 			 * and vice-versa, including this one.
 			 */
 
-			/* spaceTimeCoincidentOccurrences occurrences are inside of each other. */
 			feature redefines thatOccurrence subsets largerSpace;
 			feature redefines thisOccurrence subsets smallerSpace;
 
+			/* spaceTimeCoincidentOccurrences occurrences are inside of each other. */
 			connector :InsideOf
 				from [1] largerSpace references thatOccurrence
 				to [1] smallerSpace references thisOccurrence;
+
+			/* spaceTimeCoincidentOccurrences is transitive */
+			subset thatOccurrence.spaceTimeCoincidentOccurrences
+				subsets thisOccurrence.spaceTimeCoincidentOccurrences;
 		}
 
 		feature outsideOfOccurrences: Occurrence[0..*] subsets withoutOccurrences inverse of outsideOfOccurrences {
@@ -274,8 +292,10 @@ standard library package Occurrences {
 			doc
 			/*
 			 * All spaceTimeEnclosedOccurrences that have the same portionOfLife (considered the same
-			 * thing occurring), see portionof.
+			 * thing occurring).
 			 */
+
+            portion redefines portionOfLife = (that as Occurrence).portionOfLife;
 		}
 
 		feature portionOf : Occurrence[1..*] inverse of portions {
@@ -284,10 +304,6 @@ standard library package Occurrences {
 			 * Occurrences of which this occurrence is a portion, including at
 			 * least this occurrence.
 			 */
-
-			feature portionOccurrence: Occurrence[1] subsets that;
-			feature portionedOccurrence: Occurrence[1] subsets self;
-			binding [1] portionOccurrence.portionOfLife = [1] portionedOccurrence.portionOfLife;
 		}
 
 		portion feature timeSlices: Occurrence[1..*] subsets portions {
@@ -304,6 +320,12 @@ standard library package Occurrences {
 			 * Occurrences of which this occurrence is a time slice, including at least this
 			 * occurrence.
 			 */
+
+			feature timeSliceOccurrence: Occurrence[1] subsets that;
+			feature timeSlicedOccurrence: Occurrence[1] subsets self;
+
+			/* timeSliceOf is transitive */
+			subset timeSlicedOccurrence.timeSliceOf subsets timeSliceOccurrence.timeSliceOf;
 		}
 
 		portion feature all snapshots: Occurrence[1..*] subsets timeSlices {
@@ -353,6 +375,11 @@ standard library package Occurrences {
 			/*
 			 * The snapshot at the end of the occurrence in time.
 			 */
+
+			/* suboccurrences at the end of an Occurrence must also end. */
+			feature subendshot : Occurrence [0..*] chains self.suboccurrences.endShot {
+				  feature superendshot : Occurrence [1] subsets that;
+				  subset superendshot subsets self.timeCoincidentOccurrences; }
 		}
 
 		 connector :HappensJustBefore
@@ -383,6 +410,9 @@ standard library package Occurrences {
 			feature spaceSliceOccurrence: Occurrence[1] subsets that;
 			feature spaceSlicedOccurrence: Occurrence[1] subsets self;
 			inv { spaceSliceOccurrence.innerSpaceDimension <= spaceSlicedOccurrence.innerSpaceDimension }
+
+			/* spaceSliceOf is transitive */
+			subset spaceSlicedOccurrence.spaceSliceOf subsets spaceSliceOccurrence.spaceSliceOf;
 		}
 
 		portion feature spaceShots: Occurrence[1..*] subsets spaceSlices {
@@ -401,6 +431,9 @@ standard library package Occurrences {
 			feature spaceShotOccurrence: Occurrence[1] subsets that;
 			feature spaceShottedOccurrence: Occurrence[1] subsets self;
 			inv { spaceShotOccurrence.innerSpaceDimension < spaceShottedOccurrence.innerSpaceDimension }
+
+			/* spaceShotOf is transitive */
+			subset spaceShottedOccurrence.spaceShotOf subsets spaceShotOccurrence.spaceShotOf;
 		}
 
 		feature unionsOf: Set[0..*] {
@@ -416,7 +449,7 @@ standard library package Occurrences {
 			feature union: Occurrence[0..1];
 
 			connector :Within
-				  from [0..*] smallerOccurrence references elements
+				  from [0..*] smallerOccurrence references elements 
 				  to [1] largerOccurrence references union;
 			connector :Within
 				  from [0..*] smallerOccurrence references union.spaceTimeEnclosedPoints
@@ -584,7 +617,7 @@ standard library package Occurrences {
 		}
 		inv { isClosed == isEmpty((that as Occurrence).spaceBoundary) }
 
-		feature incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
+		var feature incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
 			doc
 			/*
 			 * The incoming transfers received by this occurrence.
@@ -621,7 +654,7 @@ standard library package Occurrences {
 			 */
 		}
 
-		feature all incomingTransfersToSelf subsets incomingTransfers {
+		var feature all incomingTransfersToSelf subsets incomingTransfers {
 			doc
 			/*
 			 * The incoming transfers with this occurrence as the target.
@@ -631,7 +664,7 @@ standard library package Occurrences {
 			end feature redefines target = that;
 		}
 
-		feature outgoingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
+		var feature outgoingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
 			doc
 			/*
 			 * The outgoing transfers sent from this occurrence.
@@ -641,7 +674,7 @@ standard library package Occurrences {
 			end feature redefines target;
 		}
 
-		feature all outgoingTransfersFromSelf subsets outgoingTransfers {
+		var feature all outgoingTransfersFromSelf subsets outgoingTransfers {
 			doc
 			/*
 			 * The outgoing transfers with this occurrence as the source.

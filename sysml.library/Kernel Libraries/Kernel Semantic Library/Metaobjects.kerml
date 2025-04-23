@@ -18,7 +18,7 @@ standard library package Metaobjects {
 
 		feature redefines self : Metaobject;
 		
-		abstract readonly feature annotatedElement : Element[1..*] {
+		abstract feature annotatedElement : Element[1..*] {
 			doc
 			/*
 			 * The Elements annotated by this Metaobject. This is set automatically when a Metaobject is
@@ -34,7 +34,7 @@ standard library package Metaobjects {
 		 * a baseType that models the semantics for the annotatedType.
 		 */
 		
-		abstract readonly feature redefines annotatedElement : Type[1] {
+		abstract feature redefines annotatedElement : Type[1] {
 			doc
 			/*
 			 * The single annotatedElement of this SemanticMetadata, which must be a Type.

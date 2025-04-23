@@ -16,7 +16,7 @@ package ServerSequenceRealization_2 {
 			port publicationPort : ~PublicationPort;
 			
 			perform action producerBehavior {	
-				action publish send Publish(someTopic, somePublication) via publicationPort;
+				action publish send new Publish(someTopic, somePublication) via publicationPort;
 			}
 		}
 		
@@ -40,7 +40,7 @@ package ServerSequenceRealization_2 {
 					first waitForPublication
 					accept pub : Publish via publicationPort
 					if pub.topic == subscribing.sub.topic
-					do send Deliver(pub.publication) to subscribing.sub.subscriber
+					do send new Deliver(pub.publication) to subscribing.sub.subscriber
 					then waitForPublication;
 			}
 		}
@@ -53,7 +53,7 @@ package ServerSequenceRealization_2 {
 			port subscriptionPort : ~SubscriptionPort;
 			
 			perform action consumerBehavior {
-				action subscribe send Subscribe(myTopic, consumer_2) to server_2;
+				action subscribe send new Subscribe(myTopic, consumer_2) to server_2;
 				then action delivery accept Deliver via consumer_2;
 			}
 		}

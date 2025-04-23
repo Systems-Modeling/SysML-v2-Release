@@ -35,7 +35,7 @@ package '3c-Function-based Behavior-structure mod-1' {
 			// Create a link and assign it as the TrailerHitch connection.
 			// Link participants are determined from inherited ends.
 			action 'connect trailer to vehicle'
-				assign 'vehicle-trailer system'.trailerHitch := TrailerHitch();
+				assign 'vehicle-trailer system'.trailerHitch := new TrailerHitch();
 				
 			// Destroy the link object.
 			then action 'destroy connection of trailer to vehicle' : 

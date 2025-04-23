@@ -3,7 +3,7 @@ package 'Interaction Realization-1' {
 	
 	part driver_a : Driver {
 		action driverBehavior {
-			action sendSetSpeed send SetSpeed() to vehicle_a;
+			action sendSetSpeed send new SetSpeed() to vehicle_a;
 		}
 	}
 	
@@ -12,13 +12,13 @@ package 'Interaction Realization-1' {
 			action controllerBehavior {
 				action receiveSetSpeed accept SetSpeed via vehicle_a;
 				then action receiveSensedSpeed accept SensedSpeed via cruiseController_a;
-				then action sendFuelCommand send FuelCommand() to engine_a;
+				then action sendFuelCommand send new FuelCommand() to engine_a;
 			}
 		}
 		
 		part speedometer_a : Speedometer {
 			action speedometerBehavior {
-				action sendSensedSpeed send SensedSpeed() to cruiseController_a;
+				action sendSensedSpeed send new SensedSpeed() to cruiseController_a;
 			}
 		}
 		

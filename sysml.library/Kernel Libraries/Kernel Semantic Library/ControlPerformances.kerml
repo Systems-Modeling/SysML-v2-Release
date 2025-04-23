@@ -31,7 +31,7 @@ standard library package ControlPerformances {
 			 * successions going out of a decision step.
 			 */
 
-			 feature redefines earlierOccurrence subsets that;
+			 end feature redefines earlierOccurrence subsets that;
 		}
 	}
 	
@@ -52,7 +52,7 @@ standard library package ControlPerformances {
 			 * successions coming into a merge step.
 			 */
 
-			 feature redefines laterOccurrence subsets that;
+			 end feature redefines laterOccurrence subsets that;
 		}
 	}
 
@@ -116,8 +116,8 @@ standard library package ControlPerformances {
 		 */
 		 
 		in whileTest : BooleanEvaluation[1..*];
-		in untilTest : BooleanEvaluation[0..*];
 		in body : Occurrence[0..*];
+        in untilTest : BooleanEvaluation[0..*];
 		
 		step whileDecision : IfThenPerformance[1..*];
 		step untilDecision : IfElsePerformance[0..*];

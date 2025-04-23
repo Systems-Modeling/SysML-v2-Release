@@ -2,7 +2,7 @@ standard library package ISQElectromagnetism {
     doc
     /*
      * International System of Quantities and Units
-     * Generated on 2022-08-07T14:44:27Z from standard IEC-80000-6:2008 "Electromagnetism"
+     * Generated on 2025-03-13T15:00:05Z from standard IEC-80000-6:2008 "Electromagnetism"
      * see also https://www.iso.org/obp/ui/#iso:std:iec:80000:-6:ed-1:v1:en,fr
      * 
      * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -171,7 +171,7 @@ standard library package ISQElectromagnetism {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF, electricCurrentPF); }
     }
 
-    attribute def Cartesian3dElectricDipoleMomentVector :> VectorQuantityValue {
+    attribute def CartesianElectricDipoleMoment3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 6-6 electric dipole moment (vector)
@@ -185,14 +185,12 @@ standard library package ISQElectromagnetism {
          * remarks: The electric dipole moment of a substance within a domain is the vector sum of electric dipole moments of electric dipoles included in the domain. See IEC 60050-121, items 121-11-35 and 121-11-36.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dElectricDipoleMomentCoordinateFrame[1];
+        attribute :>> mRef: CartesianElectricDipoleMoment3dCoordinateFrame[1];
     }
 
-    attribute electricDipoleMomentVector: Cartesian3dElectricDipoleMomentVector :> vectorQuantities;
+    attribute cartesianElectricDipoleMoment3dVector: CartesianElectricDipoleMoment3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dElectricDipoleMomentCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianElectricDipoleMoment3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: ElectricDipoleMomentUnit[3];
@@ -225,7 +223,7 @@ standard library package ISQElectromagnetism {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF, electricCurrentPF); }
     }
 
-    attribute def Cartesian3dElectricPolarizationVector :> VectorQuantityValue {
+    attribute def CartesianElectricPolarization3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 6-7 electric polarization (vector)
@@ -239,14 +237,12 @@ standard library package ISQElectromagnetism {
          * remarks: See IEC 60050-121, item 121-11-37.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dElectricPolarizationCoordinateFrame[1];
+        attribute :>> mRef: CartesianElectricPolarization3dCoordinateFrame[1];
     }
 
-    attribute electricPolarizationVector: Cartesian3dElectricPolarizationVector :> vectorQuantities;
+    attribute cartesianElectricPolarization3dVector: CartesianElectricPolarization3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dElectricPolarizationCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianElectricPolarization3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: ElectricPolarizationUnit[3];
@@ -278,7 +274,7 @@ standard library package ISQElectromagnetism {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, electricCurrentPF); }
     }
 
-    attribute def Cartesian3dElectricCurrentDensityVector :> VectorQuantityValue {
+    attribute def CartesianElectricCurrentDensity3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 6-8 electric current density, areic electric current (vector)
@@ -292,21 +288,19 @@ standard library package ISQElectromagnetism {
          * remarks: Electric current `I` (item 6-1) through a surface `S` is `I = int_S vec(J) * vec(e_n) dA` where `vec(e_n) dA` is vector surface element. See IEC 60050-121, item 121-11-11.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dElectricCurrentDensityCoordinateFrame[1];
+        attribute :>> mRef: CartesianElectricCurrentDensity3dCoordinateFrame[1];
     }
 
-    attribute electricCurrentDensityVector: Cartesian3dElectricCurrentDensityVector :> vectorQuantities;
+    attribute cartesianElectricCurrentDensity3dVector: CartesianElectricCurrentDensity3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dElectricCurrentDensityCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianElectricCurrentDensity3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: ElectricCurrentDensityUnit[3];
     }
 
-    alias Cartesian3dAreicElectricCurrentCoordinateFrame for Cartesian3dElectricCurrentDensityCoordinateFrame;
-    alias areicElectricCurrentVector for electricCurrentDensityVector;
+    alias CartesianAreicElectricCurrent3dCoordinateFrame for CartesianElectricCurrentDensity3dCoordinateFrame;
+    alias cartesianAreicElectricCurrent3dVector for cartesianElectricCurrentDensity3dVector;
 
     /* IEC-80000-6 item 6-9 linear electric current density, lineic electric current */
     attribute def LinearElectricCurrentDensityValue :> ScalarQuantityValue {
@@ -334,7 +328,7 @@ standard library package ISQElectromagnetism {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, electricCurrentPF); }
     }
 
-    attribute def Cartesian3dLinearElectricCurrentDensityVector :> VectorQuantityValue {
+    attribute def CartesianLinearElectricCurrentDensity3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 6-9 linear electric current density, lineic electric current (vector)
@@ -348,21 +342,19 @@ standard library package ISQElectromagnetism {
          * remarks: Electric current `I` (item 6-1) through a curve `C` on a surface is `I = int_C vec(J_S) xx vec(e_n) * d vec(r)` where `vec(e_n)` is a unit vector perpendicular to the surface and line vector element and `d vec(r)` is the differential of position vector `vec(r)`. See IEC 60050-121, item 121-11-12.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dLinearElectricCurrentDensityCoordinateFrame[1];
+        attribute :>> mRef: CartesianLinearElectricCurrentDensity3dCoordinateFrame[1];
     }
 
-    attribute linearElectricCurrentDensityVector: Cartesian3dLinearElectricCurrentDensityVector :> vectorQuantities;
+    attribute cartesianLinearElectricCurrentDensity3dVector: CartesianLinearElectricCurrentDensity3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dLinearElectricCurrentDensityCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianLinearElectricCurrentDensity3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: LinearElectricCurrentDensityUnit[3];
     }
 
-    alias Cartesian3dLineicElectricCurrentCoordinateFrame for Cartesian3dLinearElectricCurrentDensityCoordinateFrame;
-    alias lineicElectricCurrentVector for linearElectricCurrentDensityVector;
+    alias CartesianLineicElectricCurrent3dCoordinateFrame for CartesianLinearElectricCurrentDensity3dCoordinateFrame;
+    alias cartesianLineicElectricCurrent3dVector for cartesianLinearElectricCurrentDensity3dVector;
 
     /* IEC-80000-6 item 6-10 electric field strength */
     attribute def ElectricFieldStrengthValue :> ScalarQuantityValue {
@@ -392,7 +384,7 @@ standard library package ISQElectromagnetism {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, electricCurrentPF); }
     }
 
-    attribute def Cartesian3dElectricFieldStrengthVector :> VectorQuantityValue {
+    attribute def CartesianElectricFieldStrength3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 6-10 electric field strength (vector)
@@ -406,14 +398,12 @@ standard library package ISQElectromagnetism {
          * remarks: See IEC 60050, item 121-11-18. `q` is the charge of a test particle at rest.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dElectricFieldStrengthCoordinateFrame[1];
+        attribute :>> mRef: CartesianElectricFieldStrength3dCoordinateFrame[1];
     }
 
-    attribute electricFieldStrengthVector: Cartesian3dElectricFieldStrengthVector :> vectorQuantities;
+    attribute cartesianElectricFieldStrength3dVector: CartesianElectricFieldStrength3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dElectricFieldStrengthCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianElectricFieldStrength3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: ElectricFieldStrengthUnit[3];
@@ -520,7 +510,7 @@ standard library package ISQElectromagnetism {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF, electricCurrentPF); }
     }
 
-    attribute def Cartesian3dElectricFluxDensityVector :> VectorQuantityValue {
+    attribute def CartesianElectricFluxDensity3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 6-12 electric flux density, electric displacement (vector)
@@ -534,21 +524,19 @@ standard library package ISQElectromagnetism {
          * remarks: The electric flux density is related to electric charge density via `nabla * vec(D) = ρ` where `nabla * vec(D)` denotes the divergence of `vec(D)`. See IEC 60050-121, item 121-11-40.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dElectricFluxDensityCoordinateFrame[1];
+        attribute :>> mRef: CartesianElectricFluxDensity3dCoordinateFrame[1];
     }
 
-    attribute electricFluxDensityVector: Cartesian3dElectricFluxDensityVector :> vectorQuantities;
+    attribute cartesianElectricFluxDensity3dVector: CartesianElectricFluxDensity3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dElectricFluxDensityCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianElectricFluxDensity3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: ElectricFluxDensityUnit[3];
     }
 
-    alias Cartesian3dElectricDisplacementCoordinateFrame for Cartesian3dElectricFluxDensityCoordinateFrame;
-    alias electricDisplacementVector for electricFluxDensityVector;
+    alias CartesianElectricDisplacement3dCoordinateFrame for CartesianElectricFluxDensity3dCoordinateFrame;
+    alias cartesianElectricDisplacement3dVector for cartesianElectricFluxDensity3dVector;
 
     /* IEC-80000-6 item 6-13 capacitance */
     attribute def CapacitanceValue :> ScalarQuantityValue {
@@ -724,7 +712,7 @@ standard library package ISQElectromagnetism {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, electricCurrentPF); }
     }
 
-    attribute def Cartesian3dDisplacementCurrentDensityVector :> VectorQuantityValue {
+    attribute def CartesianDisplacementCurrentDensity3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 6-18 displacement current density (vector)
@@ -738,14 +726,12 @@ standard library package ISQElectromagnetism {
          * remarks: See IEC 60050-121, item 121-11-42.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dDisplacementCurrentDensityCoordinateFrame[1];
+        attribute :>> mRef: CartesianDisplacementCurrentDensity3dCoordinateFrame[1];
     }
 
-    attribute displacementCurrentDensityVector: Cartesian3dDisplacementCurrentDensityVector :> vectorQuantities;
+    attribute cartesianDisplacementCurrentDensity3dVector: CartesianDisplacementCurrentDensity3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dDisplacementCurrentDensityCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianDisplacementCurrentDensity3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: DisplacementCurrentDensityUnit[3];
@@ -809,7 +795,7 @@ standard library package ISQElectromagnetism {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, electricCurrentPF); }
     }
 
-    attribute def Cartesian3dTotalCurrentDensityVector :> VectorQuantityValue {
+    attribute def CartesianTotalCurrentDensity3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 6-20 total current density (vector)
@@ -823,14 +809,12 @@ standard library package ISQElectromagnetism {
          * remarks: See IEC 60050-121, item 121-11-44.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dTotalCurrentDensityCoordinateFrame[1];
+        attribute :>> mRef: CartesianTotalCurrentDensity3dCoordinateFrame[1];
     }
 
-    attribute totalCurrentDensityVector: Cartesian3dTotalCurrentDensityVector :> vectorQuantities;
+    attribute cartesianTotalCurrentDensity3dVector: CartesianTotalCurrentDensity3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dTotalCurrentDensityCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianTotalCurrentDensity3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: TotalCurrentDensityUnit[3];
@@ -863,7 +847,7 @@ standard library package ISQElectromagnetism {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF, electricCurrentPF); }
     }
 
-    attribute def Cartesian3dMagneticFluxDensityVector :> VectorQuantityValue {
+    attribute def CartesianMagneticFluxDensity3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 6-21 magnetic flux density (vector)
@@ -877,14 +861,12 @@ standard library package ISQElectromagnetism {
          * remarks: The magnetic flux density has zero divergence, `nabla * vec(B) = 0`. See IEC 60050-121, item 121-11-19.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dMagneticFluxDensityCoordinateFrame[1];
+        attribute :>> mRef: CartesianMagneticFluxDensity3dCoordinateFrame[1];
     }
 
-    attribute magneticFluxDensityVector: Cartesian3dMagneticFluxDensityVector :> vectorQuantities;
+    attribute cartesianMagneticFluxDensity3dVector: CartesianMagneticFluxDensity3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dMagneticFluxDensityCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianMagneticFluxDensity3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: MagneticFluxDensityUnit[3];
@@ -972,7 +954,7 @@ standard library package ISQElectromagnetism {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, electricCurrentPF); }
     }
 
-    attribute def Cartesian3dMagneticMomentVector :> VectorQuantityValue {
+    attribute def CartesianMagneticMoment3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 6-23 magnetic moment, magnetic area moment (vector)
@@ -986,21 +968,19 @@ standard library package ISQElectromagnetism {
          * remarks: The magnetic moment of a substance within a domain is the vector sum of the magnetic moments of all entities included in the domain. See IEC 60050-121, items 121-11-49 and 121-11-50.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dMagneticMomentCoordinateFrame[1];
+        attribute :>> mRef: CartesianMagneticMoment3dCoordinateFrame[1];
     }
 
-    attribute magneticMomentVector: Cartesian3dMagneticMomentVector :> vectorQuantities;
+    attribute cartesianMagneticMoment3dVector: CartesianMagneticMoment3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dMagneticMomentCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianMagneticMoment3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: MagneticMomentUnit[3];
     }
 
-    alias Cartesian3dMagneticAreaMomentCoordinateFrame for Cartesian3dMagneticMomentCoordinateFrame;
-    alias magneticAreaMomentVector for magneticMomentVector;
+    alias CartesianMagneticAreaMoment3dCoordinateFrame for CartesianMagneticMoment3dCoordinateFrame;
+    alias cartesianMagneticAreaMoment3dVector for cartesianMagneticMoment3dVector;
 
     /* IEC-80000-6 item 6-24 magnetization */
     attribute def MagnetizationValue :> ScalarQuantityValue {
@@ -1028,7 +1008,7 @@ standard library package ISQElectromagnetism {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, electricCurrentPF); }
     }
 
-    attribute def Cartesian3dMagnetizationVector :> VectorQuantityValue {
+    attribute def CartesianMagnetization3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 6-24 magnetization (vector)
@@ -1042,14 +1022,12 @@ standard library package ISQElectromagnetism {
          * remarks: See IEC 60050-121, item 121-11-52.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dMagnetizationCoordinateFrame[1];
+        attribute :>> mRef: CartesianMagnetization3dCoordinateFrame[1];
     }
 
-    attribute magnetizationVector: Cartesian3dMagnetizationVector :> vectorQuantities;
+    attribute cartesianMagnetization3dVector: CartesianMagnetization3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dMagnetizationCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianMagnetization3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: MagnetizationUnit[3];
@@ -1081,7 +1059,7 @@ standard library package ISQElectromagnetism {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, electricCurrentPF); }
     }
 
-    attribute def Cartesian3dMagneticFieldStrengthVector :> VectorQuantityValue {
+    attribute def CartesianMagneticFieldStrength3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 6-25 magnetic field strength, magnetizing field (vector)
@@ -1095,21 +1073,19 @@ standard library package ISQElectromagnetism {
          * remarks: The magnetic field strength is related to the total current density `vec(J_(t ot))` (item 6-20) via `rot vec(H) = vec(J_(t ot))`. See IEC 60050-121, item 121-11-56.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dMagneticFieldStrengthCoordinateFrame[1];
+        attribute :>> mRef: CartesianMagneticFieldStrength3dCoordinateFrame[1];
     }
 
-    attribute magneticFieldStrengthVector: Cartesian3dMagneticFieldStrengthVector :> vectorQuantities;
+    attribute cartesianMagneticFieldStrength3dVector: CartesianMagneticFieldStrength3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dMagneticFieldStrengthCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianMagneticFieldStrength3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: MagneticFieldStrengthUnit[3];
     }
 
-    alias Cartesian3dMagnetizingFieldCoordinateFrame for Cartesian3dMagneticFieldStrengthCoordinateFrame;
-    alias magnetizingFieldVector for magneticFieldStrengthVector;
+    alias CartesianMagnetizingField3dCoordinateFrame for CartesianMagneticFieldStrength3dCoordinateFrame;
+    alias cartesianMagnetizingField3dVector for cartesianMagneticFieldStrength3dVector;
 
     /* IEC-80000-6 item 6-26.1 magnetic constant, permeability of vacuum */
     attribute def MagneticConstantValue :> ScalarQuantityValue {
@@ -1232,7 +1208,7 @@ standard library package ISQElectromagnetism {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF, electricCurrentPF); }
     }
 
-    attribute def Cartesian3dMagneticPolarizationVector :> VectorQuantityValue {
+    attribute def CartesianMagneticPolarization3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 6-29 magnetic polarization (vector)
@@ -1246,14 +1222,12 @@ standard library package ISQElectromagnetism {
          * remarks: See IEC 60050-121, item 121-11-54.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dMagneticPolarizationCoordinateFrame[1];
+        attribute :>> mRef: CartesianMagneticPolarization3dCoordinateFrame[1];
     }
 
-    attribute magneticPolarizationVector: Cartesian3dMagneticPolarizationVector :> vectorQuantities;
+    attribute cartesianMagneticPolarization3dVector: CartesianMagneticPolarization3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dMagneticPolarizationCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianMagneticPolarization3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: MagneticPolarizationUnit[3];
@@ -1287,7 +1261,7 @@ standard library package ISQElectromagnetism {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, electricCurrentPF); }
     }
 
-    attribute def Cartesian3dMagneticDipoleMomentVector :> VectorQuantityValue {
+    attribute def CartesianMagneticDipoleMoment3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 6-30 magnetic dipole moment (vector)
@@ -1301,14 +1275,12 @@ standard library package ISQElectromagnetism {
          * remarks: See IEC 60050-121, item 121-11-55.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dMagneticDipoleMomentCoordinateFrame[1];
+        attribute :>> mRef: CartesianMagneticDipoleMoment3dCoordinateFrame[1];
     }
 
-    attribute magneticDipoleMomentVector: Cartesian3dMagneticDipoleMomentVector :> vectorQuantities;
+    attribute cartesianMagneticDipoleMoment3dVector: CartesianMagneticDipoleMoment3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dMagneticDipoleMomentCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianMagneticDipoleMoment3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: MagneticDipoleMomentUnit[3];
@@ -1368,7 +1340,7 @@ standard library package ISQElectromagnetism {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, electricCurrentPF); }
     }
 
-    attribute def Cartesian3dMagneticVectorPotentialVector :> VectorQuantityValue {
+    attribute def CartesianMagneticVectorPotential3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 6-32 magnetic vector potential (vector)
@@ -1382,14 +1354,12 @@ standard library package ISQElectromagnetism {
          * remarks: The magnetic vector potential is not unique since any irrotational vector field can be added to it without changing its rotation. See IEC 60050-121, item 121-11-23.
          */
         attribute :>> isBound = true;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dMagneticVectorPotentialCoordinateFrame[1];
+        attribute :>> mRef: CartesianMagneticVectorPotential3dCoordinateFrame[1];
     }
 
-    attribute magneticVectorPotentialVector: Cartesian3dMagneticVectorPotentialVector :> vectorQuantities;
+    attribute cartesianMagneticVectorPotential3dVector: CartesianMagneticVectorPotential3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dMagneticVectorPotentialCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianMagneticVectorPotential3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = true;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: MagneticVectorPotentialUnit[3];
@@ -1452,7 +1422,7 @@ standard library package ISQElectromagnetism {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
-    attribute def Cartesian3dPoyntingVector :> VectorQuantityValue {
+    attribute def CartesianPoynting3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 6-34 Poynting vector
@@ -1466,14 +1436,12 @@ standard library package ISQElectromagnetism {
          * remarks: See IEC 60050-121, item 121-11-66.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dPoyntingCoordinateFrame[1];
+        attribute :>> mRef: CartesianPoynting3dCoordinateFrame[1];
     }
 
-    attribute poyntingVector: Cartesian3dPoyntingVector :> vectorQuantities;
+    attribute cartesianPoynting3dVector: CartesianPoynting3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dPoyntingCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianPoynting3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: PoyntingVectorMagnitudeUnit[3];

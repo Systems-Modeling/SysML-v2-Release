@@ -45,25 +45,25 @@ standard library package BaseFunctions {
     
 	abstract function 'istype'{ 
 		in seq: Anything[0..*];
-		abstract feature 'type': Anything;
+		in 'type': Anything;
 		return : Boolean[1];
 	}
 	
 	abstract function 'hastype'{ 
 		in seq: Anything[0..*];
-		abstract feature 'type': Anything;
+		in 'type': Anything;
 		return : Boolean;
 	}
 	
 	abstract function '@'{ 
 		in seq: Anything[0..*];
-		abstract feature 'type': Anything;
+		in 'type': Anything;
 		return : Boolean[1];
 	}
 	
 	abstract function '@@'{ 
 		in seq: Metaobject[0..*];
-		abstract feature 'type': Metaobject;
+		in 'type': Metaobject;
 		return : Boolean[1];
 	}
 	

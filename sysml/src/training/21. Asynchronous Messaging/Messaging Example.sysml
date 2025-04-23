@@ -28,6 +28,6 @@ package 'Messaging Example' {
 			out item picture;
 		}
 		
-		then send Show(shoot.picture) to screen;
+		then send new Show(shoot.picture) to screen;
 	}
 }

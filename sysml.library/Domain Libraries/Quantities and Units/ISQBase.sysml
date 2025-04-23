@@ -2,7 +2,7 @@ standard library package ISQBase {
     doc
     /*
      * International System of Quantities and Units
-     * Generated on 2022-08-07T14:44:27Z from standard ISO/IEC 80000
+     * Generated on 2025-03-13T15:00:05Z from standard ISO/IEC 80000
      * 
      * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
      * with Greek letters in Unicode encoding. In running text, AsciiMath is placed between backticks.

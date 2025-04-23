@@ -5,7 +5,7 @@ package 'Local Clock Example' {
 	item def Request;
 	
 	part def Server {
-		part :>> localClock = Time::Clock();
+		part :>> localClock = new Time::Clock();
 
 		attribute today : String;
 				
@@ -21,7 +21,7 @@ package 'Local Clock Example' {
 			state waiting;
 			accept request : Request via requestPort
 				then responding;
-			accept at Time::Iso8601DateTime(today + "11:59:00")
+			accept at new Time::Iso8601DateTime(today + "11:59:00")
 				then off;
 			
 			state responding;

@@ -129,7 +129,7 @@ standard library package FeatureReferencingPerformances {
 		 * An EvaluationResultMonitorPerformance is a FeatureMonitorPerformance that waits for changes 
 		 * in the result of an Evaluation identified by onOccurrence. The Predicate being evaluated must 
 		 * be able to produce multiple results over time, for example by only using BindingConnectors 
-		 * between Steps, rather than Successions or ItemFlows, including in its Step behaviors.
+		 * between Steps, rather than Successions or Flows, including in its Step behaviors.
 		 */
 		
 		in feature onOccurrence : Evaluation redefines onOccurrence {

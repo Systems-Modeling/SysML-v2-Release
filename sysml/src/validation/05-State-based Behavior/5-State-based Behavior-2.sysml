@@ -49,7 +49,7 @@ package '5-State-based Behavior-2' {
 				state off;
 				accept 'Vehicle Start Signal' 
 					if vehicle1_c1.'brake pedal depressed'
-					do send 'Start Signal'() to vehicle1_c1.vehicleController
+					do send new 'Start Signal'() to vehicle1_c1.vehicleController
 					then starting;
 					
 				state starting;
@@ -77,7 +77,7 @@ package '5-State-based Behavior-2' {
 				accept at vehicle1_c1.maintenanceTime
 					then maintenance;
 				accept when 'sense temperature'.temp > vehicle1_c1.Tmax
-					do send 'Over Temp'() to vehicle1_c1.vehicleController 
+					do send new 'Over Temp'() to vehicle1_c1.vehicleController 
 					then degraded;
 				
 				state maintenance;

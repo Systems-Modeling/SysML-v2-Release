@@ -23,7 +23,7 @@ standard library package SpatialFrames {
          */
     }
     
-    readonly feature defaultFrame : DefaultFrameLife[1] {
+    feature defaultFrame : DefaultFrameLife[1] {
         doc
         /*
          * defaultFrame is a fixed SpatialFrame used as a universal default.

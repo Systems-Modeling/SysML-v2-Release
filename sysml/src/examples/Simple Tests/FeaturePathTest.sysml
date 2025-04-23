@@ -38,6 +38,6 @@ package Q {
   	enum e2;
   }
   
-  part g = A().g.g.g;
+  part g = new A().g.g.g;
 	
 }

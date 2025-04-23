@@ -2,13 +2,13 @@ standard library package ISQAcoustics {
     doc
     /*
      * International System of Quantities and Units
-     * Generated on 2022-08-07T14:44:27Z from standard ISO-80000-8:2020 "Acoustics"
-     * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-8:ed-2:v1:en
-     *
+     * Generated on 2025-03-13T15:00:05Z from standard ISO-80000-8:2020 "Acoustics"
+     * see also https://www.iso.org/standard/64978.html
+     * 
      * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
      * with Greek letters in Unicode encoding. In running text, AsciiMath is placed between backticks.
-     * Note 2: For vector and tensor quantities currently the unit and quantity value type for their (scalar) magnitude is
-     * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate system)
+     * Note 2: For vector and tensor quantities currently the unit and quantity value type for their (scalar) magnitude is 
+     * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate system) 
      * or TensorMeasurementReference.
      */
 
@@ -83,7 +83,7 @@ standard library package ISQAcoustics {
     }
 
     /* ISO-80000-8 item 8-3 sound particle displacement */
-    attribute def Cartesian3dSoundParticleDisplacementVector :> VectorQuantityValue {
+    attribute def CartesianSoundParticleDisplacement3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 8-3 sound particle displacement
@@ -97,14 +97,13 @@ standard library package ISQAcoustics {
          * remarks: None.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
         attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
-    attribute soundParticleDisplacementVector: Cartesian3dSoundParticleDisplacementVector :> vectorQuantities;
+    attribute cartesianSoundParticleDisplacement3dVector: CartesianSoundParticleDisplacement3dVector :> vectorQuantities;
 
     /* ISO-80000-8 item 8-4 sound particle velocity */
-    attribute def Cartesian3dSoundParticleVelocityVector :> VectorQuantityValue {
+    attribute def CartesianSoundParticleVelocity3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 8-4 sound particle velocity
@@ -118,14 +117,13 @@ standard library package ISQAcoustics {
          * remarks: The definition is limited to small-amplitude acoustic disturbances such that the magnitude of `vec(u)` is small relative to the phase speed (ISO 80000-3) of sound.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
         attribute :>> mRef: CartesianVelocity3dCoordinateFrame[1];
     }
 
-    attribute soundParticleVelocityVector: Cartesian3dSoundParticleVelocityVector :> vectorQuantities;
+    attribute cartesianSoundParticleVelocity3dVector: CartesianSoundParticleVelocity3dVector :> vectorQuantities;
 
     /* ISO-80000-8 item 8-5 sound particle acceleration */
-    attribute def Cartesian3dSoundParticleAccelerationVector :> VectorQuantityValue {
+    attribute def CartesianSoundParticleAcceleration3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 8-5 sound particle acceleration
@@ -139,11 +137,10 @@ standard library package ISQAcoustics {
          * remarks: The definition is limited to small-amplitude acoustic disturbances such that the magnitude of `vec(u)` is small relative to the phase speed (ISO 80000-3) of sound.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
         attribute :>> mRef: CartesianAcceleration3dCoordinateFrame[1];
     }
 
-    attribute soundParticleAccelerationVector: Cartesian3dSoundParticleAccelerationVector :> vectorQuantities;
+    attribute cartesianSoundParticleAcceleration3dVector: CartesianSoundParticleAcceleration3dVector :> vectorQuantities;
 
     /* ISO-80000-8 item 8-6 volume velocity, volume flow rate */
     attribute volumeVelocity: SpeedValue :> scalarQuantities {
@@ -248,7 +245,7 @@ standard library package ISQAcoustics {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
-    attribute def Cartesian3dSoundIntensityVector :> VectorQuantityValue {
+    attribute def CartesianSoundIntensity3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 8-10 sound intensity (vector)
@@ -262,14 +259,12 @@ standard library package ISQAcoustics {
          * remarks: This definition can become inapplicable in situations with a high mean fluid flow.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSoundIntensityCoordinateFrame[1];
+        attribute :>> mRef: CartesianSoundIntensity3dCoordinateFrame[1];
     }
 
-    attribute soundIntensityVector: Cartesian3dSoundIntensityVector :> vectorQuantities;
+    attribute cartesianSoundIntensity3dVector: CartesianSoundIntensity3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dSoundIntensityCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianSoundIntensity3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: SoundIntensityUnit[3];

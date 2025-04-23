@@ -201,6 +201,16 @@ standard library package Performances {
 		 */
 	}
 	
+	abstract expr constructorEvaluations [0..*] nonunique subsets evaluations  {
+	    doc
+	    /*
+	     * constructorEvaluations is a specialization of evaluations that restricts the multiplicity 
+	     * of its result parameter to 1..1, requiring a constructorEvaluation to result in a single value.
+	     */
+	     
+	     return result [1..1];
+	}
+	
 	abstract expr booleanEvaluations: BooleanEvaluation[0..*] nonunique subsets evaluations {
 		doc
 		/*

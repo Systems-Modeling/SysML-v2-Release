@@ -57,7 +57,7 @@ package AHFNorway {
 			// Call apisp::APIS_HTTP::giveItems(in allitems: String = "All the items", out ackback:Boolean);
 			
 			state TellUbehavior{
-				entry send CallGiveItems("All the items") via apisp.APIS_HTTP;
+				entry send new CallGiveItems("All the items") via apisp.APIS_HTTP;
 				then Wait;
 				state Wait;
 					accept rs:ResultGiveItems
@@ -81,13 +81,13 @@ package AHFNorway {
 			 {  in itms:String; out ack:Boolean;
 			 	/* Forward itms and return an ack */
 			 	first start;
-			 	then send Return_AllItems(itms) via apisc.APIS_MQTT;
+			 	then send new Return_AllItems(itms) via apisc.APIS_MQTT;
 			 	success = true;
 			 	bind ack = success;
 			 }
 			
 			state APISPbehavior{
-				entry send Publish("Return_AllItems") via apisc.APIS_MQTT;
+				entry send new Publish("Return_AllItems") via apisc.APIS_MQTT;
 				then WaitOnData; 
 				
 				state WaitOnData;
@@ -95,7 +95,7 @@ package AHFNorway {
 					do action {
 						first start;
 						then action giveItems{ in itms=cl.itms; out ack=x; }
-						then send ResultGiveItems(x) via tellu.APIS_HTTP;
+						then send new ResultGiveItems(x) via tellu.APIS_HTTP;
 					}
 				then WaitOnData;		
 			}
@@ -110,7 +110,7 @@ package AHFNorway {
 			
 			// Now sending signal to the remote behavior through the port functionality
 			state MQTT_APISP {
-				entry send Subscribe("Return_AllItems") via apisp.APIS_MQTT; 
+				entry send new Subscribe("Return_AllItems") via apisp.APIS_MQTT; 
 				then Idle;		
 				state Idle;
 					accept Return_AllItems via apisp.APIS_MQTT

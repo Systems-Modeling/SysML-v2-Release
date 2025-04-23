@@ -21,14 +21,13 @@ package Expressions {
 	behavior w { inout v : Integer;
 	    step : ControlPerformances::LoopPerformance {
     		in expr whileTest {v > 3}
-    		in expr untilTest;
     		in step body {
     			step decrement {
     				out v_decr : Integer = v - 1;			
     			}
     			succession decrement then update;
     			step update : FeatureReferencingPerformances::FeatureWritePerformance {
-    				in redefines onOccurrence = w::self {
+    				in onOccurrence = w::self {
     					feature redefines startingAt : w {
     						inout feature redefines accessedFeature redefines v;
     					}
@@ -57,7 +56,7 @@ package Expressions {
 	bb : Boolean = f.s(1);
 	
 	class C {
-		count : ScalarValues::Integer := 0;
+		var count : ScalarValues::Integer := 0;
 	}
 	
 	feature obj1 : C;
@@ -71,6 +70,6 @@ package Expressions {
 		feature count : ScalarValues::Integer =  c#(1).count;
 	}
 	
-	feature l = L();
+	feature l = new L();
 	feature w1 = w(xx);
 }

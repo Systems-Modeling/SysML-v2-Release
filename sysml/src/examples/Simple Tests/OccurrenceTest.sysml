@@ -22,11 +22,10 @@ package OccurrenceTest {
 	}
 	individual occurrence ind : Ind, Occ {
 		snapshot s3;
-		individual timeslice t3;
+		individual timeslice t3 :> ind;
+        individual snapshot s4 : Ind;
 	}
-	
-	individual snapshot s4 : Ind;
-	
+
 	occurrence o1 {
 	  occurrence o2;
 	}

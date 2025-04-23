@@ -21,7 +21,7 @@ standard library package Time {
     public import ISQSpaceTime::TimeUnit;
     public import ISQSpaceTime::time;
     
-    readonly part universalClock : Clock[1] :> Clocks::universalClock {
+    part universalClock : Clock[1] :> Clocks::universalClock {
    	    doc
 	    /*
 	     * universalClock is a single Clock that can be used as a default universal time reference.
@@ -195,8 +195,6 @@ standard library package Time {
 	     * 1969-07-20T20:17:00Z (UTC date and time with second precision)
 	     * 1969-07-20T15:17:00-05:00 (local date and time with second precision for a timezone 5 hour behind UTC)
 	     * 1969-07-20T22:17:00+02:00 (local date and time with second precision for a timezone 2 hour ahead of UTC)
-	     *
-	     * TODO: Add constraint to verify ISO 8691 extended string encoding.
 	     */
     }
 
@@ -222,9 +220,6 @@ standard library package Time {
 		/*
 	     * Representation of an ISO 8601 date and time with explicit date and time component attributes
 	     *
-	     * TO DO: Specify restrictions for attributes month (1 to 12), day (1 to 31), hour (0 to 23), minute (0 to 59), second (0 to 60), 
-	     * microsecond (0 to 999999), hourOffset (-12 to +12), minuteOffset (-59 to +59)
-	     * 
 	     * The total time offset is equal to the summation of hourOffset and minuteOffset.
 		 */
 	

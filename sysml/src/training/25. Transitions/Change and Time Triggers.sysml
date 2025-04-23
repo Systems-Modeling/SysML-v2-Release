@@ -27,7 +27,7 @@ package 'Change and Time Triggers' {
 		accept at vehicle.maintenanceTime
 			then maintenance;
 		accept when senseTemperature.temp > vehicle.maxTemperature
-			do send OverTemp() to controller 
+			do send new OverTemp() to controller 
 			then degraded;
 		
 		state maintenance {

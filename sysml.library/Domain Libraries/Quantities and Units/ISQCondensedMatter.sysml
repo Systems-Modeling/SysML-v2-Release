@@ -2,8 +2,8 @@ standard library package ISQCondensedMatter {
     doc
     /*
      * International System of Quantities and Units
-     * Generated on 2022-08-07T14:44:27Z from standard ISO-80000-12:2019 "Condensed matter physics"
-     * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-12:ed-2:v1:en
+     * Generated on 2025-03-13T15:00:05Z from standard ISO-80000-12:2019 "Condensed matter physics"
+     * see also https://www.iso.org/standard/63480.html
      * 
      * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
      * with Greek letters in Unicode encoding. In running text, AsciiMath is placed between backticks.
@@ -28,7 +28,7 @@ standard library package ISQCondensedMatter {
     private import ISQThermodynamics::EnergyValue;
 
     /* ISO-80000-12 item 12-1.1 lattice vector */
-    attribute def Cartesian3dLatticeVector :> VectorQuantityValue {
+    attribute def CartesianLattice3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 12-1.1 lattice vector
@@ -42,14 +42,13 @@ standard library package ISQCondensedMatter {
          * remarks: The non-SI unit ångström (Å) is widely used by x-ray crystallographers and structural chemists.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
         attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
-    attribute latticeVector: Cartesian3dLatticeVector :> vectorQuantities;
+    attribute cartesianLattice3dVector: CartesianLattice3dVector :> vectorQuantities;
 
     /* ISO-80000-12 item 12-1.2 fundamental lattice vector */
-    attribute def Cartesian3dFundamentalLatticeVector :> VectorQuantityValue {
+    attribute def CartesianFundamentalLattice3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 12-1.2 fundamental lattice vector
@@ -63,11 +62,10 @@ standard library package ISQCondensedMatter {
          * remarks: The lattice vector (item 12-1.1) can be given as `vec(R) = n_1 vec(a_1) + n_2 vec(a_2) + n_3 vec(a_3)` where `n_1`, `n_2` and `n_3` are integers.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
         attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
-    attribute fundamentalLatticeVector: Cartesian3dFundamentalLatticeVector :> vectorQuantities;
+    attribute cartesianFundamentalLattice3dVector: CartesianFundamentalLattice3dVector :> vectorQuantities;
 
     /* ISO-80000-12 item 12-2.1 angular reciprocal lattice vector */
     attribute def AngularReciprocalLatticeVectorMagnitudeValue :> ScalarQuantityValue {
@@ -94,7 +92,7 @@ standard library package ISQCondensedMatter {
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
-    attribute def Cartesian3dAngularReciprocalLatticeVector :> VectorQuantityValue {
+    attribute def CartesianAngularReciprocalLattice3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 12-2.1 angular reciprocal lattice vector
@@ -108,14 +106,12 @@ standard library package ISQCondensedMatter {
          * remarks: In crystallography, however, the quantity `G/(2π)` is sometimes used.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dAngularReciprocalLatticeCoordinateFrame[1];
+        attribute :>> mRef: CartesianAngularReciprocalLattice3dCoordinateFrame[1];
     }
 
-    attribute angularReciprocalLatticeVector: Cartesian3dAngularReciprocalLatticeVector :> vectorQuantities;
+    attribute cartesianAngularReciprocalLattice3dVector: CartesianAngularReciprocalLattice3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dAngularReciprocalLatticeCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianAngularReciprocalLattice3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: AngularReciprocalLatticeVectorMagnitudeUnit[3];
@@ -146,7 +142,7 @@ standard library package ISQCondensedMatter {
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
-    attribute def Cartesian3dFundamentalReciprocalLatticeVector :> VectorQuantityValue {
+    attribute def CartesianFundamentalReciprocalLattice3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 12-2.2 fundamental reciprocal lattice vector
@@ -160,14 +156,12 @@ standard library package ISQCondensedMatter {
          * remarks: `vec(a_i) * vec(b_i) = 2π δ_(ij)`. In crystallography, however, the quantities `vec(b_j)/(2π)` are also often used.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dFundamentalReciprocalLatticeCoordinateFrame[1];
+        attribute :>> mRef: CartesianFundamentalReciprocalLattice3dCoordinateFrame[1];
     }
 
-    attribute fundamentalReciprocalLatticeVector: Cartesian3dFundamentalReciprocalLatticeVector :> vectorQuantities;
+    attribute cartesianFundamentalReciprocalLattice3dVector: CartesianFundamentalReciprocalLattice3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dFundamentalReciprocalLatticeCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianFundamentalReciprocalLattice3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: FundamentalReciprocalLatticeVectorMagnitudeUnit[3];
@@ -274,7 +268,7 @@ standard library package ISQCondensedMatter {
     attribute structureFactor: StructureFactorValue :> scalarQuantities;
 
     /* ISO-80000-12 item 12-6 Burgers vector */
-    attribute def Cartesian3dBurgersVector :> VectorQuantityValue {
+    attribute def CartesianBurgers3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 12-6 Burgers vector
@@ -288,14 +282,13 @@ standard library package ISQCondensedMatter {
          * remarks: None.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
         attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
-    attribute burgersVector: Cartesian3dBurgersVector :> vectorQuantities;
+    attribute cartesianBurgers3dVector: CartesianBurgers3dVector :> vectorQuantities;
 
     /* ISO-80000-12 item 12-7.1 particle position vector */
-    attribute def Cartesian3dParticlePositionVector :> VectorQuantityValue {
+    attribute def CartesianParticlePosition3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 12-7.1 particle position vector
@@ -309,14 +302,13 @@ standard library package ISQCondensedMatter {
          * remarks: Often, `r` is used for electrons and `R` is used for atoms and other heavier particles.
          */
         attribute :>> isBound = true;
-        attribute :>> num: Real[3];
         attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
-    attribute particlePositionVector: Cartesian3dParticlePositionVector :> vectorQuantities;
+    attribute cartesianParticlePosition3dVector: CartesianParticlePosition3dVector :> vectorQuantities;
 
     /* ISO-80000-12 item 12-7.2 equilibrium position vector */
-    attribute def Cartesian3dEquilibriumPositionVector :> VectorQuantityValue {
+    attribute def CartesianEquilibriumPosition3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 12-7.2 equilibrium position vector
@@ -330,14 +322,13 @@ standard library package ISQCondensedMatter {
          * remarks: None.
          */
         attribute :>> isBound = true;
-        attribute :>> num: Real[3];
         attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
-    attribute equilibriumPositionVector: Cartesian3dEquilibriumPositionVector :> vectorQuantities;
+    attribute cartesianEquilibriumPosition3dVector: CartesianEquilibriumPosition3dVector :> vectorQuantities;
 
     /* ISO-80000-12 item 12-7.3 displacement vector */
-    attribute def Cartesian3dDisplacementVector :> VectorQuantityValue {
+    attribute def CartesianDisplacement3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 12-7.3 displacement vector
@@ -351,11 +342,10 @@ standard library package ISQCondensedMatter {
          * remarks: The displacement vector can be expressed by: `vec(u) = vec(R) − vec(R_0)`, where `vec(R)` is particle position vector (item 12-7.1) and `vec(R_0)` is position vector of an ion or atom in equilibrium (item 12-7.2).
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
         attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
-    attribute displacementVector: Cartesian3dDisplacementVector :> vectorQuantities;
+    attribute cartesianDisplacement3dVector: CartesianDisplacement3dVector :> vectorQuantities;
 
     /* ISO-80000-12 item 12-8 Debye-Waller factor */
     attribute def DebyeWallerFactorValue :> DimensionOneValue {
@@ -632,8 +622,8 @@ standard library package ISQCondensedMatter {
          * symbol(s): `R_H`, `A_H`
          * application domain: generic
          * name: HallCoefficient
-         * quantity dimension: 1
-         * measurement unit(s): m^3/C*m^3*s^-1*A^-1
+         * quantity dimension: L^3*T^-1*I^-1
+         * measurement unit(s): m^3/C, m^3*s^-1*A^-1
          * tensor order: 0
          * definition: in an isotropic conductor, relation between electric field strength, `vec(E)`, (IEC 80000-6) and electric current density, `vec(J)`, (IEC 80000-6) expressed as: `vec(E) = ρ vec(J) + R_H (vec(B) xx vec(J))`, where `ρ` is resistivity (IEC 80000-6), and `vec(B)` is magnetic flux density (IEC 80000-6)
          * remarks: None.
@@ -644,7 +634,11 @@ standard library package ISQCondensedMatter {
 
     attribute hallCoefficient: HallCoefficientValue[*] nonunique :> scalarQuantities;
 
-    attribute def HallCoefficientUnit :> DimensionOneUnit {
+    attribute def HallCoefficientUnit :> DerivedUnit {
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 3; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
+        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq.I; :>> exponent = -1; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF, electricCurrentPF); }
     }
 
     /* ISO-80000-12 item 12-20 thermoelectric voltage (between substances a and b) */

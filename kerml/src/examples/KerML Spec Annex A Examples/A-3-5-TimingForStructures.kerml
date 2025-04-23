@@ -62,12 +62,13 @@ package TimingForStructuresExecution2 {
 	private import Atoms::*;
 	private import TimingForStructuresModelToBeExecuted2::*;
 	private import Occurrences::HappensDuring;
-	private import OneToOneConnectorsExecution::MyWheel1;
-	private import OneToOneConnectorsExecution::MyWheel2;
 	private import OneToOneConnectorsExecution::MyWheel;
-	private import OneToOneConnectorsExecution::MyBikeFork1;
-	private import OneToOneConnectorsExecution::MyBikeFork2;
 	private import OneToOneConnectorsExecution::MyBikeFork;
+	
+	struct MyWheel1 specializes OneToOneConnectorsExecution::MyWheel1;
+	struct MyWheel2 specializes OneToOneConnectorsExecution::MyWheel2;
+    struct MyBikeFork1 specializes OneToOneConnectorsExecution::MyBikeFork1;
+    struct MyBikeFork2 specializes OneToOneConnectorsExecution::MyBikeFork2;
 
 	#atom
 	assoc MyBike_During_Wheel1_Link specializes HappensDuring {

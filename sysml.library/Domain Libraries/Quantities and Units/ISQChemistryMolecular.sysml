@@ -2,8 +2,8 @@ standard library package ISQChemistryMolecular {
     doc
     /*
      * International System of Quantities and Units
-     * Generated on 2022-08-07T14:44:27Z from standard ISO-80000-9:2019 "Physical chemistry and molecular physics"
-     * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-9:ed-2:v1:en
+     * Generated on 2025-03-13T15:00:05Z from standard ISO-80000-9:2019 "Physical chemistry and molecular physics"
+     * see also https://www.iso.org/standard/64979.html
      * 
      * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
      * with Greek letters in Unicode encoding. In running text, AsciiMath is placed between backticks.
@@ -1333,7 +1333,7 @@ standard library package ISQChemistryMolecular {
          * application domain: generic
          * name: SpecificOpticalRotatoryPower
          * quantity dimension: L^2*M^-1
-         * measurement unit(s): rad*m^2/kg^1, kg^-1*m^2
+         * measurement unit(s): rad*m^2/kg, kg^-1*m^2
          * tensor order: 0
          * definition: angle `α` of optical rotation (item 9-47), multiplied by the quotient of cross-sectional area `A` (ISO 80000-3) of a linearly polarized light beam and the mass `m` (ISO 80000-4) of the optically active component in the path of the beam: `α_m = (α A)/m`
          * remarks: None.

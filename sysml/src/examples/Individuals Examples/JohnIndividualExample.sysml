@@ -46,12 +46,14 @@ package JohnIndividualExample {
 	  	}
 	}
 	
-	timeslice item UnitedStatesWithJohnAsPresident[*] : UnitedStates {
-		doc
-		/*
-		 * These are the time slices of the United States during
-		 * which John is president of the United States.
-		 */
-		ref :>> presidentOfUS : John;
+	individual UnitedStatesWithJohnAsPresident : UnitedStates {
+    	timeslice item UnitedStatesWhenJohnIsPresident[*] : UnitedStates {
+    		doc
+    		/*
+    		 * These are the time slices of the United States during
+    		 * which John is president of the United States.
+    		 */
+    		ref :>> presidentOfUS : John;
+    	}
 	}
 }

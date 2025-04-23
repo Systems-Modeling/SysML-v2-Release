@@ -27,7 +27,7 @@ standard library package Actions {
 	private import TransitionPerformances::TransitionPerformance;
 	private import TransitionPerformances::NonStateTransitionPerformance;
 	private import Transfers::MessageTransfer;
-	private import FlowConnections::MessageConnection;
+	private import Flows::MessageAction;
 	private import OccurrenceFunctions::destroy;
 	
 	abstract action def Action :> Performance {
@@ -189,8 +189,8 @@ standard library package Actions {
 		 * from a designated sender Occurrence with a given payload, optionally to a designated receiver.
 		 */
 	
-		in payload :>> sentItem;
-	    ref sentMessage :>> sentTransfer: MessageTransfer, MessageConnection;
+		in :>> payload [0..*];
+	    ref sentMessage :>> sentTransfer: MessageTransfer, MessageAction;
 	}
 	
 	abstract action sendActions: SendAction[0..*] nonunique :> actions, sendPerformances {
@@ -206,8 +206,8 @@ standard library package Actions {
 		 * An AcceptMessageAction is an Action that identifies an incomingTransferToSelf
 		 * of a designated receiver Occurrence, providing its payload as output.
 		 */
-		inout payload :>> acceptedItem;
-		ref acceptedMessage :>> acceptedTransfer: MessageTransfer, MessageConnection;
+		inout :>> payload;
+		ref acceptedMessage :>> acceptedTransfer: MessageTransfer, MessageAction;
 	}
 	
 	action def AcceptAction :> AcceptMessageAction {
@@ -330,7 +330,7 @@ standard library package Actions {
 		 */
 	
 		in transitionLinkSource : Action :>> TransitionPerformance::transitionLinkSource;
-		ref acceptedMessage : MessageConnection :>> trigger;
+		ref acceptedMessage : MessageTransfer, MessageAction :>> trigger;
 		
 		ref receiver :>> triggerTarget;
 
@@ -431,6 +431,7 @@ standard library package Actions {
 		 * A LoopAction is the base type for all LoopActionUsages.
 		 */
 	
+        in ref iterator;
 		
 		in action body[0..*] {
 			doc
@@ -447,7 +448,7 @@ standard library package Actions {
 		 * It is the base type for all WhileLoopActionUsages.
 		 */
 	
-		in :>> whileTest default {true} {
+		in whileTest default {true} {
 			doc
 			/*
 			 * A Boolean expression that must be true for the loop to continue.
@@ -456,7 +457,7 @@ standard library package Actions {
 			 */
 		}
 		
-		in action body :>> LoopAction::body, LoopPerformance::body {
+		in action body {
 			doc
 			/*
 			 * The action that is performed while the whileTest is true and the
@@ -464,7 +465,7 @@ standard library package Actions {
 			 */
 		}
 		
-		in :>> untilTest default {false} {
+		in untilTest default {false} {
 			doc
 			/*
 			 * A Boolean expression that must be false for the loop to continue.
@@ -473,12 +474,7 @@ standard library package Actions {
 		}
 	}
 	
-	private abstract action def ForLoopActionBase :> LoopAction {
-		in action body;
-		in ref seq[0..*] ordered nonunique;
-	}
-	
-	action def ForLoopAction :> ForLoopActionBase {
+	action def ForLoopAction :> LoopAction {
 		doc
 		/*
 		 * A ForLoopAction is a LoopAction that iterates over an ordered sequence of values.
@@ -493,14 +489,14 @@ standard library package Actions {
 			 */
 		}
 		
-		in ref :>> seq {
+		in ref seq {
 			doc
 			/*
 			 * The sequence of values over which the loop iterates.
 			 */
 		}
 		
-		in action :>> body {
+		in action body {
 			doc
 			/*
 			 * The action that is performed on each iteration of the loop.

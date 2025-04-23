@@ -2,8 +2,8 @@ standard library package ISQAtomicNuclear {
     doc
     /*
      * International System of Quantities and Units
-     * Generated on 2022-08-07T14:44:27Z from standard ISO-80000-10:2019 "Atomic and nuclear physics"
-     * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-10:ed-2:v1:en
+     * Generated on 2025-03-13T15:00:05Z from standard ISO-80000-10:2019 "Atomic and nuclear physics"
+     * see also https://www.iso.org/standard/64980.html
      * 
      * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
      * with Greek letters in Unicode encoding. In running text, AsciiMath is placed between backticks.
@@ -289,7 +289,7 @@ standard library package ISQAtomicNuclear {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, electricCurrentPF); }
     }
 
-    attribute def Cartesian3dMagneticDipoleMomentVector :> VectorQuantityValue {
+    attribute def CartesianMagneticDipoleMoment3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 10-9.1 magnetic dipole moment (vector)
@@ -303,14 +303,12 @@ standard library package ISQAtomicNuclear {
          * remarks: For an atom or nucleus, this energy is quantized and can be written as: `W` = `g μ_x M B` where `g` is the appropriate `g` factor (item 10-14.1 or item 10-14.2), `μ_x` is mostly the Bohr magneton or nuclear magneton (item 10-9.2 or item 10-9.3), `M` is magnetic quantum number (item 10-13.4), and `B` is magnitude of the magnetic flux density. See also IEC 80000-6.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dMagneticDipoleMomentCoordinateFrame[1];
+        attribute :>> mRef: CartesianMagneticDipoleMoment3dCoordinateFrame[1];
     }
 
-    attribute magneticDipoleMomentVector: Cartesian3dMagneticDipoleMomentVector :> vectorQuantities;
+    attribute cartesianMagneticDipoleMoment3dVector: CartesianMagneticDipoleMoment3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dMagneticDipoleMomentCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianMagneticDipoleMoment3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: MagneticDipoleMomentUnit[3];
@@ -375,7 +373,7 @@ standard library package ISQAtomicNuclear {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
-    attribute def Cartesian3dSpinVector :> VectorQuantityValue {
+    attribute def CartesianSpin3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 10-10 spin (vector)
@@ -389,14 +387,12 @@ standard library package ISQAtomicNuclear {
          * remarks: Spin is an additive vector quantity.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpinCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpin3dCoordinateFrame[1];
     }
 
-    attribute spinVector: Cartesian3dSpinVector :> vectorQuantities;
+    attribute cartesianSpin3dVector: CartesianSpin3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dSpinCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianSpin3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: SpinUnit[3];
@@ -429,7 +425,7 @@ standard library package ISQAtomicNuclear {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
-    attribute def Cartesian3dTotalAngularMomentumVector :> VectorQuantityValue {
+    attribute def CartesianTotalAngularMomentum3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 10-11 total angular momentum (vector)
@@ -443,14 +439,12 @@ standard library package ISQAtomicNuclear {
          * remarks: In atomic and nuclear physics, orbital angular momentum is usually denoted by `vec(l)` or `vec(L)`. The magnitude of `vec(J)` is quantized so that: `J^2 = ℏ^2 j (j+1)` where `j` is the total angular momentum quantum number (item 10-13.6). Total angular momentum and magnetic dipole moment have the same direction. `j` is not the magnitude of the total angular momentum `vec(J)` but its projection onto the quantization axis, divided by `ℏ`.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dTotalAngularMomentumCoordinateFrame[1];
+        attribute :>> mRef: CartesianTotalAngularMomentum3dCoordinateFrame[1];
     }
 
-    attribute totalAngularMomentumVector: Cartesian3dTotalAngularMomentumVector :> vectorQuantities;
+    attribute cartesianTotalAngularMomentum3dVector: CartesianTotalAngularMomentum3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dTotalAngularMomentumCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianTotalAngularMomentum3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: TotalAngularMomentumUnit[3];
@@ -1583,7 +1577,7 @@ standard library package ISQAtomicNuclear {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
-    attribute def Cartesian3dParticleCurrentDensityVector :> VectorQuantityValue {
+    attribute def CartesianParticleCurrentDensity3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 10-48 particle current density (vector)
@@ -1597,14 +1591,12 @@ standard library package ISQAtomicNuclear {
          * remarks: Usually the word "particle" is replaced by the name of a specific particle, for example proton current. Symbol `vec(S)` is recommended when there is a possibility of confusion with the symbol `vec(J)` for electric current density. For neutron current, the symbol `vec(J)` is generally used. The distribution functions expressed in terms of speed and energy, `vec(J_v)` and `vec(J_E)`, are related to `vec(J)` by: `vec(J) = int vec(J_v) dv = int vec(J_E) dE`. The directional distribution of the particle fluence rate is also denoted as particle radiance.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dParticleCurrentDensityCoordinateFrame[1];
+        attribute :>> mRef: CartesianParticleCurrentDensity3dCoordinateFrame[1];
     }
 
-    attribute particleCurrentDensityVector: Cartesian3dParticleCurrentDensityVector :> vectorQuantities;
+    attribute cartesianParticleCurrentDensity3dVector: CartesianParticleCurrentDensity3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dParticleCurrentDensityCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianParticleCurrentDensity3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: ParticleCurrentDensityUnit[3];

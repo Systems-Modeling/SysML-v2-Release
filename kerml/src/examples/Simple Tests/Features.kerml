@@ -49,18 +49,24 @@ package Features {
 		feature guardian[1];
 	}
 	
-	classifier RegisteredAsset {
-		composite readonly feature identifier[0..1];
-	}
-	
-	classifier Vehicle :> RegisteredAsset {
-		derived feature vin[1] = identifier;	
-	}
-	
+    class RegisteredAsset {
+        composite var feature identifier[0..1];
+    }
+    
+    classifier Vehicle :> RegisteredAsset {
+        derived var feature vin[1] = identifier;
+        
+        var feature v : Vehicle;
+        binding vin = v.vin;
+        var feature w = v.vin;
+        
+        feature x = vin;
+        binding x = vin;
+    }
 	feature legalIdentification;
 	
 	specialization Redef redefinition LegalRecord::guardian redefines parent;
-	specialization redefinition Vehicle::vin redefines RegisteredAsset::identifier; 
+	specialization redefinition Vehicle::vin redefines RegisteredAsset::identifier;
 	
 	redefinition Vehicle::vin redefines legalIdentification; 
 }

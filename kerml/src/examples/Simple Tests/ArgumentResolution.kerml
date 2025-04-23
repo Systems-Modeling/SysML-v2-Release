@@ -5,7 +5,7 @@ package ArgumentResolutionBug {
 	
 	behavior B  {
 		in feature x;
-		out feature : A = A(x);
+		out feature : A = new A(x);
 	}
 	
 	class C {

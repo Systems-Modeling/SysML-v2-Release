@@ -58,7 +58,7 @@ standard library package TradeStudies {
 			 */
 		}
 		
-		in calc fn : EvaluationFunction {
+		in calc eval : EvaluationFunction {
 			doc
 			/*
 			 * The EvaluationFunction to be used in evaluating the given alternatives.
@@ -74,7 +74,7 @@ standard library package TradeStudies {
 			 */
 		}
 				
-		require constraint { fn(selectedAlternative) == best }
+		require constraint { eval(selectedAlternative) == best }
 	}
 	
 	requirement def MinimizeObjective :> TradeStudyObjective {
@@ -87,7 +87,7 @@ standard library package TradeStudies {
 		 
 		subject :>> selectedAlternative;
 		in ref :>> alternatives;
-		in calc :>>fn;
+		in calc :>> eval;
 	
 		out attribute :>> best = alternatives->minimize {
 			doc
@@ -109,7 +109,7 @@ standard library package TradeStudies {
 	
         subject :>> selectedAlternative;
         in ref :>> alternatives;
-        in calc :>>fn;
+        in calc :>> eval;
     
 		out attribute :>> best = alternatives->maximize {
 			doc
@@ -164,7 +164,7 @@ standard library package TradeStudies {
 		
             subject :>> selectedAlternative;
 			in ref :>> alternatives = studyAlternatives;
-			in calc :>> fn = evaluationFunction;
+			in calc :>> eval = evaluationFunction;
 		}
 		
 		return selectedAlternative : Anything = studyAlternatives->selectOne {in ref a {

@@ -13,14 +13,14 @@ package ServerSequenceOutsideRealization_2 {
 			attribute someTopic : String;
 			private item somePublication;
 			/* Requiring FIFO sort (as opposed to just default) to make arrival/leave ordering
-			 * in ServerSequenceModelOutside.sysml equivalent to accept/send ordering in
+			 * in ServerSequenceModelOutside.sysml equivalent to accept/send new ordering in
 			 * ServerSquenceRealization-2.sysml. */
 			:>> incomingTransferSort = Occurrences::earlierFirstIncomingTransferSort;
 			
 			port publicationPort : ~PublicationPort;
 			
 			perform action producerBehavior {
-				action publish send Publish(someTopic, somePublication) via publicationPort;
+				action publish send new Publish(someTopic, somePublication) via publicationPort;
 			}
 		}
 		
@@ -45,7 +45,7 @@ package ServerSequenceOutsideRealization_2 {
 					first waitForPublication
 					accept pub : Publish via publicationPort
 					if pub.topic == subscribing.sub.topic
-					do send Deliver(pub.publication) to subscribing.sub.subscriber
+					do send new Deliver(pub.publication) to subscribing.sub.subscriber
 					then waitForPublication;
 			}
 		}
@@ -59,7 +59,7 @@ package ServerSequenceOutsideRealization_2 {
 			port subscriptionPort : ~SubscriptionPort;
 			
 			perform action consumerBehavior {
-				action subscribe send Subscribe(myTopic, consumer_2) to server_2;
+				action subscribe send new Subscribe(myTopic, consumer_2) to server_2;
 				then action delivery accept Deliver via consumer_2;
 			}
 		}

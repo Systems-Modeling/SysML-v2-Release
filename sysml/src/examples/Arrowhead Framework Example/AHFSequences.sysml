@@ -82,18 +82,18 @@ package AHFNorwaySequences {
 			mqget ::> AHFNorway_LocalCloudDD.MQTTServer.getTopic,
 			mqgive ::> AHFNorway_LocalCloudDD.MQTTServer.giveTopic) {
 			
-			message publish_returnallitems of Publish
-			from apspm to mqget;
-			message subscribe_returnallitems of Subscribe
-			from apsc to mqgive;
-			message call_getItems of CallGiveItems[1]
-			from tlu to apsph;
-			message returnallitems of Return_AllItems
-			from apspm to mqget;
-			message sendallitems of Return_AllItems
-			from mqgive to apsc;
-			message returnack of ResultGiveItems
-			from apsph to tlu;
+			flow publish_returnallitems of Publish
+			from apspm.pub to mqget.APIS_MQTT.pub;
+			flow subscribe_returnallitems of Subscribe
+			from apsc.subscr to mqgive.APIS_MQTT.subscr;
+			flow call_getItems of CallGiveItems[1]
+			from tlu.cll to apsph.cll;
+			flow returnallitems of Return_AllItems
+			from apspm.retall to mqget.APIS_MQTT.retall;
+			flow sendallitems of Return_AllItems
+			from mqgive.APIS_MQTT.retall to apsc.retall;
+			flow returnack of ResultGiveItems
+			from apsph.retrn to tlu.retrn;
 			
 			// Successions on each lifetime
 			// tlu

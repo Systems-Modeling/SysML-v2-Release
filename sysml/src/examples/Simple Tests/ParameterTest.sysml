@@ -11,6 +11,6 @@ package ParameterTest {
 	attribute f = F(a, 2);
 	attribute g = F(q = 1, p = a);
 	
-	attribute b = A(y=a, x=""); 
-	attribute c = A("test2");
+	attribute b = new A(y=a, x=""); 
+	attribute c = new A("test2");
 }

@@ -18,7 +18,7 @@ package StateTest {
 			then S2;
 				
 		state S2 {
-			do send Sig(T.s.x) to p;
+			do send new Sig(T.s.x) to p;
 			state S3;
 		}
 		accept Exit then done;

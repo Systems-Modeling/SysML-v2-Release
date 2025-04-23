@@ -21,7 +21,7 @@ package VehicleGeometryAndCoordinateFrames {
     part def Vehicle :> SpatialItem;
 
     part def Chassis :> SpatialItem {
-        item :>> shape = Box(4800 [mm], 1840 [mm], 1350 [mm]);
+        item :>> shape = new Box(4800 [mm], 1840 [mm], 1350 [mm]);
     }
 
     part def Wheel :> SpatialItem {
@@ -58,7 +58,7 @@ package VehicleGeometryAndCoordinateFrames {
 				private attribute trs : TranslationRotationSequence {
 					:>> source = wcf;
 					:>> target = lbcf;
-					:>> elements = Translation((lbpr*cos((i-1)*lbda), lbpr*sin((i-1)*lbda), -8)[wcf]); 
+					:>> elements = new Translation((lbpr*cos((i-1)*lbda), lbpr*sin((i-1)*lbda), -8)[wcf]); 
 				}
 				lbcf.transformation == trs
 			}
@@ -85,7 +85,7 @@ package VehicleGeometryAndCoordinateFrames {
 			attribute :>> coordinateFrame {
 				attribute :>> transformation : TranslationRotationSequence {
 	 	          	attribute :>> source = datum;
-                	attribute :>> elements = Translation((-(shape as Box).length/2, -(shape as Box).width/2, 0)[datum]);
+                	attribute :>> elements = new Translation((-(shape as Box).length/2, -(shape as Box).width/2, 0)[datum]);
                 }
 			}
         }
@@ -99,7 +99,7 @@ package VehicleGeometryAndCoordinateFrames {
             attribute :>> coordinateFrame {
                 attribute :>> transformation : TranslationRotationSequence {
 	            	attribute :>> source = datum;
-                	attribute :>> elements = (Translation((frontWheelXShift, wheelYShift, 80)[datum]), Rotation(plusXAxis[datum], -90['°']));
+                	attribute :>> elements = (new Translation((frontWheelXShift, wheelYShift, 80)[datum]), new Rotation(plusXAxis[datum], -90['°']));
                 }
             }
         }
@@ -107,7 +107,7 @@ package VehicleGeometryAndCoordinateFrames {
             attribute :>> coordinateFrame {
                 attribute :>> transformation : TranslationRotationSequence {
                 	attribute :>> source = datum;
-                	attribute :>> elements = (Translation((frontWheelXShift, -wheelYShift, 80)[datum]), Rotation((1, 0, 0)[datum], 90['°']));
+                	attribute :>> elements = (new Translation((frontWheelXShift, -wheelYShift, 80)[datum]), new Rotation((1, 0, 0)[datum], 90['°']));
                 }
             }
         }
@@ -115,7 +115,7 @@ package VehicleGeometryAndCoordinateFrames {
             attribute :>> coordinateFrame {
                 attribute :>> transformation : TranslationRotationSequence {
                 	attribute :>> source = datum;
-                	attribute :>> elements = (Translation((rearWheelXShift, wheelYShift, 80)[datum]), Rotation((1, 0, 0)[datum], 90['°']));
+                	attribute :>> elements = (new Translation((rearWheelXShift, wheelYShift, 80)[datum]), new Rotation((1, 0, 0)[datum], 90['°']));
                 }
             }
         }
@@ -123,7 +123,7 @@ package VehicleGeometryAndCoordinateFrames {
             attribute :>> coordinateFrame {
                 attribute :>> transformation : TranslationRotationSequence {
 					attribute :>> source = datum;
-                	attribute :>> elements = (Translation((rearWheelXShift, -wheelYShift, 80)[datum]), Rotation((-1, 0, 0)[datum], 90['°']));
+                	attribute :>> elements = (new Translation((rearWheelXShift, -wheelYShift, 80)[datum]), new Rotation((-1, 0, 0)[datum], 90['°']));
                 }
             }
         }

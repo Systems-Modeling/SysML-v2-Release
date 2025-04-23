@@ -2,18 +2,17 @@ standard library package ISQSpaceTime {
     doc
     /*
      * International System of Quantities and Units
-     * Generated on 2022-08-07T14:44:27Z from standard ISO-80000-3:2019 "Space and Time"
-     * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-3:ed-2:v1:en
-     *
+     * Generated on 2025-03-13T15:00:05Z from standard ISO-80000-3:2019 "Space and Time"
+     * see also https://www.iso.org/standard/64974.html
+     * 
      * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
      * with Greek letters in Unicode encoding. In running text, AsciiMath is placed between backticks.
-     * Note 2: For vector and tensor quantities currently the unit and quantity value type for their (scalar) magnitude is
-     * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate system)
+     * Note 2: For vector and tensor quantities currently the unit and quantity value type for their (scalar) magnitude is 
+     * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate system) 
      * or TensorMeasurementReference.
      */
 
     private import ScalarValues::Real;
-    private import ScalarValues::String;
     private import Quantities::*;
     private import MeasurementReferences::*;
     private import ISQBase::*;
@@ -157,6 +156,8 @@ standard library package ISQSpaceTime {
          */
     }
 
+    /* Spatial coordinate frames */
+    
     attribute def Spatial3dCoordinateFrame :> '3dCoordinateFrame' {
         doc
         /*
@@ -184,7 +185,7 @@ standard library package ISQSpaceTime {
         attribute :>> isOrthogonal = true;
     }
 
-    readonly attribute universalCartesianSpatial3dCoordinateFrame : CartesianSpatial3dCoordinateFrame[1] {
+    attribute universalCartesianSpatial3dCoordinateFrame : CartesianSpatial3dCoordinateFrame[1] {
         doc
         /*
          * A singleton CartesianSpatial3dCoordinateFrame that can be used as a default universal Cartesian 3D coordinate frame.
@@ -299,8 +300,9 @@ standard library package ISQSpaceTime {
         attribute :>> isOrthogonal = true;
     }
 
-	attribute def Position3dVector :> '3dVectorQuantityValue' {
-	    doc
+    /* ISO-80000-3 item 3-1.10 position vector */
+    attribute def Position3dVector :> '3dVectorQuantityValue' {
+        doc
         /*
          * source: item 3-1.10 position vector
          * symbol(s): `vec(r)`
@@ -314,7 +316,8 @@ standard library package ISQSpaceTime {
          */
         attribute :>> isBound = true;
         attribute :>> mRef: Spatial3dCoordinateFrame[1];
-	}
+    }
+
     attribute position3dVector: Position3dVector :> vectorQuantities;
 
     attribute def CartesianPosition3dVector :> Position3dVector {
@@ -350,7 +353,7 @@ standard library package ISQSpaceTime {
     attribute planetaryPosition3dVector : PlanetaryPosition3dVector :> position3dVector;
 
     /* ISO-80000-3 item 3-1.11 displacement */
-	abstract attribute def Displacement3dVector :> '3dVectorQuantityValue' {
+    attribute def Displacement3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 3-1.11 displacement
@@ -365,32 +368,33 @@ standard library package ISQSpaceTime {
          */
         attribute :>> isBound = false;
         attribute :>> mRef: Spatial3dCoordinateFrame[1];
-	}
+    }
+
     attribute displacement3dVector: Displacement3dVector :> vectorQuantities;
 
     attribute def CartesianDisplacement3dVector :> Displacement3dVector {
         attribute x : LengthValue = num#(1) [mRef.mRefs#(1)];
         attribute y : LengthValue = num#(2) [mRef.mRefs#(2)];
         attribute z : LengthValue = num#(3) [mRef.mRefs#(3)];
-        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
+        attribute :>> mRef : CartesianSpatial3dCoordinateFrame[1];
     }
-    attribute cartesianDisplacement3dVector: CartesianDisplacement3dVector :> displacement3dVector;
+    attribute cartesianDisplacement3dVector : CartesianDisplacement3dVector :> displacement3dVector;
 
     attribute def CylindricalDisplacement3dVector :> Displacement3dVector {
         attribute <'ρ'> radialDistance : LengthValue = num#(1) [mRef.mRefs#(1)];
         attribute <'φ'> azimuth : AngularMeasureUnit = num#(2) [mRef.mRefs#(2)];
         attribute <h> height : LengthValue = num#(3) [mRef.mRefs#(3)];
-        attribute :>> mRef: CylindricalSpatial3dCoordinateFrame[1];
+        attribute :>> mRef : CylindricalSpatial3dCoordinateFrame[1];
     }
-    attribute cylindricalDisplacement3dVector: CylindricalDisplacement3dVector :> displacement3dVector;
+    attribute cylindricalDisplacement3dVector : CylindricalDisplacement3dVector :> displacement3dVector;
 
     attribute def SphericalDisplacement3dVector :> Displacement3dVector {
         attribute <r> radialDistance : LengthValue = num#(1) [mRef.mRefs#(1)];
         attribute <'θ'> inclination : AngularMeasureUnit = num#(2) [mRef.mRefs#(2)];
         attribute <'φ'> azimuth : AngularMeasureUnit = num#(3) [mRef.mRefs#(3)];
-        attribute :>> mRef: SphericalSpatial3dCoordinateFrame[1];
+        attribute :>> mRef : SphericalSpatial3dCoordinateFrame[1];
     }
-    attribute sphericalDisplacement3dVector: SphericalDisplacement3dVector :> displacement3dVector;
+    attribute sphericalDisplacement3dVector : SphericalDisplacement3dVector :> displacement3dVector;
 
     /* ISO-80000-3 item 3-1.12 radius of curvature */
     attribute radiusOfCurvature: LengthValue :> scalarQuantities {
@@ -591,6 +595,7 @@ standard library package ISQSpaceTime {
         attribute :>> isBound = false;
         attribute :>> mRef: CartesianVelocity3dCoordinateFrame[1];
     }
+
     attribute cartesianVelocity3dVector: CartesianVelocity3dVector :> vectorQuantities;
 
     attribute def CartesianVelocity3dCoordinateFrame :> '3dCoordinateFrame' {
@@ -670,8 +675,7 @@ standard library package ISQSpaceTime {
 
     attribute cartesianAcceleration3dVector: CartesianAcceleration3dVector :> vectorQuantities;
 
-    attribute def CartesianAcceleration3dCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianAcceleration3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: AccelerationUnit[3];
@@ -702,7 +706,7 @@ standard library package ISQSpaceTime {
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
-    attribute def Cartesian3dAngularVelocityVector :> VectorQuantityValue {
+    attribute def CartesianAngularVelocity3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 3-12 angular velocity (vector)
@@ -716,14 +720,12 @@ standard library package ISQSpaceTime {
          * remarks: The angular velocity vector is given by: `vec(ω) = (d φ) / (dt) vec(u)` where `φ` denotes the angular displacement (item 3-6), `t` the duration (item 3-9), and `vec(u)` the unit vector (ISO 80000-2) along the axis of rotation in the direction for which the rotation corresponds to a right-hand spiral.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dAngularVelocityCoordinateFrame[1];
+        attribute :>> mRef: CartesianAngularVelocity3dCoordinateFrame[1];
     }
 
-    attribute angularVelocityVector: Cartesian3dAngularVelocityVector :> vectorQuantities;
+    attribute cartesianAngularVelocity3dVector: CartesianAngularVelocity3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dAngularVelocityCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianAngularVelocity3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: AngularVelocityUnit[3];
@@ -754,7 +756,7 @@ standard library package ISQSpaceTime {
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
-    attribute def Cartesian3dAngularAccelerationVector :> VectorQuantityValue {
+    attribute def CartesianAngularAcceleration3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 3-13 angular acceleration (vector)
@@ -767,15 +769,13 @@ standard library package ISQSpaceTime {
          * definition: vector (ISO 80000-2) quantity giving the rate of change of angular velocity (item 3-12)
          * remarks: The angular acceleration vector is given by: `vec α = (d vec(ω))/(dt)` Where `vec(ω)` denotes the angular velocity (item 3-12) and `t` the duration (item 3-9).
          */
-         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dAngularAccelerationCoordinateFrame[1];
+        attribute :>> isBound = false;
+        attribute :>> mRef: CartesianAngularAcceleration3dCoordinateFrame[1];
     }
 
-    attribute angularAccelerationVector: Cartesian3dAngularAccelerationVector :> vectorQuantities;
+    attribute cartesianAngularAcceleration3dVector: CartesianAngularAcceleration3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dAngularAccelerationCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianAngularAcceleration3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: AngularAccelerationUnit[3];
@@ -943,7 +943,7 @@ standard library package ISQSpaceTime {
     alias wavenumber for repetency;
 
     /* ISO-80000-3 item 3-21 wave vector */
-    attribute def Cartesian3dWaveVector :> VectorQuantityValue {
+    attribute def CartesianWave3dVector :> '3dVectorQuantityValue' {
         doc
         /*
          * source: item 3-21 wave vector
@@ -957,14 +957,12 @@ standard library package ISQSpaceTime {
          * remarks: None.
          */
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dWaveCoordinateFrame[1];
+        attribute :>> mRef: CartesianWaveVector3dCoordinateFrame[1];
     }
 
-    attribute waveVector: Cartesian3dWaveVector :> vectorQuantities;
+    attribute cartesianWave3dVector: CartesianWave3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dWaveCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
+    attribute def CartesianWaveVector3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: RepetencyUnit[3];

@@ -140,7 +140,7 @@ standard library package SysML {
 			derived ref item ownedPart : PartUsage[0..*] ordered subsets ownedItem;
 			derived ref item ownedPort : PortUsage[0..*] ordered subsets ownedUsage;
 			derived ref item ownedConnection : ConnectorAsUsage[0..*] ordered subsets ownedUsage;
-			derived ref item ownedFlow : FlowConnectionUsage[0..*] subsets ownedConnection;
+			derived ref item ownedFlow : FlowUsage[0..*] subsets ownedConnection;
 			derived ref item ownedInterface : InterfaceUsage[0..*] ordered subsets ownedConnection;
 			derived ref item ownedAllocation : AllocationUsage[0..*] ordered subsets ownedConnection;
 			derived ref item ownedAction : ActionUsage[0..*] ordered subsets ownedOccurrence;
@@ -185,12 +185,12 @@ standard library package SysML {
 			attribute isImportAll : Boolean[1..1] redefines isImportAll;
 		}		
 		
-		metadata def FlowConnectionDefinition specializes Interaction, ActionDefinition {
-			derived ref item flowConnectionEnd : Usage[0..*] redefines associationEnd;
+		metadata def FlowDefinition specializes Interaction, ActionDefinition {
+			derived ref item flowEnd : Usage[0..*] redefines associationEnd;
 		}		
 		
-		metadata def FlowConnectionUsage specializes ConnectorAsUsage, ItemFlow, ActionUsage {
-			derived ref item flowConnectionDefinition : Interaction[0..*] ordered redefines actionDefinition, interaction;
+		metadata def FlowUsage specializes ConnectorAsUsage, Flow, ActionUsage {
+			derived ref item flowDefinition : Interaction[0..*] ordered redefines actionDefinition, interaction;
 		}		
 		
 		metadata def ForLoopActionUsage specializes LoopActionUsage {
@@ -233,10 +233,6 @@ standard library package SysML {
 		
 		metadata def JoinNode specializes ControlNode;		
 		
-		metadata def LifeClass specializes Class {
-			attribute isSufficient : Boolean[1..1] redefines isSufficient;
-		}		
-		
 		abstract metadata def LoopActionUsage specializes ActionUsage {
 			derived ref item bodyAction : ActionUsage[1..1];
 		}		
@@ -259,8 +255,6 @@ standard library package SysML {
 		
 		metadata def OccurrenceDefinition specializes Definition, Class {
 			attribute isIndividual : Boolean[1..1];
-			
-			derived ref item lifeClass : LifeClass[0..1] subsets ownedMember;
 		}		
 		
 		metadata def OccurrenceUsage specializes Usage {
@@ -406,7 +400,7 @@ standard library package SysML {
 		
 		metadata def SuccessionAsUsage specializes ConnectorAsUsage, Succession;		
 		
-		metadata def SuccessionFlowConnectionUsage specializes SuccessionItemFlow, FlowConnectionUsage;		
+		metadata def SuccessionFlowUsage specializes SuccessionFlow, FlowUsage;		
 		
 		metadata def TerminateActionUsage specializes ActionUsage {
 			derived ref item terminatedOccurrenceArgument : Expression[0..1];
@@ -445,6 +439,7 @@ standard library package SysML {
 		
 		metadata def Usage specializes Feature {
 			attribute isVariation : Boolean[1..1];
+			derived attribute mayTimeVary : Boolean[1..1] redefines isVariable;
 			derived attribute isReference : Boolean[1..1];
 			
 			derived ref item 'variant' : Usage[0..*] subsets ownedMember;
@@ -463,7 +458,7 @@ standard library package SysML {
 			derived ref item nestedPart : PartUsage[0..*] ordered subsets nestedItem;
 			derived ref item nestedPort : PortUsage[0..*] ordered subsets nestedUsage;
 			derived ref item nestedConnection : ConnectorAsUsage[0..*] ordered subsets nestedUsage;
-			derived ref item nestedFlow : FlowConnectionUsage[0..*] subsets nestedConnection;
+			derived ref item nestedFlow : FlowUsage[0..*] subsets nestedConnection;
 			derived ref item nestedInterface : InterfaceUsage[0..*] ordered subsets nestedConnection;
 			derived ref item nestedAllocation : AllocationUsage[0..*] ordered subsets nestedConnection;
 			derived ref item nestedAction : ActionUsage[0..*] ordered subsets nestedOccurrence;

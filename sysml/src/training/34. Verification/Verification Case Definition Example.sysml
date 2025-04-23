@@ -6,10 +6,13 @@ package 'Verification Case Definition Example' {
 	
 	requirement vehicleMassRequirement {
 		subject vehicle : Vehicle;
-		in massActual :> ISQ::mass = vehicle.mass;
+		in massActual :> ISQ::mass;
 		doc /* The vehicle mass shall be less than or equal to 2500 kg. */
 		
-		require constraint { massActual <= 2500[SI::kg] }
+		require constraint { 
+		    massActual == vehicle.mass and 
+		    massActual <= 2500[SI::kg]
+		}
 	}
 		
 	verification def VehicleMassTest {
@@ -35,7 +38,7 @@ package 'Verification Case Definition Example' {
 			in massProcessed :> ISQ::mass = processData.massProcessed;
 			out verdict : VerdictKind = 
 				// Check that 'testVehicle' statisfies 'vehicleMassRequirement' if its mass equals 'massProcessed'.
-				PassIf(vehicleMassRequirement(vehicle = testVehicle(mass = massProcessed)));
+				PassIf(vehicleMassRequirement(vehicle = testVehicle, massActual = massProcessed));
 		}
 		
 		return verdict : VerdictKind = evaluateData.verdict;

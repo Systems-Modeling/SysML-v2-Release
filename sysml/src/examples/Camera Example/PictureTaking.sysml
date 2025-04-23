@@ -6,7 +6,7 @@ package PictureTaking {
 		
 	action takePicture {		
 		action focus: Focus[1];
-		flow focus.xrsl to shoot.xsf;
+		flow of Exposure from focus.xrsl to shoot.xsf;
 		action shoot: Shoot[1];
 	}
 }

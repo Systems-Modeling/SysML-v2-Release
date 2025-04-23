@@ -57,7 +57,7 @@ package SimpleVehicleModel{
                             first off
                             accept ignitionCmd:IgnitionCmd via ignitionCmdPort
                                 if ignitionCmd.ignitionOnOff==IgnitionOnOff::on and brakePedalDepressed
-                            do send StartSignal() to controller
+                            do send new StartSignal() to controller
                             then starting;
                         
                         transition starting_To_on
@@ -68,7 +68,7 @@ package SimpleVehicleModel{
                         transition on_To_off
                             first on
                             accept VehicleOffSignal
-                            do send OffSignal() to controller
+                            do send new OffSignal() to controller
                             then off;
                     }
 
@@ -92,7 +92,7 @@ package SimpleVehicleModel{
                         transition normal_To_degraded
                             first normal
                             accept when senseTemperature.temp > Tmax 
-                            do send OverTemp() to controller
+                            do send new OverTemp() to controller
                             then degraded;
 
                         transition maintenance_To_normal
@@ -1325,12 +1325,12 @@ package SimpleVehicleModel{
                     //ignition on
                     transition 'wait-wait-1'
                         first wait
-                        do send IgnitionCmd (ignitionOnOff=IgnitionOnOff::on) via handPort
+                        do send new IgnitionCmd (ignitionOnOff=IgnitionOnOff::on) via handPort
                         then wait;
                     // ignition off
                     transition 'wait-wait-2'
                         first wait
-                        do send IgnitionCmd (ignitionOnOff=IgnitionOnOff::off) via handPort
+                        do send new IgnitionCmd (ignitionOnOff=IgnitionOnOff::off) via handPort
                         then wait;
                 }
             }

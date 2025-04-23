@@ -9,115 +9,115 @@ standard library package KerML {
 	
 	package Root {
 		metaclass AnnotatingElement specializes Element {
-			derived feature annotatedElement : Element[1..*] ordered redefines annotatedElement;
-			composite derived feature ownedAnnotatingRelationship : Annotation[0..*] ordered subsets annotation, ownedRelationship;
-			derived feature owningAnnotatingRelationship : Annotation[0..1] subsets annotation, owningRelationship;
-			derived feature annotation : Annotation[0..*] ordered;
+			derived var feature annotatedElement : Element[1..*] ordered redefines annotatedElement;
+			derived composite var feature ownedAnnotatingRelationship : Annotation[0..*] ordered subsets annotation, ownedRelationship;
+			derived var feature owningAnnotatingRelationship : Annotation[0..1] subsets owningRelationship, annotation;
+			derived var feature annotation : Annotation[0..*] ordered;
 		}		
 		
 		metaclass Annotation specializes Relationship {
-			feature annotatedElement : Element[1..1] redefines target, annotatedElement;
-			derived feature annotatingElement : AnnotatingElement[1..1] redefines source;
-			derived feature owningAnnotatedElement : Element[0..1] subsets annotatedElement, owningRelatedElement;
-			derived feature owningAnnotatingElement : AnnotatingElement[0..1] subsets annotatingElement, owningRelatedElement;
-			composite derived feature ownedAnnotatingElement : AnnotatingElement[0..1] subsets ownedRelatedElement, annotatingElement;
+			var feature annotatedElement : Element[1..1] redefines target, annotatedElement;
+			derived var feature annotatingElement : AnnotatingElement[1..1] redefines source;
+			derived var feature owningAnnotatedElement : Element[0..1] subsets annotatedElement, owningRelatedElement;
+			derived var feature owningAnnotatingElement : AnnotatingElement[0..1] subsets annotatingElement, owningRelatedElement;
+			derived composite var feature ownedAnnotatingElement : AnnotatingElement[0..1] subsets annotatingElement, ownedRelatedElement;
 		}		
 		
 		metaclass Comment specializes AnnotatingElement {
-			feature 'locale' : String[0..1];
-			feature body : String[1..1];
+			var feature 'locale' : String[0..1];
+			var feature body : String[1..1];
 		}		
 		
 		metaclass Dependency specializes Relationship {
-			feature client : Element[1..*] ordered redefines source;
-			feature supplier : Element[1..*] ordered redefines target;
+			var feature client : Element[1..*] ordered redefines source;
+			var feature supplier : Element[1..*] ordered redefines target;
 		}		
 		
 		metaclass Documentation specializes Comment {
-			derived feature documentedElement : Element[1..1] subsets owner redefines annotatedElement;
+			derived var feature documentedElement : Element[1..1] subsets owner redefines annotatedElement;
 		}		
 		
 		abstract metaclass Element {
-			feature elementId : String[1..1];
-			feature aliasIds : String[0..*] ordered;
-			feature declaredShortName : String[0..1];
-			feature declaredName : String[0..1];
-			feature isImpliedIncluded : Boolean[1..1];
-			derived feature shortName : String[0..1];
-			derived feature name : String[0..1];
-			derived feature qualifiedName : String[0..1];
-			derived feature isLibraryElement : Boolean[1..1];
+			var feature elementId : String[1..1];
+			var feature aliasIds : String[0..*] ordered;
+			var feature declaredShortName : String[0..1];
+			var feature declaredName : String[0..1];
+			var feature isImpliedIncluded : Boolean[1..1];
+			derived var feature shortName : String[0..1];
+			derived var feature name : String[0..1];
+			derived var feature qualifiedName : String[0..1];
+			derived var feature isLibraryElement : Boolean[1..1];
 			
-			feature owningRelationship : Relationship[0..1];
-			composite feature ownedRelationship : Relationship[0..*] ordered;
-			derived feature owningMembership : OwningMembership[0..1] subsets owningRelationship;
-			derived feature owningNamespace : Namespace[0..1];
-			derived feature owner : Element[0..1];
-			derived feature ownedElement : Element[0..*] ordered;
-			derived feature documentation : Documentation[0..*] ordered subsets ownedElement;
-			composite derived feature ownedAnnotation : Annotation[0..*] ordered subsets ownedRelationship;
-			derived feature textualRepresentation : TextualRepresentation[0..*] ordered subsets ownedElement;
+			var feature owningRelationship : Relationship[0..1];
+			composite var feature ownedRelationship : Relationship[0..*] ordered;
+			derived var feature owningMembership : OwningMembership[0..1] subsets owningRelationship;
+			derived var feature owningNamespace : Namespace[0..1];
+			derived var feature owner : Element[0..1];
+			derived var feature ownedElement : Element[0..*] ordered;
+			derived var feature documentation : Documentation[0..*] ordered subsets ownedElement;
+			derived composite var feature ownedAnnotation : Annotation[0..*] ordered subsets ownedRelationship;
+			derived var feature textualRepresentation : TextualRepresentation[0..*] ordered subsets ownedElement;
 		}		
 		
 		abstract metaclass Import specializes Relationship {
-			feature visibility : VisibilityKind[1..1];
-			feature isRecursive : Boolean[1..1];
-			feature isImportAll : Boolean[1..1];
+			var feature visibility : VisibilityKind[1..1];
+			var feature isRecursive : Boolean[1..1];
+			var feature isImportAll : Boolean[1..1];
 			
-			derived feature importOwningNamespace : Namespace[1..1] subsets owningRelatedElement redefines source;
-			derived feature importedElement : Element[1..1];
+			derived var feature importOwningNamespace : Namespace[1..1] subsets owningRelatedElement redefines source;
+			derived var feature importedElement : Element[1..1];
 		}		
 		
 		metaclass Membership specializes Relationship {
-			feature memberShortName : String[0..1];
-			feature memberName : String[0..1];
-			feature visibility : VisibilityKind[1..1];
-			derived feature memberElementId : String[1..1];
+			var feature memberShortName : String[0..1];
+			var feature memberName : String[0..1];
+			var feature visibility : VisibilityKind[1..1];
+			derived var feature memberElementId : String[1..1];
 			
-			feature memberElement : Element[1..1] redefines target;
-			derived feature membershipOwningNamespace : Namespace[1..1] subsets owningRelatedElement redefines source;
+			var feature memberElement : Element[1..1] redefines target;
+			derived var feature membershipOwningNamespace : Namespace[1..1] subsets owningRelatedElement redefines source;
 		}		
 		
 		metaclass MembershipImport specializes Import {
-			feature importedMembership : Membership[1..1] redefines target;
+			var feature importedMembership : Membership[1..1] redefines target;
 		}		
 		
 		metaclass Namespace specializes Element {
-			abstract derived feature membership : Membership[0..*] ordered;
-			composite derived feature ownedImport : Import[0..*] ordered subsets ownedRelationship;
-			derived feature 'member' : Element[0..*] ordered;
-			derived feature ownedMember : Element[0..*] ordered subsets 'member';
-			composite derived feature ownedMembership : Membership[0..*] ordered subsets membership, ownedRelationship;
-			derived feature importedMembership : Membership[0..*] ordered subsets membership;
+			derived abstract var feature membership : Membership[0..*] ordered;
+			derived composite var feature ownedImport : Import[0..*] ordered subsets ownedRelationship;
+			derived var feature 'member' : Element[0..*] ordered;
+			derived var feature ownedMember : Element[0..*] ordered subsets 'member';
+			derived composite var feature ownedMembership : Membership[0..*] ordered subsets membership, ownedRelationship;
+			derived var feature importedMembership : Membership[0..*] ordered subsets membership;
 		}		
 		
 		metaclass NamespaceImport specializes Import {
-			feature importedNamespace : Namespace[1..1] redefines target;
+			var feature importedNamespace : Namespace[1..1] redefines target;
 		}		
 		
 		metaclass OwningMembership specializes Membership {
-			derived feature ownedMemberElementId : String[1..1] redefines memberElementId;
-			derived feature ownedMemberShortName : String[0..1] redefines memberShortName;
-			derived feature ownedMemberName : String[0..1] redefines memberName;
+			derived var feature ownedMemberElementId : String[1..1] redefines memberElementId;
+			derived var feature ownedMemberShortName : String[0..1] redefines memberShortName;
+			derived var feature ownedMemberName : String[0..1] redefines memberName;
 			
-			composite derived feature ownedMemberElement : Element[1..1] subsets ownedRelatedElement redefines memberElement;
+			derived composite var feature ownedMemberElement : Element[1..1] subsets ownedRelatedElement redefines memberElement;
 		}		
 		
 		abstract metaclass Relationship specializes Element {
-			feature isImplied : Boolean[1..1];
+			var feature isImplied : Boolean[1..1];
 			
-			feature target : Element[0..*] ordered subsets relatedElement;
-			feature source : Element[0..*] ordered subsets relatedElement;
-			feature owningRelatedElement : Element[0..1] subsets relatedElement;
-			composite feature ownedRelatedElement : Element[0..*] ordered subsets relatedElement;
-			derived feature relatedElement : Element[0..*] ordered nonunique;
+			var feature target : Element[0..*] ordered subsets relatedElement;
+			var feature source : Element[0..*] ordered subsets relatedElement;
+			var feature owningRelatedElement : Element[0..1] subsets relatedElement;
+			composite var feature ownedRelatedElement : Element[0..*] ordered subsets relatedElement;
+			derived var feature relatedElement : Element[0..*] ordered nonunique;
 		}		
 		
 		metaclass TextualRepresentation specializes AnnotatingElement {
-			feature 'language' : String[1..1];
-			feature body : String[1..1];
+			var feature 'language' : String[1..1];
+			var feature body : String[1..1];
 			
-			derived feature representedElement : Element[1..1] subsets owner redefines annotatedElement;
+			derived var feature representedElement : Element[1..1] subsets owner redefines annotatedElement;
 		}		
 		
 		datatype VisibilityKind {
@@ -132,66 +132,67 @@ standard library package KerML {
 		public import Root::*;
 		
 		metaclass Classifier specializes Type {
-			composite derived feature ownedSubclassification : Subclassification[0..*] subsets ownedSpecialization;
+			derived composite var feature ownedSubclassification : Subclassification[0..*] subsets ownedSpecialization;
 		}		
 		
 		metaclass Conjugation specializes Relationship {
-			feature originalType : Type[1..1] redefines target;
-			feature conjugatedType : Type[1..1] redefines source;
-			derived feature owningType : Type[0..1] subsets conjugatedType, owningRelatedElement;
+			var feature originalType : Type[1..1] redefines target;
+			var feature conjugatedType : Type[1..1] redefines source;
+			derived var feature owningType : Type[0..1] subsets conjugatedType, owningRelatedElement;
 		}		
 		
 		metaclass CrossSubsetting specializes Subsetting {
-			feature crossedFeature : Feature[1..1] redefines subsettedFeature;
-			derived feature crossingFeature : Feature[1..1] redefines owningFeature, subsettingFeature;
+			var feature crossedFeature : Feature[1..1] redefines subsettedFeature;
+			derived var feature crossingFeature : Feature[1..1] redefines owningFeature, subsettingFeature;
 		}		
 		
 		metaclass Differencing specializes Relationship {
-			feature differencingType : Type[1..1] redefines target;
-			derived feature typeDifferenced : Type[1..1] subsets owningRelatedElement redefines source;
+			var feature differencingType : Type[1..1] redefines target;
+			derived var feature typeDifferenced : Type[1..1] subsets owningRelatedElement redefines source;
 		}		
 		
 		metaclass Disjoining specializes Relationship {
-			feature typeDisjoined : Type[1..1] redefines source;
-			feature disjoiningType : Type[1..1] redefines target;
-			derived feature owningType : Type[0..1] subsets owningRelatedElement, typeDisjoined;
+			var feature typeDisjoined : Type[1..1] redefines source;
+			var feature disjoiningType : Type[1..1] redefines target;
+			derived var feature owningType : Type[0..1] subsets owningRelatedElement, typeDisjoined;
 		}		
 		
 		metaclass EndFeatureMembership specializes FeatureMembership {
-			composite derived feature ownedMemberFeature : Feature[1..1] redefines ownedMemberFeature;
+			derived composite var feature ownedMemberFeature : Feature[1..1] redefines ownedMemberFeature;
 		}		
 		
 		metaclass Feature specializes Type {
-			feature isUnique : Boolean[1..1];
-			feature isOrdered : Boolean[1..1];
-			feature isComposite : Boolean[1..1];
-			feature isEnd : Boolean[1..1];
-			feature isDerived : Boolean[1..1];
-			feature isReadOnly : Boolean[1..1];
-			feature isPortion : Boolean[1..1];
-			feature direction : FeatureDirectionKind[0..1];
+			var feature isUnique : Boolean[1..1];
+			var feature isOrdered : Boolean[1..1];
+			var feature isComposite : Boolean[1..1];
+			var feature isEnd : Boolean[1..1];
+			var feature isDerived : Boolean[1..1];
+			var feature isPortion : Boolean[1..1];
+			var feature isVariable : Boolean[1..1];
+			var feature isConstant : Boolean[1..1];
+			var feature direction : FeatureDirectionKind[0..1];
 			
-			derived feature owningType : Type[0..1] subsets featuringType, owningNamespace;
-			derived feature 'type' : Type[0..*] ordered;
-			composite derived feature ownedRedefinition : Redefinition[0..*] subsets ownedSubsetting;
-			composite derived feature ownedSubsetting : Subsetting[0..*] subsets ownedSpecialization;
-			derived feature owningFeatureMembership : FeatureMembership[0..1] subsets owningMembership;
-			derived feature endOwningType : Type[0..1] subsets owningType;
-			composite derived feature ownedTyping : FeatureTyping[0..*] ordered subsets ownedSpecialization;
-			derived feature featuringType : Type[0..*] ordered;
-			composite derived feature ownedTypeFeaturing : TypeFeaturing[0..*] ordered subsets ownedRelationship;
-			derived feature chainingFeature : Feature[0..*] ordered nonunique;
-			composite derived feature ownedFeatureInverting : FeatureInverting[0..*] subsets ownedRelationship;
-			composite derived feature ownedFeatureChaining : FeatureChaining[0..*] ordered subsets ownedRelationship;
-			composite derived feature ownedReferenceSubsetting : ReferenceSubsetting[0..1] subsets ownedSubsetting;
-			derived feature crossFeature : Feature[0..1];
-			composite derived feature ownedCrossSubsetting : CrossSubsetting[0..1] subsets ownedSubsetting;
-			derived feature featureTarget : Feature[1..1];
+			derived var feature owningType : Type[0..1] subsets owningNamespace, featuringType;
+			derived var feature 'type' : Type[0..*] ordered;
+			derived composite var feature ownedRedefinition : Redefinition[0..*] subsets ownedSubsetting;
+			derived composite var feature ownedSubsetting : Subsetting[0..*] subsets ownedSpecialization;
+			derived var feature owningFeatureMembership : FeatureMembership[0..1] subsets owningMembership;
+			derived var feature endOwningType : Type[0..1] subsets owningType;
+			derived composite var feature ownedTyping : FeatureTyping[0..*] ordered subsets ownedSpecialization;
+			derived var feature featuringType : Type[0..*] ordered;
+			derived composite var feature ownedTypeFeaturing : TypeFeaturing[0..*] ordered subsets ownedRelationship;
+			derived var feature chainingFeature : Feature[0..*] ordered nonunique;
+			derived composite var feature ownedFeatureInverting : FeatureInverting[0..*] subsets ownedRelationship;
+			derived composite var feature ownedFeatureChaining : FeatureChaining[0..*] ordered subsets ownedRelationship;
+			derived composite var feature ownedReferenceSubsetting : ReferenceSubsetting[0..1] subsets ownedSubsetting;
+			derived var feature featureTarget : Feature[1..1];
+			derived var feature crossFeature : Feature[0..1];
+			derived composite var feature ownedCrossSubsetting : CrossSubsetting[0..1] subsets ownedSubsetting;
 		}		
 		
 		metaclass FeatureChaining specializes Relationship {
-			feature chainingFeature : Feature[1..1] redefines target;
-			derived feature featureChained : Feature[1..1] subsets owningRelatedElement redefines source;
+			var feature chainingFeature : Feature[1..1] redefines target;
+			derived var feature featureChained : Feature[1..1] subsets owningRelatedElement redefines source;
 		}		
 		
 		datatype FeatureDirectionKind {
@@ -201,99 +202,94 @@ standard library package KerML {
 		}
 		
 		metaclass FeatureInverting specializes Relationship {
-			feature featureInverted : Feature[1..1] redefines source;
-			feature invertingFeature : Feature[1..1] redefines target;
-			derived feature owningFeature : Feature[0..1] subsets featureInverted, owningRelatedElement;
+			var feature featureInverted : Feature[1..1] redefines source;
+			var feature invertingFeature : Feature[1..1] redefines target;
+			derived var feature owningFeature : Feature[0..1] subsets featureInverted, owningRelatedElement;
 		}		
 		
-		metaclass FeatureMembership specializes Featuring, OwningMembership {
-			derived feature owningType : Type[1..1] redefines 'type', membershipOwningNamespace;
-			composite derived feature ownedMemberFeature : Feature[1..1] redefines 'feature', ownedMemberElement;
+		metaclass FeatureMembership specializes OwningMembership {
+			derived var feature owningType : Type[1..1] redefines membershipOwningNamespace;
+			derived composite var feature ownedMemberFeature : Feature[1..1] redefines ownedMemberElement;
 		}		
 		
 		metaclass FeatureTyping specializes Specialization {
-			feature typedFeature : Feature[1..1] redefines specific;
-			feature 'type' : Type[1..1] redefines general;
-			derived feature owningFeature : Feature[0..1] subsets typedFeature redefines owningType;
-		}		
-		
-		abstract metaclass Featuring specializes Relationship {
-			feature 'type' : Type[1..1] subsets relatedElement;
-			feature 'feature' : Feature[1..1] subsets relatedElement;
+			var feature typedFeature : Feature[1..1] redefines specific;
+			var feature 'type' : Type[1..1] redefines general;
+			derived var feature owningFeature : Feature[0..1] subsets typedFeature redefines owningType;
 		}		
 		
 		metaclass Intersecting specializes Relationship {
-			feature intersectingType : Type[1..1] redefines target;
-			derived feature typeIntersected : Type[1..1] subsets owningRelatedElement redefines source;
+			var feature intersectingType : Type[1..1] redefines target;
+			derived var feature typeIntersected : Type[1..1] subsets owningRelatedElement redefines source;
 		}		
 		
 		metaclass Multiplicity specializes Feature;		
 		
 		metaclass Redefinition specializes Subsetting {
-			feature redefiningFeature : Feature[1..1] redefines subsettingFeature;
-			feature redefinedFeature : Feature[1..1] redefines subsettedFeature;
+			var feature redefiningFeature : Feature[1..1] redefines subsettingFeature;
+			var feature redefinedFeature : Feature[1..1] redefines subsettedFeature;
 		}		
 		
 		metaclass ReferenceSubsetting specializes Subsetting {
-			feature referencedFeature : Feature[1..1] redefines subsettedFeature;
-			derived feature referencingFeature : Feature[1..1] redefines owningFeature, subsettingFeature;
+			var feature referencedFeature : Feature[1..1] redefines subsettedFeature;
+			derived var feature referencingFeature : Feature[1..1] redefines owningFeature, subsettingFeature;
 		}		
 		
 		metaclass Specialization specializes Relationship {
-			feature general : Type[1..1] redefines target;
-			feature specific : Type[1..1] redefines source;
-			derived feature owningType : Type[0..1] subsets owningRelatedElement, specific;
+			var feature general : Type[1..1] redefines target;
+			var feature specific : Type[1..1] redefines source;
+			derived var feature owningType : Type[0..1] subsets owningRelatedElement, specific;
 		}		
 		
 		metaclass Subclassification specializes Specialization {
-			feature superclassifier : Classifier[1..1] redefines general;
-			feature 'subclassifier' : Classifier[1..1] redefines specific;
-			derived feature owningClassifier : Classifier[0..1] redefines owningType;
+			var feature superclassifier : Classifier[1..1] redefines general;
+			var feature 'subclassifier' : Classifier[1..1] redefines specific;
+			derived var feature owningClassifier : Classifier[0..1] redefines owningType;
 		}		
 		
 		metaclass Subsetting specializes Specialization {
-			feature subsettedFeature : Feature[1..1] redefines general;
-			feature subsettingFeature : Feature[1..1] redefines specific;
-			derived feature owningFeature : Feature[0..1] subsets subsettingFeature redefines owningType;
+			var feature subsettedFeature : Feature[1..1] redefines general;
+			var feature subsettingFeature : Feature[1..1] redefines specific;
+			derived var feature owningFeature : Feature[0..1] subsets subsettingFeature redefines owningType;
 		}		
 		
 		metaclass Type specializes Namespace {
-			feature isAbstract : Boolean[1..1];
-			feature isSufficient : Boolean[1..1];
-			derived feature isConjugated : Boolean[1..1];
+			var feature isAbstract : Boolean[1..1];
+			var feature isSufficient : Boolean[1..1];
+			derived var feature isConjugated : Boolean[1..1];
 			
-			composite derived feature ownedSpecialization : Specialization[0..*] ordered subsets ownedRelationship;
-			composite derived feature ownedFeatureMembership : FeatureMembership[0..*] ordered subsets ownedMembership, featureMembership;
-			derived feature 'feature' : Feature[0..*] ordered subsets 'member';
-			derived feature ownedFeature : Feature[0..*] ordered subsets ownedMember;
-			derived feature input : Feature[0..*] ordered subsets directedFeature;
-			derived feature output : Feature[0..*] ordered subsets directedFeature;
-			derived feature inheritedMembership : Membership[0..*] ordered subsets membership;
-			derived feature endFeature : Feature[0..*] ordered subsets 'feature';
-			derived feature ownedEndFeature : Feature[0..*] ordered subsets endFeature, ownedFeature;
-			composite derived feature ownedConjugator : Conjugation[0..1] subsets ownedRelationship;
-			derived feature inheritedFeature : Feature[0..*] ordered subsets 'feature';
-			derived feature 'multiplicity' : Multiplicity[0..1] subsets ownedMember;
-			derived feature unioningType : Type[0..*] ordered;
-			composite derived feature ownedIntersecting : Intersecting[0..*] ordered subsets ownedRelationship;
-			derived feature intersectingType : Type[0..*] ordered;
-			composite derived feature ownedUnioning : Unioning[0..*] ordered subsets ownedRelationship;
-			composite derived feature ownedDisjoining : Disjoining[0..*] subsets ownedRelationship;
-			derived feature featureMembership : FeatureMembership[0..*] ordered;
-			derived feature differencingType : Type[0..*] ordered;
-			composite derived feature ownedDifferencing : Differencing[0..*] ordered subsets ownedRelationship;
-			derived feature directedFeature : Feature[0..*] ordered subsets 'feature';
+			derived composite var feature ownedSpecialization : Specialization[0..*] ordered subsets ownedRelationship;
+			derived composite var feature ownedFeatureMembership : FeatureMembership[0..*] ordered subsets ownedMembership, featureMembership;
+			derived var feature 'feature' : Feature[0..*] ordered subsets 'member';
+			derived var feature ownedFeature : Feature[0..*] ordered subsets ownedMember;
+			derived var feature input : Feature[0..*] ordered subsets directedFeature;
+			derived var feature output : Feature[0..*] ordered subsets directedFeature;
+			derived var feature inheritedMembership : Membership[0..*] ordered subsets membership;
+			derived var feature endFeature : Feature[0..*] ordered subsets 'feature';
+			derived var feature ownedEndFeature : Feature[0..*] ordered subsets endFeature, ownedFeature;
+			derived composite var feature ownedConjugator : Conjugation[0..1] subsets ownedRelationship;
+			derived var feature inheritedFeature : Feature[0..*] ordered subsets 'feature';
+			derived var feature 'multiplicity' : Multiplicity[0..1] subsets ownedMember;
+			derived var feature unioningType : Type[0..*] ordered;
+			derived composite var feature ownedIntersecting : Intersecting[0..*] ordered subsets ownedRelationship;
+			derived var feature intersectingType : Type[0..*] ordered;
+			derived composite var feature ownedUnioning : Unioning[0..*] ordered subsets ownedRelationship;
+			derived composite var feature ownedDisjoining : Disjoining[0..*] subsets ownedRelationship;
+			derived var feature featureMembership : FeatureMembership[0..*] ordered;
+			derived var feature differencingType : Type[0..*] ordered;
+			derived composite var feature ownedDifferencing : Differencing[0..*] ordered subsets ownedRelationship;
+			derived var feature directedFeature : Feature[0..*] ordered subsets 'feature';
 		}		
 		
-		metaclass TypeFeaturing specializes Featuring {
-			feature featureOfType : Feature[1..1] redefines source, 'feature';
-			feature featuringType : Type[1..1] redefines target, 'type';
-			derived feature owningFeatureOfType : Feature[0..1] subsets owningRelatedElement, featureOfType;
+		metaclass TypeFeaturing specializes Relationship {
+			var feature featureOfType : Feature[1..1] redefines source;
+			var feature featuringType : Type[1..1] redefines target;
+			derived var feature owningFeatureOfType : Feature[0..1] subsets owningRelatedElement, featureOfType;
 		}		
 		
 		metaclass Unioning specializes Relationship {
-			feature unioningType : Type[1..1] redefines target;
-			derived feature typeUnioned : Type[1..1] subsets owningRelatedElement redefines source;
+			var feature unioningType : Type[1..1] redefines target;
+			derived var feature typeUnioned : Type[1..1] subsets owningRelatedElement redefines source;
 		}		
 		
 	}
@@ -302,110 +298,114 @@ standard library package KerML {
 		public import Core::*;
 		
 		metaclass Association specializes Classifier, Relationship {
-			derived feature relatedType : Type[0..*] ordered nonunique redefines relatedElement;
-			derived feature sourceType : Type[0..1] subsets relatedType redefines source;
-			derived feature targetType : Type[0..*] subsets relatedType redefines target;
-			derived feature associationEnd : Feature[0..*] redefines endFeature;
+			derived var feature relatedType : Type[0..*] ordered nonunique redefines relatedElement;
+			derived var feature sourceType : Type[0..1] subsets relatedType redefines source;
+			derived var feature targetType : Type[0..*] subsets relatedType redefines target;
+			derived var feature associationEnd : Feature[0..*] redefines endFeature;
 		}		
 		
 		metaclass AssociationStructure specializes Association, Structure;		
 		
 		metaclass Behavior specializes Class {
-			derived feature 'step' : Step[0..*] subsets 'feature';
-			derived feature parameter : Feature[0..*] ordered redefines directedFeature;
+			derived var feature 'step' : Step[0..*] subsets 'feature';
+			derived var feature parameter : Feature[0..*] ordered redefines directedFeature;
 		}		
 		
 		metaclass BindingConnector specializes Connector;		
 		
 		metaclass BooleanExpression specializes Expression {
-			derived feature 'predicate' : Predicate[0..1] redefines 'function';
+			derived var feature 'predicate' : Predicate[0..1] redefines 'function';
 		}		
 		
 		metaclass Class specializes Classifier;		
 		
 		metaclass CollectExpression specializes OperatorExpression {
-			feature operator : String[1..1] redefines operator;
+			var feature operator : String[1..1] redefines operator;
 		}		
 		
 		metaclass Connector specializes Feature, Relationship {
-			derived feature relatedFeature : Feature[0..*] ordered nonunique redefines relatedElement;
-			derived feature association : Association[0..*] ordered redefines 'type';
-			derived feature connectorEnd : Feature[0..*] ordered redefines endFeature;
-			derived feature sourceFeature : Feature[0..1] ordered subsets relatedFeature redefines source;
-			derived feature targetFeature : Feature[0..*] ordered subsets relatedFeature redefines target;
+			derived var feature relatedFeature : Feature[0..*] ordered nonunique redefines relatedElement;
+			derived var feature association : Association[0..*] ordered redefines 'type';
+			derived var feature connectorEnd : Feature[0..*] ordered redefines endFeature;
+			derived var feature sourceFeature : Feature[0..1] ordered subsets relatedFeature redefines source;
+			derived var feature targetFeature : Feature[0..*] ordered subsets relatedFeature redefines target;
+			derived var feature defaultFeaturingType : Type[0..1];
 		}		
+		
+		metaclass ConstructorExpression specializes InstantiationExpression;		
 		
 		metaclass DataType specializes Classifier;		
 		
 		metaclass ElementFilterMembership specializes OwningMembership {
-			composite derived feature condition : Expression[1..1] redefines ownedMemberElement;
+			derived composite var feature condition : Expression[1..1] redefines ownedMemberElement;
 		}		
 		
 		metaclass Expression specializes Step {
-			derived feature isModelLevelEvaluable : Boolean[1..1];
+			derived var feature isModelLevelEvaluable : Boolean[1..1];
 			
-			derived feature 'function' : Function[0..1] redefines 'behavior';
-			derived feature result : Feature[1..1] subsets output, parameter;
+			derived var feature 'function' : Function[0..1] redefines 'behavior';
+			derived var feature result : Feature[1..1] subsets output, parameter;
 		}		
 		
 		metaclass FeatureChainExpression specializes OperatorExpression {
-			feature operator : String[1..1] redefines operator;
+			var feature operator : String[1..1] redefines operator;
 			
-			derived feature targetFeature : Feature[1..1] subsets 'member';
+			derived var feature targetFeature : Feature[1..1] subsets 'member';
 		}		
 		
 		metaclass FeatureReferenceExpression specializes Expression {
-			derived feature referent : Feature[1..1] subsets 'member';
+			derived var feature referent : Feature[1..1] subsets 'member';
 		}		
 		
 		metaclass FeatureValue specializes OwningMembership {
-			feature isInitial : Boolean[1..1];
-			feature isDefault : Boolean[1..1];
+			var feature isInitial : Boolean[1..1];
+			var feature isDefault : Boolean[1..1];
 			
-			derived feature featureWithValue : Feature[1..1] subsets membershipOwningNamespace;
-			composite derived feature value : Expression[1..1] redefines ownedMemberElement;
+			derived var feature featureWithValue : Feature[1..1] subsets membershipOwningNamespace;
+			derived composite var feature value : Expression[1..1] redefines ownedMemberElement;
 		}		
 		
+		metaclass Flow specializes Connector, Step {
+			derived var feature payloadType : Classifier[0..*] ordered nonunique;
+			derived var feature targetInputFeature : Feature[0..1] ordered nonunique;
+			derived var feature sourceOutputFeature : Feature[0..1] ordered nonunique;
+			derived var feature flowEnd : FlowEnd[0..2] ordered subsets connectorEnd;
+			derived var feature payloadFeature : PayloadFeature[0..1] subsets ownedFeature;
+			derived var feature 'interaction' : Interaction[0..*] ordered redefines association, 'behavior';
+		}		
+		
+		metaclass FlowEnd specializes Feature;		
+		
 		metaclass Function specializes Behavior {
-			derived feature isModelLevelEvaluable : Boolean[1..1];
+			derived var feature isModelLevelEvaluable : Boolean[1..1];
 			
-			derived feature expression : Expression[0..*] subsets 'step';
-			derived feature result : Feature[1..1] subsets output, parameter;
+			derived var feature expression : Expression[0..*] subsets 'step';
+			derived var feature result : Feature[1..1] subsets output, parameter;
 		}		
 		
 		metaclass IndexExpression specializes OperatorExpression {
-			feature operator : String[1..1] redefines operator;
+			var feature operator : String[1..1] redefines operator;
+		}		
+		
+		abstract metaclass InstantiationExpression specializes Expression {
+			derived var feature argument : Expression[0..*] ordered;
+			derived var feature instantiatedType : Type[1..1] subsets 'member';
 		}		
 		
 		metaclass Interaction specializes Association, Behavior;		
 		
 		metaclass Invariant specializes BooleanExpression {
-			feature isNegated : Boolean[1..1];
+			var feature isNegated : Boolean[1..1];
 		}		
 		
-		metaclass InvocationExpression specializes Expression {
-			derived feature argument : Expression[0..*] ordered subsets ownedFeature;
-		}		
-		
-		metaclass ItemFeature specializes Feature;		
-		
-		metaclass ItemFlow specializes Connector, Step {
-			derived feature itemType : Classifier[0..*] ordered nonunique;
-			derived feature targetInputFeature : Feature[0..1] ordered nonunique;
-			derived feature sourceOutputFeature : Feature[0..1] ordered nonunique;
-			derived feature itemFlowEnd : ItemFlowEnd[0..2] ordered subsets connectorEnd;
-			derived feature itemFeature : ItemFeature[0..1] subsets ownedFeature;
-			derived feature 'interaction' : Interaction[0..*] ordered redefines association, 'behavior';
-		}		
-		
-		metaclass ItemFlowEnd specializes Feature;		
+		metaclass InvocationExpression specializes InstantiationExpression;		
 		
 		metaclass LibraryPackage specializes Package {
-			feature isStandard : Boolean[1..1];
+			var feature isStandard : Boolean[1..1];
 		}		
 		
 		metaclass LiteralBoolean specializes LiteralExpression {
-			feature value : Boolean[1..1];
+			var feature value : Boolean[1..1];
 		}		
 		
 		metaclass LiteralExpression specializes Expression;		
@@ -413,74 +413,71 @@ standard library package KerML {
 		metaclass LiteralInfinity specializes LiteralExpression;		
 		
 		metaclass LiteralInteger specializes LiteralExpression {
-			feature value : Integer[1..1];
+			var feature value : Integer[1..1];
 		}		
 		
 		metaclass LiteralRational specializes LiteralExpression {
-			feature value : Rational[1..1];
+			var feature value : Rational[1..1];
 		}		
 		
 		metaclass LiteralString specializes LiteralExpression {
-			feature value : String[1..1];
+			var feature value : String[1..1];
 		}		
 		
 		metaclass Metaclass specializes Structure;		
 		
 		metaclass MetadataAccessExpression specializes Expression {
-			feature referencedElement : Element[1..1];
+			derived var feature referencedElement : Element[1..1] subsets 'member';
 		}		
 		
 		metaclass MetadataFeature specializes AnnotatingElement, Feature {
-			derived feature 'metaclass' : Metaclass[0..1] subsets 'type';
+			derived var feature 'metaclass' : Metaclass[0..1] subsets 'type';
 		}		
 		
 		metaclass MultiplicityRange specializes Multiplicity {
-			derived feature lowerBound : Expression[0..1] subsets bound;
-			derived feature upperBound : Expression[1..1] subsets bound;
-			derived feature bound : Expression[1..2] ordered subsets ownedMember;
+			derived var feature lowerBound : Expression[0..1] subsets bound;
+			derived var feature upperBound : Expression[1..1] subsets bound;
+			derived var feature bound : Expression[1..2] ordered subsets ownedMember;
 		}		
 		
 		metaclass NullExpression specializes Expression;		
 		
 		metaclass OperatorExpression specializes InvocationExpression {
-			feature operator : String[1..1];
+			var feature operator : String[1..1];
 		}		
 		
 		metaclass Package specializes Namespace {
-			derived feature filterCondition : Expression[0..*] ordered subsets ownedMember;
+			derived var feature filterCondition : Expression[0..*] ordered subsets ownedMember;
 		}		
 		
 		metaclass ParameterMembership specializes FeatureMembership {
-			composite derived feature ownedMemberParameter : Feature[1..1] redefines ownedMemberFeature;
+			derived composite var feature ownedMemberParameter : Feature[1..1] redefines ownedMemberFeature;
 		}		
+		
+		metaclass PayloadFeature specializes Feature;		
 		
 		metaclass Predicate specializes Function;		
 		
 		metaclass ResultExpressionMembership specializes FeatureMembership {
-			composite derived feature ownedResultExpression : Expression[1..1] redefines ownedMemberFeature;
+			derived composite var feature ownedResultExpression : Expression[1..1] redefines ownedMemberFeature;
 		}		
 		
 		metaclass ReturnParameterMembership specializes ParameterMembership;		
 		
 		metaclass SelectExpression specializes OperatorExpression {
-			feature operator : String[1..1] redefines operator;
+			var feature operator : String[1..1] redefines operator;
 		}		
 		
 		metaclass Step specializes Feature {
-			derived feature 'behavior' : Behavior[0..*] ordered subsets 'type';
-			derived feature parameter : Feature[0..*] ordered redefines directedFeature;
+			derived var feature 'behavior' : Behavior[0..*] ordered subsets 'type';
+			derived var feature parameter : Feature[0..*] ordered redefines directedFeature;
 		}		
 		
 		metaclass Structure specializes Class;		
 		
-		metaclass Succession specializes Connector {
-			derived feature transitionStep : Step[0..1];
-			derived feature triggerStep : Step[0..*];
-			derived feature effectStep : Step[0..*];
-			derived feature guardExpression : Expression[0..*];
-		}		
+		metaclass Succession specializes Connector;		
 		
-		metaclass SuccessionItemFlow specializes ItemFlow, Succession;		
+		metaclass SuccessionFlow specializes Succession, Flow;		
 		
 	}
 }

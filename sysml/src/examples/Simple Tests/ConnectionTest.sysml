@@ -39,11 +39,22 @@ package ConnectionTest {
 	
 	connection {
 		part q;
-		end end1 ::> d1 :> q;
+		end [2] ref end1 ::> d1 :> q;
 		end end2 ::> d2;
 	}
 	
 	abstract flow def F;
 	
 	message : F from p to p;
+	
+	part def A {
+	    ref b : B;
+	}
+	
+	part def B;
+	
+	connection def AB {
+	    end a : A;
+	    end b : B crosses a.b;
+	}
 }
