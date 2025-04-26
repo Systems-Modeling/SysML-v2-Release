@@ -81,7 +81,7 @@ Additional content can be accessed at the following URLs.
 
 The specification documents are copyrighted by the organizations listed in those documents under the terms given there.
 
-The `Intro to the SysML v2 Language-Textual Notation` presentation is Copyright © 2019-2023 Model Driven Solutions, Inc. </br>
+The `Intro to the SysML v2 Language-Textual Notation` presentation is Copyright © 2019-2025 Model Driven Solutions, Inc. </br>
 The `Intro to the SysML v2 Language-Graphical Notation` presentation is Copyright © 2021-2023 Sandy Friedenthal. </br>
 Both presentations are licensed under the Creative Commons Attribution 4.0  International License. </br>
 To view a copy of this license, visit [http://creativecommons.org/licenses/by/4.0/](http://creativecommons.org/licenses/by/4.0/) 
