@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sysml:Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sysml="https://www.omg.org/spec/SysML/20250201" xmi:id="2b2225af-b26f-5b99-8124-2d7befb88d5b" elementId="2b2225af-b26f-5b99-8124-2d7befb88d5b">
+  <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="0d3280e4-a17d-53ab-a3c5-cd4372f287d4" elementId="0d3280e4-a17d-53ab-a3c5-cd4372f287d4">
+    <ownedRelatedElement xsi:type="sysml:LibraryPackage" xmi:id="70bbca8b-7db0-513c-b32d-ff973a8da51e" elementId="70bbca8b-7db0-513c-b32d-ff973a8da51e" declaredName="StandardViewDefinitions" isStandard="true">
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="4cda72f5-7018-5b2e-b60e-0fdb8d0f5d74" elementId="4cda72f5-7018-5b2e-b60e-0fdb8d0f5d74">
+        <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="f9ab37c6-7bbe-5fe8-86a4-1e43c9342e54" elementId="f9ab37c6-7bbe-5fe8-86a4-1e43c9342e54" body="This package defines the standard view definitions for the SysML language.&#xA;"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:NamespaceImport" xmi:id="2f4dccd0-6a18-535f-8ab2-2a36a621ccc3" elementId="2f4dccd0-6a18-535f-8ab2-2a36a621ccc3" visibility="public">
+        <importedNamespace href="SysML.sysmlx#f8861c88-124d-527d-9946-d707fb209b47"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="7e1a2798-2146-5c07-ba4c-d235e4e80f0a" elementId="7e1a2798-2146-5c07-ba4c-d235e4e80f0a">
+        <ownedRelatedElement xsi:type="sysml:ViewDefinition" xmi:id="03904fdf-d6f2-57b1-92d5-95d36b8208dc" elementId="03904fdf-d6f2-57b1-92d5-95d36b8208dc" declaredShortName="gv" declaredName="GeneralView" isImpliedIncluded="true">
+          <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="8ad89d20-41c3-505f-ba75-e44e7f5fc41a" elementId="8ad89d20-41c3-505f-ba75-e44e7f5fc41a">
+            <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="ff0476c3-7e1a-537f-8a3a-618d667713d8" elementId="ff0476c3-7e1a-537f-8a3a-618d667713d8" body="View definition to present any members of exposed model element(s).&#xA;This is the most general view, enabling presentation of any model element.&#xA;The typical rendering in graphical notation is as a graph of nodes and edges.&#xA;Specializations of GeneralView can be specified through appropriate selection of filters, e.g.:&#xA;- package view, filtering on Package, Package containment, package Import&#xA;- definition and usage view, filtering on Definition, Usage, Specialization, FeatureTyping (covering defined by)&#xA;- requirement view, filtering on RequirementDefinition, RequirementUsage, Specialization, FeatureTyping, &#xA;  SatisfyRequirementUsage, AllocationDefinition, AllocationUsage,&#xA;- view and viewpoint view, filtering on ViewDefinition, ViewUsage, ViewpointDefinition, ViewpointUsage, &#xA;  RenderingDefinition, RenderingUsage, ConcernDefinition, ConcernUsage, StakeholderMembership, ...&#xA;- language extension view, filtering on Metaclass, MetadataFeature, MetadataAccessExpression, ...&#xA;Note: filters are specified by referencing concepts from the KerML.kerml and SysML.sysml standard library packages.&#xA;"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="d5c66d7c-d548-54c7-b3c2-667871e9c93a" elementId="d5c66d7c-d548-54c7-b3c2-667871e9c93a" isImplied="true" subclassifier="03904fdf-d6f2-57b1-92d5-95d36b8208dc">
+            <superclassifier href="Views.sysmlx#663e80b4-6101-559b-b7c6-8a61ce7f8fe5"/>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="092e2cb5-699e-5860-875b-18f97b35ad75" elementId="092e2cb5-699e-5860-875b-18f97b35ad75">
+        <ownedRelatedElement xsi:type="sysml:ViewDefinition" xmi:id="6518462a-2f51-5276-b95e-69ee5193db38" elementId="6518462a-2f51-5276-b95e-69ee5193db38" declaredShortName="iv" declaredName="InterconnectionView" isImpliedIncluded="true">
+          <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="59210557-e4d3-576e-82ae-f85eaa9b915f" elementId="59210557-e4d3-576e-82ae-f85eaa9b915f">
+            <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="cc4b7a41-e233-5a10-a462-afbfc172ce26" elementId="cc4b7a41-e233-5a10-a462-afbfc172ce26" body="View definition to present exposed features as nodes, nested features as&#xA;nested nodes, and connections between features&#xA;as edges between (nested) nodes. Nested nodes may present boundary features&#xA;(e.g., ports, parameters).&#xA;"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="665f3c43-b7ab-5cd9-9641-9a9fa8722c1e" elementId="665f3c43-b7ab-5cd9-9641-9a9fa8722c1e" isImplied="true" subclassifier="6518462a-2f51-5276-b95e-69ee5193db38">
+            <superclassifier href="Views.sysmlx#663e80b4-6101-559b-b7c6-8a61ce7f8fe5"/>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="0f20b6f7-530b-56a0-a5f8-72a1444480a6" elementId="0f20b6f7-530b-56a0-a5f8-72a1444480a6">
+        <ownedRelatedElement xsi:type="sysml:ViewDefinition" xmi:id="e1e8729f-a571-520c-b3f8-1b8dcdf5014d" elementId="e1e8729f-a571-520c-b3f8-1b8dcdf5014d" declaredShortName="afv" declaredName="ActionFlowView" isImpliedIncluded="true">
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="36397d49-a9aa-5560-85dc-aa7f9cf70652" elementId="36397d49-a9aa-5560-85dc-aa7f9cf70652" superclassifier="6518462a-2f51-5276-b95e-69ee5193db38" subclassifier="e1e8729f-a571-520c-b3f8-1b8dcdf5014d"/>
+          <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="a8986c16-7459-57e9-87a4-3c1647652013" elementId="a8986c16-7459-57e9-87a4-3c1647652013">
+            <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="fd9dae73-7724-5625-b5dc-71572f3ea010" elementId="fd9dae73-7724-5625-b5dc-71572f3ea010" body="View definition to present connections between actions.&#xA;Valid nodes and edges in an ActionFlowView are:&#xA;- Actions with nested actions&#xA;- Parameters with direction&#xA;- Flow connection usages (e.g., kinds of transfers from output to input)&#xA;- Binding connections between parameters (e.g., delegate a parameter from&#xA;  one level of nesting to another)&#xA;- Proxy connection points&#xA;- Swim lanes&#xA;- Conditional succession&#xA;- Control nodes (fork, join, decision, merge)&#xA;- Control structures, e.g., if-then-else, until-while-loop, for-loop&#xA;- Send and accept actions&#xA;- Change and time triggers&#xA;- Compartments on actions and parameters&#xA;"/>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="ff0061ba-bdcc-533a-b753-3bcd67ee1aeb" elementId="ff0061ba-bdcc-533a-b753-3bcd67ee1aeb">
+        <ownedRelatedElement xsi:type="sysml:ViewDefinition" xmi:id="073ba87b-4f0a-5a2e-8ce5-71f9dc645098" elementId="073ba87b-4f0a-5a2e-8ce5-71f9dc645098" declaredShortName="stv" declaredName="StateTransitionView" isImpliedIncluded="true">
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="d9967183-e8f2-5f62-a768-bade88c621c5" elementId="d9967183-e8f2-5f62-a768-bade88c621c5" superclassifier="6518462a-2f51-5276-b95e-69ee5193db38" subclassifier="073ba87b-4f0a-5a2e-8ce5-71f9dc645098"/>
+          <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="0100db95-32af-5da4-beb1-f4d2e70d10a6" elementId="0100db95-32af-5da4-beb1-f4d2e70d10a6">
+            <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="627e83c9-1e64-5113-ab63-81b542079f70" elementId="627e83c9-1e64-5113-ab63-81b542079f70" body="View definition to present states and their transitions.&#xA;Valid nodes and edges in a StateTransitionView are:&#xA;- States with nested states&#xA;- Entry, do, and exit actions&#xA;- Transition usages with triggers, guards, and actions&#xA;- Compartments on states&#xA;"/>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="2c070854-9d9e-5530-a9f6-710e121a606f" elementId="2c070854-9d9e-5530-a9f6-710e121a606f">
+        <ownedRelatedElement xsi:type="sysml:ViewDefinition" xmi:id="281ed88f-e841-582d-8920-34e4d5b88cfe" elementId="281ed88f-e841-582d-8920-34e4d5b88cfe" declaredShortName="sv" declaredName="SequenceView" isImpliedIncluded="true">
+          <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="ab204adf-01a9-5f8b-9719-0293283444d6" elementId="ab204adf-01a9-5f8b-9719-0293283444d6">
+            <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="dcadc2d1-b984-571f-802b-c00d4b629d4c" elementId="dcadc2d1-b984-571f-802b-c00d4b629d4c" body="View definition to present time ordering of event occurrences on lifelines&#xA;of exposed features.&#xA;Valid nodes and edges in a SequenceView are:&#xA;- Features such as parts with their lifelines&#xA;- Event occurrences on the lifelines&#xA;- Messages sent from one part to another with and without a type of flow&#xA;- Succession between event occurrences&#xA;- Nested sequence view (e.g., a reference to a view)&#xA;- Compartments&#xA;The typical rendering in graphical notation depicts the exposed features&#xA;horizontally along the top, with vertical lifelines. The time axis is&#xA;vertical, with time increasing from top to bottom.&#xA;"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="4868c905-34bf-5405-aa14-900ef09be0a3" elementId="4868c905-34bf-5405-aa14-900ef09be0a3" isImplied="true" subclassifier="281ed88f-e841-582d-8920-34e4d5b88cfe">
+            <superclassifier href="Views.sysmlx#663e80b4-6101-559b-b7c6-8a61ce7f8fe5"/>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="15cf39b1-6772-5265-9341-fe8fcef2b7df" elementId="15cf39b1-6772-5265-9341-fe8fcef2b7df">
+        <ownedRelatedElement xsi:type="sysml:ViewDefinition" xmi:id="a789f714-6a23-5d94-bff6-29bc21c0ad0f" elementId="a789f714-6a23-5d94-bff6-29bc21c0ad0f" declaredShortName="gev" declaredName="GeometryView" isImpliedIncluded="true">
+          <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="6f3d6d09-c453-5806-90ae-26d2ae226249" elementId="6f3d6d09-c453-5806-90ae-26d2ae226249">
+            <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="bd3dc2ee-9eb9-5d15-9a4b-ffe0bf19aea6" elementId="bd3dc2ee-9eb9-5d15-9a4b-ffe0bf19aea6" body="View definition to present a visualization of exposed spatial items in two&#xA;or three dimensions&#xA;Valid nodes and edges in a GeometryView are:&#xA;- Spatial item, including shape&#xA;- Coordinate frame&#xA;- Feature related to spatial item, such as a quantity (e.g. temperature)&#xA;  of which values are to be rendered on a color scale&#xA;The typical rendering in graphical notation would include a number of&#xA;visualization parameters, such as:&#xA;- 2D or 3D view&#xA;- viewing direction&#xA;- zoom level&#xA;- light sources&#xA;- object projection mode, e.g., isometric, perspective, orthographic&#xA;- object rendering mode, e.g., shaded, wireframe, hidden line&#xA;- object pan (placement) and rotate (orientation) settings&#xA;- color maps&#xA;"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="ba644ac5-e4d1-5d1f-b3f3-aefba98c5054" elementId="ba644ac5-e4d1-5d1f-b3f3-aefba98c5054" isImplied="true" subclassifier="a789f714-6a23-5d94-bff6-29bc21c0ad0f">
+            <superclassifier href="Views.sysmlx#663e80b4-6101-559b-b7c6-8a61ce7f8fe5"/>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="a0fa3cc7-369b-5bbc-a23b-aa9b06119dfd" elementId="a0fa3cc7-369b-5bbc-a23b-aa9b06119dfd">
+        <ownedRelatedElement xsi:type="sysml:ViewDefinition" xmi:id="47a16619-58c3-5bd2-a167-3a05c8af5b6a" elementId="47a16619-58c3-5bd2-a167-3a05c8af5b6a" declaredShortName="grv" declaredName="GridView" isImpliedIncluded="true">
+          <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="cf4ce757-048d-5e5d-b086-cef00f336d27" elementId="cf4ce757-048d-5e5d-b086-cef00f336d27">
+            <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="4633530e-b08a-5ced-824f-ba622f302111" elementId="4633530e-b08a-5ced-824f-ba622f302111" body="View definition to present exposed model elements and their relationships,&#xA;arranged in a rectangular grid.&#xA;GridView is the generalization of the following more specialized views:&#xA;- Tabular view&#xA;- Data value tabular view&#xA;- Relationship matrix view, e.g. presenting allocation or dependency relationships&#xA;"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="df6d3f1c-e077-58cd-a464-10bac7cece9a" elementId="df6d3f1c-e077-58cd-a464-10bac7cece9a" isImplied="true" subclassifier="47a16619-58c3-5bd2-a167-3a05c8af5b6a">
+            <superclassifier href="Views.sysmlx#663e80b4-6101-559b-b7c6-8a61ce7f8fe5"/>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="9942312c-a779-567e-9338-eb2573a455dd" elementId="9942312c-a779-567e-9338-eb2573a455dd">
+        <ownedRelatedElement xsi:type="sysml:ViewDefinition" xmi:id="3bc830f9-27a0-5dd3-9a2e-0f82cac1f995" elementId="3bc830f9-27a0-5dd3-9a2e-0f82cac1f995" declaredShortName="bv" declaredName="BrowserView" isImpliedIncluded="true">
+          <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="0cdaac74-f440-5c50-b8b4-eaa5b59efd7d" elementId="0cdaac74-f440-5c50-b8b4-eaa5b59efd7d">
+            <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="0a3cf5a6-f1b9-5643-9564-fc40169336d1" elementId="0a3cf5a6-f1b9-5643-9564-fc40169336d1" body="View definition to present the hierarchical membership structure of model&#xA;elements starting from one or more exposed root elements.&#xA;The typical rendering in graphical notation is as an indented list of rows,&#xA;consisting of dynamically collapsible-expandable nodes that represent&#xA;branches and leaves of the tree, as in graphical user interface widgets.&#xA;"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="bfd52486-ca9e-5322-ab8e-1028d6fecaac" elementId="bfd52486-ca9e-5322-ab8e-1028d6fecaac" isImplied="true" subclassifier="3bc830f9-27a0-5dd3-9a2e-0f82cac1f995">
+            <superclassifier href="Views.sysmlx#663e80b4-6101-559b-b7c6-8a61ce7f8fe5"/>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+    </ownedRelatedElement>
+  </ownedRelationship>
+</sysml:Namespace>

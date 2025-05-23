@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sysml:Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sysml="https://www.omg.org/spec/SysML/20250201" xmi:id="fdcb3f9a-f21b-5382-b460-677a9ae7cc9a" elementId="fdcb3f9a-f21b-5382-b460-677a9ae7cc9a">
+  <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="4836fe28-aec3-568d-9339-09db04bd80df" elementId="4836fe28-aec3-568d-9339-09db04bd80df">
+    <ownedRelatedElement xsi:type="sysml:LibraryPackage" xmi:id="a77f46dc-e443-57c3-98f1-2aa7f1bcc4b2" elementId="a77f46dc-e443-57c3-98f1-2aa7f1bcc4b2" declaredName="Allocations" isStandard="true">
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="c8e6a6e0-1d83-55c8-9d75-e55a1b400b45" elementId="c8e6a6e0-1d83-55c8-9d75-e55a1b400b45">
+        <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="2c43a893-f99e-5ad1-b69f-f4c8ce768728" elementId="2c43a893-f99e-5ad1-b69f-f4c8ce768728" body="This package defines the base types for allocations and related structural elements&#xA;in the SysML language.&#xA;"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:MembershipImport" xmi:id="28c01b5d-b9d4-5551-8d8b-3b39477cf706" elementId="28c01b5d-b9d4-5551-8d8b-3b39477cf706">
+        <importedMembership href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Base.kermlx#5fa9ee75-dc34-54ea-917f-c0079e35dd32"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:NamespaceImport" xmi:id="56113f61-7f3e-5052-a334-f6e3a40f6017" elementId="56113f61-7f3e-5052-a334-f6e3a40f6017">
+        <importedNamespace href="Connections.sysmlx#cb0189c1-7101-597f-b980-e90d6a89d313"/>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="8346da62-c403-5523-a8ca-68ce66e8140a" elementId="8346da62-c403-5523-a8ca-68ce66e8140a">
+        <ownedRelatedElement xsi:type="sysml:AllocationDefinition" xmi:id="43376890-bb60-597f-81c4-54161d8a86c3" elementId="43376890-bb60-597f-81c4-54161d8a86c3" declaredName="Allocation" isImpliedIncluded="true">
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="baea00c7-2a98-5377-acf9-de2095894e93" elementId="baea00c7-2a98-5377-acf9-de2095894e93" subclassifier="43376890-bb60-597f-81c4-54161d8a86c3">
+            <superclassifier href="Connections.sysmlx#05897e11-dd8e-51a1-80a2-c16d5da71912"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="d9468b5f-1f8f-525f-a3b6-6ca388be65e4" elementId="d9468b5f-1f8f-525f-a3b6-6ca388be65e4">
+            <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="15b04cfb-534f-59ca-8395-ba5fc3c742cf" elementId="15b04cfb-534f-59ca-8395-ba5fc3c742cf" body="Allocation is the most general class of allocation, represented as a connection &#xA;between the source of the allocation and the target. Allocation is the base type &#xA;of all AllocationDefinitions.&#xA;"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="5662324b-fc5c-5fcb-be1b-733220588e3e" elementId="5662324b-fc5c-5fcb-be1b-733220588e3e">
+            <ownedRelatedElement xsi:type="sysml:ReferenceUsage" xmi:id="8b90612c-8449-57bc-8a4e-c30277dbda35" elementId="8b90612c-8449-57bc-8a4e-c30277dbda35" declaredName="source" isImpliedIncluded="true" isComposite="false" isEnd="true">
+              <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="539162ce-05aa-54db-ad8a-cc835d5ba26e" elementId="539162ce-05aa-54db-ad8a-cc835d5ba26e" typedFeature="8b90612c-8449-57bc-8a4e-c30277dbda35">
+                <type href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Base.kermlx#d5b4e7df-e644-5f2f-b95e-cf6f1f6c076d"/>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="6ce0c98f-4623-5659-a5fd-04eaf0edeeca" elementId="6ce0c98f-4623-5659-a5fd-04eaf0edeeca" redefiningFeature="8b90612c-8449-57bc-8a4e-c30277dbda35">
+                <redefinedFeature href="Connections.sysmlx#acd2e375-f12d-5cec-b81d-c7c24bf06d5c"/>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="6c943f3e-e7c8-5651-a59a-17e7b0961374" elementId="6c943f3e-e7c8-5651-a59a-17e7b0961374">
+                <ownedRelatedElement xsi:type="sysml:Multiplicity" xmi:id="6c2dfebf-882c-5c22-894e-13fb9c37837e" elementId="6c2dfebf-882c-5c22-894e-13fb9c37837e" isImpliedIncluded="true">
+                  <ownedRelationship xsi:type="sysml:Subsetting" xmi:id="b00b1c7b-e666-5821-8e91-3a3b7e0ab33a" elementId="b00b1c7b-e666-5821-8e91-3a3b7e0ab33a" isImplied="true" subsettingFeature="6c2dfebf-882c-5c22-894e-13fb9c37837e">
+                    <subsettedFeature href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Base.kermlx#64e18b84-0e05-5c95-a003-c0f60a269893"/>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:TypeFeaturing" xmi:id="c666c54e-437c-5a0b-8e01-c0c4817fda4b" elementId="c666c54e-437c-5a0b-8e01-c0c4817fda4b" isImplied="true" featureOfType="6c2dfebf-882c-5c22-894e-13fb9c37837e" featuringType="370d670f-eb11-5dd9-a581-38906c558e79">
+                    <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="370d670f-eb11-5dd9-a581-38906c558e79" elementId="370d670f-eb11-5dd9-a581-38906c558e79" declaredName="Allocation_snapshots">
+                      <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="01889055-6e5c-5d4f-8260-09dae0fa6f01" elementId="01889055-6e5c-5d4f-8260-09dae0fa6f01" redefiningFeature="370d670f-eb11-5dd9-a581-38906c558e79">
+                        <redefinedFeature href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Occurrences.kermlx#2b9660c5-2b98-5ecd-bf09-32a62ff6be1e"/>
+                      </ownedRelationship>
+                      <ownedRelationship xsi:type="sysml:TypeFeaturing" xmi:id="85df2587-860c-54b2-a463-786e5a3e4e1f" elementId="85df2587-860c-54b2-a463-786e5a3e4e1f" featureOfType="370d670f-eb11-5dd9-a581-38906c558e79" featuringType="43376890-bb60-597f-81c4-54161d8a86c3"/>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:TypeFeaturing" xmi:id="4f7cdf9b-3eb4-5cf8-a0a3-a78023b158a8" elementId="4f7cdf9b-3eb4-5cf8-a0a3-a78023b158a8" isImplied="true" featureOfType="8b90612c-8449-57bc-8a4e-c30277dbda35" featuringType="370d670f-eb11-5dd9-a581-38906c558e79"/>
+            </ownedRelatedElement>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="59400435-b38d-5033-ad7b-926fb479d65b" elementId="59400435-b38d-5033-ad7b-926fb479d65b">
+            <ownedRelatedElement xsi:type="sysml:ReferenceUsage" xmi:id="6cd0c1dc-e6f1-5b39-9a98-51821a0a3df9" elementId="6cd0c1dc-e6f1-5b39-9a98-51821a0a3df9" declaredName="target" isImpliedIncluded="true" isComposite="false" isEnd="true">
+              <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="1f53c185-ddb5-54b3-86fe-7244f053fdf4" elementId="1f53c185-ddb5-54b3-86fe-7244f053fdf4" typedFeature="6cd0c1dc-e6f1-5b39-9a98-51821a0a3df9">
+                <type href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Base.kermlx#d5b4e7df-e644-5f2f-b95e-cf6f1f6c076d"/>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="724b1b3c-7829-58d3-bd06-f04dc2cb0f14" elementId="724b1b3c-7829-58d3-bd06-f04dc2cb0f14" redefiningFeature="6cd0c1dc-e6f1-5b39-9a98-51821a0a3df9">
+                <redefinedFeature href="Connections.sysmlx#41d2ef16-9a82-5a09-a78a-ca23991c859a"/>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="e8ca8618-681a-582f-9170-e84e7516ff1b" elementId="e8ca8618-681a-582f-9170-e84e7516ff1b">
+                <ownedRelatedElement xsi:type="sysml:Multiplicity" xmi:id="e10d1165-1dd6-50dc-af99-8c1c30461f86" elementId="e10d1165-1dd6-50dc-af99-8c1c30461f86" isImpliedIncluded="true">
+                  <ownedRelationship xsi:type="sysml:Subsetting" xmi:id="5c3cf99d-0323-5502-ace5-2e2eb4b01f3b" elementId="5c3cf99d-0323-5502-ace5-2e2eb4b01f3b" isImplied="true" subsettingFeature="e10d1165-1dd6-50dc-af99-8c1c30461f86">
+                    <subsettedFeature href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Base.kermlx#64e18b84-0e05-5c95-a003-c0f60a269893"/>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:TypeFeaturing" xmi:id="f5577db6-098f-53d6-8de8-f466206745f7" elementId="f5577db6-098f-53d6-8de8-f466206745f7" isImplied="true" featureOfType="e10d1165-1dd6-50dc-af99-8c1c30461f86" featuringType="6b272a51-a72b-59e8-8e19-6580e0d0ca8d">
+                    <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="6b272a51-a72b-59e8-8e19-6580e0d0ca8d" elementId="6b272a51-a72b-59e8-8e19-6580e0d0ca8d" declaredName="Allocation_snapshots">
+                      <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="5a81ba6c-0b57-51ec-8fb5-d828fb17f73e" elementId="5a81ba6c-0b57-51ec-8fb5-d828fb17f73e" redefiningFeature="6b272a51-a72b-59e8-8e19-6580e0d0ca8d">
+                        <redefinedFeature href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Occurrences.kermlx#2b9660c5-2b98-5ecd-bf09-32a62ff6be1e"/>
+                      </ownedRelationship>
+                      <ownedRelationship xsi:type="sysml:TypeFeaturing" xmi:id="2f1785d4-3374-56e2-b615-7fcf5f9276d0" elementId="2f1785d4-3374-56e2-b615-7fcf5f9276d0" featureOfType="6b272a51-a72b-59e8-8e19-6580e0d0ca8d" featuringType="43376890-bb60-597f-81c4-54161d8a86c3"/>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:TypeFeaturing" xmi:id="3c526175-eaad-54eb-ac2e-347202606b42" elementId="3c526175-eaad-54eb-ac2e-347202606b42" isImplied="true" featureOfType="6cd0c1dc-e6f1-5b39-9a98-51821a0a3df9" featuringType="6b272a51-a72b-59e8-8e19-6580e0d0ca8d"/>
+            </ownedRelatedElement>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+      <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="235e8ff1-6fcf-5c30-9557-3167c88cd3ec" elementId="235e8ff1-6fcf-5c30-9557-3167c88cd3ec">
+        <ownedRelatedElement xsi:type="sysml:AllocationUsage" xmi:id="04336c6a-fb64-571c-aea4-a8b52cf24abb" elementId="04336c6a-fb64-571c-aea4-a8b52cf24abb" declaredName="allocations" isImpliedIncluded="true" isAbstract="true" isUnique="false" isComposite="false">
+          <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="b0bd32f8-6173-5f8d-8d36-6328d432916b" elementId="b0bd32f8-6173-5f8d-8d36-6328d432916b" typedFeature="04336c6a-fb64-571c-aea4-a8b52cf24abb" type="43376890-bb60-597f-81c4-54161d8a86c3"/>
+          <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="56e6ea5c-386b-5479-b7ae-715fd4a4540c" elementId="56e6ea5c-386b-5479-b7ae-715fd4a4540c">
+            <ownedRelatedElement xsi:type="sysml:MultiplicityRange" xmi:id="73130908-962e-53b3-8ff0-89946c61f6ae" elementId="73130908-962e-53b3-8ff0-89946c61f6ae" isImpliedIncluded="true">
+              <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="f1da63b0-012b-5eba-a05a-704e7a07ba12" elementId="f1da63b0-012b-5eba-a05a-704e7a07ba12">
+                <ownedRelatedElement xsi:type="sysml:LiteralInteger" xmi:id="fb40b5c2-49b4-5513-84b1-99e75a07d172" elementId="fb40b5c2-49b4-5513-84b1-99e75a07d172" isImpliedIncluded="true">
+                  <ownedRelationship xsi:type="sysml:Subsetting" xmi:id="825faf9d-7d86-5795-ad6f-673fc37293a7" elementId="825faf9d-7d86-5795-ad6f-673fc37293a7" isImplied="true" subsettingFeature="fb40b5c2-49b4-5513-84b1-99e75a07d172">
+                    <subsettedFeature href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Performances.kermlx#fb4cc07d-8595-55f8-a84f-5f5431024e1b"/>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="ee951cdd-ee32-5875-97b7-9a4fe756103c" elementId="ee951cdd-ee32-5875-97b7-9a4fe756103c">
+                <ownedRelatedElement xsi:type="sysml:LiteralInfinity" xmi:id="c6a11e6f-0089-5793-b30b-28e7fb10c293" elementId="c6a11e6f-0089-5793-b30b-28e7fb10c293" isImpliedIncluded="true">
+                  <ownedRelationship xsi:type="sysml:Subsetting" xmi:id="587dc39e-4cab-50df-8d1d-621dfffb33af" elementId="587dc39e-4cab-50df-8d1d-621dfffb33af" isImplied="true" subsettingFeature="c6a11e6f-0089-5793-b30b-28e7fb10c293">
+                    <subsettedFeature href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Performances.kermlx#fb4cc07d-8595-55f8-a84f-5f5431024e1b"/>
+                  </ownedRelationship>
+                </ownedRelatedElement>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:Subsetting" xmi:id="8322ff11-a141-5b14-85a8-bd43fb4fb574" elementId="8322ff11-a141-5b14-85a8-bd43fb4fb574" isImplied="true" subsettingFeature="73130908-962e-53b3-8ff0-89946c61f6ae">
+                <subsettedFeature href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Base.kermlx#7f46a88a-4eb2-501d-ad8b-9eefbb9b38e9"/>
+              </ownedRelationship>
+            </ownedRelatedElement>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:Subsetting" xmi:id="dd7130f0-8251-5e4b-a569-592ddb0a3a1b" elementId="dd7130f0-8251-5e4b-a569-592ddb0a3a1b" subsettingFeature="04336c6a-fb64-571c-aea4-a8b52cf24abb">
+            <subsettedFeature href="Connections.sysmlx#d4dd8424-b998-55e6-8d14-348157b04ef2"/>
+          </ownedRelationship>
+          <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="121157c8-6301-5977-8083-028b570102a6" elementId="121157c8-6301-5977-8083-028b570102a6">
+            <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="ad59a3a1-8fcb-5268-a20c-a91b3e01c50f" elementId="ad59a3a1-8fcb-5268-a20c-a91b3e01c50f" body="allocations is the base feature of all AllocationUsages.&#xA;"/>
+          </ownedRelationship>
+        </ownedRelatedElement>
+      </ownedRelationship>
+    </ownedRelatedElement>
+  </ownedRelationship>
+</sysml:Namespace>
