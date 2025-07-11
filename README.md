@@ -15,15 +15,15 @@ It's purpose is to:
 
 ## Specifications
 
-In June 2023, the OMG adopted the following three _beta specifications._
+In June 2023, the OMG adopted the following three _beta specifications_ for KerML, SysML v2 and the Systems Modeling API, which then entered the OMG _finalization_ process. Since then, the SMC Reference Implementation Working Group has continued to publish incremental releases of the pilot implementation, in support of the work of the three finalization task forces.
 
-* [Kernel Modeling Language (KerML), version 1.0](https://www.omg.org/spec/KerML/1.0/Beta1)
-* [OMG Systems Modeling Language (SysML), version 2.0](https://www.omg.org/spec/SysML/2.0/Beta1)
-* [Systems Modeling Application Programming Interface (API) and Services, version 1.0](https://www.omg.org/spec/SystemsModelingAPI/1.0/Beta1)
+In April 2024, OMG released updated _beta 2 specifications_, which are currently available from OMG:
 
-These beta specification are now in the OMG _finalization_ process, which is expected to be completed with the publication of corresponding _formal specifications_ in 2024. 
-The former SST development team plans to continue to publish incremental releases of the pilot implementation, in support of the work of the three finalization task forces, 
-with the goal of eventually developing this into a reference implementation for all three specifications.
+* [Kernel Modeling Language (KerML), version 1.0](https://www.omg.org/spec/KerML/1.0/Beta2)
+* [OMG Systems Modeling Language (SysML), version 2.0](https://www.omg.org/spec/SysML/2.0/Beta2)
+* [Systems Modeling Application Programming Interface (API) and Services, version 1.0](https://www.omg.org/spec/SystemsModelingAPI/1.0/Beta2)
+
+After another round of finalization, it is expected that the corresponding _formal specifications_ will be published in 2025. 
 
 ## Feedback
 
