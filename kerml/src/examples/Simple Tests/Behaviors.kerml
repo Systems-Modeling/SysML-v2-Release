@@ -13,6 +13,9 @@ package Behaviors {
     class C {
         var z = A().y;
         step a : A;
+        step b : B;
         binding z = a.y;
+        flow a.y to b.x1;
     }
+    abstract flow msg of C;
 }

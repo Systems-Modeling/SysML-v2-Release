@@ -16,6 +16,7 @@ package AllocationTest {
 		part :>> assembly {
 			part :>> element;
 		}
+        allocate l.component to assembly.element;
 	}
 	
 	allocation def A;

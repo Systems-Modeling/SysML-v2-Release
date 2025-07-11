@@ -6,7 +6,7 @@ action def DecisionTest {
 	if x > 1 then A2;
 	else A3; 
 	
-	then decide; 
+	then decide D; 
 	if true then A1;
 	if false then A2;
 	

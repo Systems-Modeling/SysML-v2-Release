@@ -1,7 +1,10 @@
-package Associations {	
+package Associations {
+    datatype X;
+    class Y;
+    
 	assoc A {
-		end x;
-		end [1..*] feature y;
+		end x_cross [1..1] feature x : X; 
+		end y_cross [1..*] feature y : Y;
 	}
 	
 	assoc B specializes A {

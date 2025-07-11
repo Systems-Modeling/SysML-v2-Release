@@ -95,7 +95,7 @@ standard library package TradeStudies {
 			 * For a MinimizeObjective, the best value is the minimum one.
 			 */
 		
-			in x; fn(x)
+			in x; eval(x)
 		};
 	}
 	
@@ -117,7 +117,7 @@ standard library package TradeStudies {
 			 * For a MinimizeObjective, the best value is the maximum one.
 			 */
 		
-			in x; fn(x)
+			in x; eval(x)
 		};
 	}
 	

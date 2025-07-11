@@ -601,8 +601,8 @@ standard library package Occurrences {
 			 * Occurrences that have inner spaces that completely include this occurrence.
 			 */
 
-			feature surroundedSpace: Occurrence[1] subsets that;
-			end [1] feature surroundingSpace: Occurrence subsets self;
+			feature surroundedSpace: Occurrence [1] subsets that;
+			feature surroundingSpace: Occurrence [1] subsets self;
 
 			connector :InsideOf
 				from [0..1] smallerOccurrence references surroundedSpace

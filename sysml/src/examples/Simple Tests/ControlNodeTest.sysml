@@ -24,7 +24,12 @@ action def ControlNodeTest {
 	action B1 {
 	    in b;
 	}
+	then M;
+	
 	action B2 {
 	    in b;
 	}
+	then M; 
+	
+	merge M;
 }
