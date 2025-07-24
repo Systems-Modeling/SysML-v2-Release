@@ -17,13 +17,13 @@ It's purpose is to:
 
 In June 2023, the OMG adopted the following three _beta specifications_ for KerML, SysML v2 and the Systems Modeling API, which then entered the OMG _finalization_ process. Since then, the SMC Reference Implementation Working Group has continued to publish incremental releases of the pilot implementation, in support of the work of the three finalization task forces.
 
-In April 2024, OMG released updated _beta 2 specifications_, which are currently available from OMG:
+After the completion of the finalization task forces, the OMG has published final beta versions of the specifications: 
 
-* [Kernel Modeling Language (KerML), version 1.0](https://www.omg.org/spec/KerML/1.0/Beta2)
-* [OMG Systems Modeling Language (SysML), version 2.0](https://www.omg.org/spec/SysML/2.0/Beta2)
-* [Systems Modeling Application Programming Interface (API) and Services, version 1.0](https://www.omg.org/spec/SystemsModelingAPI/1.0/Beta2)
+* [Kernel Modeling Language (KerML), version 1.0](https://www.omg.org/spec/KerML/1.0/Beta4)
+* [OMG Systems Modeling Language (SysML), version 2.0](https://www.omg.org/spec/SysML/2.0/Beta4)
+* [Systems Modeling Application Programming Interface (API) and Services, version 1.0](https://www.omg.org/spec/SystemsModelingAPI/1.0/Beta3)
 
-After another round of finalization, it is expected that the corresponding _formal specifications_ will be published in 2025. 
+As of 30 June 2025, these specifications have now been formally adopted by OMG. It is expected that the corresponding _formal specifications_ will be published later in 2025.
 
 ## Feedback
 
@@ -92,12 +92,12 @@ under the GNU Lesser General Public License (LGPL) v3.0 (see `LICENSE` and `LICE
 Systems Modeling repositories is as given in those repositories.
 
 Copyright © 2019-2021 California Institute of Technology (Jet Propulsion Laboratory) <br/>
-Copyright © 2019-2023 DEKonsult <br/>
+Copyright © 2019-2025 DEKonsult <br/>
 Copyright © 2019-2021 IncQuery Labs Ltd. <br/>
-Copyright © 2019-2023 Intercax LLC <br/>
+Copyright © 2019-2025 Intercax LLC <br/>
 Copyright © 2019-2021 Itemis <br/>
 Copyright © 2019-2021 Maplesoft (Waterloo Maple, Inc.) <br/>
-Copyright © 2019-2023 Mgnite Inc. <br/>
-Copyright © 2019-2023 Model Driven Solutions, Inc. <br/>
-Copyright © 2019-2023 SAF Consulting <br/>
-Copyright © 2021-2023 Twingineer LLC
+Copyright © 2019-2025 Mgnite Inc. <br/>
+Copyright © 2019-2025 Model Driven Solutions, Inc. <br/>
+Copyright © 2019-2025 SAF Consulting <br/>
+Copyright © 2021-2025 Twingineer LLC
