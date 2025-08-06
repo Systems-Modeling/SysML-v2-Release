@@ -31,6 +31,7 @@ package '18-Use Case' {
 		first start;
 		
 		then include 'enter vehicle' {
+		    subject;
 			actor :>> driver = 'provide transportation'::driver;
 			actor :>> passengers = 'provide transportation'::passengers;
 		}
@@ -43,7 +44,7 @@ package '18-Use Case' {
 				 * (But reference to 'add fuel' is in the wrong direction, and it doesn't
 				 * make the extension condition sufficient to trigger the behavior.)
 				 */
-			 
+                subject;
 				actor :>> fueler = driver;
 				ref :>> start {
 					doc /* Fuel level < 10% max fuel */
@@ -52,6 +53,7 @@ package '18-Use Case' {
 		}
 		
 		then include 'exit vehicle' {
+		    subject;
 			actor :>> driver = 'provide transportation'::driver;
 			actor :>> passengers = 'provide transportation'::passengers;
 		}

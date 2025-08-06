@@ -14,21 +14,21 @@ standard library package Views {
 		ref view :>> self : View;
 		
 		abstract ref view subviews : View[0..*] :> views {
-		doc
-		/*
-		 * Other Views that are used in the rendering of this View.
-		 */
+    		doc
+    		/*
+    		 * Other Views that are used in the rendering of this View.
+    		 */
 		}
 		
 		abstract ref rendering viewRendering : Rendering[0..1] {
-		doc
+            doc
 			/*
 			 * The rendering of this View.
 			 */
 		}
 		
 		viewpoint viewpointSatisfactions : ViewpointCheck[0..*] :> viewpointChecks, checkedConstraints {
-		doc
+            doc
 			/*
 			 * Checks that the View satisfies all required ViewpointUsages.
 			 */
@@ -39,12 +39,13 @@ standard library package Views {
 			/*
 			 * An assertion that all viewpointSatisfactions are true.
 			 */
-		
+			 
 			require viewpointSatisfactions {
 				doc
 				/*
 				 * The required ViewpointChecks.
 				 */
+                ref :>> ownedPerformances::this, subperformances::this default that.that;
 			}
 		}
 	}

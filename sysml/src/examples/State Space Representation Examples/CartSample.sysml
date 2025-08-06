@@ -59,6 +59,6 @@ package CartSample {
             }
         }
 
-        flow pusher.pusherBehavior.output.force to cart.cartBehavior.input.force;
+        flow pusher.pusherBehavior.output to cart.cartBehavior.input;
     }
 }

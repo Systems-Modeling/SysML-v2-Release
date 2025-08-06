@@ -16,6 +16,8 @@ doc
 		 * MetadataItem is the most general class of Items that represent Metaobjects. 
 		 * MetadataItem is the base type of all MetadataDefinitions.
 		 */
+		 
+		 ref self : MetadataItem redefines Metaobject::self, Item::self;
 	}
 	
 	abstract item metadataItems : MetadataItem[0..*] :> metaobjects, items {

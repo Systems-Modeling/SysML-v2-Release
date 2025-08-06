@@ -32,7 +32,7 @@ standard library package Connections {
          */
     }
      
-    abstract connection def BinaryConnection :> Connection, BinaryLinkObject {
+    abstract connection def BinaryConnection :> BinaryLinkObject, Connection {
         doc
         /*
          * BinaryConnection is the most general class of binary links between two things 

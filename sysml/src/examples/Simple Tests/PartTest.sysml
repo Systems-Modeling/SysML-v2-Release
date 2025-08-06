@@ -35,7 +35,11 @@ package PartTest {
 	}
 	
 	private port def C {
-		private in ref y: A, B;
+		private in ref y: A, B {
+		    part B_b redefines B::b;
+		    part B_c redefines B::c;
+		    port B_x redefines B::x;
+		}
 		alias z1 for y;
 		alias z2 for y;
 		port c1 : C;

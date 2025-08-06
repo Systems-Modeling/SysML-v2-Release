@@ -537,16 +537,16 @@ standard library package Occurrences {
 			 * the inner ones.
 			 */
 
-			feature redefines isClosed = true;
+			inv { isClosed == true }
 
 			feature spaceBounder: Occurrence [1] subsets self;
 
-			outer: Occurrence [0..1] subsets spaceSlices {
+			feature outer: Occurrence [0..1] subsets spaceSlices {
 				feature redefines isClosed = true;
 				feature redefines innerSpaceDimension = spaceBounder.innerSpaceDimension;
 			}
 
-			inner: Occurrence [0..*] subsets spaceSlices {
+			feature inner: Occurrence [0..*] subsets spaceSlices {
 				feature redefines isClosed = true;
 				feature redefines innerSpaceDimension = spaceBounder.innerSpaceDimension;
 			}

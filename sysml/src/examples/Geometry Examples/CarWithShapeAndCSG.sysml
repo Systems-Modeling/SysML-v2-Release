@@ -21,7 +21,7 @@ package CarWithShapeAndCSG {
             :>> mRefs = (mm, mm, mm);
         }
 
-		part powerSource : Engine [1] :> componentItems {
+		part powerSource : Engine [1] :> componentParts {
 			:>> ecf { 
 				:>> mRefs = datum.mRefs;
 				:>> transformation : TranslationRotationSequence {
@@ -44,7 +44,7 @@ package CarWithShapeAndCSG {
 		
 		attribute <ecf> engineCoordinateFrame :>> coordinateFrame;		
 
-		part rawEngineBlock : SpatialItem [1] {
+		part rawEngineBlock :> subSpatialParts [1] {
 			item :>> shape : Box [1] {
 	    		:>> length = 300 [mm];
 	    		:>> width = 190 [mm];
@@ -53,7 +53,7 @@ package CarWithShapeAndCSG {
 		}
 		
 		private attribute rearCylinderSpacing = 90 [mm];
-		private item cylinder1 : SpatialItem [1] {
+		private item cylinder1  :> subSpatialParts [1] {
 			item :>> shape : Cylinder [1] {
 	    		:>> radius = 55 [mm];
 	    		:>> height = 350 [mm];
@@ -67,7 +67,7 @@ package CarWithShapeAndCSG {
 		}
 		
 		private attribute cylinderSpacing = 2*cylinder1.shape.radius + 20 [mm];
-		private item cylinder2 : SpatialItem [1] {
+		private item cylinder2  :> subSpatialParts [1] {
 			item :>> shape : Cylinder [1] {
 	    		:>> radius = cylinder1.shape.radius;
 	    		:>> height = cylinder1.shape.height;

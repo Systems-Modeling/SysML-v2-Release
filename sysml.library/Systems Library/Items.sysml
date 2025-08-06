@@ -41,20 +41,22 @@ standard library package Items {
 		}
 		
 		item envelopingShapes : Item[0..*] {
-		doc
+            doc
 			/*
 			 * Each enveloping shape is the shape of an Item that spacially overlaps this Item for its
 			 * entire lifetime.
-			 */		
+			 */
+			 
+			ref item envelopedItem :>> that;	
 
-			 /* Enables two dimensional items to be enveloped by two or three dimensional shapes. */
-			attribute :>> innerSpaceDimension = 
-				if (that as Item).innerSpaceDimension == 3  | (that as Item).outerSpaceDimension == 3? 2 
-				else (that as Item).outerSpaceDimension - 1 {
-				doc
-			 	/* 
-			 	 * Enables two dimensional items to be enveloped by two or three dimensional shapes.
-			 	 */				
+			assert constraint { 
+                doc
+                /* 
+                 * Enables two dimensional items to be enveloped by two or three dimensional shapes.
+                 */             
+			    innerSpaceDimension == 
+    				(if envelopedItem.innerSpaceDimension == 3  | envelopedItem.outerSpaceDimension == 3? 2 
+    				else envelopedItem.outerSpaceDimension - 1)
 			}
 			assert constraint { (that as Item).innerSpaceDimension < 3 implies notEmpty(outerSpaceDimension) }
 
@@ -63,7 +65,7 @@ standard library package Items {
 			assert constraint {
 				doc
 				/* 
-				 * This constraint prevents an envelopingShape frombeing a portion.
+				 * This constraint prevents an envelopingShape from being a portion.
 				 */
 				 
 				envelopingItem.shape.spaceTimeCoincidentOccurrences->includes(that) and
@@ -72,21 +74,21 @@ standard library package Items {
 		}
 		
 		item boundingShapes : StructuredSpaceObject [0..*] :> envelopingShapes {
-		doc
+            doc
 			/*
 			 * envelopingShapes that are structured space objects with every face or every edge
 			 * intersecting this Item.
 			 */		
+            
+			ref item boundingShape: Item :>> self;
 
-			item boundingShape: Item :>> self;
-
-			item :>> faces {
-				item face :>> self;
+			private item :>> faces {
+				ref item face :>> self;
 				item inter [1];
 				assert constraint { contains(inter.intersectionsOf, union(face, boundingShape)) }
 			}
-			item :>> edges {
-				item edge :>> self;
+			private item :>> edges {
+				ref item edge :>> self;
 				item inter [1];
 				assert constraint { isEmpty(faces) implies
 							contains(inter.intersectionsOf, union(edge, boundingShape)) }
@@ -112,6 +114,8 @@ standard library package Items {
 			/*
 			 * The Items that are composite subitems of this Item.
 			 */
+			 
+			private ref redefines Item::incomingTransferSort, subobjects::incomingTransferSort;
 		}
 		
 		abstract part subparts: Part[0..*] :> subitems, parts {

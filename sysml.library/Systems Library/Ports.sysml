@@ -39,6 +39,9 @@ standard library package Ports {
             /* 
              * The target of each of the outgoingTransfersFromSelf of a Port must be an interfacingPort.
              */
+             
+             end ref source;
+             end ref target;
         }
     }
     

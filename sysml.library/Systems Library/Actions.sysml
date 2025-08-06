@@ -144,6 +144,8 @@ standard library package Actions {
 			/*
 			 * The subactions of this Action that are AssignmentActions.
 			 */
+			 
+			 in target;
 		}
 		
 		abstract action ifSubactions : IfThenAction[0..*] :> subactions, ifThenActions {
@@ -190,7 +192,9 @@ standard library package Actions {
 		 */
 	
 		in :>> payload [0..*];
-	    ref sentMessage :>> sentTransfer: MessageTransfer, MessageAction;
+	    ref sentMessage :>> sentTransfer: MessageTransfer, MessageAction {
+	        in :>> MessageTransfer::payload, MessageAction::payload;
+	    }
 	}
 	
 	abstract action sendActions: SendAction[0..*] nonunique :> actions, sendPerformances {
@@ -207,7 +211,9 @@ standard library package Actions {
 		 * of a designated receiver Occurrence, providing its payload as output.
 		 */
 		inout :>> payload;
-		ref acceptedMessage :>> acceptedTransfer: MessageTransfer, MessageAction;
+		ref acceptedMessage :>> acceptedTransfer: MessageTransfer, MessageAction {
+            in :>> MessageTransfer::payload, MessageAction::payload;
+        }
 	}
 	
 	action def AcceptAction :> AcceptMessageAction {
@@ -330,7 +336,9 @@ standard library package Actions {
 		 */
 	
 		in transitionLinkSource : Action :>> TransitionPerformance::transitionLinkSource;
-		ref acceptedMessage : MessageTransfer, MessageAction :>> trigger;
+		ref acceptedMessage : MessageTransfer, MessageAction :>> trigger {
+            in :>> MessageTransfer::payload, MessageAction::payload;
+        }
 		
 		ref receiver :>> triggerTarget;
 

@@ -35,6 +35,7 @@ package '11a-View-Viewpoint' {
 		part 'systems engineer';
 		
 		concern 'system breakdown' {
+			subject;
 			stakeholder :>> 'systems engineer';
 		}
 		

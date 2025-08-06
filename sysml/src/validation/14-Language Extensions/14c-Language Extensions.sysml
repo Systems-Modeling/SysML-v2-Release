@@ -110,7 +110,7 @@ package '14c-Language-Extensions' {
 		}
 		
 		metadata def <causation> CausationMetadata :> SemanticMetadata {
-			:>> annotatedElement : SysML::SuccessionAsUsage;
+			:>> annotatedElement : SysML::ConnectionUsage;
 			:>> baseType = causations meta SysML::Usage;
 		}
 		
@@ -166,17 +166,17 @@ package '14c-Language-Extensions' {
 				:>> occurs = 0.005;
 			}
 			
-			#causation first 'battery depleted' then 'battery cannot be charged';
+			#causation connect 'battery depleted' to 'battery cannot be charged';
 			
 			#failure occurrence 'battery cannot be charged' {
 				:>> detected = 0.013;
 			}
 			
-			#causation first 'battery cannot be charged' then 'glucose level undetected';
+			#causation connect 'battery cannot be charged' to 'glucose level undetected';
 			
 			#effect occurrence 'glucose level undetected';
 			
-			#causation first 'glucose level undetected' then 'therapy delay';
+			#causation connect 'glucose level undetected' to 'therapy delay';
 			
 			#effect occurrence 'therapy delay' {
 				:>> severity = "High";

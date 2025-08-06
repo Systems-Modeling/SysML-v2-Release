@@ -13,7 +13,7 @@ package 'Flow Definition Example' {
 		part tankAssy : FuelTankAssembly;
 		part eng : Engine;
 		
-		flow : FuelFlow
+		flow : FuelFlow of Fuel
 		  from tankAssy.fuelTankPort.fuelSupply
 			to eng.engineFuelPort.fuelSupply;
 			

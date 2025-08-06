@@ -1,6 +1,6 @@
 package TimeVaryingFeaturesEnhanced {
     private import ExtendedOccurrences::*;
-
+    
     class CC1 :> ExtendedOccurrence {
         var feature x;
         //member feature x featured by CC1_snapshots {
@@ -116,7 +116,7 @@ package TimeVaryingFeaturesEnhanced {
         //}
     }
     
-    struct Car1 :> ExtendedOccurrence {  // May or may not be a life
+    struct Car1 :> ExtendedObject {  // May or may not be a life
 	    var feature driver : Person [0..1];
 	    //member feature driver : Person [0..1] featured by Car_snapshots {
 	    //    member feature Car_snapshots :>> ExtendedOccurrences::ExtendedOccurrence::snapshots featured by Car1;

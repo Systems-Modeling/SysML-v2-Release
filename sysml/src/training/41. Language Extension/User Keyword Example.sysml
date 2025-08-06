@@ -17,13 +17,13 @@ package 'User Keyword Example' {
 			:>> probability = 0.01;			
 		}
 		
-		#causation first 'battery old' then 'power low';
+		#causation connect 'battery old' to 'power low';
 		
 		#situation 'power low' {
 			constraint { device.battery.power < minPower }			
 		}
 		
-		#causation first 'power low' then 'device shutoff';
+		#causation connect 'power low' to 'device shutoff';
 		
 		#failure 'device shutoff' {
 			:>> severity = LevelEnum::high;

@@ -23,6 +23,7 @@ package UseCaseTest {
 	part user : User;
 	
 	use case uc2 {
+	    subject;
 		actor :>> user;
 	}
 	

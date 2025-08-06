@@ -87,7 +87,7 @@ standard library package States {
 		in transitionLinkSource[1]: StateAction :>> 
 			TransitionAction::transitionLinkSource, StateTransitionPerformance::transitionLinkSource;
 			
-		out payload[0..*];
+		inout payload[0..*];
 		in :>> receiver;
 		
 		bind payload = accepter.payload;

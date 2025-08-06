@@ -139,12 +139,64 @@
               <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="b3b07867-7168-5a0e-9d28-55ae001919e2" elementId="b3b07867-7168-5a0e-9d28-55ae001919e2">
                 <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="689a6bb8-8fe2-5833-a569-efad15055ff5" elementId="689a6bb8-8fe2-5833-a569-efad15055ff5" body="The target of each of the outgoingTransfersFromSelf of a Port must be an interfacingPort.&#xA;"/>
               </ownedRelationship>
-              <ownedRelationship xsi:type="sysml:TypeFeaturing" xmi:id="900b0021-0c91-51b5-ad0e-7948ea576a5c" elementId="900b0021-0c91-51b5-ad0e-7948ea576a5c" isImplied="true" featureOfType="227d950f-3392-5d76-abcf-6fbe92fbe096" featuringType="02a8d3cf-d65f-5979-825e-b197525b9c4b">
-                <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="02a8d3cf-d65f-5979-825e-b197525b9c4b" elementId="02a8d3cf-d65f-5979-825e-b197525b9c4b" declaredName="Port_snapshots">
-                  <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="6f4873b1-3df8-5fa3-ae70-b80cf6c5330f" elementId="6f4873b1-3df8-5fa3-ae70-b80cf6c5330f" redefiningFeature="02a8d3cf-d65f-5979-825e-b197525b9c4b">
+              <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="1d8b9295-8dcb-5128-abe4-8baff5c605f4" elementId="1d8b9295-8dcb-5128-abe4-8baff5c605f4">
+                <ownedRelatedElement xsi:type="sysml:ReferenceUsage" xmi:id="e673c4db-a194-5e21-b54b-fdeeba634a22" elementId="e673c4db-a194-5e21-b54b-fdeeba634a22" declaredName="source" isImpliedIncluded="true" isComposite="false" isEnd="true" isConstant="true">
+                  <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="59324bb7-2582-53d1-8434-d899a03025fb" elementId="59324bb7-2582-53d1-8434-d899a03025fb">
+                    <ownedRelatedElement xsi:type="sysml:Multiplicity" xmi:id="8e01cbba-9aff-56ca-a6b5-621406169ca1" elementId="8e01cbba-9aff-56ca-a6b5-621406169ca1" isImpliedIncluded="true">
+                      <ownedRelationship xsi:type="sysml:Subsetting" xmi:id="9491f5f9-237c-5cb3-bde9-0e0209b00697" elementId="9491f5f9-237c-5cb3-bde9-0e0209b00697" isImplied="true" subsettingFeature="8e01cbba-9aff-56ca-a6b5-621406169ca1">
+                        <subsettedFeature href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Base.kermlx#64e18b84-0e05-5c95-a003-c0f60a269893"/>
+                      </ownedRelationship>
+                      <ownedRelationship xsi:type="sysml:TypeFeaturing" xmi:id="173b2d0f-fe62-5087-ab0d-819dddb2034d" elementId="173b2d0f-fe62-5087-ab0d-819dddb2034d" isImplied="true" featureOfType="8e01cbba-9aff-56ca-a6b5-621406169ca1" featuringType="50693bb9-5e2a-5f19-9e10-4eac8c35786a">
+                        <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="50693bb9-5e2a-5f19-9e10-4eac8c35786a" elementId="50693bb9-5e2a-5f19-9e10-4eac8c35786a" declaredName="Port_outgoingTransfersFromSelf_snapshots">
+                          <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="305ed6e3-659e-51e6-a15e-11834cc6cf46" elementId="305ed6e3-659e-51e6-a15e-11834cc6cf46" redefiningFeature="50693bb9-5e2a-5f19-9e10-4eac8c35786a">
+                            <redefinedFeature href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Occurrences.kermlx#2b9660c5-2b98-5ecd-bf09-32a62ff6be1e"/>
+                          </ownedRelationship>
+                          <ownedRelationship xsi:type="sysml:TypeFeaturing" xmi:id="99c53b6d-805c-5086-952b-efb39d14b11c" elementId="99c53b6d-805c-5086-952b-efb39d14b11c" featureOfType="50693bb9-5e2a-5f19-9e10-4eac8c35786a" featuringType="227d950f-3392-5d76-abcf-6fbe92fbe096"/>
+                        </ownedRelatedElement>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="8a0e6cce-b578-5426-9060-655fb760c8c9" elementId="8a0e6cce-b578-5426-9060-655fb760c8c9" isImplied="true" redefiningFeature="e673c4db-a194-5e21-b54b-fdeeba634a22">
+                    <redefinedFeature href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Occurrences.kermlx#31d71c27-7263-5b03-8f54-3381d0d48b84"/>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="b8172b8f-abbb-59d9-97f2-91d76a058689" elementId="b8172b8f-abbb-59d9-97f2-91d76a058689" isImplied="true" redefiningFeature="e673c4db-a194-5e21-b54b-fdeeba634a22">
+                    <redefinedFeature href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Occurrences.kermlx#38d69336-c73b-5bb1-962e-e05fc823352d"/>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:TypeFeaturing" xmi:id="39772bef-aae7-5e78-a400-5513f176f305" elementId="39772bef-aae7-5e78-a400-5513f176f305" isImplied="true" featureOfType="e673c4db-a194-5e21-b54b-fdeeba634a22" featuringType="50693bb9-5e2a-5f19-9e10-4eac8c35786a"/>
+                </ownedRelatedElement>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="85efc21c-fedb-5ce8-a573-2ed81918c001" elementId="85efc21c-fedb-5ce8-a573-2ed81918c001">
+                <ownedRelatedElement xsi:type="sysml:ReferenceUsage" xmi:id="1bba1953-5ea9-55a2-8652-ca0e2c4bf2e8" elementId="1bba1953-5ea9-55a2-8652-ca0e2c4bf2e8" declaredName="target" isImpliedIncluded="true" isComposite="false" isEnd="true" isConstant="true">
+                  <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="f5034132-1bfe-55c7-8f70-9a721587f64f" elementId="f5034132-1bfe-55c7-8f70-9a721587f64f">
+                    <ownedRelatedElement xsi:type="sysml:Multiplicity" xmi:id="30b6b35e-67a6-5f3a-a9ff-9cc2f28b8573" elementId="30b6b35e-67a6-5f3a-a9ff-9cc2f28b8573" isImpliedIncluded="true">
+                      <ownedRelationship xsi:type="sysml:Subsetting" xmi:id="55c59b6f-25e8-5d62-927d-4e2bcbaf554c" elementId="55c59b6f-25e8-5d62-927d-4e2bcbaf554c" isImplied="true" subsettingFeature="30b6b35e-67a6-5f3a-a9ff-9cc2f28b8573">
+                        <subsettedFeature href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Base.kermlx#64e18b84-0e05-5c95-a003-c0f60a269893"/>
+                      </ownedRelationship>
+                      <ownedRelationship xsi:type="sysml:TypeFeaturing" xmi:id="89361f5b-97d3-5aa4-8acf-34e9ace87813" elementId="89361f5b-97d3-5aa4-8acf-34e9ace87813" isImplied="true" featureOfType="30b6b35e-67a6-5f3a-a9ff-9cc2f28b8573" featuringType="80f29060-05a3-538a-87d8-dd76cd3eb28e">
+                        <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="80f29060-05a3-538a-87d8-dd76cd3eb28e" elementId="80f29060-05a3-538a-87d8-dd76cd3eb28e" declaredName="Port_outgoingTransfersFromSelf_snapshots">
+                          <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="a168fc4c-5b60-5b91-91a4-72d87bb2b380" elementId="a168fc4c-5b60-5b91-91a4-72d87bb2b380" redefiningFeature="80f29060-05a3-538a-87d8-dd76cd3eb28e">
+                            <redefinedFeature href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Occurrences.kermlx#2b9660c5-2b98-5ecd-bf09-32a62ff6be1e"/>
+                          </ownedRelationship>
+                          <ownedRelationship xsi:type="sysml:TypeFeaturing" xmi:id="cf454799-0dcb-569e-8eb1-4a7bdcd254c8" elementId="cf454799-0dcb-569e-8eb1-4a7bdcd254c8" featureOfType="80f29060-05a3-538a-87d8-dd76cd3eb28e" featuringType="227d950f-3392-5d76-abcf-6fbe92fbe096"/>
+                        </ownedRelatedElement>
+                      </ownedRelationship>
+                    </ownedRelatedElement>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="9ce12a0d-9262-50d0-9e85-d3b58c13ad89" elementId="9ce12a0d-9262-50d0-9e85-d3b58c13ad89" isImplied="true" redefiningFeature="1bba1953-5ea9-55a2-8652-ca0e2c4bf2e8">
+                    <redefinedFeature href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Occurrences.kermlx#866abf47-c230-555d-8cc5-61f74cd1c7d1"/>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="3cdc45c8-9d09-5bd3-9082-a9782f4a476b" elementId="3cdc45c8-9d09-5bd3-9082-a9782f4a476b" isImplied="true" redefiningFeature="1bba1953-5ea9-55a2-8652-ca0e2c4bf2e8">
+                    <redefinedFeature href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Occurrences.kermlx#20403aee-4553-5e15-b0d3-c64d468a98ca"/>
+                  </ownedRelationship>
+                  <ownedRelationship xsi:type="sysml:TypeFeaturing" xmi:id="47625b1a-7413-5b18-9e74-30cf6403d465" elementId="47625b1a-7413-5b18-9e74-30cf6403d465" isImplied="true" featureOfType="1bba1953-5ea9-55a2-8652-ca0e2c4bf2e8" featuringType="80f29060-05a3-538a-87d8-dd76cd3eb28e"/>
+                </ownedRelatedElement>
+              </ownedRelationship>
+              <ownedRelationship xsi:type="sysml:TypeFeaturing" xmi:id="b4e0a741-78a4-5adf-82d6-16137d6d4298" elementId="b4e0a741-78a4-5adf-82d6-16137d6d4298" isImplied="true" featureOfType="227d950f-3392-5d76-abcf-6fbe92fbe096" featuringType="7373c291-8563-5fc2-bee1-70c60eb31120">
+                <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="7373c291-8563-5fc2-bee1-70c60eb31120" elementId="7373c291-8563-5fc2-bee1-70c60eb31120" declaredName="Port_snapshots">
+                  <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="87d5cc4b-73aa-58cd-892a-0fa470d3cf18" elementId="87d5cc4b-73aa-58cd-892a-0fa470d3cf18" redefiningFeature="7373c291-8563-5fc2-bee1-70c60eb31120">
                     <redefinedFeature href="../Kernel%20Libraries/Kernel%20Semantic%20Library/Occurrences.kermlx#2b9660c5-2b98-5ecd-bf09-32a62ff6be1e"/>
                   </ownedRelationship>
-                  <ownedRelationship xsi:type="sysml:TypeFeaturing" xmi:id="90dd9fd7-e493-5a24-9231-9d3bd3a0de21" elementId="90dd9fd7-e493-5a24-9231-9d3bd3a0de21" featureOfType="02a8d3cf-d65f-5979-825e-b197525b9c4b" featuringType="331276d2-3064-5f35-8685-0a0423aaf3fb"/>
+                  <ownedRelationship xsi:type="sysml:TypeFeaturing" xmi:id="52697c85-f232-5b70-80d6-ed7b8d80dbda" elementId="52697c85-f232-5b70-80d6-ed7b8d80dbda" featureOfType="7373c291-8563-5fc2-bee1-70c60eb31120" featuringType="331276d2-3064-5f35-8685-0a0423aaf3fb"/>
                 </ownedRelatedElement>
               </ownedRelationship>
             </ownedRelatedElement>

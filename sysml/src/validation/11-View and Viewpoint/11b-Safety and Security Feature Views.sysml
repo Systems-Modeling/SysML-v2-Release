@@ -49,10 +49,11 @@ package '11b-Safety and Security Feaure Views' {
 		private import PartsTree::vehicle;
 		
 		view vehicleSafetyFeatureView : SafetyFeatureView {
-			expose vehicle::**;
+			expose vehicle;
 		}
 		
 		view vehicleMandatorySafetyFeatureView :> vehicleSafetyFeatureView {
+		    expose vehicle::*::**;
 			filter Safety::isMandatory;
 		}
 		

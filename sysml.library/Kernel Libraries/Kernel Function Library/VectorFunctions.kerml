@@ -179,7 +179,9 @@ standard library package VectorFunctions {
 	}
 	function CartesianThreeVectorOf specializes CartesianVectorOf { 
 		in components: Real[3] ordered nonunique;
-		return : CartesianThreeVectorValue[1];
+		return : CartesianThreeVectorValue[1] {
+		    feature :>> CartesianVectorOf::result::dimension, CartesianThreeVectorValue::dimension;
+		}
 	}
 	
 	feature cartesianZeroVector: CartesianVectorValue[3] =

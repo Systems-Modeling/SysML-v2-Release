@@ -47,4 +47,8 @@ package ExtendedOccurrences {
         	connector : Occurrences::HappensDuring from [1] that to [1] self;
         }
     }
+    struct ExtendedObject :> ExtendedOccurrence {
+        feature self : ExtendedObject :>> Objects::Object::self, ExtendedOccurrence::self;
+    }
+
 }

@@ -8,7 +8,7 @@ package 'Viewpoint Example' {
 		 * it is necessary to understand how it is broken down into
 		 * subsystems and components that provide those capabilities.
 		 */
-		 
+		subject;
 		stakeholder se : 'Systems Engineer';
 		stakeholder ivv : 'IV&V';
 	}
@@ -18,9 +18,9 @@ package 'Viewpoint Example' {
 		 * There should be well defined interfaces between the parts of
 		 * a system that allow each part to be understood individually,
 		 * as well as being part of the whole system.
-		 */
-		 
-		 stakeholder se : 'Systems Engineer';
+		 */		 
+        subject;
+		stakeholder se : 'Systems Engineer';
 	}
 	
 	viewpoint 'system structure perspective' {		

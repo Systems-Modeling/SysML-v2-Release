@@ -7,10 +7,12 @@ package ViewTest {
 	part def S;
 	
 	concern def C {
+	    subject;
 		stakeholder s : S;
 	}
 	
 	concern c : C {
+	    subject;
 		stakeholder s1;
 	}
 	

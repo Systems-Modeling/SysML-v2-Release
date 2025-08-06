@@ -26,10 +26,12 @@ standard library package DerivationConnections {
 		 * The single end for the originalRequirement should subset originalRequirement, while
 		 * the rest of the ends should subset derivedRequirements.
 		 */
-		 
-		ref requirement :>> participant {
-			doc /* All the participants in a Derivation must be requirements. */
-		}
+		
+		// Note: This redefinition causes a distinguishibility problem for binary connections, becuse
+		// participant is already redefined for them to limit the multiplicity to 2.
+		// ref requirement :>> participant {
+		//	doc /* All the participants in a Derivation must be requirements. */
+		// }
 		
 		ref requirement originalRequirement[1] :>> originalRequirements :> participant {
 			doc /* The single original requirement. */

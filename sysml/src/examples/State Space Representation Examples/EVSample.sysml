@@ -81,7 +81,7 @@ package EVSample {
     }
 
     requirement def VehicleRequirement {
-        in vehicle : Vehicle;
+        subject vehicle : Vehicle;
     }
 
     analysis def VehicleAnalysis {
@@ -179,8 +179,7 @@ package EVSample {
             }
         }
 
-        flow battery.batteryBehavior.output.voltage to motor.motorBehavior.input.voltage;
-        flow motor.motorBehavior.output.current to battery.batteryBehavior.input.current;
+        flow battery.batteryBehavior.output to motor.motorBehavior.input;
 
         part motor: Motor {
             :>> motR = 4['Ω'];
@@ -193,8 +192,7 @@ package EVSample {
             }
         }
 
-        flow motor.motorBehavior.output.torque to tire.tireBehavior.input.torque;
-        flow vehicleBehavior.output.accel to tire.tireBehavior.input.accel;
+        flow motor.motorBehavior.output to tire.tireBehavior.input;
 
         part tire: Tire {
             :>> moment default 300['kg⋅m²'];
@@ -205,8 +203,8 @@ package EVSample {
             }
         }
 
-        flow tire.tireBehavior.output.outTorque to motor.motorBehavior.input.friction;
-        flow tire.tireBehavior.output.force to vehicleBehavior.input.force;
+        flow tire.tireBehavior.output to motor.motorBehavior.input;
+        flow tire.tireBehavior.output to vehicleBehavior.input;
     }
 
     part vehicle_compact :> vehicle {
@@ -220,7 +218,7 @@ package EVSample {
     part smallEVRangeContext {
         requirement smallEVRequirement : VehicleRequirement {
             doc /* The small EVs must be ligher than 900[kg] */
-            in :>> vehicle = vehicle_compact;
+            subject :>> vehicle = vehicle_compact;
             /*  To comform with the regulation and the battery mass will impact it. */
             assume constraint { vehicle.mass < 900[kg] }
         }
@@ -257,6 +255,7 @@ package EVSample {
         }
 
         analysis maxSpeedAnalysisSmall :> smallEVAnalysis : MaxSpeedAnalysis {
+            subject;
             requirement :>> maxSpeedRequirement = maxSpeedRequirementSmall;
             out voltage :> ISQ::electricPotential = vehicle.battery.batteryBehavior.output.voltage;
             return simulatedMaxSpeed = vehicle.vehicleBehavior.output.velocity;
@@ -274,7 +273,7 @@ package EVSample {
     part largeEVRangeContext {
         requirement largeEVRequirement : VehicleRequirement {
             doc /* The large EVs must be ligher than 900[kg] */
-            in :>> vehicle = vehicle_large;
+            subject :>> vehicle = vehicle_large;
             /*  To comform with the regulation and the battery mass will impact it. */
             assume constraint { vehicle.mass < 1200[kg] }
         }
@@ -311,6 +310,7 @@ package EVSample {
         }
 
         analysis maxSpeedAnalysisLarge :> largeEVAnalysis : MaxSpeedAnalysis {
+            subject;
             requirement :>> maxSpeedRequirement = maxSpeedRequirementLarge;
             out voltage = vehicle.battery.batteryBehavior.output.voltage;
             return simulatedMaxSpeed = vehicle.vehicleBehavior.output.velocity;

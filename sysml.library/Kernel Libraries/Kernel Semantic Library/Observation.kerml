@@ -92,6 +92,7 @@ standard library package Observation {
 	    	end feature source {
 	    		feature redefines sourceOutput = changeSignal;
 	    	}
+	    	end feature target;
 	    }
 	}
 	

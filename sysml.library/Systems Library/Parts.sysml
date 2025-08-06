@@ -48,7 +48,7 @@ doc
 			 * Actions that are owned by this Part.
 			 */
 		
-		 	ref part :>> this : Part = that as Part {
+		 	ref part this : Part :>> Action::this, ownedPerformances::this = that as Part {
 				doc
 				/*
 				 * The "this" reference of an ownedAction is always its owning Part.

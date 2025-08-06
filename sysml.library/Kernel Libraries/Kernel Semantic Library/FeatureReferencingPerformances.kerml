@@ -133,8 +133,8 @@ standard library package FeatureReferencingPerformances {
 		 */
 		
 		in feature onOccurrence : Evaluation redefines onOccurrence {
-	    	protected monitoredOccurrence : Evaluation [1] redefines monitoredOccurrence {
-				out result : Anything[*] redefines result, monitoredFeature; 
+	    	protected expr monitoredOccurrence : Evaluation [1] redefines monitoredOccurrence {
+				return result : Anything[*] redefines result, monitoredFeature; 
 			} 
 		} 
 	}
@@ -147,7 +147,9 @@ standard library package FeatureReferencingPerformances {
 		 */	
 		
 	  	in bool redefines onOccurrence {
-	    	protected bool redefines monitoredOccurrence[1];
+	    	protected bool redefines monitoredOccurrence[1] {
+	    	    return result : Boolean [1];
+	    	}
 		}
 		out redefines afterValues : Boolean [1]; 
 		out redefines beforeValues : Boolean [1];	 
@@ -167,10 +169,16 @@ standard library package FeatureReferencingPerformances {
   		feature isToTrue : Boolean [1] default true;
   		out afterValues: Boolean[1] redefines values  = isToTrue;
   		private feature monitor1 : BooleanEvaluationResultMonitorPerformance [1] {
-    		feature redefines endWhen : HappensJustBefore;
+    		feature redefines endWhen : HappensJustBefore {
+    		    end feature earlierOccurrence;
+    		    end feature laterOccurrence;
+    		}
   		}
   		private feature monitor2 : BooleanEvaluationResultMonitorPerformance [1] {
-    		feature redefines endWhen : HappensJustBefore;
+    		feature redefines endWhen : HappensJustBefore {
+                end feature earlierOccurrence;
+                end feature laterOccurrence;
+            }
   		}
 
   		private connector : HappensJustBefore from [1] monitor1 to [0..1] monitor2;

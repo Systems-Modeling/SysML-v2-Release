@@ -110,15 +110,21 @@ package ChangingFeatureValuesExecution {
 	#atom
 	behavior MyPaint specializes Paint {
 		feature redefines objectToPaint : MyProduct;
-		step redefines painting : PaintingMyProductFeatureWrite;
-		step redefines painted : PaintedMyProductFeatureWrite;
+		step redefines painting : PaintingMyProductFeatureWrite {
+		    in onOccurrence;
+		}
+		step redefines painted : PaintedMyProductFeatureWrite {
+            in onOccurrence;
+        }
 		succession redefines p_before_p : MyPaintingFW_Before_PaintFW_Link first painting then painted;
 	}
 
 	#atom
 	behavior MyDry specializes Dry {
 		feature redefines objectToDry : MyProduct;
-		step redefines dried : MyProductFeatureWrite;  
+		step redefines dried : MyProductFeatureWrite {
+            in onOccurrence;
+        }
 	}
 	#atom
 	assoc MyPaint_Before_Dry_Link specializes HappensBefore {
@@ -128,7 +134,9 @@ package ChangingFeatureValuesExecution {
 	#atom
 	behavior MyShip specializes Ship {
 		feature redefines objectToShip : MyProduct;
-		step redefines shipped : MyProductFeatureWrite;  
+		step redefines shipped : MyProductFeatureWrite {
+            in onOccurrence;
+        }
 	}
 	#atom
 	assoc MyDry_Before_Ship_Link specializes HappensBefore {
@@ -144,7 +152,9 @@ package ChangingFeatureValuesExecution {
 		feature obPiS chains objectToFinish.beforePaint.isShipped = false;
 
 
-		step redefines paint : MyPaint;
+		step redefines paint : MyPaint {
+		    feature redefines paint::objectToPaint, MyPaint::objectToPaint;
+		}
 		feature subsets objectToFinish.beforePaint.immediateSuccessors,
 				objectToFinish.whilePainting.startShot.timeCoincidentOccurrences
 			chains paint.painting.endShot;
@@ -161,7 +171,9 @@ package ChangingFeatureValuesExecution {
 		feature oaPiS chains objectToFinish.afterPaint.isShipped = false;
 
 
-		step redefines dry : MyDry;
+		step redefines dry : MyDry {
+            feature redefines dry::objectToDry, MyDry::objectToDry;
+        }
 		succession redefines p_before_d : MyPaint_Before_Dry_Link [1] first paint then dry;
 		feature subsets objectToFinish.afterPaint.immediateSuccessors,
 				objectToFinish.afterDry.startShot.timeCoincidentOccurrences
@@ -171,7 +183,9 @@ package ChangingFeatureValuesExecution {
 		feature oaDiS chains objectToFinish.afterDry.isShipped = false;
 
 
-		step redefines ship : MyShip;
+		step redefines ship : MyShip {
+            feature redefines ship::objectToShip, MyShip::objectToShip;
+        }
 		succession redefines d_before_s : MyDry_Before_Ship_Link [1] first dry then ship;
 		feature subsets objectToFinish.afterDry.immediateSuccessors,
 				objectToFinish.afterShip.startShot.timeCoincidentOccurrences

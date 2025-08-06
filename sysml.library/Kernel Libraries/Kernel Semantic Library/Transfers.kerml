@@ -167,7 +167,7 @@ standard library package Transfers {
         private succession self then target;
     }
     
-    interaction FlowTransferBefore specializes FlowTransfer, TransferBefore intersects FlowTransfer, TransferBefore {
+    interaction FlowTransferBefore specializes TransferBefore, FlowTransfer intersects FlowTransfer, TransferBefore {
         doc
         /*
          * FlowTransferBefore is a FlowTransfer that is also a TransferBefore. 
@@ -177,7 +177,7 @@ standard library package Transfers {
         end feature target: Occurrence redefines Transfer::target, TransferBefore::target;         
     }
     
-    abstract flow transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
+    abstract step transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
         doc
         /*
          * transfers is a specialization of performances and binaryLinks restricted to type 
@@ -188,7 +188,7 @@ standard library package Transfers {
         end feature target: Occurrence redefines Transfer::target, binaryLinks::target;
     }
     
-    abstract flow messageTransfers: MessageTransfer[0..*] nonunique subsets transfers {
+    abstract step messageTransfers: MessageTransfer[0..*] nonunique subsets transfers {
         doc
         /*
          * messageTransfers is a specialization of transfers restricted to type MessageTransfers.

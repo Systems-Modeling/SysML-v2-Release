@@ -165,27 +165,46 @@ standard library package Objects {
 		 * inner space dimension of structured space object is the highest of their cells.
 		 */
 
-		abstract portion feature structuredSpaceObjectCells : StructuredSpaceObject[1..*] subsets Occurrence::spaceSlices
-		  { feature cellOrientation : Integer [0..1];
+        abstract portion feature structuredSpaceObjectCells : StructuredSpaceObject[1..*] subsets Occurrence::spaceSlices { 
+            feature cellOrientation : Integer [0..1];
 		    inv { notEmpty(cellOrientation) implies (cellOrientation >= -1 & cellOrientation <= 1) }
-		  }
+		}
+		
+		comment about StructuredSurface, StructuredCurve, StructuredPoint
+		/*
+		 * The structures StructuredSurface, StructuredCurve and StructuredPoint provide common, necessary redefinitions of
+		 * innerSpaceDimension. They also provide single types for the StructuredSpaceObject features faces, edges and
+		 * vertices, which avoids problems when these features are related by connectors with ends that have owned
+		 * cross features.
+		 */
+		struct StructuredSurface specializes StructuredSpaceObject, Surface {
+            feature redefines StructuredSpaceObject::innerSpaceDimension, Surface::innerSpaceDimension;		    
+		}
+        struct StructuredCurve specializes StructuredSpaceObject, Curve {
+            feature redefines StructuredSpaceObject::innerSpaceDimension, Curve::innerSpaceDimension;         
+        }
+        struct StructuredPoint specializes StructuredSpaceObject, Point {
+            feature redefines StructuredSpaceObject::innerSpaceDimension, Point::innerSpaceDimension;         
+        }
 
-		portion feature faces : Surface[0..*] ordered subsets structuredSpaceObjectCells {
-			feature redefines edges subsets StructuredSpaceObject::edges;
-			feature redefines vertices subsets StructuredSpaceObject::vertices;
+		portion feature faces : StructuredSurface[0..*] ordered subsets structuredSpaceObjectCells {
+		    feature redefines that : StructuredSpaceObject;
+			feature redefines edges subsets that.edges;
+			feature redefines vertices subsets that.vertices;
 			derived feature redefines spaceBoundary; 
 			inv { isEmpty(spaceBoundary) == isEmpty(union(edges, vertices)) }
 			inv { notEmpty(spaceBoundary) implies contains(spaceBoundary.unionsOf, union(edges, vertices)) }
 		}
 
-		portion feature edges : Curve[0..*] ordered subsets structuredSpaceObjectCells {
-			feature redefines vertices subsets StructuredSpaceObject::vertices;
+		portion feature edges : StructuredCurve[0..*] ordered subsets structuredSpaceObjectCells {
+            feature redefines that : StructuredSpaceObject;
+			feature redefines vertices subsets that.vertices;
 			derived feature redefines spaceBoundary;
 			inv { isEmpty(spaceBoundary) == isEmpty(vertices) }
 			inv { notEmpty(spaceBoundary) implies contains(spaceBoundary.unionsOf, vertices) }
 		}
 
-		portion feature vertices : Point[0..*] ordered subsets structuredSpaceObjectCells;
+		portion feature vertices : StructuredPoint[0..*] ordered subsets structuredSpaceObjectCells;
 		
 		derived feature redefines innerSpaceDimension = 
 			if notEmpty(faces) ? 2 else if notEmpty(edges) ? 1 else 0;

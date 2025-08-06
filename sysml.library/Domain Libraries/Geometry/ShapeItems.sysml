@@ -56,12 +56,12 @@ standard library package ShapeItems {
 		attribute :>> outerSpaceDimension = 1;
 	}
 
-	abstract item def Path :> StructuredSpaceObject, Curve {
+	abstract item def Path :> StructuredSpaceObject::StructuredCurve {
 		doc
 		/*
 		 * Path is the most general structured Curve.
 		 */
-	
+        
 		item :>> faces [0];
 		item :>> edges [1..*] {
 			item :>> vertices [0..2];
@@ -227,7 +227,7 @@ standard library package ShapeItems {
 		item :>> e4 { attribute :>> length = e2.length; }
 	}
 
-	abstract item def Shell :> StructuredSpaceObject, Surface {
+	abstract item def Shell :> StructuredSpaceObject::StructuredSurface {
 		doc
 		/*
 		 * Shell is the most general structured Surface.
@@ -251,7 +251,10 @@ standard library package ShapeItems {
 		item :>> faces : PlanarSurface [1] {
 			item :>> edges [1];
 		}
-		item :>> edges : Ellipse [1] = shape;
+		item :>> edges : Ellipse [1] = shape {
+            attribute :>> edges::innerSpaceDimension, Ellipse::innerSpaceDimension;
+            ref item :>> edges::vertices, Ellipse::vertices;
+		}
 		item :>> vertices [0];
 	}
 
@@ -265,7 +268,10 @@ standard library package ShapeItems {
 		attribute :>> semiMajorAxis [1] = radius;
 		attribute :>> semiMinorAxis [1] = radius;
 
-		item :>> shape : Circle;
+		item :>> shape : Circle {
+            attribute :>> Disc::shape::semiMajorAxis, Circle::semiMajorAxis;
+            attribute :>> Disc::shape::semiMinorAxis, Circle::semiMinorAxis;
+        }
 		item :>> edges : Circle;
 	}
 
@@ -371,6 +377,7 @@ standard library package ShapeItems {
 		item :>> revolvedCurve: Rectangle [1] {
 			attribute :>> length = rectangleLength;
 			attribute :>> width  = rectangleWidth;
+			attribute :>> revolvedCurve::isClosed, Rectangle::isClosed;
 		}
 	}
 
@@ -390,8 +397,20 @@ standard library package ShapeItems {
 		attribute :>> yoffset [1];
 
 		item :>> faces [2..3];
-		item base : Disc [1] :> faces;
-		item af : Disc [0..1] :> faces;
+		item base : Disc [1] :> faces {        
+            attribute :>> Disc::innerSpaceDimension, faces::innerSpaceDimension;
+            ref :>> Disc::edges, ConeOrCylinder::faces::edges {
+                attribute :>> Disc::edges::innerSpaceDimension, ConeOrCylinder::faces::edges::innerSpaceDimension;
+            }
+            ref :>> Disc::vertices, ConeOrCylinder::faces::vertices;		    
+		}
+		item af : Disc [0..1] :> faces {        
+            attribute :>> Disc::innerSpaceDimension, faces::innerSpaceDimension;
+            ref :>> Disc::edges, ConeOrCylinder::faces::edges {
+                attribute :>> Disc::edges::innerSpaceDimension, ConeOrCylinder::faces::edges::innerSpaceDimension;
+            }
+            ref :>> Disc::vertices, ConeOrCylinder::faces::vertices;            
+        }
 		item cf : Surface [1] :> faces;
 
 		item :>> edges [2..4] = faces.edges;
@@ -452,7 +471,9 @@ standard library package ShapeItems {
 		attribute :>> semiMajorAxis [1] = radius;
 		attribute :>> semiMinorAxis [1] = radius;
 
-		item :>> base : CircularDisc;
+		item :>> base : CircularDisc {
+		    ref :>> base::edges, CircularDisc::edges;
+		}
 	}
 
 	item def RightCircularCone :> CircularCone {
@@ -499,8 +520,12 @@ standard library package ShapeItems {
 		attribute :>> semiMajorAxis [1] = radius;
 		attribute :>> semiMinorAxis [1] = radius;
 
-		item :>> base : CircularDisc;
-		item :>> af : CircularDisc;
+		item :>> base : CircularDisc {
+            ref :>> base::edges, CircularDisc::edges;
+        }
+		item :>> af : CircularDisc {
+            ref :>> af::edges, CircularDisc::edges;
+        }
 	}
 
 	item def RightCircularCylinder :> CircularCylinder {
@@ -521,7 +546,11 @@ standard library package ShapeItems {
 
 		attribute :>> isClosed = true;
 
-		item :>> faces : Polygon [2..*];
+		item :>> faces : Polygon [2..*] {        
+            attribute :>> Polygon::innerSpaceDimension, faces::innerSpaceDimension;
+            ref :>> Polygon::edges, ConeOrCylinder::faces::edges;
+            ref :>> Polygon::vertices, ConeOrCylinder::faces::vertices;            
+        }
 		
 		item :>> edges = faces.edges;
 		
@@ -537,12 +566,24 @@ standard library package ShapeItems {
 		 */
 
 		item :>> faces [5..6];
-		item tf	 : Quadrilateral [1] :> faces;
-		item bf	 : Quadrilateral [1] :> faces;
+		item tf	 : Quadrilateral [1] :> faces {        
+            ref :>> Quadrilateral::edges, ConeOrCylinder::faces::edges;
+            ref :>> Quadrilateral::vertices, ConeOrCylinder::faces::vertices;            
+        }
+		item bf	 : Quadrilateral [1] :> faces {        
+            ref :>> Quadrilateral::edges, ConeOrCylinder::faces::edges;
+            ref :>> Quadrilateral::vertices, ConeOrCylinder::faces::vertices;            
+        }
 		item ff	 : Polygon [1] :> faces { item :>> Polygon::edges, faces::edges [3..4]; }
 		item rf	 : Polygon [1] :> faces { item :>> Polygon::edges, faces::edges [3..4]; }
-		item slf : Quadrilateral [1] :> faces;
-		item srf : Quadrilateral [0..1] :> faces;
+		item slf : Quadrilateral [1] :> faces {        
+            ref :>> Quadrilateral::edges, ConeOrCylinder::faces::edges;
+            ref :>> Quadrilateral::vertices, ConeOrCylinder::faces::vertices;            
+        }
+		item srf : Quadrilateral [0..1] :> faces {        
+            ref :>> Quadrilateral::edges, ConeOrCylinder::faces::edges;
+            ref :>> Quadrilateral::vertices, ConeOrCylinder::faces::vertices;            
+        }
 
 		item :>> edges;
 		assert constraint { size(edges) == 18 or size(edges) == 24 }
@@ -645,8 +686,14 @@ standard library package ShapeItems {
 	
 
 		item :>> faces [5];
-		item :>> ff : Triangle;
-		item :>> rf : Triangle;
+		item :>> ff : Triangle {        
+            ref :>> Triangle::edges, ConeOrCylinder::faces::edges;
+            ref :>> Triangle::vertices, ConeOrCylinder::faces::vertices;            
+        }
+		item :>> rf : Triangle {        
+            ref :>> Triangle::edges, ConeOrCylinder::faces::edges;
+            ref :>> Triangle::vertices, ConeOrCylinder::faces::vertices;            
+        }
 
 		item :>> edges [18];
 
@@ -703,8 +750,14 @@ standard library package ShapeItems {
 		 */	
 
 		item :>> faces [6];
-		item :>> ff : Quadrilateral;
-		item :>> rf : Quadrilateral;
+		item :>> ff : Quadrilateral {        
+            ref :>> Quadrilateral::edges, ConeOrCylinder::faces::edges;
+            ref :>> Quadrilateral::vertices, ConeOrCylinder::faces::vertices;            
+        }
+		item :>> rf : Quadrilateral {        
+            ref :>> Quadrilateral::edges, ConeOrCylinder::faces::edges;
+            ref :>> Quadrilateral::vertices, ConeOrCylinder::faces::vertices;            
+        }
 
 		item :>> edges [24];
 
@@ -781,7 +834,10 @@ standard library package ShapeItems {
 
 		item :>> faces;
 		item base [1] :> faces;
-		item wall : Triangle :> faces;
+		item wall : Triangle :> faces {        
+            ref :>> Triangle::edges, ConeOrCylinder::faces::edges;
+            ref :>> Triangle::vertices, ConeOrCylinder::faces::vertices;            
+        }
 		attribute wallNumber : Positive = size(wall);
 
 		assert constraint { size(faces) == wallNumber + 1 }
@@ -817,6 +873,8 @@ standard library package ShapeItems {
 		attribute :>> baseWidth [1];
 
 		item :>> base : Triangle {
+            ref :>> Triangle::edges, ConeOrCylinder::faces::edges;
+            ref :>> Triangle::vertices, ConeOrCylinder::faces::vertices;            
 			attribute :>> length = Tetrahedron::baseLength;
 			attribute :>> width  = Tetrahedron::baseWidth;
 		}
@@ -832,6 +890,8 @@ standard library package ShapeItems {
 		attribute :>> baseWidth [1];
 
 		item :>> base : Rectangle {
+            ref :>> Rectangle::edges, ConeOrCylinder::faces::edges;
+            ref :>> Rectangle::vertices, ConeOrCylinder::faces::vertices;            
 			attribute :>> length = RectangularPyramid::baseLength;
 			attribute :>> width = RectangularPyramid::baseWidth;
 		}

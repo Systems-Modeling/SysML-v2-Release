@@ -44,7 +44,9 @@ package '10a-Analysis' {
 	
 		analysis def MassAnalysisCase {
 			subject vehicle : Vehicle;
-			objective : MassAnalysisObjective;
+			objective : MassAnalysisObjective {
+			    subject = MassAnalysisCase::result;
+			}
 			
 			// Result
 			vehicle.mass
