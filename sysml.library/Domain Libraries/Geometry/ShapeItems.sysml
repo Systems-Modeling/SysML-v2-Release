@@ -252,8 +252,8 @@ standard library package ShapeItems {
 			item :>> edges [1];
 		}
 		item :>> edges : Ellipse [1] = shape {
-            attribute :>> edges::innerSpaceDimension, Ellipse::innerSpaceDimension;
-            ref item :>> edges::vertices, Ellipse::vertices;
+            attribute :>> Shell::edges::innerSpaceDimension, Ellipse::innerSpaceDimension;
+            ref item :>> Shell::edges::vertices, Ellipse::vertices;
 		}
 		item :>> vertices [0];
 	}

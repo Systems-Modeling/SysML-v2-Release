@@ -86,8 +86,8 @@ package VehicleVariabilityModel {
 		        	}
 		        	
 		          	assert constraint {
-		            	(autoPort == autoPort::autoPort1 & cylinder.diameter == cylinder::diameter::diameterSmall) ^
-		             	(autoPort == autoPort::autoPort2 & cylinder.diameter == cylinder::diameter::diameterLarge)
+		            	(autoPort == autoPort::autoPort1 and cylinder.diameter == cylinder::diameter::diameterSmall) xor
+		             	(autoPort == autoPort::autoPort2 and cylinder.diameter == cylinder::diameter::diameterLarge)
 		        	}
 		        }
 		    }
@@ -105,8 +105,8 @@ package VehicleVariabilityModel {
 		        }
 		        
 		        assert constraint {
-		            (engine == '4cylEngine' & transmission == transmission::manualTransmission) ^
-		            (engine == '6cylEngine' & transmission == transmission::automaticTransmission)
+		            (engine == engine::'4cylEngine' and transmission == transmission::manualTransmission) xor
+		            (engine == engine::'6cylEngine' and transmission == transmission::automaticTransmission)
 		        }
 		        
 		        // Variation point on variant multiplicity (inherited multiplicity is [0..1]) 
@@ -135,10 +135,10 @@ package VehicleVariabilityModel {
 		        }
 		        
 			    assert constraint {
-			        (generateTorque == generateTorque::generateTorque4Cyl & 
+			        (generateTorque == generateTorque::generateTorque4Cyl and 
 			        	amplifyTorque == amplifyTorque::amplifyTorqueManual
 			        ) xor
-			        (generateTorque == generateTorque::generateTorque6Cyl & 
+			        (generateTorque == generateTorque::generateTorque6Cyl and 
 			        	amplifyTorque == amplifyTorque::amplifyTorqueAutomatic
 			        )
 			    }		   

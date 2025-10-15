@@ -38,4 +38,18 @@ package MetadataTest {
 	    }
 	}
 	
+    class CC;
+    struct SS {
+        feature cc : CC;
+    }
+    
+    metaclass M :> Metaobjects::SemanticMetadata {
+      :>> annotatedElement : KerML::Class;
+      :>> baseType = if annotatedElement istype KerML::Structure ? 
+                         SS meta KerML::Type else CC meta KerML::Class;
+    }
+    
+    #M struct T {
+        feature :>> cc;
+    }
 }
