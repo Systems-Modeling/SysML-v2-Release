@@ -10,6 +10,12 @@
 image:anaconda.png[]
         
     * You can check the Conda version you have installed by running `conda --version` in Terminal (Linux / macOS) or Command Prompt (Windows). See https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html#managing-conda[Managing conda].
+3. After the installer finishes, launch JupyterLab (see sections below) and select the *SysML* kernel for your notebook (`Kernel → Change Kernel → SysML`). If the SysML kernel is not listed, rerun the installer or register it manually:
++
+```
+jupyter kernelspec install --user "<conda-prefix>/share/jupyter/kernels/sysml"
+```
+Replace *<conda-prefix>* with the full path to the Conda environment you installed (for example `~/miniconda3/envs/sysml-0.52.0`).
 
 == Linux
 
