@@ -39,7 +39,7 @@ package ConnectionTest {
 	
 	connection {
 		part q;
-		end [2] ref end1 ::> d1 :> q;
+		end ref end1 ::> d1 :> q;
 		end end2 ::> d2;
 	}
 	
@@ -54,7 +54,11 @@ package ConnectionTest {
 	part def B;
 	
 	connection def AB {
-	    end a : A;
-	    end b : B crosses a.b;
+	    end [1] item a : A {
+	    	@M;
+	    }
+	    end b : B;
 	}
+	
+	metadata def M;
 }

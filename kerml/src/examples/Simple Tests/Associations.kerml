@@ -11,4 +11,12 @@ package Associations {
 		end x1;
 		end [0..*] feature y1 redefines y;
 	}
+	
+	metaclass M;	
+	assoc XY {
+		end [0..1] feature x : X {
+			@M;
+		}
+		end feature y : Y;
+	}
 }
