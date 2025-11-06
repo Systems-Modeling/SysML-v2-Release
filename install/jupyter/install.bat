@@ -21,7 +21,7 @@
 
 @echo off
 
-set SYSML_VERSION="0.52.1"
+set SYSML_VERSION="0.53.0"
 
 echo --- Step 1: Testing Conda installation ---
 where conda
@@ -41,7 +41,7 @@ call java -version || goto :error
 
 echo --- Step 3: Installing Jupyter SysML kernel and dependencies ---
 call jupyter kernelspec remove sysml -f >nul 2>&1
-call conda install "jupyter-sysml-kernel=%SYSML_VERSION%" python=3.* jupyterlab=3.* graphviz=2.* nodejs="<17" -c conda-forge -y || goto:error
+call conda install "jupyter-sysml-kernel=%SYSML_VERSION%" python=3.* jupyterlab=4.* graphviz=2.* nodejs -c conda-forge -y || goto:error
 
 echo --- Step 4: Installing JupyterLab SysML extension ---
 call jupyter labextension uninstall @systems-modeling/jupyterlab-sysml
