@@ -100,4 +100,5 @@ Copyright © 2019-2021 Maplesoft (Waterloo Maple, Inc.) <br/>
 Copyright © 2019-2025 Mgnite Inc. <br/>
 Copyright © 2019-2025 Model Driven Solutions, Inc. <br/>
 Copyright © 2019-2025 SAF Consulting <br/>
+Copyright © 2022 Siemens AG <br/>
 Copyright © 2021-2025 Twingineer LLC
