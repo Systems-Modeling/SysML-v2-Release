@@ -12,6 +12,11 @@ package Associations {
 		end [0..*] feature y1 redefines y;
 	}
 	
+	assoc struct C {
+		const end [1] feature a;
+		const end feature b;
+	}
+	
 	metaclass M;	
 	assoc XY {
 		end [0..1] feature x : X {
