@@ -15,6 +15,17 @@ package ConnectionTest {
 	
 		connect p1.x to y;
 		connect p1.x.x1 to y;
+		
+		part a;
+		part b;
+		
+		bind a = b;
+		binding ab bind a = b;
+		binding ab1 : AB bind a = b;
+		
+		first a then b;
+		succession s first a then b;
+		succession s1 : AB first a then b;
 	}
 
 	abstract connection def C {
@@ -61,4 +72,6 @@ package ConnectionTest {
 	}
 	
 	metadata def M;
+	
+	
 }

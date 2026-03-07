@@ -17,6 +17,7 @@ package Connectors {
 			end feature references a;
 			end feature references b;
 		}
+		binding ab1 : AS of a = b;
 		
 		succession a then b;
 		succession s first a then b;
@@ -24,10 +25,19 @@ package Connectors {
 			end feature references a;
 			end feature references b;
 		}
+		succession s1 : AS first a then b;
+		
 	}
 	
 	class B {
-	    feature a : A;	    
+	    feature a : A; 
 	    connector :> a.c1 from a.a to a.b;
 	}
+	
+	assoc struct AS {
+		end a;
+		end b;
+	}
+	
+	
 }
