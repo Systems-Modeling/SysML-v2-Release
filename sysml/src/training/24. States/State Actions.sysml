@@ -13,7 +13,7 @@ package 'State Actions' {
 	state vehicleStates : VehicleStates {
 		in operatingVehicle : Vehicle;
 			
-		entry; then off;
+		first start then off;
 		
 		state off;
 		accept VehicleStartSignal 

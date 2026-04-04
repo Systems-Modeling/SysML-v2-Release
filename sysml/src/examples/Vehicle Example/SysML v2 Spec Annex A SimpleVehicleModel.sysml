@@ -1536,7 +1536,7 @@ package SimpleVehicleModel{
         package MandatorySafetyGroup {
             /* Parts that contribute to safety AND are mandatory. */
             public import vehicle_b::**;
-            filter @Safety and Safety::isMandatory;
+            filter @Safety and (as Safety).isMandatory;
         }
     }
     package Views_Viewpoints{

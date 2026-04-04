@@ -51,6 +51,6 @@ package '13b-Safety and Security Features Element Group-1' {
 	package 'Mandatory Safety Features' {
 		/* Parts that contribute to safety AND are mandatory. */
 		public import vehicle::**;
-		filter @Safety and Safety::isMandatory;
+		filter @Safety and (as Safety).isMandatory;
 	}
 }

@@ -19,7 +19,7 @@ package 'Transition Actions' {
 		in operatingVehicle : Vehicle;
 		in controller : VehicleController;
 
-		entry; then off;
+		first start then off;
 		
 		state off;
 		accept VehicleStartSignal 

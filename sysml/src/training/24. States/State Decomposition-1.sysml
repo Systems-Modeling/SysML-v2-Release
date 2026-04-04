@@ -7,7 +7,7 @@ package 'State Decomposition-1' {
 	state def VehicleStates;
 		
 	state vehicleStates : VehicleStates {
-		entry; then off;
+		first start then off;
 		
 		state off;
 		accept VehicleStartSignal 

@@ -23,15 +23,17 @@ package Filtering {
 
 	package UpperLevelApprovals {
 	    private import DesignModel::**;
-	    filter Annotations::ApprovalAnnotation::approved and 
-	           Annotations::ApprovalAnnotation::level > 1;
+	    filter (as Annotations::ApprovalAnnotation).approved and 
+	           (as Annotations::ApprovalAnnotation).level > 1;
 	    
 	    struct Test :> System;
 	}
 	
 	package UpperLevelApprovals1 {
 	    private import Annotations::**;
-	    private import DesignModel::**[@Structure][approved and level > 1];
+	    private import DesignModel::**[@Structure]
+		    [(as Annotations::ApprovalAnnotation).approved and 
+	         (as Annotations::ApprovalAnnotation).level > 1];
 	    
 	    struct Test :> System;	    
 	}

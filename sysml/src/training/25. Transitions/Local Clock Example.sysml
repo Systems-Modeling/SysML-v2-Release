@@ -12,7 +12,7 @@ package 'Local Clock Example' {
 		port requestPort;
 		
 		state ServerBehavior {
-			entry; then off;
+			first start then off;
 			
 			state off;
 			accept Start via requestPort

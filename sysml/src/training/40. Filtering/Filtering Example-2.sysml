@@ -30,6 +30,6 @@ package 'Filtering Example-2' {
 	
 	package 'Mandatory Safety Features' {
 		/* Parts that contribute to safety AND are mandatory. */
-		public import vehicle::**[@Safety and Safety::isMandatory];
+		public import vehicle::**[@Safety and (as Safety).isMandatory];
 	}
 }

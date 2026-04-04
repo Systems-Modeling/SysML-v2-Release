@@ -20,7 +20,7 @@ package 'Change and Time Triggers' {
 		in vehicle : Vehicle;
 		in controller : VehicleController;
 		
-		entry; then normal;
+		first start then normal;
 		do senseTemperature;
 		
 		state normal;

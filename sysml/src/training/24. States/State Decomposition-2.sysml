@@ -9,7 +9,7 @@ package 'State Decomposition-1' {
 	state vehicleStates : VehicleStates parallel {
 		
 		state operationalStates {
-			entry; then off;
+			first start then off;
 			
 			state off;
 			accept VehicleStartSignal 
