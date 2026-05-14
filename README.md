@@ -19,11 +19,11 @@ In June 2023, the OMG adopted the following three _beta specifications_ for KerM
 
 After the completion of the finalization task forces, the OMG has published final beta versions of the specifications: 
 
-* [Kernel Modeling Language (KerML), version 1.0](https://www.omg.org/spec/KerML/1.0/Beta4)
-* [OMG Systems Modeling Language (SysML), version 2.0](https://www.omg.org/spec/SysML/2.0/Beta4)
-* [Systems Modeling Application Programming Interface (API) and Services, version 1.0](https://www.omg.org/spec/SystemsModelingAPI/1.0/Beta3)
+* [Kernel Modeling Language (KerML), version 1.0](https://www.omg.org/spec/KerML/1.0)
+* [OMG Systems Modeling Language (SysML), version 2.0](https://www.omg.org/spec/SysML/2.0)
+* [Systems Modeling Application Programming Interface (API) and Services, version 1.0](https://www.omg.org/spec/SystemsModelingAPI/1.0)
 
-As of 30 June 2025, these specifications have now been formally adopted by OMG. It is expected that the corresponding _formal specifications_ will be published later in 2025.
+As of 30 June 2025, these specifications have been formally adopted by OMG. The formal specifications were updated editorially in March 2026 for submission to the International Organization for Standards (ISO).
 
 ## Feedback
 
@@ -58,8 +58,11 @@ The release repository contains the items listed below. For a Zip archive of the
       * `kerml` - Example models in the Kernel Modeling Language (KerML)
       * `sysml` - Example models in the Systems Modeling Language (SysML) v2
       * `sysml.library` - Normative model libraries for both KerML and SysML, textual notation representation
+      * `sysml.library.kpar` - Normative model libraris for both KerML and SysML, packaged in KerML Project Archive (KPAR) files containing textual notation files.
       * `sysml.library.xmi` - Normative model libraries for both KerML and SysML, XMI representation
         * **Note:** These are Eclipse XMI files (`.kermlx` and `.sysmlx` extensions), which is not a fully normative OMG XMI representation. The XMI is exported _without_ derived property values or implied relationships.
+      * `sysml.library.xmi.implied` - Normative model libraries for both KerML and SysML, XMI representation
+        * **Note:** These are Eclipse XMI files (`.kermlx` and `.sysmlx` extensions), which is not a fully normative OMG XMI representation. The XMI is exported _with_ derived property values and implied relationships.
   
 Additional content can be accessed at the following URLs.
 
@@ -70,12 +73,6 @@ Additional content can be accessed at the following URLs.
   * OpenAPI documentation for the current API implementation.
     * [http://sysml2.intercax.com:9000/docs/](http://sysml2.intercax.com:9000/docs/)
     * This page acts as an API front end to a live prototype repository implementation
-  * Prototype SysML v2 visualization tool
-    * [https://www.tomsawyer.com/demonstrations/sysml.2.0.demo/](https://www.tomsawyer.com/demonstrations/sysml.2.0.demo/) 
-      (you will need to create an account with Tom Sawyer Software to use this demo)
-    * Any model in the prototype repository can be visualized
-    * Models in Jupyter can be saved to the repository using the `%publish` command 
-      (see topic in the SysML v2 Release group for more information)
  
 ## Licensing
 
@@ -88,17 +85,15 @@ To view a copy of this license, visit [http://creativecommons.org/licenses/by/4.
 or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 The Jupyter and Eclipse software and all included KerML and SysML v2 models in this repository are licensed by the respective copyright holders listed below 
-under the GNU Lesser General Public License (LGPL) v3.0 (see `LICENSE` and `LICENSE-GPL` files). Licensing for software and models in other
-Systems Modeling repositories is as given in those repositories.
+under the Eclipse Public License (EPL) v2.0 (see `LICENSE` file). Licensing for software and models in other Systems Modeling repositories is as given in those repositories.
 
 Copyright © 2019-2021 California Institute of Technology (Jet Propulsion Laboratory) <br/>
-Copyright © 2019-2025 DEKonsult <br/>
+Copyright © 2019-2026 DEKonsult <br/>
 Copyright © 2019-2021 IncQuery Labs Ltd. <br/>
-Copyright © 2019-2025 Intercax LLC <br/>
+Copyright © 2019-2026 Intercax LLC <br/>
 Copyright © 2019-2021 Itemis <br/>
-Copyright © 2019-2021 Maplesoft (Waterloo Maple, Inc.) <br/>
-Copyright © 2019-2025 Mgnite Inc. <br/>
-Copyright © 2019-2025 Model Driven Solutions, Inc. <br/>
-Copyright © 2019-2025 SAF Consulting <br/>
+Copyright © 2019-2026 Mgnite Inc. <br/>
+Copyright © 2019-2026 Model Driven Solutions, Inc. <br/>
+Copyright © 2019-2026 SAF Consulting <br/>
 Copyright © 2022 Siemens AG <br/>
 Copyright © 2021-2025 Twingineer LLC
