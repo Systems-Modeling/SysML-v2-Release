@@ -1,7 +1,7 @@
 standard library package SysML {
 	doc 
 	/*
-	 * This package contains a reflective KerML model of the KerML abstract syntax.
+	 * This package contains a reflective SysML model of the SysML abstract syntax.
 	 */
 	 
 	private import ScalarValues::*;

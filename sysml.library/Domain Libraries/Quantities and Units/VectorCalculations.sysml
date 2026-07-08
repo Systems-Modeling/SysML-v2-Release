@@ -12,7 +12,7 @@ standard library package VectorCalculations {
     private import MeasurementReferences::CoordinateTransformation;
     
     calc def '[' :> BaseFunctions::'[' { 
-    	in elements: Number[1..n] ordered; 
+    	in elements: Number[1..n] ordered nonunique; 
     	in mRef: VectorMeasurementReference[1]; 
     	return quantity : VectorQuantityValue[1];
     	private attribute n = mRef.flattenedSize;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <sysml:Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sysml="https://www.omg.org/spec/SysML/20250201" xmi:id="cc145abb-4ee9-57b0-bdd9-24283822db4c" elementId="cc145abb-4ee9-57b0-bdd9-24283822db4c">
   <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="3145fdf7-1997-58eb-9f1e-dc02b3934579" elementId="3145fdf7-1997-58eb-9f1e-dc02b3934579">
-    <ownedRelatedElement xsi:type="sysml:LibraryPackage" xmi:id="b71a23f8-111e-5195-a982-d27bfb2849a1" elementId="b71a23f8-111e-5195-a982-d27bfb2849a1" declaredName="VectorValues" isStandard="true">
+    <ownedRelatedElement xsi:type="sysml:LibraryPackage" xmi:id="b71a23f8-111e-5195-a982-d27bfb2849a1" declaredName="VectorValues" elementId="b71a23f8-111e-5195-a982-d27bfb2849a1" isStandard="true">
       <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="60e9c5da-fb07-51f5-a7c3-8070fab2d547" elementId="60e9c5da-fb07-51f5-a7c3-8070fab2d547">
         <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="d7b911eb-6597-53d2-8aa4-748e61ed27e6" elementId="d7b911eb-6597-53d2-8aa4-748e61ed27e6" body="This package provides a basic model of abstract vectors as well as concrete vectors&#xA;whose components are numerical values. The package VectorFunctions defines the &#xA;corresponding vector-space functions.&#xA;"/>
       </ownedRelationship>
@@ -15,15 +15,15 @@
         <importedMembership href="Collections.kermlx#e047c92a-11f4-5346-9064-f91ee3c65a8f"/>
       </ownedRelationship>
       <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="66827567-b040-56be-86d1-76a0b5297f0f" elementId="66827567-b040-56be-86d1-76a0b5297f0f">
-        <ownedRelatedElement xsi:type="sysml:DataType" xmi:id="efa5063b-53d1-5f0f-8ace-d7e033affd3b" elementId="efa5063b-53d1-5f0f-8ace-d7e033affd3b" declaredName="VectorValue" isAbstract="true">
+        <ownedRelatedElement xsi:type="sysml:DataType" xmi:id="efa5063b-53d1-5f0f-8ace-d7e033affd3b" declaredName="VectorValue" elementId="efa5063b-53d1-5f0f-8ace-d7e033affd3b" isAbstract="true">
           <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="e140a4c6-0c1a-599d-8fd8-2765e77ff8b7" elementId="e140a4c6-0c1a-599d-8fd8-2765e77ff8b7">
             <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="3f5489e0-618d-561c-bd8b-247db57ffcbb" elementId="3f5489e0-618d-561c-bd8b-247db57ffcbb" body="A VectorValue is an abstract data type whose values may be operated on using&#xA;VectorFunctions.&#xA;"/>
           </ownedRelationship>
         </ownedRelatedElement>
       </ownedRelationship>
       <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="6c986447-9a2b-5b08-aaa0-6c079471a004" elementId="6c986447-9a2b-5b08-aaa0-6c079471a004">
-        <ownedRelatedElement xsi:type="sysml:DataType" xmi:id="590dd537-cbd4-5fa5-9a3d-7cd0dfca6e2a" elementId="590dd537-cbd4-5fa5-9a3d-7cd0dfca6e2a" declaredName="NumericalVectorValue">
-          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="8dd69b8d-2d86-5320-bb4e-a1c8ead04cfc" elementId="8dd69b8d-2d86-5320-bb4e-a1c8ead04cfc" superclassifier="efa5063b-53d1-5f0f-8ace-d7e033affd3b" subclassifier="590dd537-cbd4-5fa5-9a3d-7cd0dfca6e2a"/>
+        <ownedRelatedElement xsi:type="sysml:DataType" xmi:id="590dd537-cbd4-5fa5-9a3d-7cd0dfca6e2a" declaredName="NumericalVectorValue" elementId="590dd537-cbd4-5fa5-9a3d-7cd0dfca6e2a">
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="8dd69b8d-2d86-5320-bb4e-a1c8ead04cfc" elementId="8dd69b8d-2d86-5320-bb4e-a1c8ead04cfc" subclassifier="590dd537-cbd4-5fa5-9a3d-7cd0dfca6e2a" superclassifier="efa5063b-53d1-5f0f-8ace-d7e033affd3b"/>
           <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="c981458b-fc4e-521a-8d8e-03ff873347ae" elementId="c981458b-fc4e-521a-8d8e-03ff873347ae" subclassifier="590dd537-cbd4-5fa5-9a3d-7cd0dfca6e2a">
             <superclassifier href="Collections.kermlx#5f021957-56ee-54ea-b743-2fd5d4e199d3"/>
           </ownedRelationship>
@@ -35,7 +35,7 @@
             <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="019a6118-2cb8-5162-b95f-1350279283df" elementId="019a6118-2cb8-5162-b95f-1350279283df" body="A NumericalVectorValue is a kind of VectorValue that is specifically represented&#xA;as a one-dimensional array of NumericalValues. The dimension is allowed to be empty,&#xA;permitting a NumericalVectorValue of rank 0, which is essentially isomorphic to a&#xA;scalar NumericalValue.&#xA;"/>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="a687bb82-3983-5179-aa80-835cc36c730f" elementId="a687bb82-3983-5179-aa80-835cc36c730f">
-            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="004f44e3-8ba3-5199-af14-2df8674f0a12" elementId="004f44e3-8ba3-5199-af14-2df8674f0a12" declaredName="dimension">
+            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="004f44e3-8ba3-5199-af14-2df8674f0a12" declaredName="dimension" elementId="004f44e3-8ba3-5199-af14-2df8674f0a12">
               <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="9ff9e37a-8661-5334-b45a-bf0724bb8685" elementId="9ff9e37a-8661-5334-b45a-bf0724bb8685">
                 <ownedRelatedElement xsi:type="sysml:MultiplicityRange" xmi:id="96ea3135-f4d7-55ea-b6af-9ca3acc627a9" elementId="96ea3135-f4d7-55ea-b6af-9ca3acc627a9">
                   <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="026829cf-19e1-5b9f-a8ce-33e0865c1a5c" elementId="026829cf-19e1-5b9f-a8ce-33e0865c1a5c">
@@ -64,14 +64,14 @@
         </ownedRelatedElement>
       </ownedRelationship>
       <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="ab38d819-b392-5fea-9044-d69c225a6154" elementId="ab38d819-b392-5fea-9044-d69c225a6154">
-        <ownedRelatedElement xsi:type="sysml:DataType" xmi:id="5a9edf77-6cee-5f67-8692-6931ca9ddf31" elementId="5a9edf77-6cee-5f67-8692-6931ca9ddf31" declaredName="CartesianVectorValue">
-          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="4476be32-7291-5f3a-b6ab-6748f0b95e2d" elementId="4476be32-7291-5f3a-b6ab-6748f0b95e2d" superclassifier="590dd537-cbd4-5fa5-9a3d-7cd0dfca6e2a" subclassifier="5a9edf77-6cee-5f67-8692-6931ca9ddf31"/>
+        <ownedRelatedElement xsi:type="sysml:DataType" xmi:id="5a9edf77-6cee-5f67-8692-6931ca9ddf31" declaredName="CartesianVectorValue" elementId="5a9edf77-6cee-5f67-8692-6931ca9ddf31">
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="4476be32-7291-5f3a-b6ab-6748f0b95e2d" elementId="4476be32-7291-5f3a-b6ab-6748f0b95e2d" subclassifier="5a9edf77-6cee-5f67-8692-6931ca9ddf31" superclassifier="590dd537-cbd4-5fa5-9a3d-7cd0dfca6e2a"/>
           <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="a5dcd650-c751-5b64-aec4-ece03c03fe4e" elementId="a5dcd650-c751-5b64-aec4-ece03c03fe4e">
             <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="7a97bf1a-1084-57bf-9827-67c9aaca7a7d" elementId="7a97bf1a-1084-57bf-9827-67c9aaca7a7d" body="CartesianVectorValue is a specialization Numerical VectorValue for which there are &#xA;specific implementations in VectorFunctions of the abstract vector-space functions.&#xA;&#xA;Note: The restriction of the element type to Real is to facilitate&#xA;the complete definition of these functions.&#xA;"/>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="5d36fb5a-eedc-55d2-a3fc-122ec7fc1016" elementId="5d36fb5a-eedc-55d2-a3fc-122ec7fc1016">
             <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="eb48c95b-299e-5138-9bfb-c2ef108d144d" elementId="eb48c95b-299e-5138-9bfb-c2ef108d144d">
-              <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="8c95decb-c674-513e-8d06-3bec572b5ced" elementId="8c95decb-c674-513e-8d06-3bec572b5ced" redefiningFeature="eb48c95b-299e-5138-9bfb-c2ef108d144d" redefinedFeature="d362aaa2-520d-54ee-9204-0ea7e80aa73c"/>
+              <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="8c95decb-c674-513e-8d06-3bec572b5ced" elementId="8c95decb-c674-513e-8d06-3bec572b5ced" redefinedFeature="d362aaa2-520d-54ee-9204-0ea7e80aa73c" redefiningFeature="eb48c95b-299e-5138-9bfb-c2ef108d144d"/>
               <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="d5fa0f82-f1ab-5ec3-870c-3897b031d43b" elementId="d5fa0f82-f1ab-5ec3-870c-3897b031d43b" typedFeature="eb48c95b-299e-5138-9bfb-c2ef108d144d">
                 <type href="ScalarValues.kermlx#14c0aa22-5489-59b5-b438-ded26e83ba31"/>
               </ownedRelationship>
@@ -80,14 +80,14 @@
         </ownedRelatedElement>
       </ownedRelationship>
       <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="b66109b3-b47e-55b5-9f2c-f7b14401645e" elementId="b66109b3-b47e-55b5-9f2c-f7b14401645e">
-        <ownedRelatedElement xsi:type="sysml:DataType" xmi:id="1744f2e0-21d5-5f4a-a738-f35f62f31950" elementId="1744f2e0-21d5-5f4a-a738-f35f62f31950" declaredName="ThreeVectorValue">
-          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="673fd6f3-0b7b-53f4-8957-ec4c8f8b7eaf" elementId="673fd6f3-0b7b-53f4-8957-ec4c8f8b7eaf" superclassifier="590dd537-cbd4-5fa5-9a3d-7cd0dfca6e2a" subclassifier="1744f2e0-21d5-5f4a-a738-f35f62f31950"/>
+        <ownedRelatedElement xsi:type="sysml:DataType" xmi:id="1744f2e0-21d5-5f4a-a738-f35f62f31950" declaredName="ThreeVectorValue" elementId="1744f2e0-21d5-5f4a-a738-f35f62f31950">
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="673fd6f3-0b7b-53f4-8957-ec4c8f8b7eaf" elementId="673fd6f3-0b7b-53f4-8957-ec4c8f8b7eaf" subclassifier="1744f2e0-21d5-5f4a-a738-f35f62f31950" superclassifier="590dd537-cbd4-5fa5-9a3d-7cd0dfca6e2a"/>
           <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="557faa1e-48a5-5b23-abd5-f6955851581d" elementId="557faa1e-48a5-5b23-abd5-f6955851581d">
             <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="aebc3138-b5b9-5bcc-b3d7-e349e65d9d73" elementId="aebc3138-b5b9-5bcc-b3d7-e349e65d9d73" body="A ThreeVectorValue is a NumericalVectorValue that has dimension 3.&#xA;"/>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="7c7bfcc6-a12a-56d7-acb3-3a35b6904fc8" elementId="7c7bfcc6-a12a-56d7-acb3-3a35b6904fc8">
             <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="3643ce00-99f4-5ce4-a538-6258479b11db" elementId="3643ce00-99f4-5ce4-a538-6258479b11db">
-              <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="74e44680-6856-5dfe-b3ca-d9050b30e60b" elementId="74e44680-6856-5dfe-b3ca-d9050b30e60b" redefiningFeature="3643ce00-99f4-5ce4-a538-6258479b11db" redefinedFeature="004f44e3-8ba3-5199-af14-2df8674f0a12"/>
+              <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="74e44680-6856-5dfe-b3ca-d9050b30e60b" elementId="74e44680-6856-5dfe-b3ca-d9050b30e60b" redefinedFeature="004f44e3-8ba3-5199-af14-2df8674f0a12" redefiningFeature="3643ce00-99f4-5ce4-a538-6258479b11db"/>
               <ownedRelationship xsi:type="sysml:FeatureValue" xmi:id="37b53a79-5e88-5fa4-b1da-83475a7ac039" elementId="37b53a79-5e88-5fa4-b1da-83475a7ac039">
                 <ownedRelatedElement xsi:type="sysml:LiteralInteger" xmi:id="711af279-9f96-54f8-b175-48ee491caa45" elementId="711af279-9f96-54f8-b175-48ee491caa45" value="3"/>
               </ownedRelationship>
@@ -96,9 +96,9 @@
         </ownedRelatedElement>
       </ownedRelationship>
       <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="4ceaf756-4bb9-5f60-a71f-051782a7373c" elementId="4ceaf756-4bb9-5f60-a71f-051782a7373c">
-        <ownedRelatedElement xsi:type="sysml:DataType" xmi:id="2fd12261-adb7-5012-af76-f86d45e2e3be" elementId="2fd12261-adb7-5012-af76-f86d45e2e3be" declaredName="CartesianThreeVectorValue">
-          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="48ad627e-7fa2-5cd6-9afa-c14245efd2ff" elementId="48ad627e-7fa2-5cd6-9afa-c14245efd2ff" superclassifier="5a9edf77-6cee-5f67-8692-6931ca9ddf31" subclassifier="2fd12261-adb7-5012-af76-f86d45e2e3be"/>
-          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="6dcf0651-38d5-5232-aea8-90f57bee5e50" elementId="6dcf0651-38d5-5232-aea8-90f57bee5e50" superclassifier="1744f2e0-21d5-5f4a-a738-f35f62f31950" subclassifier="2fd12261-adb7-5012-af76-f86d45e2e3be"/>
+        <ownedRelatedElement xsi:type="sysml:DataType" xmi:id="2fd12261-adb7-5012-af76-f86d45e2e3be" declaredName="CartesianThreeVectorValue" elementId="2fd12261-adb7-5012-af76-f86d45e2e3be">
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="48ad627e-7fa2-5cd6-9afa-c14245efd2ff" elementId="48ad627e-7fa2-5cd6-9afa-c14245efd2ff" subclassifier="2fd12261-adb7-5012-af76-f86d45e2e3be" superclassifier="5a9edf77-6cee-5f67-8692-6931ca9ddf31"/>
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="6dcf0651-38d5-5232-aea8-90f57bee5e50" elementId="6dcf0651-38d5-5232-aea8-90f57bee5e50" subclassifier="2fd12261-adb7-5012-af76-f86d45e2e3be" superclassifier="1744f2e0-21d5-5f4a-a738-f35f62f31950"/>
           <ownedRelationship xsi:type="sysml:Intersecting" xmi:id="0e01dd95-0cd8-5165-9169-39309caa02d4" elementId="0e01dd95-0cd8-5165-9169-39309caa02d4" intersectingType="5a9edf77-6cee-5f67-8692-6931ca9ddf31"/>
           <ownedRelationship xsi:type="sysml:Intersecting" xmi:id="1f73f9b2-6307-5235-8d14-229edcf23c09" elementId="1f73f9b2-6307-5235-8d14-229edcf23c09" intersectingType="1744f2e0-21d5-5f4a-a738-f35f62f31950"/>
           <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="8e568e5b-a6ca-58cf-847d-b64d8f93b3ff" elementId="8e568e5b-a6ca-58cf-847d-b64d8f93b3ff">

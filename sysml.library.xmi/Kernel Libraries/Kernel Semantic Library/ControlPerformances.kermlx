@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <sysml:Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sysml="https://www.omg.org/spec/SysML/20250201" xmi:id="e0b4d375-8f1d-5e86-b6ba-471ef9359317" elementId="e0b4d375-8f1d-5e86-b6ba-471ef9359317">
   <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="9073f9d6-263d-5887-9e2c-3ab4b74ff401" elementId="9073f9d6-263d-5887-9e2c-3ab4b74ff401">
-    <ownedRelatedElement xsi:type="sysml:LibraryPackage" xmi:id="8e26d4d2-df50-59cc-85d3-b18aeefc8487" elementId="8e26d4d2-df50-59cc-85d3-b18aeefc8487" declaredName="ControlPerformances" isStandard="true">
+    <ownedRelatedElement xsi:type="sysml:LibraryPackage" xmi:id="8e26d4d2-df50-59cc-85d3-b18aeefc8487" declaredName="ControlPerformances" elementId="8e26d4d2-df50-59cc-85d3-b18aeefc8487" isStandard="true">
       <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="7984cbd2-d3b5-5160-a797-f6d21fea28c2" elementId="7984cbd2-d3b5-5160-a797-f6d21fea28c2">
         <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="26568a53-9a5d-5a72-9d49-81985592f44c" elementId="26568a53-9a5d-5a72-9d49-81985592f44c" body="This package defines Behaviors to be used to type Steps that control the sequencing of performance&#xA;of other Steps. &#xA;"/>
       </ownedRelationship>
@@ -30,7 +30,7 @@
         <importedMembership href="Performances.kermlx#6b95c684-069b-5a0e-8bbf-10cfedd37434"/>
       </ownedRelationship>
       <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="df99f41c-3018-5973-a899-69fde2273614" elementId="df99f41c-3018-5973-a899-69fde2273614">
-        <ownedRelatedElement xsi:type="sysml:Behavior" xmi:id="b08f73ac-aa37-538a-ba6c-8ce8e504e6bd" elementId="b08f73ac-aa37-538a-ba6c-8ce8e504e6bd" declaredName="DecisionPerformance">
+        <ownedRelatedElement xsi:type="sysml:Behavior" xmi:id="b08f73ac-aa37-538a-ba6c-8ce8e504e6bd" declaredName="DecisionPerformance" elementId="b08f73ac-aa37-538a-ba6c-8ce8e504e6bd">
           <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="c046c40d-c1d6-538e-970e-3da355255d31" elementId="c046c40d-c1d6-538e-970e-3da355255d31" subclassifier="b08f73ac-aa37-538a-ba6c-8ce8e504e6bd">
             <superclassifier href="Performances.kermlx#1b7f00e7-24fb-5ebc-8773-89ba88bc3d5d"/>
           </ownedRelationship>
@@ -38,7 +38,7 @@
             <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="3e759eb4-abda-5bfa-8506-2c21965b7ef5" elementId="3e759eb4-abda-5bfa-8506-2c21965b7ef5" body="A DecisionPerformance is a Performance that represents the selection of one of the Successions&#xA;that have the DecisionPerforance behavior as their source. All such Successions must subset the &#xA;outgoingHBLink feature of the source DecisionPerformance. For each instance of DecisionPerformance, &#xA;the outgoingHBLink is an instance of exactly one of the Successions, ordering the DecisionPerformance&#xA;as happening before an instance of the target of that Succcession.&#xA;"/>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="2d9bbb4e-7832-55d0-afdb-90a7f84905d4" elementId="2d9bbb4e-7832-55d0-afdb-90a7f84905d4">
-            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="67e23c4b-1b3e-56c0-afa3-833b448c884c" elementId="67e23c4b-1b3e-56c0-afa3-833b448c884c" declaredName="outgoingHBLink">
+            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="67e23c4b-1b3e-56c0-afa3-833b448c884c" declaredName="outgoingHBLink" elementId="67e23c4b-1b3e-56c0-afa3-833b448c884c">
               <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="2707d9c5-8ba5-5573-9bc6-15c4d8c6c867" elementId="2707d9c5-8ba5-5573-9bc6-15c4d8c6c867" typedFeature="67e23c4b-1b3e-56c0-afa3-833b448c884c">
                 <type href="Occurrences.kermlx#f9ff72c4-459d-5862-8324-772556e086d0"/>
               </ownedRelationship>
@@ -67,7 +67,7 @@
         </ownedRelatedElement>
       </ownedRelationship>
       <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="874f0f28-b77f-5f5e-ad1a-8077b4c4668c" elementId="874f0f28-b77f-5f5e-ad1a-8077b4c4668c">
-        <ownedRelatedElement xsi:type="sysml:Behavior" xmi:id="103b8828-d6a8-508c-bd7c-482d7e142d31" elementId="103b8828-d6a8-508c-bd7c-482d7e142d31" declaredName="MergePerformance">
+        <ownedRelatedElement xsi:type="sysml:Behavior" xmi:id="103b8828-d6a8-508c-bd7c-482d7e142d31" declaredName="MergePerformance" elementId="103b8828-d6a8-508c-bd7c-482d7e142d31">
           <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="a7dcd613-66b0-5d32-974c-e1a63ce1d28c" elementId="a7dcd613-66b0-5d32-974c-e1a63ce1d28c" subclassifier="103b8828-d6a8-508c-bd7c-482d7e142d31">
             <superclassifier href="Performances.kermlx#1b7f00e7-24fb-5ebc-8773-89ba88bc3d5d"/>
           </ownedRelationship>
@@ -75,7 +75,7 @@
             <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="089de5e5-a549-54e9-b933-660f62cacbf8" elementId="089de5e5-a549-54e9-b933-660f62cacbf8" body="A MergePerformance is a Performance that represents the merging of all Successions that&#xA;target the MergePerforance behavior. All such Successions must subset the incomingHBLink&#xA;feature of the target MergePerformance. For each instance of MergePerformance, the&#xA;incomingHBLink is an instance of exactly one of the Successions, ordering the&#xA;MergePerformance as happening after an instance of the source of that Succession.&#xA;"/>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="12d3399d-3659-55a8-bcb5-4c9190e31fa0" elementId="12d3399d-3659-55a8-bcb5-4c9190e31fa0">
-            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="1d1ee0e7-29ef-52e8-b97d-e8cea9506fff" elementId="1d1ee0e7-29ef-52e8-b97d-e8cea9506fff" declaredName="incomingHBLink">
+            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="1d1ee0e7-29ef-52e8-b97d-e8cea9506fff" declaredName="incomingHBLink" elementId="1d1ee0e7-29ef-52e8-b97d-e8cea9506fff">
               <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="188bb2b2-ef0c-55c1-a9d2-6725c2712515" elementId="188bb2b2-ef0c-55c1-a9d2-6725c2712515" typedFeature="1d1ee0e7-29ef-52e8-b97d-e8cea9506fff">
                 <type href="Occurrences.kermlx#f9ff72c4-459d-5862-8324-772556e086d0"/>
               </ownedRelationship>
@@ -104,7 +104,7 @@
         </ownedRelatedElement>
       </ownedRelationship>
       <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="3066478a-3c51-5fa4-be7b-0a547fd3d99a" elementId="3066478a-3c51-5fa4-be7b-0a547fd3d99a">
-        <ownedRelatedElement xsi:type="sysml:Behavior" xmi:id="8397baba-0572-53ba-9fa4-1d52244efdbf" elementId="8397baba-0572-53ba-9fa4-1d52244efdbf" declaredName="IfPerformance" isAbstract="true">
+        <ownedRelatedElement xsi:type="sysml:Behavior" xmi:id="8397baba-0572-53ba-9fa4-1d52244efdbf" declaredName="IfPerformance" elementId="8397baba-0572-53ba-9fa4-1d52244efdbf" isAbstract="true">
           <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="7ab225b3-1b73-52be-9ead-a01fd7b3cbc2" elementId="7ab225b3-1b73-52be-9ead-a01fd7b3cbc2" subclassifier="8397baba-0572-53ba-9fa4-1d52244efdbf">
             <superclassifier href="Performances.kermlx#1b7f00e7-24fb-5ebc-8773-89ba88bc3d5d"/>
           </ownedRelationship>
@@ -112,7 +112,7 @@
             <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="9c3025b4-95d9-5dde-a90b-4d1843098518" elementId="9c3025b4-95d9-5dde-a90b-4d1843098518" body="An IfPerformance is a Performance that determines whether the ifTest evaluation result is true &#xA;(by whether ifTrue has a value).&#xA;"/>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="74afaa79-5951-5011-ab38-a2203c1dfad8" elementId="74afaa79-5951-5011-ab38-a2203c1dfad8">
-            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="67294f54-ea41-5027-8ae4-1f2defa40556" elementId="67294f54-ea41-5027-8ae4-1f2defa40556" declaredName="ifTest" direction="in">
+            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="67294f54-ea41-5027-8ae4-1f2defa40556" declaredName="ifTest" elementId="67294f54-ea41-5027-8ae4-1f2defa40556" direction="in">
               <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="58ad71fe-1ae5-58dd-8b3d-129c86c28428" elementId="58ad71fe-1ae5-58dd-8b3d-129c86c28428" typedFeature="67294f54-ea41-5027-8ae4-1f2defa40556">
                 <type href="Performances.kermlx#b75bfbb5-0e73-52a8-8d27-617d953c9bcd"/>
               </ownedRelationship>
@@ -128,18 +128,18 @@
         </ownedRelatedElement>
       </ownedRelationship>
       <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="cb60e2d9-26c5-5adc-ae96-edd80df4da11" elementId="cb60e2d9-26c5-5adc-ae96-edd80df4da11">
-        <ownedRelatedElement xsi:type="sysml:Behavior" xmi:id="3c1d77d0-48be-54c9-96b9-042c71d9e2aa" elementId="3c1d77d0-48be-54c9-96b9-042c71d9e2aa" declaredName="IfThenPerformance">
-          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="27246f1e-50e2-5522-851e-106e2d476654" elementId="27246f1e-50e2-5522-851e-106e2d476654" superclassifier="8397baba-0572-53ba-9fa4-1d52244efdbf" subclassifier="3c1d77d0-48be-54c9-96b9-042c71d9e2aa"/>
+        <ownedRelatedElement xsi:type="sysml:Behavior" xmi:id="3c1d77d0-48be-54c9-96b9-042c71d9e2aa" declaredName="IfThenPerformance" elementId="3c1d77d0-48be-54c9-96b9-042c71d9e2aa">
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="27246f1e-50e2-5522-851e-106e2d476654" elementId="27246f1e-50e2-5522-851e-106e2d476654" subclassifier="3c1d77d0-48be-54c9-96b9-042c71d9e2aa" superclassifier="8397baba-0572-53ba-9fa4-1d52244efdbf"/>
           <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="1e2254f6-a963-5289-8a76-9f1bdb9575d1" elementId="1e2254f6-a963-5289-8a76-9f1bdb9575d1">
             <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="a6fcfd88-0185-5915-9419-92656c6f4da5" elementId="a6fcfd88-0185-5915-9419-92656c6f4da5" body="An IfThenPerformance is an IfPerformance where the thenClause occurs after and only after the &#xA;ifTest evaluation result is true.&#xA;"/>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="42ff1662-95b8-58ef-a364-75bbc70b716e" elementId="42ff1662-95b8-58ef-a364-75bbc70b716e">
             <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="201a3f38-946a-5957-92f2-e3486076b4e4" elementId="201a3f38-946a-5957-92f2-e3486076b4e4" direction="in">
-              <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="5ddea0a3-8cc8-5111-9939-75cf7268f8d3" elementId="5ddea0a3-8cc8-5111-9939-75cf7268f8d3" redefiningFeature="201a3f38-946a-5957-92f2-e3486076b4e4" redefinedFeature="67294f54-ea41-5027-8ae4-1f2defa40556"/>
+              <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="5ddea0a3-8cc8-5111-9939-75cf7268f8d3" elementId="5ddea0a3-8cc8-5111-9939-75cf7268f8d3" redefinedFeature="67294f54-ea41-5027-8ae4-1f2defa40556" redefiningFeature="201a3f38-946a-5957-92f2-e3486076b4e4"/>
             </ownedRelatedElement>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="e16adc5b-0cc9-5b96-8874-ad53f8f2edc0" elementId="e16adc5b-0cc9-5b96-8874-ad53f8f2edc0">
-            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="8d7a7b1f-1ea8-5fcf-ba85-16b9523866be" elementId="8d7a7b1f-1ea8-5fcf-ba85-16b9523866be" declaredName="thenClause" direction="in">
+            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="8d7a7b1f-1ea8-5fcf-ba85-16b9523866be" declaredName="thenClause" elementId="8d7a7b1f-1ea8-5fcf-ba85-16b9523866be" direction="in">
               <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="c4e0712b-d522-520a-964a-745fc327b875" elementId="c4e0712b-d522-520a-964a-745fc327b875" typedFeature="8d7a7b1f-1ea8-5fcf-ba85-16b9523866be">
                 <type href="Occurrences.kermlx#80f4284e-73b1-589c-ad80-e25f33022e4f"/>
               </ownedRelationship>
@@ -246,18 +246,18 @@
         </ownedRelatedElement>
       </ownedRelationship>
       <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="029965fe-1252-5427-bfd1-04bb9f913bbd" elementId="029965fe-1252-5427-bfd1-04bb9f913bbd">
-        <ownedRelatedElement xsi:type="sysml:Behavior" xmi:id="f4ad0f78-bd14-5745-8fda-93aa79580877" elementId="f4ad0f78-bd14-5745-8fda-93aa79580877" declaredName="IfElsePerformance">
-          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="64a6b0f5-5f0b-5b6d-9cbf-24a8f9a9953c" elementId="64a6b0f5-5f0b-5b6d-9cbf-24a8f9a9953c" superclassifier="8397baba-0572-53ba-9fa4-1d52244efdbf" subclassifier="f4ad0f78-bd14-5745-8fda-93aa79580877"/>
+        <ownedRelatedElement xsi:type="sysml:Behavior" xmi:id="f4ad0f78-bd14-5745-8fda-93aa79580877" declaredName="IfElsePerformance" elementId="f4ad0f78-bd14-5745-8fda-93aa79580877">
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="64a6b0f5-5f0b-5b6d-9cbf-24a8f9a9953c" elementId="64a6b0f5-5f0b-5b6d-9cbf-24a8f9a9953c" subclassifier="f4ad0f78-bd14-5745-8fda-93aa79580877" superclassifier="8397baba-0572-53ba-9fa4-1d52244efdbf"/>
           <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="38c93887-5d82-5abd-acce-025d11dbe177" elementId="38c93887-5d82-5abd-acce-025d11dbe177">
             <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="610442f9-5b86-572a-ac2c-e32123d89bc8" elementId="610442f9-5b86-572a-ac2c-e32123d89bc8" body="An IfElsePerformance is an IfPerformance where the elseClause occurs after and only &#xA;after the ifTest evaluation result is not true.&#xA;"/>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="d9f73072-13c6-5cb5-8c30-3c99f7a2d902" elementId="d9f73072-13c6-5cb5-8c30-3c99f7a2d902">
             <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="58bdcdc9-3b3e-59a6-9fa3-0820bb7a4704" elementId="58bdcdc9-3b3e-59a6-9fa3-0820bb7a4704" direction="in">
-              <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="b35aab12-b478-51a9-91c4-c2763c6ab3a3" elementId="b35aab12-b478-51a9-91c4-c2763c6ab3a3" redefiningFeature="58bdcdc9-3b3e-59a6-9fa3-0820bb7a4704" redefinedFeature="67294f54-ea41-5027-8ae4-1f2defa40556"/>
+              <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="b35aab12-b478-51a9-91c4-c2763c6ab3a3" elementId="b35aab12-b478-51a9-91c4-c2763c6ab3a3" redefinedFeature="67294f54-ea41-5027-8ae4-1f2defa40556" redefiningFeature="58bdcdc9-3b3e-59a6-9fa3-0820bb7a4704"/>
             </ownedRelatedElement>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="eca37102-4838-53a4-aac0-4d5edd635cee" elementId="eca37102-4838-53a4-aac0-4d5edd635cee">
-            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="1be42b62-585a-56ab-80c0-2b1bd9480b99" elementId="1be42b62-585a-56ab-80c0-2b1bd9480b99" declaredName="elseClause" direction="in">
+            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="1be42b62-585a-56ab-80c0-2b1bd9480b99" declaredName="elseClause" elementId="1be42b62-585a-56ab-80c0-2b1bd9480b99" direction="in">
               <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="286a7ca9-e176-5af6-856f-58c348bb50d4" elementId="286a7ca9-e176-5af6-856f-58c348bb50d4" typedFeature="1be42b62-585a-56ab-80c0-2b1bd9480b99">
                 <type href="Occurrences.kermlx#80f4284e-73b1-589c-ad80-e25f33022e4f"/>
               </ownedRelationship>
@@ -375,23 +375,23 @@
         </ownedRelatedElement>
       </ownedRelationship>
       <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="29c8262e-4cc6-5c5a-a5bf-2111a9c3e849" elementId="29c8262e-4cc6-5c5a-a5bf-2111a9c3e849">
-        <ownedRelatedElement xsi:type="sysml:Behavior" xmi:id="636b3413-7cb4-5cd1-afd0-7158bbb44d82" elementId="636b3413-7cb4-5cd1-afd0-7158bbb44d82" declaredName="IfThenElsePerformance">
-          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="d8d578bb-d3c3-5549-a983-a30cce9c84ab" elementId="d8d578bb-d3c3-5549-a983-a30cce9c84ab" superclassifier="3c1d77d0-48be-54c9-96b9-042c71d9e2aa" subclassifier="636b3413-7cb4-5cd1-afd0-7158bbb44d82"/>
+        <ownedRelatedElement xsi:type="sysml:Behavior" xmi:id="636b3413-7cb4-5cd1-afd0-7158bbb44d82" declaredName="IfThenElsePerformance" elementId="636b3413-7cb4-5cd1-afd0-7158bbb44d82">
+          <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="d8d578bb-d3c3-5549-a983-a30cce9c84ab" elementId="d8d578bb-d3c3-5549-a983-a30cce9c84ab" subclassifier="636b3413-7cb4-5cd1-afd0-7158bbb44d82" superclassifier="3c1d77d0-48be-54c9-96b9-042c71d9e2aa"/>
           <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="1b3cb2e3-d6ac-598a-a686-af5edc79cc1e" elementId="1b3cb2e3-d6ac-598a-a686-af5edc79cc1e">
             <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="1ddddb94-71fc-5679-82aa-983854929c0f" elementId="1ddddb94-71fc-5679-82aa-983854929c0f" body="An IfThenElsePerformance is an IfThenPerformance with an additional elseClause that&#xA;occurs after and only after the ifTest evaluation is false.&#xA;"/>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="e789593f-8db5-5a5d-9fc1-232615a03227" elementId="e789593f-8db5-5a5d-9fc1-232615a03227">
             <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="ee1437e1-2ff0-5850-aaeb-4523b2e237e2" elementId="ee1437e1-2ff0-5850-aaeb-4523b2e237e2" direction="in">
-              <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="383bd0f8-6e0a-5624-b1f8-035fa97a1462" elementId="383bd0f8-6e0a-5624-b1f8-035fa97a1462" redefiningFeature="ee1437e1-2ff0-5850-aaeb-4523b2e237e2" redefinedFeature="201a3f38-946a-5957-92f2-e3486076b4e4"/>
+              <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="383bd0f8-6e0a-5624-b1f8-035fa97a1462" elementId="383bd0f8-6e0a-5624-b1f8-035fa97a1462" redefinedFeature="201a3f38-946a-5957-92f2-e3486076b4e4" redefiningFeature="ee1437e1-2ff0-5850-aaeb-4523b2e237e2"/>
             </ownedRelatedElement>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="6fa28b38-5002-5469-8ac2-436440074ff7" elementId="6fa28b38-5002-5469-8ac2-436440074ff7">
             <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="621508d4-8b25-5b87-abec-eaf7a55652ff" elementId="621508d4-8b25-5b87-abec-eaf7a55652ff" direction="in">
-              <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="0c03c05f-4542-5932-aaa3-56070f354f0c" elementId="0c03c05f-4542-5932-aaa3-56070f354f0c" redefiningFeature="621508d4-8b25-5b87-abec-eaf7a55652ff" redefinedFeature="8d7a7b1f-1ea8-5fcf-ba85-16b9523866be"/>
+              <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="0c03c05f-4542-5932-aaa3-56070f354f0c" elementId="0c03c05f-4542-5932-aaa3-56070f354f0c" redefinedFeature="8d7a7b1f-1ea8-5fcf-ba85-16b9523866be" redefiningFeature="621508d4-8b25-5b87-abec-eaf7a55652ff"/>
             </ownedRelatedElement>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="283e3d1b-152e-5a1a-885b-3e9702db9193" elementId="283e3d1b-152e-5a1a-885b-3e9702db9193">
-            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="a418c47f-6f21-53fb-a62d-7f5209225e2f" elementId="a418c47f-6f21-53fb-a62d-7f5209225e2f" declaredName="elseClause" direction="in">
+            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="a418c47f-6f21-53fb-a62d-7f5209225e2f" declaredName="elseClause" elementId="a418c47f-6f21-53fb-a62d-7f5209225e2f" direction="in">
               <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="7be3abe6-e7af-5ef9-8397-e149cebc8abc" elementId="7be3abe6-e7af-5ef9-8397-e149cebc8abc" typedFeature="a418c47f-6f21-53fb-a62d-7f5209225e2f">
                 <type href="Occurrences.kermlx#80f4284e-73b1-589c-ad80-e25f33022e4f"/>
               </ownedRelationship>
@@ -509,7 +509,7 @@
         </ownedRelatedElement>
       </ownedRelationship>
       <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="6e278af4-6c0f-5da5-a6fc-ec27cd7e6155" elementId="6e278af4-6c0f-5da5-a6fc-ec27cd7e6155">
-        <ownedRelatedElement xsi:type="sysml:Behavior" xmi:id="fa83c787-56b3-5bdc-af09-6edb35857eb7" elementId="fa83c787-56b3-5bdc-af09-6edb35857eb7" declaredName="LoopPerformance">
+        <ownedRelatedElement xsi:type="sysml:Behavior" xmi:id="fa83c787-56b3-5bdc-af09-6edb35857eb7" declaredName="LoopPerformance" elementId="fa83c787-56b3-5bdc-af09-6edb35857eb7">
           <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="a4ef8c0a-3785-589b-bf29-05bf14aa11a3" elementId="a4ef8c0a-3785-589b-bf29-05bf14aa11a3" subclassifier="fa83c787-56b3-5bdc-af09-6edb35857eb7">
             <superclassifier href="Performances.kermlx#1b7f00e7-24fb-5ebc-8773-89ba88bc3d5d"/>
           </ownedRelationship>
@@ -517,7 +517,7 @@
             <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="f1aca370-40c2-5c8e-90ff-035bb367bdc1" elementId="f1aca370-40c2-5c8e-90ff-035bb367bdc1" body="A LoopPerformance is a Performance where the body occurs repeatedly in sequence (iterates) &#xA;as long as the whileTest evaluation result is true before each iteration (and after the &#xA;previous one, except the first time) and the untilTest evaluation result is not true after &#xA;each iteration and before the next one (except the last one).&#xA;"/>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="534271c5-249e-510a-908b-95fc09a726e4" elementId="534271c5-249e-510a-908b-95fc09a726e4">
-            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="306786fa-c5f5-5420-b94f-60141690650a" elementId="306786fa-c5f5-5420-b94f-60141690650a" declaredName="whileTest" direction="in">
+            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="306786fa-c5f5-5420-b94f-60141690650a" declaredName="whileTest" elementId="306786fa-c5f5-5420-b94f-60141690650a" direction="in">
               <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="32b73a5c-7de5-5bd0-bc88-8846e04ec05a" elementId="32b73a5c-7de5-5bd0-bc88-8846e04ec05a" typedFeature="306786fa-c5f5-5420-b94f-60141690650a">
                 <type href="Performances.kermlx#b75bfbb5-0e73-52a8-8d27-617d953c9bcd"/>
               </ownedRelationship>
@@ -534,7 +534,7 @@
             </ownedRelatedElement>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="b63bc6b4-1eb6-59b3-8b4c-62692ea42826" elementId="b63bc6b4-1eb6-59b3-8b4c-62692ea42826">
-            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="13a2f20e-0bcd-56bf-846b-8f0674b21a5a" elementId="13a2f20e-0bcd-56bf-846b-8f0674b21a5a" declaredName="body" direction="in">
+            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="13a2f20e-0bcd-56bf-846b-8f0674b21a5a" declaredName="body" elementId="13a2f20e-0bcd-56bf-846b-8f0674b21a5a" direction="in">
               <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="7b77386b-37f0-5e92-89de-ff4e6c4940db" elementId="7b77386b-37f0-5e92-89de-ff4e6c4940db" typedFeature="13a2f20e-0bcd-56bf-846b-8f0674b21a5a">
                 <type href="Occurrences.kermlx#80f4284e-73b1-589c-ad80-e25f33022e4f"/>
               </ownedRelationship>
@@ -551,7 +551,7 @@
             </ownedRelatedElement>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="c25ceec8-569a-512b-8482-750c465de960" elementId="c25ceec8-569a-512b-8482-750c465de960">
-            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="01f7ea65-a5bf-5cea-af47-164f67eed1ca" elementId="01f7ea65-a5bf-5cea-af47-164f67eed1ca" declaredName="untilTest" direction="in">
+            <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="01f7ea65-a5bf-5cea-af47-164f67eed1ca" declaredName="untilTest" elementId="01f7ea65-a5bf-5cea-af47-164f67eed1ca" direction="in">
               <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="b8d0d3a9-a779-55b7-879d-2a3ff16458a7" elementId="b8d0d3a9-a779-55b7-879d-2a3ff16458a7" typedFeature="01f7ea65-a5bf-5cea-af47-164f67eed1ca">
                 <type href="Performances.kermlx#b75bfbb5-0e73-52a8-8d27-617d953c9bcd"/>
               </ownedRelationship>
@@ -568,8 +568,8 @@
             </ownedRelatedElement>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="062bb526-ac12-5a1f-b328-5d012871cb5a" elementId="062bb526-ac12-5a1f-b328-5d012871cb5a">
-            <ownedRelatedElement xsi:type="sysml:Step" xmi:id="ec4311b9-5bd9-5fbc-ba73-24c56adea782" elementId="ec4311b9-5bd9-5fbc-ba73-24c56adea782" declaredName="whileDecision">
-              <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="e8e88df2-735c-5b63-a45a-e97bc0c1bd4e" elementId="e8e88df2-735c-5b63-a45a-e97bc0c1bd4e" typedFeature="ec4311b9-5bd9-5fbc-ba73-24c56adea782" type="3c1d77d0-48be-54c9-96b9-042c71d9e2aa"/>
+            <ownedRelatedElement xsi:type="sysml:Step" xmi:id="ec4311b9-5bd9-5fbc-ba73-24c56adea782" declaredName="whileDecision" elementId="ec4311b9-5bd9-5fbc-ba73-24c56adea782">
+              <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="e8e88df2-735c-5b63-a45a-e97bc0c1bd4e" elementId="e8e88df2-735c-5b63-a45a-e97bc0c1bd4e" type="3c1d77d0-48be-54c9-96b9-042c71d9e2aa" typedFeature="ec4311b9-5bd9-5fbc-ba73-24c56adea782"/>
               <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="6fbd0b0e-2c14-568e-90a4-82fbf8c18e0f" elementId="6fbd0b0e-2c14-568e-90a4-82fbf8c18e0f">
                 <ownedRelatedElement xsi:type="sysml:MultiplicityRange" xmi:id="38a58603-e0c8-5af5-9db7-092be207c9fb" elementId="38a58603-e0c8-5af5-9db7-092be207c9fb">
                   <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="45d37168-6137-5e99-8fae-ac128e605532" elementId="45d37168-6137-5e99-8fae-ac128e605532">
@@ -583,8 +583,8 @@
             </ownedRelatedElement>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="de60da6a-f844-5920-954f-dfb2f29a6fd2" elementId="de60da6a-f844-5920-954f-dfb2f29a6fd2">
-            <ownedRelatedElement xsi:type="sysml:Step" xmi:id="434e7ace-72d8-5c8e-96de-4636701092a0" elementId="434e7ace-72d8-5c8e-96de-4636701092a0" declaredName="untilDecision">
-              <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="ea821da3-9592-5632-8049-358bd1e545c2" elementId="ea821da3-9592-5632-8049-358bd1e545c2" typedFeature="434e7ace-72d8-5c8e-96de-4636701092a0" type="f4ad0f78-bd14-5745-8fda-93aa79580877"/>
+            <ownedRelatedElement xsi:type="sysml:Step" xmi:id="434e7ace-72d8-5c8e-96de-4636701092a0" declaredName="untilDecision" elementId="434e7ace-72d8-5c8e-96de-4636701092a0">
+              <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="ea821da3-9592-5632-8049-358bd1e545c2" elementId="ea821da3-9592-5632-8049-358bd1e545c2" type="f4ad0f78-bd14-5745-8fda-93aa79580877" typedFeature="434e7ace-72d8-5c8e-96de-4636701092a0"/>
               <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="df75b43a-01b3-5ed4-993a-90561efbe103" elementId="df75b43a-01b3-5ed4-993a-90561efbe103">
                 <ownedRelatedElement xsi:type="sysml:MultiplicityRange" xmi:id="be008794-92e2-5f03-920c-feeeb5f9280b" elementId="be008794-92e2-5f03-920c-feeeb5f9280b">
                   <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="e25810e0-5b0d-5197-b3ed-b6bb27620cf4" elementId="e25810e0-5b0d-5197-b3ed-b6bb27620cf4">
@@ -735,7 +735,7 @@
             </ownedRelatedElement>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="437d6b6b-c5a9-5c74-a2ac-b0c35ef4c155" elementId="437d6b6b-c5a9-5c74-a2ac-b0c35ef4c155">
-            <ownedRelatedElement xsi:type="sysml:BindingConnector" xmi:id="f1639b1c-e07d-5ae5-a809-d51c3fbc9eec" elementId="f1639b1c-e07d-5ae5-a809-d51c3fbc9eec" declaredName="loopBack">
+            <ownedRelatedElement xsi:type="sysml:BindingConnector" xmi:id="f1639b1c-e07d-5ae5-a809-d51c3fbc9eec" declaredName="loopBack" elementId="f1639b1c-e07d-5ae5-a809-d51c3fbc9eec">
               <ownedRelationship xsi:type="sysml:EndFeatureMembership" xmi:id="808d95a8-6769-5f3f-9c78-61312384be6a" elementId="808d95a8-6769-5f3f-9c78-61312384be6a">
                 <ownedRelatedElement xsi:type="sysml:Feature" xmi:id="dbd9f206-5dc5-59c5-9916-710fd70f89d7" elementId="dbd9f206-5dc5-59c5-9916-710fd70f89d7" isEnd="true">
                   <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="49d4fad3-0867-555b-898c-940a5c708af2" elementId="49d4fad3-0867-555b-898c-940a5c708af2">

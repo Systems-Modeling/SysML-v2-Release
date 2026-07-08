@@ -31,7 +31,7 @@ standard library package Time {
 	part def Clock :> Clocks::Clock {
 		doc
 		/*
-		 * A Clock provides a currentTime as a TimeInstantValue that advances montonically over its lifetime.
+		 * A Clock provides a currentTime as a TimeInstantValue that advances monotonically over its lifetime.
 		 */
 	
 		attribute :>> currentTime : TimeInstantValue;

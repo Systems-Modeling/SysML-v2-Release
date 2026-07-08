@@ -42,7 +42,7 @@ standard library package Transfers {
         feature isInstant: Boolean[1] {
             doc
             /*
-             * If isInstance is true, then the transfer is instantaneous.
+             * If isInstant is true, then the transfer is instantaneous.
              */
         }
         

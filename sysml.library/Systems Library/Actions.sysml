@@ -187,8 +187,9 @@ standard library package Actions {
 	action def SendAction :> Action, SendPerformance {
 		doc
 		/*
-		 * A SendAction is an Action used to type SendActionUsages. It initiates an outgoingTransferFromSelf 
-		 * from a designated sender Occurrence with a given payload, optionally to a designated receiver.
+		 * A SendAction is an Action and SendPerformance used to type SendActionUsages. 
+		 * It initiates an outgoingTransferFromSelf from a designated sender Occurrence 
+		 * with a given payload, optionally to a designated receiver Occurrence.
 		 */
 	
 		in :>> payload [0..*];
@@ -207,8 +208,9 @@ standard library package Actions {
 	action def AcceptMessageAction :> Action, AcceptPerformance {
 		doc
 		/*
-		 * An AcceptMessageAction is an Action that identifies an incomingTransferToSelf
-		 * of a designated receiver Occurrence, providing its payload as output.
+		 * An AcceptMessageAction is an Action and AcceptPerformance that identifies an 
+		 * incomingTransferToSelf of a designated receiver Occurrence, providing its payload 
+		 * as output.
 		 */
 		inout :>> payload;
 		ref acceptedMessage :>> acceptedTransfer: MessageTransfer, MessageAction {
@@ -293,18 +295,21 @@ standard library package Actions {
 		 * 
 		 * Note: Incoming succession connectors to a MergeAction must have source multiplicity 
 		 * 0..1 and subset the incomingHBLink feature inherited from MergePerformance.
+		 * 
+		 * A MergeAction is the ControlAction for a MergeNode. It is a MergePerformance that 
+		 * selects exactly one incoming HappensBeforeLink. Incoming succession connectors to a 
+		 * MergeAction must have source multiplicity 0..1 and subset the incomingHBLink feature 
+		 * inherited from MergePerformance.
 		 */
 	}
 	
 	action def DecisionAction :> ControlAction, DecisionPerformance {
 		doc
 		/*
-		 * A DecisionAction is the ControlAction for a decision node.
-		 * 
-		 * Note: Outgoing succession connectors from a DecisionAction must have target multiplicity
-		 * 0..1 and subset the outgoingHBLink feature inherited from DecisionPerformance.
-		 * If an outgoing succession has a guard, it should have a transitionStep typed by 
-		 * DecisionTransition.
+		 * A DecisionAction is the ControlAction for a DecisionNode. It is a DecisionPerformance that 
+		 * selects one outgoing HappensBeforeLink. Outgoing succession connectors from a DecisionAction 
+		 * must have target multiplicity 0..1 and subset the outgoingHBLink feature inherited from 
+		 * DecisionPerformance.
 		 */
 	}
 	

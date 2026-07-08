@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <sysml:Namespace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sysml="https://www.omg.org/spec/SysML/20250201" xmi:id="3168f915-a28d-5e3c-b4da-79881cf601f8" elementId="3168f915-a28d-5e3c-b4da-79881cf601f8">
   <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="e54a9675-8b26-5b20-85d4-32c453a4cf52" elementId="e54a9675-8b26-5b20-85d4-32c453a4cf52">
-    <ownedRelatedElement xsi:type="sysml:LibraryPackage" xmi:id="6e79043d-2d73-58ec-b5b2-82868996e495" elementId="6e79043d-2d73-58ec-b5b2-82868996e495" declaredName="Calculations" isStandard="true">
+    <ownedRelatedElement xsi:type="sysml:LibraryPackage" xmi:id="6e79043d-2d73-58ec-b5b2-82868996e495" declaredName="Calculations" elementId="6e79043d-2d73-58ec-b5b2-82868996e495" isStandard="true">
       <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="f7af8161-c92b-5d0f-a744-1ede31b82c0e" elementId="f7af8161-c92b-5d0f-a744-1ede31b82c0e">
         <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="95f6c71d-cf4f-54ce-a3ef-4702ffec5cb2" elementId="95f6c71d-cf4f-54ce-a3ef-4702ffec5cb2" body="This package defines the base types for calculations and related behavioral elements in the&#xA;SysML language.&#xA;"/>
       </ownedRelationship>
@@ -18,7 +18,7 @@
         <importedMembership href="Actions.sysmlx#d3d71adc-4a51-5d64-a092-742da73fb4b9"/>
       </ownedRelationship>
       <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="e0f85fd0-030b-553c-907c-85b2e924f7b7" elementId="e0f85fd0-030b-553c-907c-85b2e924f7b7">
-        <ownedRelatedElement xsi:type="sysml:CalculationDefinition" xmi:id="c482be7b-b90a-5027-8883-6525c8b27b48" elementId="c482be7b-b90a-5027-8883-6525c8b27b48" declaredName="Calculation" isAbstract="true">
+        <ownedRelatedElement xsi:type="sysml:CalculationDefinition" xmi:id="c482be7b-b90a-5027-8883-6525c8b27b48" declaredName="Calculation" elementId="c482be7b-b90a-5027-8883-6525c8b27b48" isAbstract="true">
           <ownedRelationship xsi:type="sysml:Subclassification" xmi:id="4c9a8927-ba66-555e-9491-cc8d3baf66d3" elementId="4c9a8927-ba66-555e-9491-cc8d3baf66d3" subclassifier="c482be7b-b90a-5027-8883-6525c8b27b48">
             <superclassifier href="Actions.sysmlx#6e44fcc3-4ac4-5e93-a695-61791fa23309"/>
           </ownedRelationship>
@@ -29,8 +29,8 @@
             <ownedRelatedElement xsi:type="sysml:Documentation" xmi:id="81cf1ed7-345c-5fc5-b5b6-459eecaa0701" elementId="81cf1ed7-345c-5fc5-b5b6-459eecaa0701" body="Calculation is the most general class of evaluations of CalculationDefinitions in a&#xA;system or part of a system. Calculation is the base class of all CalculationDefinitions.&#xA;"/>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="49d69a1c-4a96-5c8f-b253-9befd74a7d02" elementId="49d69a1c-4a96-5c8f-b253-9befd74a7d02">
-            <ownedRelatedElement xsi:type="sysml:CalculationUsage" xmi:id="250cd354-73d6-587c-b28e-d3d5f19de601" elementId="250cd354-73d6-587c-b28e-d3d5f19de601" declaredName="self">
-              <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="9a8148a7-de9f-507c-aa9c-f33957dca4ca" elementId="9a8148a7-de9f-507c-aa9c-f33957dca4ca" typedFeature="250cd354-73d6-587c-b28e-d3d5f19de601" type="c482be7b-b90a-5027-8883-6525c8b27b48"/>
+            <ownedRelatedElement xsi:type="sysml:CalculationUsage" xmi:id="250cd354-73d6-587c-b28e-d3d5f19de601" declaredName="self" elementId="250cd354-73d6-587c-b28e-d3d5f19de601">
+              <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="9a8148a7-de9f-507c-aa9c-f33957dca4ca" elementId="9a8148a7-de9f-507c-aa9c-f33957dca4ca" type="c482be7b-b90a-5027-8883-6525c8b27b48" typedFeature="250cd354-73d6-587c-b28e-d3d5f19de601"/>
               <ownedRelationship xsi:type="sysml:Redefinition" xmi:id="88a71d04-6010-5990-8937-66cb16763a3b" elementId="88a71d04-6010-5990-8937-66cb16763a3b" redefiningFeature="250cd354-73d6-587c-b28e-d3d5f19de601">
                 <redefinedFeature href="Actions.sysmlx#0813bc82-6ac1-5653-af87-7f1e5265d3ff"/>
               </ownedRelationship>
@@ -40,8 +40,8 @@
             </ownedRelatedElement>
           </ownedRelationship>
           <ownedRelationship xsi:type="sysml:FeatureMembership" xmi:id="afbe7438-1946-5fb5-bb3c-cbc3d125fbcf" elementId="afbe7438-1946-5fb5-bb3c-cbc3d125fbcf">
-            <ownedRelatedElement xsi:type="sysml:CalculationUsage" xmi:id="06af6d39-f546-5eeb-a18c-91b1695d6594" elementId="06af6d39-f546-5eeb-a18c-91b1695d6594" declaredName="subcalculations" isAbstract="true" isComposite="true">
-              <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="b678d931-6986-57eb-8a31-0fa3689d565b" elementId="b678d931-6986-57eb-8a31-0fa3689d565b" typedFeature="06af6d39-f546-5eeb-a18c-91b1695d6594" type="c482be7b-b90a-5027-8883-6525c8b27b48"/>
+            <ownedRelatedElement xsi:type="sysml:CalculationUsage" xmi:id="06af6d39-f546-5eeb-a18c-91b1695d6594" declaredName="subcalculations" elementId="06af6d39-f546-5eeb-a18c-91b1695d6594" isAbstract="true" isComposite="true">
+              <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="b678d931-6986-57eb-8a31-0fa3689d565b" elementId="b678d931-6986-57eb-8a31-0fa3689d565b" type="c482be7b-b90a-5027-8883-6525c8b27b48" typedFeature="06af6d39-f546-5eeb-a18c-91b1695d6594"/>
               <ownedRelationship xsi:type="sysml:Subsetting" xmi:id="bd1d4f3c-636a-5ae2-9415-6a589cefba5f" elementId="bd1d4f3c-636a-5ae2-9415-6a589cefba5f" subsettedFeature="b9765b13-8dc2-546b-8457-e71e02ec759c" subsettingFeature="06af6d39-f546-5eeb-a18c-91b1695d6594"/>
               <ownedRelationship xsi:type="sysml:Subsetting" xmi:id="ddb15109-a5bb-54a2-8a03-9d56dccbcb2f" elementId="ddb15109-a5bb-54a2-8a03-9d56dccbcb2f" subsettingFeature="06af6d39-f546-5eeb-a18c-91b1695d6594">
                 <subsettedFeature href="Actions.sysmlx#3cd3b18a-02fd-5ca8-908a-9acac924a5b3"/>
@@ -54,8 +54,8 @@
         </ownedRelatedElement>
       </ownedRelationship>
       <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="bd04b376-a495-5e6a-aa76-4337ba4048f1" elementId="bd04b376-a495-5e6a-aa76-4337ba4048f1">
-        <ownedRelatedElement xsi:type="sysml:CalculationUsage" xmi:id="b9765b13-8dc2-546b-8457-e71e02ec759c" elementId="b9765b13-8dc2-546b-8457-e71e02ec759c" declaredName="calculations" isAbstract="true" isUnique="false">
-          <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="1c2dd8ea-57b4-543c-911d-cc46fc24a024" elementId="1c2dd8ea-57b4-543c-911d-cc46fc24a024" typedFeature="b9765b13-8dc2-546b-8457-e71e02ec759c" type="c482be7b-b90a-5027-8883-6525c8b27b48"/>
+        <ownedRelatedElement xsi:type="sysml:CalculationUsage" xmi:id="b9765b13-8dc2-546b-8457-e71e02ec759c" declaredName="calculations" elementId="b9765b13-8dc2-546b-8457-e71e02ec759c" isAbstract="true" isUnique="false">
+          <ownedRelationship xsi:type="sysml:FeatureTyping" xmi:id="1c2dd8ea-57b4-543c-911d-cc46fc24a024" elementId="1c2dd8ea-57b4-543c-911d-cc46fc24a024" type="c482be7b-b90a-5027-8883-6525c8b27b48" typedFeature="b9765b13-8dc2-546b-8457-e71e02ec759c"/>
           <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="97744ad2-2b3e-583c-a443-72bd461d97c4" elementId="97744ad2-2b3e-583c-a443-72bd461d97c4">
             <ownedRelatedElement xsi:type="sysml:MultiplicityRange" xmi:id="39be77b5-11ab-5b65-8b9a-b763fc638ecb" elementId="39be77b5-11ab-5b65-8b9a-b763fc638ecb">
               <ownedRelationship xsi:type="sysml:OwningMembership" xmi:id="c77e218d-f86a-53f8-9e63-b4389f82c02f" elementId="c77e218d-f86a-53f8-9e63-b4389f82c02f">

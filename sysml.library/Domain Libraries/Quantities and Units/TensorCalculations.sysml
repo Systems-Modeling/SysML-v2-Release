@@ -13,7 +13,7 @@ standard library package TensorCalculations {
     private import MeasurementReferences::CoordinateTransformation;
     
     calc def '[' specializes BaseFunctions::'[' { 
-    	in elements: Number[1..n] ordered; 
+    	in elements: Number[1..n] ordered nonunique; 
     	in mRef: TensorMeasurementReference[1]; 
     	return quantity: TensorQuantityValue[1];
     	private attribute n = mRef.flattenedSize;
