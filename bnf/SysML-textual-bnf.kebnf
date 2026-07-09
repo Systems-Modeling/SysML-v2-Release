@@ -17,7 +17,7 @@ RESERVED_KEYWORD =
     | 'def' | 'default' | 'defined' | 'dependency' | 'derived' | 'do' | 'doc' | 'else' | 'end' | 'entry' | 'enum'
     | 'event' | 'exhibit' | 'exit' | 'expose' | 'false' | 'filter' | 'first' | 'flow' | 'for' | 'fork' | 'frame' | 'from'
     | 'hastype' | 'if' | 'implies' | 'import' | 'in' | 'include' | 'individual' | 'inout' | 'interface' | 'istype'
-    | 'item' | 'join' | 'language' | 'library' | 'locale' | 'loop' | 'merge' | 'message' | 'meta' | 'metadata'
+    | 'item' | 'join' | 'language' | 'library' | 'locale' | 'loop' | 'merge' | 'message' | 'meta' | 'metadata' | 'new'
     | 'nonunique' | 'not' | 'null' | 'objective' | 'occurrence' | 'of' | 'or' | 'ordered' | 'out' | 'package' | 'parallel'
     | 'part' | 'perform' | 'port' | 'private' | 'protected' | 'public' | 'redefines' | 'ref' | 'references' | 'render'
     | 'rendering' | 'rep' | 'require' | 'requirement' | 'return' | 'satisfy' | 'send' | 'snapshot' | 'specializes'
@@ -69,7 +69,7 @@ OwnedAnnotation : Annotation =
     ownedRelatedElement += AnnotatingElement
 
 AnnotatingMember : OwningMembership =
-    ownedRelatedElement += AnnotatingElement
+    MemberPrefix ownedRelatedElement += AnnotatingElement
 
 AnnotatingElement =
       Comment
@@ -168,6 +168,10 @@ NamespaceImport =
 FilterPackage : Package =
     ownedRelationship += FilterPackageImport
     ( ownedRelationship += FilterPackageMember )+
+
+FilterPackageImport : Import =
+    ImportDeclaration
+    { visibility = 'public' }
 
 FilterPackageMember : ElementFilterMembership =
     '[' ownedRelatedElement += OwnedExpression ']'
@@ -709,8 +713,8 @@ BindingConnectorAsUsage =
 
 SuccessionAsUsage =
     UsagePrefix ( 'succession' UsageDeclaration )?
-    'first' s.ownedRelationship += ConnectorEndMember
-    'then' s.ownedRelationship += ConnectorEndMember
+    'first' ownedRelationship += ConnectorEndMember
+    'then' ownedRelationship += ConnectorEndMember
     UsageBody
 
 // Clause 8.2.2.14 Interfaces Textual Notation
@@ -853,7 +857,7 @@ PayloadFeature : Feature =
       ownedRelationship += OwnedFeatureTyping
 
 PayloadFeatureSpecializationPart : Feature =
-      ( FeatureSpecialization )+ MultiplicityPart?
+      FeatureSpecialization+ MultiplicityPart?
       FeatureSpecialization*
     | MultiplicityPart FeatureSpecialization+
 
@@ -1089,7 +1093,7 @@ AssignmentNode : AssignmentActionUsage =
     OccurrenceUsagePrefix
     AssignmentNodeDeclaration ActionBody
 
-AssignmentNodeDeclaration: ActionUsage =
+AssignmentNodeDeclaration : ActionUsage =
     ( ActionNodeUsageDeclaration )? 'assign'
     ownedRelationship += AssignmentTargetMember
     ownedRelationship += FeatureChainMember ':='
@@ -1440,10 +1444,10 @@ FramedConcernMember : FramedConcernMembership =
 
 FramedConcernUsage : ConcernUsage =
       ownedRelationship += OwnedReferenceSubsetting
-      FeatureSpecializationPart? CalculationBody
+      FeatureSpecializationPart? RequirementBody
     | ( UsageExtensionKeyword* 'concern'
       | UsageExtensionKeyword+ )
-      CalculationUsageDeclaration CalculationBody
+      ConstraintUsageDeclaration RequirementBody
 
 ActorMember : ActorMembership =
     MemberPrefix ownedRelatedElement += ActorUsage

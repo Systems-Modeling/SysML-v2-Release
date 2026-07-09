@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>SysML-textual-bnf-corrected</title>  
+<title>SysML-textual-bnf-corrected</title>
 <link rel="stylesheet" type="text/css" href="bnf_styles.css">
 </head>
 <body>
@@ -21,7 +21,7 @@
     | 'def' | 'default' | 'defined' | 'dependency' | 'derived' | 'do' | 'doc' | 'else' | 'end' | 'entry' | 'enum'
     | 'event' | 'exhibit' | 'exit' | 'expose' | 'false' | 'filter' | 'first' | 'flow' | 'for' | 'fork' | 'frame' | 'from'
     | 'hastype' | 'if' | 'implies' | 'import' | 'in' | 'include' | 'individual' | 'inout' | 'interface' | 'istype'
-    | 'item' | 'join' | 'language' | 'library' | 'locale' | 'loop' | 'merge' | 'message' | 'meta' | 'metadata'
+    | 'item' | 'join' | 'language' | 'library' | 'locale' | 'loop' | 'merge' | 'message' | 'meta' | 'metadata'| 'new'
     | 'nonunique' | 'not' | 'null' | 'objective' | 'occurrence' | 'of' | 'or' | 'ordered' | 'out' | 'package' | 'parallel'
     | 'part' | 'perform' | 'port' | 'private' | 'protected' | 'public' | 'redefines' | 'ref' | 'references' | 'render'
     | 'rendering' | 'rep' | 'require' | 'requirement' | 'return' | 'satisfy' | 'send' | 'snapshot' | 'specializes'
@@ -82,7 +82,7 @@
 </pre>
 <a id="AnnotatingMember"></a>
 <pre>AnnotatingMember : OwningMembership =
-    ownedRelatedElement += <a href="#AnnotatingElement">AnnotatingElement</a>
+    <a href="#MemberPrefix">MemberPrefix</a> ownedRelatedElement += <a href="#AnnotatingElement">AnnotatingElement</a>
 </pre>
 <a id="AnnotatingElement"></a>
 <pre>AnnotatingElement =
@@ -196,6 +196,11 @@
 <pre>FilterPackage : Package =
     ownedRelationship += FilterPackageImport
     ( ownedRelationship += <a href="#FilterPackageMember">FilterPackageMember</a> )+
+</pre>
+<a id="FilterPackageImport"></a>
+<pre>FilterPackageImport : Import =
+    <a href="#ImportDeclaration">ImportDeclaration</a>
+    { visibility = 'public' }
 </pre>
 <a id="FilterPackageMember"></a>
 <pre>FilterPackageMember : ElementFilterMembership =
@@ -827,8 +832,8 @@
 <a id="SuccessionAsUsage"></a>
 <pre>SuccessionAsUsage =
     <a href="#UsagePrefix">UsagePrefix</a> ( 'succession' <a href="#UsageDeclaration">UsageDeclaration</a> )?
-    'first' s.ownedRelationship += <a href="#ConnectorEndMember">ConnectorEndMember</a>
-    'then' s.ownedRelationship += <a href="#ConnectorEndMember">ConnectorEndMember</a>
+    'first' ownedRelationship += <a href="#ConnectorEndMember">ConnectorEndMember</a>
+    'then' ownedRelationship += <a href="#ConnectorEndMember">ConnectorEndMember</a>
     <a href="#UsageBody">UsageBody</a>
 </pre>
 <h4><a id="c8.2.2.14"></a>// Clause 8.2.2.14 Interfaces Textual Notation</h4>
@@ -996,7 +1001,7 @@
 </pre>
 <a id="PayloadFeatureSpecializationPart"></a>
 <pre>PayloadFeatureSpecializationPart : Feature =
-      ( <a href="#FeatureSpecialization">FeatureSpecialization</a> )+ <a href="#MultiplicityPart">MultiplicityPart</a>?
+      <a href="#FeatureSpecialization">FeatureSpecialization</a>+ <a href="#MultiplicityPart">MultiplicityPart</a>?
       <a href="#FeatureSpecialization">FeatureSpecialization</a>*
     | <a href="#MultiplicityPart">MultiplicityPart</a> <a href="#FeatureSpecialization">FeatureSpecialization</a>+
 </pre>
@@ -1281,7 +1286,7 @@
     <a href="#AssignmentNodeDeclaration">AssignmentNodeDeclaration</a> <a href="#ActionBody">ActionBody</a>
 </pre>
 <a id="AssignmentNodeDeclaration"></a>
-<pre>AssignmentNodeDeclaration: ActionUsage =
+<pre>AssignmentNodeDeclaration : ActionUsage =
     ( <a href="#ActionNodeUsageDeclaration">ActionNodeUsageDeclaration</a> )? 'assign'
     ownedRelationship += <a href="#AssignmentTargetMember">AssignmentTargetMember</a>
     ownedRelationship += <a href="#FeatureChainMember">FeatureChainMember</a> ':='
@@ -1695,10 +1700,10 @@
 <a id="FramedConcernUsage"></a>
 <pre>FramedConcernUsage : ConcernUsage =
       ownedRelationship += <a href="#OwnedReferenceSubsetting">OwnedReferenceSubsetting</a>
-      <a href="#FeatureSpecializationPart">FeatureSpecializationPart</a>? <a href="#CalculationBody">CalculationBody</a>
+      <a href="#FeatureSpecializationPart">FeatureSpecializationPart</a>? <a href="#RequirementBody">RequirementBody</a>
     | ( <a href="#UsageExtensionKeyword">UsageExtensionKeyword</a>* 'concern'
       | <a href="#UsageExtensionKeyword">UsageExtensionKeyword</a>+ )
-      CalculationUsageDeclaration <a href="#CalculationBody">CalculationBody</a>
+      <a href="#ConstraintUsageDeclaration">ConstraintUsageDeclaration</a> <a href="#RequirementBody">RequirementBody</a>
 </pre>
 <a id="ActorMember"></a>
 <pre>ActorMember : ActorMembership =
