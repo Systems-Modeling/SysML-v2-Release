@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>KerML-textual-bnf-corrected</title>  
+<title>KerML-textual-bnf-corrected</title>
 <link rel="stylesheet" type="text/css" href="bnf_styles.css">
 </head>
 <body>
@@ -966,7 +966,7 @@
       <a href="#FeatureDeclaration">FeatureDeclaration</a>
       ( 'first' ownedRelationship += <a href="#ConnectorEndMember">ConnectorEndMember</a>
         'then'  ownedRelationship += <a href="#ConnectorEndMember">ConnectorEndMember</a> )?
-    | ( s.isSufficient ?= 'all' )?
+    | ( isSufficient ?= 'all' )?
       ( 'first'? ownedRelationship += <a href="#ConnectorEndMember">ConnectorEndMember</a>
         'then'   ownedRelationship += <a href="#ConnectorEndMember">ConnectorEndMember</a> )?
 </pre>
@@ -1129,7 +1129,7 @@
 <a id="MetaclassificationExpression"></a>
 <pre>MetaclassificationExpression : OperatorExpression =
     ownedRelationship += <a href="#MetadataArgumentMember">MetadataArgumentMember</a>
-    ( operator = <a href="#ClassificationTestOperator">ClassificationTestOperator</a>
+    ( operator = <a href="#MetaclassificationTestOperator">MetaclassificationTestOperator</a>
       ownedRelationship += <a href="#TypeReferenceMember">TypeReferenceMember</a>
     | operator = <a href="#MetaCastOperator">MetaCastOperator</a>
       ownedRelationship += <a href="#TypeResultMember">TypeResultMember</a>
@@ -1306,7 +1306,7 @@
 <a id="FunctionOperationExpression"></a>
 <pre>FunctionOperationExpression : InvocationExpression =
     ownedRelationship += <a href="#PrimaryArgumentMember">PrimaryArgumentMember</a> '->'
-    ownedRelationship += InvocationTypeMember
+    ownedRelationship += <a href="#InstantiatedTypeMember">InstantiatedTypeMember</a>
     ( ownedRelationship += <a href="#BodyArgumentMember">BodyArgumentMember</a>
     | ownedRelationship += <a href="#FunctionReferenceArgumentMember">FunctionReferenceArgumentMember</a>
     | <a href="#ArgumentList">ArgumentList</a> )
@@ -1432,8 +1432,8 @@
 </pre>
 <a id="PositionalArgumentList"></a>
 <pre>PositionalArgumentList : Feature =
-    e.ownedRelationship += <a href="#ArgumentMember">ArgumentMember</a>
-    ( ',' e.ownedRelationship += <a href="#ArgumentMember">ArgumentMember</a> )*
+    ownedRelationship += <a href="#ArgumentMember">ArgumentMember</a>
+    ( ',' ownedRelationship += <a href="#ArgumentMember">ArgumentMember</a> )*
 </pre>
 <a id="NamedArgumentList"></a>
 <pre>NamedArgumentList : Feature =
@@ -1542,7 +1542,7 @@
     | ownedRelationship += <a href="#OwnedFeatureTyping">OwnedFeatureTyping</a>
       ( ownedRelationship += <a href="#OwnedMultiplicity">OwnedMultiplicity</a> )?
     | ownedRelationship += <a href="#OwnedMultiplicity">OwnedMultiplicity</a>
-      ( ownedRelationship += <a href="#OwnedFeatureTyping">OwnedFeatureTyping</a> )?
+      ownedRelationship += <a href="#OwnedFeatureTyping">OwnedFeatureTyping</a>
 </pre>
 <a id="PayloadFeatureSpecializationPart"></a>
 <pre>PayloadFeatureSpecializationPart : Feature =

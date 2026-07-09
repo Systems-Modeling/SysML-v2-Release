@@ -846,7 +846,7 @@ SuccessionDeclaration : Succession =
       FeatureDeclaration
       ( 'first' ownedRelationship += ConnectorEndMember
         'then'  ownedRelationship += ConnectorEndMember )?
-    | ( s.isSufficient ?= 'all' )?
+    | ( isSufficient ?= 'all' )?
       ( 'first'? ownedRelationship += ConnectorEndMember
         'then'   ownedRelationship += ConnectorEndMember )?
 
@@ -993,7 +993,7 @@ CastOperator =
 
 MetaclassificationExpression : OperatorExpression =
     ownedRelationship += MetadataArgumentMember
-    ( operator = ClassificationTestOperator
+    ( operator = MetaclassificationTestOperator
       ownedRelationship += TypeReferenceMember
     | operator = MetaCastOperator
       ownedRelationship += TypeResultMember
@@ -1133,7 +1133,7 @@ SelectExpression =
 
 FunctionOperationExpression : InvocationExpression =
     ownedRelationship += PrimaryArgumentMember '->'
-    ownedRelationship += InvocationTypeMember
+    ownedRelationship += InstantiatedTypeMember
     ( ownedRelationship += BodyArgumentMember
     | ownedRelationship += FunctionReferenceArgumentMember
     | ArgumentList )
@@ -1233,8 +1233,8 @@ ArgumentList : Feature =
     '(' ( PositionalArgumentList | NamedArgumentList )? ')'
 
 PositionalArgumentList : Feature =
-    e.ownedRelationship += ArgumentMember
-    ( ',' e.ownedRelationship += ArgumentMember )*
+    ownedRelationship += ArgumentMember
+    ( ',' ownedRelationship += ArgumentMember )*
 
 NamedArgumentList : Feature =
     ownedRelationship += NamedArgumentMember
@@ -1326,7 +1326,7 @@ PayloadFeature =
     | ownedRelationship += OwnedFeatureTyping
       ( ownedRelationship += OwnedMultiplicity )?
     | ownedRelationship += OwnedMultiplicity
-      ( ownedRelationship += OwnedFeatureTyping )?
+      ownedRelationship += OwnedFeatureTyping
 
 PayloadFeatureSpecializationPart : Feature =
       FeatureSpecialization+ MultiplicityPart?
