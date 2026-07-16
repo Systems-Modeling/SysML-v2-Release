@@ -83,7 +83,7 @@ package AnalysisIndividualExample {
 					attribute :>> fuelEfficiency = 0.4;
 				}
 			}
-			individual action :>> fuelConsumption : FuelEconomyAnalysis_1 {
+			individual action :>> fuelConsumption : FuelConsumption_1 {
 				snapshot :>> done :> fuelConsumption {
 					out :>> fuelEconomy = 35[mph];
 				}
