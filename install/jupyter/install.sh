@@ -22,7 +22,7 @@
 
 set -e
 
-SYSML_VERSION="0.60.1"
+SYSML_VERSION="0.61.0"
 
 echo "--- Step 1: Testing Conda installation ---"
 command -v conda || (echo "Conda is not installed. Please install Conda and re-run." && return 1)

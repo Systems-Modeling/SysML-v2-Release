@@ -43,4 +43,8 @@ package ViewTest {
 		}
 	}
 
+	view v : V {
+		render r [0..*];
+	}
+
 }

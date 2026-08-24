@@ -26,4 +26,13 @@ package RequirementTest {
 	not satisfy r1 by p;
 	assert not satisfy r1 by q;
 	
+	constraint c1;
+	constraint c2;
+	concern c3;
+	
+	requirement def R2 {
+		assume c1 [0..*];
+		require c2 [0..*];
+		frame c3[0..*];
+	}
 }

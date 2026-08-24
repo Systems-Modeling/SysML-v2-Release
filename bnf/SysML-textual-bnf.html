@@ -331,11 +331,13 @@
     <a href="#RefPrefix">RefPrefix</a>
     ( isReference ?= 'ref' )?
 </pre>
+<p>// (See Note 1)
+</p>
 <a id="EndUsagePrefix"></a>
 <pre>EndUsagePrefix : Usage =
     isEnd ?= 'end' ( ownedRelationship += <a href="#OwnedCrossFeatureMember">OwnedCrossFeatureMember</a> )?
 </pre>
-<p>// (See Note 1)
+<p>// (See Note 2)
 </p>
 <a id="OwnedCrossFeatureMember"></a>
 <pre>OwnedCrossFeatureMember : OwningMembership =
@@ -387,7 +389,23 @@
 </pre>
 <p>// <strong>Notes:</strong></p>
 <ol>
-<li>// 1. A <code>Usage</code> parsed with <code>isEnd = true</code> for which <code>mayTimeVary = true</code> must also have <code>isConstant</code> set to true, even though this is not explicitly notated in the textual notation, in order to satisfy the KerML constraint <code>checkFeatureEndIsConstant</code>.</li>
+<li>// 1.The Boolean property <code>Usage::isReference</code> has a value derived as the logical negation of <code>Feature::isComposite</code> (see constraint <code>deriveUsageIsReference</code> in 8.3.6.4). In general, unless otherwise stated in the following, if the declaration of any kind of <code>Usage</code> does not include the keyword <strong><code>ref</code></strong>, the <code>Usage</code> shall be parsed with <code>isReference = false</code> and <code>isComposite = true</code>. Conversely, the <code>Usage</code> shall be parsed with <code>isReference = true</code> and <code>isComposite = false</code> in any of the following cases:
+		<ul>
+			<li>// •  The declaration includes the keyword <strong><code>ref</code></strong>, explicitly constraining <code>isReference</code> to be true, which shall be considered to require <code>isComposite</code> be set to false. (This includes the case of a <code>ReferenceUsage</code>; see 8.3.6.3.)</li>
+			<li>// • It is an <code>AttributeUsage</code> (see 8.3.7.3). (Note that an <code>EnumerationUsage</code> is a kind of <code>AttributeUsage</code>; see 8.3.8.3)</li>
+			<li>// • It is a <code>PortUsage</code> not owned by a <code>PortDefinition</code> or <code>PortUsage</code> (see 8.3.12.6).</li>
+			<li>// • It would otherwise not satisfy one or more of the abstract syntax validation constraints <code>validateUsageIsReferential</code> (see 8.3.6.8), <code>validateAttributeDefinitionFeature</code> (see 8.3.7.2), and/or <code>validateAttributeUsageFeature</code> (see 8.3.7.3); that is, when any of the following are true:
+			<ul>
+				<li>// • <code>direction</code> is non-null.</li>
+				<li>// • <code>isEnd</code> is true.</li>
+				<li>// • <code>owningType</code> is null (so <code>featuringTypes</code> is empty).</li>
+				<li>// • <code>owningType</code> is an <code>AttributeDefinition</code>.</li>
+				<li>// • <code>owningType</code> is an <code>AttributeUsage</code>.</li>
+			</ul>
+			</li>
+		</ul>
+</li>
+<li>// 2. A <code>Usage</code> parsed with <code>isEnd = true</code> for which <code>mayTimeVary = true</code> must also have <code>isConstant</code> set to true, even though this is not explicitly notated in the textual notation, in order to satisfy the KerML constraint <code>checkFeatureEndIsConstant</code>.</li>
 </ol>
 <h5><a id="c8.2.2.6.3"></a>// Clause 8.2.2.6.3 Reference Usages</h5>
 <a id="DefaultReferenceUsage"></a>

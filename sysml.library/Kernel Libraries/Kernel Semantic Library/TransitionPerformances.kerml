@@ -25,7 +25,7 @@ standard library package TransitionPerformances {
 		bool guard[*] subsets enclosedPerformances;
 		step effect[*] subsets enclosedPerformances;
 
-		feature triggerTarget : Occurrence [1] default this;
+		feature triggerTarget : Occurrence [1] default accept.receiver ?? this;
 		feature transitionLink: HappensBefore[0..1];
 		
 		private binding [0..1] transitionLink.earlierOccurrence = [1] transitionLinkSource;
@@ -43,7 +43,6 @@ standard library package TransitionPerformances {
 		step accept: AcceptPerformance[accNum] subsets timeEnclosedOccurrences, acceptPerformances {
 			feature redefines acceptedTransfer = trigger;
 		}
-        binding accept.receiver = triggerTarget;
 
 		private succession [*] guard then [accNum] accept;
 	}

@@ -157,12 +157,10 @@ standard library package Objects {
 	abstract struct StructuredSpaceObject specializes Object {
 		doc
 		/*
-		 * A StructuredSpaceObject is an Object that is broken up into smaller structured space objects (cells) of
-		 * the same or lower inner space dimension: faces that are surfaces, edges that are curves, and vertices
-		 * that are points, with edges and vertices on the boundary of faces, and vertices on the boundary of
-		 * edges. Cells meet when a structured space object is closed, as required to be a space boundary of
-		 * an object (faces meet at their edges and/or vertices, while edges meet at their vertices). The
-		 * inner space dimension of structured space object is the highest of their cells.
+		 * The structures StructuredSurface, StructuredCurve and StructuredPoint provide common, necessary redefinitions of
+		 * innerSpaceDimension. They also provide single types for the StructuredSpaceObject features faces, edges and
+		 * vertices, which avoids problems when these features are related by connectors with ends that have owned
+		 * cross features.
 		 */
 
         abstract portion feature structuredSpaceObjectCells : StructuredSpaceObject[1..*] subsets Occurrence::spaceSlices { 
@@ -177,13 +175,13 @@ standard library package Objects {
 		 * vertices, which avoids problems when these features are related by connectors with ends that have owned
 		 * cross features.
 		 */
-		struct StructuredSurface specializes StructuredSpaceObject, Surface {
+		struct StructuredSurface specializes StructuredSpaceObject, Surface intersects StructuredSpaceObject, Surface {
             feature redefines StructuredSpaceObject::innerSpaceDimension, Surface::innerSpaceDimension;		    
 		}
-        struct StructuredCurve specializes StructuredSpaceObject, Curve {
+        struct StructuredCurve specializes StructuredSpaceObject, Curve intersects StructuredSpaceObject, Curve {
             feature redefines StructuredSpaceObject::innerSpaceDimension, Curve::innerSpaceDimension;         
         }
-        struct StructuredPoint specializes StructuredSpaceObject, Point {
+        struct StructuredPoint specializes StructuredSpaceObject, Point intersects StructuredSpaceObject, Point {
             feature redefines StructuredSpaceObject::innerSpaceDimension, Point::innerSpaceDimension;         
         }
 

@@ -20,13 +20,14 @@ package MetadataTest {
 		metadata Classified {
 			classificationLevel = conf;
 		}
+		metadata : Security;
 	}
 	
 	feature y {
 		@Classified {
 			classificationLevel = conf;
 		}
-		@Security;
+		@ : Security;
 	}
 	
 	private #Classified #Security feature z1;

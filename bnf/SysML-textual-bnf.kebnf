@@ -285,11 +285,13 @@ RefPrefix : Usage =
 BasicUsagePrefix : Usage =
     RefPrefix
     ( isReference ?= 'ref' )?
+    
+// (See Note 1)
 
 EndUsagePrefix : Usage =
     isEnd ?= 'end' ( ownedRelationship += OwnedCrossFeatureMember )?
 
-// (See Note 1)
+// (See Note 2)
 
 OwnedCrossFeatureMember : OwningMembership =
     ownedRelatedElement += OwnedCrossFeature
@@ -329,7 +331,17 @@ FeatureValue =
     ownedRelatedElement += OwnedExpression
 
 // Notes:
-//   1. A Usage parsed with isEnd = true for which mayTimeVary = true must also have isConstant set to true, even though this is not explicitly notated in the textual notation, in order to satisfy the KerML constraint checkFeatureEndIsConstant.
+//   1. The Boolean property Usage::isReference has a value derived as the logical negation of Feature::isComposite (see constraint deriveUsageIsReference in 8.3.6.4). In general, unless otherwise stated in the following, if the declaration of any kind of Usage does not include the keyword ref, the Usage shall be parsed with isReference = false and isComposite = true. Conversely, the Usage shall be parsed with isReference = true and isComposite = false in any of the following cases:
+//     • The declaration includes the keyword ref, explicitly constraining isReference to be true, which shall be considered to require isComposite be set to false. (This includes the case of a ReferenceUsage; see 8.3.6.3.)
+//     • It is an AttributeUsage (see 8.3.7.3). (Note that an EnumerationUsage is a kind of AttributeUsage; see 8.3.8.3)
+//     • It is a PortUsage not owned by a PortDefinition or PortUsage (see 8.3.12.6).
+//     • It would otherwise not satisfy one or more of the abstract syntax validation constraints validateUsageIsReferential (see 8.3.6.8), validateAttributeDefinitionFeature (see 8.3.7.2), and/or validateAttributeUsageFeature (see 8.3.7.3); that is, when any of the following are true:
+//         • direction is non-null.
+//         • isEnd is true.
+//         • owningType is null (so featuringTypes is empty).
+//         • owningType is an AttributeDefinition.
+//         • owningType is an AttributeUsage.
+//   2. A Usage parsed with isEnd = true for which mayTimeVary = true must also have isConstant set to true, even though this is not explicitly notated in the textual notation, in order to satisfy the KerML constraint checkFeatureEndIsConstant.
 
 // Clause 8.2.2.6.3 Reference Usages
 

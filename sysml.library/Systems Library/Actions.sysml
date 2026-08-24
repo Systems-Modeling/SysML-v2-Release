@@ -145,7 +145,13 @@ standard library package Actions {
 			 * The subactions of this Action that are AssignmentActions.
 			 */
 			 
-			 in target;
+			 in target {
+			    doc 
+			    /*
+			     * This provides an implicit redefining feature for AssignmentAction::target and 
+			     * assignmentActions::target, ensuring "target" remains the first parameter.
+			     */
+			}
 		}
 		
 		abstract action ifSubactions : IfThenAction[0..*] :> subactions, ifThenActions {
