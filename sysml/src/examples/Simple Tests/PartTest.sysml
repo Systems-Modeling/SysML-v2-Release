@@ -19,7 +19,9 @@ package PartTest {
 		port x: ~C {
 		    port p;
 		    ref port q;
+		    timeslice port x1;
 		}
+		timeslice part B1;
 		package P { }
 		
 		succession flow x.p to a1.aa.receiver;
