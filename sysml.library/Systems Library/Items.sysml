@@ -84,14 +84,14 @@ standard library package Items {
 
 			private item :>> faces {
 				ref item face :>> self;
-				item inter [1];
-				assert constraint { contains(inter.intersectionsOf, union(face, boundingShape)) }
+				item faceInter [1];
+				assert constraint { contains(faceInter.intersectionsOf, union(face, boundingShape)) }
 			}
 			private item :>> edges {
 				ref item edge :>> self;
-				item inter [1];
+				item edgeInter [1];
 				assert constraint { isEmpty(faces) implies
-							contains(inter.intersectionsOf, union(edge, boundingShape)) }
+							contains(edgeInter.intersectionsOf, union(edge, boundingShape)) }
 			}
 		}
 
