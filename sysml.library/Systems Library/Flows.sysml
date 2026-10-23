@@ -45,6 +45,9 @@ standard library package Flows {
         
         ref payload :>> MessageAction::payload, Transfer::payload;
         
+        end occurrence source: Occurrence :>> Transfer::source;
+        end occurrence target: Occurrence :>> Transfer::target;
+
         private ref action thisConnection = self;
         
         in event occurrence sourceEvent [1] default thisConnection.start {
@@ -86,7 +89,7 @@ standard library package Flows {
     abstract flow def SuccessionFlow :> Flow, FlowTransferBefore {
         doc
         /*
-         * SuccessionFlow is a subclass of flowss that appen after their source and 
+         * SuccessionFlow is a subclass of flows that happen after their source and 
          * before their target. It is the base type for all SuccessionFlowUsages.
          */
          
@@ -96,11 +99,14 @@ standard library package Flows {
         end occurrence target: Occurrence :>> Flow::target, FlowTransferBefore::target;
     }
     
-    abstract message messages: Message[0..*] nonunique :> transfers, actions {
+    abstract action messages: Message[0..*] nonunique :> transfers, actions {
         doc
         /*
          * messages is the base feature of all FlowUsages.
          */
+         
+        end occurrence source: Occurrence :>> Message::source, transfers::source;
+        end occurrence target: Occurrence :>> Message::target, transfers::target;
     }
     
     abstract flow flows: Flow[0..*] nonunique :> messages, flowTransfers {
