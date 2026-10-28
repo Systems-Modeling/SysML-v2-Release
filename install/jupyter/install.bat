@@ -21,7 +21,7 @@
 
 @echo off
 
-set SYSML_VERSION="0.63.0"
+set SYSML_VERSION="0.63.1"
 
 echo --- Step 1: Testing Conda installation ---
 where conda
